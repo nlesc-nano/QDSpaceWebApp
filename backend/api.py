@@ -1,16 +1,40 @@
-# backend/app.py
-import os, glob, shlex, shutil, tempfile, subprocess
+# backend/api.py
+from pathlib import Path
+import os, glob, shlex, shutil, tempfile, subprocess, sys, uuid
 from typing import List, Dict, Optional
+
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel, Field
 
-PROPS_ROOT   = os.environ.get(
-    "PROPS_ROOT",
-    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "docs"))
-)
-PROPS_SUBDIR = os.environ.get("PROPS_SUBDIR", "properties")  # <-- use 'properties'
+# ---------- Paths ----------
+PROPS_ROOT = Path(
+    os.environ.get(
+        "PROPS_ROOT",
+        Path(__file__).resolve().parent.parent / "docs" / "library"
+    )
+).resolve()
 
+PROPS_SUBDIR = os.environ.get("PROPS_SUBDIR", "properties")
+
+# Temp output directory for large HTML plots (served via /api/plot_file)
+TMP_PLOTS_DIR = Path(__file__).resolve().parent / "_tmp_plots"
+TMP_PLOTS_DIR.mkdir(parents=True, exist_ok=True)
+
+# ---------- App ----------
+app = FastAPI(title="miniCAT backend")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+# gzip big HTML responses
+app.add_middleware(GZipMiddleware, minimum_size=1024)
+
+# ---------- Models ----------
 class Job(BaseModel):
     ligands: List[str] = Field(..., min_items=1)
     dummy: str
@@ -26,18 +50,22 @@ class LegacyAttachRequest(BaseModel):
     smiles: str
     split: bool = True  # split→random, not split→segmented
 
-app = FastAPI(title="miniCAT backend")
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+class PlotRequest(BaseModel):
+    folder: str                 # e.g. "II-VI/CdTe/HLE17/12ang"
+    fuzzy: str                  # e.g. "fuzzy_data.npz"
+    pdos: str                   # e.g. "pdos_data.csv"
+    coop: str                   # e.g. "coop_data.csv"
+    out: Optional[str] = None   # ignored; backend uses temp file
+    ef: Optional[float] = None
+    title: Optional[str] = None
+    normalize_coop: bool = True
 
+# ---------- Health ----------
 @app.get("/")
 def root():
     return {"message": "miniCAT backend is alive. POST /attach"}
 
+# ---------- miniCAT attach ----------
 @app.post("/attach")
 def attach(payload: Dict):
     # Parse new schema first
@@ -95,62 +123,83 @@ def attach(payload: Dict):
         }
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
-class PlotRequest(BaseModel):
-    folder: str
-    fuzzy: str
-    pdos: str
-    coop: str
-    out: str
-    normalize_coop: bool = True
 
+# ---------- Properties plotting ----------
 @app.post("/plot")
 def plot_interactive(req: PlotRequest):
-    """
-    Run: python plot_interactive.py --fuzzy F --pdos P --coop C --out OUT [--normalize-coop]
-    in <req.folder>/properties, then return the generated HTML content.
-    """
-    base = os.path.normpath(os.path.join(PROPS_ROOT, req.folder or ""))
-    if not base.startswith(PROPS_ROOT):
+    # Resolve target folder safely under PROPS_ROOT
+    base = (PROPS_ROOT / (req.folder or "")).resolve()
+    if not str(base).startswith(str(PROPS_ROOT)):
         raise HTTPException(status_code=400, detail="Invalid folder path")
-    workdir = os.path.join(base, PROPS_SUBDIR)
-    if not os.path.isdir(workdir):
-        raise HTTPException(status_code=400, detail=f"'properties' folder not found: {workdir}")
-    fuzzy_path = os.path.join(workdir, req.fuzzy)
-    pdos_path  = os.path.join(workdir, req.pdos)
-    coop_path  = os.path.join(workdir, req.coop)
-    out_path   = os.path.join(workdir, req.out)
 
+    workdir = base / PROPS_SUBDIR
+    if not workdir.is_dir():
+        raise HTTPException(status_code=400, detail=f"'properties' folder not found: {workdir}")
+
+    # Absolute input paths (script will read these)
+    fuzzy_path = (workdir / req.fuzzy).resolve()
+    pdos_path  = (workdir / req.pdos ).resolve()
+    coop_path  = (workdir / req.coop ).resolve()
     for p in (fuzzy_path, pdos_path, coop_path):
-        if not os.path.isfile(p):
+        if not p.is_file():
             raise HTTPException(status_code=400, detail=f"Missing input file: {p}")
 
+    # Always use the backend plotter (single source of truth)
+    script = Path(__file__).resolve().parent / "plot_interactive.py"
+    if not script.is_file():
+        raise HTTPException(status_code=500, detail="backend/plot_interactive.py not found")
+
+    # Unique temp filename to avoid caching & collisions
+    fid = f"{uuid.uuid4().hex}.html"
+    out_path = (TMP_PLOTS_DIR / fid).resolve()
+
+    # Build command; run in TMP_PLOTS_DIR (keeps datasets read-only)
     cmd = [
-        "python", "plot_interactive.py",
-        "--fuzzy", req.fuzzy,
-        "--pdos",  req.pdos,
-        "--coop",  req.coop,
-        "--out",   req.out,
+        sys.executable, str(script),
+        "--fuzzy", str(fuzzy_path),
+        "--pdos",  str(pdos_path),
+        "--coop",  str(coop_path),
+        "--out",   str(out_path),
     ]
     if req.normalize_coop:
         cmd.append("--normalize-coop")
+    if req.ef is not None:
+        cmd += ["--ef", str(req.ef)]
+    if req.title:
+        cmd += ["--title", req.title]
 
     try:
-        run = subprocess.run(cmd, cwd=workdir, check=True, capture_output=True, text=True)
+        run = subprocess.run(
+            cmd,
+            cwd=str(TMP_PLOTS_DIR),
+            check=True,
+            capture_output=True,
+            text=True
+        )
     except subprocess.CalledProcessError as e:
         err = (e.stderr or e.stdout or "").strip()
         raise HTTPException(status_code=500, detail=f"plot_interactive failed: {err}")
 
-    if not os.path.isfile(out_path):
+    if not out_path.is_file():
         raise HTTPException(status_code=500, detail=f"Output HTML not found: {out_path}")
 
-    with open(out_path, "r", encoding="utf-8") as f:
-        html = f.read()
-
+    # Return a link to embed in an <iframe>
+    href = f"/api/plot_file?fid={fid}"
     return {
+        "message": "OK",
+        "href": href,
         "cmd": " ".join(cmd),
         "stdout": run.stdout or "",
         "stderr": run.stderr or "",
-        "html": html,
-        "message": "OK",
     }
+
+@app.get("/plot_file", response_class=HTMLResponse)
+def plot_file(fid: str):
+    # Safe lookup inside temp dir
+    fp = (TMP_PLOTS_DIR / fid).resolve()
+    if not str(fp).startswith(str(TMP_PLOTS_DIR)) or not fp.is_file():
+        raise HTTPException(status_code=404, detail="Plot HTML not found")
+    html = fp.read_text(encoding="utf-8")
+    # Avoid browser caching
+    return HTMLResponse(content=html, headers={"Cache-Control": "no-store"})
 

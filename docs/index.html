@@ -1,0 +1,61 @@
+<!-- docs/index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Quantum Dot Suite</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./library/app.css"> <!-- include your banner styles -->
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-900">
+
+  <!-- 🔹 Banner inserted here -->
+  <header class="bg-black text-white">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+      <!-- Logo + brand -->
+      <a href="/index.html" class="flex items-center gap-2">
+        <img src="/assets/logos/qds_logo.svg" alt="Quantum Dot Space" class="h-8 w-auto">
+        <span class="font-semibold text-lg">Quantum Dot Space</span>
+      </a>
+      <!-- Navigation -->
+      <nav class="flex items-center gap-6 text-sm font-medium">
+        <a href="/index.html"   data-nav="home"    class="hover:text-gray-300">Home</a>
+        <a href="/builder/"     data-nav="builder" class="hover:text-gray-300">QD Builder</a>
+        <a href="/library/"     data-nav="library" class="hover:text-gray-300">QD Library</a>
+        <a href="/about.html"   data-nav="about"   class="hover:text-gray-300">About Us</a>
+        <a href="/contact.html" data-nav="contact" class="bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1 rounded">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 🔹 End banner -->
+
+  <main class="max-w-5xl mx-auto px-4 py-16">
+    <h1 class="text-3xl font-semibold text-center mb-10">Quantum Dot Space</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-10">
+      <!-- Builder card -->
+      <a href="./builder/" class="block group">
+        <div class="rounded-xl border-2 border-black bg-white p-6 hover:shadow-xl hover:scale-105 transition transform">
+          <img src="./assets/logos/QD_Builder_Logo.png" alt="Quantum Dot Builder" class="mx-auto w-64 h-auto" />
+          </p>
+        </div>
+      </a>
+    
+      <!-- Library card -->
+      <a href="./library/" class="block group">
+        <div class="rounded-xl border-2 border-black bg-white p-6 hover:shadow-xl hover:scale-105 transition transform">
+          <img src="./assets/logos/QD_Library_Logo.png" alt="Quantum Dot Library" class="mx-auto w-64 h-auto" />
+          </p>
+        </div>
+      </a>
+    </div>
+
+  </main>
+
+  <script src="assets/nav-active.js" defer></script>
+
+</body>
+</html>
+

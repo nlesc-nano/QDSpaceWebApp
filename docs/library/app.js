@@ -1,8 +1,8 @@
 /* app.js  — merged viewer + miniCAT + properties */
 
 // ------------------------- Config -------------------------
-const CAT_ATTACH = 'http://127.0.0.1:8000/attach';
-const PLOT_URL   = 'http://127.0.0.1:8000/plot';
+const CAT_ATTACH = '/api/attach';
+const PLOT_URL   = '/api/plot';
 
 // ------------------------- State --------------------------
 let metadata = {};
@@ -465,14 +465,42 @@ function showPropsCard() {
   els.propsCard.classList.remove('hidden');
   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 }
+
 function renderIframeWithHTML(html) {
   els.propsBody.innerHTML = '';
   const frame = document.createElement('iframe');
   frame.setAttribute('title', 'interactive-properties');
-  frame.className = 'w-full h-[820px] rounded border';
+
+  // >>> important bits so Plotly JS inside the HTML actually runs
+  // allow-scripts: lets the <script> tags in the HTML execute
+  // allow-same-origin: lets Plotly use window/document normally
+  frame.setAttribute('sandbox', 'allow-scripts allow-same-origin');
+
+  // sizing / look
+  frame.style.width = '100%';
+  frame.style.height = '900px';
+  frame.style.border = '0';
+  frame.className = 'w-full rounded border';
+
+  // put the returned HTML directly into the iframe
   frame.srcdoc = html;
+
   els.propsBody.appendChild(frame);
 }
+
+function renderIframeFromHref(href) {
+  els.propsBody.innerHTML = '';
+  const frame = document.createElement('iframe');
+  frame.setAttribute('title', 'interactive-properties');
+  frame.setAttribute('sandbox', 'allow-scripts allow-same-origin');
+  frame.style.width = '100%';
+  frame.style.height = '900px';
+  frame.style.border = '0';
+  // cache-buster (even though backend sets no-store)
+  frame.src = `${href}&t=${Date.now()}`;
+  els.propsBody.appendChild(frame);
+}
+
 els.plotBtn?.addEventListener('click', () => {
   if (els.plotBtn.disabled) return;
   const folder = folderOfCurrentFile();
@@ -503,11 +531,11 @@ els.plotBtn?.addEventListener('click', () => {
     return data;
   })
   .then(resp => {
-    if (!resp?.html) {
-      els.propsBody.innerHTML = '<div class="text-red-600 text-sm">No HTML returned from backend.</div>';
+    if (!resp?.href) {
+      els.propsBody.innerHTML = '<div class="text-red-600 text-sm">No plot URL returned from backend.</div>';
       return;
     }
-    renderIframeWithHTML(resp.html);
+    renderIframeFromHref(resp.href);
   })
   .catch(err => {
     els.propsBody.innerHTML = `<div class="text-red-600 text-sm">Error: ${err}</div>`;
