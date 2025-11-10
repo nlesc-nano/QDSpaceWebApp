@@ -19,6 +19,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, JSONResponse, StreamingResponse
 from asyncio import to_thread
 from pydantic import BaseModel, Field
+from typing import Optional, Dict
+
+from starlette.staticfiles import StaticFiles
+
+
+
 
 # ---------------------------------------------------------------------
 # Configuration
@@ -73,9 +79,15 @@ app = FastAPI(
     description="Builds nanocrystals with automatic ligand selection for charge neutrality.",
 )
 
+allowed_origins = [
+    os.getenv("FRONTEND_CDN", "https://dmq59n0f96mxz.cloudfront.net"),
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -437,7 +449,7 @@ def popen_stream_tty(cmd, cwd=None, env=None):
         try: os.close(master_fd)
         except Exception: pass
 
-def popen_stream(cmd: List[str], cwd: Path):
+def popen_stream(cmd: List[str], cwd: Path, env: Optional[Dict[str, str]] = None):
     """
     Yield text lines (stdout+stderr merged) from a long-running command.
     """
@@ -448,29 +460,34 @@ def popen_stream(cmd: List[str], cwd: Path):
         python_exe = sys.executable
         cmd = [python_exe, "-u", nc_builder_path] + cmd[1:]
 
-    env = os.environ.copy()
-    env["PYTHONUNBUFFERED"] = "1"
-    env["PYTHONIOENCODING"] = "utf-8"
-    # --- ADD THIS LINE ---
-    # This activates the custom flushing handler in the modified nc-builder
-    env["QD_BUILDER_UNBUFFERED"] = "1"
-    # ---------------------
+    base_env = os.environ.copy()
+    if env:
+        base_env.update(env)
 
+    # Ensure unbuffered UTF-8 streams for child
+    base_env["PYTHONUNBUFFERED"] = "1"
+    base_env["PYTHONIOENCODING"] = "utf-8"
+    base_env["NCBUILDER_FLUSH"] = "1"
+    base_env["QD_BUILDER_UNBUFFERED"] = "1"
+    # ---------------------
     p = subprocess.Popen(
         cmd,
-        cwd=str(cwd),
+        cwd=cwd,
+        env=base_env,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
-        text=True,
         bufsize=1,
-        universal_newlines=True,
-        env=env,
+        text=True,                # <- text mode (aka universal_newlines=True)
+        encoding="utf-8",
+        errors="replace",         # avoid crashes on odd bytes
     )
     try:
-        for line in iter(p.stdout.readline, ""):
+        for line in p.stdout:
+            # line already decoded text with trailing newline if any
             yield line
     finally:
-        p.stdout.close()
+        if p.stdout:
+            p.stdout.close()
         p.wait()
 
 def safe_filename(name: str) -> str:
@@ -1036,13 +1053,23 @@ async def build_nanocrystal_stream(
 
             if not opts.shells:
                 # Core-only schema
+                facets_input = [f.dict() if hasattr(f, "dict") else f for f in (opts.facets or [])]
+                if not facets_input:
+                    # Default low-index cubic facets if user didn’t provide any
+                    facets_input = [
+                        {"hkl": "100", "gamma": 1.0},
+                        {"hkl": "110", "gamma": 1.0},
+                        {"hkl": "111", "gamma": 1.0},
+                    ]
+
                 yaml_dict = {
                     "shape":   {"aspect": opts.aspect},
-                    "facets":  format_facets_to_dict_safe([f.dict() if hasattr(f, "dict") else f for f in opts.facets]),
+                    "facets":  format_facets_to_dict_safe(facets_input),
                     "charges": final_charges,
                     "passivation": {"ligand": "Cl", "surf_tol": 2.0},
                 }
                 root_path = core_path
+
             else:
                 # Core@shell schema
                 materials = [{
@@ -1110,9 +1137,17 @@ async def build_nanocrystal_stream(
                 if rc != 0:
                     yield json.dumps({"event": "result", "status": "failed", "log": log_path}) + "\n"
                     return
+            
             elif mode == "live-tty":
-                for line in popen_stream_tty(cmd, cwd=tmp_path, env=child_env):
-                    yield json.dumps({"event": "log", "line": line}) + "\n"
+                try:
+                    for line in popen_stream_tty(cmd, cwd=tmp_path, env=child_env):
+                        yield json.dumps({"event":"log","line": line}) + "\n"
+                except OSError:
+                    # Lambda has no PTY — fall back to pipe streaming
+                    yield json.dumps({"event":"log","line":"[warn] PTY unavailable; falling back to pipe."}) + "\n"
+                    for line in popen_stream(cmd, tmp_path, env=child_env):
+                        yield json.dumps({"event":"log","line": line}) + "\n"
+
             else:  # "live-pipe"
                 for line in popen_stream(cmd, tmp_path, env=child_env):
                     yield json.dumps({"event": "log", "line": line}) + "\n"
@@ -1222,13 +1257,20 @@ async def build_nanocrystal_stream(
         finally:
             logging.info(f"Cleaning up temporary directory: {tmpdir}")
             # shutil.rmtree(tmpdir, ignore_errors=True)
-
-
+    
     return StreamingResponse(
         _run(),
-        media_type="application/x-ndjson",
+        # OLD: media_type="application/x-ndjson",
+        media_type="text/plain; charset=utf-8",
         headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"}
     )
+
+    # return StreamingResponse(
+    #     _run(),
+    #     media_type="application/x-ndjson",
+    #     headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"}
+    # )
+
 
 
 # ---------------------------------------------------------------------

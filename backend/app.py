@@ -7,6 +7,8 @@ from starlette.staticfiles import StaticFiles
 from . import api as library_api        # backend/api.py  (miniCAT-based)
 from . import api_builder as builder_api  # backend/api_builder.py (QD_Builder-based)
 
+import logging
+
 app = FastAPI(title="Quantum Dot Suite")
 
 # Allow CORS (so it works if you open HTML directly from file:// or localhost)
@@ -32,3 +34,14 @@ app.mount("/", StaticFiles(directory=str(docs_dir), html=True), name="static")
 def healthz():
     return {"status": "ok"}
 
+# --- Log key library versions on startup (for CloudWatch verification) ---
+import sys
+import plotly
+import numpy as np
+
+@app.on_event("startup")
+async def log_versions():
+    logging.getLogger().setLevel(logging.INFO)
+    logging.getLogger().info(
+        f"[startup] Python={sys.version.split()[0]} | Plotly={plotly.__version__} | NumPy={np.__version__}"
+    )

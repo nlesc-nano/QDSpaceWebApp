@@ -1,0 +1,11 @@
+# Ignore Git and Python junk 
+.git
+**/__pycache__/
+**/*.pyc
+.aws-sam/
+node_modules/
+
+docs/library/II-VI/
+docs/library/II-VI@II-VI/
+docs/library/III-V/
+docs/library/IV-VI/

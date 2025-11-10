@@ -1,0 +1,59 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: QDSpaceWebApp Backend
+
+Resources:
+  QDSpaceLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      MemorySize: 5120
+      Timeout: 900
+      Architectures:
+        - x86_64
+      Role: arn:aws:iam::867697377188:role/lambda-execution-role
+      ImageConfig:
+        Command: ["main.handler"]
+      Environment:
+        Variables:
+          TMPDIR: /tmp
+          PROPS_ROOT: /var/task/docs/library         # local fallback path
+          PROPS_SUBDIR: properties
+          PROPS_S3_BUCKET: qdspace-frontend-v1       # S3 with your datasets
+          PROPS_S3_PREFIX: library                   # (no leading slash)
+          PLOT_S3_BUCKET: qdspace-frontend-v1        # where HTML plots go
+          FRONTEND_CDN: https://dmq59n0f96mxz.cloudfront.net
+      Policies:
+        - S3ReadPolicy:
+            BucketName: qdspace-frontend-v1
+    Metadata:
+      Dockerfile: Dockerfile
+      DockerContext: .
+      DockerTag: latest
+  QDSpaceApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      BinaryMediaTypes: []
+      DefinitionBody:
+        swagger: "2.0"
+        info:
+          title: QDSpace API
+        paths:
+          /{proxy+}:
+            x-amazon-apigateway-any-method:
+              x-amazon-apigateway-integration:
+                uri:
+                  Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${QDSpaceLambda.Arn}/invocations
+                passthroughBehavior: when_no_match
+                httpMethod: POST
+                type: aws_proxy
+      Cors:
+        AllowMethods: "'*'"
+        AllowHeaders: "'*'"
+        AllowOrigin: "'*'"
+
+Outputs:
+  ApiUrl:
+    Description: API Gateway endpoint
+    Value: !Sub https://${QDSpaceApi}.execute-api.${AWS::Region}.amazonaws.com/prod/
