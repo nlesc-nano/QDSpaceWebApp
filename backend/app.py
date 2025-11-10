@@ -18,6 +18,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/healthz")
+def healthz():
+    return {"status": "ok"}
+
 # Mount the Library API at /api
 app.mount("/api", library_api.app)
 
@@ -27,7 +31,3 @@ app.mount("/builder", builder_api.app)
 # Serve static frontends (landing page, builder UI, library UI)
 docs_dir = Path(__file__).resolve().parent.parent / "docs"
 app.mount("/", StaticFiles(directory=str(docs_dir), html=True), name="static")
-
-@app.get("/healthz")
-def healthz():
-    return {"status": "ok"}
