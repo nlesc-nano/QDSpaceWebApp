@@ -1,40 +1,79 @@
 # backend/api.py
 from pathlib import Path
-import os, glob, shlex, shutil, tempfile, subprocess, sys, uuid
+import os, sys, tempfile, subprocess, shutil, re, traceback, glob, shlex, uuid
 from typing import List, Dict, Optional
+
+import boto3
+from botocore.exceptions import ClientError
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
-from fastapi.responses import HTMLResponse
 from pydantic import BaseModel, Field
 
-# ---------- Paths ----------
-PROPS_ROOT = Path(
-    os.environ.get(
-        "PROPS_ROOT",
-        Path(__file__).resolve().parent.parent / "docs" / "library"
-    )
-).resolve()
+# -------------------------------------------------------------------
+# S3 + Config
+# -------------------------------------------------------------------
+PROPS_S3_BUCKET = os.environ.get("PROPS_S3_BUCKET", "qdspace-frontend-v1")
+PROPS_S3_PREFIX = os.environ.get("PROPS_S3_PREFIX", "library")
+AWS_REGION = os.environ.get("AWS_REGION", "us-east-1")
+_s3 = boto3.client("s3", region_name=AWS_REGION)
 
-PROPS_SUBDIR = os.environ.get("PROPS_SUBDIR", "properties")
-
-# Temp output directory for large HTML plots (served via /api/plot_file)
-TMP_PLOTS_DIR = Path(__file__).resolve().parent / "_tmp_plots"
+TMP_PLOTS_DIR = Path("/tmp/plots")
 TMP_PLOTS_DIR.mkdir(parents=True, exist_ok=True)
 
-# ---------- App ----------
-app = FastAPI(title="miniCAT backend")
+# -------------------------------------------------------------------
+# Helpers
+# -------------------------------------------------------------------
+def _safe_folder(folder: str) -> str:
+    # Only allow A–Z, a–z, 0–9, slash, underscore, dash, and dot
+    return re.sub(r"[^A-Za-z0-9/_\.\-]", "_", (folder or "")).strip("/")
+
+
+def _s3_exists(bucket: str, key: str) -> bool:
+    try:
+        _s3.head_object(Bucket=bucket, Key=key)
+        return True
+    except ClientError as e:
+        code = (e.response or {}).get("Error", {}).get("Code", "")
+        if code in ("404", "NotFound", "NoSuchKey"):
+            return False
+        raise
+
+def _s3_get_bytes(bucket: str, key: str) -> bytes:
+    obj = _s3.get_object(Bucket=bucket, Key=key)
+    return obj["Body"].read()
+
+def _presign_get(bucket: str, key: str, seconds: int = 3600) -> str:
+    return _s3.generate_presigned_url(
+        "get_object", Params={"Bucket": bucket, "Key": key}, ExpiresIn=seconds
+    )
+
+# -------------------------------------------------------------------
+# FastAPI app
+# -------------------------------------------------------------------
+app = FastAPI(title="QDSpace Backend")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
-# gzip big HTML responses
 app.add_middleware(GZipMiddleware, minimum_size=1024)
 
-# ---------- Models ----------
+# -------------------------------------------------------------------
+# Models
+# -------------------------------------------------------------------
+class PlotRequest(BaseModel):
+    folder: str
+    fuzzy: str
+    pdos: str
+    coop: str
+    out: Optional[str] = None
+    ef: Optional[float] = None
+    title: Optional[str] = None
+    normalize_coop: bool = True
+
 class Job(BaseModel):
     ligands: List[str] = Field(..., min_items=1)
     dummy: str
@@ -49,21 +88,12 @@ class LegacyAttachRequest(BaseModel):
     xyztext: str
     smiles: str
     split: bool = True  # split→random, not split→segmented
-
-class PlotRequest(BaseModel):
-    folder: str                 # e.g. "II-VI/CdTe/HLE17/12ang"
-    fuzzy: str                  # e.g. "fuzzy_data.npz"
-    pdos: str                   # e.g. "pdos_data.csv"
-    coop: str                   # e.g. "coop_data.csv"
-    out: Optional[str] = None   # ignored; backend uses temp file
-    ef: Optional[float] = None
-    title: Optional[str] = None
-    normalize_coop: bool = True
-
-# ---------- Health ----------
+# -------------------------------------------------------------------
+# Root health
+# -------------------------------------------------------------------
 @app.get("/")
 def root():
-    return {"message": "miniCAT backend is alive. POST /attach"}
+    return {"message": "QDSpace backend is alive"}
 
 # ---------- miniCAT attach ----------
 @app.post("/attach")
@@ -124,82 +154,124 @@ def attach(payload: Dict):
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
-# ---------- Properties plotting ----------
+# -------------------------------------------------------------------
+# Main endpoint: /plot
+# -------------------------------------------------------------------
 @app.post("/plot")
 def plot_interactive(req: PlotRequest):
-    # Resolve target folder safely under PROPS_ROOT
-    base = (PROPS_ROOT / (req.folder or "")).resolve()
-    if not str(base).startswith(str(PROPS_ROOT)):
-        raise HTTPException(status_code=400, detail="Invalid folder path")
+    """
+    Compute-once / reuse-forever plot:
+      • Looks for deterministic files in …/library/<folder>/properties/: plot.html + plot.png
+      • If HTML exists -> return it (fast path).
+      • If missing -> download inputs, render both PNG and HTML once, upload to that folder.
+    """
+    folder = req.folder or ""
+    safe_folder = _safe_folder(folder)
+    base_props_key = f"{PROPS_S3_PREFIX.rstrip('/')}/{safe_folder}/properties"
 
-    workdir = base / PROPS_SUBDIR
-    if not workdir.is_dir():
-        raise HTTPException(status_code=400, detail=f"'properties' folder not found: {workdir}")
+    fuzzy_key = f"{base_props_key}/{req.fuzzy or 'fuzzy_data.npz'}"
+    pdos_key  = f"{base_props_key}/{req.pdos  or 'pdos_data.csv'}"
+    coop_key  = f"{base_props_key}/{req.coop  or 'coop_data.csv'}"
 
-    # Absolute input paths (script will read these)
-    fuzzy_path = (workdir / req.fuzzy).resolve()
-    pdos_path  = (workdir / req.pdos ).resolve()
-    coop_path  = (workdir / req.coop ).resolve()
-    for p in (fuzzy_path, pdos_path, coop_path):
-        if not p.is_file():
-            raise HTTPException(status_code=400, detail=f"Missing input file: {p}")
+    out_html_key = f"{base_props_key}/plot.html"
+    out_png_key  = f"{base_props_key}/plot.png"
 
-    # Always use the backend plotter (single source of truth)
-    script = Path(__file__).resolve().parent / "plot_interactive.py"
-    if not script.is_file():
-        raise HTTPException(status_code=500, detail="backend/plot_interactive.py not found")
+    cdn_base = os.environ.get("FRONTEND_CDN", "").rstrip("/")
+    cdn_html = f"{cdn_base}/{out_html_key}" if cdn_base else None
 
-    # Unique temp filename to avoid caching & collisions
-    fid = f"{uuid.uuid4().hex}.html"
-    out_path = (TMP_PLOTS_DIR / fid).resolve()
+    # --- 1. Fast path: if HTML already exists, just return it
+    if _s3_exists(PROPS_S3_BUCKET, out_html_key):
+        href = cdn_html or _presign_get(PROPS_S3_BUCKET, out_html_key, 3600)
+        return {"message": "OK (cache)", "href": href, "key": out_html_key}
 
-    # Build command; run in TMP_PLOTS_DIR (keeps datasets read-only)
-    cmd = [
-        sys.executable, str(script),
-        "--fuzzy", str(fuzzy_path),
-        "--pdos",  str(pdos_path),
-        "--coop",  str(coop_path),
-        "--out",   str(out_path),
-    ]
-    if req.normalize_coop:
-        cmd.append("--normalize-coop")
-    if req.ef is not None:
-        cmd += ["--ef", str(req.ef)]
-    if req.title:
-        cmd += ["--title", req.title]
+    # --- 2. Validate that required inputs exist
+    have_fuzzy = _s3_exists(PROPS_S3_BUCKET, fuzzy_key)
+    have_pdos  = _s3_exists(PROPS_S3_BUCKET,  pdos_key)
+    have_coop  = _s3_exists(PROPS_S3_BUCKET,  coop_key)
 
-    try:
-        run = subprocess.run(
-            cmd,
-            cwd=str(TMP_PLOTS_DIR),
-            check=True,
-            capture_output=True,
-            text=True
+    # --- 2. Validate that required inputs exist before build
+    missing_inputs = []
+    if not have_fuzzy: missing_inputs.append(fuzzy_key)
+    if not have_pdos:  missing_inputs.append(pdos_key)
+    if not have_coop:  missing_inputs.append(coop_key)
+
+    if missing_inputs:
+        raise HTTPException(
+            status_code=400,
+            detail={
+                "code": "PLOT_INPUTS_MISSING",
+                "missing": missing_inputs,
+                "folder": base_props_key,
+            },
         )
+
+    # --- 3. Slow path: build and upload
+    try:
+        TMP_PLOTS_DIR.mkdir(parents=True, exist_ok=True)
+        fuzzy_local = TMP_PLOTS_DIR / "fuzzy_data.npz"
+        pdos_local  = TMP_PLOTS_DIR / "pdos_data.csv"
+        coop_local  = TMP_PLOTS_DIR / "coop_data.csv"
+        fuzzy_local.write_bytes(_s3_get_bytes(PROPS_S3_BUCKET, fuzzy_key))
+        pdos_local.write_bytes(_s3_get_bytes(PROPS_S3_BUCKET,  pdos_key))
+        coop_local.write_bytes(_s3_get_bytes(PROPS_S3_BUCKET,  coop_key))
+
+        local_html = TMP_PLOTS_DIR / "plot.html"
+        local_png  = TMP_PLOTS_DIR / "plot.png"
+        script = Path(__file__).resolve().parent / "plot_interactive.py"
+        if not script.is_file():
+            raise HTTPException(status_code=500, detail="plot_interactive.py not found")
+
+        cmd = [
+            sys.executable, str(script),
+            "--fuzzy", str(fuzzy_local),
+            "--pdos",  str(pdos_local),
+            "--coop",  str(coop_local),
+            "--out",   str(local_html),
+            "--png",   str(local_png),
+        ]
+        if req.normalize_coop: cmd.append("--normalize-coop")
+        if req.ef is not None: cmd += ["--ef", str(req.ef)]
+        if req.title:          cmd += ["--title", req.title]
+
+        subprocess.run(cmd, cwd=str(TMP_PLOTS_DIR), check=True, capture_output=True, text=True)
+
+        if not local_html.is_file():
+            raise HTTPException(status_code=500, detail="Plot build failed: HTML not produced")
+  
+        # Upload PNG first (so UI can show preview)
+        if local_png.is_file():
+            with open(local_png, "rb") as f:
+                _s3.put_object(
+                    Bucket=PROPS_S3_BUCKET,
+                    Key=out_png_key,
+                    Body=f,
+                    ContentType="image/png",
+                    CacheControl="public, max-age=31536000, immutable",
+                )
+
+        # Upload gzipped HTML next
+        import gzip, io
+        with open(local_html, "rb") as f:
+            raw = f.read()
+        gzbuf = io.BytesIO()
+        with gzip.GzipFile(fileobj=gzbuf, mode="wb") as gz:
+            gz.write(raw)
+        gzbuf.seek(0)
+        _s3.put_object(
+            Bucket=PROPS_S3_BUCKET,
+            Key=out_html_key,
+            Body=gzbuf,
+            ContentType="text/html; charset=utf-8",
+            ContentEncoding="gzip",
+            CacheControl="public, max-age=31536000, immutable",
+        )
+
+        href = cdn_html or _presign_get(PROPS_S3_BUCKET, out_html_key, 3600)
+        return {"message": "OK", "href": href, "key": out_html_key}
+
     except subprocess.CalledProcessError as e:
         err = (e.stderr or e.stdout or "").strip()
-        raise HTTPException(status_code=500, detail=f"plot_interactive failed: {err}")
-
-    if not out_path.is_file():
-        raise HTTPException(status_code=500, detail=f"Output HTML not found: {out_path}")
-
-    # Return a link to embed in an <iframe>
-    href = f"/api/plot_file?fid={fid}"
-    return {
-        "message": "OK",
-        "href": href,
-        "cmd": " ".join(cmd),
-        "stdout": run.stdout or "",
-        "stderr": run.stderr or "",
-    }
-
-@app.get("/plot_file", response_class=HTMLResponse)
-def plot_file(fid: str):
-    # Safe lookup inside temp dir
-    fp = (TMP_PLOTS_DIR / fid).resolve()
-    if not str(fp).startswith(str(TMP_PLOTS_DIR)) or not fp.is_file():
-        raise HTTPException(status_code=404, detail="Plot HTML not found")
-    html = fp.read_text(encoding="utf-8")
-    # Avoid browser caching
-    return HTMLResponse(content=html, headers={"Cache-Control": "no-store"})
-
+        raise HTTPException(status_code=500, detail={"code": "PLOT_BUILD_FAILED", "error": err})
+    except Exception as e:
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail={"code": "PLOT_BUILD_FAILED", "error": str(e)})

@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+pydantic
+pyyaml
+ase
+numpy==1.26.4
+mangum==0.17.0
+boto3
+schema==0.7.4
+python-multipart
+kaleido==0.2.1
+git+https://github.com/nlesc-nano/miniCAT
+git+https://github.com/nlesc-nano/QD_Builder

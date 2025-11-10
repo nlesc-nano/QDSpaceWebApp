@@ -1,2 +1,18 @@
-__pycache__/
-*.pyc
+# SAM / CloudFormation build artifacts
+.aws-sam/
+
+# Python cache
+**/__pycache__/
+**/*.pyc
+
+# Virtualenvs (if you use them)
+venv/
+.venv/
+
+# Node stuff (if ever)
+node_modules/
+
+# OS / editor stuff
+.DS_Store
+.vscode/
+.idea/
