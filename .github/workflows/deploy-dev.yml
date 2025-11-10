@@ -1,4 +1,4 @@
-name: Nightly SAM Deploy (dev_z → dev)
+name: Nightly Backend Deploy (main)
 
 on:
   schedule:
@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout dev_z branch
+      - name: Checkout main branch
         uses: actions/checkout@v4
         with:
-          ref: dev_z
+          ref: main
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
