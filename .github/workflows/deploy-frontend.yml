@@ -61,3 +61,29 @@ jobs:
           aws cloudfront create-invalidation \
             --distribution-id E162YQXF8N223K \
             --paths "/library/index.html" "/library/app-v9.js"
+
+      # 6) Notify Slack (frontend deploy)
+      - name: Notify Slack (frontend deploy)
+        if: always()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          color="good"
+          if [ "$JOB_STATUS" != "success" ]; then
+            color="danger"
+          fi
+
+          curl -X POST -H 'Content-type: application/json' \
+            --data "$(cat <<EOF
+          {
+            "attachments": [
+              {
+                "color": "$color",
+                "text": "*Nightly Frontend Deploy (docs → S3 + CloudFront)* finished with *$JOB_STATUS*.\nBranch: \`$GITHUB_REF_NAME\`\n<${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}|View GitHub Actions run>"
+              }
+            ]
+          }
+          EOF
+          )" \
+            "$SLACK_WEBHOOK_URL"
