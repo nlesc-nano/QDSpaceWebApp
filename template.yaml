@@ -17,11 +17,11 @@ Resources:
       Environment:
         Variables:
           TMPDIR: /tmp
-          PROPS_ROOT: /var/task/docs/library         # local fallback path
+          PROPS_ROOT: /var/task/docs/library         # Local fallback path within the container
           PROPS_SUBDIR: properties
-          PROPS_S3_BUCKET: qdspace-frontend-v1       # S3 with your datasets
+          PROPS_S3_BUCKET: qdspace-frontend-v1       # S3 bucket for datasets
           PROPS_S3_PREFIX: library                   # (no leading slash)
-          PLOT_S3_BUCKET: qdspace-frontend-v1        # where HTML plots go
+          PLOT_S3_BUCKET: qdspace-frontend-v1        # S3 bucket for generated plot HTML/PNGs
           FRONTEND_CDN: https://dmq59n0f96mxz.cloudfront.net
       Policies:
         - S3ReadPolicy:
