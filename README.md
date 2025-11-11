@@ -79,6 +79,21 @@ python -m venv .venv
 source .venv/bin/activate  # (Windows: .venv\Scripts\activate)
 pip install -r backend/requirements.txt
 ```
+**Option C — Docker (Local)**
+Run everything inside a lightweight local container (no Conda/Python setup needed).
+
+```bash
+# From repo root
+docker build -f Dockerfile.local -t qdspace-local .
+
+# Run backend + serve docs, mounting local /docs
+docker run --rm -p 8000:8000 -v "$PWD/docs:/app/docs" qdspace-local
+# On Windows PowerShell, use:
+docker run --rm -p 8000:8000 -v "${PWD}\docs:/app/docs" qdspace-local
+```
+
+Then open → [**http://127.0.0.1:8000**](http://127.0.0.1:8000)
+(from there you can access the **QD Library** and **QD Builder** pages)
 
 ### 2) Run the backend (FastAPI)
 
