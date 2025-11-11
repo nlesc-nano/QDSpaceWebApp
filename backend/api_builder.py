@@ -369,8 +369,6 @@ def execute_builder_command(
         logging.error(msg, exc_info=True)
         return False, msg, {}
 
-# In api.py
-
 def run_quiet(cmd, cwd=None, env=None):
     # Fastest: no stdout/err shipping over HTTP; write a log file for post-mortem.
     log_path = os.path.join(cwd or ".", "build.log")
@@ -723,7 +721,7 @@ async def build_nanocrystal(files: List[UploadFile] = File(...), options: str = 
  
         cap_logs: List[str] = []
         current_xyz = xyz_passivated_content or xyz_unpassivated_content or ""
-        download_name = None  # <— add this
+        download_name = None 
         try:
             if opts.cap_anionic_jobs:
                 current_xyz, log1, name1 = run_capper_cli(
@@ -1264,14 +1262,6 @@ async def build_nanocrystal_stream(
         media_type="text/plain; charset=utf-8",
         headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"}
     )
-
-    # return StreamingResponse(
-    #     _run(),
-    #     media_type="application/x-ndjson",
-    #     headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"}
-    # )
-
-
 
 # ---------------------------------------------------------------------
 # Entrypoint

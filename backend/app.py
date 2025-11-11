@@ -3,13 +3,14 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.staticfiles import StaticFiles
 
-# Import your two existing FastAPI apps
+# Import API modules
 from . import api as library_api        # backend/api.py  (miniCAT-based)
 from . import api_builder as builder_api  # backend/api_builder.py (QD_Builder-based)
 
+# Initialize FastAPI application
 app = FastAPI(title="Quantum Dot Suite")
 
-# Allow CORS (so it works if you open HTML directly from file:// or localhost)
+# Configure CORS middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],   # you can restrict later to e.g. ["http://localhost:8000"]
@@ -18,6 +19,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Health check endpoint
 @app.get("/healthz")
 def healthz():
     return {"status": "ok"}

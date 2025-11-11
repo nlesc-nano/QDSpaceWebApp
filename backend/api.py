@@ -95,7 +95,9 @@ class LegacyAttachRequest(BaseModel):
 def root():
     return {"message": "QDSpace backend is alive"}
 
-# ---------- miniCAT attach ----------
+# -------------------------------------------------------------------
+# Attach endpoint
+# -------------------------------------------------------------------
 @app.post("/attach")
 def attach(payload: Dict):
     # Parse new schema first
@@ -155,7 +157,7 @@ def attach(payload: Dict):
         shutil.rmtree(tmp, ignore_errors=True)
 
 # -------------------------------------------------------------------
-# Main endpoint: /plot
+# Plot endpoint
 # -------------------------------------------------------------------
 @app.post("/plot")
 def plot_interactive(req: PlotRequest):
