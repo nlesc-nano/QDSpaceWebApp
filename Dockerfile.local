@@ -1,7 +1,7 @@
-# Local dev / user image (normal Python, not Lambda)
+# Base image
 FROM python:3.11-slim
 
-# System deps for plotting, RDKit-related stuff, etc.
+# Install system dependencies required for RDKit, plotting, and other libraries
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     build-essential \
@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgl1 \
  && rm -rf /var/lib/apt/lists/*
 
-# Set workdir
+ # Set working directory
 WORKDIR /app
 
 # Copy requirements first (for better Docker cache)
@@ -24,7 +24,7 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 # Copy the rest of the repo
 COPY . /app
 
-# Environment similar to Lambda, but adapted for local
+# Configure environment variables
 ENV TMPDIR=/tmp \
     PROPS_ROOT=/app/docs/library \
     PROPS_SUBDIR=properties \
@@ -34,9 +34,8 @@ ENV TMPDIR=/tmp \
     AWS_REGION=us-east-1 \
     FRONTEND_CDN=http://localhost:8000
 
-# Expose FastAPI port
+# Expose port for FastAPI
 EXPOSE 8000
 
-# Run FastAPI directly with uvicorn
-# backend.app:app -> this is your FastAPI instance in backend/app.py
+# Start the FastAPI application using Uvicorn
 CMD ["uvicorn", "backend.app:app", "--host", "0.0.0.0", "--port", "8000"]
