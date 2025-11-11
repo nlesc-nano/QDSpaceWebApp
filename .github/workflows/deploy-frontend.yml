@@ -2,7 +2,7 @@ name: Nightly Frontend Deploy (docs → S3 + CloudFront)
 
 on:
   schedule:
-    # Runs every night at 01:30 UTC (change if you like)
+    # Runs nightly at 01:30 UTC.
     - cron: "30 1 * * *"
   workflow_dispatch:
 
@@ -41,7 +41,7 @@ jobs:
               --cache-control "public, max-age=31536000, immutable"
           done
 
-      # 3) Override cache headers for app-v9.js (as you did manually)
+      # 3) Set immutable cache headers for versioned app-v9.js
       - name: Upload library/app-v9.js with long cache
         run: |
           aws s3 cp docs/library/app-v9.js s3://qdspace-frontend-v1/library/app-v9.js \
