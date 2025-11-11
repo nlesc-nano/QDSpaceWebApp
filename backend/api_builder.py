@@ -1,30 +1,22 @@
 from __future__ import annotations
 
 import io
-import json
-import logging
-import os
-import re
-import shutil
-import subprocess
-import sys
-import tempfile
+import json, logging, os, re, shutil, subprocess, sys, tempfile
+
+import yaml
+import traceback
+
 import pty, tty, fcntl, select
-from collections import Counter, deque
+from collections import Counter
 from pathlib import Path
+from types import SimpleNamespace
 from typing import Any, Dict, List, Optional, Tuple
+
 
 from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, JSONResponse, StreamingResponse
-from asyncio import to_thread
 from pydantic import BaseModel, Field
-from typing import Optional, Dict
-
-from starlette.staticfiles import StaticFiles
-
-
-
 
 # ---------------------------------------------------------------------
 # Configuration
@@ -818,10 +810,6 @@ async def passivate_endpoint(
         "error": "message", "traceback": "..."         # on failure
       }
     """
-    import io, json, os, sys, tempfile, traceback
-    from pathlib import Path
-    from types import SimpleNamespace
-    from fastapi.responses import JSONResponse
 
     # --- helper: normalize incoming jobs (dicts/objects) to attribute-style objects ---
     def _normalize_jobs(jobs):
@@ -973,9 +961,6 @@ async def build_nanocrystal_stream(
       {"event":"log","line":"..."}                   # only in live modes
       {"event":"result", ...payload...}
     """
-    import io, json, tempfile, logging, os, traceback
-    from pathlib import Path
-    import yaml
 
     # ---- safe facet formatter (fallback if helper not present) ----
     def format_facets_to_dict_safe(facets):

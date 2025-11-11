@@ -1,8 +1,7 @@
 # backend/api.py
 from pathlib import Path
-import os, sys, tempfile, subprocess, shutil, re, traceback, glob, shlex, uuid
+import os, sys, tempfile, subprocess, shutil, re, traceback, glob, shlex, uuid, gzip, io
 from typing import List, Dict, Optional
-
 import boto3
 from botocore.exceptions import ClientError
 
@@ -252,7 +251,6 @@ def plot_interactive(req: PlotRequest):
                 )
 
         # Upload gzipped HTML next
-        import gzip, io
         with open(local_html, "rb") as f:
             raw = f.read()
         gzbuf = io.BytesIO()

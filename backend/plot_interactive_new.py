@@ -8,11 +8,14 @@ Interactive Plotly visualizer for Fuzzy + PDOS + COOP exports (lightweight).
 """
 
 import argparse
+import gzip
+import logging
+import os
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import logging
+import kaleido 
 
 # ----------------------------- I/O helpers -----------------------------
 
@@ -350,7 +353,6 @@ def main():
 
     # --- Optional gzip compression of the HTML ---
     if args.gzip or args.gzip_out:
-        import gzip, os
         gz_path = args.gzip_out or (args.out + ".gz")
         with open(args.out, "rb") as f_in, gzip.open(gz_path, "wb") as f_out:
             f_out.write(f_in.read())
@@ -363,7 +365,6 @@ def main():
     # --- Optional PNG (for fast first paint) ---
     if args.png:
         try:
-            import kaleido  # noqa: F401
             logging.info(f"Writing PNG preview to {args.png}")
             fig.write_image(args.png, engine="kaleido", width=1600, height=900, scale=2)
             logging.info("PNG written")
