@@ -89,13 +89,18 @@ jobs:
             color="danger"
           fi
 
+          extra=""
+          if [ -n "$IMAGE_TAG" ]; then
+            extra="\nImage tag: \`$IMAGE_TAG\`"
+          fi
+
           curl -X POST -H 'Content-type: application/json' \
             --data "$(cat <<EOF
           {
             "attachments": [
               {
                 "color": "$color",
-                "text": "*Nightly Backend Deploy (main)* finished with *$JOB_STATUS*.\nBranch: \`$GITHUB_REF_NAME\`\n<${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}|View GitHub Actions run>"
+                "text": "*Nightly Backend Deploy (main)* finished with *$JOB_STATUS*.$extra\nBranch: \`$GITHUB_REF_NAME\`\n<${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}|View GitHub Actions run>"
               }
             ]
           }
