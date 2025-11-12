@@ -39,44 +39,41 @@ jobs:
             --no-confirm-changeset \
             --no-fail-on-empty-changeset
 
-      # add a readable tag in ECR (e.g., main-abc1234 or dev_z-abc1234)
-      - name: Tag ECR image with branch+sha
-        id: tag
+      - name: Tag ECR image with branch and sha
         run: |
           set -euo pipefail
-          SHORTSHA="${GITHUB_SHA::7}"
 
-          if [ "${GITHUB_REF_NAME}" = "main" ]; then
-            ENV_TAG="main-${SHORTSHA}"
-          elif [ "${GITHUB_REF_NAME}" = "dev_z" ]; then
-            ENV_TAG="devz-${SHORTSHA}"
-          else
-            ENV_TAG="${GITHUB_REF_NAME}-${SHORTSHA}"
-          fi
+          REPO="qdspace-lambda"
+          BRANCH="${GITHUB_REF_NAME//\//-}"         # protect against slashes in branch names
+          SHORT_SHA="${GITHUB_SHA::7}"
 
-          REPO_NAME="qdspace-lambda"
-          REGION="us-east-1"
+          # 1) Find the most recently pushed image digest in the repo
+          DIGEST=$(aws ecr describe-images \
+            --repository-name "$REPO" \
+            --query 'reverse(sort_by(imageDetails,&imagePushedAt))[0].imageDigest' \
+            --output text)
 
+          echo "Latest digest in $REPO: $DIGEST"
+
+          # 2) Get its manifest (required by PutImage)
           MANIFEST=$(aws ecr batch-get-image \
-            --repository-name "$REPO_NAME" \
-            --image-ids imageTag=latest \
+            --repository-name "$REPO" \
+            --image-ids imageDigest="$DIGEST" \
             --query 'images[0].imageManifest' \
-            --output text --region "$REGION" || true)
+            --output text)
 
-          if [ -z "$MANIFEST" ] || [ "$MANIFEST" = "None" ]; then
-            echo "No :latest image manifest found in $REPO_NAME; skipping extra tag."
-            echo "env_tag=" >> $GITHUB_OUTPUT
-            exit 0
-          fi
+          # 3) Compose tags
+          TAG1="branch-${BRANCH}"
+          TAG2="${BRANCH}-${SHORT_SHA}"
 
-          aws ecr put-image \
-            --repository-name "$REPO_NAME" \
-            --image-tag "$ENV_TAG" \
-            --image-manifest "$MANIFEST" \
-            --region "$REGION"
+          echo "Tagging as: $TAG1 and $TAG2"
 
-          echo "Tagged $REPO_NAME:latest as $REPO_NAME:$ENV_TAG"
-          echo "env_tag=$ENV_TAG" >> $GITHUB_OUTPUT
+          aws ecr put-image --repository-name "$REPO" --image-tag "$TAG1" --image-manifest "$MANIFEST"
+          aws ecr put-image --repository-name "$REPO" --image-tag "$TAG2" --image-manifest "$MANIFEST"
+
+          echo "ECR tags created:"
+          echo "  $REPO:$TAG1"
+          echo "  $REPO:$TAG2"
 
       - name: Notify Slack (backend deploy)
         if: always()
