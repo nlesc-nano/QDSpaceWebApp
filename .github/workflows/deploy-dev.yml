@@ -39,6 +39,44 @@ jobs:
             --no-confirm-changeset \
             --no-fail-on-empty-changeset
 
+      # add a readable tag in ECR (e.g., main-abc1234 or dev_z-abc1234)
+      - name: Tag ECR image with branch+sha
+        id: tag
+        run: |
+          set -euo pipefail
+          SHORTSHA="${GITHUB_SHA::7}"
+
+          if [ "${GITHUB_REF_NAME}" = "main" ]; then
+            ENV_TAG="main-${SHORTSHA}"
+          elif [ "${GITHUB_REF_NAME}" = "dev_z" ]; then
+            ENV_TAG="devz-${SHORTSHA}"
+          else
+            ENV_TAG="${GITHUB_REF_NAME}-${SHORTSHA}"
+          fi
+
+          REPO_NAME="qdspace-lambda"
+          REGION="us-east-1"
+
+          MANIFEST=$(aws ecr batch-get-image \
+            --repository-name "$REPO_NAME" \
+            --image-ids imageTag=latest \
+            --query 'images[0].imageManifest' \
+            --output text --region "$REGION" || true)
+
+          if [ -z "$MANIFEST" ] || [ "$MANIFEST" = "None" ]; then
+            echo "No :latest image manifest found in $REPO_NAME; skipping extra tag."
+            echo "env_tag=" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          aws ecr put-image \
+            --repository-name "$REPO_NAME" \
+            --image-tag "$ENV_TAG" \
+            --image-manifest "$MANIFEST" \
+            --region "$REGION"
+
+          echo "Tagged $REPO_NAME:latest as $REPO_NAME:$ENV_TAG"
+          echo "env_tag=$ENV_TAG" >> $GITHUB_OUTPUT
 
       - name: Notify Slack (backend deploy)
         if: always()  # run whether the job succeeds or fails
