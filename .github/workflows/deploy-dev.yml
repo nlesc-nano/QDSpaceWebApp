@@ -79,10 +79,11 @@ jobs:
           echo "env_tag=$ENV_TAG" >> $GITHUB_OUTPUT
 
       - name: Notify Slack (backend deploy)
-        if: always()  # run whether the job succeeds or fails
+        if: always()
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           JOB_STATUS: ${{ job.status }}
+          IMAGE_TAG: ${{ steps.tag.outputs.env_tag }}
         run: |
           color="good"
           if [ "$JOB_STATUS" != "success" ]; then
