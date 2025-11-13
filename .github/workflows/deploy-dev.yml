@@ -15,6 +15,7 @@ jobs:
 
     steps:
       - name: Checkout main branch
+      # We always deploy what's on main (you can change this if desired)
         uses: actions/checkout@v4
         with:
           ref: main
@@ -28,7 +29,6 @@ jobs:
       - name: Install SAM CLI
         uses: aws-actions/setup-sam@v2
 
-
       - name: Build SAM application
         run: sam build --use-container
 
@@ -39,17 +39,14 @@ jobs:
             --no-confirm-changeset \
             --no-fail-on-empty-changeset
 
-
       - name: Notify Slack (backend deploy)
-        if: always()  # run whether the job succeeds or fails
+        if: always()
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           JOB_STATUS: ${{ job.status }}
         run: |
           color="good"
-          if [ "$JOB_STATUS" != "success" ]; then
-            color="danger"
-          fi
+          [ "$JOB_STATUS" != "success" ] && color="danger"
 
           curl -X POST -H 'Content-type: application/json' \
             --data "$(cat <<EOF
@@ -57,10 +54,9 @@ jobs:
             "attachments": [
               {
                 "color": "$color",
-                "text": "*Nightly Backend Deploy (main)* finished with *$JOB_STATUS*.\nBranch: \`$GITHUB_REF_NAME\`\n<${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}|View GitHub Actions run>"
+                 "text": "*Nightly Backend Deploy (main)* finished with *$JOB_STATUS*.\nBranch: \`$GITHUB_REF_NAME\`\n<${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}|View GitHub Actions run>"
               }
             ]
           }
           EOF
-          )" \
-            "$SLACK_WEBHOOK_URL"
+          )" "$SLACK_WEBHOOK_URL"
