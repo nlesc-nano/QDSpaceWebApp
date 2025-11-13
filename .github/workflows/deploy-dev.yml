@@ -92,23 +92,22 @@ jobs:
           echo "  ${ECR_REPO}:${TAG_SHA}"
 
       - name: Notify Slack (backend deploy)
-        if: always()  # run whether the job succeeds or fails
+        if: always()
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           JOB_STATUS: ${{ job.status }}
-          IMG_BRANCH: ${{ steps.tag.outputs.uri_branch }}
-          IMG_SHA: ${{ steps.tag.outputs.uri_sha }}
+          TAG_BRANCH: ${{ steps.tag.outputs.tag_branch }}
+          TAG_SHA: ${{ steps.tag.outputs.tag_sha }}
         run: |
           color="good"
           [ "$JOB_STATUS" != "success" ] && color="danger"
 
-          # Build optional lines only if tags exist
-          img_lines=""
-          if [ -n "${IMG_BRANCH}" ]; then
-            img_lines="${img_lines}\n• Branch tag: ${IMG_BRANCH}"
+          tag_lines=""
+          if [ -n "${TAG_BRANCH}" ]; then
+            tag_lines="${tag_lines}\n• Branch tag: \`${TAG_BRANCH}\`"
           fi
-          if [ -n "${IMG_SHA}" ]; then
-            img_lines="${img_lines}\n• Build tag:  ${IMG_SHA}"
+          if [ -n "${TAG_SHA}" ]; then
+            tag_lines="${tag_lines}\n• Build tag:  \`${TAG_SHA}\`"
           fi
 
           curl -X POST -H 'Content-type: application/json' \
@@ -117,7 +116,7 @@ jobs:
             "attachments": [
               {
                 "color": "$color",
-                "text": "*Nightly Backend Deploy (main)* finished with *$JOB_STATUS*.Branch: \`$GITHUB_REF_NAME\`${img_lines}<${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}|View GitHub Actions run>"
+                "text": "*Nightly Backend Deploy (main)* finished with *$JOB_STATUS*.Branch: \`$GITHUB_REF_NAME\`${tag_lines}<${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}|View GitHub Actions run>"
               }
             ]
           }
