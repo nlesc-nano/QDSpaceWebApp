@@ -15,6 +15,7 @@ jobs:
 
     steps:
       - name: Checkout main branch
+      # We always deploy what's on main (you can change this if desired)
         uses: actions/checkout@v4
         with:
           ref: main
@@ -28,7 +29,6 @@ jobs:
       - name: Install SAM CLI
         uses: aws-actions/setup-sam@v2
 
-
       - name: Build SAM application
         run: sam build --use-container
 
@@ -39,57 +39,76 @@ jobs:
             --no-confirm-changeset \
             --no-fail-on-empty-changeset
 
+      # Change: tag the image in ECR with (1) branch pointer and (2) immutable branch-sha tag
       - name: Tag ECR image with branch and sha
+        id: tag
+        env:
+          AWS_REGION: us-east-1
+          ECR_URI: 867697377188.dkr.ecr.us-east-1.amazonaws.com
+          ECR_REPO: qdspace-lambda
+          BRANCH: ${{ github.ref_name }}
+          SHORT_SHA: ${{ github.sha || github.event.workflow_run.head_sha }}
         run: |
           set -euo pipefail
 
-          REPO="qdspace-lambda"
-          BRANCH="${GITHUB_REF_NAME//\//-}"         # protect against slashes in branch names
-          SHORT_SHA="${GITHUB_SHA::7}"
-
-          # 1) Find the most recently pushed image digest in the repo
-          DIGEST=$(aws ecr describe-images \
-            --repository-name "$REPO" \
-            --query 'reverse(sort_by(imageDetails,&imagePushedAt))[0].imageDigest' \
-            --output text)
-
-          echo "Latest digest in $REPO: $DIGEST"
-
-          # 2) Get its manifest (required by PutImage)
+          echo "Fetching :latest manifest for ${ECR_REPO}…"
           MANIFEST=$(aws ecr batch-get-image \
-            --repository-name "$REPO" \
-            --image-ids imageDigest="$DIGEST" \
+            --repository-name "$ECR_REPO" \
+            --image-ids imageTag=latest \
             --query 'images[0].imageManifest' \
             --output text)
 
-          # 3) Compose tags
-          TAG1="branch-${BRANCH}"
-          TAG2="${BRANCH}-${SHORT_SHA}"
+          if [ "${MANIFEST:-None}" = "None" ] || [ -z "${MANIFEST:-}" ]; then
+            echo "No :latest image manifest found; skipping extra tags."
+            echo "tag_branch=" >> "$GITHUB_OUTPUT"
+            echo "tag_sha=" >> "$GITHUB_OUTPUT"
+            echo "uri_branch=" >> "$GITHUB_OUTPUT"
+            echo "uri_sha=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
 
-          echo "Tagging as: $TAG1 and $TAG2"
+          TAG_BRANCH="branch-${BRANCH}"
+          TAG_SHA="${BRANCH}-${SHORT_SHA:0:7}"
 
-          aws ecr put-image --repository-name "$REPO" --image-tag "$TAG1" --image-manifest "$MANIFEST"
-          aws ecr put-image --repository-name "$REPO" --image-tag "$TAG2" --image-manifest "$MANIFEST"
+          echo "Creating tag: ${TAG_BRANCH}"
+          aws ecr put-image \
+            --repository-name "$ECR_REPO" \
+            --image-tag "$TAG_BRANCH" \
+            --image-manifest "$MANIFEST" >/dev/null
+
+          echo "Creating tag: ${TAG_SHA}"
+          aws ecr put-image \
+            --repository-name "$ECR_REPO" \
+            --image-tag "$TAG_SHA" \
+            --image-manifest "$MANIFEST" >/dev/null
+
+          echo "tag_branch=${TAG_BRANCH}" >> "$GITHUB_OUTPUT"
+          echo "tag_sha=${TAG_SHA}"       >> "$GITHUB_OUTPUT"
+          echo "uri_branch=${ECR_URI}/${ECR_REPO}:${TAG_BRANCH}" >> "$GITHUB_OUTPUT"
+          echo "uri_sha=${ECR_URI}/${ECR_REPO}:${TAG_SHA}"       >> "$GITHUB_OUTPUT"
 
           echo "ECR tags created:"
-          echo "  $REPO:$TAG1"
-          echo "  $REPO:$TAG2"
+          echo "  ${ECR_REPO}:${TAG_BRANCH}"
+          echo "  ${ECR_REPO}:${TAG_SHA}"
 
       - name: Notify Slack (backend deploy)
-        if: always()
+        if: always()  # run whether the job succeeds or fails
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           JOB_STATUS: ${{ job.status }}
-          IMAGE_TAG: ${{ steps.tag.outputs.env_tag }}
+          IMG_BRANCH: ${{ steps.tag.outputs.uri_branch }}
+          IMG_SHA: ${{ steps.tag.outputs.uri_sha }}
         run: |
           color="good"
-          if [ "$JOB_STATUS" != "success" ]; then
-            color="danger"
-          fi
+          [ "$JOB_STATUS" != "success" ] && color="danger"
 
-          extra=""
-          if [ -n "$IMAGE_TAG" ]; then
-            extra="\nImage tag: \`$IMAGE_TAG\`"
+          # Build optional lines only if tags exist
+          img_lines=""
+          if [ -n "${IMG_BRANCH}" ]; then
+            img_lines="${img_lines}\n• Branch tag: ${IMG_BRANCH}"
+          fi
+          if [ -n "${IMG_SHA}" ]; then
+            img_lines="${img_lines}\n• Build tag:  ${IMG_SHA}"
           fi
 
           curl -X POST -H 'Content-type: application/json' \
@@ -98,10 +117,9 @@ jobs:
             "attachments": [
               {
                 "color": "$color",
-                "text": "*Nightly Backend Deploy (main)* finished with *$JOB_STATUS*.$extra\nBranch: \`$GITHUB_REF_NAME\`\n<${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}|View GitHub Actions run>"
+                "text": "*Nightly Backend Deploy (main)* finished with *$JOB_STATUS*.Branch: \`$GITHUB_REF_NAME\`${img_lines}<${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}|View GitHub Actions run>"
               }
             ]
           }
           EOF
-          )" \
-            "$SLACK_WEBHOOK_URL"
+          )" "$SLACK_WEBHOOK_URL"
