@@ -332,9 +332,20 @@
  // const API_URL = "/builder/api/build";
  //  const BUILD_STREAM_URL = "/builder/api/build_stream"; // stream (shift to lambda fucntion URL duie to timeout issue)
   // Use Lambda Function URL (bypasses API Gateway 29s timeout)
-  const BUILD_STREAM_URL = "https://pg2jth5h3k2v2g4zqjglzu5nru0cdrro.lambda-url.us-east-1.on.aws/builder/api/build_stream";
+  //const BUILD_STREAM_URL = "https://pg2jth5h3k2v2g4zqjglzu5nru0cdrro.lambda-url.us-east-1.on.aws/builder/api/build_stream";
 
 //  const PASSIVATE_URL    = "/builder/api/passivate";    // normal JSON
+
+
+
+  const IS_LOCAL =
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1";
+
+  const BUILD_STREAM_URL = IS_LOCAL
+    ? "/builder/api/build_stream"  // local Docker / dev server
+    : "https://pg2jth5h3k2v2g4zqjglzu5nru0cdrro.lambda-url.us-east-1.on.aws/builder/api/build_stream";
+
 
 
   let viewer = null;
