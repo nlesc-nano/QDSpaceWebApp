@@ -62,7 +62,7 @@ jobs:
         run: |
           aws cloudfront create-invalidation \
             --distribution-id E162YQXF8N223K \
-            --paths "/library/index.html" "/library/app-v9.js"
+            --paths "/library/index.html" "/library/app-v9.js" "/builder/index.html"
 
       # 6) Notify Slack (frontend deploy)
       - name: Notify Slack (frontend deploy)
