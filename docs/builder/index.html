@@ -578,37 +578,85 @@
   }
 
 
-  try {
-    const r = await fetch(BUILD_STREAM_URL, { method:'POST', body: formData });
-    if (!r.ok || !r.body) throw new Error(`HTTP ${r.status}`);
+  // try {
+  //   const r = await fetch(BUILD_STREAM_URL, { method:'POST', body: formData });
+  //   if (!r.ok || !r.body) throw new Error(`HTTP ${r.status}`);
 
-    const reader = r.body.getReader();
-    const decoder = new TextDecoder();
-    let buf = '';
+  //   const reader = r.body.getReader();
+  //   const decoder = new TextDecoder();
+  //   let buf = '';
+  //   let finalResult = null;
+
+  //   // Read NDJSON stream
+  //   while (true) {
+  //     const { value, done } = await reader.read();
+  //     if (done) break;
+  //     buf += decoder.decode(value, { stream: true });
+
+  //     let nl;
+  //     while ((nl = buf.indexOf('\n')) >= 0) {
+  //       const line = buf.slice(0, nl).trim();
+  //       buf = buf.slice(nl + 1);
+  //       if (!line) continue;
+
+  //       let evt;
+  //       try { evt = JSON.parse(line); } catch { appendLogLine(line + "\n"); continue; }
+
+  //       if (evt.event === 'log') {
+  //         appendLogLine(evt.line);                 // backend sends newline(s)
+  //       } else if (evt.event === 'cmd') {
+  //         appendLogLine(`[cmd] ${evt.line}\n`);    // show CLI at phase start
+  //       } else if (evt.event === 'result') {
+  //         finalResult = evt;                       // keep to process after loop
+  //       }
+  //     }
+  //   }
+
+  //   if (!finalResult || finalResult.status !== 'success') {
+  //     appendLogLine('[error] build failed.\n');
+  //     ui.stoichiometry.textContent = 'Build failed.';
+  //     return;
+  //   }
+
+  //   const json = finalResult;
+
+    try {
+    const r = await fetch(BUILD_STREAM_URL, { method: 'POST', body: formData });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+
+    // Read full response as text (Function URL may return {statusCode, body, ...})
+    let text = await r.text();
+
+    // If it's an envelope {statusCode, body, ...}, unwrap to get the NDJSON string
+    let ndjsonText = text;
+    try {
+      const outer = JSON.parse(text);
+      if (outer && typeof outer === 'object' && 'body' in outer) {
+        ndjsonText = outer.body;  // NDJSON lives here
+      }
+    } catch (_) {
+      // Not JSON -> assume it's already raw NDJSON, keep ndjsonText = text
+    }
+
+    // Now parse ndjsonText line-by-line (same logic as before)
     let finalResult = null;
+    let buf = ndjsonText;
+    let nl;
 
-    // Read NDJSON stream
-    while (true) {
-      const { value, done } = await reader.read();
-      if (done) break;
-      buf += decoder.decode(value, { stream: true });
+    while ((nl = buf.indexOf('\n')) >= 0) {
+      const line = buf.slice(0, nl).trim();
+      buf = buf.slice(nl + 1);
+      if (!line) continue;
 
-      let nl;
-      while ((nl = buf.indexOf('\n')) >= 0) {
-        const line = buf.slice(0, nl).trim();
-        buf = buf.slice(nl + 1);
-        if (!line) continue;
+      let evt;
+      try { evt = JSON.parse(line); } catch { appendLogLine(line + "\n"); continue; }
 
-        let evt;
-        try { evt = JSON.parse(line); } catch { appendLogLine(line + "\n"); continue; }
-
-        if (evt.event === 'log') {
-          appendLogLine(evt.line);                 // backend sends newline(s)
-        } else if (evt.event === 'cmd') {
-          appendLogLine(`[cmd] ${evt.line}\n`);    // show CLI at phase start
-        } else if (evt.event === 'result') {
-          finalResult = evt;                       // keep to process after loop
-        }
+      if (evt.event === 'log') {
+        appendLogLine(evt.line);
+      } else if (evt.event === 'cmd') {
+        appendLogLine(`[cmd] ${evt.line}\n`);
+      } else if (evt.event === 'result') {
+        finalResult = evt;
       }
     }
 
