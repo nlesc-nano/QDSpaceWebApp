@@ -248,4 +248,11 @@ const xyzFiles = [
   "library/IV-VI/PbTe/PBE/18ang/start/Pb200Te140Cl120_PBE_18ang_start.xyz",
   "library/IV-VI/PbTe/PBE/9ang/geo_opt/Pb19Te6Cl26_PBE_9ang_OPT.xyz",
   "library/IV-VI/PbTe/PBE/9ang/start/Pb19Te6Cl26_PBE_9ang_start.xyz",
+  "library/Perovskites/CsPbBr/12ang/geo_opt/Cs20Pb8Br36_HLE17_12ang_OPT.xyz",
+  "library/Perovskites/CsPbBr/16ang/geo_opt/Cs20Pb8Br36_HLE17_16ang_OPT.xyz",
+  "library/Perovskites/CsPbBr/24ang/geo_opt/Cs112Pb64Br240_HLE17_24ang_OPT.xyz",
+  "library/Perovskites/CsPbBr/37ang/geo_opt/Cs324Pb216Br756_HLE17_37ang_OPT.xyz",
+  "library/Perovskites/CsPbCl/12ang/geo_opt/Cs20Pb8Cl36_HLE17_12ang_OPT.xyz",
+  "library/Perovskites/CsPbCl/24ang/geo_opt/Cs112Pb64Cl240_HLE17_24ang_OPT.xyz",
+  "library/Perovskites/CsPbCl/39ang/geo_opt/Cs307Pb216Cl739_HLE17_39ang_OPT.xyz",
 ];

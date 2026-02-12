@@ -6088,5 +6088,166 @@
       "Pb/Te": 3.167,
       "Te/Pb": 0.316
     }
+  },
+  "library/Perovskites/CsPbBr/12ang/geo_opt/Cs20Pb8Br36_HLE17_12ang_OPT.xyz": {
+    "system_type": "library",
+    "material": "Perovskites",
+    "filename": "Cs20Pb8Br36_HLE17_12ang_OPT.xyz",
+    "size": 1.2,
+    "functional": "HLE17",
+    "basis": "DZVP",
+    "run_type": "Geometry Optimization",
+    "code": "CP2K",
+    "stoichiometry": {
+      "Pb": 8,
+      "Br": 36,
+      "Cs": 20
+    },
+    "ratios": {
+      "Pb/Br": 0.222,
+      "Br/Pb": 4.5,
+      "Pb/Cs": 0.4,
+      "Cs/Pb": 2.5,
+      "Br/Cs": 1.8,
+      "Cs/Br": 0.556
+    }
+  },
+  "library/Perovskites/CsPbBr/16ang/geo_opt/Cs20Pb8Br36_HLE17_16ang_OPT.xyz": {
+    "system_type": "library",
+    "material": "Perovskites",
+    "filename": "Cs20Pb8Br36_HLE17_16ang_OPT.xyz",
+    "size": 1.6,
+    "functional": "HLE17",
+    "basis": "DZVP",
+    "run_type": "Geometry Optimization",
+    "code": "CP2K",
+    "stoichiometry": {
+      "Pb": 8,
+      "Br": 36,
+      "Cs": 20
+    },
+    "ratios": {
+      "Pb/Br": 0.222,
+      "Br/Pb": 4.5,
+      "Pb/Cs": 0.4,
+      "Cs/Pb": 2.5,
+      "Br/Cs": 1.8,
+      "Cs/Br": 0.556
+    }
+  },
+  "library/Perovskites/CsPbBr/24ang/geo_opt/Cs112Pb64Br240_HLE17_24ang_OPT.xyz": {
+    "system_type": "library",
+    "material": "Perovskites",
+    "filename": "Cs112Pb64Br240_HLE17_24ang_OPT.xyz",
+    "size": 2.4,
+    "functional": "HLE17",
+    "basis": "DZVP",
+    "run_type": "Geometry Optimization",
+    "code": "CP2K",
+    "stoichiometry": {
+      "Pb": 64,
+      "Br": 240,
+      "Cs": 112
+    },
+    "ratios": {
+      "Pb/Br": 0.267,
+      "Br/Pb": 3.75,
+      "Pb/Cs": 0.571,
+      "Cs/Pb": 1.75,
+      "Br/Cs": 2.143,
+      "Cs/Br": 0.467
+    }
+  },
+  "library/Perovskites/CsPbBr/37ang/geo_opt/Cs324Pb216Br756_HLE17_37ang_OPT.xyz": {
+    "system_type": "library",
+    "material": "Perovskites",
+    "filename": "Cs324Pb216Br756_HLE17_37ang_OPT.xyz",
+    "size": 3.7,
+    "functional": "HLE17",
+    "basis": "DZVP",
+    "run_type": "Geometry Optimization",
+    "code": "CP2K",
+    "stoichiometry": {
+      "Pb": 216,
+      "Br": 756,
+      "Cs": 324
+    },
+    "ratios": {
+      "Pb/Br": 0.286,
+      "Br/Pb": 3.5,
+      "Pb/Cs": 0.667,
+      "Cs/Pb": 1.5,
+      "Br/Cs": 2.333,
+      "Cs/Br": 0.429
+    }
+  },
+  "library/Perovskites/CsPbCl/12ang/geo_opt/Cs20Pb8Cl36_HLE17_12ang_OPT.xyz": {
+    "system_type": "library",
+    "material": "Perovskites",
+    "filename": "Cs20Pb8Cl36_HLE17_12ang_OPT.xyz",
+    "size": 1.2,
+    "functional": "HLE17",
+    "basis": "DZVP",
+    "run_type": "Geometry Optimization",
+    "code": "CP2K",
+    "stoichiometry": {
+      "Pb": 8,
+      "Cl": 36,
+      "Cs": 20
+    },
+    "ratios": {
+      "Pb/Cl": 0.222,
+      "Cl/Pb": 4.5,
+      "Pb/Cs": 0.4,
+      "Cs/Pb": 2.5,
+      "Cl/Cs": 1.8,
+      "Cs/Cl": 0.556
+    }
+  },
+  "library/Perovskites/CsPbCl/24ang/geo_opt/Cs112Pb64Cl240_HLE17_24ang_OPT.xyz": {
+    "system_type": "library",
+    "material": "Perovskites",
+    "filename": "Cs112Pb64Cl240_HLE17_24ang_OPT.xyz",
+    "size": 2.4,
+    "functional": "HLE17",
+    "basis": "DZVP",
+    "run_type": "Geometry Optimization",
+    "code": "CP2K",
+    "stoichiometry": {
+      "Pb": 64,
+      "Cl": 240,
+      "Cs": 112
+    },
+    "ratios": {
+      "Pb/Cl": 0.267,
+      "Cl/Pb": 3.75,
+      "Pb/Cs": 0.571,
+      "Cs/Pb": 1.75,
+      "Cl/Cs": 2.143,
+      "Cs/Cl": 0.467
+    }
+  },
+  "library/Perovskites/CsPbCl/39ang/geo_opt/Cs307Pb216Cl739_HLE17_39ang_OPT.xyz": {
+    "system_type": "library",
+    "material": "Perovskites",
+    "filename": "Cs307Pb216Cl739_HLE17_39ang_OPT.xyz",
+    "size": 3.9,
+    "functional": "HLE17",
+    "basis": "DZVP",
+    "run_type": "Geometry Optimization",
+    "code": "CP2K",
+    "stoichiometry": {
+      "Pb": 216,
+      "Cl": 739,
+      "Cs": 307
+    },
+    "ratios": {
+      "Pb/Cl": 0.292,
+      "Cl/Pb": 3.421,
+      "Pb/Cs": 0.704,
+      "Cs/Pb": 1.421,
+      "Cl/Cs": 2.407,
+      "Cs/Cl": 0.415
+    }
   }
 }
