@@ -1,4 +1,303 @@
 {
+  "library/ABX3/CsPbBr3/HLE17/12ang/geo_opt/Cs20Pb8Br36_HLE17_12ang_OPT.xyz": {
+    "system_type": "library",
+    "material": "ABX3",
+    "filename": "Cs20Pb8Br36_HLE17_12ang_OPT.xyz",
+    "size": 1.2,
+    "functional": "HLE17",
+    "basis": "DZVP",
+    "run_type": "Geometry Optimization",
+    "code": "CP2K",
+    "stoichiometry": {
+      "Pb": 8,
+      "Br": 36,
+      "Cs": 20
+    },
+    "ratios": {
+      "Pb/Br": 0.222,
+      "Br/Pb": 4.5,
+      "Pb/Cs": 0.4,
+      "Cs/Pb": 2.5,
+      "Br/Cs": 1.8,
+      "Cs/Br": 0.556
+    }
+  },
+  "library/ABX3/CsPbBr3/HLE17/16ang/geo_opt/Cs20Pb8Br36_HLE17_16ang_OPT.xyz": {
+    "system_type": "library",
+    "material": "ABX3",
+    "filename": "Cs20Pb8Br36_HLE17_16ang_OPT.xyz",
+    "size": 1.6,
+    "functional": "HLE17",
+    "basis": "DZVP",
+    "run_type": "Geometry Optimization",
+    "code": "CP2K",
+    "stoichiometry": {
+      "Pb": 8,
+      "Br": 36,
+      "Cs": 20
+    },
+    "ratios": {
+      "Pb/Br": 0.222,
+      "Br/Pb": 4.5,
+      "Pb/Cs": 0.4,
+      "Cs/Pb": 2.5,
+      "Br/Cs": 1.8,
+      "Cs/Br": 0.556
+    }
+  },
+  "library/ABX3/CsPbBr3/HLE17/24ang/geo_opt/Cs112Pb64Br240_HLE17_24ang_OPT.xyz": {
+    "system_type": "library",
+    "material": "ABX3",
+    "filename": "Cs112Pb64Br240_HLE17_24ang_OPT.xyz",
+    "size": 2.4,
+    "functional": "HLE17",
+    "basis": "DZVP",
+    "run_type": "Geometry Optimization",
+    "code": "CP2K",
+    "stoichiometry": {
+      "Pb": 64,
+      "Br": 240,
+      "Cs": 112
+    },
+    "ratios": {
+      "Pb/Br": 0.267,
+      "Br/Pb": 3.75,
+      "Pb/Cs": 0.571,
+      "Cs/Pb": 1.75,
+      "Br/Cs": 2.143,
+      "Cs/Br": 0.467
+    }
+  },
+  "library/ABX3/CsPbBr3/HLE17/37ang/geo_opt/Cs324Pb216Br756_HLE17_37ang_OPT.xyz": {
+    "system_type": "library",
+    "material": "ABX3",
+    "filename": "Cs324Pb216Br756_HLE17_37ang_OPT.xyz",
+    "size": 3.7,
+    "functional": "HLE17",
+    "basis": "DZVP",
+    "run_type": "Geometry Optimization",
+    "code": "CP2K",
+    "stoichiometry": {
+      "Pb": 216,
+      "Br": 756,
+      "Cs": 324
+    },
+    "ratios": {
+      "Pb/Br": 0.286,
+      "Br/Pb": 3.5,
+      "Pb/Cs": 0.667,
+      "Cs/Pb": 1.5,
+      "Br/Cs": 2.333,
+      "Cs/Br": 0.429
+    }
+  },
+  "library/ABX3/CsPbBr3/HLE17/48ang/geo_opt/Cs704Pb512Br1728_HLE17_48ang_OPT.xyz": {
+    "system_type": "library",
+    "material": "ABX3",
+    "filename": "Cs704Pb512Br1728_HLE17_48ang_OPT.xyz",
+    "size": 4.8,
+    "functional": "HLE17",
+    "basis": "DZVP",
+    "run_type": "Geometry Optimization",
+    "code": "CP2K",
+    "stoichiometry": {
+      "Pb": 512,
+      "Br": 1728,
+      "Cs": 704
+    },
+    "ratios": {
+      "Pb/Br": 0.296,
+      "Br/Pb": 3.375,
+      "Pb/Cs": 0.727,
+      "Cs/Pb": 1.375,
+      "Br/Cs": 2.455,
+      "Cs/Br": 0.407
+    }
+  },
+  "library/ABX3/CsPbBr3/start/Cs20Pb8Br36_HLE17_12ang_Start.xyz": {
+    "system_type": "library",
+    "material": "ABX3",
+    "filename": "Cs20Pb8Br36_HLE17_12ang_Start.xyz",
+    "size": 1.2,
+    "functional": "HLE17",
+    "basis": "DZVP",
+    "run_type": "Start",
+    "code": "CP2K",
+    "stoichiometry": {
+      "Pb": 8,
+      "Br": 36,
+      "Cs": 20
+    },
+    "ratios": {
+      "Pb/Br": 0.222,
+      "Br/Pb": 4.5,
+      "Pb/Cs": 0.4,
+      "Cs/Pb": 2.5,
+      "Br/Cs": 1.8,
+      "Cs/Br": 0.556
+    }
+  },
+  "library/ABX3/CsPbCl3/HLE17/12ang/geo_opt/Cs20Pb8Cl36_HLE17_12ang_OPT.xyz": {
+    "system_type": "library",
+    "material": "ABX3",
+    "filename": "Cs20Pb8Cl36_HLE17_12ang_OPT.xyz",
+    "size": 1.2,
+    "functional": "HLE17",
+    "basis": "DZVP",
+    "run_type": "Geometry Optimization",
+    "code": "CP2K",
+    "stoichiometry": {
+      "Pb": 8,
+      "Cl": 36,
+      "Cs": 20
+    },
+    "ratios": {
+      "Pb/Cl": 0.222,
+      "Cl/Pb": 4.5,
+      "Pb/Cs": 0.4,
+      "Cs/Pb": 2.5,
+      "Cl/Cs": 1.8,
+      "Cs/Cl": 0.556
+    }
+  },
+  "library/ABX3/CsPbCl3/HLE17/24ang/geo_opt/Cs112Pb64Cl240_HLE17_24ang_OPT.xyz": {
+    "system_type": "library",
+    "material": "ABX3",
+    "filename": "Cs112Pb64Cl240_HLE17_24ang_OPT.xyz",
+    "size": 2.4,
+    "functional": "HLE17",
+    "basis": "DZVP",
+    "run_type": "Geometry Optimization",
+    "code": "CP2K",
+    "stoichiometry": {
+      "Pb": 64,
+      "Cl": 240,
+      "Cs": 112
+    },
+    "ratios": {
+      "Pb/Cl": 0.267,
+      "Cl/Pb": 3.75,
+      "Pb/Cs": 0.571,
+      "Cs/Pb": 1.75,
+      "Cl/Cs": 2.143,
+      "Cs/Cl": 0.467
+    }
+  },
+  "library/ABX3/CsPbCl3/HLE17/39ang/geo_opt/Cs307Pb216Cl739_HLE17_39ang_OPT.xyz": {
+    "system_type": "library",
+    "material": "ABX3",
+    "filename": "Cs307Pb216Cl739_HLE17_39ang_OPT.xyz",
+    "size": 3.9,
+    "functional": "HLE17",
+    "basis": "DZVP",
+    "run_type": "Geometry Optimization",
+    "code": "CP2K",
+    "stoichiometry": {
+      "Pb": 216,
+      "Cl": 739,
+      "Cs": 307
+    },
+    "ratios": {
+      "Pb/Cl": 0.292,
+      "Cl/Pb": 3.421,
+      "Pb/Cs": 0.704,
+      "Cs/Pb": 1.421,
+      "Cl/Cs": 2.407,
+      "Cs/Cl": 0.415
+    }
+  },
+  "library/ABX3/CsPbCl3/HLE17/46ang/geo_opt/Cs681Pb512Cl1705_HLE17_46ang_OPT.xyz": {
+    "system_type": "library",
+    "material": "ABX3",
+    "filename": "Cs681Pb512Cl1705_HLE17_46ang_OPT.xyz",
+    "size": 4.6,
+    "functional": "HLE17",
+    "basis": "DZVP",
+    "run_type": "Geometry Optimization",
+    "code": "CP2K",
+    "stoichiometry": {
+      "Pb": 512,
+      "Cl": 1705,
+      "Cs": 681
+    },
+    "ratios": {
+      "Pb/Cl": 0.3,
+      "Cl/Pb": 3.33,
+      "Pb/Cs": 0.752,
+      "Cs/Pb": 1.33,
+      "Cl/Cs": 2.504,
+      "Cs/Cl": 0.399
+    }
+  },
+  "library/ABX3/CsPbCl3/HLE17/52ang/geo_opt/Cs704Pb512Br1728_HLE17_52ang_OPT.xyz": {
+    "system_type": "library",
+    "material": "ABX3",
+    "filename": "Cs704Pb512Br1728_HLE17_52ang_OPT.xyz",
+    "size": 5.2,
+    "functional": "HLE17",
+    "basis": "DZVP",
+    "run_type": "Geometry Optimization",
+    "code": "CP2K",
+    "stoichiometry": {
+      "Pb": 512,
+      "Br": 1728,
+      "Cs": 704
+    },
+    "ratios": {
+      "Pb/Br": 0.296,
+      "Br/Pb": 3.375,
+      "Pb/Cs": 0.727,
+      "Cs/Pb": 1.375,
+      "Br/Cs": 2.455,
+      "Cs/Br": 0.407
+    }
+  },
+  "library/ABX3/CsPbI3/HLE17/24ang/geo_opt/Cs54Pb27I108_HLE17_24ang_OPT.xyz": {
+    "system_type": "library",
+    "material": "ABX3",
+    "filename": "Cs54Pb27I108_HLE17_24ang_OPT.xyz",
+    "size": 2.4,
+    "functional": "HLE17",
+    "basis": "DZVP",
+    "run_type": "Geometry Optimization",
+    "code": "CP2K",
+    "stoichiometry": {
+      "Cs": 54,
+      "I": 108,
+      "Pb": 27
+    },
+    "ratios": {
+      "Cs/I": 0.5,
+      "I/Cs": 2.0,
+      "Cs/Pb": 2.0,
+      "Pb/Cs": 0.5,
+      "I/Pb": 4.0,
+      "Pb/I": 0.25
+    }
+  },
+  "library/ABX3/CsPbI3/HLE17/32ang/geo_opt/Cs200Pb125I450_HLE17_32ang_OPT.xyz": {
+    "system_type": "library",
+    "material": "ABX3",
+    "filename": "Cs200Pb125I450_HLE17_32ang_OPT.xyz",
+    "size": 3.2,
+    "functional": "HLE17",
+    "basis": "DZVP",
+    "run_type": "Geometry Optimization",
+    "code": "CP2K",
+    "stoichiometry": {
+      "Cs": 200,
+      "I": 450,
+      "Pb": 125
+    },
+    "ratios": {
+      "Cs/I": 0.444,
+      "I/Cs": 2.25,
+      "Cs/Pb": 1.6,
+      "Pb/Cs": 0.625,
+      "I/Pb": 3.6,
+      "Pb/I": 0.278
+    }
+  },
   "library/II-VI/CdS/HLE17/12ang/geo_opt/Cd16S13Cl6_HLE17_12ang_OPT.xyz": {
     "system_type": "library",
     "material": "II-VI",
@@ -6087,167 +6386,6 @@
       "Te/Cl": 0.231,
       "Pb/Te": 3.167,
       "Te/Pb": 0.316
-    }
-  },
-  "library/Perovskites/CsPbBr/12ang/geo_opt/Cs20Pb8Br36_HLE17_12ang_OPT.xyz": {
-    "system_type": "library",
-    "material": "Perovskites",
-    "filename": "Cs20Pb8Br36_HLE17_12ang_OPT.xyz",
-    "size": 1.2,
-    "functional": "HLE17",
-    "basis": "DZVP",
-    "run_type": "Geometry Optimization",
-    "code": "CP2K",
-    "stoichiometry": {
-      "Pb": 8,
-      "Br": 36,
-      "Cs": 20
-    },
-    "ratios": {
-      "Pb/Br": 0.222,
-      "Br/Pb": 4.5,
-      "Pb/Cs": 0.4,
-      "Cs/Pb": 2.5,
-      "Br/Cs": 1.8,
-      "Cs/Br": 0.556
-    }
-  },
-  "library/Perovskites/CsPbBr/16ang/geo_opt/Cs20Pb8Br36_HLE17_16ang_OPT.xyz": {
-    "system_type": "library",
-    "material": "Perovskites",
-    "filename": "Cs20Pb8Br36_HLE17_16ang_OPT.xyz",
-    "size": 1.6,
-    "functional": "HLE17",
-    "basis": "DZVP",
-    "run_type": "Geometry Optimization",
-    "code": "CP2K",
-    "stoichiometry": {
-      "Pb": 8,
-      "Br": 36,
-      "Cs": 20
-    },
-    "ratios": {
-      "Pb/Br": 0.222,
-      "Br/Pb": 4.5,
-      "Pb/Cs": 0.4,
-      "Cs/Pb": 2.5,
-      "Br/Cs": 1.8,
-      "Cs/Br": 0.556
-    }
-  },
-  "library/Perovskites/CsPbBr/24ang/geo_opt/Cs112Pb64Br240_HLE17_24ang_OPT.xyz": {
-    "system_type": "library",
-    "material": "Perovskites",
-    "filename": "Cs112Pb64Br240_HLE17_24ang_OPT.xyz",
-    "size": 2.4,
-    "functional": "HLE17",
-    "basis": "DZVP",
-    "run_type": "Geometry Optimization",
-    "code": "CP2K",
-    "stoichiometry": {
-      "Pb": 64,
-      "Br": 240,
-      "Cs": 112
-    },
-    "ratios": {
-      "Pb/Br": 0.267,
-      "Br/Pb": 3.75,
-      "Pb/Cs": 0.571,
-      "Cs/Pb": 1.75,
-      "Br/Cs": 2.143,
-      "Cs/Br": 0.467
-    }
-  },
-  "library/Perovskites/CsPbBr/37ang/geo_opt/Cs324Pb216Br756_HLE17_37ang_OPT.xyz": {
-    "system_type": "library",
-    "material": "Perovskites",
-    "filename": "Cs324Pb216Br756_HLE17_37ang_OPT.xyz",
-    "size": 3.7,
-    "functional": "HLE17",
-    "basis": "DZVP",
-    "run_type": "Geometry Optimization",
-    "code": "CP2K",
-    "stoichiometry": {
-      "Pb": 216,
-      "Br": 756,
-      "Cs": 324
-    },
-    "ratios": {
-      "Pb/Br": 0.286,
-      "Br/Pb": 3.5,
-      "Pb/Cs": 0.667,
-      "Cs/Pb": 1.5,
-      "Br/Cs": 2.333,
-      "Cs/Br": 0.429
-    }
-  },
-  "library/Perovskites/CsPbCl/12ang/geo_opt/Cs20Pb8Cl36_HLE17_12ang_OPT.xyz": {
-    "system_type": "library",
-    "material": "Perovskites",
-    "filename": "Cs20Pb8Cl36_HLE17_12ang_OPT.xyz",
-    "size": 1.2,
-    "functional": "HLE17",
-    "basis": "DZVP",
-    "run_type": "Geometry Optimization",
-    "code": "CP2K",
-    "stoichiometry": {
-      "Pb": 8,
-      "Cl": 36,
-      "Cs": 20
-    },
-    "ratios": {
-      "Pb/Cl": 0.222,
-      "Cl/Pb": 4.5,
-      "Pb/Cs": 0.4,
-      "Cs/Pb": 2.5,
-      "Cl/Cs": 1.8,
-      "Cs/Cl": 0.556
-    }
-  },
-  "library/Perovskites/CsPbCl/24ang/geo_opt/Cs112Pb64Cl240_HLE17_24ang_OPT.xyz": {
-    "system_type": "library",
-    "material": "Perovskites",
-    "filename": "Cs112Pb64Cl240_HLE17_24ang_OPT.xyz",
-    "size": 2.4,
-    "functional": "HLE17",
-    "basis": "DZVP",
-    "run_type": "Geometry Optimization",
-    "code": "CP2K",
-    "stoichiometry": {
-      "Pb": 64,
-      "Cl": 240,
-      "Cs": 112
-    },
-    "ratios": {
-      "Pb/Cl": 0.267,
-      "Cl/Pb": 3.75,
-      "Pb/Cs": 0.571,
-      "Cs/Pb": 1.75,
-      "Cl/Cs": 2.143,
-      "Cs/Cl": 0.467
-    }
-  },
-  "library/Perovskites/CsPbCl/39ang/geo_opt/Cs307Pb216Cl739_HLE17_39ang_OPT.xyz": {
-    "system_type": "library",
-    "material": "Perovskites",
-    "filename": "Cs307Pb216Cl739_HLE17_39ang_OPT.xyz",
-    "size": 3.9,
-    "functional": "HLE17",
-    "basis": "DZVP",
-    "run_type": "Geometry Optimization",
-    "code": "CP2K",
-    "stoichiometry": {
-      "Pb": 216,
-      "Cl": 739,
-      "Cs": 307
-    },
-    "ratios": {
-      "Pb/Cl": 0.292,
-      "Cl/Pb": 3.421,
-      "Pb/Cs": 0.704,
-      "Cs/Pb": 1.421,
-      "Cl/Cs": 2.407,
-      "Cs/Cl": 0.415
     }
   }
 }
