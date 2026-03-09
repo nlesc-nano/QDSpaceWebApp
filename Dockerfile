@@ -1,12 +1,12 @@
-# Lambda deployment (Amazon Linux 2 base)
-FROM public.ecr.aws/lambda/python:3.11
+# Lambda deployment (Amazon Linux 2023 base)
+FROM public.ecr.aws/lambda/python:3.12
 
 # Set working directory
 WORKDIR ${LAMBDA_TASK_ROOT}
 
 # Install system dependencies
-RUN yum update -y --skip-broken && \
-    yum install -y \
+RUN dnf update -y && \
+    dnf install -y \
     gcc gcc-c++ make \
     python3-devel \
     boost-devel \
@@ -14,8 +14,8 @@ RUN yum update -y --skip-broken && \
     pkgconfig \
     libffi-devel \
     mesa-libGL-devel && \
-    yum clean all && \
-    rm -rf /var/cache/yum
+    dnf clean all && \
+    rm -rf /var/cache/dnf
 
 # Copy requirements.txt first (for caching)
 COPY requirements.txt ${LAMBDA_TASK_ROOT}
