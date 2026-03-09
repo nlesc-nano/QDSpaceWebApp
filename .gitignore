@@ -16,3 +16,9 @@ node_modules/
 .DS_Store
 .vscode/
 .idea/
+
+#Files
+tree* 
+bundle.*
+_tmp_plots/
+
