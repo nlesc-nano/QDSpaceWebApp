@@ -1,0 +1,62 @@
+name: Test Backend Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-dev:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::867697377188:role/QDSpace_GitHub_OIDC_DeployRole
+          aws-region: us-east-1
+
+      - name: Install SAM CLI
+        uses: aws-actions/setup-sam@v2
+
+      - name: Build SAM application
+        run: sam build --use-container --template-file template-test.yaml
+
+      - name: Deploy SAM application
+        run: |
+          sam deploy \
+            --template-file template-test.yaml \
+            --stack-name qdspace-test-backend \
+            --image-repository 867697377188.dkr.ecr.us-east-1.amazonaws.com/qdspace-lambda \
+            --capabilities CAPABILITY_IAM \
+            --no-confirm-changeset \
+            --no-fail-on-empty-changeset
+
+      - name: Notify Slack (backend deploy)
+        if: always()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          color="good"
+          if [ "$JOB_STATUS" != "success" ]; then
+            color="danger"
+          fi
+
+          curl -X POST -H 'Content-type: application/json' \
+            --data "$(cat <<EOF
+          {
+            "attachments": [
+              {
+                "color": "$color",
+                "text": "*Test Backend Deploy (${GITHUB_REF_NAME} → Test Lambda)* finished with *$JOB_STATUS*.\nBranch: \`${GITHUB_REF_NAME}\`\n<${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}|View GitHub Actions run>"
+              }
+            ]
+          }
+          EOF
+          )" \
+            "$SLACK_WEBHOOK_URL"

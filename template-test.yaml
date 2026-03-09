@@ -1,0 +1,55 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  QDSpaceBackend
+
+Globals:
+  Function:
+    Timeout: 300
+    Tracing: Active
+  Api:
+    TracingEnabled: true
+
+Resources:
+  QDSpaceTestLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      MemorySize: 4096
+      Environment:
+        Variables:
+          TMPDIR: /tmp
+          PROPS_ROOT: /var/task/qd-frontend/public
+          PROPS_SUBDIR: properties
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: any
+            RestApiId:
+              Ref: QDSpaceTestApi
+    Metadata:
+      Dockerfile: Dockerfile
+      DockerContext: .
+      DockerTag: test-v1
+
+  QDSpaceTestApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: test
+      Cors:
+        AllowMethods: "'*'"
+        AllowHeaders: "'*'"
+        AllowOrigin: "'*'"
+
+Outputs:
+  QDSpaceTestApiUrl:
+    Description: "API Gateway endpoint URL for Test environment"
+    Value: !Sub "https://${QDSpaceTestApi}.execute-api.${AWS::Region}.amazonaws.com/test/"
+  QDSpaceTestLambdaFunction:
+    Description: "Test Lambda Function ARN"
+    Value: !GetAtt QDSpaceTestLambda.Arn
+  QDSpaceTestLambdaIamRole:
+    Description: "Implicit IAM Role created for Test function"
+    Value: !GetAtt QDSpaceTestLambdaRole.Arn
