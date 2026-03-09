@@ -33,15 +33,18 @@ app.mount("/builder", builder_api.app)
 from starlette.responses import FileResponse
 
 # Serve static frontend (Vite compiled output in qd-frontend/dist)
+# Only mount when running locally — in Lambda, qd-frontend/ is excluded
+# by .dockerignore since CloudFront/S3 serves the frontend.
 frontend_dist = Path(__file__).resolve().parent.parent / "qd-frontend" / "dist"
 
-# Mount /assets specifically so JS/CSS loads fast via StaticFiles
-app.mount("/assets", StaticFiles(directory=str(frontend_dist / "assets")), name="static-assets")
+if frontend_dist.exists():
+    # Mount /assets specifically so JS/CSS loads fast via StaticFiles
+    app.mount("/assets", StaticFiles(directory=str(frontend_dist / "assets")), name="static-assets")
 
-# SPA Fallback logic for everything else
-@app.get("/{full_path:path}")
-async def serve_spa(full_path: str):
-    target_path = frontend_dist / full_path
-    if target_path.is_file():
-        return FileResponse(target_path)
-    return FileResponse(frontend_dist / "index.html")
+    # SPA Fallback logic for everything else
+    @app.get("/{full_path:path}")
+    async def serve_spa(full_path: str):
+        target_path = frontend_dist / full_path
+        if target_path.is_file():
+            return FileResponse(target_path)
+        return FileResponse(frontend_dist / "index.html")
