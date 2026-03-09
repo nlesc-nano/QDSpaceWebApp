@@ -1222,12 +1222,14 @@ async def build_nanocrystal_stream(
                 def _run_builder_sync():
                     qw = LineQueueWriter(log_queue)
                     argv = cmd[1:] 
+                    old_cwd = os.getcwd()
+                    os.chdir(str(tmp_path))  # Lambda cwd is read-only; builder writes intermediates to cwd
                     with contextlib.redirect_stdout(qw), contextlib.redirect_stderr(qw):
                         try: nc_builder_main(argv)
                         except SystemExit as e:
                             if e.code != 0 and e.code is not None: print(f"[error] nc-builder exited with code {e.code}")
                         except Exception as e: print(f"[fatal] {traceback.format_exc()}")
-                        finally: qw.flush(); log_queue.put(None)
+                        finally: qw.flush(); log_queue.put(None); os.chdir(old_cwd)
 
                 builder_thread = threading.Thread(target=_run_builder_sync)
                 builder_thread.start()
