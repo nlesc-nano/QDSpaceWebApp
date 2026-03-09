@@ -10,5 +10,7 @@ pydantic==2.12.5
 PyYAML==6.0.3
 starlette==0.52.1
 uvicorn==0.41.0
+mangum
+python-multipart
 https://github.com/nlesc-nano/miniCAT/archive/refs/heads/main.zip
 https://github.com/nlesc-nano/QD_Builder/archive/refs/heads/main.zip
