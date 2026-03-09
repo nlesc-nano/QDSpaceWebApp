@@ -38,12 +38,23 @@ jobs:
           role-to-assume: arn:aws:iam::867697377188:role/QDSpace_GitHub_OIDC_DeployRole
           aws-region: us-east-1
 
-      # 1) Sync entire dist/ tree to S3
-      - name: Sync dist/ to S3
+      # 1) Sync assets with immutable cache
+      - name: Sync static assets to S3
         run: |
-          aws s3 sync qd-frontend/dist/ s3://qdspace-frontend-v1 --delete
+          aws s3 sync qd-frontend/dist/assets/ s3://qdspace-frontend-v1/assets/ \
+            --delete \
+            --cache-control "public, max-age=31536000, immutable"
 
-      # 2) Upload gzipped plot HTMLs with correct headers
+      # 2) Sync the rest of the build
+      - name: Sync rest of frontend to S3
+        run: |
+          aws s3 sync qd-frontend/dist/ s3://qdspace-frontend-v1/ \
+            --delete \
+            --exclude "assets/*" \
+            --exclude "*.html.gz" \
+            --cache-control "no-cache, no-store, must-revalidate"
+
+      # 3) Upload gzipped plot HTMLs with correct headers
       - name: Upload gzipped plot HTMLs
         run: |
           find qd-frontend/dist -path "*properties/plot.html.gz" | while read file; do
@@ -55,21 +66,6 @@ jobs:
               --content-encoding "gzip" \
               --cache-control "public, max-age=31536000, immutable"
           done
-
-      # 3) Set immutable cache headers for versioned Vite assets
-      - name: Update Cache Headers for Immutable Assets
-        run: |
-          aws s3 cp s3://qdspace-frontend-v1/assets/ s3://qdspace-frontend-v1/assets/ \
-            --recursive \
-            --metadata-directive REPLACE \
-            --cache-control "public, max-age=31536000, immutable"
-
-      # 4) Override cache headers for index.html (no cache)
-      - name: Upload index.html with no-cache
-        run: |
-          aws s3 cp qd-frontend/dist/index.html s3://qdspace-frontend-v1/index.html \
-            --content-type "text/html; charset=utf-8" \
-            --cache-control "no-cache, no-store, must-revalidate"
 
       # 5) Invalidate CloudFront cache for updated frontend
       - name: Invalidate CloudFront cache
