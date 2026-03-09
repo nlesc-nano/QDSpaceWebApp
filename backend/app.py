@@ -32,4 +32,11 @@ app.mount("/builder", builder_api.app)
 
 # Serve static frontends (landing page, builder UI, library UI)
 docs_dir = Path(__file__).resolve().parent.parent / "docs"
-app.mount("/", StaticFiles(directory=str(docs_dir), html=True), name="static")
+
+# Only try to mount the docs folder if it actually exists!
+if docs_dir.exists() and docs_dir.is_dir():
+    app.mount("/", StaticFiles(directory=str(docs_dir), html=True), name="static")
+else:
+    import logging
+    logging.warning("No 'docs' folder found. Skipping static files mount. API running normally.")
+
