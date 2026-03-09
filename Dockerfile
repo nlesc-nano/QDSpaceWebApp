@@ -5,8 +5,15 @@ FROM public.ecr.aws/lambda/python:3.11
 WORKDIR ${LAMBDA_TASK_ROOT}
 
 # Install system dependencies
-RUN yum update -y && \
-    yum install -y gcc gcc-c++ make boost-devel cairo-devel pango-devel pkgconfig-devel libffi-devel mesa-libGL-devel && \
+RUN yum update -y --skip-broken && \
+    yum install -y \
+    gcc gcc-c++ make \
+    python3-devel \
+    boost-devel \
+    cairo-devel pango-devel \
+    pkgconfig \
+    libffi-devel \
+    mesa-libGL-devel && \
     yum clean all && \
     rm -rf /var/cache/yum
 
