@@ -401,56 +401,122 @@
 
   }
   // --- Ligand Passivation API Call ---
+  // --- Ligand Passivation API Call ---
   async function handlePassivate() {
-    if (!currentXyzData) return;
+    if (!originalXyzData) return;
+
+    const jobs = [];
+
+    // 1. Process Anionic Ligands from the UI array
+    for (const lig of anionicLigands) {
+      if (!lig.smiles.trim()) continue;
+      jobs.push({
+        ligands: lig.smiles.split(",").map((s) => s.trim()),
+        dummy: lig.dummy ? lig.dummy.trim() : "Cl",
+        dist: `${lig.ratio || 1.0}:${capDist}`, // Uses the global capDist radio button
+      });
+    }
+
+    // 2. Process Cationic Ligands from the UI array
+    for (const lig of cationicLigands) {
+      if (!lig.smiles.trim()) continue;
+      jobs.push({
+        ligands: lig.smiles.split(",").map((s) => s.trim()),
+        dummy: lig.dummy ? lig.dummy.trim() : "Rb",
+        dist: `${lig.ratio || 1.0}:${capDist}`,
+      });
+    }
+
+    if (jobs.length === 0) {
+      logs += `\n[Client]: No ligands provided.\n`;
+      return;
+    }
+
     isAttaching = true;
-    attachError = "";
-    logs += `\n[cmd] Initiating ligand passivation via miniCAT engine...\n`;
+    logs += `\n[Client]: Sending passivation request to miniCAT engine...`;
 
     const payload = {
       xyztext: originalXyzData,
       out_prefix: "svelte_passivated",
-      jobs: [
-        ...anionicLigands.map((l) => ({
-          ligands: [l.smiles],
-          dummy: l.dummy,
-          dist: `${l.ratio}:${capDist}`,
-        })),
-        ...cationicLigands.map((l) => ({
-          ligands: [l.smiles],
-          dummy: l.dummy,
-          dist: `${l.ratio}:${capDist}`,
-        })),
-      ],
+      jobs: jobs,
     };
 
     try {
-      logs += `[status] Sending JSON payload to /api/attach...\n`;
-      const response = await fetch("/api/attach", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL || ""}/api/attach`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
 
       if (!response.ok) {
-        const errData = await response.json().catch(() => ({}));
-        throw new Error(errData.detail || `API Error: ${response.statusText}`);
+        throw new Error(`Server error: ${response.status}`);
       }
 
-      const data = await response.json();
-      if (data.results && data.results.length > 0) {
-        currentXyzData = data.results[0].xyz;
-        logs += `[status] Passivation successful. Structure updated.\n`;
-      } else {
-        throw new Error("No XYZ data returned.");
+      // --- STREAMING LOGIC ---
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder("utf-8");
+      let buffer = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        // Decode the incoming byte chunk
+        buffer += decoder.decode(value, { stream: true });
+        
+        // Split by newline to parse NDJSON properly
+        const lines = buffer.split("\n");
+        buffer = lines.pop(); // Keep the last incomplete line in the buffer
+
+        for (const line of lines) {
+          if (!line.trim()) continue;
+          
+          try {
+            const data = JSON.parse(line);
+            
+            if (data.event === "status") {
+              logs += `\n[Server]: ${data.line}`;
+            } else if (data.event === "log") {
+              logs += `\n${data.line}`;
+            } else if (data.event === "result") {
+              if (data.status === "failed" || data.error) {
+                throw new Error(data.error || "Unknown passivation error");
+              }
+              // Handle Success
+              logs += `\n[Server]: ${data.message || "Passivation complete."}`;
+              if (data.results && data.results.length > 0) {
+                // Svelte 5 will automatically trigger the calculatedCharge derived rune when this updates!
+                currentXyzData = data.results[0].xyz;
+              }
+            }
+          } catch (e) {
+            console.warn("Could not parse stream line:", line, e);
+          }
+        }
       }
-    } catch (err) {
-      attachError = err.message;
-      logs += `[error] Passivation failed: ${err.message}\n`;
+
+      // Flush anything left in the buffer
+      if (buffer.trim()) {
+        try {
+          const data = JSON.parse(buffer);
+          if (data.event === "log") logs += `\n${data.line}`;
+        } catch (e) {}
+      }
+
+    } catch (error) {
+      console.error("Passivation error:", error);
+      logs += `\n[Error]: ${error.message}`;
     } finally {
       isAttaching = false;
+      logs += `\n[Client]: Ready.\n`;
     }
   }
+
 
   function downloadXYZ() {
     // If it's a massive MD file, download directly via URL to avoid memory crashes

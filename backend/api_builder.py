@@ -552,14 +552,16 @@ def run_capper_cli(script_path: Path, xyz_text: str, jobs: List[LigJob],
         raise RuntimeError(f"Capper failed (rc={p.returncode}).\n{log}")
     return xyz_out, log, out_name
 
-def run_in_memory_capper(xyz_text: str, jobs: List[LigJob], default_dummy: str, dist_mode: str) -> Tuple[str, str]:
-    """Runs miniCAT natively in memory and captures its terminal logs."""
+def run_in_memory_capper(xyz_text: str, jobs: List[LigJob], default_dummy: str, dist_mode: str, out_stream=sys.stdout) -> str:
+    """Runs miniCAT natively in memory and streams its logs to out_stream."""
     if not jobs:
-        return xyz_text, "[cap] No ligands provided."
+        print("[cap] No ligands provided.", file=out_stream)
+        return xyz_text
     
     valid_jobs = [j for j in jobs if j.smiles.strip()]
     if not valid_jobs:
-        return xyz_text, "[cap] No valid SMILES."
+        print("[cap] No valid SMILES.", file=out_stream)
+        return xyz_text
 
     args = argparse.Namespace(
         seed=1337, ff="uff", refinement_passes=3, neigh=8,
@@ -574,11 +576,9 @@ def run_in_memory_capper(xyz_text: str, jobs: List[LigJob], default_dummy: str, 
     ratios = [j.ratio for j in valid_jobs]
     dummy = valid_jobs[0].dummy.strip() if valid_jobs[0].dummy else default_dummy
     
-    log_lines = [f"[cap] Passivating {dummy} sites natively with {smiles_list} (mode={dist_mode})"]
-    
-    # Capture miniCAT's internal print statements
-    log_capture = io.StringIO()
-    with contextlib.redirect_stdout(log_capture), contextlib.redirect_stderr(log_capture):
+    # Redirect prints directly to our stream queue
+    with contextlib.redirect_stdout(out_stream), contextlib.redirect_stderr(out_stream):
+        print(f"[cap] Passivating {dummy} sites natively with {smiles_list} (mode={dist_mode})")
         precomputed_ligands = []
         role = None
         for sm in smiles_list:
@@ -603,9 +603,8 @@ def run_in_memory_capper(xyz_text: str, jobs: List[LigJob], default_dummy: str, 
         out_xyz = io.StringIO()
         ase_write(out_xyz, current_qd, format="xyz")
         
-    # Combine our log header with the captured miniCAT output
-    full_log = "\n".join(log_lines) + "\n" + log_capture.getvalue()
-    return out_xyz.getvalue(), full_log
+    return out_xyz.getvalue()
+
 
 # ---------------------------------------------------------------------
 # Route: build
@@ -1183,6 +1182,17 @@ async def build_nanocrystal_stream(
 
             yield json.dumps({"event": "cmd", "line": " ".join(cmd)}) + "\n"
 
+            class LineQueueWriter(io.TextIOBase):
+                def __init__(self, q): self.q, self.buf = q, ""
+                def write(self, s):
+                    self.buf += s
+                    while "\n" in self.buf:
+                        line, self.buf = self.buf.split("\n", 1)
+                        self.q.put(line)
+                    return len(s)
+                def flush(self):
+                    if self.buf: self.q.put(self.buf); self.buf = ""
+
             # ==========================================================
             # SMART BUILD EXECUTION (Skip if core unchanged)
             # ==========================================================
@@ -1208,28 +1218,22 @@ async def build_nanocrystal_stream(
                 yield json.dumps({"event": "cmd", "line": " ".join(cmd)}) + "\n"
 
                 log_queue = queue.Queue()
-                class LineQueueWriter(io.TextIOBase):
-                    def __init__(self, q): self.q, self.buf = q, ""
-                    def write(self, s):
-                        self.buf += s
-                        while "\n" in self.buf:
-                            line, self.buf = self.buf.split("\n", 1)
-                            self.q.put(line)
-                        return len(s)
-                    def flush(self):
-                        if self.buf: self.q.put(self.buf); self.buf = ""
 
                 def _run_builder_sync():
                     qw = LineQueueWriter(log_queue)
                     argv = cmd[1:] 
-                    old_cwd = os.getcwd()
-                    os.chdir(str(tmp_path))  # Lambda cwd is read-only; builder writes intermediates to cwd
+                    old_cwd = os.getcwd()  # Save current dir
                     with contextlib.redirect_stdout(qw), contextlib.redirect_stderr(qw):
-                        try: nc_builder_main(argv)
+                        try: 
+                            os.chdir(tmpdir)  # FORCE nc-builder outputs into the tmp folder
+                            nc_builder_main(argv)
                         except SystemExit as e:
                             if e.code != 0 and e.code is not None: print(f"[error] nc-builder exited with code {e.code}")
                         except Exception as e: print(f"[fatal] {traceback.format_exc()}")
-                        finally: qw.flush(); log_queue.put(None); os.chdir(old_cwd)
+                        finally: 
+                            os.chdir(old_cwd) # Restore dir safely
+                            qw.flush()
+                            log_queue.put(None)
 
                 builder_thread = threading.Thread(target=_run_builder_sync)
                 builder_thread.start()
@@ -1272,26 +1276,47 @@ async def build_nanocrystal_stream(
                 m = (opts.cap_distribution or "uniform").lower()
                 return m if m in {"uniform", "segmented", "random"} else "uniform"
 
+            # Async helper to thread the capper and stream logs to frontend
+            async def stream_capper(jobs, dummy_label):
+                nonlocal current_xyz
+                log_q = queue.Queue()
+                qw = LineQueueWriter(log_q)
+                res_box = []
+
+                def _thread_cap():
+                    try:
+                        res = run_in_memory_capper(current_xyz, jobs, dummy_label, _dist(), out_stream=qw)
+                        res_box.append(res)
+                    except Exception as e:
+                        print(f"[cap][error] {e}", file=qw)
+                    finally:
+                        qw.flush()
+                        log_q.put(None)
+
+                t = threading.Thread(target=_thread_cap)
+                t.start()
+                
+                while True:
+                    try:
+                        line = log_q.get_nowait()
+                        if line is None: break
+                        if line.strip(): yield json.dumps({"event": "log", "line": line.strip()}) + "\n"
+                    except queue.Empty:
+                        await asyncio.sleep(0.01)
+                t.join()
+                
+                if res_box:
+                    current_xyz = res_box[0]
+
             if opts.cap_anionic_jobs:
-                try:
-                    current_xyz, log1 = run_in_memory_capper(current_xyz, opts.cap_anionic_jobs, "Cl", _dist())
-                    # Always stream miniCAT logs so the terminal displays them!
-                    for ln in log1.splitlines():
-                        if ln.strip(): yield json.dumps({"event": "log", "line": ln.strip()}) + "\n"
-                except Exception as e:
-                    yield json.dumps({"event": "log", "line": f"[cap][error] {e}"}) + "\n"
+                async for chunk in stream_capper(opts.cap_anionic_jobs, "Cl"):
+                    yield chunk
 
             if opts.cap_cationic_jobs:
-                try:
-                    current_xyz, log2 = run_in_memory_capper(current_xyz, opts.cap_cationic_jobs, "Rb", _dist())
-                    # Always stream miniCAT logs so the terminal displays them!
-                    for ln in log2.splitlines():
-                        if ln.strip(): yield json.dumps({"event": "log", "line": ln.strip()}) + "\n"
-                except Exception as e:
-                    yield json.dumps({"event": "log", "line": f"[cap][error] {e}"}) + "\n"
+                async for chunk in stream_capper(opts.cap_cationic_jobs, "Rb"):
+                    yield chunk
 
             # Recompute quick metadata after capping (best-effort)
-
             try:
                 if current_xyz:
                     from ase.io import read as ase_read
@@ -1330,6 +1355,7 @@ async def build_nanocrystal_stream(
                 "elements": elements,
                 "xyz_passivated": current_xyz,
                 "xyz_unpassivated": xyz_un,
+                "xyz_dummy": xyz_pass,
                 "total_charge": round(total_charge),
                 "grouped_counts": grouped_counts,
                 "download_name": download_name or "final.xyz",
