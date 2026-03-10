@@ -17,7 +17,7 @@ Resources:
       Environment:
         Variables:
           TMPDIR: /tmp
-          PROPS_ROOT: /var/task/docs/library         # Local fallback path within the container
+          PROPS_ROOT: /var/task/qd-frontend/public         # Local fallback path within the container
           PROPS_SUBDIR: properties
           PROPS_S3_BUCKET: qdspace-frontend-v1       # S3 bucket for datasets
           PROPS_S3_PREFIX: library                   # (no leading slash)

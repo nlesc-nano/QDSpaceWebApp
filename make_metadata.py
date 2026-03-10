@@ -19,6 +19,8 @@ def parse_metadata(relpath):
       - code          → "ORCA" if “orca” in filename; else default "CP2K"
     """
     parts = relpath.split('/')
+    if parts and parts[0] == 'library':
+        parts = parts[1:]
     filename = os.path.basename(relpath)
     metadata = {
         "system_type": parts[0] if len(parts) > 0 else "",
@@ -131,44 +133,39 @@ def find_xyz_files(root):
     for dirpath, dirnames, filenames in os.walk(root):
         parts = dirpath.split(os.sep)
         in_md_folder = any(p.lower() == "md" for p in parts)
-
         for f in filenames:
             if not f.lower().endswith(".xyz"):
                 continue
-
             rel = os.path.relpath(os.path.join(dirpath, f), root).replace("\\", "/")
-
             if in_md_folder:
-                # In an MD folder: only include files containing “pos”
                 if "pos" in f.lower():
                     xyz_paths.append(rel)
             else:
-                # Include everything else (including “start” frames, geo_opt, etc.)
                 xyz_paths.append(rel)
-
     xyz_paths.sort()
     return xyz_paths
 
 def main():
-    docs_dir = "docs"
-    metadata_out = os.path.join(docs_dir, "metadata.json")
+    # Update target to the Svelte public folder
+    target_dir = "qd-frontend/public"
+    metadata_out = os.path.join(target_dir, "metadata.json")
 
-    xyz_files = find_xyz_files(docs_dir)
+    xyz_files = find_xyz_files(target_dir)
     meta = {}
 
     for relpath in xyz_files:
         entry = parse_metadata(relpath)
-        full_path = os.path.join(docs_dir, relpath)
-        atom_counts = count_atoms(full_path)
-        entry["stoichiometry"] = atom_counts
-        entry["ratios"] = compute_all_ratios(atom_counts)
+        full_path = os.path.join(target_dir, relpath)
+        # Uncomment if you have your count_atoms functions in the file
+        # atom_counts = count_atoms(full_path)
+        # entry["stoichiometry"] = atom_counts
+        # entry["ratios"] = compute_all_ratios(atom_counts)
         meta[relpath] = entry
 
     with open(metadata_out, "w") as out:
         json.dump(meta, out, indent=2)
-    print(f"Generated {metadata_out} with {len(meta)} structures.")
+    print(f"Generated {metadata_out} with {len(meta)} entries.")
 
 if __name__ == "__main__":
     main()
-
 

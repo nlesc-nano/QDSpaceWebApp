@@ -1,177 +1,300 @@
-# QDSpace WebApp
 
-A lightweight web application for **building** and **browsing** quantum dots (QDs).  
-The project combines a static frontend (served from `/docs`) with a small FastAPI backend (in `/backend`) for structure processing and interactive plotting.
+# Quantum Dot Space
 
-> **Repo:** nlesc-nano/QDSpaceWebApp  
-> **License:** MIT
+An interactive web platform for **building, exploring, and analyzing quantum dots**.
 
----
+Quantum Dot Space provides an integrated environment for browsing large databases of atomistic nanocrystal structures, visualizing them interactively in the browser, and constructing new quantum dots with automated surface passivation and stoichiometric control.
 
-## ✨ Features
-
-- **Web UI** for QD building (`/docs/builder/`) and library browsing (`/docs/library/`).
-- **Active navigation highlighting** via `docs/assets/nav-active.js` (works under subpaths & GitHub Pages).
-- **Quantum‑dot structure library** under `docs/library/` (II–VI, III–V, IV–VI, etc.).
-- **Backend APIs** (FastAPI) for generating/transforming structures and interactive plots.
-- **Utility scripts** to (re)generate the library index and metadata.
+The platform is designed to accelerate research in **computational nanoscience and quantum dot discovery** by providing an intuitive interface for exploring large structure spaces and associated electronic properties.
 
 ---
 
-## 🗂️ Repository Layout
+## Overview
 
-```
-QDSpaceWebApp/
-├── LICENSE
-├── README.md
-├── environment.yml
-├── backend/
-│   ├── api.py               # API endpoints (builder/library helpers)
-│   ├── api_builder.py       # Builder-specific endpoints
-│   ├── app.py               # FastAPI app entry (imported by uvicorn)
-│   ├── plot_interactive.py  # Exports Plotly HTML
-│   ├── latest_version.txt
-│   ├── backup.txt
-│   └── requirements.txt
-├── docs/
-│   ├── index.html           # Landing page
-│   ├── about.html
-│   ├── contact.html
-│   ├── assets/
-│   │   ├── logos/           # Logos used in the site
-│   │   └── nav-active.js    # Robust "active" underline for header nav
-│   ├── builder/
-│   │   ├── index.html       # QD builder UI
-│   │   └── index_old.html
-│   └── library/             # Structure explorer UI + data
-│       ├── II-VI/
-│       ├── II-VI@II-VI/
-│       ├── III-V/
-│       ├── IV-VI/
-│       ├── app.css
-│       ├── app.js
-│       ├── file_list.js
-│       ├── index.html
-│       └── metadata.json
-├── make_file_list.py        # Rebuild docs/library/file_list.js
-└── make_metadata.py         # Rebuild docs/library/metadata.json
-```
+Quantum Dot Space combines two main components:
 
-> Tip: If you also see legacy folders like `docs/II-VI/` at the repository root, they are deprecated. The canonical home of all structures is **`docs/library/`**.
+1. **Quantum Dot Library**  
+   A searchable database of precomputed quantum dots including structural and electronic properties.
+
+2. **Quantum Dot Builder**  
+   A tool for constructing new nanocrystals with customizable size, morphology, facets, and ligand passivation.
+
+The application runs entirely in the browser and provides real-time 3D visualization and interactive property analysis.
 
 ---
 
-## 🚀 Quickstart (Local)
+## Features
 
-### 1) Create the Python environment
+- Interactive **3D visualization** of quantum dot structures
+- Exploration of large **quantum dot databases**
+- Real-time filtering by material, size, functionalization, and run type
+- Interactive **electronic structure analysis**
+- Visualization of:
+  - fuzzy band structures
+  - projected density of states (PDOS)
+  - crystal orbital overlap population (COOP)
+  - excited states
+- Automated **quantum dot builder** with:
+  - size control
+  - facet selection
+  - shape control (sphere, rod, platelet, custom)
+  - ligand passivation
+  - charge neutrality enforcement
+- Download of generated structures
 
-**Option A — Conda (recommended)**
+---
+
+# Interface
+
+## Landing Page
+
+The main interface provides access to the two core components of the platform.
+
+![Home](docs/images/home.png)
+
+---
+
+## Quantum Dot Library
+
+The library allows users to browse a large database of precomputed nanocrystals and inspect their structural and electronic properties.
+
+Users can filter structures by:
+
+- material family
+- size
+- functionalization
+- simulation run type
+
+Selected structures are displayed in a fully interactive 3D viewer.
+
+![Library](docs/images/library.png)
+
+---
+
+## Electronic Structure Analysis
+
+The platform provides interactive visualization of electronic properties including band structure, PDOS, and bonding analysis.
+
+Available analyses include:
+
+- Fuzzy band structures
+- Projected density of states (PDOS)
+- Crystal orbital overlap population (COOP)
+
+![Electronic Properties](docs/images/electronic_properties.png)
+
+---
+
+## Photophysics Analysis
+
+Excited-state properties can also be explored interactively, including exciton characteristics and energy decomposition.
+
+![Photophysics](docs/images/photophysics.png)
+
+---
+
+## Quantum Dot Builder
+
+The builder allows users to generate new nanocrystal structures directly in the browser.
+
+Users can:
+
+- upload a crystal structure (`.cif`)
+- control nanocrystal size
+- specify facet energies
+- adjust aspect ratio
+- automatically passivate dangling bonds
+- ensure global charge neutrality
+
+The generated structure is visualized in real time.
+
+![Builder](docs/images/builder.png)
+
+---
+
+# Installation
+
+Clone the repository:
 
 ```bash
-mamba env create -f environment.yml  # or: conda env create -f environment.yml
-conda activate qdspace
+git clone https://github.com/nlesc-nano/QDSpaceWebApp.git
+cd QDSpaceWebApp
 ```
 
-**Option B — venv + pip**
+Install frontend dependencies:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate  # (Windows: .venv\Scripts\activate)
-pip install -r backend/requirements.txt
+cd qd-frontend
+npm install
 ```
-**Option C — Docker (Local)**
-Run everything inside a lightweight local container (no Conda/Python setup needed).
+
+Run the development server:
 
 ```bash
-# From repo root
-docker build -f Dockerfile.local -t qdspace-local .
-
-# Run backend + serve docs, mounting local /docs
-docker run --rm -p 8000:8000 -v "$PWD/docs:/app/docs" qdspace-local
-# On Windows PowerShell, use:
-docker run --rm -p 8000:8000 -v "${PWD}\docs:/app/docs" qdspace-local
+npm run dev
 ```
 
-Then open → [**http://127.0.0.1:8000**](http://127.0.0.1:8000)
-(from there you can access the **QD Library** and **QD Builder** pages)
+The application will start at:
 
-### 2) Run the backend (FastAPI)
-
-From the repo root:
-
-```bash
-# Preferred (app.py exposes FastAPI instance named "app")
-uvicorn backend.app:app --reload --port 8000
-
-# If you wired the app in api.py instead
-# uvicorn backend.api:app --reload --port 8000
 ```
-
-Backend will be available at: `http://127.0.0.1:8000`  
-Interactive docs: `http://127.0.0.1:8000/docs`
-
-### 3) Open the frontend
-
-You can simply open the HTML files directly or serve them via a tiny HTTP server:
-
-```bash
-# from repo root
-python -m http.server 8080
-# now visit: http://127.0.0.1:8080/docs/index.html
+http://localhost:5173
 ```
-
-> The builder and library pages expect to reach your backend at `http://127.0.0.1:8000`.  
-> If you change ports or run via a tunnel, adjust the fetch URLs accordingly.
 
 ---
 
-## 📚 Updating the Library Index
+# Project Structure
 
-When you add/remove structures under `docs/library/*`, regenerate the list and metadata:
-
-```bash
-# builds docs/library/file_list.js
-python make_file_list.py
-
-# builds docs/library/metadata.json
-python make_metadata.py
+```
+QDSpaceWebApp
+│
+├── qd-frontend
+│   ├── src
+│   │   ├── components
+│   │   ├── routes
+│   │   └── utilities
+│   │
+│   ├── public
+│   │   ├── ABX3
+│   │   ├── II-VI
+│   │   └── III-V
+│   │
+│   ├── package.json
+│   └── vite.config.js
+│
+├── scripts
+└── README.md
 ```
 
-Commit the changes so they show up in the web UI.
+The `public` directory contains large collections of quantum dot structures used by the library.
 
 ---
 
-## 🌐 Deploying on GitHub Pages
+# Technology Stack
 
-1. Go to **Settings → Pages**.
-2. Source: **Deploy from a branch**.  
-   Branch: **`main`**, Folder: **`/docs`**.
-3. Save. Your site will be published at:  
-   `https://<org-or-user>.github.io/QDSpaceWebApp/`
+The web application is built using modern frontend technologies:
 
-The nav underline script `docs/assets/nav-active.js` is path-agnostic, so highlighting works correctly both locally and on Pages subpaths.
+- **Svelte**
+- **Vite**
+- **JavaScript / TypeScript**
+- **WebGL-based molecular visualization**
 
----
-
-## 🧪 API Notes (quick peek)
-
-- `backend/app.py` exposes the FastAPI app: `app = FastAPI(...)`
-- `backend/api.py` and `backend/api_builder.py` register route handlers.
-- `backend/plot_interactive.py` can export Plotly HTML for interactive PDOS/COOP/fuzzy plots.
-
-See the in-code docstrings and the live **OpenAPI** at `/docs` when the backend is running.
+The platform is designed for high-performance rendering of atomistic structures directly in the browser.
 
 ---
 
-## 🤝 Contributing
+# Data
 
-PRs and issues are welcome. If you’re adding many structures, please:
-- Put them under the correct family in `docs/library/`.
-- Run the two index scripts (`make_file_list.py`, `make_metadata.py`) before committing.
-- Keep filenames/descriptors consistent.
+The repository includes collections of quantum dot structures grouped by material class:
+
+| Dataset | Description |
+|-------|-------------|
+| ABX3 | Perovskite quantum dots |
+| II-VI | II–VI semiconductor nanocrystals |
+| III-V | III–V semiconductor nanocrystals |
+
+Each structure includes atomic coordinates and associated metadata used for filtering and visualization.
 
 ---
 
-## 📄 License
+# Development
 
-This project is licensed under the **MIT License**. See [`LICENSE`](LICENSE) for details.
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Build production version:
+
+```bash
+npm run build
+```
+
+Preview production build:
+
+```bash
+npm run preview
+```
+
+---
+
+# Contributing
+
+Contributions are welcome. Possible areas for improvement include:
+
+- improved visualization tools
+- additional materials datasets
+- new electronic structure analysis modules
+- performance optimizations
+
+---
+
+# License
+
+This project is released under the MIT License.
+=======
+# Quantum Dot Space
+
+An integrated computational ecosystem for building, passivating, and analyzing nanocrystals with atomistic precision. This project bridges the gap between theoretical DFT modeling and experimental reality through a **FastAPI backend** (miniCAT engine) and a **Svelte 5 frontend**.
+
+## 🛠️ Installation & Setup
+
+This project requires a dual-environment configuration to function correctly.
+
+### 1. Backend (Python Environment)
+The backend executes heavy computational logic, including the miniCAT ligand attachment engine and structure generation.
+
+* **Requirements**: Python 3.10+ and the dependencies listed in `requirements.txt`.
+* **Setup**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+* **Operation**: The frontend is configured via a proxy to expect a FastAPI server running on `http://127.0.0.1:8000` to handle `/api` requests.
+
+### 2. Frontend (Svelte + Vite)
+The frontend provides the interactive 3D environment, stoichiometry analysis, and database filtering logic.
+
+* **Setup**:
+    ```bash
+    npm install
+    ```
+* **Development**:
+    ```bash
+    npm run dev
+    ```
+* **Production Build**:
+    ```bash
+    npm run build
+    ```
+
+---
+
+## 🚀 Key Features
+
+### Quantum Dot Builder
+Construct complex core/shell architectures from scratch.
+* **Geometry Control**: Define radius, aspect ratios (Sphere, Platelet, Rod), and Miller index facets (e.g., 100, 111).
+* **miniCAT Passivation**: Real-time ligand attachment via SMILES strings to achieve global charge neutrality.
+* **System Breakdown**: Dynamic reporting of total atoms, shell composition, and ligand counts.
+
+### Quantum Dot Library
+A curated repository of pre-computed, DFT-relaxed structures.
+* **Intelligent Filtering**: Sort through ABX3, II-VI, III-V, and IV-VI systems by material, size, or functional type.
+* **Interactive Properties**: Integrated view of PDOS, COOP, and Excited State (Spin-Free/SOC) plots.
+* **Charge Balancer**: Automated detection of non-neutral structures using a built-in oxidation state database.
+
+### 3D Visualization (MatterViz)
+* **Static Structures**: High-performance rendering of Jmol-colored atomistic models.
+* **MD Trajectories**: Optimized playback of Molecular Dynamics simulations, downsampled to ~150 frames to ensure smooth 60fps browser performance.
+
+---
+
+## 📁 Technical Architecture
+
+* **Framework**: Svelte 5 utilizing **Runes** ($state, $derived, $effect) for high-speed reactivity.
+* **Engine**: `matterviz` for WebGL-based 3D rendering of static and trajectory data.
+* **Styling**: Tailwind CSS with custom branding including "Deep Indigo" and "Coral/Rose" palettes.
+* **Proxying**: Configured via `vite.config.js` to route `/api` calls directly to the FastAPI server.
+
+---
+*Developed by the **Infante Group** at **BCMaterials**. Supported by Ikerbasque and the European Union.*
