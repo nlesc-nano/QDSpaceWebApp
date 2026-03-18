@@ -61,8 +61,8 @@
   let currentXyzData = $state("");
   let currentFileUrl = $state("");
   let propertiesStatus = $state("idle");
-  let activePropertyTab = $state("fuzzy");
-  let plotUrls = $state({ fuzzy: null, exciton_sf: null, exciton_soc: null });
+  let activePropertyTab = $state("fuzzy_sf");
+  let plotUrls = $state({ fuzzy_sf: null, fuzzy_soc: null, exciton_sf: null, exciton_soc: null });
 
   // MD Trajectory detection
   let isMD = $derived(currentMeta?.run_type === "Molecular Dynamics");
@@ -369,88 +369,167 @@
       const dir = `/${basePath}/properties`;
       
       propertiesStatus = "loading";
-      plotUrls = { fuzzy: null, exciton_sf: null, exciton_soc: null };
+      plotUrls = { fuzzy_sf: null, fuzzy_soc: null, exciton_sf: null, exciton_soc: null };
       activePropertyTab = "fuzzy"; // Reset to default
 
       // Fire HEAD requests in parallel to check which files exist without downloading them
       Promise.all([
-        fetch(`${dir}/fuzzy_pdos_coop.html`, { method: "HEAD", cache: "no-store" }).then(r => r.ok ? `${dir}/fuzzy_pdos_coop.html` : null).catch(() => null),
+        fetch(`${dir}/fuzzy_dashboard_sf.html`, { method: "HEAD", cache: "no-store" }).then(r => r.ok ? `${dir}/fuzzy_dashboard_sf.html` : null).catch(() => null),
         fetch(`${dir}/plot.html`, { method: "HEAD", cache: "no-store" }).then(r => r.ok ? `${dir}/plot.html` : null).catch(() => null),
         fetch(`${dir}/plot.html.gz`, { method: "HEAD", cache: "no-store" }).then(r => r.ok ? `${dir}/plot.html.gz` : null).catch(() => null),
+        fetch(`${dir}/fuzzy_dashboard_soc.html`, { method: "HEAD", cache: "no-store" }).then(r => r.ok ? `${dir}/fuzzy_dashboard_soc.html` : null).catch(() => null),
         fetch(`${dir}/exciton_analysis_sf.html`, { method: "HEAD", cache: "no-store" }).then(r => r.ok ? `${dir}/exciton_analysis_sf.html` : null).catch(() => null),
         fetch(`${dir}/exciton_analysis_soc.html`, { method: "HEAD", cache: "no-store" }).then(r => r.ok ? `${dir}/exciton_analysis_soc.html` : null).catch(() => null)
-      ]).then(([fuzzy, oldPlot, oldPlotGz, exSf, exSoc]) => {
+      ]).then(([fuzzy_sf, oldPlot, oldPlotGz, fuzzy_soc, exSf, exSoc]) => { 
         
-        // Priority: fuzzy > plot.html > plot.html.gz
-        plotUrls.fuzzy = fuzzy || oldPlot || oldPlotGz;
+        // Priority: fuzzy_sf > plot.html > plot.html.gz
+        plotUrls.fuzzy_sf = fuzzy_sf || oldPlot || oldPlotGz;
+        plotUrls.fuzzy_soc = fuzzy_soc; 
         plotUrls.exciton_sf = exSf;
         plotUrls.exciton_soc = exSoc;
 
-        if (plotUrls.fuzzy || plotUrls.exciton_sf || plotUrls.exciton_soc) {
+        if (plotUrls.fuzzy_sf || plotUrls.fuzzy_soc || plotUrls.exciton_sf || plotUrls.exciton_soc) {
           propertiesStatus = "ready";
-          // Auto-select the first available tab if fuzzy doesn't exist
-          if (!plotUrls.fuzzy && plotUrls.exciton_sf) activePropertyTab = "exciton_sf";
-          else if (!plotUrls.fuzzy && !plotUrls.exciton_sf && plotUrls.exciton_soc) activePropertyTab = "exciton_soc";
+          
+          // Auto-select the first genuinely available tab
+          if (plotUrls.fuzzy_sf) {
+            activePropertyTab = "fuzzy_sf";
+          } else if (plotUrls.fuzzy_soc) {
+            activePropertyTab = "fuzzy_soc";
+          } else if (plotUrls.exciton_sf) {
+            activePropertyTab = "exciton_sf";
+          } else if (plotUrls.exciton_soc) {
+            activePropertyTab = "exciton_soc";
+          }
+          
         } else {
           propertiesStatus = "error";
         }
+
       });
+
     } else {
       propertiesStatus = "error";
     }
 
   }
   // --- Ligand Passivation API Call ---
+  // --- Ligand Passivation API Call ---
   async function handlePassivate() {
-    if (!currentXyzData) return;
+    if (!originalXyzData) return;
+
+    const jobs = [];
+
+    // 1. Process Anionic Ligands from the UI array
+    for (const lig of anionicLigands) {
+      if (!lig.smiles.trim()) continue;
+      jobs.push({
+        ligands: lig.smiles.split(",").map((s) => s.trim()),
+        dummy: lig.dummy ? lig.dummy.trim() : "Cl",
+        dist: `${lig.ratio || 1.0}:${capDist}`, // Uses the global capDist radio button
+      });
+    }
+
+    // 2. Process Cationic Ligands from the UI array
+    for (const lig of cationicLigands) {
+      if (!lig.smiles.trim()) continue;
+      jobs.push({
+        ligands: lig.smiles.split(",").map((s) => s.trim()),
+        dummy: lig.dummy ? lig.dummy.trim() : "Rb",
+        dist: `${lig.ratio || 1.0}:${capDist}`,
+      });
+    }
+
+    if (jobs.length === 0) {
+      logs += `\n[Client]: No ligands provided.\n`;
+      return;
+    }
+
     isAttaching = true;
-    attachError = "";
-    logs += `\n[cmd] Initiating ligand passivation via miniCAT engine...\n`;
+    logs += `\n[Client]: Sending passivation request to miniCAT engine...`;
 
     const payload = {
       xyztext: originalXyzData,
       out_prefix: "svelte_passivated",
-      jobs: [
-        ...anionicLigands.map((l) => ({
-          ligands: [l.smiles],
-          dummy: l.dummy,
-          dist: `${l.ratio}:${capDist}`,
-        })),
-        ...cationicLigands.map((l) => ({
-          ligands: [l.smiles],
-          dummy: l.dummy,
-          dist: `${l.ratio}:${capDist}`,
-        })),
-      ],
+      jobs: jobs,
     };
 
     try {
-      logs += `[status] Sending JSON payload to /api/attach...\n`;
-      const response = await fetch("/api/attach", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL || ""}/api/attach`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
 
       if (!response.ok) {
-        const errData = await response.json().catch(() => ({}));
-        throw new Error(errData.detail || `API Error: ${response.statusText}`);
+        throw new Error(`Server error: ${response.status}`);
       }
 
-      const data = await response.json();
-      if (data.results && data.results.length > 0) {
-        currentXyzData = data.results[0].xyz;
-        logs += `[status] Passivation successful. Structure updated.\n`;
-      } else {
-        throw new Error("No XYZ data returned.");
+      // --- STREAMING LOGIC ---
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder("utf-8");
+      let buffer = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        // Decode the incoming byte chunk
+        buffer += decoder.decode(value, { stream: true });
+        
+        // Split by newline to parse NDJSON properly
+        const lines = buffer.split("\n");
+        buffer = lines.pop(); // Keep the last incomplete line in the buffer
+
+        for (const line of lines) {
+          if (!line.trim()) continue;
+          
+          try {
+            const data = JSON.parse(line);
+            
+            if (data.event === "status") {
+              logs += `\n[Server]: ${data.line}`;
+            } else if (data.event === "log") {
+              logs += `\n${data.line}`;
+            } else if (data.event === "result") {
+              if (data.status === "failed" || data.error) {
+                throw new Error(data.error || "Unknown passivation error");
+              }
+              // Handle Success
+              logs += `\n[Server]: ${data.message || "Passivation complete."}`;
+              if (data.results && data.results.length > 0) {
+                // Svelte 5 will automatically trigger the calculatedCharge derived rune when this updates!
+                currentXyzData = data.results[0].xyz;
+              }
+            }
+          } catch (e) {
+            console.warn("Could not parse stream line:", line, e);
+          }
+        }
       }
-    } catch (err) {
-      attachError = err.message;
-      logs += `[error] Passivation failed: ${err.message}\n`;
+
+      // Flush anything left in the buffer
+      if (buffer.trim()) {
+        try {
+          const data = JSON.parse(buffer);
+          if (data.event === "log") logs += `\n${data.line}`;
+        } catch (e) {}
+      }
+
+    } catch (error) {
+      console.error("Passivation error:", error);
+      logs += `\n[Error]: ${error.message}`;
     } finally {
       isAttaching = false;
+      logs += `\n[Client]: Ready.\n`;
     }
   }
+
 
   function downloadXYZ() {
     // If it's a massive MD file, download directly via URL to avoid memory crashes
@@ -1075,9 +1154,14 @@
         {#if propertiesStatus === "ready"}
           <div class="flex flex-wrap gap-2">
             <button 
-              class="px-4 py-2 text-xs md:text-sm font-bold rounded-xl transition-all {activePropertyTab === 'fuzzy' ? 'bg-brand-50 text-brand-700 shadow-sm ring-1 ring-brand-200' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700'}"
-              onclick={() => activePropertyTab = 'fuzzy'}>
-              Fuzzy - PDOS - COOP
+              class="px-4 py-2 text-xs md:text-sm font-bold rounded-xl transition-all {activePropertyTab === 'fuzzy_sf' ? 'bg-brand-50 text-brand-700 shadow-sm ring-1 ring-brand-200' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700'}"
+              onclick={() => activePropertyTab = 'fuzzy_sf'}>
+              Fuzzy - PDOS - COOP (Spin Free) 
+            </button>
+            <button 
+              class="px-4 py-2 text-xs md:text-sm font-bold rounded-xl transition-all {activePropertyTab === 'fuzzy_soc' ? 'bg-brand-50 text-brand-700 shadow-sm ring-1 ring-brand-200' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700'}"
+              onclick={() => activePropertyTab = 'fuzzy_soc'}>
+              Fuzzy - PDOS - COOP (SOC) 
             </button>
             <button 
               class="px-4 py-2 text-xs md:text-sm font-bold rounded-xl transition-all {activePropertyTab === 'exciton_sf' ? 'bg-brand-50 text-brand-700 shadow-sm ring-1 ring-brand-200' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700'}"

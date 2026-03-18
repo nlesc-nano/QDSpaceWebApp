@@ -11,6 +11,64 @@
     'F': -1, 'Cl': -1, 'Br': -1, 'I': -1
   };
 
+  // --- Bulk CIF Templates ---
+  const bulkTemplates = {
+    "ABX3": [
+      { name: "CsPbCl3", phase: "cubic", a: 5.680, path: "/ABX3/bulk_cifs/CsPbCl3_cubic.cif" },
+      { name: "CsPbBr3", phase: "cubic", a: 5.949, path: "/ABX3/bulk_cifs/CsPbBr3_cubic.cif" },
+      { name: "CsPbI3", phase: "cubic", a: 6.275, path: "/ABX3/bulk_cifs/CsPbI3_cubic.cif" }
+    ],
+    "II-VI": [
+      { name: "CdS", phase: "zinc-blende", a: 5.886, path: "/II-VI/bulk_cifs/CdS_zb.cif" },
+      { name: "CdSe", phase: "zinc-blende", a: 6.141, path: "/II-VI/bulk_cifs/CdSe_zb.cif" },
+      { name: "CdTe", phase: "zinc-blende", a: 6.564, path: "/II-VI/bulk_cifs/CdTe_zb.cif" },
+      { name: "ZnS", phase: "zinc-blende", a: 5.387, path: "/II-VI/bulk_cifs/ZnS_zb.cif" },
+      { name: "ZnSe", phase: "zinc-blende", a: 5.665, path: "/II-VI/bulk_cifs/ZnSe_zb.cif" },
+      { name: "ZnTe", phase: "zinc-blende", a: 6.111, path: "/II-VI/bulk_cifs/ZnTe_zb.cif" },
+      { name: "HgS", phase: "zinc-blende", a: 5.939, path: "/II-VI/bulk_cifs/HgS_zb.cif" },
+      { name: "HgSe", phase: "zinc-blende", a: 6.193, path: "/II-VI/bulk_cifs/HgSe_zb.cif" },
+      { name: "HgTe", phase: "zinc-blende", a: 6.580, path: "/II-VI/bulk_cifs/HgTe_zb.cif" }
+    ],
+    "III-V": [
+      { name: "GaAs", phase: "zinc-blende", a: 5.750, path: "/III-V/bulk_cifs/GaAs_zb.cif" },
+      { name: "GaP", phase: "zinc-blende", a: 5.452, path: "/III-V/bulk_cifs/GaP_zb.cif" },
+      { name: "GaSb", phase: "zinc-blende", a: 6.137, path: "/III-V/bulk_cifs/GaSb_zb.cif" },
+      { name: "InAs", phase: "zinc-blende", a: 6.107, path: "/III-V/bulk_cifs/InAs_zb.cif" },
+      { name: "InP", phase: "zinc-blende", a: 5.904, path: "/III-V/bulk_cifs/InP_zb.cif" },
+      { name: "InSb", phase: "zinc-blende", a: 6.633, path: "/III-V/bulk_cifs/InSb_zb.cif" }
+    ],
+    "IV-VI": [
+      { name: "PbS", phase: "rock-salt", a: 5.976, path: "/IV-VI/bulk_cifs/PbS_rs.cif" },
+      { name: "PbSe", phase: "rock-salt", a: 6.182, path: "/IV-VI/bulk_cifs/PbSe_rs.cif" },
+      { name: "PbTe", phase: "rock-salt", a: 6.542, path: "/IV-VI/bulk_cifs/PbTe_rs.cif" }
+    ]
+  };
+
+  let activeFamilyTab = $state("II-VI");
+  let isLoadingTemplate = $state(false);
+
+  async function loadTemplate(template) {
+    isLoadingTemplate = true;
+    currentCorePhase = template.phase;
+    logs += `[status] Fetching ${template.name} bulk structure...\n`;
+    try {
+      const response = await fetch(template.path);
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      
+      const text = await response.text();
+      const blob = new Blob([text], { type: 'text/plain' });
+      const filename = template.path.split('/').pop();
+      
+      // Mimic a user file upload
+      coreFile = new File([blob], filename, { type: 'text/plain' });
+      logs += `[status] Loaded ${filename} successfully.\n`;
+    } catch (err) {
+      logs += `[error] Failed to load template: ${err.message}\n`;
+    } finally {
+      isLoadingTemplate = false;
+    }
+  }
+
   // ==========================================
   // STATE: Inputs & Configuration
   // ==========================================
@@ -20,7 +78,7 @@
   let activePreset = $state('Sphere');
   let coreFacets = $state([{ id: crypto.randomUUID(), hkl: '100', gamma: 1.0 }]);
   let shells = $state([]);
-  
+ 
   let passivateExpanded = $state(false);
   let capDist = $state('random');
   let anionicLigands = $state([]);
@@ -162,6 +220,8 @@
     shells.push({
       id: crypto.randomUUID(),
       file: null,
+      templateName: null, // Track if a template was used
+      isLoading: false,   // Track fetching state for this specific shell
       aspect: [1.0, 1.0, 1.0],
       facets: coreFacets.map(f => ({ id: crypto.randomUUID(), hkl: f.hkl, gamma: f.gamma }))
     });
@@ -192,6 +252,28 @@
     anionicLigands = [];
     cationicLigands = [];
     applyPreset('Sphere');
+    currentCorePhase = null;
+  }
+
+  async function loadShellTemplate(sIndex, template) {
+    shells[sIndex].isLoading = true;
+    logs += `[status] Fetching ${template.name} shell structure...\n`;
+    try {
+      const response = await fetch(template.path);
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      
+      const text = await response.text();
+      const blob = new Blob([text], { type: 'text/plain' });
+      const filename = template.path.split('/').pop();
+      
+      shells[sIndex].file = new File([blob], filename, { type: 'text/plain' });
+      shells[sIndex].templateName = template.name;
+      logs += `[status] Loaded ${filename} for Shell ${sIndex + 1}.\n`;
+    } catch (err) {
+      logs += `[error] Failed to load shell template: ${err.message}\n`;
+    } finally {
+      shells[sIndex].isLoading = false;
+    }
   }
 
   // ==========================================
@@ -277,7 +359,8 @@
       if (finalResult && finalResult.status === 'success') {
         xyzData = finalResult.xyz_passivated || finalResult.xyz || finalResult.xyz_unpassivated || "";
         if (!skipCoreBuild) {
-            lastUnpassivatedXyz = finalResult.xyz_unpassivated || finalResult.xyz_passivated || xyzData;
+            // Priority: Save the Cl-capped structure so miniCAT has dummies for repassivation!
+            lastUnpassivatedXyz = finalResult.xyz_dummy || finalResult.xyz_unpassivated || finalResult.xyz_passivated || xyzData;
         }
         if (finalResult.last_command) logs += `[cmd][final] ${finalResult.last_command}\n`;
         logs += "\n[status] Rendered.\n";
@@ -290,6 +373,20 @@
       isBuilding = false;
     }
   }
+  // ==========================================
+  // ADD CORE-SHELL MATCH PHASE  
+  // ==========================================
+  let currentCorePhase = $state(null);
+  let allowedShellTemplates = $derived.by(() => {
+    let matches = [];
+    for (const family in bulkTemplates) {
+      // If a core phase is known, strictly filter by it. Otherwise, show all.
+      matches.push(...bulkTemplates[family].filter(t => !currentCorePhase || t.phase === currentCorePhase));
+    }
+    return matches;
+  });
+
+
 </script>
 
 <svelte:window onmousemove={(e) => tooltipPos = { x: e.pageX + 15, y: e.pageY + 15 }} />
@@ -314,21 +411,71 @@
     </div>
 
     <div class="bg-white border border-slate-100 shadow-sm rounded-[1.5rem] p-6">
-      <h2 class="font-heading text-lg font-bold text-slate-900 mb-4">1) Core Structure</h2>
-      <label class="border-2 border-dashed border-slate-200 hover:bg-brand-50 hover:border-brand-400 hover:text-brand-700 transition-all p-6 rounded-2xl text-center cursor-pointer block group"
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="font-heading text-lg font-bold text-slate-900">1) Core Structure</h2>
+        {#if coreFile}
+          <button class="text-xs text-red-500 font-bold hover:text-red-700" onclick={() => coreFile = null}>Clear File</button>
+        {/if}
+      </div>
+
+      {#if !coreFile}
+        <div class="mb-5">
+          <span class="block text-[10px] font-extrabold text-brand-700 uppercase tracking-widest mb-2">Quick Select Bulk</span>
+          
+          <div class="flex space-x-1 rounded-xl p-1 bg-slate-100 mb-3 overflow-x-auto">
+            {#each Object.keys(bulkTemplates) as family}
+              <button 
+                class="flex-1 min-w-[60px] rounded-lg py-1.5 text-xs font-bold transition-all {activeFamilyTab === family ? 'bg-white text-brand-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}"
+                onclick={() => activeFamilyTab = family}>
+                {family}
+              </button>
+            {/each}
+          </div>
+
+          <div class="flex flex-wrap gap-2 min-h-[40px]">
+            {#if isLoadingTemplate}
+              <span class="text-xs font-bold text-brand-500 animate-pulse flex items-center gap-2">
+                <div class="w-3 h-3 border-2 border-brand-500 border-t-transparent rounded-full animate-spin"></div> Fetching...
+              </span>
+            {:else}
+              {#each bulkTemplates[activeFamilyTab] as template}
+                <button 
+                  class="flex flex-col items-center justify-center px-3 py-2 bg-brand-50 hover:bg-brand-100 text-brand-700 border border-brand-200 rounded-lg transition-colors w-[85px]"
+                  onclick={() => loadTemplate(template)}>
+                  <span class="text-sm font-bold leading-tight">{template.name}</span>
+                  <span class="text-[9px] font-bold opacity-60 uppercase tracking-wider mt-0.5">{template.phase}</span>
+                  <span class="text-[10px] font-mono font-medium opacity-80 mt-1 bg-white/60 px-1.5 py-0.5 rounded">{template.a} Å</span>
+                </button>
+              {/each}
+            {/if}
+          </div>
+        </div>
+
+        <div class="relative flex py-2 items-center mb-4">
+          <div class="flex-grow border-t border-slate-100"></div>
+          <span class="flex-shrink-0 mx-4 text-slate-300 text-[10px] font-bold uppercase tracking-widest">OR</span>
+          <div class="flex-grow border-t border-slate-100"></div>
+        </div>
+      {/if}
+
+      <label class="border-2 border-dashed border-slate-200 hover:bg-brand-50 hover:border-brand-400 transition-all p-5 rounded-2xl text-center cursor-pointer block group {coreFile ? 'bg-brand-50 border-brand-400' : ''}"
              ondragover={(e) => e.preventDefault()}
-             ondrop={handleCoreDrop}>
-        <input type="file" class="hidden" accept=".cif" onchange={(e) => coreFile = e.target.files[0]}>
-        <div class="mt-2 text-sm text-slate-500 font-medium group-hover:text-brand-600 transition-colors">
+             ondrop={(e) => { e.preventDefault(); if(e.dataTransfer.files[0]) { coreFile = e.dataTransfer.files[0]; currentCorePhase = null; } }}>
+        <input type="file" class="hidden" accept=".cif" onchange={(e) => { coreFile = e.target.files[0]; currentCorePhase = null; }}>
+        <div class="text-sm text-slate-500 font-medium group-hover:text-brand-600 transition-colors flex flex-col items-center gap-2">
           {#if coreFile}
-            <span class="font-bold text-brand-600">{coreFile.name}</span>
+            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm text-brand-500 mb-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <span class="font-bold text-brand-700">{coreFile.name}</span>
           {:else}
-            <span class="font-bold text-brand-600">Click to upload</span> or drag & drop a .cif file
+            <span class="font-bold text-brand-600">Click to upload custom</span>
+            <span class="text-xs">or drag & drop a .cif file</span>
           {/if}
         </div>
       </label>
     </div>
-
+ 
     <div class="bg-white border border-slate-100 shadow-sm rounded-[1.5rem] p-6">
       <h2 class="font-heading text-lg font-bold text-slate-900 mb-4">2) Size & Aspect</h2>
       <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2" for="radius_input">Final Radius (Å)</label>
@@ -372,8 +519,46 @@
             <button class="text-red-500 hover:text-red-700 text-xs font-bold transition-colors" onclick={() => shells.splice(sIndex, 1)}>Remove</button>
           </div>
           
-          <span class="block text-[10px] font-extrabold text-brand-700 uppercase tracking-widest mb-2">Material CIF</span>
-          <input type="file" accept=".cif" class="w-full text-xs mb-4 file:mr-4 file:py-1.5 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-brand-100 file:text-brand-700 hover:file:bg-brand-200 transition-all text-slate-600" onchange={(e) => shell.file = e.target.files[0]}>
+          <span class="block text-[10px] font-extrabold text-brand-700 uppercase tracking-widest mb-2">Shell Material</span>
+
+          {#if !shell.file}
+            <div class="flex flex-wrap gap-1.5 mb-3">
+              {#if shell.isLoading}
+                <span class="text-xs font-bold text-brand-500 animate-pulse flex items-center gap-2">
+                  <div class="w-3 h-3 border-2 border-brand-500 border-t-transparent rounded-full animate-spin"></div> Fetching...
+                </span>
+              {:else}
+                {#each allowedShellTemplates as template}
+                  <button 
+                    class="px-2 py-1.5 bg-white hover:bg-brand-100 text-brand-700 border border-brand-200 rounded-lg transition-colors flex flex-col items-center"
+                    onclick={() => loadShellTemplate(sIndex, template)}>
+                    <span class="text-xs font-bold">{template.name}</span>
+                    <span class="text-[9px] font-mono opacity-80 mt-0.5">{template.a}</span>
+                  </button>
+                {/each}
+              {/if}
+            </div>
+            
+            <div class="relative flex py-1 items-center mb-3">
+              <div class="flex-grow border-t border-brand-200/50"></div>
+              <span class="flex-shrink-0 mx-2 text-brand-400 text-[9px] font-bold uppercase tracking-widest">OR UPLOAD</span>
+              <div class="flex-grow border-t border-brand-200/50"></div>
+            </div>
+
+            <input type="file" accept=".cif" class="w-full text-xs mb-4 file:mr-4 file:py-1.5 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-brand-100 file:text-brand-700 hover:file:bg-brand-200 transition-all text-slate-600" onchange={(e) => { shell.file = e.target.files[0]; shell.templateName = null; }}>
+          {:else}
+            <div class="flex items-center justify-between bg-white border border-brand-200 rounded-lg px-3 py-2 mb-4">
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 bg-brand-50 rounded-full flex items-center justify-center text-brand-500">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <span class="text-xs font-bold text-brand-800">
+                  {shell.templateName ? `${shell.templateName} (Template)` : shell.file.name}
+                </span>
+              </div>
+              <button class="text-[10px] text-red-500 font-bold hover:text-red-700 uppercase tracking-wide" onclick={() => { shell.file = null; shell.templateName = null; }}>Clear</button>
+            </div>
+          {/if}
           
           <span class="block text-[10px] font-extrabold text-brand-700 uppercase tracking-widest mb-2">Aspect Ratio</span>
           <div class="grid grid-cols-3 gap-2 mb-4">

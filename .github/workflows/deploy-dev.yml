@@ -14,11 +14,8 @@ jobs:
       contents: read
 
     steps:
-      - name: Checkout main branch
-      # We always deploy what's on main (you can change this if desired)
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          ref: main
 
       - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v3
