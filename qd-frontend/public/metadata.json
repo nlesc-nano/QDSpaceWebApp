@@ -7,7 +7,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 7.269206816766666,
+      "diameter_hull": 14.538413633533333
+    }
   },
   "ABX3/CsPbBr3/HLE17/16ang/geo_opt/Cs20Pb8Br36_HLE17_16ang_OPT.xyz": {
     "system_type": "ABX3",
@@ -17,7 +21,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 7.269206814266667,
+      "diameter_hull": 14.538413628533334
+    }
   },
   "ABX3/CsPbBr3/HLE17/24ang/geo_opt/Cs112Pb64Br240_HLE17_24ang_OPT.xyz": {
     "system_type": "ABX3",
@@ -27,7 +35,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 13.371587106433333,
+      "diameter_hull": 26.743174212866666
+    }
   },
   "ABX3/CsPbBr3/HLE17/37ang/geo_opt/Cs324Pb216Br756_HLE17_37ang_OPT.xyz": {
     "system_type": "ABX3",
@@ -37,7 +49,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 19.668395457366668,
+      "diameter_hull": 39.336790914733335
+    }
   },
   "ABX3/CsPbBr3/HLE17/48ang/geo_opt/Cs704Pb512Br1728_HLE17_48ang_OPT.xyz": {
     "system_type": "ABX3",
@@ -47,7 +63,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 25.81726688676667,
+      "diameter_hull": 51.63453377353334
+    }
   },
   "ABX3/CsPbBr3/start/Cs20Pb8Br36_HLE17_12ang_Start.xyz": {
     "system_type": "ABX3",
@@ -57,7 +77,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 7.1986305,
+      "diameter_hull": 14.397261
+    }
   },
   "ABX3/CsPbCl3/HLE17/12ang/geo_opt/Cs20Pb8Cl36_HLE17_12ang_OPT.xyz": {
     "system_type": "ABX3",
@@ -67,7 +91,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 6.980003325216667,
+      "diameter_hull": 13.960006650433334
+    }
   },
   "ABX3/CsPbCl3/HLE17/24ang/geo_opt/Cs112Pb64Cl240_HLE17_24ang_OPT.xyz": {
     "system_type": "ABX3",
@@ -77,7 +105,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 12.81335320215,
+      "diameter_hull": 25.6267064043
+    }
   },
   "ABX3/CsPbCl3/HLE17/39ang/geo_opt/Cs307Pb216Cl739_HLE17_39ang_OPT.xyz": {
     "system_type": "ABX3",
@@ -87,7 +119,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.799387435383334,
+      "diameter_hull": 37.59877487076667
+    }
   },
   "ABX3/CsPbCl3/HLE17/46ang/geo_opt/Cs681Pb512Cl1705_HLE17_46ang_OPT.xyz": {
     "system_type": "ABX3",
@@ -97,7 +133,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 24.475371908583337,
+      "diameter_hull": 48.950743817166675
+    }
   },
   "ABX3/CsPbCl3/HLE17/52ang/geo_opt/Cs704Pb512Br1728_HLE17_52ang_OPT.xyz": {
     "system_type": "ABX3",
@@ -107,7 +147,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 25.311754171916665,
+      "diameter_hull": 50.62350834383333
+    }
   },
   "ABX3/CsPbI3/HLE17/24ang/geo_opt/Cs54Pb27I108_HLE17_24ang_OPT.xyz": {
     "system_type": "ABX3",
@@ -117,7 +161,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 11.1877843689,
+      "diameter_hull": 22.3755687378
+    }
   },
   "ABX3/CsPbI3/HLE17/32ang/geo_opt/Cs200Pb125I450_HLE17_32ang_OPT.xyz": {
     "system_type": "ABX3",
@@ -127,7 +175,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.458916936133335,
+      "diameter_hull": 36.91783387226667
+    }
   },
   "II-VI/CdS/HLE17/12ang/geo_opt/Cd16S13Cl6_HLE17_12ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -137,7 +189,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.187474313683333,
+      "diameter_hull": 10.374948627366665
+    }
   },
   "II-VI/CdS/HLE17/12ang/md/Cd16S13Cl6_HLE17_12ang_pos_md.xyz": {
     "system_type": "II-VI",
@@ -147,7 +203,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Molecular Dynamics",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.128484892633334,
+      "diameter_hull": 10.256969785266667
+    }
   },
   "II-VI/CdS/HLE17/12ang/start/Cd16S13Cl6_HLE17_12ang_start.xyz": {
     "system_type": "II-VI",
@@ -157,7 +217,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.240088917416666,
+      "diameter_hull": 10.480177834833333
+    }
   },
   "II-VI/CdS/HLE17/20ang/geo_opt/Cd68S55Cl26_HLE17_20ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -167,7 +231,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 8.892702992333334,
+      "diameter_hull": 17.785405984666667
+    }
   },
   "II-VI/CdS/HLE17/20ang/start/Cd68S55Cl26_HLE17_20ang_start.xyz": {
     "system_type": "II-VI",
@@ -177,7 +245,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.075574417483333,
+      "diameter_hull": 18.151148834966666
+    }
   },
   "II-VI/CdS/HLE17/28ang/geo_opt/Cd176S147Cl58_HLE17_28ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -187,7 +259,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 11.54225116435,
+      "diameter_hull": 23.0845023287
+    }
   },
   "II-VI/CdS/HLE17/28ang/start/Cd176S147Cl58_HLE17_28ang_start.xyz": {
     "system_type": "II-VI",
@@ -197,7 +273,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 11.999058365900003,
+      "diameter_hull": 23.998116731800007
+    }
   },
   "II-VI/CdS/HLE17/34ang/geo_opt/Cd324S281Cl86_HLE17_34ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -207,7 +287,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 14.757644968533333,
+      "diameter_hull": 29.515289937066665
+    }
   },
   "II-VI/CdS/HLE17/34ang/start/Cd324S281Cl86_HLE17_34ang_start.xyz": {
     "system_type": "II-VI",
@@ -217,7 +301,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.444681452833334,
+      "diameter_hull": 30.88936290566667
+    }
   },
   "II-VI/CdS/HLE17/40ang/geo_opt/Cd592S517Cl150_HLE17_40ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -227,7 +315,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 17.744218963483334,
+      "diameter_hull": 35.48843792696667
+    }
   },
   "II-VI/CdS/HLE17/40ang/start/Cd592S517Cl150_HLE17_40ang_start.xyz": {
     "system_type": "II-VI",
@@ -237,7 +329,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.419616151033335,
+      "diameter_hull": 36.83923230206667
+    }
   },
   "II-VI/CdSe/HLE17/12ang/geo_opt/Cd16Se13Cl6_HLE17_12ang_opt.xyz": {
     "system_type": "II-VI",
@@ -247,7 +343,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.240088917416666,
+      "diameter_hull": 10.480177834833333
+    }
   },
   "II-VI/CdSe/HLE17/12ang/md/Cd16Se13Cl6_HLE17_12ang_pos_md.xyz": {
     "system_type": "II-VI",
@@ -257,7 +357,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Molecular Dynamics",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.240088917416667,
+      "diameter_hull": 10.480177834833334
+    }
   },
   "II-VI/CdSe/HLE17/12ang/start/Cd16Se13Cl6_HLE17_12ang_start.xyz": {
     "system_type": "II-VI",
@@ -267,7 +371,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.240088917416666,
+      "diameter_hull": 10.480177834833333
+    }
   },
   "II-VI/CdSe/HLE17/20ang/geo_opt/Cd68Se55Cl26_HLE17_20ang_opt.xyz": {
     "system_type": "II-VI",
@@ -277,7 +385,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.075574417483333,
+      "diameter_hull": 18.151148834966666
+    }
   },
   "II-VI/CdSe/HLE17/20ang/md/Cd68Se55Cl26_HLE17_20ang_pos_md.xyz": {
     "system_type": "II-VI",
@@ -287,7 +399,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Molecular Dynamics",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.0755744175,
+      "diameter_hull": 18.151148835
+    }
   },
   "II-VI/CdSe/HLE17/20ang/start/Cd68Se55Cl26_HLE17_20ang_start.xyz": {
     "system_type": "II-VI",
@@ -297,7 +413,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.075574417483333,
+      "diameter_hull": 18.151148834966666
+    }
   },
   "II-VI/CdSe/HLE17/28ang/geo_opt/Cd176Se147Cl58_HLE17_28ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -307,7 +427,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 11.895665692083334,
+      "diameter_hull": 23.791331384166668
+    }
   },
   "II-VI/CdSe/HLE17/28ang/start/Cd176Se147Cl58_HLE17_28ang_start.xyz": {
     "system_type": "II-VI",
@@ -317,7 +441,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 11.999058365900003,
+      "diameter_hull": 23.998116731800007
+    }
   },
   "II-VI/CdSe/HLE17/34ang/geo_opt/Cd324Se281Cl86_HLE17_34ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -327,7 +455,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.294736268400001,
+      "diameter_hull": 30.589472536800002
+    }
   },
   "II-VI/CdSe/HLE17/34ang/start/Cd324Se281Cl86_HLE17_34ang_start.xyz": {
     "system_type": "II-VI",
@@ -337,7 +469,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.444681452833334,
+      "diameter_hull": 30.88936290566667
+    }
   },
   "II-VI/CdSe/HLE17/40ang/geo_opt/Cd592Se517Cl150_HLE17_40ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -347,7 +483,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.365590712400003,
+      "diameter_hull": 36.731181424800006
+    }
   },
   "II-VI/CdSe/HLE17/40ang/start/Cd592Se517Cl150_HLE17_40ang_start.xyz": {
     "system_type": "II-VI",
@@ -357,7 +497,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.419616151033335,
+      "diameter_hull": 36.83923230206667
+    }
   },
   "II-VI/CdSe/old/Cd176_OPT.xyz": {
     "system_type": "II-VI",
@@ -367,7 +511,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 11.998837007883333,
+      "diameter_hull": 23.997674015766666
+    }
   },
   "II-VI/CdSe/old/Cd176_pure_OPT.xyz": {
     "system_type": "II-VI",
@@ -377,7 +525,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 11.999058365900003,
+      "diameter_hull": 23.998116731800007
+    }
   },
   "II-VI/CdSe/old/Cd360_vacs_OPT.xyz": {
     "system_type": "II-VI",
@@ -387,7 +539,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.444681452833334,
+      "diameter_hull": 30.88936290566667
+    }
   },
   "II-VI/CdSe/old/Cd68_OPT.xyz": {
     "system_type": "II-VI",
@@ -397,7 +553,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.180885753166667,
+      "diameter_hull": 18.361771506333334
+    }
   },
   "II-VI/CdSe/old/CdSe_1259-pos-1.xyz": {
     "system_type": "II-VI",
@@ -407,7 +567,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.419616151033335,
+      "diameter_hull": 36.83923230206667
+    }
   },
   "II-VI/CdSe/old/CdSe_649-pos-1.xyz": {
     "system_type": "II-VI",
@@ -417,7 +581,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.244143478733333,
+      "diameter_hull": 30.488286957466666
+    }
   },
   "II-VI/CdSe/old/CdSe_771-pos-1.xyz": {
     "system_type": "II-VI",
@@ -427,7 +595,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.006841852833332,
+      "diameter_hull": 30.013683705666665
+    }
   },
   "II-VI/CdSe/old/mol.xyz": {
     "system_type": "II-VI",
@@ -437,7 +609,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.2441435,
+      "diameter_hull": 30.488287
+    }
   },
   "II-VI/CdTe/HLE17/12ang/geo_opt/Cd16Te13Cl6_HLE17_12ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -447,7 +623,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.470878820033334,
+      "diameter_hull": 10.941757640066667
+    }
   },
   "II-VI/CdTe/HLE17/12ang/md/Cd16Te13Cl6_HLE17_12ang_pos_md.xyz": {
     "system_type": "II-VI",
@@ -457,7 +637,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Molecular Dynamics",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.470878820033334,
+      "diameter_hull": 10.941757640066667
+    }
   },
   "II-VI/CdTe/HLE17/12ang/start/Cd16Te13Cl6_HLE17_12ang_start.xyz": {
     "system_type": "II-VI",
@@ -467,7 +651,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.240088917416666,
+      "diameter_hull": 10.480177834833333
+    }
   },
   "II-VI/CdTe/HLE17/20ang/geo_opt/Cd68Te55Cl26_HLE17_20ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -477,7 +665,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.586927052616668,
+      "diameter_hull": 19.173854105233335
+    }
   },
   "II-VI/CdTe/HLE17/20ang/start/Cd68Te55Cl26_HLE17_20ang_start.xyz": {
     "system_type": "II-VI",
@@ -487,7 +679,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.075574417483333,
+      "diameter_hull": 18.151148834966666
+    }
   },
   "II-VI/CdTe/HLE17/28ang/geo_opt/Cd176Te147Cl58_HLE17_28ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -497,7 +693,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 12.528187089216667,
+      "diameter_hull": 25.056374178433334
+    }
   },
   "II-VI/CdTe/HLE17/28ang/start/Cd176Te147Cl58_HLE17_28ang_start.xyz": {
     "system_type": "II-VI",
@@ -507,7 +707,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 11.999058365900003,
+      "diameter_hull": 23.998116731800007
+    }
   },
   "II-VI/CdTe/HLE17/34ang/geo_opt/Cd324Te281Cl86_HLE17_34ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -517,7 +721,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 16.3008085491,
+      "diameter_hull": 32.6016170982
+    }
   },
   "II-VI/CdTe/HLE17/34ang/start/Cd324Te281Cl86_HLE17_34ang_start.xyz": {
     "system_type": "II-VI",
@@ -527,7 +735,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.444681452833334,
+      "diameter_hull": 30.88936290566667
+    }
   },
   "II-VI/CdTe/HLE17/40ang/geo_opt/Cd592Te517Cl150_HLE17_40ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -537,7 +749,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 19.536657272966668,
+      "diameter_hull": 39.073314545933336
+    }
   },
   "II-VI/CdTe/HLE17/40ang/start/Cd592Te517Cl150_HLE17_40ang_start.xyz": {
     "system_type": "II-VI",
@@ -547,7 +763,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.419616151033335,
+      "diameter_hull": 36.83923230206667
+    }
   },
   "II-VI/HgS/HLE17/12ang/geo_opt/Hg16S13Cl6_HLE17_12ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -557,7 +777,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.062429941783333,
+      "diameter_hull": 10.124859883566666
+    }
   },
   "II-VI/HgS/HLE17/12ang/md/Hg16S13Cl6_HLE17_12ang_pos_md.xyz": {
     "system_type": "II-VI",
@@ -567,7 +791,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Molecular Dynamics",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.0624299418000005,
+      "diameter_hull": 10.124859883600001
+    }
   },
   "II-VI/HgS/HLE17/12ang/start/Hg16S13Cl6_HLE17_12ang_start.xyz": {
     "system_type": "II-VI",
@@ -577,7 +805,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.240088917416666,
+      "diameter_hull": 10.480177834833333
+    }
   },
   "II-VI/HgS/HLE17/20ang/geo_opt/Hg68S55Cl26_HLE17_20ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -587,7 +819,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 8.801144491383333,
+      "diameter_hull": 17.602288982766666
+    }
   },
   "II-VI/HgS/HLE17/20ang/start/Hg68S55Cl26_HLE17_20ang_start.xyz": {
     "system_type": "II-VI",
@@ -597,7 +833,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.075574417483333,
+      "diameter_hull": 18.151148834966666
+    }
   },
   "II-VI/HgS/HLE17/28ang/geo_opt/Hg176S147Cl58_HLE17_28ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -607,7 +847,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 12.067941052983334,
+      "diameter_hull": 24.13588210596667
+    }
   },
   "II-VI/HgS/HLE17/28ang/start/Hg176S147Cl58_HLE17_28ang_start.xyz": {
     "system_type": "II-VI",
@@ -617,7 +861,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 11.999058365900003,
+      "diameter_hull": 23.998116731800007
+    }
   },
   "II-VI/HgS/HLE17/34ang/geo_opt/Hg324S281Cl86_HLE17_34ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -627,7 +875,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.075760592316664,
+      "diameter_hull": 30.151521184633328
+    }
   },
   "II-VI/HgS/HLE17/34ang/start/Hg324S281Cl86_HLE17_34ang_start.xyz": {
     "system_type": "II-VI",
@@ -637,7 +889,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.444681452833334,
+      "diameter_hull": 30.88936290566667
+    }
   },
   "II-VI/HgS/HLE17/40ang/geo_opt/Hg592S517Cl150_HLE17_40ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -647,7 +903,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.06348218523333,
+      "diameter_hull": 36.12696437046666
+    }
   },
   "II-VI/HgS/HLE17/40ang/start/Hg592S517Cl150_HLE17_40ang_start.xyz": {
     "system_type": "II-VI",
@@ -657,7 +917,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.419616151033335,
+      "diameter_hull": 36.83923230206667
+    }
   },
   "II-VI/HgS/PBE/12ang/geo_opt/Hg16S13Cl6_PBE_12ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -667,7 +931,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.075708292083333,
+      "diameter_hull": 10.151416584166666
+    }
   },
   "II-VI/HgS/PBE/12ang/start/Hg16S13Cl6_HLE17_12ang_start.xyz": {
     "system_type": "II-VI",
@@ -677,7 +945,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.240088917416666,
+      "diameter_hull": 10.480177834833333
+    }
   },
   "II-VI/HgS/PBE/20ang/geo_opt/Hg68S55Cl26_PBE_20ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -687,7 +959,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.094685798149998,
+      "diameter_hull": 18.189371596299996
+    }
   },
   "II-VI/HgS/PBE/20ang/start/Hg68S55Cl26_HLE17_20ang_start.xyz": {
     "system_type": "II-VI",
@@ -697,7 +973,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.075574417483333,
+      "diameter_hull": 18.151148834966666
+    }
   },
   "II-VI/HgS/PBE/28ang/geo_opt/Hg176S147Cl58_PBE_28ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -707,7 +987,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 11.9347753719,
+      "diameter_hull": 23.8695507438
+    }
   },
   "II-VI/HgS/PBE/28ang/start/Hg176S147Cl58_HLE17_28ang_start.xyz": {
     "system_type": "II-VI",
@@ -717,7 +1001,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 11.999058365900003,
+      "diameter_hull": 23.998116731800007
+    }
   },
   "II-VI/HgS/PBE/34ang/geo_opt/Hg324S281Cl86_PBE_34ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -727,7 +1015,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.220109527300002,
+      "diameter_hull": 30.440219054600004
+    }
   },
   "II-VI/HgS/PBE/34ang/start/Hg324S281Cl86_HLE17_34ang_start.xyz": {
     "system_type": "II-VI",
@@ -737,7 +1029,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.444681452833334,
+      "diameter_hull": 30.88936290566667
+    }
   },
   "II-VI/HgS/PBE/40ang/geo_opt/Hg592S517Cl150_PBE_40ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -747,7 +1043,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.188617310466665,
+      "diameter_hull": 36.37723462093333
+    }
   },
   "II-VI/HgS/PBE/40ang/start/Hg592S517Cl150_HLE17_40ang_start.xyz": {
     "system_type": "II-VI",
@@ -757,7 +1057,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.419616151033335,
+      "diameter_hull": 36.83923230206667
+    }
   },
   "II-VI/HgSe/HLE17/12ang/geo_opt/Hg16Se13Cl6_HLE17_12ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -767,7 +1071,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.170884017400001,
+      "diameter_hull": 10.341768034800001
+    }
   },
   "II-VI/HgSe/HLE17/12ang/md/Hg16Se13Cl6_HLE17_12ang_pos_md.xyz": {
     "system_type": "II-VI",
@@ -777,7 +1085,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Molecular Dynamics",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.170884017416667,
+      "diameter_hull": 10.341768034833335
+    }
   },
   "II-VI/HgSe/HLE17/12ang/start/Hg16Se13Cl6_HLE17_12ang_start.xyz": {
     "system_type": "II-VI",
@@ -787,7 +1099,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.240088917416666,
+      "diameter_hull": 10.480177834833333
+    }
   },
   "II-VI/HgSe/HLE17/20ang/geo_opt/Hg68Se55Cl26_HLE17_20ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -797,7 +1113,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.095803912816667,
+      "diameter_hull": 18.191607825633334
+    }
   },
   "II-VI/HgSe/HLE17/20ang/start/Hg68Se55Cl26_HLE17_20ang_start.xyz": {
     "system_type": "II-VI",
@@ -807,7 +1127,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.075574417483333,
+      "diameter_hull": 18.151148834966666
+    }
   },
   "II-VI/HgSe/HLE17/28ang/geo_opt/Hg176Se147Cl58_HLE17_28ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -817,7 +1141,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 12.366178335566667,
+      "diameter_hull": 24.732356671133335
+    }
   },
   "II-VI/HgSe/HLE17/28ang/start/Hg176Se147Cl58_HLE17_28ang_start.xyz": {
     "system_type": "II-VI",
@@ -827,7 +1155,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 11.999058365900003,
+      "diameter_hull": 23.998116731800007
+    }
   },
   "II-VI/HgSe/HLE17/34ang/geo_opt/Hg324Se281Cl86_HLE17_34ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -837,7 +1169,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.588368013599998,
+      "diameter_hull": 31.176736027199997
+    }
   },
   "II-VI/HgSe/HLE17/34ang/start/Hg324Se281Cl86_HLE17_34ang_start.xyz": {
     "system_type": "II-VI",
@@ -847,7 +1183,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.444681452833334,
+      "diameter_hull": 30.88936290566667
+    }
   },
   "II-VI/HgSe/HLE17/40ang/geo_opt/Hg592Se517Cl150_HLE17_40ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -857,7 +1197,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.608192897783336,
+      "diameter_hull": 37.21638579556667
+    }
   },
   "II-VI/HgSe/HLE17/40ang/start/Hg592Se517Cl150_HLE17_40ang_start.xyz": {
     "system_type": "II-VI",
@@ -867,7 +1211,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.419616151033335,
+      "diameter_hull": 36.83923230206667
+    }
   },
   "II-VI/HgSe/PBE/12ang/geo_opt/Hg16Se13Cl6_PBE_12ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -877,7 +1225,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.20225876595,
+      "diameter_hull": 10.4045175319
+    }
   },
   "II-VI/HgSe/PBE/12ang/start/Hg16Se13Cl6_HLE17_12ang_start.xyz": {
     "system_type": "II-VI",
@@ -887,7 +1239,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.240088917416666,
+      "diameter_hull": 10.480177834833333
+    }
   },
   "II-VI/HgSe/PBE/20ang/geo_opt/Hg68Se55Cl26_PBE_20ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -897,7 +1253,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.375648765083334,
+      "diameter_hull": 18.751297530166667
+    }
   },
   "II-VI/HgSe/PBE/20ang/start/Hg68Se55Cl26_HLE17_20ang_start.xyz": {
     "system_type": "II-VI",
@@ -907,7 +1267,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.075574417483333,
+      "diameter_hull": 18.151148834966666
+    }
   },
   "II-VI/HgSe/PBE/28ang/geo_opt/Hg176Se147Cl58_PBE_28ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -917,7 +1281,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 12.400012433266667,
+      "diameter_hull": 24.800024866533334
+    }
   },
   "II-VI/HgSe/PBE/28ang/start/Hg176Se147Cl58_HLE17_28ang_start.xyz": {
     "system_type": "II-VI",
@@ -927,7 +1295,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 11.999058365900003,
+      "diameter_hull": 23.998116731800007
+    }
   },
   "II-VI/HgSe/PBE/34ang/geo_opt/Hg324Se281Cl86_PBE_34ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -937,7 +1309,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 16.01340002723333,
+      "diameter_hull": 32.02680005446666
+    }
   },
   "II-VI/HgSe/PBE/34ang/start/Hg324Se281Cl86_HLE17_34ang_start.xyz": {
     "system_type": "II-VI",
@@ -947,7 +1323,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.444681452833334,
+      "diameter_hull": 30.88936290566667
+    }
   },
   "II-VI/HgSe/PBE/40ang/geo_opt/Hg592Se517Cl150_PBE_40ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -957,7 +1337,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.8992909108,
+      "diameter_hull": 37.7985818216
+    }
   },
   "II-VI/HgSe/PBE/40ang/start/Hg592Se517Cl150_HLE17_40ang_start.xyz": {
     "system_type": "II-VI",
@@ -967,7 +1351,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.419616151033335,
+      "diameter_hull": 36.83923230206667
+    }
   },
   "II-VI/HgTe/HLE17/12ang/geo_opt/Hg16Te13Cl6_HLE17_12ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -977,7 +1365,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.3918351037,
+      "diameter_hull": 10.7836702074
+    }
   },
   "II-VI/HgTe/HLE17/12ang/md/Hg16Te13Cl6_HLE17_12ang_pos_md.xyz": {
     "system_type": "II-VI",
@@ -987,7 +1379,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Molecular Dynamics",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.3918351037,
+      "diameter_hull": 10.7836702074
+    }
   },
   "II-VI/HgTe/HLE17/12ang/start/Hg16Te13Cl6_HLE17_12ang_start.xyz": {
     "system_type": "II-VI",
@@ -997,7 +1393,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.240088917416666,
+      "diameter_hull": 10.480177834833333
+    }
   },
   "II-VI/HgTe/HLE17/20ang/geo_opt/Hg68Te55Cl26_HLE17_20ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1007,7 +1407,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.543256038133334,
+      "diameter_hull": 19.08651207626667
+    }
   },
   "II-VI/HgTe/HLE17/20ang/start/Hg68Te55Cl26_HLE17_20ang_start.xyz": {
     "system_type": "II-VI",
@@ -1017,7 +1421,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.075574417483333,
+      "diameter_hull": 18.151148834966666
+    }
   },
   "II-VI/HgTe/HLE17/28ang/geo_opt/Hg176Te147Cl58_HLE17_28ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1027,7 +1435,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 13.280259660983333,
+      "diameter_hull": 26.560519321966666
+    }
   },
   "II-VI/HgTe/HLE17/28ang/start/Hg176Te147Cl58_HLE17_28ang_start.xyz": {
     "system_type": "II-VI",
@@ -1037,7 +1449,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 11.999058365900003,
+      "diameter_hull": 23.998116731800007
+    }
   },
   "II-VI/HgTe/HLE17/34ang/geo_opt/Hg324Te281Cl86_HLE17_34ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1047,7 +1463,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 16.725294382783336,
+      "diameter_hull": 33.45058876556667
+    }
   },
   "II-VI/HgTe/HLE17/34ang/geo_opt/mol.xyz": {
     "system_type": "II-VI",
@@ -1057,7 +1477,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 16.7252945,
+      "diameter_hull": 33.450589
+    }
   },
   "II-VI/HgTe/HLE17/34ang/start/Hg324Te281Cl86_HLE17_34ang_start.xyz": {
     "system_type": "II-VI",
@@ -1067,7 +1491,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.444681452833334,
+      "diameter_hull": 30.88936290566667
+    }
   },
   "II-VI/HgTe/HLE17/40ang/geo_opt/Hg592Te517Cl150_HLE17_40ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1077,7 +1505,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 19.732660359583335,
+      "diameter_hull": 39.46532071916667
+    }
   },
   "II-VI/HgTe/HLE17/40ang/geo_opt/mol.xyz": {
     "system_type": "II-VI",
@@ -1087,7 +1519,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 19.73266033333333,
+      "diameter_hull": 39.46532066666666
+    }
   },
   "II-VI/HgTe/HLE17/40ang/start/Hg592Te517Cl150_HLE17_40ang_start.xyz": {
     "system_type": "II-VI",
@@ -1097,7 +1533,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.419616151033335,
+      "diameter_hull": 36.83923230206667
+    }
   },
   "II-VI/HgTe/PBE/12ang/geo_opt/Hg16Te13Cl6_PBE_12ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1107,7 +1547,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.408856111983333,
+      "diameter_hull": 10.817712223966666
+    }
   },
   "II-VI/HgTe/PBE/12ang/start/Hg16Te13Cl6_HLE17_12ang_start.xyz": {
     "system_type": "II-VI",
@@ -1117,7 +1561,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.240088917416666,
+      "diameter_hull": 10.480177834833333
+    }
   },
   "II-VI/HgTe/PBE/20ang/geo_opt/Hg68Te55Cl26_PBE_20ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1127,7 +1575,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.81262744385,
+      "diameter_hull": 19.6252548877
+    }
   },
   "II-VI/HgTe/PBE/20ang/start/Hg68Te55Cl26_HLE17_20ang_start.xyz": {
     "system_type": "II-VI",
@@ -1137,7 +1589,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.075574417483333,
+      "diameter_hull": 18.151148834966666
+    }
   },
   "II-VI/HgTe/PBE/28ang/geo_opt/Hg176Te147Cl58_PBE_28ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1147,7 +1603,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 13.058799388916668,
+      "diameter_hull": 26.117598777833336
+    }
   },
   "II-VI/HgTe/PBE/28ang/start/Hg176Te147Cl58_HLE17_28ang_start.xyz": {
     "system_type": "II-VI",
@@ -1157,7 +1617,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 11.999058365900003,
+      "diameter_hull": 23.998116731800007
+    }
   },
   "II-VI/HgTe/PBE/34ang/geo_opt/Hg324Te281Cl86_PBE_34ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1167,7 +1631,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 16.736182194766666,
+      "diameter_hull": 33.47236438953333
+    }
   },
   "II-VI/HgTe/PBE/34ang/start/Hg324Te281Cl86_HLE17_34ang_start.xyz": {
     "system_type": "II-VI",
@@ -1177,7 +1645,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.444681452833334,
+      "diameter_hull": 30.88936290566667
+    }
   },
   "II-VI/HgTe/PBE/40ang/geo_opt/Hg592Te517Cl150_PBE_40ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1187,7 +1659,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 20.016473385266668,
+      "diameter_hull": 40.032946770533336
+    }
   },
   "II-VI/HgTe/PBE/40ang/start/Hg592Te517Cl150_HLE17_40ang_start.xyz": {
     "system_type": "II-VI",
@@ -1197,7 +1673,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.419616151033335,
+      "diameter_hull": 36.83923230206667
+    }
   },
   "II-VI/ZnS/HLE17/12ang/geo_opt/Zn16S13Cl6_HLE17_12ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1207,7 +1687,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 4.832666449083334,
+      "diameter_hull": 9.665332898166668
+    }
   },
   "II-VI/ZnS/HLE17/12ang/md/Zn16S13Cl6_HLE17_12ang_pos_md.xyz": {
     "system_type": "II-VI",
@@ -1217,7 +1701,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Molecular Dynamics",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 4.832666449083333,
+      "diameter_hull": 9.665332898166666
+    }
   },
   "II-VI/ZnS/HLE17/12ang/start/Zn16S13Cl6_HLE17_12ang_start.xyz": {
     "system_type": "II-VI",
@@ -1227,7 +1715,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.240088917416666,
+      "diameter_hull": 10.480177834833333
+    }
   },
   "II-VI/ZnS/HLE17/20ang/geo_opt/Zn68S55Cl26_HLE17_20ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1237,7 +1729,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 8.212620585449999,
+      "diameter_hull": 16.425241170899998
+    }
   },
   "II-VI/ZnS/HLE17/20ang/start/Zn68S55Cl26_HLE17_20ang_start.xyz": {
     "system_type": "II-VI",
@@ -1247,7 +1743,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.075574417483333,
+      "diameter_hull": 18.151148834966666
+    }
   },
   "II-VI/ZnS/HLE17/28ang/geo_opt/Zn176S147Cl58_HLE17_28ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1257,7 +1757,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 10.578629710566668,
+      "diameter_hull": 21.157259421133336
+    }
   },
   "II-VI/ZnS/HLE17/28ang/start/Zn176S147Cl58_HLE17_28ang_start.xyz": {
     "system_type": "II-VI",
@@ -1267,7 +1771,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 11.999058365900003,
+      "diameter_hull": 23.998116731800007
+    }
   },
   "II-VI/ZnS/HLE17/34ang/geo_opt/Zn324S281Cl86_HLE17_34ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1277,7 +1785,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 13.682877199666665,
+      "diameter_hull": 27.36575439933333
+    }
   },
   "II-VI/ZnS/HLE17/34ang/start/Zn324S281Cl86_HLE17_34ang_start.xyz": {
     "system_type": "II-VI",
@@ -1287,7 +1799,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.444681452833334,
+      "diameter_hull": 30.88936290566667
+    }
   },
   "II-VI/ZnS/HLE17/40ang/geo_opt/Zn592S517Cl150_HLE17_40ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1297,7 +1813,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 16.348755854916664,
+      "diameter_hull": 32.69751170983333
+    }
   },
   "II-VI/ZnS/HLE17/40ang/start/Zn592S517Cl150_HLE17_40ang_start.xyz": {
     "system_type": "II-VI",
@@ -1307,7 +1827,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.419616151033335,
+      "diameter_hull": 36.83923230206667
+    }
   },
   "II-VI/ZnSe/HLE17/12ang/geo_opt/Zn16Se13Cl6_HLE17_12ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1317,7 +1841,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 4.9326992653333335,
+      "diameter_hull": 9.865398530666667
+    }
   },
   "II-VI/ZnSe/HLE17/12ang/md/Zn16Se13Cl6_HLE17_12ang_pos_md.xyz": {
     "system_type": "II-VI",
@@ -1327,7 +1855,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Molecular Dynamics",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 4.93269926535,
+      "diameter_hull": 9.8653985307
+    }
   },
   "II-VI/ZnSe/HLE17/12ang/start/Zn16Se13Cl6_HLE17_12ang_start.xyz": {
     "system_type": "II-VI",
@@ -1337,7 +1869,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.240088917416666,
+      "diameter_hull": 10.480177834833333
+    }
   },
   "II-VI/ZnSe/HLE17/20ang/geo_opt/Zn68Se55Cl26_HLE17_20ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1347,7 +1883,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 8.490171273,
+      "diameter_hull": 16.980342546
+    }
   },
   "II-VI/ZnSe/HLE17/20ang/start/Zn68Se55Cl26_HLE17_20ang_start.xyz": {
     "system_type": "II-VI",
@@ -1357,7 +1897,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.075574417483333,
+      "diameter_hull": 18.151148834966666
+    }
   },
   "II-VI/ZnSe/HLE17/28ang/geo_opt/Zn176Se147Cl58_HLE17_28ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1367,7 +1911,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 10.994897332466666,
+      "diameter_hull": 21.98979466493333
+    }
   },
   "II-VI/ZnSe/HLE17/28ang/start/Zn176Se147Cl58_HLE17_28ang_start.xyz": {
     "system_type": "II-VI",
@@ -1377,7 +1925,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 11.999058365900003,
+      "diameter_hull": 23.998116731800007
+    }
   },
   "II-VI/ZnSe/HLE17/34ang/geo_opt/Zn324Se281Cl86_HLE17_34ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1387,7 +1939,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 14.225846352266666,
+      "diameter_hull": 28.451692704533333
+    }
   },
   "II-VI/ZnSe/HLE17/34ang/start/Zn324Se281Cl86_HLE17_34ang_start.xyz": {
     "system_type": "II-VI",
@@ -1397,7 +1953,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.444681452833334,
+      "diameter_hull": 30.88936290566667
+    }
   },
   "II-VI/ZnSe/HLE17/40ang/geo_opt/Zn592Se517Cl150_HLE17_40ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1407,7 +1967,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 17.051077109216667,
+      "diameter_hull": 34.102154218433334
+    }
   },
   "II-VI/ZnSe/HLE17/40ang/start/Zn592Se517Cl150_HLE17_40ang_start.xyz": {
     "system_type": "II-VI",
@@ -1417,7 +1981,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.419616151033335,
+      "diameter_hull": 36.83923230206667
+    }
   },
   "II-VI/ZnTe/HLE17/12ang/geo_opt/Zn16Te13Cl6_HLE17_12ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1427,7 +1995,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.162051607066666,
+      "diameter_hull": 10.324103214133332
+    }
   },
   "II-VI/ZnTe/HLE17/12ang/md/Zn16Te13Cl6_HLE17_12ang_pos_md.xyz": {
     "system_type": "II-VI",
@@ -1437,7 +2009,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Molecular Dynamics",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.162051607083333,
+      "diameter_hull": 10.324103214166666
+    }
   },
   "II-VI/ZnTe/HLE17/12ang/start/Zn16Te13Cl6_HLE17_12ang_start.xyz": {
     "system_type": "II-VI",
@@ -1447,7 +2023,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.240088917416666,
+      "diameter_hull": 10.480177834833333
+    }
   },
   "II-VI/ZnTe/HLE17/20ang/geo_opt/Zn68Te55Cl26_HLE17_20ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1457,7 +2037,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 8.97821482555,
+      "diameter_hull": 17.9564296511
+    }
   },
   "II-VI/ZnTe/HLE17/20ang/start/Zn68Te55Cl26_HLE17_20ang_start.xyz": {
     "system_type": "II-VI",
@@ -1467,7 +2051,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.075574417483333,
+      "diameter_hull": 18.151148834966666
+    }
   },
   "II-VI/ZnTe/HLE17/28ang/geo_opt/Zn176Te147Cl58_HLE17_28ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1477,7 +2065,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 11.716075575233333,
+      "diameter_hull": 23.432151150466666
+    }
   },
   "II-VI/ZnTe/HLE17/28ang/start/Zn176Te147Cl58_HLE17_28ang_start.xyz": {
     "system_type": "II-VI",
@@ -1487,7 +2079,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 11.999058365900003,
+      "diameter_hull": 23.998116731800007
+    }
   },
   "II-VI/ZnTe/HLE17/34ang/geo_opt/Zn324Te281Cl86_HLE17_34ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1497,7 +2093,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.116098909466666,
+      "diameter_hull": 30.232197818933333
+    }
   },
   "II-VI/ZnTe/HLE17/34ang/start/Zn324Te281Cl86_HLE17_34ang_start.xyz": {
     "system_type": "II-VI",
@@ -1507,7 +2107,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.444681452833334,
+      "diameter_hull": 30.88936290566667
+    }
   },
   "II-VI/ZnTe/HLE17/40ang/geo_opt/Zn592Te517Cl150_HLE17_40ang_OPT.xyz": {
     "system_type": "II-VI",
@@ -1517,7 +2121,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.177081230666662,
+      "diameter_hull": 36.354162461333324
+    }
   },
   "II-VI/ZnTe/HLE17/40ang/start/Zn592Te517Cl150_HLE17_40ang_start.xyz": {
     "system_type": "II-VI",
@@ -1527,7 +2135,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.419616151033335,
+      "diameter_hull": 36.83923230206667
+    }
   },
   "II-VI@II-VI/CdS_ZnS/CdS_ZnS_1259-pos-1.xyz": {
     "system_type": "II-VI@II-VI",
@@ -1537,7 +2149,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.3180579474,
+      "diameter_hull": 36.6361158948
+    }
   },
   "II-VI@II-VI/CdS_ZnSe/CdS_ZnSe_1259-pos-1.xyz": {
     "system_type": "II-VI@II-VI",
@@ -1547,7 +2163,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.696018267716667,
+      "diameter_hull": 37.392036535433334
+    }
   },
   "II-VI@II-VI/CdSe_CdS/CdSe_CdS_1259-pos-1.xyz": {
     "system_type": "II-VI@II-VI",
@@ -1557,7 +2177,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 19.4432771056,
+      "diameter_hull": 38.8865542112
+    }
   },
   "II-VI@II-VI/CdSe_ZnS/CdSe_ZnS_1259-pos-1.xyz": {
     "system_type": "II-VI@II-VI",
@@ -1567,7 +2191,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.489234469150002,
+      "diameter_hull": 36.978468938300004
+    }
   },
   "II-VI@II-VI/CdSe_ZnSe/CdSe_ZnSe_1259-pos-1.xyz": {
     "system_type": "II-VI@II-VI",
@@ -1577,7 +2205,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 19.000458296116665,
+      "diameter_hull": 38.00091659223333
+    }
   },
   "II-VI@II-VI/ZnSe_CdS/ZnSe_CdS_1259-pos-1.xyz": {
     "system_type": "II-VI@II-VI",
@@ -1587,7 +2219,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 19.015785492583337,
+      "diameter_hull": 38.031570985166674
+    }
   },
   "II-VI@II-VI/ZnSe_ZnS/ZnSe_ZnS_1259-pos-1.xyz": {
     "system_type": "II-VI@II-VI",
@@ -1597,7 +2233,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.050119952166668,
+      "diameter_hull": 36.100239904333336
+    }
   },
   "III-V/GaAs/HLE17/18ang/geo_opt/Ga31As20Cl33_HLE17_18ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1607,7 +2247,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 6.781166557183333,
+      "diameter_hull": 13.562333114366666
+    }
   },
   "III-V/GaAs/HLE17/22ang/geo_opt/Ga107As73Cl102_HLE17_22ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1617,7 +2261,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 10.134683004583334,
+      "diameter_hull": 20.269366009166667
+    }
   },
   "III-V/GaAs/HLE17/23ang/geo_opt/Ga107As73Cl102_HLE17_23ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1627,7 +2275,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 10.13138408745,
+      "diameter_hull": 20.2627681749
+    }
   },
   "III-V/GaAs/HLE17/28ang/geo_opt/Ga249As194Cl165_HLE17_28ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1637,7 +2289,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 12.420906251049999,
+      "diameter_hull": 24.841812502099998
+    }
   },
   "III-V/GaAs/HLE17/29ang/geo_opt/Ga249As194Cl165_HLE17_29ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1647,7 +2303,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 12.437340405216666,
+      "diameter_hull": 24.874680810433333
+    }
   },
   "III-V/GaAs/HLE17/32ang/geo_opt/Ga220As165Cl165[CH3NH2]55_HLE17_32ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1657,7 +2317,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 14.085925726266666,
+      "diameter_hull": 28.171851452533332
+    }
   },
   "III-V/GaAs/HLE17/33ang/geo_opt/Ga477As396Cl243_HLE17_33ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1667,7 +2331,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.230293784133332,
+      "diameter_hull": 30.460587568266664
+    }
   },
   "III-V/GaAs/HLE17/35ang/geo_opt/Ga477As396Cl243_HLE17_35ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1677,7 +2345,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.223894779933332,
+      "diameter_hull": 30.447789559866663
+    }
   },
   "III-V/GaAs/HLE17/39ang/geo_opt/Ga790Zn21As688Cl348_HLE17_39ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1687,7 +2359,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.079405874433334,
+      "diameter_hull": 36.15881174886667
+    }
   },
   "III-V/GaAs/HLE17/44ang/geo_opt/Ga1242Zn29As1108Cl460_HLE17_44ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1697,7 +2373,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 20.804199578133332,
+      "diameter_hull": 41.608399156266664
+    }
   },
   "III-V/GaP/HLE17/18ang/geo_opt/Ga31P20Cl33_HLE17_18ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1707,7 +2387,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 6.537961218866667,
+      "diameter_hull": 13.075922437733334
+    }
   },
   "III-V/GaP/HLE17/23ang/geo_opt/Ga107P73Cl102_HLE17_23ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1717,7 +2401,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 9.85559314715,
+      "diameter_hull": 19.7111862943
+    }
   },
   "III-V/GaP/HLE17/27ang/geo_opt/Ga249P194Cl165_HLE17_27ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1727,7 +2415,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 12.052615328633332,
+      "diameter_hull": 24.105230657266663
+    }
   },
   "III-V/GaP/HLE17/29ang/geo_opt/Ga249P194Cl165_HLE17_29ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1737,7 +2429,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 12.030935088599998,
+      "diameter_hull": 24.061870177199996
+    }
   },
   "III-V/GaP/HLE17/32ang/geo_opt/Ga220P165Cl165[CH3NH2]55_HLE17_32ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1747,7 +2443,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 13.686746867816666,
+      "diameter_hull": 27.373493735633332
+    }
   },
   "III-V/GaP/HLE17/33ang/geo_opt/Ga477P396Cl243_HLE17_33ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1757,7 +2457,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 14.713904116533334,
+      "diameter_hull": 29.427808233066667
+    }
   },
   "III-V/GaP/HLE17/35ang/geo_opt/Ga477P396Cl243_HLE17_35ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1767,7 +2471,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 14.704135304883332,
+      "diameter_hull": 29.408270609766664
+    }
   },
   "III-V/GaP/HLE17/38ang/geo_opt/Ga790Zn21P688Cl348_HLE17_38ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1777,7 +2485,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 17.474780526283336,
+      "diameter_hull": 34.94956105256667
+    }
   },
   "III-V/GaP/HLE17/41ang/geo_opt/Ga790P688Cl348Zn21_HLE17_41ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1787,7 +2499,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 17.477786092133332,
+      "diameter_hull": 34.955572184266664
+    }
   },
   "III-V/GaP/HLE17/43ang/geo_opt/Ga1242Zn29P1108Cl460_HLE17_43ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1797,7 +2513,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 20.09771029208333,
+      "diameter_hull": 40.19542058416666
+    }
   },
   "III-V/GaSb/HLE17/18ang/geo_opt/Ga31Sb20Cl33_HLE17_18ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1807,7 +2527,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 7.127900055433333,
+      "diameter_hull": 14.255800110866666
+    }
   },
   "III-V/GaSb/HLE17/23ang/geo_opt/Ga107Sb73Cl102_HLE17_23ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1817,7 +2541,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 10.77596181285,
+      "diameter_hull": 21.5519236257
+    }
   },
   "III-V/GaSb/HLE17/29ang/geo_opt/Ga249Sb194Cl165_HLE17_29ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1827,7 +2555,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 13.311354609016668,
+      "diameter_hull": 26.622709218033336
+    }
   },
   "III-V/GaSb/HLE17/30ang/geo_opt/Ga249Sb194Cl165_HLE17_30ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1837,7 +2569,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 13.334468044216665,
+      "diameter_hull": 26.66893608843333
+    }
   },
   "III-V/GaSb/HLE17/35ang/geo_opt/Ga220Sb165Cl165[CH3NH2]55_HLE17_35ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1847,7 +2583,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.1694042094,
+      "diameter_hull": 30.3388084188
+    }
   },
   "III-V/GaSb/HLE17/36ang/geo_opt/Ga477Sb396Cl243_HLE17_36ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1857,7 +2597,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 16.324451000516667,
+      "diameter_hull": 32.648902001033335
+    }
   },
   "III-V/GaSb/HLE17/42ang/geo_opt/Ga790Zn21Sb688Cl348_HLE17_42ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1867,7 +2611,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 19.348592050233332,
+      "diameter_hull": 38.697184100466664
+    }
   },
   "III-V/GaSb/HLE17/48ang/geo_opt/Ga1242Zn29Sb1108Cl460_HLE17_48ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1877,7 +2625,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 22.4012743535,
+      "diameter_hull": 44.802548707
+    }
   },
   "III-V/InAs/HLE17/18ang/geo_opt/In31As20Cl33_HLE17_18ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1887,7 +2639,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 7.254223149416667,
+      "diameter_hull": 14.508446298833334
+    }
   },
   "III-V/InAs/HLE17/23ang/geo_opt/In107As73Cl102_HLE17_23ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1897,7 +2653,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 10.75901624555,
+      "diameter_hull": 21.5180324911
+    }
   },
   "III-V/InAs/HLE17/24ang/geo_opt/In107As73Cl102_HLE17_24ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1907,7 +2667,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 10.794813184,
+      "diameter_hull": 21.589626368
+    }
   },
   "III-V/InAs/HLE17/29ang/geo_opt/In249As194Cl165_HLE17_29ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1917,7 +2681,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 13.3015972524,
+      "diameter_hull": 26.6031945048
+    }
   },
   "III-V/InAs/HLE17/30ang/geo_opt/In249As194Cl165_HLE17_30ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1927,7 +2695,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 13.377114545133333,
+      "diameter_hull": 26.754229090266666
+    }
   },
   "III-V/InAs/HLE17/34ang/geo_opt/In220As165Cl165[CH3NH2]55_HLE17_34ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1937,7 +2709,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.128895706349999,
+      "diameter_hull": 30.257791412699998
+    }
   },
   "III-V/InAs/HLE17/35ang/geo_opt/In477As396Cl243_HLE17_35ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1947,7 +2723,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 16.334908662816662,
+      "diameter_hull": 32.669817325633325
+    }
   },
   "III-V/InAs/HLE17/36ang/geo_opt/In477As396Cl243_HLE17_36ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1957,7 +2737,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 16.334206916183334,
+      "diameter_hull": 32.66841383236667
+    }
   },
   "III-V/InAs/HLE17/36ang/geo_opt/mol.xyz": {
     "system_type": "III-V",
@@ -1967,7 +2751,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 16.334207,
+      "diameter_hull": 32.668414
+    }
   },
   "III-V/InAs/HLE17/41ang/geo_opt/In790Zn21As688Cl348_HLE17_41ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1977,7 +2765,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 19.425803046183333,
+      "diameter_hull": 38.851606092366666
+    }
   },
   "III-V/InAs/HLE17/42ang/geo_opt/In790Zn21As688Cl348_HLE17_42ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1987,7 +2779,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 19.393091630283333,
+      "diameter_hull": 38.786183260566666
+    }
   },
   "III-V/InAs/HLE17/48ang/geo_opt/In1242Zn29As1108Cl460_HLE17_48ang_OPT.xyz": {
     "system_type": "III-V",
@@ -1997,7 +2793,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 22.385958512433334,
+      "diameter_hull": 44.77191702486667
+    }
   },
   "III-V/InAs/OLD/InAs1116_GeoOpt-pos-1.xyz": {
     "system_type": "III-V",
@@ -2007,7 +2807,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 16.36168610125,
+      "diameter_hull": 32.7233722025
+    }
   },
   "III-V/InAs/OLD/InAs1847_GeoOpt-pos-1.xyz": {
     "system_type": "III-V",
@@ -2027,7 +2831,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 10.792016808266666,
+      "diameter_hull": 21.584033616533333
+    }
   },
   "III-V/InAs/OLD/InAs2839_GeoOpt-pos-1.xyz": {
     "system_type": "III-V",
@@ -2047,7 +2855,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 13.368798728333333,
+      "diameter_hull": 26.737597456666666
+    }
   },
   "III-V/InAs/OLD/InAs92_GeoOpt-pos-1.xyz": {
     "system_type": "III-V",
@@ -2057,7 +2869,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 7.401871870166666,
+      "diameter_hull": 14.803743740333331
+    }
   },
   "III-V/InP/HLE17/18ang/geo_opt/In31P20Cl33_HLE17_18ang_opt.xyz": {
     "system_type": "III-V",
@@ -2067,7 +2883,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 7.063834148116666,
+      "diameter_hull": 14.127668296233333
+    }
   },
   "III-V/InP/HLE17/18ang/start/In31P20Cl33_HLE17_18ang_start.xyz": {
     "system_type": "III-V",
@@ -2077,7 +2897,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 7.063834148116666,
+      "diameter_hull": 14.127668296233333
+    }
   },
   "III-V/InP/HLE17/23ang/geo_opt/In107P73Cl102_HLE17_23ang_opt.xyz": {
     "system_type": "III-V",
@@ -2087,7 +2911,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 10.546233029833333,
+      "diameter_hull": 21.092466059666666
+    }
   },
   "III-V/InP/HLE17/23ang/start/In107P73Cl102_HLE17_23ang_start.xyz": {
     "system_type": "III-V",
@@ -2097,7 +2925,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 10.546233029833333,
+      "diameter_hull": 21.092466059666666
+    }
   },
   "III-V/InP/HLE17/29ang/geo_opt/In249P194Cl165_HLE17_29ang_opt.xyz": {
     "system_type": "III-V",
@@ -2107,7 +2939,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 12.958480801916666,
+      "diameter_hull": 25.916961603833332
+    }
   },
   "III-V/InP/HLE17/29ang/start/In249P194Cl165_HLE17_29ang_start.xyz": {
     "system_type": "III-V",
@@ -2117,7 +2953,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 12.958480801916666,
+      "diameter_hull": 25.916961603833332
+    }
   },
   "III-V/InP/HLE17/34ang/geo_opt/In220P165Cl165[CH3NH2]55_HLE17_34ang_OPT.xyz": {
     "system_type": "III-V",
@@ -2127,7 +2967,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 14.585985656666667,
+      "diameter_hull": 29.171971313333334
+    }
   },
   "III-V/InP/HLE17/35ang/geo_opt/In477P396Cl243_HLE17_35ang_opt.xyz": {
     "system_type": "III-V",
@@ -2137,7 +2981,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.868453262416667,
+      "diameter_hull": 31.736906524833334
+    }
   },
   "III-V/InP/HLE17/35ang/start/In477P396Cl243_HLE17_35ang_start.xyz": {
     "system_type": "III-V",
@@ -2147,7 +2995,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.868453262416667,
+      "diameter_hull": 31.736906524833334
+    }
   },
   "III-V/InP/HLE17/41ang/geo_opt/In790P688Cl348Zn21_HLE17_41ang_opt.xyz": {
     "system_type": "III-V",
@@ -2157,7 +3009,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.904504922716665,
+      "diameter_hull": 37.80900984543333
+    }
   },
   "III-V/InP/HLE17/41ang/start/In790P688Cl348Zn21_HLE17_41ang_start.xyz": {
     "system_type": "III-V",
@@ -2167,7 +3023,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.904504922716665,
+      "diameter_hull": 37.80900984543333
+    }
   },
   "III-V/InP/HLE17/47ang/geo_opt/In1242P1108Cl460Zn29_HLE17_47ang_opt.xyz": {
     "system_type": "III-V",
@@ -2177,7 +3037,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 21.817322331766665,
+      "diameter_hull": 43.63464466353333
+    }
   },
   "III-V/InP/HLE17/47ang/start/In1242P1108Cl460Zn29_HLE17_47ang_start.xyz": {
     "system_type": "III-V",
@@ -2187,7 +3051,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 21.817322331766665,
+      "diameter_hull": 43.63464466353333
+    }
   },
   "III-V/InP/old/InP_1116.xyz": {
     "system_type": "III-V",
@@ -2197,7 +3065,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.868453262416667,
+      "diameter_hull": 31.736906524833334
+    }
   },
   "III-V/InP/old/InP_1116_GeoOpt-pos-1.xyz": {
     "system_type": "III-V",
@@ -2207,7 +3079,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.895434942766665,
+      "diameter_hull": 31.79086988553333
+    }
   },
   "III-V/InP/old/InP_1116_ord.xyz": {
     "system_type": "III-V",
@@ -2217,7 +3093,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 15.868453262416667,
+      "diameter_hull": 31.736906524833334
+    }
   },
   "III-V/InP/old/InP_1847.xyz": {
     "system_type": "III-V",
@@ -2227,7 +3107,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.904504922716665,
+      "diameter_hull": 37.80900984543333
+    }
   },
   "III-V/InP/old/InP_1847_GeoOpt-pos-1.xyz": {
     "system_type": "III-V",
@@ -2237,7 +3121,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 18.904504922716665,
+      "diameter_hull": 37.80900984543333
+    }
   },
   "III-V/InP/old/InP_282.xyz": {
     "system_type": "III-V",
@@ -2247,7 +3135,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 10.546233029833333,
+      "diameter_hull": 21.092466059666666
+    }
   },
   "III-V/InP/old/InP_282_GeoOpt-pos-1.xyz": {
     "system_type": "III-V",
@@ -2257,7 +3149,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 10.546233029833333,
+      "diameter_hull": 21.092466059666666
+    }
   },
   "III-V/InP/old/InP_2839.xyz": {
     "system_type": "III-V",
@@ -2267,7 +3163,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 21.817322331766665,
+      "diameter_hull": 43.63464466353333
+    }
   },
   "III-V/InP/old/InP_2839_GeoOpt-pos-1.xyz": {
     "system_type": "III-V",
@@ -2277,7 +3177,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 21.817322331766665,
+      "diameter_hull": 43.63464466353333
+    }
   },
   "III-V/InP/old/InP_608.xyz": {
     "system_type": "III-V",
@@ -2287,7 +3191,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 12.958480801916666,
+      "diameter_hull": 25.916961603833332
+    }
   },
   "III-V/InP/old/InP_608_GeoOpt-pos-1.xyz": {
     "system_type": "III-V",
@@ -2297,7 +3205,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 12.958480801916666,
+      "diameter_hull": 25.916961603833332
+    }
   },
   "III-V/InP/old/InP_84.xyz": {
     "system_type": "III-V",
@@ -2307,7 +3219,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 7.063834148116666,
+      "diameter_hull": 14.127668296233333
+    }
   },
   "III-V/InP/old/InP_84_ord.xyz": {
     "system_type": "III-V",
@@ -2317,7 +3233,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 7.063834148116666,
+      "diameter_hull": 14.127668296233333
+    }
   },
   "III-V/InP/old/InP_92_GeoOpt-pos-1.xyz": {
     "system_type": "III-V",
@@ -2327,7 +3247,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 7.237799942183334,
+      "diameter_hull": 14.475599884366668
+    }
   },
   "III-V/InP/old/mol.xyz": {
     "system_type": "III-V",
@@ -2337,7 +3261,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 21.817322333333333,
+      "diameter_hull": 43.63464466666667
+    }
   },
   "III-V/InSb/HLE17/18ang/geo_opt/In31Sb20Cl33_HLE17_18ang_OPT.xyz": {
     "system_type": "III-V",
@@ -2347,7 +3275,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 7.692586379016666,
+      "diameter_hull": 15.385172758033333
+    }
   },
   "III-V/InSb/HLE17/23ang/geo_opt/In107Sb73Cl102_HLE17_23ang_OPT.xyz": {
     "system_type": "III-V",
@@ -2357,7 +3289,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 11.431187859016667,
+      "diameter_hull": 22.862375718033334
+    }
   },
   "III-V/InSb/HLE17/29ang/geo_opt/In249Sb194Cl165_HLE17_29ang_OPT.xyz": {
     "system_type": "III-V",
@@ -2367,7 +3303,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 14.2292808976,
+      "diameter_hull": 28.4585617952
+    }
   },
   "III-V/InSb/HLE17/32ang/geo_opt/In249Sb194Cl165_HLE17_32ang_OPT.xyz": {
     "system_type": "III-V",
@@ -2377,7 +3317,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 14.216803231683334,
+      "diameter_hull": 28.43360646336667
+    }
   },
   "III-V/InSb/HLE17/35ang/geo_opt/In477Sb396Cl243_HLE17_35ang_OPT.xyz": {
     "system_type": "III-V",
@@ -2387,7 +3331,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 17.47782097785,
+      "diameter_hull": 34.9556419557
+    }
   },
   "III-V/InSb/HLE17/36ang/geo_opt/In220Sb165Cl165[CH3NH2]55_HLE17_36ang_OPT.xyz": {
     "system_type": "III-V",
@@ -2397,7 +3345,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 16.145267661583333,
+      "diameter_hull": 32.290535323166665
+    }
   },
   "III-V/InSb/HLE17/39ang/geo_opt/In477Sb396Cl243_HLE17_39ang_OPT.xyz": {
     "system_type": "III-V",
@@ -2407,7 +3359,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 17.450449533716668,
+      "diameter_hull": 34.900899067433336
+    }
   },
   "III-V/InSb/HLE17/41ang/geo_opt/In790Zn21Sb688Cl348_HLE17_41ang_OPT.xyz": {
     "system_type": "III-V",
@@ -2417,7 +3373,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 20.778099271616664,
+      "diameter_hull": 41.55619854323333
+    }
   },
   "III-V/InSb/HLE17/45ang/geo_opt/In790Zn21Sb688Cl348_HLE17_45ang_OPT.xyz": {
     "system_type": "III-V",
@@ -2427,7 +3387,11 @@
     "functional": "HLE17",
     "basis": "DZVP",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 20.748748851916666,
+      "diameter_hull": 41.49749770383333
+    }
   },
   "IV-VI/PbS/14ang/geo_opt/Pb79S44Cl70_PBE_14ang_OPT.xyz": {
     "system_type": "IV-VI",
@@ -2447,7 +3411,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 10.549814239999998,
+      "diameter_hull": 21.099628479999996
+    }
   },
   "IV-VI/PbS/18ang/geo_opt/Pb200S140Cl120_PBE_18ang_OPT.xyz": {
     "system_type": "IV-VI",
@@ -2457,7 +3425,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 13.339176004866667,
+      "diameter_hull": 26.678352009733334
+    }
   },
   "IV-VI/PbS/18ang/start/Pb200S140Cl120_PBE_18ang_start.xyz": {
     "system_type": "IV-VI",
@@ -2467,7 +3439,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 13.665420838333333,
+      "diameter_hull": 27.330841676666665
+    }
   },
   "IV-VI/PbS/9ang/geo_opt/Pb19S6Cl26_PBE_9ang_OPT.xyz": {
     "system_type": "IV-VI",
@@ -2477,7 +3453,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 7.2384649945333335,
+      "diameter_hull": 14.476929989066667
+    }
   },
   "IV-VI/PbS/9ang/start/Pb19S6Cl26_PBE_9ang_start.xyz": {
     "system_type": "IV-VI",
@@ -2487,7 +3467,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 7.393975021666666,
+      "diameter_hull": 14.787950043333332
+    }
   },
   "IV-VI/PbS/PbS_1532-pos-1.xyz": {
     "system_type": "IV-VI",
@@ -2497,7 +3481,11 @@
     "functional": "",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 19.40589312766667,
+      "diameter_hull": 38.81178625533334
+    }
   },
   "IV-VI/PbSe/PBE/14ang/geo_opt/Pb79Se44Cl70_PBE_14ang_OPT.xyz": {
     "system_type": "IV-VI",
@@ -2507,7 +3495,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 10.5498142386,
+      "diameter_hull": 21.0996284772
+    }
   },
   "IV-VI/PbSe/PBE/14ang/start/Pb79Se44Cl70_PBE_14ang_start.xyz": {
     "system_type": "IV-VI",
@@ -2517,7 +3509,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 8.3329,
+      "diameter_hull": 16.6658
+    }
   },
   "IV-VI/PbSe/PBE/18ang/geo_opt/Pb200Se140Cl120_PBE_18ang_OPT.xyz": {
     "system_type": "IV-VI",
@@ -2527,7 +3523,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 13.665420837683333,
+      "diameter_hull": 27.330841675366667
+    }
   },
   "IV-VI/PbSe/PBE/18ang/start/Pb200Se140Cl120_PBE_18ang_start.xyz": {
     "system_type": "IV-VI",
@@ -2537,7 +3537,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 10.6939,
+      "diameter_hull": 21.3878
+    }
   },
   "IV-VI/PbSe/PBE/9ang/geo_opt/Pb19Se6Cl26_PBE_9ang_OPT.xyz": {
     "system_type": "IV-VI",
@@ -2547,7 +3551,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 7.393975020100001,
+      "diameter_hull": 14.787950040200002
+    }
   },
   "IV-VI/PbSe/PBE/9ang/start/Pb19Se6Cl26_PBE_9ang_start.xyz": {
     "system_type": "IV-VI",
@@ -2557,7 +3565,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.971900000000001,
+      "diameter_hull": 11.943800000000001
+    }
   },
   "IV-VI/PbTe/PBE/14ang/geo_op/Pb79Te44Cl70_PBE_14ang_OPT.xyz": {
     "system_type": "IV-VI",
@@ -2567,7 +3579,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 11.116176852066667,
+      "diameter_hull": 22.232353704133335
+    }
   },
   "IV-VI/PbTe/PBE/14ang/start/Pb79Te44Cl70_PBE_14ang_start.xyz": {
     "system_type": "IV-VI",
@@ -2577,7 +3593,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 10.549814239999998,
+      "diameter_hull": 21.099628479999996
+    }
   },
   "IV-VI/PbTe/PBE/18ang/geo_opt/Pb200Te140Cl120_PBE_18ang_OPT.xyz": {
     "system_type": "IV-VI",
@@ -2587,7 +3607,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 14.3902201924,
+      "diameter_hull": 28.7804403848
+    }
   },
   "IV-VI/PbTe/PBE/18ang/start/Pb200Te140Cl120_PBE_18ang_start.xyz": {
     "system_type": "IV-VI",
@@ -2597,7 +3621,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 13.665420838333333,
+      "diameter_hull": 27.330841676666665
+    }
   },
   "IV-VI/PbTe/PBE/9ang/geo_opt/Pb19Te6Cl26_PBE_9ang_OPT.xyz": {
     "system_type": "IV-VI",
@@ -2607,7 +3635,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 7.640909383983334,
+      "diameter_hull": 15.281818767966667
+    }
   },
   "IV-VI/PbTe/PBE/9ang/start/Pb19Te6Cl26_PBE_9ang_start.xyz": {
     "system_type": "IV-VI",
@@ -2617,6 +3649,10 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Start",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 7.393975021666666,
+      "diameter_hull": 14.787950043333332
+    }
   }
 }

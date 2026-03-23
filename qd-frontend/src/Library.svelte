@@ -921,7 +921,12 @@
         <div
           class="flex-1 bg-slate-50 rounded-[1rem] border border-slate-200 overflow-hidden relative shadow-inner"
         >
-          <Viewer xyz={currentXyzData} {isMD} dataUrl={currentFileUrl} />
+          <Viewer 
+            xyz={currentXyzData} 
+            {isMD} 
+            dataUrl={currentFileUrl} 
+            sizeMetrics={currentMeta?.size_metrics} 
+          />
           {#if isAttaching}
             <div
               class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm flex flex-col items-center justify-center text-white z-10"

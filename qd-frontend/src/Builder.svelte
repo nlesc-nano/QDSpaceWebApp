@@ -675,7 +675,10 @@
           <h2 class="font-heading font-bold text-xl text-slate-900">Live Render</h2>
         </div>
         <div class="flex-1 bg-slate-50 rounded-[1rem] border border-slate-200 overflow-hidden relative shadow-inner">
-          <Viewer xyz={xyzData} />
+          <Viewer 
+            xyz={xyzData} 
+            sizeMetrics={finalResult?.size_metrics} 
+          />
           {#if isBuilding}
             <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm flex flex-col items-center justify-center text-white z-10">
               <div class="w-12 h-12 border-4 border-brand-500 border-t-transparent rounded-full animate-spin mb-4"></div>

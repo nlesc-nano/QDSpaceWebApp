@@ -31,6 +31,48 @@ from minicat.main import (
 )
 from minicat.functional_groups_class import get_fg_registry, detect_fg_matches_neutral
 
+import numpy as np
+
+# Core inorganic elements for each material (ignores organic ligands like MA/FA)
+MATERIAL_ELEMENTS = {
+    "CSPBCL3": ["Cs", "Pb", "Cl"], "CSPBBR3": ["Cs", "Pb", "Br"], "CSPBI3":  ["Cs", "Pb", "I"],
+    "MAPBI3":  ["Pb", "I"], "FAPBI3":  ["Pb", "I"], 
+    "ZNS":     ["Zn", "S"], "ZNSE":    ["Zn", "Se"], "ZNTE":    ["Zn", "Te"],
+    "CDS":     ["Cd", "S"], "CDSE":    ["Cd", "Se"], "CDTE":    ["Cd", "Te"],
+    "HGS":     ["Hg", "S"], "HGSE":    ["Hg", "Se"], "HGTE":    ["Hg", "Te"],
+    "ALP":     ["Al", "P"], "ALAS":    ["Al", "As"], "ALSB":    ["Al", "Sb"],
+    "GAP":     ["Ga", "P"], "GAAS":    ["Ga", "As"], "GASB":    ["Ga", "Sb"],
+    "INP":     ["In", "P"], "INAS":    ["In", "As"], "INSB":    ["In", "Sb"],
+    "PBS":     ["Pb", "S"], "PBSE":    ["Pb", "Se"]
+}
+
+def get_cluster_size_metrics(coords_ang, atom_symbols=None, material_name=None):
+    """Calculates size using Axis-Aligned Bounding Box (ideal for lattice-cut QDs)."""
+    coords = np.asarray(coords_ang, dtype=float)
+
+    if atom_symbols is not None and material_name is not None:
+        m_name = material_name.upper()
+        if 'MATERIAL_ELEMENTS' in globals() and m_name in MATERIAL_ELEMENTS:
+            core_elements = [el.lower() for el in MATERIAL_ELEMENTS[m_name]]
+            core_coords = [coords[i] for i, sym in enumerate(atom_symbols) if sym.lower() in core_elements]
+            if len(core_coords) > 0:
+                coords = np.array(core_coords)
+
+    if len(coords) < 2:
+        return {'R_eff_hull': 1.0, 'diameter_hull': 2.0}
+
+    # Blazing fast: Calculate peak-to-peak distance directly along X, Y, and Z axes
+    spans = np.ptp(coords, axis=0)
+
+    # Add 2.5 Å for the physical outer electron cloud (van der Waals radii)
+    spans += 2.5
+
+    # The effective diameter is the average of length, width, and height
+    avg_diameter = np.mean(spans)
+    R_eff = avg_diameter / 2.0
+
+    return {'R_eff_hull': float(R_eff), 'diameter_hull': float(avg_diameter)}
+
 # ---------------------------------------------------------------------
 # Configuration
 # ---------------------------------------------------------------------
@@ -1349,6 +1391,19 @@ async def build_nanocrystal_stream(
             except Exception as e:
                 logging.error(f"Post-cap metadata recompute failed: {e}")
             
+            size_metrics = None
+            if current_xyz:
+                try:
+                    from ase.io import read as ase_read
+                    # Read the XYZ string into an ASE atoms object
+                    tmp_atoms = ase_read(io.StringIO(current_xyz), format="xyz")
+                    c_coords = tmp_atoms.get_positions()
+                    c_symbols = tmp_atoms.get_chemical_symbols()
+                    
+                    # Calculate metrics
+                    size_metrics = get_cluster_size_metrics(c_coords, c_symbols)
+                except Exception as e:
+                    logging.error(f"Failed to calculate size metrics: {e}")           
 
             payload = {
                 "status": "success",
@@ -1361,6 +1416,7 @@ async def build_nanocrystal_stream(
                 "download_name": download_name or "final.xyz",
                 "last_command": " ".join(cmd),
                 "ligand_detail": ligand_detail,
+                "size_metrics": size_metrics, 
             }
             yield json.dumps({"event": "result", **payload}) + "\n"
 
