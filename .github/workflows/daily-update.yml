@@ -22,15 +22,14 @@ jobs:
       - name: Set up Python 3.x
         uses: actions/setup-python@v4
         with:
-          python-version: "3.x"
+          python-version: "3.12"
 
       # 3. Install any Python dependencies (if needed)
       #    If your make scripts only use the stdlib, you can skip this.
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
-          # If you have a requirements.txt, uncomment:
-          # pip install -r requirements.txt
+          python -m pip install --upgrade pip
+          pip install -r requirements-metadata.txt
 
       # 4. Run make_file_list.py
       - name: Generate file_list.js

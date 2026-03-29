@@ -3,7 +3,6 @@ import json
 import re
 import itertools
 import numpy as np
-from scipy.spatial import ConvexHull
 
 # Core inorganic elements for each material (ignores organic ligands like MA/FA)
 MATERIAL_ELEMENTS = {
