@@ -3401,7 +3401,11 @@
     "functional": "PBE",
     "basis": "",
     "run_type": "Geometry Optimization",
-    "code": "CP2K"
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 10.306409447133333,
+      "diameter_hull": 20.612818894266667
+    }
   },
   "IV-VI/PbS/14ang/start/Pb79S44Cl70_PBE_14ang_start.xyz": {
     "system_type": "IV-VI",
