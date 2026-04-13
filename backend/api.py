@@ -5,10 +5,28 @@ from typing import List, Dict, Optional
 import boto3
 from botocore.exceptions import ClientError
 
+import json
+import queue
+import threading
+import asyncio
+import contextlib
+
+from fastapi.responses import StreamingResponse
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 from pydantic import BaseModel, Field
+
+import io
+import argparse
+from ase.io import read as ase_read, write as ase_write
+
+# Import directly from your installed miniCAT library!
+from minicat.main import (
+    _sanitize_simple_acid_smiles, smiles_to_3d_mol, 
+    build_per_site_variant, execute_passivation_job
+)
+from minicat.functional_groups_class import get_fg_registry, detect_fg_matches_neutral
 
 # -------------------------------------------------------------------
 # S3 + Config
@@ -97,63 +115,149 @@ def root():
 # -------------------------------------------------------------------
 # Attach endpoint
 # -------------------------------------------------------------------
+class LineQueueWriter(io.TextIOBase):
+    def __init__(self, q): self.q, self.buf = q, ""
+    def write(self, s):
+        self.buf += s
+        while "\n" in self.buf:
+            line, self.buf = self.buf.split("\n", 1)
+            self.q.put(line)
+        return len(s)
+    def flush(self):
+        if self.buf: self.q.put(self.buf); self.buf = ""
+
+# -------------------------------------------------------------------
+# Attach endpoint (Upgraded for Real-Time Streaming)
+# -------------------------------------------------------------------
+class LineQueueWriter(io.TextIOBase):
+    def __init__(self, q): self.q, self.buf = q, ""
+    def write(self, s):
+        self.buf += s
+        while "\n" in self.buf:
+            line, self.buf = self.buf.split("\n", 1)
+            self.q.put(line)
+        return len(s)
+    def flush(self):
+        if self.buf: self.q.put(self.buf); self.buf = ""
+
 @app.post("/attach")
-def attach(payload: Dict):
-    # Parse new schema first
-    req_jobs: List[Job]
-    out_prefix = "final_passivated_dot"
+async def attach(payload: Dict):
+    # 1. Parse request schema
     try:
         new = MiniCATRequest(**payload)
-        xyztext = new.xyztext
-        out_prefix = new.out_prefix
-        req_jobs = new.jobs
+        xyztext, out_prefix, req_jobs = new.xyztext, new.out_prefix, new.jobs
     except Exception:
-        # Fallback legacy: 1 ligand, single ratio
         try:
             old = LegacyAttachRequest(**payload)
+            xyztext, mode = old.xyztext, "random" if old.split else "segmented"
+            req_jobs = [Job(ligands=[old.smiles], dummy="Cl", dist=f"1.0:{mode}")]
+            out_prefix = "final_passivated_dot"
         except Exception:
             raise HTTPException(status_code=400, detail="Invalid request body")
-        xyztext = old.xyztext
-        mode = "random" if old.split else "segmented"
-        dist = f"1.0:{mode}"
-        req_jobs = [Job(ligands=[old.smiles], dummy="Cl", dist=dist)]
 
-    tmp = tempfile.mkdtemp(prefix="minicat_")
-    try:
-        core = os.path.join(tmp, "initial_dot.xyz")
-        with open(core, "w") as f:
-            f.write(xyztext)
+    async def _stream():
+        # Let the frontend know we started successfully
+        yield json.dumps({"event": "status", "line": "accepted"}) + "\n"
+        
+        log_q = queue.Queue()
+        qw = LineQueueWriter(log_q)
+        res_box = {}
 
-        cmd = ["miniCAT", "--qd", "initial_dot.xyz", "--out_prefix", out_prefix]
-        for j in req_jobs:
-            cmd += ["--job-ligands", *j.ligands, "--job-dummy", j.dummy, "--job-dist", j.dist]
-        cmd_str = " ".join(shlex.quote(c) for c in cmd)
+        def _thread_run():
+            try:
+                # Redirect all miniCAT print() statements to our queue
+                with contextlib.redirect_stdout(qw), contextlib.redirect_stderr(qw):
+                    print("[cap] Starting in-memory passivation engine...")
+                    args = argparse.Namespace(
+                        seed=1337, ff="uff", refinement_passes=3, neigh=8,
+                        coarse_step_deg=20.0, sterics_mode="vdw", sterics_margin=0.25,
+                        warn_tol=1.4, adaptive_offset_steps=4, adaptive_offset_step=0.15,
+                        anchor_mode="dummy", offset_out=0.0, bond_len_override=None,
+                        neighbor_repulsion=0.5
+                    )
+                    
+                    reg = get_fg_registry()
+                    prepared_jobs = []
+                    
+                    # Pre-compute ligands
+                    for req_job in req_jobs:
+                        dist_parts = req_job.dist.split(':')
+                        strategy, ratios = dist_parts[-1], [float(r) for r in dist_parts[:-1]]
+                        
+                        precomputed_ligands = []
+                        role = None
+                        for smiles in req_job.ligands:
+                            print(f"[cap] Building 3D geometry for {smiles}...")
+                            mol_neutral = smiles_to_3d_mol(_sanitize_simple_acid_smiles(smiles), args.seed, args.ff)
+                            fg_matches = detect_fg_matches_neutral(mol_neutral, 'anion', reg) or detect_fg_matches_neutral(mol_neutral, 'cation', reg)
+                            
+                            if not fg_matches:
+                                print(f"[error] No recognizable group for {smiles}")
+                                raise ValueError(f"No recognizable group for {smiles}")
+                            
+                            ionic_mol, (fg_active, match_active) = build_per_site_variant(fg_matches, mol_neutral, 0, args.ff)
+                            precomputed_ligands.append({"mol": ionic_mol, "fg": fg_active, "match": match_active})
+                            if role is None:
+                                role = fg_matches[0][0].role
 
-        try:
-            proc = subprocess.run(cmd, cwd=tmp, check=True, capture_output=True, text=True)
-        except FileNotFoundError:
-            raise HTTPException(status_code=500, detail="miniCAT executable not found on PATH")
-        except subprocess.CalledProcessError as e:
-            raise HTTPException(status_code=500, detail=e.stderr or e.stdout or "miniCAT failed")
+                        prepared_jobs.append({
+                            "smiles": req_job.ligands, "dummy": req_job.dummy, "role": role,
+                            "ratios": ratios, "strategy": strategy, "precomputed_ligands": precomputed_ligands
+                        })
 
-        outs = sorted(glob.glob(os.path.join(tmp, f"{out_prefix}*.xyz")))
-        if not outs:
-            raise HTTPException(status_code=500, detail="miniCAT produced no .xyz files")
+                    # Run Passivation
+                    current_qd = ase_read(io.StringIO(xyztext), format="xyz")
+                    for job in prepared_jobs:
+                        print(f"[cap] Passivating {job['dummy']} sites based on '{job['strategy']}' distribution...")
+                        current_qd = execute_passivation_job(current_qd, job, args)
+                        
+                    out_xyz = io.StringIO()
+                    ase_write(out_xyz, current_qd, format="xyz")
+                    res_box['final_str'] = out_xyz.getvalue()
+                    print("[cap] Passivation complete!")
+                    
+            except Exception as e:
+                import traceback
+                print(f"[fatal] {traceback.format_exc()}", file=qw)
+                res_box['error'] = str(e)
+            finally:
+                qw.flush()
+                log_q.put(None)
 
-        results = []
-        for p in outs:
-            with open(p, "r") as f:
-                results.append({"filename": os.path.basename(p), "xyz": f.read()})
+        # Spin up the thread
+        t = threading.Thread(target=_thread_run)
+        t.start()
 
-        return {
-            "message": f"miniCAT OK ({len(results)} file(s))",
-            "results": results,
-            "cmd": cmd_str,
-            "stdout": proc.stdout,
-            "stderr": proc.stderr,
-        }
-    finally:
-        shutil.rmtree(tmp, ignore_errors=True)
+        # Stream lines to the frontend as soon as they appear
+        while True:
+            try:
+                line = log_q.get_nowait()
+                if line is None: break
+                if line.strip(): yield json.dumps({"event": "log", "line": line.strip()}) + "\n"
+            except queue.Empty:
+                await asyncio.sleep(0.01)
+
+        t.join()
+
+        # Send the final geometry back in the same structure the Library expects
+        if 'error' in res_box:
+            yield json.dumps({"event": "result", "status": "failed", "error": res_box['error']}) + "\n"
+        else:
+            yield json.dumps({
+                "event": "result",
+                "status": "success",
+                "message": "miniCAT (In-Memory) OK",
+                "results": [{"filename": f"{out_prefix}_final.xyz", "xyz": res_box['final_str']}],
+                "cmd": "Executed via direct memory import",
+                "stdout": "Success",
+                "stderr": ""
+            }) + "\n"
+
+    return StreamingResponse(
+        _stream(),
+        media_type="text/plain; charset=utf-8",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"}
+    )
 
 # -------------------------------------------------------------------
 # Plot endpoint
