@@ -1,4 +1,5 @@
 <script>
+  import { untrack } from 'svelte';
   import Viewer from './Viewer.svelte';
 
   // --- Common Oxidation States for QD Elements & Ligands ---
@@ -73,20 +74,48 @@
   // STATE: Inputs & Configuration
   // ==========================================
   let coreFile = $state(null);
-  let radius = $state(20);
-  let aspect = $state([1.0, 1.0, 1.0]);
+  let sizeUnitCells = $state([4.0, 4.0, 4.0]);
+  let latticeLengths = $state([5.0, 5.0, 5.0]);
+  let aspect = $derived([
+    sizeUnitCells[0] / Math.min(...sizeUnitCells),
+    sizeUnitCells[1] / Math.min(...sizeUnitCells),
+    sizeUnitCells[2] / Math.min(...sizeUnitCells)
+  ]);
   let activePreset = $state('Sphere');
-  let coreFacets = $state([{ id: crypto.randomUUID(), hkl: '100', gamma: 1.0 }]);
+  let coreFacets = $state([]);
   let shells = $state([]);
  
+  let detectedFacets = $state([]);
+  let isAnalyzingCif = $state(false);
+  let currentCorePhase = $state(null);
+  let activeHeteroMode = $state('concentric'); // 'concentric' | 'janus'
+
+  // Janus Heterointerface state
+  let janusPartnerFile = $state(null);
+  let janusBuildMode = $state('wulff_janus');
+  let janusInterfaceHkl = $state('001');
+  let janusClippingMode = $state('mushroom');
+
   let passivateExpanded = $state(false);
   let capDist = $state('random');
   let anionicLigands = $state([]);
   let showCationic = $state(false);
   let cationicLigands = $state([]);
   
+  let reconEnabled = $state(false);
+
+  let neutralEnabled = $state(false);
+  let neutralLigands = $state([]);
+  let neutralDist = $state('random');
+  let detectedAnions = $state([]);
+  let detectedCations = $state([]);
+  let detectedSpecies = $state([]);
+
   let runMode = $state('quiet');
   let posQ = $state('remove');
+  let centerIon = $state('');
+  let sidebarView = $state('builder'); // 'builder' | 'postTreatment'
+  let asideEl = $state(null);
 
   // ==========================================
   // STATE: UI & Outputs
@@ -196,15 +225,92 @@
   // ==========================================
   // HELPERS & UI LOGIC
   // ==========================================
+  function isNonnegativeCompact(h) {
+    const s = String(h).trim();
+    return s.length > 0 && !s.startsWith('-') && !s.slice(1).includes('-');
+  }
+
+  /** Parse nc-builder-style compact hkl into (h,k,l) — matches builder.config._parse_hkl. */
+  function parseCompactHkl(s) {
+    const str = String(s).trim();
+    const s3 = str.replace(/[()[\]\s,;]/g, '');
+    if (/^\d{3}$/.test(s3)) {
+      return [parseInt(s3[0], 10), parseInt(s3[1], 10), parseInt(s3[2], 10)];
+    }
+    const s2 = str.replace(/[^0-9+-]/g, '');
+    const tokens = s2.match(/[+-]?\d/g);
+    if (tokens?.length === 3 && tokens.every((t) => t.replace(/[+-]/g, '').length === 1)) {
+      return tokens.map((t) => parseInt(t, 10));
+    }
+    return null;
+  }
+
+  function tupleToCompactHkl(tup) {
+    return tup.map((x) => (x < 0 ? `-${Math.abs(x)}` : String(x))).join('');
+  }
+
+  /** Opposite Miller index in compact form (111 -> -1-1-1, 100 -> -100). */
+  function oppositeCompactHkl(hkl) {
+    const tup = parseCompactHkl(hkl);
+    if (!tup) return String(hkl);
+    return tupleToCompactHkl(tup.map((x) => -x));
+  }
+
+  /** Canonical Miller index per termination (matches nc-builder recipe style). */
+  function canonicalHklForTermination(fam, termination) {
+    const rec = fam.recommended_hkl || {};
+    if (rec[termination]) return rec[termination];
+    const list = fam.hkl_list || [];
+    const positive = list.filter(isNonnegativeCompact);
+    const negative = list.filter((h) => String(h).startsWith('-'));
+    if (termination === 'cation_rich') return positive[0] || list[0] || '100';
+    if (termination === 'anion_rich') {
+      const catH = rec.cation_rich || positive[0];
+      if (catH) return oppositeCompactHkl(catH);
+      return negative[0] || oppositeCompactHkl(list[0] || '100');
+    }
+    return list[0] || '100';
+  }
+
+  function scrollAsideToTop() {
+    asideEl?.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function makeFacetEntry(fam, { termination = null, gamma = 1.0, scope = 'family', hkl = null } = {}) {
+    return {
+      id: crypto.randomUUID(),
+      family: fam.family,
+      hkl: hkl ?? (termination ? canonicalHklForTermination(fam, termination) : (fam.hkl_list?.[0] || '100')),
+      gamma,
+      scope,
+      termination
+    };
+  }
+
+  function upsertFamilyTermination(fam, termination, enabled) {
+    const idx = coreFacets.findIndex((f) => f.family === fam.family && f.termination === termination);
+    if (enabled && idx < 0) {
+      const gamma = coreFacets.find((f) => f.family === fam.family)?.gamma ?? 1.0;
+      let hkl = null;
+      if (termination === 'anion_rich') {
+        const cat = coreFacets.find((f) => f.family === fam.family && f.termination === 'cation_rich');
+        if (cat) hkl = oppositeCompactHkl(cat.hkl);
+      }
+      coreFacets.push(makeFacetEntry(fam, { termination, gamma, scope: 'family', hkl }));
+    } else if (!enabled && idx >= 0) {
+      coreFacets.splice(idx, 1);
+    }
+  }
+
   function applyPreset(name) {
     activePreset = name;
     const presets = {
-      Sphere:   { aspect: [1, 1, 1],       facets: [{ hkl: '100', gamma: 1.0 }] },
-      Platelet: { aspect: [1, 1, 0.2],     facets: [{ hkl: '100', gamma: 0.8 }] },
-      Rod:      { aspect: [1, 0.2, 0.2],   facets: [{ hkl: '100', gamma: 0.8 }] }
+      Sphere:   { size: [4.0, 4.0, 4.0],   facets: [{ hkl: '100', gamma: 1.0 }] },
+      Platelet: { size: [4.0, 4.0, 1.0],   facets: [{ hkl: '100', gamma: 0.8 }] },
+      Rod:      { size: [10.0, 2.0, 2.0],  facets: [{ hkl: '100', gamma: 0.8 }] }
     };
     if (presets[name]) {
-      aspect = [...presets[name].aspect];
+      sizeUnitCells = [...presets[name].size];
       coreFacets = presets[name].facets.map(f => ({ id: crypto.randomUUID(), ...f }));
     }
   }
@@ -223,6 +329,7 @@
       templateName: null, // Track if a template was used
       isLoading: false,   // Track fetching state for this specific shell
       aspect: [1.0, 1.0, 1.0],
+      size_unit_cells: [1.0, 1.0, 1.0],
       facets: coreFacets.map(f => ({ id: crypto.randomUUID(), hkl: f.hkl, gamma: f.gamma }))
     });
   }
@@ -232,6 +339,147 @@
       logContainer.scrollTop = logContainer.scrollHeight;
     }
   });
+
+  // CIF Facet Analysis Trigger
+  $effect(() => {
+    if (coreFile) {
+      untrack(() => {
+        analyzeCif(coreFile);
+      });
+    } else {
+      detectedFacets = [];
+      coreFacets = [];
+      currentCorePhase = null;
+    }
+  });
+
+  async function analyzeCif(file) {
+    isAnalyzingCif = true;
+    detectedFacets = [];
+    coreFacets = [];
+    logs += `[status] Analyzing crystallographic symmetry of ${file.name}...\n`;
+    
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    const IS_LOCAL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+    const ANALYZE_URL = IS_LOCAL 
+      ? "http://127.0.0.1:8000/builder/api/analyze_cif" 
+      : "/builder/api/analyze_cif";
+      
+    try {
+      const res = await fetch(ANALYZE_URL, { method: 'POST', body: formData });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      
+      if (data.status === 'success') {
+        detectedFacets = data.facets || [];
+        currentCorePhase = data.phase || null;
+        latticeLengths = data.lattice_lengths || [5.0, 5.0, 5.0];
+        detectedAnions = data.anions || [];
+        detectedCations = data.cations || [];
+        detectedSpecies = data.species || data.cations || [];
+        if (detectedSpecies.length > 0) centerIon = detectedSpecies[0];
+        logs += `[status] CIF analyzed successfully: Spacegroup ${data.spacegroup || 'N/A'} (Lattice Phase: ${data.phase || 'unknown'}).\n`;
+        
+        if (detectedFacets.length > 0) {
+          const first = detectedFacets[0];
+          const term = first.terminations.includes('cation_rich') ? 'cation_rich' : null;
+          coreFacets = [makeFacetEntry(first, { termination: term })];
+        }
+      } else {
+        throw new Error(data.error || 'Unknown error');
+      }
+    } catch (err) {
+      logs += `[warn] CIF facet analysis failed: ${err.message}. Facet family selections will remain custom.\n`;
+      detectedFacets = [];
+      currentCorePhase = null;
+      detectedAnions = [];
+      detectedCations = [];
+      detectedSpecies = [];
+      coreFacets = [{ id: crypto.randomUUID(), hkl: '100', gamma: 1.0, scope: 'family', family: '{100}', termination: null }];
+    } finally {
+      isAnalyzingCif = false;
+    }
+  }
+
+  // Interactive Facet Updates
+  function toggleFacetFamily(fam) {
+    const isEnabled = coreFacets.some(f => f.family === fam.family);
+    if (isEnabled) {
+      coreFacets = coreFacets.filter(f => f.family !== fam.family);
+    } else {
+      const term = fam.terminations.includes('cation_rich') ? 'cation_rich' : null;
+      coreFacets.push(makeFacetEntry(fam, { termination: term }));
+    }
+  }
+
+  function updateFacetScope(family, scope) {
+    const fam = detectedFacets.find(f => f.family === family);
+    if (!fam) return;
+    
+    if (scope === 'family') {
+      const existing = coreFacets.filter(f => f.family === family);
+      const gamma = existing[0]?.gamma ?? 1.0;
+      const terminations = [...new Set(existing.map(f => f.termination).filter(Boolean))];
+      if (terminations.length === 0 && fam.terminations.includes('cation_rich')) {
+        terminations.push('cation_rich');
+      }
+      coreFacets = coreFacets.filter(f => f.family !== family);
+      if (terminations.length > 0) {
+        for (const term of terminations) {
+          coreFacets.push(makeFacetEntry(fam, { termination: term, gamma, scope: 'family' }));
+        }
+      } else {
+        coreFacets.push(makeFacetEntry(fam, { gamma, scope: 'family' }));
+      }
+    } else {
+      coreFacets = coreFacets.filter(f => f.family !== family);
+      for (const hkl of fam.hkl_list) {
+        coreFacets.push({
+          id: crypto.randomUUID(),
+          family: family,
+          hkl: hkl,
+          gamma: 1.0,
+          scope: 'facet',
+          termination: fam.terminations.includes('cation_rich') ? 'cation_rich' : null
+        });
+      }
+    }
+  }
+
+  function updateFamilyGamma(family, gamma) {
+    for (let f of coreFacets) {
+      if (f.family === family) {
+        f.gamma = gamma;
+      }
+    }
+  }
+
+  function updateFamilyTermination(family, termination) {
+    for (let f of coreFacets) {
+      if (f.family === family) {
+        f.termination = termination;
+      }
+    }
+  }
+
+  function toggleIndividualPlane(family, hkl) {
+    const existingIdx = coreFacets.findIndex(f => f.family === family && f.hkl === hkl);
+    if (existingIdx >= 0) {
+      coreFacets.splice(existingIdx, 1);
+    } else {
+      const fam = detectedFacets.find(f => f.family === family);
+      coreFacets.push({
+        id: crypto.randomUUID(),
+        family: family,
+        hkl: hkl,
+        gamma: 1.0,
+        scope: 'facet',
+        termination: fam && fam.terminations.includes('cation_rich') ? 'cation_rich' : null
+      });
+    }
+  }
 
   function downloadXYZ() {
     if (!xyzData) return;
@@ -251,8 +499,26 @@
     shells = [];
     anionicLigands = [];
     cationicLigands = [];
-    applyPreset('Sphere');
+    detectedFacets = [];
     currentCorePhase = null;
+    activeHeteroMode = 'concentric';
+    janusPartnerFile = null;
+    janusBuildMode = 'wulff_janus';
+    janusInterfaceHkl = '001';
+    janusClippingMode = 'mushroom';
+    reconEnabled = false;
+    neutralEnabled = false;
+    neutralLigands = [];
+    neutralDist = 'random';
+    latticeLengths = [5.0, 5.0, 5.0];
+    passivateExpanded = false;
+    showCationic = false;
+    detectedAnions = [];
+    detectedCations = [];
+    detectedSpecies = [];
+    centerIon = '';
+    sidebarView = 'builder';
+    applyPreset('Sphere');
   }
 
   async function loadShellTemplate(sIndex, template) {
@@ -287,8 +553,10 @@
     }
 
     isBuilding = true;
-    finalResult = null;
-    xyzData = "";
+    if (!skipCoreBuild) {
+      finalResult = null;
+      xyzData = "";
+    }
     logs = `[status] Sending ${skipCoreBuild ? 'repassivation' : 'build'} job to /builder/api/build_stream …\n`;
 
     const formData = new FormData();
@@ -297,21 +565,46 @@
       if (shell.file) formData.append('files', shell.file);
     }
 
+    if (activeHeteroMode === 'janus') {
+      alert('Janus-type heterostructure Wulff-ZSL matching is an experimental script workflow. Concentric Core@Shell building is fully functional.');
+      isBuilding = false;
+      return;
+    }
+
     const options = {
-      radius_A: radius,
+      size_unit_cells: sizeUnitCells,
+      radius_A: Math.min(...sizeUnitCells) * Math.min(...latticeLengths),
       core_cif_filename: coreFile.name,
       aspect: aspect,
-      facets: coreFacets.map(f => ({ hkl: f.hkl, gamma: f.gamma })),
+      facets: coreFacets.map(f => ({ hkl: f.hkl, gamma: f.gamma, scope: f.scope, termination: f.termination })),
       shells: shells.filter(s => s.file).map(s => ({
         material_cif: s.file.name,
         aspect: s.aspect,
-        facets: s.facets.map(f => ({ hkl: f.hkl, gamma: f.gamma }))
+        size_unit_cells: s.size_unit_cells,
+        facets: s.facets.map(f => ({ hkl: f.hkl, gamma: f.gamma, scope: f.scope, termination: f.termination }))
       })),
       cap_distribution: capDist,
-      cap_anionic_jobs: anionicLigands.map(l => ({ smiles: l.smiles, ratio: l.ratio, dummy: l.dummy })),
-      cap_cationic_jobs: cationicLigands.map(l => ({ smiles: l.smiles, ratio: l.ratio, dummy: l.dummy })),
+      cap_anionic_jobs: skipCoreBuild
+        ? anionicLigands.map(l => ({ smiles: l.smiles, ratio: l.ratio, dummy: l.dummy }))
+        : [],
+      cap_cationic_jobs: skipCoreBuild
+        ? cationicLigands.map(l => ({ smiles: l.smiles, ratio: l.ratio, dummy: l.dummy }))
+        : [],
       skip_core_build: skipCoreBuild,
-      xyz_unpassivated: skipCoreBuild ? lastUnpassivatedXyz : null
+      xyz_unpassivated: skipCoreBuild ? lastUnpassivatedXyz : null,
+      reconstruction_enabled: skipCoreBuild ? reconEnabled : false,
+      reconstruction_target_reduction: 0.5,
+      reconstruction_min_separation: 'auto',
+      neutral_enabled: skipCoreBuild ? neutralEnabled : false,
+      neutral_jobs: skipCoreBuild
+        ? neutralLigands.map(l => ({
+            target: l.target,
+            smiles: l.smiles,
+            ratio: l.ratio,
+            distribution: neutralDist,
+          }))
+        : [],
+      center_ion: centerIon || null
     };
 
     formData.append('options', JSON.stringify(options));
@@ -349,6 +642,7 @@
             const evt = JSON.parse(line);
             if (evt.event === 'log') logs += evt.line + "\n";
             else if (evt.event === 'cmd') logs += `[cmd] ${evt.line}\n`;
+            else if (evt.event === 'yaml_preview') logs += `[yaml] Generated config:\n${evt.text}\n`;
             else if (evt.event === 'result') finalResult = evt;
           } catch (e) {
             logs += line + "\n";
@@ -359,8 +653,10 @@
       if (finalResult && finalResult.status === 'success') {
         xyzData = finalResult.xyz_passivated || finalResult.xyz || finalResult.xyz_unpassivated || "";
         if (!skipCoreBuild) {
-            // Priority: Save the Cl-capped structure so miniCAT has dummies for repassivation!
             lastUnpassivatedXyz = finalResult.xyz_dummy || finalResult.xyz_unpassivated || finalResult.xyz_passivated || xyzData;
+            sidebarView = 'postTreatment';
+            passivateExpanded = true;
+            scrollAsideToTop();
         }
         if (finalResult.last_command) logs += `[cmd][final] ${finalResult.last_command}\n`;
         logs += "\n[status] Rendered.\n";
@@ -376,7 +672,6 @@
   // ==========================================
   // ADD CORE-SHELL MATCH PHASE  
   // ==========================================
-  let currentCorePhase = $state(null);
   let allowedShellTemplates = $derived.by(() => {
     let matches = [];
     for (const family in bulkTemplates) {
@@ -389,16 +684,158 @@
 
 </script>
 
-<svelte:window onmousemove={(e) => tooltipPos = { x: e.pageX + 15, y: e.pageY + 15 }} />
+<svelte:window onmousemove={(e) => tooltipPos = { x: e.clientX + 15, y: e.clientY + 15 }} />
 {#if tooltipText}
-  <div class="fixed bg-slate-900/90 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg text-sm z-50 pointer-events-none shadow-xl font-medium" style="left: {tooltipPos.x}px; top: {tooltipPos.y}px;">
+  <div class="fixed bg-slate-900/95 backdrop-blur-sm text-white px-3 py-2 rounded-xl text-xs z-[9999] pointer-events-none shadow-2xl font-medium max-w-[280px] break-words border border-slate-700/50 leading-relaxed" style="left: {tooltipPos.x}px; top: {tooltipPos.y}px;">
     {tooltipText}
   </div>
 {/if}
 
 <div class="flex flex-col lg:flex-row h-[calc(100vh-64px)] overflow-hidden font-sans bg-slate-50">
   
-  <aside class="w-full lg:w-[380px] p-6 bg-slate-50 overflow-y-auto flex-shrink-0 border-r border-slate-200 flex flex-col gap-6">
+  <aside bind:this={asideEl} class="w-full lg:w-[380px] p-6 bg-slate-50 overflow-y-auto flex-shrink-0 border-r border-slate-200 flex flex-col gap-6">
+
+    {#if sidebarView === 'postTreatment'}
+    <!-- Post-build: focus on Panel 5 -->
+    <div class="flex items-center justify-between mb-2">
+      <h2 class="font-heading text-lg font-bold text-slate-900">5) Post-Treatment &amp; Passivation</h2>
+      <button type="button" class="text-xs font-bold text-brand-600 hover:text-brand-800 px-2 py-1 rounded-lg border border-brand-200 bg-brand-50"
+              onclick={() => { sidebarView = 'builder'; scrollAsideToTop(); }}>
+        Back
+      </button>
+    </div>
+    <div class="bg-white border border-slate-100 shadow-sm rounded-[1.5rem] p-6">
+      {#if !passivateExpanded}
+        <button class="w-full bg-slate-50 hover:bg-slate-100 border border-slate-200 text-brand-600 py-2.5 rounded-xl text-sm font-bold transition-colors" onclick={() => passivateExpanded = true}>+ Add Ligands &amp; Post-Treatments</button>
+      {:else}
+        <div class="space-y-4">
+          <div class="border border-accent-200 bg-accent-50/20 p-4 rounded-2xl space-y-3">
+            <span class="block text-[10px] font-extrabold text-accent-700 uppercase tracking-widest flex items-center gap-1.5">
+              X-type Ligand Exchange
+              <span class="text-[10px] bg-slate-100 hover:bg-slate-200 text-slate-400 hover:text-slate-600 w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold font-mono cursor-help select-none shrink-0"
+                    onmouseenter={() => tooltipText = "Replaces native/placeholder dummy atoms (Cl/Rb) with actual organic ligand chains (carboxylates/thiols) without any overlaps."}
+                    onmouseleave={() => tooltipText = ""}>
+                i
+              </span>
+            </span>
+            <span class="block text-[9px] font-bold text-accent-600 uppercase tracking-wider">Anionic Ligands</span>
+            {#if anionicLigands.length > 0}
+              <div class="grid grid-cols-[1fr_3.5rem_3.5rem_28px] gap-2 text-[8px] text-accent-500 uppercase font-bold tracking-widest mb-1 px-1">
+                <span>SMILES</span><span>Dummy</span><span>Ratio</span><span></span>
+              </div>
+            {/if}
+            {#each anionicLigands as lig, i (lig.id)}
+              <div class="grid grid-cols-[1fr_3.5rem_3.5rem_28px] gap-2 mb-2">
+                <input type="text" bind:value={lig.smiles} placeholder="e.g. CCCC(=O)O" class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+                <select bind:value={lig.dummy} class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium cursor-pointer text-center">
+                  {#each Array.from(new Set(['Cl', ...detectedAnions])) as opt}
+                    <option value={opt}>{opt}</option>
+                  {/each}
+                </select>
+                <input type="number" bind:value={lig.ratio} step="0.1" class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+                <button class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors" onclick={() => anionicLigands.splice(i, 1)}>✕</button>
+              </div>
+            {/each}
+            <button class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-[10px] py-1.5 rounded-lg text-accent-700 font-bold transition-colors" onclick={() => anionicLigands.push({ id: crypto.randomUUID(), smiles: '', ratio: 1.0, dummy: 'Cl' })}>+ Add Anionic Ligand</button>
+            {#if !showCationic}
+              <button class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-[10px] py-1.5 rounded-lg text-accent-700 font-bold transition-colors" onclick={() => showCationic = true}>+ Add Cationic Exchange</button>
+            {:else}
+              <span class="block text-[9px] font-bold text-accent-600 uppercase tracking-wider pt-2 border-t border-accent-100">Cationic Ligands</span>
+              {#if cationicLigands.length > 0}
+                <div class="grid grid-cols-[1fr_3.5rem_3.5rem_28px] gap-2 text-[8px] text-accent-500 uppercase font-bold tracking-widest mb-1 px-1">
+                  <span>SMILES</span><span>Dummy</span><span>Ratio</span><span></span>
+                </div>
+              {/if}
+              {#each cationicLigands as lig, i (lig.id)}
+                <div class="grid grid-cols-[1fr_3.5rem_3.5rem_28px] gap-2 mb-2">
+                  <input type="text" bind:value={lig.smiles} placeholder="e.g. CCCCCCCCC[N+](C)(C)C" class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+                  <select bind:value={lig.dummy} class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium cursor-pointer text-center">
+                    {#each Array.from(new Set(['Rb', ...detectedCations])) as opt}
+                      <option value={opt}>{opt}</option>
+                    {/each}
+                  </select>
+                  <input type="number" bind:value={lig.ratio} step="0.1" class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+                  <button class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors" onclick={() => cationicLigands.splice(i, 1)}>✕</button>
+                </div>
+              {/each}
+              <button class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-[10px] py-1.5 rounded-lg text-accent-700 font-bold transition-colors" onclick={() => cationicLigands.push({ id: crypto.randomUUID(), smiles: '', ratio: 1.0, dummy: 'Rb' })}>+ Add Cationic Ligand</button>
+            {/if}
+            <span class="block text-[9px] font-bold text-accent-600 uppercase tracking-wider pt-2 border-t border-accent-100">Distribution</span>
+            <div class="grid grid-cols-3 gap-1 text-[10px] bg-white p-2 rounded-lg border border-accent-100">
+              <label class="flex items-center justify-center gap-1 cursor-pointer font-medium text-slate-700 min-w-0">
+                <input type="radio" bind:group={capDist} value="uniform" class="accent-accent-600 shrink-0"> Uniform
+              </label>
+              <label class="flex items-center justify-center gap-1 cursor-pointer font-medium text-slate-700 min-w-0">
+                <input type="radio" bind:group={capDist} value="segmented" class="accent-accent-600 shrink-0"> Segmented
+              </label>
+              <label class="flex items-center justify-center gap-1 cursor-pointer font-medium text-slate-700 min-w-0">
+                <input type="radio" bind:group={capDist} value="random" class="accent-accent-600 shrink-0"> Random
+              </label>
+            </div>
+          </div>
+          <div class="border border-accent-200 bg-accent-50/20 p-4 rounded-2xl space-y-3">
+            <label class="flex items-center gap-2 font-extrabold text-accent-700 text-[10px] uppercase tracking-widest cursor-pointer select-none">
+              <input type="checkbox" bind:checked={neutralEnabled} class="accent-accent-600 rounded">
+              L-type Ligand Passivation
+            </label>
+            {#if neutralEnabled}
+              <div class="space-y-3 bg-white/60 p-3 rounded-xl border border-accent-100">
+                {#if neutralLigands.length > 0}
+                  <div class="grid grid-cols-[1fr_4.5rem_3.5rem_28px] gap-2 text-[8px] text-accent-500 uppercase font-bold tracking-widest px-1">
+                    <span>SMILES</span><span>Target</span><span>Ratio</span><span></span>
+                  </div>
+                {/if}
+                {#each neutralLigands as lig, i (lig.id)}
+                  <div class="grid grid-cols-[1fr_4.5rem_3.5rem_28px] gap-2">
+                    <input type="text" bind:value={lig.smiles} placeholder="e.g. CCCN" class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+                    <select bind:value={lig.target} class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium cursor-pointer text-center">
+                      <option value="cation">Cation</option>
+                      <option value="anion">Anion</option>
+                      <option value="both">Both</option>
+                    </select>
+                    <input type="number" bind:value={lig.ratio} step="0.1" min="0" max="1" class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+                    <button class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors" onclick={() => neutralLigands.splice(i, 1)}>✕</button>
+                  </div>
+                {/each}
+                <button class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-[10px] py-1.5 rounded-lg text-accent-700 font-bold transition-colors"
+                        onclick={() => neutralLigands.push({ id: crypto.randomUUID(), smiles: '', target: 'cation', ratio: 1.0 })}>
+                  + Add L-type Passivant
+                </button>
+                <span class="block text-[9px] font-bold text-accent-600 uppercase tracking-wider pt-2 border-t border-accent-100">Distribution</span>
+                <div class="grid grid-cols-3 gap-1 text-[10px] bg-white p-2 rounded-lg border border-accent-100">
+                  <label class="flex items-center justify-center gap-1 cursor-pointer font-medium text-slate-700 min-w-0">
+                    <input type="radio" bind:group={neutralDist} value="uniform" class="accent-accent-600 shrink-0"> Uniform
+                  </label>
+                  <label class="flex items-center justify-center gap-1 cursor-pointer font-medium text-slate-700 min-w-0">
+                    <input type="radio" bind:group={neutralDist} value="segmented" class="accent-accent-600 shrink-0"> Segmented
+                  </label>
+                  <label class="flex items-center justify-center gap-1 cursor-pointer font-medium text-slate-700 min-w-0">
+                    <input type="radio" bind:group={neutralDist} value="random" class="accent-accent-600 shrink-0"> Random
+                  </label>
+                </div>
+              </div>
+            {/if}
+          </div>
+          <div class="border border-accent-200 bg-accent-50/20 p-4 rounded-2xl">
+            <label class="flex items-center gap-2 font-extrabold text-accent-700 text-[10px] uppercase tracking-widest cursor-pointer select-none">
+              <input type="checkbox" bind:checked={reconEnabled} class="accent-accent-600 rounded">
+              Polar Surface Reconstruction
+            </label>
+            <p class="text-[10px] text-slate-500 mt-2 leading-snug">
+              Cl placeholders on polar facets (50% charge reduction, auto spacing). Runs before ligand exchange.
+            </p>
+          </div>
+        </div>
+      {/if}
+      {#if lastUnpassivatedXyz}
+        <hr class="my-4 border-slate-100" />
+        <button class="w-full bg-accent-600 hover:bg-accent-700 text-white font-bold py-3 rounded-xl text-sm transition-all shadow-glow active:scale-95 flex items-center justify-center gap-2"
+                onclick={() => onBuild(true)} disabled={isBuilding}>
+          {isBuilding ? 'Processing...' : 'Repassivate Current Structure'}
+        </button>
+      {/if}
+    </div>
+    {:else}
     
     <div class="px-2 pt-2 mb-2">
       <h1 class="font-heading text-2xl font-bold flex items-center gap-3 mb-2 text-slate-900 tracking-tight">
@@ -478,191 +915,435 @@
  
     <div class="bg-white border border-slate-100 shadow-sm rounded-[1.5rem] p-6">
       <h2 class="font-heading text-lg font-bold text-slate-900 mb-4">2) Size & Aspect</h2>
-      <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2" for="radius_input">Final Radius (Å)</label>
-      <input id="radius_input" type="number" bind:value={radius} step="1" min="1" class="w-full mb-5 border-none ring-1 ring-slate-200 rounded-xl px-4 py-2.5 text-sm bg-slate-50 focus:ring-2 focus:ring-brand-400 outline-none font-medium">
-      
-      <span class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Core Aspect Ratio</span>
+      <span class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Core Shape Presets</span>
       <div class="flex space-x-1 rounded-xl p-1 bg-slate-100 my-2">
         {#each ['Sphere', 'Platelet', 'Rod', 'Custom'] as preset}
-          <button class="w-full rounded-lg py-1.5 text-sm font-bold transition-all {activePreset === preset ? 'bg-white text-brand-600 shadow-sm' : 'text-slate-500 hover:text-slate-700 hover:bg-slate-200/50'}"
+          <button class="w-full rounded-lg py-1.5 text-xs font-bold transition-all {activePreset === preset ? 'bg-white text-brand-600 shadow-sm' : 'text-slate-500 hover:text-slate-700 hover:bg-slate-200/50'}"
                   onclick={() => applyPreset(preset)}>{preset}</button>
         {/each}
       </div>
-      <div class="grid grid-cols-3 gap-3 mt-3">
-        <input type="number" bind:value={aspect[0]} step="0.1" class="w-full text-center border-none ring-1 ring-slate-200 rounded-xl py-2 bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-400 outline-none" oninput={() => activePreset = 'Custom'}>
-        <input type="number" bind:value={aspect[1]} step="0.1" class="w-full text-center border-none ring-1 ring-slate-200 rounded-xl py-2 bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-400 outline-none" oninput={() => activePreset = 'Custom'}>
-        <input type="number" bind:value={aspect[2]} step="0.1" class="w-full text-center border-none ring-1 ring-slate-200 rounded-xl py-2 bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-400 outline-none" oninput={() => activePreset = 'Custom'}>
+      
+      <span class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 mt-4 flex items-center gap-1.5 select-none"
+            onmouseenter={() => tooltipText = "Number of unit cells along each axis (nx, ny, nz). Fractional values like 3.25 are supported for fine-tuning the aspect ratio."}
+            onmouseleave={() => tooltipText = ""}>
+        Core Size [nx, ny, nz] (Unit Cells) ⓘ
+      </span>
+      <div class="grid grid-cols-3 gap-3">
+        <input type="number" bind:value={sizeUnitCells[0]} step="0.25" min="0.25" class="w-full text-center border-none ring-1 ring-slate-200 rounded-xl py-2 bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-400 outline-none" oninput={() => activePreset = 'Custom'}>
+        <input type="number" bind:value={sizeUnitCells[1]} step="0.25" min="0.25" class="w-full text-center border-none ring-1 ring-slate-200 rounded-xl py-2 bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-400 outline-none" oninput={() => activePreset = 'Custom'}>
+        <input type="number" bind:value={sizeUnitCells[2]} step="0.25" min="0.25" class="w-full text-center border-none ring-1 ring-slate-200 rounded-xl py-2 bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-400 outline-none" oninput={() => activePreset = 'Custom'}>
       </div>
+
+      <span class="text-[11px] text-brand-600 font-bold block mt-3 px-3 py-2 bg-brand-50/50 rounded-xl border border-brand-100/50 text-center shadow-inner">
+        📏 Real-time Size: {(sizeUnitCells[0] * latticeLengths[0]).toFixed(1)} Å × {(sizeUnitCells[1] * latticeLengths[1]).toFixed(1)} Å × {(sizeUnitCells[2] * latticeLengths[2]).toFixed(1)} Å
+      </span>
     </div>
 
     <div class="bg-white border border-slate-100 shadow-sm rounded-[1.5rem] p-6">
-      <h2 class="font-heading text-lg font-bold text-slate-900 mb-4">3) Core Facets</h2>
-      <div class="grid grid-cols-[1fr_1fr_32px] gap-3 items-center text-[10px] text-slate-400 uppercase font-extrabold tracking-widest mb-3 px-1">
-        <span>Miller Index</span> <span>Energy (γ)</span> <span></span>
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="font-heading text-lg font-bold text-slate-900">3) Core Facets</h2>
+        {#if isAnalyzingCif}
+          <span class="text-xs text-brand-500 animate-pulse font-bold flex items-center gap-1">
+            <div class="w-3.5 h-3.5 border-2 border-brand-500 border-t-transparent rounded-full animate-spin"></div>
+            Analyzing CIF...
+          </span>
+        {/if}
       </div>
-      {#each coreFacets as facet, i (facet.id)}
-        <div class="grid grid-cols-[1fr_1fr_32px] gap-3 mb-3">
-          <input type="text" bind:value={facet.hkl} class="border-none ring-1 ring-slate-200 rounded-xl px-2 py-2 text-sm text-center bg-slate-50 focus:ring-2 focus:ring-brand-400 outline-none font-medium min-w-0">
-          <input type="number" bind:value={facet.gamma} step="0.1" class="border-none ring-1 ring-slate-200 rounded-xl px-2 py-2 text-sm text-center bg-slate-50 focus:ring-2 focus:ring-brand-400 outline-none font-medium min-w-0">
-          <button class="bg-red-50 text-red-600 hover:bg-red-100 hover:text-red-700 rounded-xl flex items-center justify-center font-bold transition-colors" onclick={() => coreFacets.splice(i, 1)}>✕</button>
+
+      {#if detectedFacets.length === 0}
+        <div class="p-4 bg-slate-50 border border-slate-100 rounded-2xl text-center">
+          <p class="text-xs text-slate-400 italic">Please upload or select a CIF structure first to analyze facets.</p>
         </div>
-      {/each}
-      <button class="w-full bg-slate-50 hover:bg-slate-100 text-brand-600 py-2.5 rounded-xl mt-2 text-sm font-bold border border-slate-200 transition-colors" onclick={() => coreFacets.push({ id: crypto.randomUUID(), hkl: '100', gamma: 1.0 })}>+ Add Facet</button>
-    </div>
+      {:else}
+        <div class="space-y-4">
+          {#each detectedFacets as fam (fam.family)}
+            {@const isEnabled = coreFacets.some(f => f.family === fam.family)}
+            <div class="border rounded-2xl overflow-hidden transition-all {isEnabled ? 'border-brand-200 bg-brand-50/10' : 'border-slate-100 bg-white hover:bg-slate-50/50'}">
+              <div class="flex items-center justify-between p-4 cursor-pointer select-none" onclick={() => toggleFacetFamily(fam)}>
+                <div class="flex items-start gap-3 pt-0.5">
+                  <input type="checkbox" checked={isEnabled} class="accent-brand-600 rounded cursor-pointer mt-1" onclick={(e) => { e.stopPropagation(); toggleFacetFamily(fam); }}>
+                  <div class="flex flex-col gap-1.5">
+                    <span class="font-bold text-sm text-slate-800 leading-none">{fam.family} Facets</span>
+                    
+                    <span class="inline-flex items-center gap-0.5 text-[9px] font-bold uppercase px-2 py-0.5 rounded-full border whitespace-nowrap cursor-help select-none w-max shrink-0
+                      {fam.status === 'polar' ? 'bg-red-50 text-red-600 border-red-100' : 
+                       fam.status === 'termination-sensitive' ? 'bg-amber-50 text-amber-600 border-amber-100' : 
+                       'bg-slate-100 text-slate-600 border-slate-200'}"
+                      onmouseenter={() => tooltipText = fam.status === 'polar' 
+                        ? "Polar: Slab contains a net dipole normal to the surface. Cation-Rich vs Anion-Rich terminations are asymmetric in charge."
+                        : fam.status === 'termination-sensitive' 
+                        ? "Termination-Sensitive: Slab has zero dipole (non-polar) but has multiple distinct stoichiometric cut options (e.g. Cation-rich vs Anion-rich)."
+                        : "Non-polar: Slab has zero dipole and unique symmetric termination cut configurations."}
+                      onmouseleave={() => tooltipText = ""}>
+                      {fam.status === 'termination-sensitive' ? 'Termination-Sensitive' : 
+                       fam.status === 'non-polar' ? 'Non-Polar' : 
+                       fam.status === 'polar' ? 'Polar' : 
+                       fam.status} ⓘ
+                    </span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] font-semibold text-slate-400">×{fam.multiplicity} planes</span>
+                  <svg class="w-4 h-4 text-slate-400 transition-transform {isEnabled ? 'rotate-180' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+              </div>
 
-    <div class="bg-white border border-slate-100 shadow-sm rounded-[1.5rem] p-6">
-      <h2 class="font-heading text-lg font-bold text-slate-900 mb-4">4) Shells</h2>
-      {#each shells as shell, sIndex (shell.id)}
-        <div class="border border-brand-200 bg-brand-50/40 p-4 rounded-[1.25rem] mb-4">
-          <div class="flex justify-between items-center mb-4">
-            <span class="font-bold text-brand-800 text-sm bg-brand-100 px-3 py-1 rounded-lg">Shell {sIndex + 1}</span>
-            <button class="text-red-500 hover:text-red-700 text-xs font-bold transition-colors" onclick={() => shells.splice(sIndex, 1)}>Remove</button>
-          </div>
-          
-          <span class="block text-[10px] font-extrabold text-brand-700 uppercase tracking-widest mb-2">Shell Material</span>
+              <!-- Body -->
+              {#if isEnabled}
+                {@const facetsForFam = coreFacets.filter(f => f.family === fam.family)}
+                <div class="p-4 pt-0 border-t border-brand-100 bg-brand-50/5 space-y-4">
+                  <!-- Scope Selector (Full Width) -->
+                  <div class="space-y-1.5 mt-3">
+                    <span class="block text-[9px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1 cursor-help select-none"
+                          onmouseenter={() => tooltipText = "Choose whether to apply settings to the entire facet family ('all equivalent') or customize each index plane individually ('individual')."}
+                          onmouseleave={() => tooltipText = ""}>
+                      Scope ⓘ
+                    </span>
+                    <div class="flex rounded-lg p-0.5 bg-slate-100 border border-slate-200/50 h-[32px] items-center w-full">
+                      <button type="button" class="flex-1 h-full rounded-md text-[10px] font-bold transition-all {facetsForFam[0]?.scope === 'family' ? 'bg-white text-brand-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}"
+                              onclick={() => updateFacetScope(fam.family, 'family')}>
+                        all equivalent
+                      </button>
+                      <button type="button" class="flex-1 h-full rounded-md text-[10px] font-bold transition-all {facetsForFam[0]?.scope === 'facet' ? 'bg-white text-brand-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}"
+                              onclick={() => updateFacetScope(fam.family, 'facet')}>
+                        individual
+                      </button>
+                    </div>
+                  </div>
+                  
+                  {#if facetsForFam[0]?.scope === 'family'}
+                    <!-- Surface Energy (Full Width) -->
+                    <div class="space-y-1.5">
+                      <span class="block text-[9px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1 cursor-help select-none"
+                            onmouseenter={() => tooltipText = "Surface energy in J/m². Determines the facet's relative area in Wulff construction. Lower energy means larger facet size."}
+                            onmouseleave={() => tooltipText = ""}>
+                        Surface Energy (γ) ⓘ
+                      </span>
+                      <input type="number" step="0.1" class="w-full border-none ring-1 ring-brand-200 rounded-lg px-3 py-1.5 text-xs bg-white focus:ring-2 focus:ring-brand-400 outline-none font-medium h-[32px]"
+                             value={facetsForFam[0]?.gamma}
+                             oninput={(e) => updateFamilyGamma(fam.family, parseFloat(e.target.value))}>
+                    </div>
 
-          {#if !shell.file}
-            <div class="flex flex-wrap gap-1.5 mb-3">
-              {#if shell.isLoading}
-                <span class="text-xs font-bold text-brand-500 animate-pulse flex items-center gap-2">
-                  <div class="w-3 h-3 border-2 border-brand-500 border-t-transparent rounded-full animate-spin"></div> Fetching...
-                </span>
-              {:else}
-                {#each allowedShellTemplates as template}
-                  <button 
-                    class="px-2 py-1.5 bg-white hover:bg-brand-100 text-brand-700 border border-brand-200 rounded-lg transition-colors flex flex-col items-center"
-                    onclick={() => loadShellTemplate(sIndex, template)}>
-                    <span class="text-xs font-bold">{template.name}</span>
-                    <span class="text-[9px] font-mono opacity-80 mt-0.5">{template.a}</span>
-                  </button>
-                {/each}
+                    <!-- Termination Style (Full Width) - multi-select checkboxes -->
+                    {#if fam.status === 'polar' || fam.status === 'termination-sensitive'}
+                      <div class="space-y-1.5">
+                        <span class="block text-[9px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1 cursor-help select-none"
+                              onmouseenter={() => tooltipText = fam.status === 'polar' 
+                                ? "Polar facets contain alternating charged layers. Cation-Rich makes the surface metal-terminated, while Anion-Rich makes it chalcogenide/halide-terminated. You can enable both."
+                                : "Non-polar plane with multiple symmetric cut configurations. You can enable both termination styles simultaneously."}
+                              onmouseleave={() => tooltipText = ""}>
+                          Termination Style ⓘ
+                        </span>
+                        <div class="flex gap-3 px-1">
+                          <label class="flex items-center gap-1.5 cursor-pointer select-none text-[10px] font-bold text-slate-700">
+                            <input type="checkbox"
+                                   class="accent-brand-600 rounded"
+                                   checked={facetsForFam.some(f => f.termination === 'cation_rich')}
+                                   onchange={(e) => upsertFamilyTermination(fam, 'cation_rich', e.target.checked)}>
+                            Cation-Rich
+                          </label>
+                          <label class="flex items-center gap-1.5 cursor-pointer select-none text-[10px] font-bold text-slate-700">
+                            <input type="checkbox"
+                                   class="accent-brand-600 rounded"
+                                   checked={facetsForFam.some(f => f.termination === 'anion_rich')}
+                                   onchange={(e) => upsertFamilyTermination(fam, 'anion_rich', e.target.checked)}>
+                            Anion-Rich
+                          </label>
+                        </div>
+                      </div>
+                    {:else}
+                      <div class="p-3 bg-white border border-slate-100 rounded-xl flex items-center justify-between h-[36px]">
+                        <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider select-none">Termination Style</span>
+                        <span class="bg-slate-100 text-slate-600 text-[9px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border border-slate-200 select-none">
+                          Stoichiometric (Non-polar)
+                        </span>
+                      </div>
+                    {/if}
+                  {/if}
+
+                  <!-- Individual Scope: Customize planes list -->
+                  {#if facetsForFam[0]?.scope === 'facet'}
+                    <div class="space-y-3 pt-2">
+                      <span class="block text-[9px] font-bold text-slate-400 uppercase tracking-wider mb-1 select-none">Customize Individual Planes</span>
+                      {#each fam.hkl_list as hkl}
+                        {@const pFacet = facetsForFam.find(f => f.hkl === hkl)}
+                        <div class="p-3 bg-white border border-slate-100 rounded-xl space-y-2">
+                          <div class="flex items-center justify-between">
+                            <label class="flex items-center gap-2.5 cursor-pointer select-none font-bold text-xs text-slate-700">
+                              <input type="checkbox" checked={!!pFacet} class="accent-brand-600 rounded"
+                                     onchange={() => toggleIndividualPlane(fam.family, hkl)}>
+                              <span class="font-mono">({hkl}) Plane</span>
+                            </label>
+                            {#if pFacet}
+                              <span class="text-[8px] font-extrabold text-brand-600 bg-brand-50 border border-brand-100 px-2 py-0.5 rounded-full uppercase tracking-wider">Active</span>
+                            {/if}
+                          </div>
+                          
+                          {#if pFacet}
+                            <div class="grid grid-cols-2 gap-3 pt-1">
+                              <div>
+                                <span class="block text-[8px] font-bold text-slate-400 uppercase tracking-wider mb-1">Surface Energy (γ)</span>
+                                <input type="number" step="0.1" class="w-full border-none ring-1 ring-slate-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-brand-400 outline-none font-medium h-[28px]"
+                                       bind:value={pFacet.gamma}>
+                              </div>
+                              
+                              {#if fam.status === 'polar' || fam.status === 'termination-sensitive'}
+                                <div>
+                                  <span class="block text-[8px] font-bold text-slate-400 uppercase tracking-wider mb-1">Termination</span>
+                                  <select class="w-full border-none ring-1 ring-slate-200 bg-white rounded-lg px-2 py-1 text-xs focus:ring-2 focus:ring-brand-400 outline-none font-medium cursor-pointer h-[28px]"
+                                          bind:value={pFacet.termination}>
+                                    <option value="cation_rich">Cation-Rich</option>
+                                    <option value="anion_rich">Anion-Rich</option>
+                                  </select>
+                                </div>
+                              {/if}
+                            </div>
+                          {/if}
+                        </div>
+                      {/each}
+                    </div>
+                  {/if}
+                </div>
               {/if}
             </div>
-            
-            <div class="relative flex py-1 items-center mb-3">
-              <div class="flex-grow border-t border-brand-200/50"></div>
-              <span class="flex-shrink-0 mx-2 text-brand-400 text-[9px] font-bold uppercase tracking-widest">OR UPLOAD</span>
-              <div class="flex-grow border-t border-brand-200/50"></div>
-            </div>
-
-            <input type="file" accept=".cif" class="w-full text-xs mb-4 file:mr-4 file:py-1.5 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-brand-100 file:text-brand-700 hover:file:bg-brand-200 transition-all text-slate-600" onchange={(e) => { shell.file = e.target.files[0]; shell.templateName = null; }}>
-          {:else}
-            <div class="flex items-center justify-between bg-white border border-brand-200 rounded-lg px-3 py-2 mb-4">
-              <div class="flex items-center gap-2">
-                <div class="w-6 h-6 bg-brand-50 rounded-full flex items-center justify-center text-brand-500">
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                </div>
-                <span class="text-xs font-bold text-brand-800">
-                  {shell.templateName ? `${shell.templateName} (Template)` : shell.file.name}
-                </span>
-              </div>
-              <button class="text-[10px] text-red-500 font-bold hover:text-red-700 uppercase tracking-wide" onclick={() => { shell.file = null; shell.templateName = null; }}>Clear</button>
-            </div>
-          {/if}
-          
-          <span class="block text-[10px] font-extrabold text-brand-700 uppercase tracking-widest mb-2">Aspect Ratio</span>
-          <div class="grid grid-cols-3 gap-2 mb-4">
-            <input type="number" bind:value={shell.aspect[0]} step="0.1" class="border-none ring-1 ring-brand-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-brand-400 outline-none font-medium min-w-0">
-            <input type="number" bind:value={shell.aspect[1]} step="0.1" class="border-none ring-1 ring-brand-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-brand-400 outline-none font-medium min-w-0">
-            <input type="number" bind:value={shell.aspect[2]} step="0.1" class="border-none ring-1 ring-brand-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-brand-400 outline-none font-medium min-w-0">
-          </div>
-          
-          <span class="block text-[10px] font-extrabold text-brand-700 uppercase tracking-widest mb-2">Facets</span>
-          {#each shell.facets as sfacet, fi (sfacet.id)}
-            <div class="grid grid-cols-[1fr_1fr_32px] gap-2 mb-2">
-              <input type="text" bind:value={sfacet.hkl} class="border-none ring-1 ring-brand-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-brand-400 outline-none font-medium min-w-0">
-              <input type="number" bind:value={sfacet.gamma} step="0.1" class="border-none ring-1 ring-brand-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-brand-400 outline-none font-medium min-w-0">
-              <button class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors" onclick={() => shell.facets.splice(fi, 1)}>✕</button>
-            </div>
           {/each}
-          <button class="w-full bg-white hover:bg-brand-50 border border-brand-200 text-brand-700 text-xs py-2 mt-2 rounded-lg font-bold transition-colors" onclick={() => shell.facets.push({ id: crypto.randomUUID(), hkl: '100', gamma: 1.0 })}>+ Add Shell Facet</button>
         </div>
-      {/each}
-      <button class="w-full bg-slate-50 hover:bg-slate-100 border border-slate-200 text-brand-600 py-2.5 rounded-xl text-sm font-bold transition-colors" onclick={addShell}>+ Add Shell</button>
+      {/if}
     </div>
 
     <div class="bg-white border border-slate-100 shadow-sm rounded-[1.5rem] p-6">
-      <h2 class="font-heading text-lg font-bold text-slate-900 mb-4">5) Passivation</h2>
-      {#if !passivateExpanded}
-        <button class="w-full bg-slate-50 hover:bg-slate-100 border border-slate-200 text-accent-600 py-2.5 rounded-xl text-sm font-bold transition-colors" onclick={() => passivateExpanded = true}>+ Add Ligands</button>
-      {:else}
-        <div class="border border-accent-200 p-5 rounded-[1.25rem] bg-accent-50/30">
-          <span class="block text-[10px] font-extrabold text-accent-700 uppercase tracking-widest mb-3">Anionic Ligands</span>
-          <div class="grid grid-cols-[1fr_3.5rem_3.5rem_28px] gap-2 text-[10px] text-accent-600 uppercase font-bold tracking-widest mb-2 px-1">
-            <span>SMILES</span><span>Dummy</span><span>Ratio</span><span></span>
-          </div>
-          {#each anionicLigands as lig, i (lig.id)}
-            <div class="grid grid-cols-[1fr_3.5rem_3.5rem_28px] gap-2 mb-3">
-              <input type="text" bind:value={lig.smiles} class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-2 text-sm bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
-              <input type="text" bind:value={lig.dummy} class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-2 text-sm text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
-              <input type="number" bind:value={lig.ratio} step="0.1" class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-2 text-sm text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
-              <button class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors" onclick={() => anionicLigands.splice(i, 1)}>✕</button>
+      <h2 class="font-heading text-lg font-bold text-slate-900 mb-4">4) Shells & Heterointerfaces</h2>
+      <!-- Section 4 Tabs: Concentric vs Janus -->
+      <div class="flex space-x-1 rounded-xl p-1 bg-slate-100 mb-5 border border-slate-200/50">
+        <button class="flex-1 rounded-lg py-2 text-xs font-bold transition-all {activeHeteroMode === 'concentric' ? 'bg-white text-brand-600 shadow-sm' : 'text-slate-500 hover:text-slate-700 hover:bg-slate-200/50'}"
+                onclick={() => activeHeteroMode = 'concentric'}>Concentric Shells</button>
+        <button class="flex-1 rounded-lg py-2 text-xs font-bold transition-all {activeHeteroMode === 'janus' ? 'bg-white text-brand-600 shadow-sm' : 'text-slate-500 hover:text-slate-700 hover:bg-slate-200/50'}"
+                onclick={() => { activeHeteroMode = 'janus'; shells = []; }}>Janus Heterointerface</button>
+      </div>
+
+      {#if activeHeteroMode === 'concentric'}
+        {#each shells as shell, sIndex (shell.id)}
+          <div class="border border-brand-200 bg-brand-50/40 p-4 rounded-[1.25rem] mb-4">
+            <div class="flex justify-between items-center mb-4">
+              <span class="font-bold text-brand-800 text-sm bg-brand-100 px-3 py-1 rounded-lg">Shell {sIndex + 1}</span>
+              <button class="text-red-500 hover:text-red-700 text-xs font-bold transition-colors" onclick={() => shells.splice(sIndex, 1)}>Remove</button>
             </div>
-          {/each}
-          <button class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-xs py-2 rounded-lg text-accent-700 mb-6 font-bold transition-colors" onclick={() => anionicLigands.push({ id: crypto.randomUUID(), smiles: '', ratio: 1.0, dummy: 'Cl' })}>+ Add Anion</button>
+            
+            <span class="block text-[10px] font-extrabold text-brand-700 uppercase tracking-widest mb-2">Shell Material</span>
 
-          <span class="block text-[10px] font-extrabold text-accent-700 uppercase tracking-widest mb-3">Distribution</span>
-          <div class="flex gap-4 text-sm mb-6 bg-white p-2 rounded-xl border border-accent-100">
-            <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" bind:group={capDist} value="uniform" class="accent-accent-600"> <span class="font-medium text-slate-700">Uniform</span></label>
-            <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" bind:group={capDist} value="segmented" class="accent-accent-600"> <span class="font-medium text-slate-700">Segmented</span></label>
-            <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" bind:group={capDist} value="random" class="accent-accent-600"> <span class="font-medium text-slate-700">Random</span></label>
-          </div>
+            {#if !shell.file}
+              <div class="flex flex-wrap gap-1.5 mb-3">
+                {#if shell.isLoading}
+                  <span class="text-xs font-bold text-brand-500 animate-pulse flex items-center gap-2">
+                    <div class="w-3 h-3 border-2 border-brand-500 border-t-transparent rounded-full animate-spin"></div> Fetching...
+                  </span>
+                {:else}
+                  {#each allowedShellTemplates as template}
+                    <button 
+                      class="px-2 py-1.5 bg-white hover:bg-brand-100 text-brand-700 border border-brand-200 rounded-lg transition-colors flex flex-col items-center"
+                      onclick={() => loadShellTemplate(sIndex, template)}>
+                      <span class="text-xs font-bold">{template.name}</span>
+                      <span class="text-[9px] font-mono opacity-80 mt-0.5">{template.a}</span>
+                    </button>
+                  {/each}
+                {/if}
+              </div>
+              
+              <div class="relative flex py-1 items-center mb-3">
+                <div class="flex-grow border-t border-brand-200/50"></div>
+                <span class="flex-shrink-0 mx-2 text-brand-400 text-[9px] font-bold uppercase tracking-widest">OR UPLOAD</span>
+                <div class="flex-grow border-t border-brand-200/50"></div>
+              </div>
 
-          {#if !showCationic}
-            <button class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-xs py-2 rounded-lg text-accent-700 font-bold transition-colors" onclick={() => showCationic = true}>+ Add Cationic Ligand</button>
-          {:else}
-            <span class="block text-[10px] font-extrabold text-accent-700 uppercase tracking-widest mb-3 pt-4 border-t border-accent-200">Cationic Ligands</span>
-            {#each cationicLigands as lig, i (lig.id)}
-              <div class="grid grid-cols-[1fr_3.5rem_3.5rem_28px] gap-2 mb-3">
-                <input type="text" bind:value={lig.smiles} class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-2 text-sm bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
-                <input type="text" bind:value={lig.dummy} class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-2 text-sm text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
-                <input type="number" bind:value={lig.ratio} step="0.1" class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-2 text-sm text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
-                <button class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors" onclick={() => cationicLigands.splice(i, 1)}>✕</button>
+              <input type="file" accept=".cif" class="w-full text-xs mb-4 file:mr-4 file:py-1.5 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-brand-100 file:text-brand-700 hover:file:bg-brand-200 transition-all text-slate-600" onchange={(e) => { shell.file = e.target.files[0]; shell.templateName = null; }}>
+            {:else}
+              <div class="flex items-center justify-between bg-white border border-brand-200 rounded-lg px-3 py-2 mb-4">
+                <div class="flex items-center gap-2">
+                  <div class="w-6 h-6 bg-brand-50 rounded-full flex items-center justify-center text-brand-500">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                  </div>
+                  <span class="text-xs font-bold text-brand-800">
+                    {shell.templateName ? `${shell.templateName} (Template)` : shell.file.name}
+                  </span>
+                </div>
+                <button class="text-[10px] text-red-500 font-bold hover:text-red-700 uppercase tracking-wide" onclick={() => { shell.file = null; shell.templateName = null; }}>Clear</button>
+              </div>
+            {/if}
+            
+            <span class="block text-[10px] font-extrabold text-brand-700 uppercase tracking-widest mb-2">Shell Thickness (Unit Cells)</span>
+            <div class="grid grid-cols-3 gap-2 mb-4">
+              <input type="number" bind:value={shell.size_unit_cells[0]} step="0.25" min="0.25" class="border-none ring-1 ring-brand-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-brand-400 outline-none font-medium min-w-0">
+              <input type="number" bind:value={shell.size_unit_cells[1]} step="0.25" min="0.25" class="border-none ring-1 ring-brand-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-brand-400 outline-none font-medium min-w-0">
+              <input type="number" bind:value={shell.size_unit_cells[2]} step="0.25" min="0.25" class="border-none ring-1 ring-brand-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-brand-400 outline-none font-medium min-w-0">
+            </div>
+            
+            <span class="block text-[10px] font-extrabold text-brand-700 uppercase tracking-widest mb-2">Facets</span>
+            {#each shell.facets as sfacet, fi (sfacet.id)}
+              <div class="grid grid-cols-[1fr_1fr_32px] gap-2 mb-2">
+                <input type="text" bind:value={sfacet.hkl} class="border-none ring-1 ring-brand-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-brand-400 outline-none font-medium min-w-0">
+                <input type="number" bind:value={sfacet.gamma} step="0.1" class="border-none ring-1 ring-brand-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-brand-400 outline-none font-medium min-w-0">
+                <button class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors" onclick={() => shell.facets.splice(fi, 1)}>✕</button>
               </div>
             {/each}
-            <button class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-xs py-2 rounded-lg text-accent-700 font-bold transition-colors" onclick={() => cationicLigands.push({ id: crypto.randomUUID(), smiles: '', ratio: 1.0, dummy: 'Rb' })}>+ Add Cation</button>
-          {/if}
-        </div>
-      {/if}
+            <button class="w-full bg-white hover:bg-brand-50 border border-brand-200 text-brand-700 text-xs py-2 mt-2 rounded-lg font-bold transition-colors" onclick={() => shell.facets.push({ id: crypto.randomUUID(), hkl: '100', gamma: 1.0 })}>+ Add Shell Facet</button>
+          </div>
+        {/each}
+        <button class="w-full bg-slate-50 hover:bg-slate-100 border border-slate-200 text-brand-600 py-2.5 rounded-xl text-sm font-bold transition-colors" onclick={addShell}>+ Add Concentric Shell</button>
+      
+      {:else}
+        <!-- Janus Panel -->
+        <div class="border border-brand-200 bg-brand-50/20 p-5 rounded-2xl space-y-4">
+          <div>
+            <span class="block text-[10px] font-extrabold text-brand-700 uppercase tracking-widest mb-2 flex items-center gap-1">
+              Janus Partner Material
+              <div class="group relative cursor-pointer text-slate-400 hover:text-slate-600 font-normal">
+                <span class="text-[10px] bg-slate-100 w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold font-mono">i</span>
+                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:block w-48 bg-slate-900 text-white text-[10px] p-2 rounded-lg shadow-xl font-sans normal-case tracking-normal z-20 text-center">
+                  Select the bulk material for the second half of the Janus heterointerface. Flat shared-interface lattice matching operates across differing spacegroup structures!
+                </div>
+              </div>
+            </span>
+            {#if !janusPartnerFile}
+              <select class="w-full border-none ring-1 ring-brand-200 rounded-lg px-2 py-2 text-xs bg-white focus:ring-2 focus:ring-brand-400 outline-none font-medium cursor-pointer"
+                      onchange={async (e) => {
+                        const name = e.target.value;
+                        if (!name) return;
+                        // load standard bulk templates as custom file upload
+                        for (const family in bulkTemplates) {
+                          const t = bulkTemplates[family].find(item => item.name === name);
+                          if (t) {
+                            logs += `[status] Fetching Janus partner bulk structure ${t.name}...\n`;
+                            const res = await fetch(t.path);
+                            const text = await res.text();
+                            const blob = new Blob([text], { type: 'text/plain' });
+                            janusPartnerFile = new File([blob], t.path.split('/').pop(), { type: 'text/plain' });
+                            break;
+                          }
+                        }
+                      }}>
+                <option value="">-- Choose Preset Partner Material --</option>
+                {#each Object.keys(bulkTemplates) as family}
+                  <optgroup label={family}>
+                    {#each bulkTemplates[family] as template}
+                      <option value={template.name}>{template.name} ({template.phase})</option>
+                    {/each}
+                  </optgroup>
+                {/each}
+              </select>
+            {:else}
+              <div class="flex items-center justify-between bg-white border border-brand-200 rounded-lg px-3 py-2">
+                <span class="text-xs font-bold text-brand-800">{janusPartnerFile.name} (Loaded)</span>
+                <button class="text-[10px] text-red-500 font-bold hover:text-red-700 uppercase tracking-wide" onclick={() => janusPartnerFile = null}>Clear</button>
+              </div>
+            {/if}
+          </div>
 
-      {#if lastUnpassivatedXyz}
-        <hr class="my-5 border-slate-100" />
-        <button class="w-full bg-accent-600 hover:bg-accent-700 text-white font-bold py-3 rounded-xl text-sm transition-all shadow-glow active:scale-95 flex items-center justify-center gap-2" 
-                onclick={() => onBuild(true)} disabled={isBuilding}>
-          {isBuilding ? 'Processing...' : '⚡ Repassivate Current Structure'}
-        </button>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <span class="block text-[10px] font-extrabold text-brand-700 uppercase tracking-widest mb-2">Build Mode</span>
+              <select class="w-full border-none ring-1 ring-brand-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-brand-400 outline-none font-medium cursor-pointer" bind:value={janusBuildMode}>
+                <option value="wulff_janus">Wulff-Janus (Faceted)</option>
+                <option value="interface_cell">Interface Cell (Slab)</option>
+              </select>
+            </div>
+            <div>
+              <span class="block text-[10px] font-extrabold text-brand-700 uppercase tracking-widest mb-2">Interface cut (hkl)</span>
+              <input type="text" class="w-full border-none ring-1 ring-brand-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-brand-400 outline-none font-medium text-center" bind:value={janusInterfaceHkl}>
+            </div>
+          </div>
+
+          <div>
+            <span class="block text-[10px] font-extrabold text-brand-700 uppercase tracking-widest mb-2">Clipping Footprint</span>
+            <div class="flex gap-4 text-xs bg-white p-2.5 rounded-lg border border-brand-100">
+              <label class="flex items-center gap-1.5 cursor-pointer font-medium text-slate-700">
+                <input type="radio" value="mushroom" class="accent-brand-600" checked={janusClippingMode === 'mushroom'} onchange={() => janusClippingMode = 'mushroom'}>
+                Mushroom cap overhang
+              </label>
+              <label class="flex items-center gap-1.5 cursor-pointer font-medium text-slate-700">
+                <input type="radio" value="footprint" class="accent-brand-600" checked={janusClippingMode === 'footprint'} onchange={() => janusClippingMode = 'footprint'}>
+                Strict aligned footprint
+              </label>
+            </div>
+          </div>
+        </div>
       {/if}
     </div>
 
-    <div class="bg-white border border-slate-100 shadow-sm rounded-[1.5rem] p-6 mb-8">
-      <h2 class="font-heading text-lg font-bold text-slate-900 mb-5">6) Build Settings</h2>
-      <div class="mb-5">
-        <span class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Run Mode</span>
-        <div class="flex gap-4">
-          <label class="flex items-center gap-1.5 cursor-pointer text-sm font-medium text-slate-700"><input type="radio" bind:group={runMode} value="quiet" class="accent-brand-600"> Turbo (quiet)</label>
-          <label class="flex items-center gap-1.5 cursor-pointer text-sm font-medium text-slate-700"><input type="radio" bind:group={runMode} value="live-tty" class="accent-brand-600"> Live logs</label>
+    <!-- Build settings (before first build) -->
+    <div class="bg-white border border-slate-100 shadow-sm rounded-[1.5rem] p-5 space-y-4">
+      <h2 class="font-heading text-lg font-bold text-slate-900 mb-1">Build settings</h2>
+
+      <!-- Construction Center Ion -->
+      {#if detectedSpecies.length > 0}
+      <div>
+        <span class="block text-[10px] font-extrabold text-slate-500 uppercase tracking-widest mb-2 flex items-center gap-1.5">
+          Center structure on
+          <span class="text-[10px] bg-slate-100 hover:bg-slate-200 text-slate-400 hover:text-slate-600 w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold font-mono cursor-help select-none shrink-0"
+                onmouseenter={() => tooltipText = "The atom on which the NC is centered during the Wulff construction. Each ion gives a differently terminated surface. Pick one — building from both doubles compute time."}
+                onmouseleave={() => tooltipText = ""}>
+            i
+          </span>
+        </span>
+        <div class="flex flex-wrap gap-2">
+          {#each detectedSpecies as ion}
+            <button type="button"
+              class="px-3 py-1 rounded-lg text-xs font-bold border transition-all {centerIon === ion ? 'bg-brand-600 text-white border-brand-600 shadow-sm' : 'bg-slate-50 text-slate-600 border-slate-200 hover:border-brand-400'}"
+              onclick={() => centerIon = ion}>
+              {ion}
+            </button>
+          {/each}
         </div>
       </div>
-      <div class="mb-6">
-        <span class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Positive-Q Strategy</span>
-        <div class="flex gap-4">
-          <label class="flex items-center gap-1.5 cursor-pointer text-sm font-medium text-slate-700"><input type="radio" bind:group={posQ} value="remove" class="accent-brand-600"> Remove (default)</label>
-          <label class="flex items-center gap-1.5 cursor-pointer text-sm font-medium text-slate-700"><input type="radio" bind:group={posQ} value="add" class="accent-brand-600"> Add</label>
+      {/if}
+
+      <!-- Excess Surface Charge -->
+      <div>
+        <span class="block text-[10px] font-extrabold text-slate-500 uppercase tracking-widest mb-2 flex items-center gap-1.5">
+          Excess Surface Charge
+          <span class="text-[10px] bg-slate-100 hover:bg-slate-200 text-slate-400 hover:text-slate-600 w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold font-mono cursor-help select-none shrink-0"
+                onmouseenter={() => tooltipText = "Lattice cuts leave excess surface cations. 'Remove' trims undercoordinated cations (slightly smaller NC). 'Add' passivates them with placeholder Cl⁻ anions."}
+                onmouseleave={() => tooltipText = ""}>
+            i
+          </span>
+        </span>
+        <div class="flex rounded-lg p-0.5 bg-slate-100 border border-slate-200/50 h-[32px] items-center w-full">
+          <button type="button" class="flex-1 h-full rounded-md text-[10px] font-bold transition-all {posQ === 'remove' ? 'bg-white text-brand-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}"
+                  onclick={() => posQ = 'remove'}>
+            Remove
+          </button>
+          <button type="button" class="flex-1 h-full rounded-md text-[10px] font-bold transition-all {posQ === 'add' ? 'bg-white text-brand-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}"
+                  onclick={() => posQ = 'add'}>
+            Add
+          </button>
+        </div>
+      </div>
+
+      <!-- Run Mode + Buttons -->
+      <div class="flex items-center gap-3">
+        <span class="block text-[10px] font-extrabold text-slate-500 uppercase tracking-widest flex items-center gap-1 cursor-help select-none"
+              onmouseenter={() => tooltipText = "Turbo skips verbose surface analysis (~2–5× faster). Live logs streams each step to the log panel."}
+              onmouseleave={() => tooltipText = ""}>
+          Run Mode ⓘ
+        </span>
+        <div class="flex gap-3 ml-auto">
+          <label class="flex items-center gap-1.5 cursor-pointer text-xs font-medium text-slate-700"><input type="radio" bind:group={runMode} value="quiet" class="accent-brand-600"> Turbo</label>
+          <label class="flex items-center gap-1.5 cursor-pointer text-xs font-medium text-slate-700"><input type="radio" bind:group={runMode} value="live-tty" class="accent-brand-600"> Live logs</label>
         </div>
       </div>
       <div class="flex gap-3">
-        <button class="flex-1 bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl shadow-glow transition-all active:scale-95" 
+        <button class="flex-1 bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl shadow-glow transition-all active:scale-95 flex items-center justify-center gap-2"
                 onclick={() => onBuild(false)} disabled={isBuilding}>
-          {isBuilding ? 'Building...' : 'Build Nanocrystal'}
+          {isBuilding ? 'Building...' : '🔨 Build Nanocrystal'}
         </button>
         <button class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 px-6 rounded-xl transition-all" onclick={onReset}>Reset</button>
       </div>
       {#if finalResult}
-        <button class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl mt-4 shadow-sm transition-all active:scale-95" onclick={downloadXYZ}>
-          Download {finalResult.download_name || 'final.xyz'}
+        <button class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl shadow-sm transition-all active:scale-95 text-sm" onclick={downloadXYZ}>
+          ⬇ Download {finalResult.download_name || 'final.xyz'}
         </button>
       {/if}
     </div>
+    {/if}
 
   </aside>
      
@@ -749,6 +1430,9 @@
                 {#each Object.entries(finalResult.ligand_detail.cationic || {}) as [smiles, count]}
                   {#if count > 0}<div class="flex justify-between text-xs font-mono bg-slate-50 border border-slate-100 p-2 rounded-lg mb-1.5"><span class="truncate pr-2 text-slate-600">{smiles}</span><span class="font-bold text-slate-900">{count}</span></div>{/if}
                 {/each}
+                {#each Object.entries(finalResult.ligand_detail.neutral || {}) as [smiles, count]}
+                  {#if count > 0}<div class="flex justify-between text-xs font-mono bg-slate-50 border border-slate-100 p-2 rounded-lg mb-1.5"><span class="truncate pr-2 text-slate-600">{smiles} (neutral)</span><span class="font-bold text-slate-900">{count}</span></div>{/if}
+                {/each}
               {:else if finalResult.grouped_counts.shell?.total > 0}
                  <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Shell ({finalResult.grouped_counts.shell.total})</p>
                  <div class="flex flex-wrap gap-2 mb-4">
@@ -767,7 +1451,7 @@
 
         <div class="bg-slate-900 border border-slate-800 rounded-[1.5rem] p-0 md:col-span-3 flex flex-col overflow-hidden shadow-inner relative h-full">
           <div class="bg-slate-800/80 backdrop-blur-sm text-slate-400 text-[10px] px-4 py-2 font-mono font-bold uppercase tracking-widest border-b border-slate-700/50 flex justify-between items-center absolute w-full top-0 left-0 z-10">
-            <span class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-emerald-500"></div> miniCAT Engine Terminal</span>
+            <span class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-emerald-500"></div> nc-builder Passivation Engine Terminal</span>
             {#if isBuilding}<span class="text-brand-400 animate-pulse">Running process...</span>{/if}
           </div>
           <pre bind:this={logContainer} class="text-xs text-emerald-400 font-mono p-5 pt-12 h-full overflow-y-auto whitespace-pre-wrap leading-relaxed selection:bg-emerald-900 selection:text-emerald-100">{logs}</pre>
