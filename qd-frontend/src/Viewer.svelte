@@ -13,15 +13,38 @@
   let isMassive = $derived(structure ? structure.num_atoms > 5000 : false);
 
   let activeViewer = $state(isMD ? "matterviz" : "3dmol");
+  
   let container3dmol = $state(null);
+  let containerNgl = $state(null);
+  let containerMolstar = $state(null);
+  
   let viewer3dmol = null;
-  let scriptLoaded = $state(false);
+  let stageNgl = null;
+  let viewerMolstar = null;
+  
+  let scriptLoaded3dmol = $state(false);
+  let scriptLoadedNgl = $state(false);
+  let scriptLoadedMolstar = $state(false);
+
+  // Helper to load external scripts asynchronously
+  function loadScript(src, checkGlobal) {
+    return new Promise((resolve) => {
+      if (window[checkGlobal]) {
+        resolve(true);
+        return;
+      }
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = true;
+      script.onload = () => resolve(true);
+      script.onerror = () => resolve(false);
+      document.head.appendChild(script);
+    });
+  }
 
   // Render 3Dmol structure
   function render3dmol() {
-    if (!scriptLoaded || !container3dmol || !xyz || isMD) return;
-
-    // Clean up container
+    if (!scriptLoaded3dmol || !container3dmol || !xyz || isMD) return;
     container3dmol.innerHTML = "";
 
     if (window.$3Dmol) {
@@ -48,34 +71,99 @@
     }
   }
 
+  // Render NGL Viewer structure
+  function renderNgl() {
+    if (!scriptLoadedNgl || !containerNgl || !xyz || isMD) return;
+    containerNgl.innerHTML = "";
+
+    if (window.NGL) {
+      stageNgl = new window.NGL.Stage(containerNgl, { backgroundColor: "#0f172a" });
+      const blob = new Blob([xyz], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+
+      stageNgl.loadFile(url, { ext: "xyz" }).then(function (o) {
+        const atomCount = xyz.split("\n")[0] ? parseInt(xyz.split("\n")[0]) : 0;
+        if (atomCount > 4000) {
+          o.addRepresentation("line");
+        } else {
+          o.addRepresentation("ball+stick", { multipleBond: "off", scale: 2.0 });
+        }
+        stageNgl.autoView();
+        URL.revokeObjectURL(url);
+      });
+    }
+  }
+
+  // Render Molstar structure
+  function renderMolstar() {
+    if (!scriptLoadedMolstar || !containerMolstar || !xyz || isMD) return;
+    containerMolstar.innerHTML = "";
+
+    if (window.molstar) {
+      window.molstar.Viewer.create(containerMolstar, {
+        layoutIsExpanded: false,
+        layoutShowControls: false,
+        layoutShowRemoteState: false,
+        layoutShowSequence: false,
+        layoutShowLog: false,
+        viewportShowExpand: false,
+        viewportShowSelectionMode: false,
+        viewportShowAnimation: false,
+        collapseLeftControls: true,
+      }).then(v => {
+        viewerMolstar = v;
+        const blob = new Blob([xyz], { type: "text/plain" });
+        const url = URL.createObjectURL(blob);
+        viewerMolstar.loadAll({ url: url, format: 'xyz' }).then(() => {
+          URL.revokeObjectURL(url);
+        });
+      });
+    }
+  }
+
   // React to changes in loading status, xyz data, and activeViewer choice
   $effect(() => {
-    if (activeViewer === "3dmol" && scriptLoaded && xyz && container3dmol) {
+    if (activeViewer === "3dmol" && scriptLoaded3dmol && xyz && container3dmol) {
       render3dmol();
     }
   });
 
-  onMount(() => {
-    if (window.$3Dmol) {
-      scriptLoaded = true;
-      return;
+  $effect(() => {
+    if (activeViewer === "ngl" && scriptLoadedNgl && xyz && containerNgl) {
+      renderNgl();
     }
+  });
 
-    const script = document.createElement("script");
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/3dmol/2.2.0/3Dmol-min.js";
-    script.async = true;
-    script.onload = () => {
-      scriptLoaded = true;
-    };
-    document.head.appendChild(script);
+  $effect(() => {
+    if (activeViewer === "molstar" && scriptLoadedMolstar && xyz && containerMolstar) {
+      renderMolstar();
+    }
+  });
+
+  onMount(() => {
+    // Parallel scripts load
+    loadScript("https://cdnjs.cloudflare.com/ajax/libs/3dmol/2.2.0/3Dmol-min.js", "$3Dmol").then(ok => {
+      if (ok) scriptLoaded3dmol = true;
+    });
+
+    loadScript("https://cdnjs.cloudflare.com/ajax/libs/ngl/2.0.0-dev.37/ngl.js", "NGL").then(ok => {
+      if (ok) scriptLoadedNgl = true;
+    });
+
+    loadScript("https://cdn.jsdelivr.net/npm/molstar@4.3.0/build/viewer/molstar.js", "molstar").then(ok => {
+      if (ok) scriptLoadedMolstar = true;
+    });
 
     return () => {
-      if (viewer3dmol) {
-        viewer3dmol.clear();
-      }
+      if (viewer3dmol) viewer3dmol.clear();
+      if (stageNgl) stageNgl.dispose();
     };
   });
 </script>
+
+<svelte:head>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/molstar@4.3.0/build/viewer/molstar.css" />
+</svelte:head>
 
 <div class="relative w-full h-full">
 
@@ -84,7 +172,15 @@
   <div class="absolute top-4 right-4 z-20 flex gap-1 bg-slate-900/80 backdrop-blur-md p-1 rounded-lg border border-slate-700/50">
     <button class="px-2.5 py-1 rounded text-[10px] font-bold transition-all {activeViewer === '3dmol' ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'}"
             onclick={() => activeViewer = '3dmol'}>
-      3Dmol (Fast)
+      3Dmol
+    </button>
+    <button class="px-2.5 py-1 rounded text-[10px] font-bold transition-all {activeViewer === 'ngl' ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'}"
+            onclick={() => activeViewer = 'ngl'}>
+      NGL
+    </button>
+    <button class="px-2.5 py-1 rounded text-[10px] font-bold transition-all {activeViewer === 'molstar' ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'}"
+            onclick={() => activeViewer = 'molstar'}>
+      Mol*
     </button>
     <button class="px-2.5 py-1 rounded text-[10px] font-bold transition-all {activeViewer === 'matterviz' ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'}"
             onclick={() => activeViewer = 'matterviz'}>
@@ -114,9 +210,25 @@
     {/key}
   {:else if activeViewer === "3dmol"}
     <div bind:this={container3dmol} class="w-full h-full rounded-[1.5rem] overflow-hidden">
-      {#if !scriptLoaded}
+      {#if !scriptLoaded3dmol}
         <div class="flex items-center justify-center h-full text-slate-500 font-medium bg-slate-900">
           Loading 3Dmol library...
+        </div>
+      {/if}
+    </div>
+  {:else if activeViewer === "ngl"}
+    <div bind:this={containerNgl} class="w-full h-full rounded-[1.5rem] overflow-hidden">
+      {#if !scriptLoadedNgl}
+        <div class="flex items-center justify-center h-full text-slate-500 font-medium bg-slate-900">
+          Loading NGL Viewer...
+        </div>
+      {/if}
+    </div>
+  {:else if activeViewer === "molstar"}
+    <div bind:this={containerMolstar} class="w-full h-full rounded-[1.5rem] overflow-hidden relative">
+      {#if !scriptLoadedMolstar}
+        <div class="flex items-center justify-center h-full text-slate-500 font-medium bg-slate-900">
+          Loading Mol* library...
         </div>
       {/if}
     </div>
@@ -161,6 +273,4 @@
     </div>
   {/if}
 
-</div> ```
-
-
+</div>
