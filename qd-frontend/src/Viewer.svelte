@@ -26,13 +26,25 @@
   let scriptLoadedNgl = $state(false);
   let scriptLoadedMolstar = $state(false);
 
-  // Helper to load external scripts asynchronously
+  // Helper to load external scripts asynchronously and handle duplicates/race conditions
   function loadScript(src, checkGlobal) {
     return new Promise((resolve) => {
       if (window[checkGlobal]) {
         resolve(true);
         return;
       }
+      
+      const existing = document.querySelector(`script[src="${src}"]`);
+      if (existing) {
+        const checkInterval = setInterval(() => {
+          if (window[checkGlobal]) {
+            clearInterval(checkInterval);
+            resolve(true);
+          }
+        }, 50);
+        return;
+      }
+
       const script = document.createElement("script");
       script.src = src;
       script.async = true;
@@ -121,32 +133,32 @@
     }
   }
 
-  // React to changes in loading status, xyz data, and activeViewer choice
+  // React to changes in loading status, xyz data, and activeViewer choice (with deferred rendering)
   $effect(() => {
     if (activeViewer === "3dmol" && scriptLoaded3dmol && props.xyz && container3dmol) {
-      render3dmol();
+      setTimeout(render3dmol, 50);
     }
   });
 
   $effect(() => {
     if (activeViewer === "ngl" && scriptLoadedNgl && props.xyz && containerNgl) {
-      renderNgl();
+      setTimeout(renderNgl, 50);
     }
   });
 
   $effect(() => {
     if (activeViewer === "molstar" && scriptLoadedMolstar && props.xyz && containerMolstar) {
-      renderMolstar();
+      setTimeout(renderMolstar, 50);
     }
   });
 
   onMount(() => {
     // Parallel scripts load
-    loadScript("https://cdnjs.cloudflare.com/ajax/libs/3dmol/2.2.0/3Dmol-min.js", "$3Dmol").then(ok => {
+    loadScript("https://3Dmol.org/build/3Dmol-min.js", "$3Dmol").then(ok => {
       if (ok) scriptLoaded3dmol = true;
     });
 
-    loadScript("https://cdnjs.cloudflare.com/ajax/libs/ngl/2.0.0-dev.37/ngl.js", "NGL").then(ok => {
+    loadScript("https://cdn.jsdelivr.net/npm/ngl@2.0.0-dev.37/dist/ngl.js", "NGL").then(ok => {
       if (ok) scriptLoadedNgl = true;
     });
 
@@ -167,7 +179,7 @@
 
 <div class="relative w-full h-full">
 
-  {#if !props.isMD && props.xyz}
+  {#if !props.isMD}
   <!-- Interactive Selector Toolbar -->
   <div class="absolute top-4 right-4 z-20 flex gap-1 bg-slate-900/80 backdrop-blur-md p-1 rounded-lg border border-slate-700/50">
     <button class="px-2.5 py-1 rounded text-[10px] font-bold transition-all {activeViewer === '3dmol' ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'}"
@@ -190,7 +202,7 @@
   {/if}
 
   {#if !props.xyz}
-    <div class="p-4 flex items-center justify-center h-full text-slate-500 font-medium bg-slate-900 rounded-[1.5rem]">
+    <div class="p-4 flex items-center justify-center h-full text-slate-500 font-medium bg-slate-900 rounded-[1.5rem]" style="min-height: 400px; height: 100%;">
       No structure loaded
     </div>
   {:else if props.isMD && props.dataUrl}
@@ -213,7 +225,7 @@
       />
     {/key}
   {:else if activeViewer === "3dmol"}
-    <div bind:this={container3dmol} class="w-full h-full rounded-[1.5rem] overflow-hidden">
+    <div bind:this={container3dmol} class="w-full h-full rounded-[1.5rem] overflow-hidden bg-slate-900" style="min-height: 400px; height: 100%;">
       {#if !scriptLoaded3dmol}
         <div class="flex items-center justify-center h-full text-slate-500 font-medium bg-slate-900">
           Loading 3Dmol library...
@@ -221,7 +233,7 @@
       {/if}
     </div>
   {:else if activeViewer === "ngl"}
-    <div bind:this={containerNgl} class="w-full h-full rounded-[1.5rem] overflow-hidden">
+    <div bind:this={containerNgl} class="w-full h-full rounded-[1.5rem] overflow-hidden bg-slate-900" style="min-height: 400px; height: 100%;">
       {#if !scriptLoadedNgl}
         <div class="flex items-center justify-center h-full text-slate-500 font-medium bg-slate-900">
           Loading NGL Viewer...
@@ -229,7 +241,7 @@
       {/if}
     </div>
   {:else if activeViewer === "molstar"}
-    <div bind:this={containerMolstar} class="w-full h-full rounded-[1.5rem] overflow-hidden relative">
+    <div bind:this={containerMolstar} class="w-full h-full rounded-[1.5rem] overflow-hidden relative bg-slate-900" style="min-height: 400px; height: 100%;">
       {#if !scriptLoadedMolstar}
         <div class="flex items-center justify-center h-full text-slate-500 font-medium bg-slate-900">
           Loading Mol* library...
