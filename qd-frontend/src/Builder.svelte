@@ -47,6 +47,7 @@
 
   let activeFamilyTab = $state("II-VI");
   let isLoadingTemplate = $state(false);
+  let activeViewer = $state("molstar");
 
   async function loadTemplate(template) {
     isLoadingTemplate = true;
@@ -103,6 +104,7 @@
   let cationicLigands = $state([]);
   
   let reconEnabled = $state(false);
+  let reconRatio = $state(0.5);
 
   let neutralEnabled = $state(false);
   let neutralLigands = $state([]);
@@ -330,7 +332,10 @@
       isLoading: false,   // Track fetching state for this specific shell
       aspect: [1.0, 1.0, 1.0],
       size_unit_cells: [1.0, 1.0, 1.0],
-      facets: coreFacets.map(f => ({ id: crypto.randomUUID(), hkl: f.hkl, gamma: f.gamma }))
+      facets: coreFacets.map(f => ({ id: crypto.randomUUID(), hkl: f.hkl, gamma: f.gamma })),
+      interface_type: "abrupt",
+      interface_mixing_ratio: 0.5,
+      interface_mixing_width: 3.0,
     });
   }
 
@@ -581,7 +586,10 @@
         material_cif: s.file.name,
         aspect: s.aspect,
         size_unit_cells: s.size_unit_cells,
-        facets: s.facets.map(f => ({ hkl: f.hkl, gamma: f.gamma, scope: f.scope, termination: f.termination }))
+        facets: s.facets.map(f => ({ hkl: f.hkl, gamma: f.gamma, scope: f.scope, termination: f.termination })),
+        interface_type: s.interface_type || "abrupt",
+        interface_mixing_ratio: s.interface_mixing_ratio !== undefined ? s.interface_mixing_ratio : 0.5,
+        interface_mixing_width: s.interface_mixing_width !== undefined ? s.interface_mixing_width : 3.0,
       })),
       cap_distribution: capDist,
       cap_anionic_jobs: skipCoreBuild
@@ -593,7 +601,7 @@
       skip_core_build: skipCoreBuild,
       xyz_unpassivated: skipCoreBuild ? lastUnpassivatedXyz : null,
       reconstruction_enabled: skipCoreBuild ? reconEnabled : false,
-      reconstruction_target_reduction: 0.5,
+      reconstruction_target_reduction: skipCoreBuild ? reconRatio : 0.5,
       reconstruction_min_separation: 'auto',
       neutral_enabled: skipCoreBuild ? neutralEnabled : false,
       neutral_jobs: skipCoreBuild
@@ -822,8 +830,26 @@
               Polar Surface Reconstruction
             </label>
             <p class="text-[10px] text-slate-500 mt-2 leading-snug">
-              Cl placeholders on polar facets (50% charge reduction, auto spacing). Runs before ligand exchange.
+              Cl placeholders on polar facets (auto spacing). Runs before ligand exchange.
             </p>
+
+            {#if reconEnabled}
+              <!-- Reconstruction Ratio Selector -->
+              <div class="space-y-1.5 mt-3 p-3 bg-white border border-accent-100 rounded-xl">
+                <div class="flex justify-between items-center text-xs">
+                  <span class="font-bold text-slate-700">Reconstruction Ratio</span>
+                  <span class="font-mono bg-accent-50 text-accent-700 px-2 py-0.5 rounded font-bold">{Math.round(reconRatio * 100)}%</span>
+                </div>
+                <input 
+                  type="range" 
+                  min="0.1" 
+                  max="0.9" 
+                  step="0.05" 
+                  bind:value={reconRatio}
+                  class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer"
+                />
+              </div>
+            {/if}
           </div>
         </div>
       {/if}
@@ -1176,6 +1202,52 @@
               <input type="number" bind:value={shell.size_unit_cells[1]} step="0.25" min="0.25" class="border-none ring-1 ring-brand-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-brand-400 outline-none font-medium min-w-0">
               <input type="number" bind:value={shell.size_unit_cells[2]} step="0.25" min="0.25" class="border-none ring-1 ring-brand-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-brand-400 outline-none font-medium min-w-0">
             </div>
+
+            <!-- Interface Type Selection (Abrupt / Mixed) -->
+            <span class="block text-[10px] font-extrabold text-brand-700 uppercase tracking-widest mb-2">Interface Type</span>
+            <div class="flex gap-2 mb-4 bg-slate-100/80 p-1 rounded-xl border border-slate-200">
+              <button 
+                class="flex-grow rounded-lg py-1.5 text-xs font-bold transition-all {(!shell.interface_type || shell.interface_type === 'abrupt') ? 'bg-white text-brand-700 shadow-sm' : 'text-slate-600 hover:text-slate-900'}"
+                onclick={(e) => { e.preventDefault(); shell.interface_type = 'abrupt'; }}>
+                Abrupt
+              </button>
+              <button 
+                class="flex-grow rounded-lg py-1.5 text-xs font-bold transition-all {shell.interface_type === 'mixed' ? 'bg-white text-brand-700 shadow-sm' : 'text-slate-600 hover:text-slate-900'}"
+                onclick={(e) => { e.preventDefault(); shell.interface_type = 'mixed'; }}>
+                Mixed
+              </button>
+            </div>
+
+            {#if shell.interface_type === 'mixed'}
+              <!-- Mixing Ratio & Width Sliders -->
+              <div class="space-y-3 mb-4 p-3 bg-white border border-brand-200 rounded-xl">
+                <div class="flex justify-between items-center text-xs">
+                  <span class="font-bold text-slate-700">Mixing Ratio</span>
+                  <span class="font-mono bg-brand-50 text-brand-700 px-2 py-0.5 rounded font-bold">{(shell.interface_mixing_ratio !== undefined ? shell.interface_mixing_ratio : 0.5)}</span>
+                </div>
+                <input 
+                  type="range" 
+                  min="0.05" 
+                  max="0.95" 
+                  step="0.05" 
+                  bind:value={shell.interface_mixing_ratio}
+                  class="w-full accent-brand-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer"
+                />
+                
+                <div class="flex justify-between items-center text-xs pt-1">
+                  <span class="font-bold text-slate-700">Mixing Width</span>
+                  <span class="font-mono bg-brand-50 text-brand-700 px-2 py-0.5 rounded font-bold">{(shell.interface_mixing_width !== undefined ? shell.interface_mixing_width : 3.0)} Å</span>
+                </div>
+                <input 
+                  type="range" 
+                  min="1.0" 
+                  max="10.0" 
+                  step="0.5" 
+                  bind:value={shell.interface_mixing_width}
+                  class="w-full accent-brand-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer"
+                />
+              </div>
+            {/if}
             
             <span class="block text-[10px] font-extrabold text-brand-700 uppercase tracking-widest mb-2">Facets</span>
             {#each shell.facets as sfacet, fi (sfacet.id)}
@@ -1354,11 +1426,31 @@
       <div class="relative flex-1 min-h-[400px] bg-white rounded-[1.5rem] p-4 border border-slate-100 shadow-sm flex flex-col">
         <div class="flex justify-between items-center mb-3 px-2">
           <h2 class="font-heading font-bold text-xl text-slate-900">Live Render</h2>
+          
+          <div class="flex gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
+            <button class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all {activeViewer === '3dmol' ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-950'}"
+                    onclick={() => activeViewer = '3dmol'}>
+              3Dmol
+            </button>
+            <button class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all {activeViewer === 'ngl' ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-950'}"
+                    onclick={() => activeViewer = 'ngl'}>
+              NGL
+            </button>
+            <button class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all {activeViewer === 'molstar' ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-950'}"
+                    onclick={() => activeViewer = 'molstar'}>
+              Mol*
+            </button>
+            <button class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all {activeViewer === 'matterviz' ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-950'}"
+                    onclick={() => activeViewer = 'matterviz'}>
+              MatterViz
+            </button>
+          </div>
         </div>
         <div class="flex-1 bg-slate-50 rounded-[1rem] border border-slate-200 overflow-hidden relative shadow-inner">
           <Viewer 
             xyz={xyzData} 
             sizeMetrics={finalResult?.size_metrics} 
+            activeViewer={activeViewer}
           />
           {#if isBuilding}
             <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm flex flex-col items-center justify-center text-white z-10">

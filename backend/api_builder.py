@@ -93,6 +93,9 @@ class ShellLayer(BaseModel):
     aspect: List[float] = [1.0, 1.0, 1.0]
     facets: List[Facet] = []
     size_unit_cells: Optional[List[float]] = None
+    interface_type: Optional[str] = "abrupt"
+    interface_mixing_ratio: Optional[float] = 0.5
+    interface_mixing_width: Optional[float] = 3.0
 
 
 class LigJob(BaseModel):
@@ -177,6 +180,7 @@ async def read_index():
     return HTMLResponse(content=index_path.read_text())
 
 
+# Cache for analyzed CIF files to speed up repeated custom CIF uploads
 _CIF_ANALYSIS_CACHE = {}
 
 
@@ -1763,6 +1767,15 @@ async def build_nanocrystal_stream(
             needs_rb = _needs_rb_in_recipe(opts, posq_early, repassivate_only=is_repassivate)
 
             final_charges = charges.copy()
+            if opts.shells:
+                for sh in opts.shells:
+                    shell_name = getattr(sh, "material_cif", "")
+                    sp = file_map.get(safe_filename(shell_name))
+                    if sp:
+                        sc = parse_cif_oxidation_numbers(sp.read_text("utf-8", "ignore"))
+                        final_charges.update(sc)
+                        shell_elements.update(sc.keys())
+
             final_charges.setdefault("Cl", -1.0)
             if needs_rb:
                 final_charges.setdefault("Rb", 1.0)
@@ -1791,9 +1804,17 @@ async def build_nanocrystal_stream(
                         f.dict() if hasattr(f, "dict") else f
                         for f in (opts.facets or [])
                     ]
+                    outermost_shell_path = core_path
+                    if opts.shells:
+                        for sh in opts.shells:
+                            shell_name = getattr(sh, "material_cif", "")
+                            sp = file_map.get(safe_filename(shell_name))
+                            if sp:
+                                outermost_shell_path = sp
+
                     xyz_pass, ledger = _run_repassivation_posttreatment(
                         opts.xyz_unpassivated,
-                        core_path,
+                        outermost_shell_path,
                         final_charges,
                         post_treatment,
                         tmp_path,
@@ -1922,6 +1943,16 @@ async def build_nanocrystal_stream(
                         shell_mat["shape"] = {"aspect": shell_aspect}
                     if getattr(sh, "size_unit_cells", None) is not None:
                         shell_mat["size_unit_cells"] = sh.size_unit_cells
+                    if getattr(sh, "interface_type", "abrupt") == "mixed":
+                        shell_mat["interface"] = {
+                            "type": "mixed",
+                            "mixing_width": getattr(sh, "interface_mixing_width", 3.0) or 3.0,
+                            "mixing_ratio": getattr(sh, "interface_mixing_ratio", 0.5) or 0.5
+                        }
+                    else:
+                        shell_mat["interface"] = {
+                            "type": "abrupt"
+                        }
                     materials.append(shell_mat)
                     sc = parse_cif_oxidation_numbers(sp.read_text("utf-8", "ignore"))
                     final_charges.update(sc)

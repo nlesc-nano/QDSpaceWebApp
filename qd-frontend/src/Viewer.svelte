@@ -12,7 +12,36 @@
   // Only disable bonds if the structure is truly massive (>5000 atoms) to protect the browser
   let isMassive = $derived(structure ? structure.num_atoms > 5000 : false);
 
-  let activeViewer = $state(props.isMD ? "matterviz" : "3dmol");
+  // Helper to parse elements, count stoichiometry, and assign CPK/Jmol colors
+  function parseXyzElements(xyzText) {
+    if (!xyzText) return [];
+    const lines = xyzText.trim().split("\n");
+    if (lines.length < 3) return [];
+    const counts = {};
+    for (let i = 2; i < lines.length; i++) {
+      const parts = lines[i].trim().split(/\s+/);
+      if (parts.length >= 4) {
+        const elem = parts[0];
+        counts[elem] = (counts[elem] || 0) + 1;
+      }
+    }
+    const colors = {
+      H: "#ffffff", C: "#909090", N: "#3050f8", O: "#ff0d0d",
+      F: "#b0e0e6", Cl: "#1ff01f", Br: "#a62929", I: "#940094",
+      He: "#ffffc0", Ne: "#b3e3f5", Ar: "#80d1e3", Kr: "#5cb8d1", Xe: "#429eb8",
+      Na: "#ab5cf2", Mg: "#8aff00", Al: "#bfa6a6", Si: "#f0c8a0", P: "#ffa500", S: "#ffff30",
+      K: "#8f40d4", Ca: "#3dff00", Sc: "#e6e6e6", Ti: "#bfc2c7", V: "#a6a6ab", Cr: "#8a99c7", Mn: "#9c7ac7", Fe: "#e06633", Co: "#f090a0", Ni: "#50d050", Cu: "#c88033", Zn: "#7d80b0", Ga: "#c28f8f", Ge: "#668f8f", As: "#bd80e3", Se: "#ffa100",
+      Rb: "#702eb0", Sr: "#00ff00", Y: "#94ffff", Zr: "#94e3e3", Nb: "#73c2c9", Mo: "#54b5b5", Tc: "#3b9e9e", Ru: "#248f8f", Rh: "#0a7d7d", Pd: "#006969", Ag: "#c0c0c0", Cd: "#ffd98f", In: "#a67d7d", Sn: "#669999", Sb: "#9e63b5", Te: "#d47a00",
+      Cs: "#57178f", Ba: "#00c900", La: "#70d4ff", Ce: "#ffffc7", Pr: "#d9ffc7", Nd: "#c7ffc7", Pm: "#a3ffc7", Sm: "#8fffc7", Eu: "#61ffc7", Gd: "#45ffc7", Tb: "#30ffc7", Dy: "#1fffc7", Ho: "#09ffc7", Er: "#00e69c", Tm: "#00d470", Yb: "#00bf38", Lu: "#00ab24", Hf: "#4dc2ff", Ta: "#4da6ff", W: "#2194d6", Re: "#267dab", Os: "#266694", Ir: "#175487", Pt: "#d0d0e0", Au: "#ffd12b", Hg: "#b8b8d0", Tl: "#a6544d", Pb: "#575961", Bi: "#9e4fb5"
+    };
+    return Object.entries(counts).map(([element, count]) => ({
+      element,
+      count,
+      color: colors[element] || "#a0a0a0"
+    })).sort((a, b) => b.count - a.count);
+  }
+
+  let activeViewer = $derived(props.activeViewer || (props.isMD ? "matterviz" : "molstar"));
   
   let container3dmol = $state(null);
   let containerNgl = $state(null);
@@ -21,6 +50,7 @@
   let viewer3dmol = null;
   let stageNgl = null;
   let viewerMolstar = null;
+  let myLabelProvider = null;
   
   let scriptLoaded3dmol = $state(false);
   let scriptLoadedNgl = $state(false);
@@ -54,82 +84,141 @@
     });
   }
 
-  // Render 3Dmol structure
+  // Render 3Dmol structure (White background, Orthographic projection, VDW Spheres only)
   function render3dmol() {
     if (!scriptLoaded3dmol || !container3dmol || !props.xyz || props.isMD) return;
     container3dmol.innerHTML = "";
 
-    if (window.$3Dmol) {
-      viewer3dmol = window.$3Dmol.createViewer(container3dmol, {
-        backgroundColor: "#0f172a" // Slate-900 matching terminal
-      });
-
-      // Add Model
-      viewer3dmol.addModel(props.xyz, "xyz");
-
-      // Styles based on system size
-      const atomCount = props.xyz.split("\n")[0] ? parseInt(props.xyz.split("\n")[0]) : 0;
-      if (atomCount > 4000) {
-        viewer3dmol.setStyle({}, { line: {} });
-      } else {
-        viewer3dmol.setStyle({}, {
-          sphere: { scale: 0.28, colorscheme: "Jmol" },
-          stick: { radius: 0.1, colorscheme: "Jmol" }
+    try {
+      if (window.$3Dmol) {
+        viewer3dmol = window.$3Dmol.createViewer(container3dmol, {
+          backgroundColor: "white",
+          orthographic: true
         });
-      }
 
-      viewer3dmol.zoomTo();
-      viewer3dmol.render();
+        // Add Model
+        viewer3dmol.addModel(props.xyz, "xyz");
+
+        // Style: Spacefill with large VDW spheres (no sticks)
+        viewer3dmol.setStyle({}, {
+          sphere: { colorscheme: "Jmol" }
+        });
+
+        viewer3dmol.zoomTo();
+        viewer3dmol.render();
+      }
+    } catch (err) {
+      console.error("[3Dmol] Render error:", err);
     }
   }
 
-  // Render NGL Viewer structure
+  // Render NGL Viewer structure (White background, VDW spacefill style)
   function renderNgl() {
     if (!scriptLoadedNgl || !containerNgl || !props.xyz || props.isMD) return;
     containerNgl.innerHTML = "";
 
-    if (window.NGL) {
-      stageNgl = new window.NGL.Stage(containerNgl, { backgroundColor: "#0f172a" });
-      const blob = new Blob([props.xyz], { type: "text/plain" });
-      const url = URL.createObjectURL(blob);
-
-      stageNgl.loadFile(url, { ext: "xyz" }).then(function (o) {
-        const atomCount = props.xyz.split("\n")[0] ? parseInt(props.xyz.split("\n")[0]) : 0;
-        if (atomCount > 4000) {
-          o.addRepresentation("line");
-        } else {
-          o.addRepresentation("ball+stick", { multipleBond: "off", scale: 2.0 });
+    try {
+      if (window.NGL) {
+        if (stageNgl) {
+          stageNgl.dispose();
+          stageNgl = null;
         }
-        stageNgl.autoView();
-        URL.revokeObjectURL(url);
-      });
+
+        stageNgl = new window.NGL.Stage(containerNgl, { 
+          backgroundColor: "white"
+        });
+        stageNgl.setParameters({ cameraType: "orthographic" });
+
+        const file = new File([props.xyz], "structure.xyz", { type: "text/plain" });
+
+        stageNgl.loadFile(file).then(function (o) {
+          // Large VDW spacefill representation
+          o.addRepresentation("spacefill", { colorscheme: "element" });
+          stageNgl.autoView();
+        }).catch(err => {
+          console.error("[NGL] Load file error:", err);
+        });
+      }
+    } catch (err) {
+      console.error("[NGL] Render error:", err);
     }
   }
 
-  // Render Molstar structure
+  // Render Molstar structure (White background, loadStructureFromUrl)
   function renderMolstar() {
     if (!scriptLoadedMolstar || !containerMolstar || !props.xyz || props.isMD) return;
     containerMolstar.innerHTML = "";
 
-    if (window.molstar) {
-      window.molstar.Viewer.create(containerMolstar, {
-        layoutIsExpanded: false,
-        layoutShowControls: false,
-        layoutShowRemoteState: false,
-        layoutShowSequence: false,
-        layoutShowLog: false,
-        viewportShowExpand: false,
-        viewportShowSelectionMode: false,
-        viewportShowAnimation: false,
-        collapseLeftControls: true,
-      }).then(v => {
-        viewerMolstar = v;
-        const blob = new Blob([props.xyz], { type: "text/plain" });
-        const url = URL.createObjectURL(blob);
-        viewerMolstar.loadAll({ url: url, format: 'xyz' }).then(() => {
-          URL.revokeObjectURL(url);
+    try {
+      if (window.molstar) {
+        window.molstar.Viewer.create(containerMolstar, {
+          layoutIsExpanded: false,
+          layoutShowControls: false,
+          layoutShowRemoteState: false,
+          layoutShowSequence: false,
+          layoutShowLog: false,
+          viewportShowExpand: false,
+          viewportShowSelectionMode: true,
+          viewportShowAnimation: false,
+          collapseLeftControls: true,
+        }).then(async v => {
+          viewerMolstar = v;
+          const plugin = viewerMolstar.plugin;
+
+          // Set orthographic camera mode and white background color
+          plugin.canvas3d.setProps({
+            camera: { mode: 'orthographic' },
+            renderer: { backgroundColor: 16777215 } // 0xffffff in decimal
+          });
+
+          // Register a custom loci label provider to fix the "unknown entity" hover tooltip
+          if (myLabelProvider) {
+            plugin.managers.lociLabels.removeProvider(myLabelProvider);
+          }
+          myLabelProvider = {
+            label: (loci) => {
+              if (window.molstar.StructureElement.Loci.is(loci)) {
+                const location = window.molstar.StructureElement.Loci.getFirstLocation(loci);
+                if (location) {
+                  const element = window.molstar.StructureProperties.atom.element_symbol(location);
+                  const id = window.molstar.StructureProperties.atom.id(location);
+                  return `Atom: ${element} (Index: ${id})`;
+                }
+              }
+              return undefined;
+            },
+            priority: 100
+          };
+          plugin.managers.lociLabels.addProvider(myLabelProvider);
+
+          // Custom low-level Molstar loaders to parse coordinates and apply spacefill
+          const blob = new Blob([props.xyz], { type: "text/plain" });
+          const url = URL.createObjectURL(blob);
+
+          try {
+            const data = await plugin.builders.data.download({ url, isBinary: false }, { state: { isGhost: true } });
+            const trajectory = await plugin.builders.structure.parseTrajectory(data, 'xyz');
+            const model = await plugin.builders.structure.createModel(trajectory);
+            const structure = await plugin.builders.structure.createStructure(model);
+            
+            const component = await plugin.builders.structure.tryCreateComponentStatic(structure, 'all');
+            if (component) {
+              await plugin.builders.structure.representation.addRepresentation(component, { type: 'spacefill' });
+            }
+            
+            // Center the camera on the newly loaded structure
+            plugin.managers.camera.reset();
+          } catch (err) {
+            console.error("[Molstar] Builder pipeline error:", err);
+          } finally {
+            URL.revokeObjectURL(url);
+          }
+        }).catch(err => {
+          console.error("[Molstar] Create viewer error:", err);
         });
-      });
+      }
+    } catch (err) {
+      console.error("[Molstar] Render error:", err);
     }
   }
 
@@ -158,7 +247,7 @@
       if (ok) scriptLoaded3dmol = true;
     });
 
-    loadScript("https://cdn.jsdelivr.net/npm/ngl@2.0.0-dev.37/dist/ngl.js", "NGL").then(ok => {
+    loadScript("https://cdn.jsdelivr.net/npm/ngl@2.4.0/dist/ngl.js", "NGL").then(ok => {
       if (ok) scriptLoadedNgl = true;
     });
 
@@ -169,6 +258,9 @@
     return () => {
       if (viewer3dmol) viewer3dmol.clear();
       if (stageNgl) stageNgl.dispose();
+      if (viewerMolstar && myLabelProvider) {
+        viewerMolstar.plugin.managers.lociLabels.removeProvider(myLabelProvider);
+      }
     };
   });
 </script>
@@ -179,27 +271,7 @@
 
 <div class="relative w-full h-full">
 
-  {#if !props.isMD}
-  <!-- Interactive Selector Toolbar -->
-  <div class="absolute top-4 right-4 z-20 flex gap-1 bg-slate-900/80 backdrop-blur-md p-1 rounded-lg border border-slate-700/50">
-    <button class="px-2.5 py-1 rounded text-[10px] font-bold transition-all {activeViewer === '3dmol' ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'}"
-            onclick={() => activeViewer = '3dmol'}>
-      3Dmol
-    </button>
-    <button class="px-2.5 py-1 rounded text-[10px] font-bold transition-all {activeViewer === 'ngl' ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'}"
-            onclick={() => activeViewer = 'ngl'}>
-      NGL
-    </button>
-    <button class="px-2.5 py-1 rounded text-[10px] font-bold transition-all {activeViewer === 'molstar' ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'}"
-            onclick={() => activeViewer = 'molstar'}>
-      Mol*
-    </button>
-    <button class="px-2.5 py-1 rounded text-[10px] font-bold transition-all {activeViewer === 'matterviz' ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'}"
-            onclick={() => activeViewer = 'matterviz'}>
-      MatterViz
-    </button>
-  </div>
-  {/if}
+  <!-- Embedded Selector Toolbar Removed (Moved to header by parent) -->
 
   {#if !props.xyz}
     <div class="p-4 flex items-center justify-center h-full text-slate-500 font-medium bg-slate-900 rounded-[1.5rem]" style="min-height: 400px; height: 100%;">
@@ -225,7 +297,7 @@
       />
     {/key}
   {:else if activeViewer === "3dmol"}
-    <div bind:this={container3dmol} class="w-full h-full rounded-[1.5rem] overflow-hidden bg-slate-900" style="min-height: 400px; height: 100%;">
+    <div bind:this={container3dmol} class="w-full h-full rounded-[1.5rem] overflow-hidden bg-white border border-slate-200" style="min-height: 400px; height: 100%;">
       {#if !scriptLoaded3dmol}
         <div class="flex items-center justify-center h-full text-slate-500 font-medium bg-slate-900">
           Loading 3Dmol library...
@@ -233,7 +305,7 @@
       {/if}
     </div>
   {:else if activeViewer === "ngl"}
-    <div bind:this={containerNgl} class="w-full h-full rounded-[1.5rem] overflow-hidden bg-slate-900" style="min-height: 400px; height: 100%;">
+    <div bind:this={containerNgl} class="w-full h-full rounded-[1.5rem] overflow-hidden bg-white border border-slate-200" style="min-height: 400px; height: 100%;">
       {#if !scriptLoadedNgl}
         <div class="flex items-center justify-center h-full text-slate-500 font-medium bg-slate-900">
           Loading NGL Viewer...
@@ -241,7 +313,7 @@
       {/if}
     </div>
   {:else if activeViewer === "molstar"}
-    <div bind:this={containerMolstar} class="w-full h-full rounded-[1.5rem] overflow-hidden relative bg-slate-900" style="min-height: 400px; height: 100%;">
+    <div bind:this={containerMolstar} class="w-full h-full rounded-[1.5rem] overflow-hidden relative bg-white border border-slate-200" style="min-height: 400px; height: 100%;">
       {#if !scriptLoadedMolstar}
         <div class="flex items-center justify-center h-full text-slate-500 font-medium bg-slate-900">
           Loading Mol* library...
@@ -283,6 +355,29 @@
 
       </div>
     </div>
+  {/if}
+
+  <!-- Element Legend & Stoichiometry Overlay -->
+  {#if props.xyz && !props.isMD}
+    {@const elements = parseXyzElements(props.xyz)}
+    {#if elements.length > 0}
+      <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md border border-slate-200/60 p-3 rounded-2xl shadow-lg z-10 max-w-[200px] flex flex-col gap-1.5 pointer-events-auto">
+        <h4 class="text-[10px] font-extrabold text-slate-500 uppercase tracking-widest border-b border-slate-100 pb-1 flex items-center gap-1.5">
+          🎨 Element Legend
+        </h4>
+        <div class="flex flex-col gap-1 max-h-[140px] overflow-y-auto pr-1">
+          {#each elements as el}
+            <div class="flex items-center justify-between gap-3 text-xs font-semibold">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full border border-slate-300 shadow-inner shrink-0" style="background-color: {el.color}"></span>
+                <span class="text-slate-800 font-bold">{el.element}</span>
+              </div>
+              <span class="font-mono text-slate-500 text-[10px]">{el.count}</span>
+            </div>
+          {/each}
+        </div>
+      </div>
+    {/if}
   {/if}
 
 </div>
