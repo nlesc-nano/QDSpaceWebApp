@@ -22,3 +22,5 @@ tree*
 bundle.*
 _tmp_plots/
 
+#cli
+.antigravitycli/
