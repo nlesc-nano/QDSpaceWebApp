@@ -214,12 +214,7 @@ async def analyze_cif(file: UploadFile = File(...)):
         except Exception:
             charges = {}
             
-        # Ensure sys.path contains the scripts folder for importing analyze_cif_facets
-        scripts_dir = "/Users/ivaninfante/Documents/University/escience/QD_builder/scripts"
-        if scripts_dir not in sys.path:
-            sys.path.append(scripts_dir)
-            
-        from analyze_cif_facets import _analyze, _hkl_compact, _richness
+        from builder.scripts.analyze_cif_facets import _analyze, _hkl_compact, _richness
         
         # Execute pymatgen/symmetry analysis
         rows = _analyze(
