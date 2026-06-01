@@ -1044,7 +1044,10 @@ def _run_repassivation_posttreatment(
     class _Capture(io.TextIOBase):
         def write(self, s):
             if log_sink is not None and s:
-                log_sink.append(s)
+                if hasattr(log_sink, "put"):
+                    log_sink.put(s)
+                elif hasattr(log_sink, "append"):
+                    log_sink.append(s)
             return len(s)
 
     with contextlib.redirect_stdout(_Capture()), contextlib.redirect_stderr(_Capture()):
@@ -1084,9 +1087,11 @@ def _run_repassivation_posttreatment(
 
         _facets, planes = _detect_planes()
         if log_sink is not None:
-            log_sink.append(
-                f"[system] Detected {len(planes)} Wulff plane(s) for post-treatment site discovery\n"
-            )
+            msg = f"[system] Detected {len(planes)} Wulff plane(s) for post-treatment site discovery\n"
+            if hasattr(log_sink, "put"):
+                log_sink.put(msg)
+            elif hasattr(log_sink, "append"):
+                log_sink.append(msg)
 
         # 2. Charged ligand exchange (X-type)
         if lig_ex is not None and lig_ex.enabled:
@@ -1796,41 +1801,76 @@ async def build_nanocrystal_stream(
                     "line": "[system] Reusing built core; applying post-treatment only...",
                 }) + "\n"
 
-                repass_logs: List[str] = []
+                log_queue = queue.Queue()
+                facets_for_repass = [
+                    f.dict() if hasattr(f, "dict") else f
+                    for f in (opts.facets or [])
+                ]
+                outermost_shell_path = core_path
+                if opts.shells:
+                    for sh in opts.shells:
+                        shell_name = getattr(sh, "material_cif", "")
+                        sp = file_map.get(safe_filename(shell_name))
+                        if sp:
+                            outermost_shell_path = sp
+
                 import time as _time
                 _t0 = _time.monotonic()
-                try:
-                    facets_for_repass = [
-                        f.dict() if hasattr(f, "dict") else f
-                        for f in (opts.facets or [])
-                    ]
-                    outermost_shell_path = core_path
-                    if opts.shells:
-                        for sh in opts.shells:
-                            shell_name = getattr(sh, "material_cif", "")
-                            sp = file_map.get(safe_filename(shell_name))
-                            if sp:
-                                outermost_shell_path = sp
 
-                    xyz_pass, ledger = _run_repassivation_posttreatment(
-                        opts.xyz_unpassivated,
-                        outermost_shell_path,
-                        final_charges,
-                        post_treatment,
-                        tmp_path,
-                        facets_input=facets_for_repass,
-                        log_sink=repass_logs,
-                    )
+                def worker():
+                    try:
+                        xyz_res, ledg_res = _run_repassivation_posttreatment(
+                            opts.xyz_unpassivated,
+                            outermost_shell_path,
+                            final_charges,
+                            post_treatment,
+                            tmp_path,
+                            facets_input=facets_for_repass,
+                            log_sink=log_queue,
+                        )
+                        log_queue.put(("DONE", xyz_res, ledg_res))
+                    except Exception as ex:
+                        tb = traceback.format_exc(limit=6)
+                        log_queue.put(("ERROR", str(ex), tb))
+
+                t = threading.Thread(target=worker)
+                t.start()
+
+                xyz_pass = None
+                ledger = []
+                try:
+                    while True:
+                        items = []
+                        while not log_queue.empty():
+                            try:
+                                items.append(log_queue.get_nowait())
+                            except queue.Empty:
+                                break
+
+                        stop = False
+                        for item in items:
+                            if isinstance(item, tuple) and item[0] in ("DONE", "ERROR"):
+                                if item[0] == "DONE":
+                                    xyz_pass = item[1]
+                                    ledger = item[2]
+                                else:
+                                    raise Exception(f"{item[1]}\n{item[2]}")
+                                stop = True
+                            else:
+                                for line in item.splitlines():
+                                    if line.strip():
+                                        yield json.dumps({"event": "log", "line": line}) + "\n"
+
+                        if stop:
+                            break
+                        if not t.is_alive() and log_queue.empty():
+                            break
+
+                        await asyncio.sleep(0.05)
                 except Exception as e:
-                    tb = traceback.format_exc(limit=6)
-                    yield json.dumps({"event": "log", "line": f"[error] Repassivation failed: {e}\n{tb}"}) + "\n"
+                    yield json.dumps({"event": "log", "line": f"[error] Repassivation failed: {e}"}) + "\n"
                     yield json.dumps({"event": "result", "status": "failed"}) + "\n"
                     return
-
-                for raw in repass_logs:
-                    for line in raw.splitlines():
-                        if line.strip():
-                            yield json.dumps({"event": "log", "line": line}) + "\n"
 
                 yield json.dumps({
                     "event": "log",

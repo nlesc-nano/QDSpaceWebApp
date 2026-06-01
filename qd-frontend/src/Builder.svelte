@@ -855,9 +855,15 @@
       {/if}
       {#if lastUnpassivatedXyz}
         <hr class="my-4 border-slate-100" />
-        <button class="w-full bg-accent-600 hover:bg-accent-700 text-white font-bold py-3 rounded-xl text-sm transition-all shadow-glow active:scale-95 flex items-center justify-center gap-2"
+        <button class="w-full bg-accent-600 hover:bg-accent-700 text-white font-bold py-3 rounded-xl text-sm transition-all shadow-glow active:scale-95 flex items-center justify-center gap-2 mb-3"
                 onclick={() => onBuild(true)} disabled={isBuilding}>
           {isBuilding ? 'Processing...' : 'Repassivate Current Structure'}
+        </button>
+      {/if}
+      {#if xyzData && finalResult}
+        <button class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl shadow-sm transition-all active:scale-95 text-sm flex items-center justify-center gap-1.5"
+                onclick={downloadXYZ}>
+          ⬇ Download {finalResult.download_name || 'final.xyz'}
         </button>
       {/if}
     </div>
