@@ -1,3 +1,5 @@
+# backend/app.py
+# Active trigger for uvicorn auto-reload of nanocrystal-builder optimizations
 from pathlib import Path
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
