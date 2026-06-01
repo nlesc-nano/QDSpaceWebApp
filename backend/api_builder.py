@@ -1,3 +1,5 @@
+# backend/api_builder.py
+# Active trigger for uvicorn reload of nanocrystal-builder package optimizations
 from __future__ import annotations
 
 import io
@@ -25,11 +27,7 @@ from pydantic import BaseModel, Field
 
 import argparse
 from ase.io import read as ase_read, write as ase_write
-from minicat.main import (
-    _sanitize_simple_acid_smiles, smiles_to_3d_mol, 
-    build_per_site_variant, execute_passivation_job
-)
-from minicat.functional_groups_class import get_fg_registry, detect_fg_matches_neutral
+# miniCAT legacy imports removed
 
 import numpy as np
 
@@ -86,12 +84,18 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 class Facet(BaseModel):
     hkl: str
     gamma: float
+    scope: Optional[str] = "family"        # "family" | "facet"
+    termination: Optional[str] = None     # None | "cation_rich" | "anion_rich"
 
 
 class ShellLayer(BaseModel):
     material_cif: str
     aspect: List[float] = [1.0, 1.0, 1.0]
     facets: List[Facet] = []
+    size_unit_cells: Optional[List[float]] = None
+    interface_type: Optional[str] = "abrupt"
+    interface_mixing_ratio: Optional[float] = 0.5
+    interface_mixing_width: Optional[float] = 3.0
 
 
 class LigJob(BaseModel):
@@ -99,8 +103,17 @@ class LigJob(BaseModel):
     ratio: float = 1.0
     dummy: str = ""
 
+
+class NeutralJob(BaseModel):
+    target: str = "anion"                 # "anion" | "cation" | "both"
+    smiles: str
+    ratio: float = 1.0
+    distribution: str = "random"           # "random" | "uniform" | "segmented"
+
+
 class BuildOptions(BaseModel):
-    radius_A: float
+    radius_A: Optional[float] = None
+    size_unit_cells: Optional[List[float]] = None
     core_cif_filename: str
     aspect: List[float] = [1.0, 1.0, 1.0]
     facets: List[Facet] = []
@@ -116,6 +129,16 @@ class BuildOptions(BaseModel):
     cap_cationic_jobs: Optional[List[LigJob]] = None  # replace Rb
     skip_core_build: bool = False
     xyz_unpassivated: Optional[str] = None
+
+    # New Surface Reconstruction and Neutral passivation fields
+    reconstruction_enabled: Optional[bool] = False
+    reconstruction_target_reduction: Optional[float] = 0.5
+    reconstruction_min_separation: Optional[str] = "auto"
+    neutral_enabled: Optional[bool] = False
+    neutral_jobs: Optional[List[NeutralJob]] = None
+
+    # Construction center ion (maps to YAML construction_origin)
+    center_ion: Optional[str] = None
 
 # ---------------------------------------------------------------------
 # FastAPI app
@@ -155,6 +178,170 @@ async def read_index():
             status_code=404,
         )
     return HTMLResponse(content=index_path.read_text())
+
+
+# Cache for analyzed CIF files to speed up repeated custom CIF uploads
+_CIF_ANALYSIS_CACHE = {}
+
+
+@app.post("/api/analyze_cif")
+async def analyze_cif(file: UploadFile = File(...)):
+    """
+    Analyzes an uploaded CIF file and returns symmetry-distinct facet families,
+    multiplicities, classifications (polar, stoichiometric), specific Miller index lists,
+    and a guess for the crystal phase based on the spacegroup.
+    """
+    import tempfile
+    import hashlib
+    from pathlib import Path
+    
+    tmpdir = None
+    try:
+        content = await file.read()
+        file_hash = hashlib.sha256(content).hexdigest()
+        if file_hash in _CIF_ANALYSIS_CACHE:
+            logging.info(f"Returning cached CIF analysis for {file.filename}")
+            return JSONResponse(_CIF_ANALYSIS_CACHE[file_hash])
+
+        tmpdir = tempfile.mkdtemp(prefix="qdb_analyze_")
+        tmp = Path(tmpdir)
+        cif_path = tmp / safe_filename(file.filename)
+        cif_path.write_bytes(content)
+        
+        # Parse charges (oxidation numbers)
+        try:
+            charges = parse_cif_oxidation_numbers(cif_path.read_text("utf-8", "ignore"))
+        except Exception:
+            charges = {}
+            
+        # Ensure sys.path contains the scripts folder for importing analyze_cif_facets
+        scripts_dir = "/Users/ivaninfante/Documents/University/escience/QD_builder/scripts"
+        if scripts_dir not in sys.path:
+            sys.path.append(scripts_dir)
+            
+        from analyze_cif_facets import _analyze, _hkl_compact, _richness
+        
+        # Execute pymatgen/symmetry analysis
+        rows = _analyze(
+            cif_path,
+            charges,
+            max_index=2,
+            proper_only=True,
+            supercell=3,
+            layer_tol=0.08
+        )
+        
+        # Detect crystal phase matching bulkTemplates
+        from pymatgen.core import Structure
+        from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
+        struct = Structure.from_file(str(cif_path))
+        sga = SpacegroupAnalyzer(struct, symprec=1e-3)
+        sg_symbol = sga.get_space_group_symbol()
+        
+        if "F-43m" in sg_symbol:
+            phase = "zinc-blende"
+        elif "Fm-3m" in sg_symbol:
+            phase = "rock-salt"
+        elif "Pm-3m" in sg_symbol:
+            phase = "cubic"
+        else:
+            phase = sga.get_crystal_system()
+            
+        # Format symmetrically distinct facet families compact-style
+        compact_rows = []
+        for r in rows:
+            hkl_compacts = [_hkl_tuple_to_compact(signed_row["hkl"]) for signed_row in r["signed"]]
+            hkl_list = sorted(list(set(hkl_compacts)))
+            
+            # Identify valid terminations
+            status = r["family_status"]
+            if status in ("polar", "termination-sensitive"):
+                terminations = ["cation_rich", "anion_rich"]
+            else:
+                terminations = ["stoichiometric"]
+                
+            recommended_hkl: Dict[str, str] = {}
+            if status in ("polar", "termination-sensitive"):
+                cation_terms: List[str] = []
+                anion_terms: List[str] = []
+                for signed_row in r["signed"]:
+                    hkl_c = _hkl_tuple_to_compact(signed_row["hkl"])
+                    for pattern in signed_row.get("patterns", []):
+                        rich = _richness(pattern, charges)
+                        if rich == "cation-rich":
+                            cation_terms.append(hkl_c)
+                        elif rich == "anion-rich":
+                            anion_terms.append(hkl_c)
+                if cation_terms:
+                    positive = sorted({t for t in cation_terms if _is_nonnegative_compact(t)})
+                    recommended_hkl["cation_rich"] = (
+                        positive[0] if positive else _normalize_hkl_string(sorted(set(cation_terms))[0])
+                    )
+                if anion_terms:
+                    negative = sorted({t for t in anion_terms if str(t).startswith("-")})
+                    recommended_hkl["anion_rich"] = (
+                        negative[0] if negative else sorted(set(anion_terms))[-1]
+                    )
+
+                cat_h = recommended_hkl.get("cation_rich")
+                an_h = recommended_hkl.get("anion_rich")
+                if cat_h and (not an_h or an_h == cat_h):
+                    recommended_hkl["anion_rich"] = _opposite_compact_hkl(cat_h)
+                elif an_h and not cat_h:
+                    recommended_hkl["cation_rich"] = _opposite_compact_hkl(an_h)
+
+            row_out: Dict[str, Any] = {
+                "family": r["family"],
+                "status": status,
+                "multiplicity": r["multiplicity"],
+                "hkl_list": hkl_list,
+                "terminations": terminations,
+            }
+            if recommended_hkl:
+                row_out["recommended_hkl"] = recommended_hkl
+            compact_rows.append(row_out)
+            
+        lattice_lengths = [float(l) for l in struct.lattice.lengths]
+
+        species = sorted({str(site.specie.symbol) for site in struct})
+        
+        # Parse constituent elements using electronegativity & metallic properties
+        from pymatgen.core import Element
+        cations = []
+        anions = []
+        for el_sym in species:
+            try:
+                el = Element(el_sym)
+                if el.is_metal or el.X < 2.1:
+                    cations.append(el_sym)
+                else:
+                    anions.append(el_sym)
+            except Exception:
+                cations.append(el_sym)
+        
+        response_data = {
+            "status": "success",
+            "phase": phase,
+            "spacegroup": sg_symbol,
+            "facets": compact_rows,
+            "lattice_lengths": lattice_lengths,
+            "species": species,
+            "anions": anions,
+            "cations": cations
+        }
+        _CIF_ANALYSIS_CACHE[file_hash] = response_data
+        return JSONResponse(response_data)
+        
+    except Exception as e:
+        import traceback
+        logging.error(f"CIF analysis failed: {e}\n{traceback.format_exc()}")
+        return JSONResponse({
+            "status": "failed",
+            "error": str(e)
+        }, status_code=500)
+    finally:
+        if tmpdir:
+            shutil.rmtree(tmpdir, ignore_errors=True)
 
 
 # ---------------------------------------------------------------------
@@ -234,6 +421,107 @@ def _allocate_counts_by_ratio(total: int, jobs) -> dict[str, int]:
     prov.sort(key=lambda x: x[2], reverse=True)
     for i in range(rem): prov[i][1] += 1
     return {s:c for s,c,_ in prov}
+
+
+def _get_heavy_atom_count(smiles: str) -> int:
+    try:
+        from rdkit import Chem
+        mol = Chem.MolFromSmiles(smiles)
+        if mol:
+            return mol.GetNumHeavyAtoms()
+    except Exception:
+        pass
+    clean = re.sub(r'\[[^\]]+\]', '', smiles)
+    letters = re.findall(r'[a-zA-Z]', clean)
+    return sum(1 for l in letters if l.upper() != 'H')
+
+
+def _count_molecules_by_smiles(xyz_text: str, core_elems: set[str], shell_elems: set[str], smiles_list: List[str]) -> Dict[str, int]:
+    """
+    Performs distance-based connected-component clustering on the organic (non-host) atoms in XYZ,
+    counts the number of heavy atoms in each organic molecule cluster,
+    and matches them back to the expected heavy atom counts of the requested SMILES strings.
+    """
+    if not xyz_text or not smiles_list:
+        return {}
+        
+    try:
+        from ase.io import read as ase_read
+        atoms = ase_read(io.StringIO(xyz_text), format="xyz")
+    except Exception as e:
+        logging.error(f"ASE read failed in organic clustering: {e}")
+        return {}
+        
+    positions = atoms.get_positions()
+    symbols = atoms.get_chemical_symbols()
+    n = len(atoms)
+    
+    # Identify host/inorganic core + shell elements
+    host_elements = core_elems.union(shell_elems)
+    organic_indices = [
+        i for i in range(n)
+        if symbols[i] not in host_elements and symbols[i] not in ("Cl", "Rb", "X")
+    ]
+    
+    if not organic_indices:
+        return {}
+        
+    # Build bonding graph adjacency list among organic indices (distance threshold < 2.2 Angstroms)
+    adj = {i: [] for i in organic_indices}
+    for i in range(len(organic_indices)):
+        idx_i = organic_indices[i]
+        pos_i = positions[idx_i]
+        for j in range(i + 1, len(organic_indices)):
+            idx_j = organic_indices[j]
+            pos_j = positions[idx_j]
+            dist = np.linalg.norm(pos_i - pos_j)
+            if dist < 2.2:
+                adj[idx_i].append(idx_j)
+                adj[idx_j].append(idx_i)
+                
+    # Find connected components via DFS/BFS
+    visited = set()
+    components = []
+    for idx in organic_indices:
+        if idx not in visited:
+            comp = []
+            q = [idx]
+            visited.add(idx)
+            while q:
+                curr = q.pop()
+                comp.append(curr)
+                for neighbor in adj[curr]:
+                    if neighbor not in visited:
+                        visited.add(neighbor)
+                        q.append(neighbor)
+            components.append(comp)
+            
+    # For each component, count non-H heavy atoms
+    heavy_counts = []
+    for comp in components:
+        heavy_atoms = [idx for idx in comp if symbols[idx] != "H"]
+        heavy_counts.append(len(heavy_atoms))
+        
+    heavy_frequencies = Counter(heavy_counts)
+    
+    # Map smiles to heavy atom sizes
+    smiles_to_heavy = {}
+    for sm in smiles_list:
+        if sm.strip():
+            smiles_to_heavy[sm.strip()] = _get_heavy_atom_count(sm)
+            
+    counts_by_smiles = {}
+    for h_count, num_mols in heavy_frequencies.items():
+        if h_count <= 0:
+            continue
+        # Find any smiles that match this heavy count
+        matched = [sm for sm, hc in smiles_to_heavy.items() if hc == h_count]
+        if len(matched) == 1:
+            counts_by_smiles[matched[0]] = num_mols
+        elif len(matched) > 1:
+            counts_by_smiles[matched[0]] = num_mols
+            
+    return counts_by_smiles
 
 
 def _count_grouped_xyz(xyz_text: str, core_elems: set[str], shell_elems: set[str]) -> dict:
@@ -544,6 +832,344 @@ def format_facets_to_dict(facets: List[Facet]) -> Dict[str, float]:
     return {f.hkl: f.gamma for f in facets}
 
 
+class _QuotedStr(str):
+    """Force double-quoted YAML strings (needed for hkl like -1-1-1)."""
+
+
+def _quoted_str_representer(dumper, data):
+    return dumper.represent_scalar("tag:yaml.org,2002:str", data, style='"')
+
+
+yaml.add_representer(_QuotedStr, _quoted_str_representer)
+yaml.SafeDumper.add_representer(_QuotedStr, _quoted_str_representer)
+
+
+def _yaml_dump_canonical(data: dict) -> str:
+    return yaml.safe_dump(data, sort_keys=False)
+
+
+def _aspect_is_unity(aspect: Optional[List[float]]) -> bool:
+    vals = aspect or [1.0, 1.0, 1.0]
+    return all(abs(float(a) - 1.0) < 1e-9 for a in vals)
+
+
+def _needs_rb_in_recipe(opts: BuildOptions, positive_q_mode: str, *, repassivate_only: bool = False) -> bool:
+    if repassivate_only:
+        for job in opts.cap_cationic_jobs or []:
+            if job.smiles.strip():
+                return True
+        return False
+    posq = (positive_q_mode or "remove").strip().lower()
+    if posq == "add":
+        return True
+    for job in opts.cap_cationic_jobs or []:
+        if job.smiles.strip():
+            return True
+    return False
+
+
+def _hkl_tuple_to_compact(hkl: tuple) -> str:
+    """Miller compact string compatible with nc-builder _parse_hkl."""
+    return "".join(
+        (f"-{abs(int(x))}" if int(x) < 0 else str(int(x)))
+        for x in (hkl[0], hkl[1], hkl[2])
+    )
+
+
+def _opposite_compact_hkl(hkl_str: str) -> str:
+    """Return the opposite signed Miller index in compact form (e.g. 111 -> -1-1-1)."""
+    from builder.config import _parse_hkl
+
+    h, k, l = _parse_hkl(str(hkl_str).strip())
+    return _hkl_tuple_to_compact((-h, -k, -l))
+
+
+def _is_nonnegative_compact(hkl_str: str) -> bool:
+    s = str(hkl_str).strip()
+    return bool(s) and not s.startswith("-") and "-" not in s
+
+
+def _normalize_hkl_string(h: str) -> str:
+    """Normalize stored/UI hkl to compact form; map 1-1-1 style to preferred positive family seed when possible."""
+    s = str(h).strip().strip("()")
+    if _is_nonnegative_compact(s):
+        return s
+    if s.startswith("-") and "-" not in s[1:]:
+        return s
+    # Ambiguous mixed-sign compact (e.g. 1-1-1): use absolute digits for non-anion family seeds
+    digits = re.findall(r"\d", s)
+    if len(digits) == 3:
+        return "".join(digits)
+    return s
+
+
+def _build_post_treatment_from_opts(opts: BuildOptions) -> dict:
+    post_treatment: dict = {}
+    if opts.reconstruction_enabled:
+        post_treatment["surface_reconstruction"] = {
+            "enabled": True,
+            "ligand": "Cl",
+            "facets": "auto",
+            "target_reduction": opts.reconstruction_target_reduction or 0.5,
+            "min_separation": opts.reconstruction_min_separation or "auto",
+            "distribution": "fps",
+            "seed": 1337,
+        }
+    passes = []
+    if opts.cap_anionic_jobs:
+        for job in opts.cap_anionic_jobs:
+            if job.smiles.strip():
+                passes.append({
+                    "replace": job.dummy or "Cl",
+                    "charge": -1,
+                    "smiles": [job.smiles.strip()],
+                    "ratio": job.ratio,
+                    "distribution": opts.cap_distribution or "uniform",
+                })
+    if opts.cap_cationic_jobs:
+        for job in opts.cap_cationic_jobs:
+            if job.smiles.strip():
+                passes.append({
+                    "replace": job.dummy or "Rb",
+                    "charge": 1,
+                    "smiles": [job.smiles.strip()],
+                    "ratio": job.ratio,
+                    "distribution": opts.cap_distribution or "uniform",
+                })
+    if passes:
+        post_treatment["ligand_exchange"] = {
+            "enabled": True,
+            "passes": passes,
+            "ff": "uff",
+            "refinement_passes": 3,
+            "sterics_mode": "vdw",
+            "seed": 1337,
+        }
+    if opts.neutral_enabled and opts.neutral_jobs:
+        neutral_passes = []
+        for job in opts.neutral_jobs:
+            if job.smiles.strip():
+                neutral_passes.append({
+                    "target": job.target or "anion",
+                    "smiles": job.smiles.strip(),
+                    "ratio": job.ratio,
+                    "distribution": job.distribution or "random",
+                })
+        if neutral_passes:
+            post_treatment["neutral_ligands"] = {
+                "enabled": True,
+                "passes": neutral_passes,
+                "ff": "uff",
+                "refinement_passes": 3,
+                "sterics_mode": "vdw",
+                "offset_out": 0.5,
+                "seed": 1337,
+            }
+    return post_treatment
+
+
+def _run_repassivation_posttreatment(
+    xyz_text: str,
+    core_cif_path: Path,
+    charges: Dict[str, float],
+    post_treatment: dict,
+    tmp_path: Path,
+    *,
+    facets_input: Optional[List] = None,
+    log_sink: Optional[List[str]] = None,
+) -> Tuple[str, List[dict]]:
+    """
+    Apply post_treatment on an existing XYZ without Wulff rebuild.
+
+    Order matches nc-builder main.py:
+      1. surface_reconstruction (Cl placeholders on polar facets)
+      2. ligand_exchange (charged X-type)
+      3. neutral_ligands (L-type)
+    """
+    from functools import partial
+
+    from ase import Atoms
+    from ase.io import read as ase_read, write as ase_write
+    from pymatgen.core import Structure
+
+    facets_yaml = format_facets_for_yaml(facets_input) if facets_input else [
+        {"hkl": _QuotedStr("100"), "gamma": 1.0, "scope": "family"},
+        {"hkl": _QuotedStr("110"), "gamma": 1.0, "scope": "family"},
+        {"hkl": _QuotedStr("111"), "gamma": 1.0, "scope": "family"},
+    ]
+    minimal_yaml = {
+        "charges": charges,
+        "passivation": _default_passivation_block(),
+        "facets": facets_yaml,
+        "symmetry": {"proper_rotations_only": True},
+    }
+    if post_treatment:
+        minimal_yaml["post_treatment"] = post_treatment
+
+    yaml_path = tmp_path / "repassivate.yml"
+    yaml_path.write_text(_yaml_dump_canonical(minimal_yaml), encoding="utf-8")
+
+    from builder.config import parse_yaml_config
+    from builder.facets import detect_facets_from_nc, expand_facets
+    from builder.facet_reconstruction import _native_facets_and_planes, reconstruct_polar_facets
+    from builder.ligand_exchange_posttreat import run_ligand_exchange_posttreatment
+    from builder.neutral_ligand_posttreat import run_neutral_ligand_posttreatment
+    from builder.passivation_iterative import charge_balance_iterative
+
+    cfg = parse_yaml_config(str(yaml_path))
+    struct = Structure.from_file(str(core_cif_path))
+    atoms = ase_read(io.StringIO(xyz_text), format="xyz")
+    syms = list(atoms.get_chemical_symbols())
+    pts = atoms.get_positions()
+    cif_path = str(core_cif_path.resolve())
+    anion_lig = cfg.passivation.ligand or "Cl"
+    facet_seeds = expand_facets(struct, cfg.seeds, proper_only=cfg.proper_only)
+    ledger: List[dict] = []
+
+    pt = getattr(cfg, "post_treatment", None)
+    surface_reconstruction_spec = getattr(pt, "surface_reconstruction", None)
+    lig_ex = getattr(pt, "ligand_exchange", None)
+    neutral_spec = getattr(pt, "neutral_ligands", None)
+
+    def _detect_planes():
+        facets, planes = _native_facets_and_planes(
+            syms, pts, struct, cfg.charges, facet_seeds, anion_lig, cfg.passivation.surf_tol
+        )
+        if not planes:
+            facets, planes = detect_facets_from_nc(
+                syms, pts, struct.lattice, cfg.charges, facet_seeds, cfg.passivation.surf_tol
+            )
+        return facets, planes
+
+    class _Capture(io.TextIOBase):
+        def write(self, s):
+            if log_sink is not None and s:
+                if hasattr(log_sink, "put"):
+                    log_sink.put(s)
+                elif hasattr(log_sink, "append"):
+                    log_sink.append(s)
+            return len(s)
+
+    with contextlib.redirect_stdout(_Capture()), contextlib.redirect_stderr(_Capture()):
+        # 1. Surface reconstruction with Cl placeholders (polar facets)
+        if surface_reconstruction_spec is not None and surface_reconstruction_spec.enabled:
+            balance_fn = partial(
+                charge_balance_iterative,
+                cfg.charges,
+                anion_lig,
+                verbose=False,
+                planes=[],
+                surf_tol=cfg.passivation.surf_tol,
+                cif_path=cif_path,
+                positive_q_strategy="remove",
+                write_all=False,
+                prefix=str(tmp_path / "repass"),
+                prepass_mode=cfg.passivation.prepass_mode,
+                prepass_min_cn_terrace=cfg.passivation.prepass_min_cn_terrace,
+                prepass_min_cn_edge=cfg.passivation.prepass_min_cn_edge,
+                prepass_min_cn_vertex=cfg.passivation.prepass_min_cn_vertex,
+            )
+            syms, pts = reconstruct_polar_facets(
+                syms,
+                pts,
+                struct=struct,
+                facet_seeds=facet_seeds,
+                charges=cfg.charges,
+                ligand=anion_lig,
+                surf_tol=cfg.passivation.surf_tol,
+                cif_path=cif_path,
+                spec=surface_reconstruction_spec,
+                charge_balance_fn=balance_fn,
+                verbose=False,
+                write_all=False,
+                prefix=str(tmp_path / "repass"),
+            )
+
+        _facets, planes = _detect_planes()
+        if log_sink is not None:
+            msg = f"[system] Detected {len(planes)} Wulff plane(s) for post-treatment site discovery\n"
+            if hasattr(log_sink, "put"):
+                log_sink.put(msg)
+            elif hasattr(log_sink, "append"):
+                log_sink.append(msg)
+
+        # 2. Charged ligand exchange (X-type)
+        if lig_ex is not None and lig_ex.enabled:
+            syms, pts, ledger = run_ligand_exchange_posttreatment(
+                syms, pts, cfg, struct, planes, cif_path
+            )
+
+        # 3. Neutral ligand passivation (L-type; after exchange, same as nc-builder)
+        if neutral_spec is not None and neutral_spec.enabled:
+            syms, pts = run_neutral_ligand_posttreatment(syms, pts, cfg, struct, planes)
+
+    out = io.StringIO()
+    ase_write(out, Atoms(symbols=syms, positions=pts), format="xyz")
+    return out.getvalue(), ledger
+
+
+def format_facets_for_yaml(facets) -> List[dict]:
+    """Normalize facets for nc-builder YAML with quoted hkl and deduplication."""
+    seen: set[tuple] = set()
+    out: List[dict] = []
+    for f in facets or []:
+        if hasattr(f, "hkl"):
+            h = getattr(f, "hkl")
+            g = float(getattr(f, "gamma"))
+            sc = getattr(f, "scope", "family")
+            term = getattr(f, "termination", None)
+        else:
+            h = f.get("hkl")
+            g = float(f.get("gamma", 0.0))
+            sc = f.get("scope", "family")
+            term = f.get("termination", None)
+
+        h_str = _normalize_hkl_string(str(h).strip())
+        if sc == "family" and h_str.startswith("-") and term != "anion_rich":
+            h_str = h_str.lstrip("-") or h_str
+
+        key = (h_str, term, sc)
+        if key in seen:
+            continue
+        seen.add(key)
+
+        entry: dict = {
+            "hkl": _QuotedStr(h_str),
+            "gamma": g,
+            "scope": sc,
+        }
+        if term is not None:
+            entry["termination"] = term
+        out.append(entry)
+
+    # When cation/anion share the same hkl string, force anion to the opposite index
+    cation_hkls = [str(e["hkl"]) for e in out if e.get("termination") == "cation_rich"]
+    for entry in out:
+        if entry.get("termination") != "anion_rich":
+            continue
+        h_str = str(entry["hkl"])
+        for cat_h in cation_hkls:
+            if h_str == cat_h:
+                entry["hkl"] = _QuotedStr(_opposite_compact_hkl(cat_h))
+                break
+
+    return out
+
+
+def _default_passivation_block(*, include_cation_ligand: bool = False) -> dict:
+    block = {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1,
+    }
+    if include_cation_ligand:
+        block["cation_ligand"] = "Rb"
+    return block
+
+
 def _dist_string(jobs: List[LigJob], mode: str) -> str:
     xs = [f"{float(max(0.0, j.ratio)):.6g}" for j in jobs if j.smiles.strip()]
     if not xs:
@@ -695,6 +1321,9 @@ async def build_nanocrystal(files: List[UploadFile] = File(...), options: str = 
             "charges": first_pass_charges,
             "passivation": {"ligand": "Cl", "surf_tol": 2.0},
         }
+        if opts.size_unit_cells is not None:
+            temp_yaml_dict["size_unit_cells"] = opts.size_unit_cells
+
         temp_yaml_path = tmp_path / "temp_config.yml"
         temp_yaml_path.write_text(yaml.safe_dump(temp_yaml_dict, sort_keys=False), encoding="utf-8")
 
@@ -703,8 +1332,10 @@ async def build_nanocrystal(files: List[UploadFile] = File(...), options: str = 
             "nc-builder",
             str(core_path.resolve()),
             str(temp_yaml_path.resolve()),
-            "-r",
-            f"{opts.radius_A:.4f}",
+        ]
+        if opts.size_unit_cells is None and opts.radius_A is not None:
+            first_pass_cmd += ["-r", f"{opts.radius_A:.4f}"]
+        first_pass_cmd += [
             "-o",
             str((tmp_path / first_pass_output_file).resolve()),
             "--center",
@@ -731,16 +1362,19 @@ async def build_nanocrystal(files: List[UploadFile] = File(...), options: str = 
                 "charges": final_charges,
                 "passivation": passivation_block,
             }
+            if opts.size_unit_cells is not None:
+                yaml_dict["size_unit_cells"] = opts.size_unit_cells
             cmd = ["nc-builder", str(core_path.resolve())]
         else:
-            materials = [
-                {
-                    "name": "core",
-                    "cif": str(core_path.resolve()),
-                    "facets": format_facets_to_dict(opts.facets),
-                    "shape": {"aspect": opts.aspect},
-                }
-            ]
+            core_mat = {
+                "name": "core",
+                "cif": str(core_path.resolve()),
+                "facets": format_facets_to_dict(opts.facets),
+                "shape": {"aspect": opts.aspect},
+            }
+            if opts.size_unit_cells is not None:
+                core_mat["size_unit_cells"] = opts.size_unit_cells
+            materials = [core_mat]
             outermost_shell_path = core_path
 
             for i, shell in enumerate(opts.shells):
@@ -748,14 +1382,15 @@ async def build_nanocrystal(files: List[UploadFile] = File(...), options: str = 
                 if not shell_cif_path:
                     raise HTTPException(404, f"Shell material '{shell.material_cif}' not found.")
 
-                materials.append(
-                    {
-                        "name": f"shell{i+1}",
-                        "cif": str(shell_cif_path.resolve()),
-                        "facets": format_facets_to_dict(shell.facets) or "inherit",
-                        "shape": {"aspect": shell.aspect},
-                    }
-                )
+                shell_mat = {
+                    "name": f"shell{i+1}",
+                    "cif": str(shell_cif_path.resolve()),
+                    "facets": format_facets_to_dict(shell.facets) or "inherit",
+                    "shape": {"aspect": shell.aspect},
+                }
+                if getattr(shell, "size_unit_cells", None) is not None:
+                    shell_mat["size_unit_cells"] = shell.size_unit_cells
+                materials.append(shell_mat)
 
                 shell_charges = parse_cif_oxidation_numbers(shell_cif_path.read_text("utf-8", "ignore"))
                 final_charges.update(shell_charges)
@@ -776,18 +1411,19 @@ async def build_nanocrystal(files: List[UploadFile] = File(...), options: str = 
         logging.info(f"Generated FINAL YAML config:\n{final_yaml_path.read_text()}")
 
         final_output_file = "final.xyz"
-        cmd.extend(
-            [
-                str(final_yaml_path.resolve()),
-                "-r",
-                f"{opts.radius_A:.4f}",
-                "-o",
-                str((tmp_path / final_output_file).resolve()),
-                "--write-all",
-                "--center",
-                "--verbose",
-            ]
-        )
+        cmd_extend = [
+            str(final_yaml_path.resolve()),
+        ]
+        if opts.size_unit_cells is None and opts.radius_A is not None:
+            cmd_extend += ["-r", f"{opts.radius_A:.4f}"]
+        cmd_extend += [
+            "-o",
+            str((tmp_path / final_output_file).resolve()),
+            "--write-all",
+            "--center",
+            "--verbose",
+        ]
+        cmd.extend(cmd_extend)
         if opts.shells:
             cmd.extend(["--core-lattice-fit", "--core-strain-width", "2.5", "--core-center", "com"])
 
@@ -1074,23 +1710,6 @@ async def build_nanocrystal_stream(
       {"event":"result", ...payload...}
     """
 
-    # ---- safe facet formatter (fallback if helper not present) ----
-    def format_facets_to_dict_safe(facets):
-        """
-        Accepts a list of objects/dicts like {"hkl": "100", "gamma": 1.0}
-        and returns [{"hkl":"100","gamma":1.0}, ...] with normalized types.
-        """
-        out = []
-        for f in facets or []:
-            if hasattr(f, "hkl"):
-                hkl = getattr(f, "hkl")
-                gamma = float(getattr(f, "gamma"))
-            else:
-                hkl = f.get("hkl")
-                gamma = float(f.get("gamma", 0.0))
-            out.append({"hkl": str(hkl), "gamma": gamma})
-        return out
-
     try:
         opts = BuildOptions.parse_raw(options)
     except Exception as e:
@@ -1141,38 +1760,209 @@ async def build_nanocrystal_stream(
             core_elements = set(charges.keys())
             shell_elements: set[str] = set()
 
+            post_treatment = _build_post_treatment_from_opts(opts)
+            is_repassivate = bool(
+                getattr(opts, "skip_core_build", False) and getattr(opts, "xyz_unpassivated", None)
+            )
+
             # ---- Build ONE YAML (core-only OR core@shell) ----
+            posq_early = (positive_q_mode or "remove").strip().lower()
+            if posq_early not in ("remove", "add"):
+                posq_early = "remove"
+            needs_rb = _needs_rb_in_recipe(opts, posq_early, repassivate_only=is_repassivate)
+
             final_charges = charges.copy()
+            if opts.shells:
+                for sh in opts.shells:
+                    shell_name = getattr(sh, "material_cif", "")
+                    sp = file_map.get(safe_filename(shell_name))
+                    if sp:
+                        sc = parse_cif_oxidation_numbers(sp.read_text("utf-8", "ignore"))
+                        final_charges.update(sc)
+                        shell_elements.update(sc.keys())
+
             final_charges.setdefault("Cl", -1.0)
-            final_charges.setdefault("Rb",  1.0)
+            if needs_rb:
+                final_charges.setdefault("Rb", 1.0)
+
+            pass_defaults = _default_passivation_block(include_cation_ligand=needs_rb)
+
+            # ---- Repassivation-only: post-treatment on stored XYZ (no Wulff rebuild) ----
+            if is_repassivate:
+                minimal_yaml = {"charges": final_charges}
+                if post_treatment:
+                    minimal_yaml["post_treatment"] = post_treatment
+                yaml_text = _yaml_dump_canonical(minimal_yaml)
+                yield json.dumps({"event": "yaml_preview", "text": yaml_text}) + "\n"
+                yield json.dumps({"event": "log", "line": "[yaml] Repassivation recipe (post_treatment only)"}) + "\n"
+                yield json.dumps({"event": "cmd", "line": "post-treatment: ligand exchange on existing XYZ"}) + "\n"
+                yield json.dumps({
+                    "event": "log",
+                    "line": "[system] Reusing built core; applying post-treatment only...",
+                }) + "\n"
+
+                log_queue = queue.Queue()
+                facets_for_repass = [
+                    f.dict() if hasattr(f, "dict") else f
+                    for f in (opts.facets or [])
+                ]
+                outermost_shell_path = core_path
+                if opts.shells:
+                    for sh in opts.shells:
+                        shell_name = getattr(sh, "material_cif", "")
+                        sp = file_map.get(safe_filename(shell_name))
+                        if sp:
+                            outermost_shell_path = sp
+
+                import time as _time
+                _t0 = _time.monotonic()
+
+                def worker():
+                    try:
+                        xyz_res, ledg_res = _run_repassivation_posttreatment(
+                            opts.xyz_unpassivated,
+                            outermost_shell_path,
+                            final_charges,
+                            post_treatment,
+                            tmp_path,
+                            facets_input=facets_for_repass,
+                            log_sink=log_queue,
+                        )
+                        log_queue.put(("DONE", xyz_res, ledg_res))
+                    except Exception as ex:
+                        tb = traceback.format_exc(limit=6)
+                        log_queue.put(("ERROR", str(ex), tb))
+
+                t = threading.Thread(target=worker)
+                t.start()
+
+                xyz_pass = None
+                ledger = []
+                try:
+                    while True:
+                        items = []
+                        while not log_queue.empty():
+                            try:
+                                items.append(log_queue.get_nowait())
+                            except queue.Empty:
+                                break
+
+                        stop = False
+                        for item in items:
+                            if isinstance(item, tuple) and item[0] in ("DONE", "ERROR"):
+                                if item[0] == "DONE":
+                                    xyz_pass = item[1]
+                                    ledger = item[2]
+                                else:
+                                    raise Exception(f"{item[1]}\n{item[2]}")
+                                stop = True
+                            else:
+                                for line in item.splitlines():
+                                    if line.strip():
+                                        yield json.dumps({"event": "log", "line": line}) + "\n"
+
+                        if stop:
+                            break
+                        if not t.is_alive() and log_queue.empty():
+                            break
+
+                        await asyncio.sleep(0.05)
+                except Exception as e:
+                    yield json.dumps({"event": "log", "line": f"[error] Repassivation failed: {e}"}) + "\n"
+                    yield json.dumps({"event": "result", "status": "failed"}) + "\n"
+                    return
+
+                yield json.dumps({
+                    "event": "log",
+                    "line": f"[system] Post-treatment finished in {_time.monotonic() - _t0:.1f}s",
+                }) + "\n"
+
+                xyz_un = opts.xyz_unpassivated
+                cmd = ["post-treatment: ligand exchange"]
+                final_out = tmp_path / "repassivated.xyz"
+                final_out.write_text(xyz_pass, encoding="utf-8")
+
+                elements, total_charge, grouped_counts = "unknown", 0, {}
+                try:
+                    from ase.io import read as ase_read
+                    atoms = ase_read(io.StringIO(xyz_pass), format="xyz")
+                    symbols = atoms.get_chemical_symbols()
+                    elements = ",".join(sorted(set(symbols)))
+                    total_charge = sum(final_charges.get(s, 0.0) for s in symbols)
+                    grouped_counts = _count_grouped_xyz(xyz_pass, core_elements, shell_elements)
+                except Exception as e:
+                    logging.error(f"XYZ parse fail after repassivation: {e}")
+
+                anionic_detail, cationic_detail = {}, {}
+                for entry in ledger:
+                    sm = entry.get("smiles")
+                    chg = entry.get("charge", 0)
+                    if sm:
+                        if chg < 0:
+                            anionic_detail[sm] = anionic_detail.get(sm, 0) + 1
+                        else:
+                            cationic_detail[sm] = cationic_detail.get(sm, 0) + 1
+                ligand_detail = {
+                    "anionic": anionic_detail,
+                    "cationic": cationic_detail,
+                    "neutral": {},
+                    "total": sum(anionic_detail.values()) + sum(cationic_detail.values()),
+                }
+
+                payload = {
+                    "status": "success",
+                    "elements": elements,
+                    "xyz_passivated": xyz_pass,
+                    "xyz_unpassivated": xyz_un,
+                    "xyz_dummy": xyz_pass,
+                    "total_charge": round(total_charge),
+                    "grouped_counts": grouped_counts,
+                    "download_name": "repassivated.xyz",
+                    "last_command": " ".join(cmd),
+                    "ligand_detail": ligand_detail,
+                    "size_metrics": None,
+                }
+                yield json.dumps({"event": "result", **payload}) + "\n"
+                return
 
             if not opts.shells:
                 # Core-only schema
                 facets_input = [f.dict() if hasattr(f, "dict") else f for f in (opts.facets or [])]
                 if not facets_input:
-                    # Default low-index cubic facets if user didn’t provide any
                     facets_input = [
-                        {"hkl": "100", "gamma": 1.0},
-                        {"hkl": "110", "gamma": 1.0},
-                        {"hkl": "111", "gamma": 1.0},
+                        {"hkl": "100", "gamma": 1.0, "scope": "family"},
+                        {"hkl": "110", "gamma": 1.0, "scope": "family"},
+                        {"hkl": "111", "gamma": 1.0, "scope": "family"},
                     ]
 
                 yaml_dict = {
-                    "shape":   {"aspect": opts.aspect},
-                    "facets":  format_facets_to_dict_safe(facets_input),
+                    "facets": format_facets_for_yaml(facets_input),
                     "charges": final_charges,
-                    "passivation": {"ligand": "Cl", "surf_tol": 2.0},
+                    "passivation": pass_defaults,
+                    "symmetry": {"proper_rotations_only": True},
                 }
+                if not _aspect_is_unity(opts.aspect):
+                    yaml_dict["shape"] = {"aspect": opts.aspect}
+                if opts.size_unit_cells is not None:
+                    yaml_dict["size_unit_cells"] = opts.size_unit_cells
+                if opts.center_ion:
+                    yaml_dict["construction_origin"] = {"center_on_species": opts.center_ion}
                 root_path = core_path
 
             else:
                 # Core@shell schema
-                materials = [{
+                core_mat = {
                     "name": "core",
                     "cif": str(core_path.resolve()),
-                    "facets": format_facets_to_dict_safe([f.dict() if hasattr(f, "dict") else f for f in opts.facets]),
-                    "shape": {"aspect": opts.aspect},
-                }]
+                    "facets": format_facets_for_yaml(
+                        [f.dict() if hasattr(f, "dict") else f for f in opts.facets]
+                    ),
+                }
+                if not _aspect_is_unity(opts.aspect):
+                    core_mat["shape"] = {"aspect": opts.aspect}
+                if opts.size_unit_cells is not None:
+                    core_mat["size_unit_cells"] = opts.size_unit_cells
+                materials = [core_mat]
                 outer = core_path
                 for i, sh in enumerate(opts.shells):
                     shell_name = getattr(sh, "material_cif", "")
@@ -1181,12 +1971,29 @@ async def build_nanocrystal_stream(
                         yield json.dumps({"event":"log","line": f"[error] Shell '{shell_name}' not found among uploaded: {', '.join(file_map)}"}) + "\n"
                         yield json.dumps({"event":"result","status":"failed"}) + "\n"
                         return
-                    materials.append({
+                    shell_aspect = getattr(sh, "aspect", None) or [1.0, 1.0, 1.0]
+                    shell_mat = {
                         "name":  f"shell{i+1}",
                         "cif":   str(sp.resolve()),
-                        "facets": format_facets_to_dict_safe([f.dict() if hasattr(f, "dict") else f for f in (sh.facets or [])]) or "inherit",
-                        "shape": {"aspect": getattr(sh, "aspect", None) or [1.0, 1.0, 1.0]},
-                    })
+                        "facets": format_facets_for_yaml(
+                            [f.dict() if hasattr(f, "dict") else f for f in (sh.facets or [])]
+                        ) or "inherit",
+                    }
+                    if not _aspect_is_unity(shell_aspect):
+                        shell_mat["shape"] = {"aspect": shell_aspect}
+                    if getattr(sh, "size_unit_cells", None) is not None:
+                        shell_mat["size_unit_cells"] = sh.size_unit_cells
+                    if getattr(sh, "interface_type", "abrupt") == "mixed":
+                        shell_mat["interface"] = {
+                            "type": "mixed",
+                            "mixing_width": getattr(sh, "interface_mixing_width", 3.0) or 3.0,
+                            "mixing_ratio": getattr(sh, "interface_mixing_ratio", 0.5) or 0.5
+                        }
+                    else:
+                        shell_mat["interface"] = {
+                            "type": "abrupt"
+                        }
+                    materials.append(shell_mat)
                     sc = parse_cif_oxidation_numbers(sp.read_text("utf-8", "ignore"))
                     final_charges.update(sc)
                     shell_elements.update(sc.keys())
@@ -1197,32 +2004,34 @@ async def build_nanocrystal_stream(
                     "charges": final_charges,
                     "symmetry": {"proper_rotations_only": True},
                     "facet_options": {"pair_opposites": True},
-                    "passivation": {"ligand": "Cl", "surf_tol": 2.0},
+                    "passivation": pass_defaults,
                 }
+                if opts.center_ion:
+                    yaml_dict["construction_origin"] = {"center_on_species": opts.center_ion}
                 root_path = outer
 
-            final_yaml = tmp_path / "config.yml"
-            final_yaml.write_text(yaml.safe_dump(yaml_dict, sort_keys=False), encoding="utf-8")
+            # Post-treatment (ligand exchange, etc.) runs on Repassivate only — not during Wulff build
+            if post_treatment and (
+                (opts.cap_anionic_jobs and any(j.smiles.strip() for j in opts.cap_anionic_jobs))
+                or (opts.cap_cationic_jobs and any(j.smiles.strip() for j in opts.cap_cationic_jobs))
+                or opts.neutral_enabled
+                or opts.reconstruction_enabled
+            ):
+                yield json.dumps({
+                    "event": "log",
+                    "line": "[system] Ligand exchange and other post-treatments run on Repassivate (not during Wulff build).",
+                }) + "\n"
 
-            # ---- Single nc-builder command ----
+            final_yaml = tmp_path / "config.yml"
+            yaml_text = _yaml_dump_canonical(yaml_dict)
+            final_yaml.write_text(yaml_text, encoding="utf-8")
+            yield json.dumps({"event": "yaml_preview", "text": yaml_text}) + "\n"
+            yield json.dumps({"event": "log", "line": "[yaml] Generated config.yml (see preview above)"}) + "\n"
+
             final_out = tmp_path / "final.xyz"
             posq = (positive_q_mode or "remove").strip().lower()
             if posq not in ("remove", "add"):
                 posq = "remove"
-
-            cmd = [
-                "nc-builder",
-                str(root_path.resolve()),
-                str(final_yaml.resolve()),
-                "-r", f"{opts.radius_A:.4f}",
-                "-o", str(final_out.resolve()),
-                "--write-all", "--center", "--verbose",
-                "--positive-q-mode", posq,
-            ]
-            if opts.shells:
-                cmd += ["--core-lattice-fit", "--core-strain-width", "2.5", "--core-center", "com"]
-
-            yield json.dumps({"event": "cmd", "line": " ".join(cmd)}) + "\n"
 
             class LineQueueWriter(io.TextIOBase):
                 def __init__(self, q): self.q, self.buf = q, ""
@@ -1235,68 +2044,74 @@ async def build_nanocrystal_stream(
                 def flush(self):
                     if self.buf: self.q.put(self.buf); self.buf = ""
 
-            # ==========================================================
-            # SMART BUILD EXECUTION (Skip if core unchanged)
-            # ==========================================================
-            if getattr(opts, "skip_core_build", False) and getattr(opts, "xyz_unpassivated", None):
-                yield json.dumps({"event": "log", "line": "[system] Core parameters unchanged. Bypassing nc-builder and re-using existing core..."}) + "\n"
-                xyz_un = opts.xyz_unpassivated
-                xyz_pass = xyz_un
-                cmd = ["(skipped nc-builder)"]
-            else:
-                # Run the heavy nc-builder
-                final_out = tmp_path / "final.xyz"
-                posq = (positive_q_mode or "remove").strip().lower()
-                if posq not in ("remove", "add"): posq = "remove"
+            # ---- Run nc-builder (full Wulff build) ----
+            cmd = [
+                "nc-builder", str(root_path.resolve()), str(final_yaml.resolve()),
+            ]
+            if opts.size_unit_cells is None and opts.radius_A is not None:
+                cmd += ["-r", f"{opts.radius_A:.4f}"]
+            cmd += [
+                "-o", str(final_out.resolve()),
+                "--write-all", "--center", "--positive-q-mode", posq,
+            ]
+            if (mode or "quiet").strip() == "live-tty":
+                cmd += ["--verbose"]
+            if opts.shells:
+                cmd += ["--core-lattice-fit", "--core-strain-width", "2.5", "--core-center", "com"]
 
-                cmd = [
-                    "nc-builder", str(root_path.resolve()), str(final_yaml.resolve()),
-                    "-r", f"{opts.radius_A:.4f}", "-o", str(final_out.resolve()),
-                    "--write-all", "--center", "--verbose", "--positive-q-mode", posq,
-                ]
-                if opts.shells:
-                    cmd += ["--core-lattice-fit", "--core-strain-width", "2.5", "--core-center", "com"]
+            yield json.dumps({"event": "cmd", "line": " ".join(cmd)}) + "\n"
 
-                yield json.dumps({"event": "cmd", "line": " ".join(cmd)}) + "\n"
+            log_queue = queue.Queue()
 
-                log_queue = queue.Queue()
-
-                def _run_builder_sync():
-                    qw = LineQueueWriter(log_queue)
-                    argv = cmd[1:] 
-                    old_cwd = os.getcwd()  # Save current dir
-                    with contextlib.redirect_stdout(qw), contextlib.redirect_stderr(qw):
-                        try: 
-                            os.chdir(tmpdir)  # FORCE nc-builder outputs into the tmp folder
-                            nc_builder_main(argv)
-                        except SystemExit as e:
-                            if e.code != 0 and e.code is not None: print(f"[error] nc-builder exited with code {e.code}")
-                        except Exception as e: print(f"[fatal] {traceback.format_exc()}")
-                        finally: 
-                            os.chdir(old_cwd) # Restore dir safely
-                            qw.flush()
-                            log_queue.put(None)
-
-                builder_thread = threading.Thread(target=_run_builder_sync)
-                builder_thread.start()
-
-                while True:
+            def _run_builder_sync():
+                qw = LineQueueWriter(log_queue)
+                argv = cmd[1:]
+                old_cwd = os.getcwd()
+                with contextlib.redirect_stdout(qw), contextlib.redirect_stderr(qw):
                     try:
-                        line = log_queue.get_nowait()
-                        if line is None: break
-                        if line.strip(): yield json.dumps({"event": "log", "line": line}) + "\n"
-                    except queue.Empty:
-                        await asyncio.sleep(0.01)
-                
-                builder_thread.join()
+                        os.chdir(tmpdir)
+                        nc_builder_main(argv)
+                    except SystemExit as e:
+                        if e.code != 0 and e.code is not None:
+                            print(f"[error] nc-builder exited with code {e.code}")
+                    except Exception:
+                        print(f"[fatal] {traceback.format_exc()}")
+                    finally:
+                        os.chdir(old_cwd)
+                        qw.flush()
+                        log_queue.put(None)
 
-                if not final_out.exists() or final_out.stat().st_size == 0:
-                    yield json.dumps({"event": "result", "status": "failed", "log": "nc-builder did not produce final.xyz"}) + "\n"
+            builder_thread = threading.Thread(target=_run_builder_sync)
+            builder_thread.start()
+
+            while True:
+                try:
+                    line = log_queue.get_nowait()
+                    if line is None:
+                        break
+                    if line.strip():
+                        yield json.dumps({"event": "log", "line": line}) + "\n"
+                except queue.Empty:
+                    await asyncio.sleep(0.01)
+
+            builder_thread.join()
+
+            if not final_out.exists() or final_out.stat().st_size == 0:
+                xyz_candidates = sorted(
+                    [p for p in tmp_path.glob("*.xyz")
+                     if not p.name.endswith("_cut.xyz") and p.stat().st_size > 0],
+                    key=lambda p: p.stat().st_mtime,
+                    reverse=True,
+                )
+                if not xyz_candidates:
+                    yield json.dumps({"event": "result", "status": "failed", "log": "nc-builder did not produce any output xyz"}) + "\n"
                     return
+                final_out = xyz_candidates[0]
+                yield json.dumps({"event": "log", "line": f"[system] Output located: {final_out.name}"}) + "\n"
 
-                xyz_pass = final_out.read_text()
-                xyz_cut = (tmp_path / f"{final_out.stem}_cut.xyz")
-                xyz_un = xyz_cut.read_text() if xyz_cut.exists() else xyz_pass
+            xyz_pass = final_out.read_text()
+            xyz_cut = tmp_path / f"{final_out.stem}_cut.xyz"
+            xyz_un = xyz_cut.read_text() if xyz_cut.exists() else xyz_pass
 
             elements, total_charge, grouped_counts = "unknown", 0, {}
             try:
@@ -1309,98 +2124,77 @@ async def build_nanocrystal_stream(
             except Exception as e:
                 logging.error(f"XYZ parse fail: {e}")
 
-            # ---- Optional SMILES capping (Native Memory Integration) ----
-            # ---- Optional SMILES capping (Native Memory Integration) ----
+            # ---- Pure Native Passing from nc-builder Output ----
             current_xyz = xyz_pass or xyz_un or ""
-            download_name = None
+            download_name = "final.xyz"
 
-            def _dist():
-                m = (opts.cap_distribution or "uniform").lower()
-                return m if m in {"uniform", "segmented", "random"} else "uniform"
-
-            # Async helper to thread the capper and stream logs to frontend
-            async def stream_capper(jobs, dummy_label):
-                nonlocal current_xyz
-                log_q = queue.Queue()
-                qw = LineQueueWriter(log_q)
-                res_box = []
-
-                def _thread_cap():
-                    try:
-                        res = run_in_memory_capper(current_xyz, jobs, dummy_label, _dist(), out_stream=qw)
-                        res_box.append(res)
-                    except Exception as e:
-                        print(f"[cap][error] {e}", file=qw)
-                    finally:
-                        qw.flush()
-                        log_q.put(None)
-
-                t = threading.Thread(target=_thread_cap)
-                t.start()
-                
-                while True:
-                    try:
-                        line = log_q.get_nowait()
-                        if line is None: break
-                        if line.strip(): yield json.dumps({"event": "log", "line": line.strip()}) + "\n"
-                    except queue.Empty:
-                        await asyncio.sleep(0.01)
-                t.join()
-                
-                if res_box:
-                    current_xyz = res_box[0]
-
-            if opts.cap_anionic_jobs:
-                async for chunk in stream_capper(opts.cap_anionic_jobs, "Cl"):
-                    yield chunk
-
-            if opts.cap_cationic_jobs:
-                async for chunk in stream_capper(opts.cap_cationic_jobs, "Rb"):
-                    yield chunk
-
-            # Recompute quick metadata after capping (best-effort)
+            # Recompute quick metadata natively using final.json manifest
             try:
-                if current_xyz:
+                final_json = tmp_path / f"{final_out.stem}.json"
+                if final_json.exists():
+                    manifest = json.loads(final_json.read_text(encoding="utf-8"))
+                    total_charge = manifest.get("total_charge", 0)
+                    grouped_counts = manifest.get("grouped_counts", {})
+                    if not grouped_counts and "counts" in manifest:
+                        grouped_counts = {
+                            "core": {"by_element": dict(manifest["counts"]), "total": sum(manifest["counts"].values())}
+                        }
+                    
+                    # 1. Parse charged X-type ligand exchange ledger
+                    ledger = manifest.get("ligand_exchange_charge_ledger", [])
+                    anionic_detail = {}
+                    cationic_detail = {}
+                    x_ligands_smiles = []
+                    for entry in ledger:
+                        sm = entry.get("smiles")
+                        chg = entry.get("charge", 0)
+                        if sm:
+                            x_ligands_smiles.append(sm)
+                            if chg < 0:
+                                anionic_detail[sm] = anionic_detail.get(sm, 0) + 1
+                            else:
+                                cationic_detail[sm] = cationic_detail.get(sm, 0) + 1
+                    
+                    # 2. Parse L-type neutral passivation using bonding graph clustering
+                    neutral_detail = {}
+                    neutral_smiles = []
+                    if opts.neutral_jobs:
+                        neutral_smiles = [j.smiles.strip() for j in opts.neutral_jobs if j.smiles.strip()]
+                    
+                    all_organic_smiles = x_ligands_smiles + neutral_smiles
+                    if all_organic_smiles:
+                        cluster_counts = _count_molecules_by_smiles(
+                            current_xyz, core_elements, shell_elements, all_organic_smiles
+                        )
+                        for sm in neutral_smiles:
+                            neutral_detail[sm] = cluster_counts.get(sm, 0)
+                            
+                    ligand_detail = {
+                        "anionic": anionic_detail,
+                        "cationic": cationic_detail,
+                        "neutral": neutral_detail,
+                        "total": sum(anionic_detail.values()) + sum(cationic_detail.values()) + sum(neutral_detail.values())
+                    }
+                else:
+                    # Fallback if no final.json
                     from ase.io import read as ase_read
                     atoms = ase_read(io.StringIO(current_xyz), format="xyz")
                     symbols = atoms.get_chemical_symbols()
                     elements = ",".join(sorted(set(symbols)))
-            
-                    # Raw charge from element map (Cl = -1, Rb = +1, organics 0…)
-                    raw_total = sum(final_charges.get(s, 0.0) for s in symbols)
-            
-                    # Infer how many placeholders were replaced by ligands:
-                    # compare counts before passivation (xyz_pass) vs after (current_xyz).
-                    before_counts = _xyz_count_symbols(xyz_pass, targets=("Cl","Rb"))
-                    after_counts  = _xyz_count_symbols(current_xyz, targets=("Cl","Rb"))
-                    n_anionic  = max(0, before_counts.get("Cl", 0) - after_counts.get("Cl", 0))  # ligands placed on anionic sites
-                    n_cationic = max(0, before_counts.get("Rb", 0) - after_counts.get("Rb", 0))  # ligands placed on cationic sites
-            
-                    # Each anionic ligand is −1, each cationic ligand is +1
-                    ligand_correction = (-1) * n_anionic + (+1) * n_cationic
-                    total_charge = int(round(raw_total + ligand_correction))
-
-                    # Per-SMILES counts estimated from ratios
-                    ligand_detail = {
-                        "anionic":  _allocate_counts_by_ratio(n_anionic,  opts.cap_anionic_jobs),
-                        "cationic": _allocate_counts_by_ratio(n_cationic, opts.cap_cationic_jobs),
-                        "total": int(n_anionic + n_cationic),
-                    }
-                                
+                    total_charge = sum(final_charges.get(s, 0.0) for s in symbols)
                     grouped_counts = _count_grouped_xyz(current_xyz, core_elements, shell_elements)
+                    ligand_detail = {"anionic": {}, "cationic": {}, "neutral": {}, "total": 0}
             except Exception as e:
                 logging.error(f"Post-cap metadata recompute failed: {e}")
+                ligand_detail = {"anionic": {}, "cationic": {}, "neutral": {}, "total": 0}
             
             size_metrics = None
             if current_xyz:
                 try:
                     from ase.io import read as ase_read
-                    # Read the XYZ string into an ASE atoms object
                     tmp_atoms = ase_read(io.StringIO(current_xyz), format="xyz")
                     c_coords = tmp_atoms.get_positions()
                     c_symbols = tmp_atoms.get_chemical_symbols()
-                    
-                    # Calculate metrics
                     size_metrics = get_cluster_size_metrics(c_coords, c_symbols)
                 except Exception as e:
                     logging.error(f"Failed to calculate size metrics: {e}")           

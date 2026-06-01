@@ -41,6 +41,7 @@
   // --- State Variables ---
   let metadata = $state({});
   let fileList = $state([]);
+  let activeViewer = $state("molstar");
 
   // Filter selections
   let filters = $state({
@@ -910,13 +911,35 @@
           <h2 class="font-heading font-bold text-xl text-slate-900">
             3D Structure Viewer
           </h2>
-          <button
-            onclick={downloadXYZ}
-            class="bg-slate-100 hover:bg-slate-200 disabled:opacity-50 text-slate-800 px-5 py-2 rounded-xl text-sm font-bold transition-colors"
-            disabled={!currentXyzData}
-          >
-            Download XYZ
-          </button>
+          <div class="flex items-center gap-3">
+            {#if !isMD}
+            <div class="flex gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
+              <button class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all {activeViewer === '3dmol' ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-950'}"
+                      onclick={() => activeViewer = '3dmol'}>
+                3Dmol
+              </button>
+              <button class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all {activeViewer === 'ngl' ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-950'}"
+                      onclick={() => activeViewer = 'ngl'}>
+                NGL
+              </button>
+              <button class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all {activeViewer === 'molstar' ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-950'}"
+                      onclick={() => activeViewer = 'molstar'}>
+                Mol*
+              </button>
+              <button class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all {activeViewer === 'matterviz' ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-950'}"
+                      onclick={() => activeViewer = 'matterviz'}>
+                MatterViz
+              </button>
+            </div>
+            {/if}
+            <button
+              onclick={downloadXYZ}
+              class="bg-slate-100 hover:bg-slate-200 disabled:opacity-50 text-slate-800 px-5 py-2 rounded-xl text-sm font-bold transition-colors"
+              disabled={!currentXyzData}
+            >
+              Download XYZ
+            </button>
+          </div>
         </div>
         <div
           class="flex-1 bg-slate-50 rounded-[1rem] border border-slate-200 overflow-hidden relative shadow-inner"
@@ -926,6 +949,7 @@
             {isMD} 
             dataUrl={currentFileUrl} 
             sizeMetrics={currentMeta?.size_metrics} 
+            activeViewer={activeViewer}
           />
           {#if isAttaching}
             <div
