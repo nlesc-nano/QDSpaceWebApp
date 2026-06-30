@@ -863,6 +863,26 @@ def _needs_rb_in_recipe(opts: BuildOptions, positive_q_mode: str, *, repassivate
     return False
 
 
+def _has_cation_rich_facets(facets) -> bool:
+    for f in facets or []:
+        term = getattr(f, "termination", None) if hasattr(f, "termination") else f.get("termination")
+        if str(term or "").strip().lower() == "cation_rich":
+            return True
+    return False
+
+
+def _positive_q_mode_for_opts(opts: BuildOptions, requested: str = "remove") -> str:
+    posq = (requested or "remove").strip().lower()
+    if posq not in ("remove", "add"):
+        posq = "remove"
+    if _has_cation_rich_facets(opts.facets):
+        return "add"
+    for shell in opts.shells or []:
+        if _has_cation_rich_facets(shell.facets):
+            return "add"
+    return posq
+
+
 def _hkl_tuple_to_compact(hkl: tuple) -> str:
     """Miller compact string compatible with nc-builder _parse_hkl."""
     return "".join(
@@ -1301,6 +1321,7 @@ async def build_nanocrystal(files: List[UploadFile] = File(...), options: str = 
         charges = parse_cif_oxidation_numbers(core_path.read_text("utf-8", "ignore"))
         core_elements = set(charges.keys())
         shell_elements: set[str] = set()
+        positive_q_mode_eff = _positive_q_mode_for_opts(opts)
 
         import yaml
 
@@ -1312,7 +1333,7 @@ async def build_nanocrystal(files: List[UploadFile] = File(...), options: str = 
 
         temp_yaml_dict = {
             "shape": {"aspect": opts.aspect},
-            "facets": [f.dict() for f in opts.facets],
+            "facets": format_facets_for_yaml(opts.facets),
             "charges": first_pass_charges,
             "passivation": {"ligand": "Cl", "surf_tol": 2.0},
         }
@@ -1333,6 +1354,8 @@ async def build_nanocrystal(files: List[UploadFile] = File(...), options: str = 
         first_pass_cmd += [
             "-o",
             str((tmp_path / first_pass_output_file).resolve()),
+            "--positive-q-mode",
+            positive_q_mode_eff,
             "--center",
             "--write-all",
             "--verbose",
@@ -1353,18 +1376,20 @@ async def build_nanocrystal(files: List[UploadFile] = File(...), options: str = 
         if not opts.shells:
             yaml_dict = {
                 "shape": {"aspect": opts.aspect},
-                "facets": [f.dict() for f in opts.facets],
+                "facets": format_facets_for_yaml(opts.facets),
                 "charges": final_charges,
                 "passivation": passivation_block,
             }
             if opts.size_unit_cells is not None:
                 yaml_dict["size_unit_cells"] = opts.size_unit_cells
+            if opts.center_ion:
+                yaml_dict["construction_origin"] = {"center_on_species": opts.center_ion}
             cmd = ["nc-builder", str(core_path.resolve())]
         else:
             core_mat = {
                 "name": "core",
                 "cif": str(core_path.resolve()),
-                "facets": format_facets_to_dict(opts.facets),
+                "facets": format_facets_for_yaml(opts.facets),
                 "shape": {"aspect": opts.aspect},
             }
             if opts.size_unit_cells is not None:
@@ -1380,7 +1405,7 @@ async def build_nanocrystal(files: List[UploadFile] = File(...), options: str = 
                 shell_mat = {
                     "name": f"shell{i+1}",
                     "cif": str(shell_cif_path.resolve()),
-                    "facets": format_facets_to_dict(shell.facets) or "inherit",
+                    "facets": format_facets_for_yaml(shell.facets) or "inherit",
                     "shape": {"aspect": shell.aspect},
                 }
                 if getattr(shell, "size_unit_cells", None) is not None:
@@ -1414,6 +1439,8 @@ async def build_nanocrystal(files: List[UploadFile] = File(...), options: str = 
         cmd_extend += [
             "-o",
             str((tmp_path / final_output_file).resolve()),
+            "--positive-q-mode",
+            positive_q_mode_eff,
             "--write-all",
             "--center",
             "--verbose",
@@ -1761,9 +1788,7 @@ async def build_nanocrystal_stream(
             )
 
             # ---- Build ONE YAML (core-only OR core@shell) ----
-            posq_early = (positive_q_mode or "remove").strip().lower()
-            if posq_early not in ("remove", "add"):
-                posq_early = "remove"
+            posq_early = _positive_q_mode_for_opts(opts, positive_q_mode)
             needs_rb = _needs_rb_in_recipe(opts, posq_early, repassivate_only=is_repassivate)
 
             final_charges = charges.copy()
@@ -2024,9 +2049,7 @@ async def build_nanocrystal_stream(
             yield json.dumps({"event": "log", "line": "[yaml] Generated config.yml (see preview above)"}) + "\n"
 
             final_out = tmp_path / "final.xyz"
-            posq = (positive_q_mode or "remove").strip().lower()
-            if posq not in ("remove", "add"):
-                posq = "remove"
+            posq = _positive_q_mode_for_opts(opts, positive_q_mode)
 
             class LineQueueWriter(io.TextIOBase):
                 def __init__(self, q): self.q, self.buf = q, ""
@@ -2233,4 +2256,3 @@ if __name__ == "__main__":
     import uvicorn
 
     uvicorn.run("api:app", host="0.0.0.0", port=8000, reload=False)
-
