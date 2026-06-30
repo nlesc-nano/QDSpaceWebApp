@@ -332,7 +332,7 @@
       isLoading: false,   // Track fetching state for this specific shell
       aspect: [1.0, 1.0, 1.0],
       size_unit_cells: [1.0, 1.0, 1.0],
-      facets: coreFacets.map(f => ({ id: crypto.randomUUID(), hkl: f.hkl, gamma: f.gamma })),
+      facets: coreFacets.map(f => ({ id: crypto.randomUUID(), hkl: f.hkl, gamma: f.gamma, scope: f.scope, termination: f.termination })),
       interface_type: "abrupt",
       interface_mixing_ratio: 0.5,
       interface_mixing_width: 3.0,
@@ -384,7 +384,7 @@
         detectedAnions = data.anions || [];
         detectedCations = data.cations || [];
         detectedSpecies = data.species || data.cations || [];
-        if (detectedSpecies.length > 0) centerIon = detectedSpecies[0];
+        centerIon = '';
         logs += `[status] CIF analyzed successfully: Spacegroup ${data.spacegroup || 'N/A'} (Lattice Phase: ${data.phase || 'unknown'}).\n`;
         
         if (detectedFacets.length > 0) {
@@ -459,6 +459,20 @@
         f.gamma = gamma;
       }
     }
+  }
+
+  function updateFamilyTerminationGamma(family, termination, gamma) {
+    for (let f of coreFacets) {
+      if (f.family === family && f.termination === termination) {
+        f.gamma = gamma;
+      }
+    }
+  }
+
+  function terminationLabel(termination) {
+    if (termination === 'cation_rich') return 'Cation-Rich';
+    if (termination === 'anion_rich') return 'Anion-Rich';
+    return 'Stoichiometric';
   }
 
   function updateFamilyTermination(family, termination) {
@@ -1044,23 +1058,11 @@
                   </div>
                   
                   {#if facetsForFam[0]?.scope === 'family'}
-                    <!-- Surface Energy (Full Width) -->
-                    <div class="space-y-1.5">
-                      <span class="block text-[9px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1 cursor-help select-none"
-                            onmouseenter={() => tooltipText = "Surface energy in J/m². Determines the facet's relative area in Wulff construction. Lower energy means larger facet size."}
-                            onmouseleave={() => tooltipText = ""}>
-                        Surface Energy (γ) ⓘ
-                      </span>
-                      <input type="number" step="0.1" class="w-full border-none ring-1 ring-brand-200 rounded-lg px-3 py-1.5 text-xs bg-white focus:ring-2 focus:ring-brand-400 outline-none font-medium h-[32px]"
-                             value={facetsForFam[0]?.gamma}
-                             oninput={(e) => updateFamilyGamma(fam.family, parseFloat(e.target.value))}>
-                    </div>
-
-                    <!-- Termination Style (Full Width) - multi-select checkboxes -->
                     {#if fam.status === 'polar' || fam.status === 'termination-sensitive'}
+                      <!-- Termination Style (Full Width) - multi-select checkboxes -->
                       <div class="space-y-1.5">
                         <span class="block text-[9px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1 cursor-help select-none"
-                              onmouseenter={() => tooltipText = fam.status === 'polar' 
+                              onmouseenter={() => tooltipText = fam.status === 'polar'
                                 ? "Polar facets contain alternating charged layers. Cation-Rich makes the surface metal-terminated, while Anion-Rich makes it chalcogenide/halide-terminated. You can enable both."
                                 : "Non-polar plane with multiple symmetric cut configurations. You can enable both termination styles simultaneously."}
                               onmouseleave={() => tooltipText = ""}>
@@ -1083,7 +1085,35 @@
                           </label>
                         </div>
                       </div>
+
+                      <div class="space-y-2">
+                        <span class="block text-[9px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1 cursor-help select-none"
+                              onmouseenter={() => tooltipText = "Surface energy in J/m². For polar families, cation-rich and anion-rich terminations can be tuned independently."}
+                              onmouseleave={() => tooltipText = ""}>
+                          Surface Energy (γ) ⓘ
+                        </span>
+                        {#each facetsForFam.filter(f => f.termination === 'cation_rich' || f.termination === 'anion_rich') as termFacet (termFacet.termination)}
+                          <label class="grid grid-cols-[110px_1fr] items-center gap-3">
+                            <span class="text-[10px] font-bold text-slate-700 select-none">{terminationLabel(termFacet.termination)}</span>
+                            <input type="number" step="0.1" class="w-full border-none ring-1 ring-brand-200 rounded-lg px-3 py-1.5 text-xs bg-white focus:ring-2 focus:ring-brand-400 outline-none font-medium h-[32px]"
+                                   value={termFacet.gamma}
+                                   oninput={(e) => updateFamilyTerminationGamma(fam.family, termFacet.termination, parseFloat(e.target.value))}>
+                          </label>
+                        {/each}
+                      </div>
                     {:else}
+                      <!-- Surface Energy (Full Width) -->
+                      <div class="space-y-1.5">
+                        <span class="block text-[9px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1 cursor-help select-none"
+                              onmouseenter={() => tooltipText = "Surface energy in J/m². Determines the facet's relative area in Wulff construction. Lower energy means larger facet size."}
+                              onmouseleave={() => tooltipText = ""}>
+                          Surface Energy (γ) ⓘ
+                        </span>
+                        <input type="number" step="0.1" class="w-full border-none ring-1 ring-brand-200 rounded-lg px-3 py-1.5 text-xs bg-white focus:ring-2 focus:ring-brand-400 outline-none font-medium h-[32px]"
+                               value={facetsForFam[0]?.gamma}
+                               oninput={(e) => updateFamilyGamma(fam.family, parseFloat(e.target.value))}>
+                      </div>
+
                       <div class="p-3 bg-white border border-slate-100 rounded-xl flex items-center justify-between h-[36px]">
                         <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider select-none">Termination Style</span>
                         <span class="bg-slate-100 text-slate-600 text-[9px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border border-slate-200 select-none">
@@ -1357,12 +1387,17 @@
         <span class="block text-[10px] font-extrabold text-slate-500 uppercase tracking-widest mb-2 flex items-center gap-1.5">
           Center structure on
           <span class="text-[10px] bg-slate-100 hover:bg-slate-200 text-slate-400 hover:text-slate-600 w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold font-mono cursor-help select-none shrink-0"
-                onmouseenter={() => tooltipText = "The atom on which the NC is centered during the Wulff construction. Each ion gives a differently terminated surface. Pick one — building from both doubles compute time."}
+                onmouseenter={() => tooltipText = "The atom on which the NC is centered during the Wulff construction. Each ion gives a differently terminated surface. Auto tries the native centers and keeps the realizable output."}
                 onmouseleave={() => tooltipText = ""}>
             i
           </span>
         </span>
         <div class="flex flex-wrap gap-2">
+          <button type="button"
+            class="px-3 py-1 rounded-lg text-xs font-bold border transition-all {centerIon === '' ? 'bg-brand-600 text-white border-brand-600 shadow-sm' : 'bg-slate-50 text-slate-600 border-slate-200 hover:border-brand-400'}"
+            onclick={() => centerIon = ''}>
+            Auto
+          </button>
           {#each detectedSpecies as ion}
             <button type="button"
               class="px-3 py-1 rounded-lg text-xs font-bold border transition-all {centerIon === ion ? 'bg-brand-600 text-white border-brand-600 shadow-sm' : 'bg-slate-50 text-slate-600 border-slate-200 hover:border-brand-400'}"
@@ -1559,4 +1594,3 @@
     </div>
   </main>
 </div>
-
