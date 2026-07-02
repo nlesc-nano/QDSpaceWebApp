@@ -101,6 +101,7 @@ class ShellLayer(BaseModel):
 class LigJob(BaseModel):
     smiles: str
     ratio: float = 1.0
+    target_count: int = 0
     dummy: str = ""
 
 
@@ -108,6 +109,26 @@ class NeutralJob(BaseModel):
     target: str = "anion"                 # "anion" | "cation" | "both"
     smiles: str
     ratio: float = 1.0
+    target_count: int = 0
+    distribution: str = "random"           # "random" | "uniform" | "segmented"
+
+
+class ZTypeJob(BaseModel):
+    cation: str
+    anion: str
+    anion_count: int = 0
+    target_count: int = 0
+    ratio: float = 1.0
+    distribution: str = "random"           # "random" | "uniform" | "segmented"
+
+
+class AlloyingJob(BaseModel):
+    replace: str
+    replacement: str
+    replacement_charge: int
+    region: str = "both"                   # "surface" | "core" | "both"
+    ratio: float = 1.0
+    target_count: int = 0
     distribution: str = "random"           # "random" | "uniform" | "segmented"
 
 
@@ -136,6 +157,10 @@ class BuildOptions(BaseModel):
     reconstruction_min_separation: Optional[str] = "auto"
     neutral_enabled: Optional[bool] = False
     neutral_jobs: Optional[List[NeutralJob]] = None
+    z_type_enabled: Optional[bool] = False
+    z_type_jobs: Optional[List[ZTypeJob]] = None
+    alloying_enabled: Optional[bool] = False
+    alloying_jobs: Optional[List[AlloyingJob]] = None
 
     # Construction center ion (maps to YAML construction_origin)
     center_ion: Optional[str] = None
@@ -930,6 +955,45 @@ def _build_post_treatment_from_opts(opts: BuildOptions) -> dict:
             "distribution": "fps",
             "seed": 1337,
         }
+    if opts.z_type_enabled and opts.z_type_jobs:
+        z_passes = []
+        for job in opts.z_type_jobs:
+            target_count = int(job.target_count or 0)
+            if job.cation.strip() and job.anion.strip() and (target_count > 0 or float(job.ratio) > 0):
+                z_passes.append({
+                    "cation": job.cation.strip(),
+                    "anion": job.anion.strip(),
+                    "anion_count": int(job.anion_count or 0),
+                    "target_count": target_count,
+                    "ratio": job.ratio,
+                    "distribution": job.distribution or "random",
+                })
+        if z_passes:
+            post_treatment["z_type_displacement"] = {
+                "enabled": True,
+                "passes": z_passes,
+                "seed": 1337,
+            }
+    if opts.alloying_enabled and opts.alloying_jobs:
+        alloy_passes = []
+        for job in opts.alloying_jobs:
+            target_count = int(job.target_count or 0)
+            if job.replace.strip() and job.replacement.strip() and (target_count > 0 or float(job.ratio) > 0):
+                alloy_passes.append({
+                    "replace": job.replace.strip(),
+                    "with": job.replacement.strip(),
+                    "with_charge": int(job.replacement_charge),
+                    "region": job.region or "both",
+                    "ratio": job.ratio,
+                    "target_count": target_count,
+                    "distribution": job.distribution or "random",
+                })
+        if alloy_passes:
+            post_treatment["alloying"] = {
+                "enabled": True,
+                "passes": alloy_passes,
+                "seed": 1337,
+            }
     passes = []
     if opts.cap_anionic_jobs:
         for job in opts.cap_anionic_jobs:
@@ -939,6 +1003,7 @@ def _build_post_treatment_from_opts(opts: BuildOptions) -> dict:
                     "charge": -1,
                     "smiles": [job.smiles.strip()],
                     "ratio": job.ratio,
+                    "target_count": int(getattr(job, "target_count", 0) or 0),
                     "distribution": opts.cap_distribution or "uniform",
                 })
     if opts.cap_cationic_jobs:
@@ -949,6 +1014,7 @@ def _build_post_treatment_from_opts(opts: BuildOptions) -> dict:
                     "charge": 1,
                     "smiles": [job.smiles.strip()],
                     "ratio": job.ratio,
+                    "target_count": int(getattr(job, "target_count", 0) or 0),
                     "distribution": opts.cap_distribution or "uniform",
                 })
     if passes:
@@ -968,6 +1034,7 @@ def _build_post_treatment_from_opts(opts: BuildOptions) -> dict:
                     "target": job.target or "anion",
                     "smiles": job.smiles.strip(),
                     "ratio": job.ratio,
+                    "target_count": int(getattr(job, "target_count", 0) or 0),
                     "distribution": job.distribution or "random",
                 })
         if neutral_passes:
@@ -1026,10 +1093,12 @@ def _run_repassivation_posttreatment(
 
     from builder.config import parse_yaml_config
     from builder.facets import detect_facets_from_nc, expand_facets
+    from builder.alloying_posttreat import run_alloying_posttreatment
     from builder.facet_reconstruction import _native_facets_and_planes, reconstruct_polar_facets
     from builder.ligand_exchange_posttreat import run_ligand_exchange_posttreatment
     from builder.neutral_ligand_posttreat import run_neutral_ligand_posttreatment
     from builder.passivation_iterative import charge_balance_iterative
+    from builder.z_type_displacement_posttreat import run_z_type_displacement_posttreatment
 
     cfg = parse_yaml_config(str(yaml_path))
     struct = Structure.from_file(str(core_cif_path))
@@ -1043,6 +1112,8 @@ def _run_repassivation_posttreatment(
 
     pt = getattr(cfg, "post_treatment", None)
     surface_reconstruction_spec = getattr(pt, "surface_reconstruction", None)
+    alloying_spec = getattr(pt, "alloying", None)
+    z_type_spec = getattr(pt, "z_type_displacement", None)
     lig_ex = getattr(pt, "ligand_exchange", None)
     neutral_spec = getattr(pt, "neutral_ligands", None)
 
@@ -1108,19 +1179,195 @@ def _run_repassivation_posttreatment(
             elif hasattr(log_sink, "append"):
                 log_sink.append(msg)
 
-        # 2. Charged ligand exchange (X-type)
-        if lig_ex is not None and lig_ex.enabled:
-            syms, pts, ledger = run_ligand_exchange_posttreatment(
+        # 2. Inorganic alloying, then charge rebalance
+        if alloying_spec is not None and alloying_spec.enabled:
+            syms, pts, alloy_ledger = run_alloying_posttreatment(syms, pts, cfg, struct, planes)
+            if alloy_ledger:
+                for entry in alloy_ledger:
+                    cfg.charges.setdefault(entry["replacement"], int(entry["replacement_charge"]))
+                ledger.extend({"alloying": True, **entry} for entry in alloy_ledger)
+                syms, pts = charge_balance_iterative(
+                    syms,
+                    pts,
+                    cfg.charges,
+                    anion_lig,
+                    verbose=False,
+                    planes=planes,
+                    surf_tol=cfg.passivation.surf_tol,
+                    cif_path=cif_path,
+                    positive_q_strategy="remove",
+                    write_all=False,
+                    prefix=str(tmp_path / "repass"),
+                    prepass_mode=cfg.passivation.prepass_mode,
+                    prepass_min_cn_terrace=cfg.passivation.prepass_min_cn_terrace,
+                    prepass_min_cn_edge=cfg.passivation.prepass_min_cn_edge,
+                    prepass_min_cn_vertex=cfg.passivation.prepass_min_cn_vertex,
+                )
+
+        # 3. Z-type displacement (neutral inorganic groups; before X-type exchange)
+        z_ledger: List[dict] = []
+        if z_type_spec is not None and z_type_spec.enabled:
+            syms, pts, z_ledger = run_z_type_displacement_posttreatment(
                 syms, pts, cfg, struct, planes, cif_path
             )
+            ledger.extend({"z_type": True, **entry} for entry in z_ledger)
 
-        # 3. Neutral ligand passivation (L-type; after exchange, same as nc-builder)
+        # 4. Charged ligand exchange (X-type)
+        if lig_ex is not None and lig_ex.enabled:
+            syms, pts, x_ledger = run_ligand_exchange_posttreatment(
+                syms, pts, cfg, struct, planes, cif_path
+            )
+            ledger.extend(x_ledger)
+
+        # 5. Neutral ligand passivation (L-type; after exchange, same as nc-builder)
         if neutral_spec is not None and neutral_spec.enabled:
             syms, pts = run_neutral_ligand_posttreatment(syms, pts, cfg, struct, planes)
 
     out = io.StringIO()
     ase_write(out, Atoms(symbols=syms, positions=pts), format="xyz")
     return out.getvalue(), ledger
+
+
+def _detect_z_type_options_for_xyz(
+    xyz_text: str,
+    core_cif_path: Path,
+    charges: Dict[str, float],
+    tmp_path: Path,
+    *,
+    facets_input: Optional[List] = None,
+) -> List[dict]:
+    if not xyz_text:
+        return []
+    try:
+        from ase.io import read as ase_read
+        from pymatgen.core import Structure
+        from builder.config import parse_yaml_config
+        from builder.facets import detect_facets_from_nc, expand_facets
+        from builder.facet_reconstruction import _native_facets_and_planes
+        from builder.z_type_displacement_posttreat import detect_z_type_displacement_options
+    except Exception as exc:
+        logging.error(f"Z-type imports failed: {exc}")
+        return []
+
+    try:
+        facets_yaml = format_facets_for_yaml(facets_input) if facets_input else [
+            {"hkl": _QuotedStr("100"), "gamma": 1.0, "scope": "family"},
+            {"hkl": _QuotedStr("110"), "gamma": 1.0, "scope": "family"},
+            {"hkl": _QuotedStr("111"), "gamma": 1.0, "scope": "family"},
+        ]
+        minimal_yaml = {
+            "charges": charges,
+            "passivation": _default_passivation_block(),
+            "facets": facets_yaml,
+            "symmetry": {"proper_rotations_only": True},
+        }
+        yaml_path = tmp_path / "z_type_detect.yml"
+        yaml_path.write_text(_yaml_dump_canonical(minimal_yaml), encoding="utf-8")
+        cfg = parse_yaml_config(str(yaml_path))
+        struct = Structure.from_file(str(core_cif_path))
+        atoms = ase_read(io.StringIO(xyz_text), format="xyz")
+        syms = list(atoms.get_chemical_symbols())
+        pts = atoms.get_positions()
+        facet_seeds = expand_facets(struct, cfg.seeds, proper_only=cfg.proper_only)
+        anion_lig = cfg.passivation.ligand or "Cl"
+        facets, planes = _native_facets_and_planes(
+            syms, pts, struct, cfg.charges, facet_seeds, anion_lig, cfg.passivation.surf_tol
+        )
+        if not planes:
+            facets, planes = detect_facets_from_nc(
+                syms, pts, struct.lattice, cfg.charges, facet_seeds, cfg.passivation.surf_tol
+            )
+        return detect_z_type_displacement_options(syms, pts, cfg, struct, planes, str(core_cif_path))
+    except Exception as exc:
+        logging.error(f"Z-type option detection failed: {exc}", exc_info=True)
+        return []
+
+
+def _detect_surface_post_options_for_xyz(
+    xyz_text: str,
+    core_cif_path: Path,
+    charges: Dict[str, float],
+    tmp_path: Path,
+    *,
+    facets_input: Optional[List] = None,
+) -> dict:
+    out = {"alloying_options": [], "x_type_options": [], "l_type_options": []}
+    if not xyz_text:
+        return out
+    try:
+        from ase.io import read as ase_read
+        from pymatgen.core import Structure
+        from builder.config import parse_yaml_config
+        from builder.facets import detect_facets_from_nc, expand_facets
+        from builder.facet_reconstruction import _native_facets_and_planes
+        from builder.alloying_posttreat import detect_alloying_options
+        from builder.analysis import coord_numbers_bipartite, bulk_cn_opposite_by_interior
+    except Exception as exc:
+        logging.error(f"Post-treatment option imports failed: {exc}")
+        return out
+    try:
+        facets_yaml = format_facets_for_yaml(facets_input) if facets_input else [
+            {"hkl": _QuotedStr("100"), "gamma": 1.0, "scope": "family"},
+            {"hkl": _QuotedStr("110"), "gamma": 1.0, "scope": "family"},
+            {"hkl": _QuotedStr("111"), "gamma": 1.0, "scope": "family"},
+        ]
+        minimal_yaml = {
+            "charges": charges,
+            "passivation": _default_passivation_block(),
+            "facets": facets_yaml,
+            "symmetry": {"proper_rotations_only": True},
+        }
+        yaml_path = tmp_path / "post_options_detect.yml"
+        yaml_path.write_text(_yaml_dump_canonical(minimal_yaml), encoding="utf-8")
+        cfg = parse_yaml_config(str(yaml_path))
+        struct = Structure.from_file(str(core_cif_path))
+        atoms = ase_read(io.StringIO(xyz_text), format="xyz")
+        syms = list(atoms.get_chemical_symbols())
+        pts = atoms.get_positions()
+        facet_seeds = expand_facets(struct, cfg.seeds, proper_only=cfg.proper_only)
+        anion_lig = cfg.passivation.ligand or "Cl"
+        _facets, planes = _native_facets_and_planes(
+            syms, pts, struct, cfg.charges, facet_seeds, anion_lig, cfg.passivation.surf_tol
+        )
+        if not planes:
+            _facets, planes = detect_facets_from_nc(
+                syms, pts, struct.lattice, cfg.charges, facet_seeds, cfg.passivation.surf_tol
+            )
+
+        out["alloying_options"] = detect_alloying_options(syms, pts, cfg, struct, planes)
+        for sym in sorted(set(syms)):
+            if int(cfg.charges.get(sym, 0)) != 0 and sym not in {s.specie.symbol for s in struct.sites}:
+                out["x_type_options"].append({
+                    "dummy": sym,
+                    "charge": int(cfg.charges.get(sym, 0)),
+                    "available_count": int(sum(1 for s in syms if s == sym)),
+                })
+
+        surface = np.zeros(len(pts), bool)
+        for normal, d in planes:
+            normal = np.asarray(normal, float)
+            surface |= ((float(d) - pts @ normal) < float(cfg.passivation.surf_tol))
+        cn = coord_numbers_bipartite(syms, pts, cfg.charges, pair_cuts=None)
+        bulk_cn = bulk_cn_opposite_by_interior(syms, pts, planes, cfg.passivation.surf_tol, cfg.charges, pair_cuts=None)
+        counts = {"cation": 0, "anion": 0}
+        native = {s.specie.symbol for s in struct.sites}
+        for i, sym in enumerate(syms):
+            if sym not in native or not bool(surface[i]):
+                continue
+            q = int(cfg.charges.get(sym, 0))
+            deficit = max(0, int(bulk_cn.get(sym, 0)) - int(cn[i]))
+            if q > 0:
+                counts["cation"] += deficit
+            elif q < 0:
+                counts["anion"] += deficit
+        out["l_type_options"] = [
+            {"target": "cation", "available_count": int(counts["cation"])},
+            {"target": "anion", "available_count": int(counts["anion"])},
+            {"target": "both", "available_count": int(counts["cation"] + counts["anion"])},
+        ]
+    except Exception as exc:
+        logging.error(f"Post-treatment option detection failed: {exc}", exc_info=True)
+    return out
 
 
 def format_facets_for_yaml(facets) -> List[dict]:
@@ -1804,6 +2051,9 @@ async def build_nanocrystal_stream(
             final_charges.setdefault("Cl", -1.0)
             if needs_rb:
                 final_charges.setdefault("Rb", 1.0)
+            for job in opts.alloying_jobs or []:
+                if job.replacement.strip():
+                    final_charges.setdefault(job.replacement.strip(), int(job.replacement_charge))
 
             pass_defaults = _default_passivation_block(include_cation_ligand=needs_rb)
 
@@ -1914,7 +2164,13 @@ async def build_nanocrystal_stream(
                     logging.error(f"XYZ parse fail after repassivation: {e}")
 
                 anionic_detail, cationic_detail = {}, {}
+                z_type_detail = {}
                 for entry in ledger:
+                    if entry.get("z_type"):
+                        formula = entry.get("formula")
+                        if formula:
+                            z_type_detail[formula] = z_type_detail.get(formula, 0) + int(entry.get("removed", 0))
+                        continue
                     sm = entry.get("smiles")
                     chg = entry.get("charge", 0)
                     if sm:
@@ -1926,8 +2182,23 @@ async def build_nanocrystal_stream(
                     "anionic": anionic_detail,
                     "cationic": cationic_detail,
                     "neutral": {},
+                    "z_type": z_type_detail,
                     "total": sum(anionic_detail.values()) + sum(cationic_detail.values()),
                 }
+                z_type_options = _detect_z_type_options_for_xyz(
+                    opts.xyz_unpassivated,
+                    outermost_shell_path,
+                    final_charges,
+                    tmp_path,
+                    facets_input=facets_for_repass,
+                )
+                post_options = _detect_surface_post_options_for_xyz(
+                    opts.xyz_unpassivated,
+                    outermost_shell_path,
+                    final_charges,
+                    tmp_path,
+                    facets_input=facets_for_repass,
+                )
 
                 payload = {
                     "status": "success",
@@ -1940,6 +2211,8 @@ async def build_nanocrystal_stream(
                     "download_name": "repassivated.xyz",
                     "last_command": " ".join(cmd),
                     "ligand_detail": ligand_detail,
+                    "z_type_options": z_type_options,
+                    **post_options,
                     "size_metrics": None,
                 }
                 yield json.dumps({"event": "result", **payload}) + "\n"
@@ -2034,6 +2307,7 @@ async def build_nanocrystal_stream(
             if post_treatment and (
                 (opts.cap_anionic_jobs and any(j.smiles.strip() for j in opts.cap_anionic_jobs))
                 or (opts.cap_cationic_jobs and any(j.smiles.strip() for j in opts.cap_cationic_jobs))
+                or opts.z_type_enabled
                 or opts.neutral_enabled
                 or opts.reconstruction_enabled
             ):
@@ -2160,8 +2434,14 @@ async def build_nanocrystal_stream(
                     
                     # 1. Parse charged X-type ligand exchange ledger
                     ledger = manifest.get("ligand_exchange_charge_ledger", [])
+                    z_ledger = manifest.get("z_type_displacement_ledger", [])
                     anionic_detail = {}
                     cationic_detail = {}
+                    z_type_detail = {}
+                    for entry in z_ledger:
+                        formula = entry.get("formula")
+                        if formula:
+                            z_type_detail[formula] = z_type_detail.get(formula, 0) + int(entry.get("removed", 0))
                     x_ligands_smiles = []
                     for entry in ledger:
                         sm = entry.get("smiles")
@@ -2191,6 +2471,7 @@ async def build_nanocrystal_stream(
                         "anionic": anionic_detail,
                         "cationic": cationic_detail,
                         "neutral": neutral_detail,
+                        "z_type": z_type_detail,
                         "total": sum(anionic_detail.values()) + sum(cationic_detail.values()) + sum(neutral_detail.values())
                     }
                 else:
@@ -2201,10 +2482,25 @@ async def build_nanocrystal_stream(
                     elements = ",".join(sorted(set(symbols)))
                     total_charge = sum(final_charges.get(s, 0.0) for s in symbols)
                     grouped_counts = _count_grouped_xyz(current_xyz, core_elements, shell_elements)
-                    ligand_detail = {"anionic": {}, "cationic": {}, "neutral": {}, "total": 0}
+                    ligand_detail = {"anionic": {}, "cationic": {}, "neutral": {}, "z_type": {}, "total": 0}
             except Exception as e:
                 logging.error(f"Post-cap metadata recompute failed: {e}")
-                ligand_detail = {"anionic": {}, "cationic": {}, "neutral": {}, "total": 0}
+                ligand_detail = {"anionic": {}, "cationic": {}, "neutral": {}, "z_type": {}, "total": 0}
+
+            z_type_options = _detect_z_type_options_for_xyz(
+                xyz_pass,
+                root_path,
+                final_charges,
+                tmp_path,
+                facets_input=[f.dict() if hasattr(f, "dict") else f for f in (opts.facets or [])],
+            )
+            post_options = _detect_surface_post_options_for_xyz(
+                xyz_pass,
+                root_path,
+                final_charges,
+                tmp_path,
+                facets_input=[f.dict() if hasattr(f, "dict") else f for f in (opts.facets or [])],
+            )
             
             size_metrics = None
             if current_xyz:
@@ -2228,6 +2524,8 @@ async def build_nanocrystal_stream(
                 "download_name": download_name or "final.xyz",
                 "last_command": " ".join(cmd),
                 "ligand_detail": ligand_detail,
+                "z_type_options": z_type_options,
+                **post_options,
                 "size_metrics": size_metrics, 
             }
             yield json.dumps({"event": "result", **payload}) + "\n"

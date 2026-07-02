@@ -109,6 +109,12 @@
   let neutralEnabled = $state(false);
   let neutralLigands = $state([]);
   let neutralDist = $state('random');
+  let zTypeEnabled = $state(false);
+  let zTypeOptions = $state([]);
+  let alloyingEnabled = $state(false);
+  let alloyingOptions = $state([]);
+  let xTypeOptions = $state([]);
+  let lTypeOptions = $state([]);
   let detectedAnions = $state([]);
   let detectedCations = $state([]);
   let detectedSpecies = $state([]);
@@ -223,6 +229,103 @@
     }
     return charge;
   });
+
+  function zTypeKey(opt) {
+    return `${opt.cation}|${opt.anion}|${opt.anion_count}`;
+  }
+
+  function zTypeAvailable(opt) {
+    return opt?.candidate_count || 0;
+  }
+
+  function syncZTypeCountFromRatio(opt) {
+    const available = zTypeAvailable(opt);
+    opt.target_count = Math.max(0, Math.min(available, Math.round(Number(opt.ratio || 0) * available)));
+  }
+
+  function syncZTypeRatioFromCount(opt) {
+    const available = zTypeAvailable(opt);
+    opt.target_count = Math.max(0, Math.min(available, Math.round(Number(opt.target_count || 0))));
+    opt.ratio = available > 0 ? opt.target_count / available : 0;
+  }
+
+  function alloyAvailable(opt) {
+    if (!opt) return 0;
+    if (opt.region === 'surface') return opt.surface_count || 0;
+    if (opt.region === 'core') return opt.core_count || 0;
+    return opt.total_count || 0;
+  }
+
+  function syncAlloyCountFromRatio(opt) {
+    const available = alloyAvailable(opt);
+    opt.target_count = Math.max(0, Math.min(available, Math.round(Number(opt.ratio || 0) * available)));
+  }
+
+  function syncAlloyRatioFromCount(opt) {
+    const available = alloyAvailable(opt);
+    opt.target_count = Math.max(0, Math.min(available, Math.round(Number(opt.target_count || 0))));
+    opt.ratio = available > 0 ? opt.target_count / available : 0;
+  }
+
+  function syncLigandCountFromRatio(lig, available) {
+    lig.target_count = Math.max(0, Math.min(available, Math.round(Number(lig.ratio || 0) * available)));
+  }
+
+  function syncLigandRatioFromCount(lig, available) {
+    lig.target_count = Math.max(0, Math.min(available, Math.round(Number(lig.target_count || 0))));
+    lig.ratio = available > 0 ? lig.target_count / available : 0;
+  }
+
+  function selectionPercent(count, available) {
+    const denom = Number(available || 0);
+    if (denom <= 0) return 0;
+    return Math.round((Number(count || 0) / denom) * 100);
+  }
+
+  function formulaParts(formula) {
+    return String(formula || '').split(/(\d+)/).filter(Boolean).map((text) => ({
+      text,
+      subscript: /^\d+$/.test(text),
+    }));
+  }
+
+  function xTypeAvailable(dummy) {
+    return xTypeOptions.find((opt) => opt.dummy === dummy)?.available_count || 0;
+  }
+
+  function lTypeAvailable(target) {
+    return lTypeOptions.find((opt) => opt.target === target)?.available_count || 0;
+  }
+
+  function decorateZTypeOptions(options) {
+    const previous = new Map(zTypeOptions.map((opt) => [zTypeKey(opt), opt]));
+    return (options || []).map((opt) => {
+      const prev = previous.get(zTypeKey(opt)) || {};
+      const next = { ...opt, enabled: prev.enabled || false, ratio: prev.ratio ?? 0, target_count: prev.target_count ?? 0, distribution: prev.distribution || 'random' };
+      syncZTypeRatioFromCount(next);
+      return next;
+    });
+  }
+
+  function decorateAlloyingOptions(options) {
+    const previous = new Map(alloyingOptions.map((opt) => [opt.element, opt]));
+    return (options || []).map((opt) => {
+      const prev = previous.get(opt.element) || {};
+      const defaultReplacement = opt.site_type === 'cation' ? 'Cd' : 'Se';
+      const next = {
+        ...opt,
+        enabled: prev.enabled || false,
+        replacement: prev.replacement || defaultReplacement,
+        replacement_charge: prev.replacement_charge ?? (OXIDATION_STATES[defaultReplacement] || 0),
+        region: prev.region || 'surface',
+        ratio: prev.ratio ?? 0,
+        target_count: prev.target_count ?? 0,
+        distribution: prev.distribution || 'random',
+      };
+      syncAlloyRatioFromCount(next);
+      return next;
+    });
+  }
 
   // ==========================================
   // HELPERS & UI LOGIC
@@ -529,6 +632,12 @@
     neutralEnabled = false;
     neutralLigands = [];
     neutralDist = 'random';
+    zTypeEnabled = false;
+    zTypeOptions = [];
+    alloyingEnabled = false;
+    alloyingOptions = [];
+    xTypeOptions = [];
+    lTypeOptions = [];
     latticeLengths = [5.0, 5.0, 5.0];
     passivateExpanded = false;
     showCationic = false;
@@ -607,10 +716,10 @@
       })),
       cap_distribution: capDist,
       cap_anionic_jobs: skipCoreBuild
-        ? anionicLigands.map(l => ({ smiles: l.smiles, ratio: l.ratio, dummy: l.dummy }))
+        ? anionicLigands.map(l => ({ smiles: l.smiles, ratio: l.ratio, target_count: l.target_count || 0, dummy: l.dummy }))
         : [],
       cap_cationic_jobs: skipCoreBuild
-        ? cationicLigands.map(l => ({ smiles: l.smiles, ratio: l.ratio, dummy: l.dummy }))
+        ? cationicLigands.map(l => ({ smiles: l.smiles, ratio: l.ratio, target_count: l.target_count || 0, dummy: l.dummy }))
         : [],
       skip_core_build: skipCoreBuild,
       xyz_unpassivated: skipCoreBuild ? lastUnpassivatedXyz : null,
@@ -623,7 +732,31 @@
             target: l.target,
             smiles: l.smiles,
             ratio: l.ratio,
+            target_count: l.target_count || 0,
             distribution: neutralDist,
+          }))
+        : [],
+      z_type_enabled: skipCoreBuild ? zTypeEnabled : false,
+      z_type_jobs: skipCoreBuild && zTypeEnabled
+        ? zTypeOptions.filter(opt => opt.enabled && opt.target_count > 0).map(opt => ({
+            cation: opt.cation,
+            anion: opt.anion,
+            anion_count: opt.anion_count,
+            target_count: opt.target_count,
+            ratio: opt.ratio,
+            distribution: opt.distribution,
+          }))
+        : [],
+      alloying_enabled: skipCoreBuild ? alloyingEnabled : false,
+      alloying_jobs: skipCoreBuild && alloyingEnabled
+        ? alloyingOptions.filter(opt => opt.enabled && opt.target_count > 0 && opt.replacement).map(opt => ({
+            replace: opt.element,
+            replacement: opt.replacement,
+            replacement_charge: opt.replacement_charge,
+            region: opt.region,
+            ratio: opt.ratio,
+            target_count: opt.target_count,
+            distribution: opt.distribution,
           }))
         : [],
       center_ion: centerIon || null
@@ -674,6 +807,10 @@
 
       if (finalResult && finalResult.status === 'success') {
         xyzData = finalResult.xyz_passivated || finalResult.xyz || finalResult.xyz_unpassivated || "";
+        zTypeOptions = decorateZTypeOptions(finalResult.z_type_options || []);
+        alloyingOptions = decorateAlloyingOptions(finalResult.alloying_options || []);
+        xTypeOptions = finalResult.x_type_options || [];
+        lTypeOptions = finalResult.l_type_options || [];
         if (!skipCoreBuild) {
             lastUnpassivatedXyz = finalResult.xyz_dummy || finalResult.xyz_unpassivated || finalResult.xyz_passivated || xyzData;
             sidebarView = 'postTreatment';
@@ -732,6 +869,101 @@
       {:else}
         <div class="space-y-4">
           <div class="border border-accent-200 bg-accent-50/20 p-4 rounded-2xl space-y-3">
+            <label class="flex items-center gap-2 font-extrabold text-accent-700 text-[10px] uppercase tracking-widest cursor-pointer select-none">
+              <input type="checkbox" bind:checked={alloyingEnabled} disabled={alloyingOptions.length === 0} class="accent-accent-600 rounded">
+              Inorganic Alloying
+            </label>
+            {#if alloyingOptions.length === 0}
+              <p class="text-[10px] text-slate-500 leading-snug">No inorganic alloying sites detected.</p>
+            {:else if alloyingEnabled}
+              <div class="space-y-3 bg-white/60 p-3 rounded-xl border border-accent-100">
+                {#each ['cation', 'anion'] as siteType}
+                  {@const optsForType = alloyingOptions.filter((opt) => opt.site_type === siteType)}
+                  {#if optsForType.length > 0}
+                    <span class="block text-[9px] font-bold text-accent-600 uppercase tracking-wider">{siteType}s</span>
+                    {#each optsForType as opt (opt.element)}
+                      <div class="border border-accent-100 rounded-xl p-3 bg-white/70 space-y-2">
+                        <label class="space-y-2 text-xs font-bold text-slate-700 min-w-0 block">
+                          <span class="flex items-center gap-2 whitespace-nowrap">
+                            <input type="checkbox" bind:checked={opt.enabled} class="accent-accent-600 rounded shrink-0">
+                            <span>Replace {opt.element}</span>
+                          </span>
+                          <span class="flex flex-wrap gap-1.5 text-[10px] text-slate-500">
+                            <span class="rounded-full bg-slate-100 px-2 py-0.5 whitespace-nowrap">surface {opt.surface_count}</span>
+                            <span class="rounded-full bg-slate-100 px-2 py-0.5 whitespace-nowrap">core {opt.core_count}</span>
+                          </span>
+                        </label>
+                        {#if opt.enabled}
+                          <div class="grid grid-cols-[1fr_4rem_4rem] gap-2">
+                            <input type="text" bind:value={opt.replacement} placeholder="Ion" class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+                            <input type="number" bind:value={opt.replacement_charge} step="1" title="Replacement ion charge" class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+                            <select bind:value={opt.region} onchange={() => syncAlloyCountFromRatio(opt)} class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium cursor-pointer min-w-0">
+                              <option value="surface">Surf</option><option value="core">Core</option><option value="both">Both</option>
+                            </select>
+                          </div>
+                          <div class="grid grid-cols-[1fr_5rem] gap-2 items-center">
+                            <div class="space-y-1">
+                              <div class="flex justify-between text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span>Available: {alloyAvailable(opt)}</span><span>Replace: {opt.target_count} / {alloyAvailable(opt)} ({selectionPercent(opt.target_count, alloyAvailable(opt))}%)</span></div>
+                              <input type="range" min="0" max="1" step="0.01" bind:value={opt.ratio} oninput={() => syncAlloyCountFromRatio(opt)} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
+                            </div>
+                            <input type="number" min="0" max={alloyAvailable(opt)} step="1" bind:value={opt.target_count} oninput={() => syncAlloyRatioFromCount(opt)} class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+                          </div>
+                          <div class="flex flex-wrap gap-1.5 text-[10px] bg-white p-2 rounded-lg border border-accent-100">
+                            <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={opt.distribution} value="uniform" class="accent-accent-600 shrink-0"> Uniform</label>
+                            <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={opt.distribution} value="segmented" class="accent-accent-600 shrink-0"> Segmented</label>
+                            <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={opt.distribution} value="random" class="accent-accent-600 shrink-0"> Random</label>
+                          </div>
+                        {/if}
+                      </div>
+                    {/each}
+                  {/if}
+                {/each}
+              </div>
+            {/if}
+          </div>
+          <div class="border border-accent-200 bg-accent-50/20 p-4 rounded-2xl space-y-3">
+            <label class="flex items-center gap-2 font-extrabold text-accent-700 text-[10px] uppercase tracking-widest cursor-pointer select-none">
+              <input type="checkbox" bind:checked={zTypeEnabled} disabled={zTypeOptions.length === 0} class="accent-accent-600 rounded">
+              Z-type Displacement
+              <span class="text-[10px] bg-slate-100 hover:bg-slate-200 text-slate-400 hover:text-slate-600 w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold font-mono cursor-help select-none shrink-0"
+                    role="tooltip"
+                    onmouseenter={() => tooltipText = "Removes neutral inorganic surface groups before X-type ligand exchange, e.g. CdCl2, CdSe, CsBr, or PbBr2. Options are detected from the current surface."}
+                    onmouseleave={() => tooltipText = ""}>
+                i
+              </span>
+            </label>
+            {#if zTypeOptions.length === 0}
+              <p class="text-[10px] text-slate-500 leading-snug">
+                No neutral Z-type surface groups detected on the current structure.
+              </p>
+            {:else if zTypeEnabled}
+              <div class="space-y-3 bg-white/60 p-3 rounded-xl border border-accent-100">
+                {#each zTypeOptions as opt (zTypeKey(opt))}
+                  <div class="border border-accent-100 rounded-xl p-3 bg-white/70 space-y-2">
+                    <label class="flex items-center justify-between gap-2 text-xs font-bold text-slate-700">
+                      <span class="inline-flex items-baseline gap-0.5"><input type="checkbox" bind:checked={opt.enabled} class="accent-accent-600 rounded mr-1.5 shrink-0"> <span>{#each formulaParts(opt.label || opt.formula) as part}{#if part.subscript}<sub>{part.text}</sub>{:else}{part.text}{/if}{/each}</span></span>
+                      <span class="text-[10px] text-slate-400">available {opt.candidate_count}</span>
+                    </label>
+                    {#if opt.enabled}
+                      <div class="grid grid-cols-[1fr_5rem] gap-2 items-center">
+                        <div class="space-y-1">
+                          <div class="flex justify-between text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span>Available: {zTypeAvailable(opt)}</span><span>Remove: {opt.target_count} / {zTypeAvailable(opt)} ({selectionPercent(opt.target_count, zTypeAvailable(opt))}%)</span></div>
+                          <input type="range" min="0" max="1" step="0.01" bind:value={opt.ratio} oninput={() => syncZTypeCountFromRatio(opt)} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
+                        </div>
+                        <input type="number" min="0" max={zTypeAvailable(opt)} step="1" bind:value={opt.target_count} oninput={() => syncZTypeRatioFromCount(opt)} class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+                      </div>
+                      <div class="flex flex-wrap gap-1.5 text-[10px] bg-white p-2 rounded-lg border border-accent-100">
+                        <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={opt.distribution} value="uniform" class="accent-accent-600 shrink-0"> Uniform</label>
+                        <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={opt.distribution} value="segmented" class="accent-accent-600 shrink-0"> Segmented</label>
+                        <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={opt.distribution} value="random" class="accent-accent-600 shrink-0"> Random</label>
+                      </div>
+                    {/if}
+                  </div>
+                {/each}
+              </div>
+            {/if}
+          </div>
+          <div class="border border-accent-200 bg-accent-50/20 p-4 rounded-2xl space-y-3">
             <span class="block text-[10px] font-extrabold text-accent-700 uppercase tracking-widest flex items-center gap-1.5">
               X-type Ligand Exchange
               <span class="text-[10px] bg-slate-100 hover:bg-slate-200 text-slate-400 hover:text-slate-600 w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold font-mono cursor-help select-none shrink-0"
@@ -742,55 +974,67 @@
             </span>
             <span class="block text-[9px] font-bold text-accent-600 uppercase tracking-wider">Anionic Ligands</span>
             {#if anionicLigands.length > 0}
-              <div class="grid grid-cols-[1fr_3.5rem_3.5rem_28px] gap-2 text-[8px] text-accent-500 uppercase font-bold tracking-widest mb-1 px-1">
-                <span>SMILES</span><span>Dummy</span><span>Ratio</span><span></span>
+              <div class="grid grid-cols-[1fr_3.5rem_28px] gap-2 text-[8px] text-accent-500 uppercase font-bold tracking-widest mb-1 px-1">
+                <span>SMILES</span><span>Dummy</span><span></span>
               </div>
             {/if}
             {#each anionicLigands as lig, i (lig.id)}
-              <div class="grid grid-cols-[1fr_3.5rem_3.5rem_28px] gap-2 mb-2">
+              <div class="grid grid-cols-[1fr_3.5rem_28px] gap-2 mb-2">
                 <input type="text" bind:value={lig.smiles} placeholder="e.g. CCCC(=O)O" class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
-                <select bind:value={lig.dummy} class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium cursor-pointer text-center">
+                <select bind:value={lig.dummy} onchange={() => syncLigandCountFromRatio(lig, xTypeAvailable(lig.dummy))} class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium cursor-pointer text-center">
                   {#each Array.from(new Set(['Cl', ...detectedAnions])) as opt}
                     <option value={opt}>{opt}</option>
                   {/each}
                 </select>
-                <input type="number" bind:value={lig.ratio} step="0.1" class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
                 <button class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors" onclick={() => anionicLigands.splice(i, 1)}>✕</button>
               </div>
+              <div class="grid grid-cols-[1fr_4.5rem] gap-2 mb-2 text-[10px] items-center">
+                <div class="space-y-1">
+                  <div class="flex justify-between text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span>Available {lig.dummy}: {xTypeAvailable(lig.dummy)}</span><span>Exchange: {lig.target_count || 0} / {xTypeAvailable(lig.dummy)} ({selectionPercent(lig.target_count, xTypeAvailable(lig.dummy))}%)</span></div>
+                  <input type="range" min="0" max="1" step="0.01" bind:value={lig.ratio} oninput={() => syncLigandCountFromRatio(lig, xTypeAvailable(lig.dummy))} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
+                </div>
+                <input type="number" min="0" max={xTypeAvailable(lig.dummy)} step="1" bind:value={lig.target_count} oninput={() => syncLigandRatioFromCount(lig, xTypeAvailable(lig.dummy))} placeholder="count" class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+              </div>
             {/each}
-            <button class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-[10px] py-1.5 rounded-lg text-accent-700 font-bold transition-colors" onclick={() => anionicLigands.push({ id: crypto.randomUUID(), smiles: '', ratio: 1.0, dummy: 'Cl' })}>+ Add Anionic Ligand</button>
+            <button class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-[10px] py-1.5 rounded-lg text-accent-700 font-bold transition-colors" onclick={() => anionicLigands.push({ id: crypto.randomUUID(), smiles: '', ratio: 0, target_count: 0, dummy: 'Cl' })}>+ Add Anionic Ligand</button>
             {#if !showCationic}
               <button class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-[10px] py-1.5 rounded-lg text-accent-700 font-bold transition-colors" onclick={() => showCationic = true}>+ Add Cationic Exchange</button>
             {:else}
               <span class="block text-[9px] font-bold text-accent-600 uppercase tracking-wider pt-2 border-t border-accent-100">Cationic Ligands</span>
               {#if cationicLigands.length > 0}
-                <div class="grid grid-cols-[1fr_3.5rem_3.5rem_28px] gap-2 text-[8px] text-accent-500 uppercase font-bold tracking-widest mb-1 px-1">
-                  <span>SMILES</span><span>Dummy</span><span>Ratio</span><span></span>
+                <div class="grid grid-cols-[1fr_3.5rem_28px] gap-2 text-[8px] text-accent-500 uppercase font-bold tracking-widest mb-1 px-1">
+                  <span>SMILES</span><span>Dummy</span><span></span>
                 </div>
               {/if}
               {#each cationicLigands as lig, i (lig.id)}
-                <div class="grid grid-cols-[1fr_3.5rem_3.5rem_28px] gap-2 mb-2">
+                <div class="grid grid-cols-[1fr_3.5rem_28px] gap-2 mb-2">
                   <input type="text" bind:value={lig.smiles} placeholder="e.g. CCCCCCCCC[N+](C)(C)C" class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
-                  <select bind:value={lig.dummy} class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium cursor-pointer text-center">
+                  <select bind:value={lig.dummy} onchange={() => syncLigandCountFromRatio(lig, xTypeAvailable(lig.dummy))} class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium cursor-pointer text-center">
                     {#each Array.from(new Set(['Rb', ...detectedCations])) as opt}
                       <option value={opt}>{opt}</option>
                     {/each}
                   </select>
-                  <input type="number" bind:value={lig.ratio} step="0.1" class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
                   <button class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors" onclick={() => cationicLigands.splice(i, 1)}>✕</button>
                 </div>
+                <div class="grid grid-cols-[1fr_4.5rem] gap-2 mb-2 text-[10px] items-center">
+                  <div class="space-y-1">
+                    <div class="flex justify-between text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span>Available {lig.dummy}: {xTypeAvailable(lig.dummy)}</span><span>Exchange: {lig.target_count || 0} / {xTypeAvailable(lig.dummy)} ({selectionPercent(lig.target_count, xTypeAvailable(lig.dummy))}%)</span></div>
+                    <input type="range" min="0" max="1" step="0.01" bind:value={lig.ratio} oninput={() => syncLigandCountFromRatio(lig, xTypeAvailable(lig.dummy))} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
+                  </div>
+                  <input type="number" min="0" max={xTypeAvailable(lig.dummy)} step="1" bind:value={lig.target_count} oninput={() => syncLigandRatioFromCount(lig, xTypeAvailable(lig.dummy))} placeholder="count" class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+                </div>
               {/each}
-              <button class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-[10px] py-1.5 rounded-lg text-accent-700 font-bold transition-colors" onclick={() => cationicLigands.push({ id: crypto.randomUUID(), smiles: '', ratio: 1.0, dummy: 'Rb' })}>+ Add Cationic Ligand</button>
+              <button class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-[10px] py-1.5 rounded-lg text-accent-700 font-bold transition-colors" onclick={() => cationicLigands.push({ id: crypto.randomUUID(), smiles: '', ratio: 0, target_count: 0, dummy: 'Rb' })}>+ Add Cationic Ligand</button>
             {/if}
             <span class="block text-[9px] font-bold text-accent-600 uppercase tracking-wider pt-2 border-t border-accent-100">Distribution</span>
-            <div class="grid grid-cols-3 gap-1 text-[10px] bg-white p-2 rounded-lg border border-accent-100">
-              <label class="flex items-center justify-center gap-1 cursor-pointer font-medium text-slate-700 min-w-0">
+            <div class="flex flex-wrap gap-1.5 text-[10px] bg-white p-2 rounded-lg border border-accent-100">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1">
                 <input type="radio" bind:group={capDist} value="uniform" class="accent-accent-600 shrink-0"> Uniform
               </label>
-              <label class="flex items-center justify-center gap-1 cursor-pointer font-medium text-slate-700 min-w-0">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1">
                 <input type="radio" bind:group={capDist} value="segmented" class="accent-accent-600 shrink-0"> Segmented
               </label>
-              <label class="flex items-center justify-center gap-1 cursor-pointer font-medium text-slate-700 min-w-0">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1">
                 <input type="radio" bind:group={capDist} value="random" class="accent-accent-600 shrink-0"> Random
               </label>
             </div>
@@ -803,35 +1047,41 @@
             {#if neutralEnabled}
               <div class="space-y-3 bg-white/60 p-3 rounded-xl border border-accent-100">
                 {#if neutralLigands.length > 0}
-                  <div class="grid grid-cols-[1fr_4.5rem_3.5rem_28px] gap-2 text-[8px] text-accent-500 uppercase font-bold tracking-widest px-1">
-                    <span>SMILES</span><span>Target</span><span>Ratio</span><span></span>
+                  <div class="grid grid-cols-[1fr_4.5rem_28px] gap-2 text-[8px] text-accent-500 uppercase font-bold tracking-widest px-1">
+                    <span>SMILES</span><span>Target</span><span></span>
                   </div>
                 {/if}
                 {#each neutralLigands as lig, i (lig.id)}
-                  <div class="grid grid-cols-[1fr_4.5rem_3.5rem_28px] gap-2">
+                  <div class="grid grid-cols-[1fr_4.5rem_28px] gap-2">
                     <input type="text" bind:value={lig.smiles} placeholder="e.g. CCCN" class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
-                    <select bind:value={lig.target} class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium cursor-pointer text-center">
+                    <select bind:value={lig.target} onchange={() => syncLigandCountFromRatio(lig, lTypeAvailable(lig.target))} class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium cursor-pointer text-center">
                       <option value="cation">Cation</option>
                       <option value="anion">Anion</option>
                       <option value="both">Both</option>
                     </select>
-                    <input type="number" bind:value={lig.ratio} step="0.1" min="0" max="1" class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
                     <button class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors" onclick={() => neutralLigands.splice(i, 1)}>✕</button>
+                  </div>
+                  <div class="grid grid-cols-[1fr_4.5rem] gap-2 text-[10px] items-center">
+                    <div class="space-y-1">
+                      <div class="flex justify-between text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span>Available {lig.target}: {lTypeAvailable(lig.target)}</span><span>Passivate: {lig.target_count || 0} / {lTypeAvailable(lig.target)} ({selectionPercent(lig.target_count, lTypeAvailable(lig.target))}%)</span></div>
+                      <input type="range" min="0" max="1" step="0.01" bind:value={lig.ratio} oninput={() => syncLigandCountFromRatio(lig, lTypeAvailable(lig.target))} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
+                    </div>
+                    <input type="number" min="0" max={lTypeAvailable(lig.target)} step="1" bind:value={lig.target_count} oninput={() => syncLigandRatioFromCount(lig, lTypeAvailable(lig.target))} placeholder="count" class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
                   </div>
                 {/each}
                 <button class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-[10px] py-1.5 rounded-lg text-accent-700 font-bold transition-colors"
-                        onclick={() => neutralLigands.push({ id: crypto.randomUUID(), smiles: '', target: 'cation', ratio: 1.0 })}>
+                        onclick={() => neutralLigands.push({ id: crypto.randomUUID(), smiles: '', target: 'cation', ratio: 0, target_count: 0 })}>
                   + Add L-type Passivant
                 </button>
                 <span class="block text-[9px] font-bold text-accent-600 uppercase tracking-wider pt-2 border-t border-accent-100">Distribution</span>
-                <div class="grid grid-cols-3 gap-1 text-[10px] bg-white p-2 rounded-lg border border-accent-100">
-                  <label class="flex items-center justify-center gap-1 cursor-pointer font-medium text-slate-700 min-w-0">
+                <div class="flex flex-wrap gap-1.5 text-[10px] bg-white p-2 rounded-lg border border-accent-100">
+                  <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1">
                     <input type="radio" bind:group={neutralDist} value="uniform" class="accent-accent-600 shrink-0"> Uniform
                   </label>
-                  <label class="flex items-center justify-center gap-1 cursor-pointer font-medium text-slate-700 min-w-0">
+                  <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1">
                     <input type="radio" bind:group={neutralDist} value="segmented" class="accent-accent-600 shrink-0"> Segmented
                   </label>
-                  <label class="flex items-center justify-center gap-1 cursor-pointer font-medium text-slate-700 min-w-0">
+                  <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1">
                     <input type="radio" bind:group={neutralDist} value="random" class="accent-accent-600 shrink-0"> Random
                   </label>
                 </div>
