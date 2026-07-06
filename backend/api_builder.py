@@ -103,6 +103,10 @@ class LigJob(BaseModel):
     ratio: float = 1.0
     target_count: int = 0
     dummy: str = ""
+    replace: Optional[str] = None
+    replace_charge: Optional[int] = None
+    ligand_charge: Optional[int] = None
+    distribution: Optional[str] = "uniform"
 
 
 class NeutralJob(BaseModel):
@@ -111,12 +115,24 @@ class NeutralJob(BaseModel):
     ratio: float = 1.0
     target_count: int = 0
     distribution: str = "random"           # "random" | "uniform" | "segmented"
+    target_symbol: Optional[str] = None
 
 
 class ZTypeJob(BaseModel):
     cation: str
     anion: str
     anion_count: int = 0
+    target_count: int = 0
+    ratio: float = 1.0
+    distribution: str = "random"           # "random" | "uniform" | "segmented"
+
+
+class NeutralExchangeJob(BaseModel):
+    cation: str
+    anion: str
+    anion_count: int = 0
+    exchange_type: str = "mxn"             # "mxn" | "zwitterion" | "l_type"; "salt" accepted as legacy alias
+    smiles: str
     target_count: int = 0
     ratio: float = 1.0
     distribution: str = "random"           # "random" | "uniform" | "segmented"
@@ -159,8 +175,11 @@ class BuildOptions(BaseModel):
     neutral_jobs: Optional[List[NeutralJob]] = None
     z_type_enabled: Optional[bool] = False
     z_type_jobs: Optional[List[ZTypeJob]] = None
+    neutral_exchange_enabled: Optional[bool] = False
+    neutral_exchange_jobs: Optional[List[NeutralExchangeJob]] = None
     alloying_enabled: Optional[bool] = False
     alloying_jobs: Optional[List[AlloyingJob]] = None
+    x_type_enabled: Optional[bool] = None
 
     # Construction center ion (maps to YAML construction_origin)
     center_ion: Optional[str] = None
@@ -592,6 +611,38 @@ def _charge_of_xyz(xyz_text: str, charges: Dict[str, float]) -> float:
     return total
 
 
+_COMMON_FORMAL_CHARGES = {
+    "Li": 1.0, "Na": 1.0, "K": 1.0, "Rb": 1.0, "Cs": 1.0, "Ag": 1.0,
+    "Mg": 2.0, "Ca": 2.0, "Sr": 2.0, "Ba": 2.0, "Zn": 2.0, "Cd": 2.0, "Hg": 2.0, "Pb": 2.0,
+    "Al": 3.0, "Ga": 3.0, "In": 3.0, "Bi": 3.0,
+    "F": -1.0, "Cl": -1.0, "Br": -1.0, "I": -1.0,
+    "O": -2.0, "S": -2.0, "Se": -2.0, "Te": -2.0,
+    "N": -3.0, "P": -3.0, "As": -3.0, "Sb": -3.0,
+}
+
+
+def _augment_charges_for_neutral_exchange(charges: Dict[str, float], opts: BuildOptions) -> None:
+    import re
+
+    for job in getattr(opts, "neutral_exchange_jobs", None) or []:
+        exchange_type = (getattr(job, "exchange_type", None) or "mxn").lower()
+        if exchange_type == "salt":
+            exchange_type = "mxn"
+        if exchange_type != "mxn":
+            continue
+        spec = (getattr(job, "smiles", "") or "").strip()
+        if not spec:
+            continue
+        if "." in spec or any(ch in spec for ch in "[]+-"):
+            for sym in re.findall(r"\[([A-Z][a-z]?)(?:\+\d*|\d+\+|-\d*|\d+-)?\]", spec):
+                if sym in _COMMON_FORMAL_CHARGES:
+                    charges.setdefault(sym, _COMMON_FORMAL_CHARGES[sym])
+            continue
+        for sym, _count in re.findall(r"([A-Z][a-z]?)(\d*)", spec):
+            if sym in _COMMON_FORMAL_CHARGES:
+                charges.setdefault(sym, _COMMON_FORMAL_CHARGES[sym])
+
+
 def run_cmd(cmd: List[str], cwd: Path) -> Tuple[str, str]:
     if cmd[0] == "nc-builder":
         exe = shutil.which("nc-builder")
@@ -974,6 +1025,27 @@ def _build_post_treatment_from_opts(opts: BuildOptions) -> dict:
                 "passes": z_passes,
                 "seed": 1337,
             }
+    if opts.neutral_exchange_enabled and opts.neutral_exchange_jobs:
+        ne_passes = []
+        for job in opts.neutral_exchange_jobs:
+            target_count = int(job.target_count or 0)
+            if job.cation.strip() and job.anion.strip() and job.smiles.strip() and (target_count > 0 or float(job.ratio) > 0):
+                ne_passes.append({
+                    "cation": job.cation.strip(),
+                    "anion": job.anion.strip(),
+                    "anion_count": int(job.anion_count or 0),
+                    "exchange_type": "mxn" if (job.exchange_type or "mxn") == "salt" else (job.exchange_type or "mxn"),
+                    "smiles": job.smiles.strip(),
+                    "target_count": target_count,
+                    "ratio": job.ratio,
+                    "distribution": job.distribution or "random",
+                })
+        if ne_passes:
+            post_treatment["neutral_exchange"] = {
+                "enabled": True,
+                "passes": ne_passes,
+                "seed": 1337,
+            }
     if opts.alloying_enabled and opts.alloying_jobs:
         alloy_passes = []
         for job in opts.alloying_jobs:
@@ -994,28 +1066,33 @@ def _build_post_treatment_from_opts(opts: BuildOptions) -> dict:
                 "passes": alloy_passes,
                 "seed": 1337,
             }
+    x_type_enabled = bool(opts.x_type_enabled) if opts.x_type_enabled is not None else bool(opts.cap_anionic_jobs or opts.cap_cationic_jobs)
     passes = []
-    if opts.cap_anionic_jobs:
+    if x_type_enabled and opts.cap_anionic_jobs:
         for job in opts.cap_anionic_jobs:
             if job.smiles.strip():
+                replace = (job.replace or job.dummy or "Cl").strip()
                 passes.append({
-                    "replace": job.dummy or "Cl",
-                    "charge": -1,
+                    "replace": replace,
+                    "charge": job.ligand_charge,
+                    "replace_charge": job.replace_charge,
                     "smiles": [job.smiles.strip()],
                     "ratio": job.ratio,
                     "target_count": int(getattr(job, "target_count", 0) or 0),
-                    "distribution": opts.cap_distribution or "uniform",
+                    "distribution": job.distribution or opts.cap_distribution or "uniform",
                 })
-    if opts.cap_cationic_jobs:
+    if x_type_enabled and opts.cap_cationic_jobs:
         for job in opts.cap_cationic_jobs:
             if job.smiles.strip():
+                replace = (job.replace or job.dummy or "Rb").strip()
                 passes.append({
-                    "replace": job.dummy or "Rb",
-                    "charge": 1,
+                    "replace": replace,
+                    "charge": job.ligand_charge,
+                    "replace_charge": job.replace_charge,
                     "smiles": [job.smiles.strip()],
                     "ratio": job.ratio,
                     "target_count": int(getattr(job, "target_count", 0) or 0),
-                    "distribution": opts.cap_distribution or "uniform",
+                    "distribution": job.distribution or opts.cap_distribution or "uniform",
                 })
     if passes:
         post_treatment["ligand_exchange"] = {
@@ -1032,6 +1109,7 @@ def _build_post_treatment_from_opts(opts: BuildOptions) -> dict:
             if job.smiles.strip():
                 neutral_passes.append({
                     "target": job.target or "anion",
+                    "target_symbol": (job.target_symbol or "").strip() or None,
                     "smiles": job.smiles.strip(),
                     "ratio": job.ratio,
                     "target_count": int(getattr(job, "target_count", 0) or 0),
@@ -1079,9 +1157,15 @@ def _run_repassivation_posttreatment(
         {"hkl": _QuotedStr("110"), "gamma": 1.0, "scope": "family"},
         {"hkl": _QuotedStr("111"), "gamma": 1.0, "scope": "family"},
     ]
+    lig_passes_for_defaults = ((post_treatment or {}).get("ligand_exchange") or {}).get("passes") or []
+    include_cation_ligand = any(
+        (int(p.get("charge") or 0) > 0) or 
+        (int(p.get("replace_charge") or charges.get(p.get("replace"), 0) or 0) > 0)
+        for p in lig_passes_for_defaults
+    )
     minimal_yaml = {
         "charges": charges,
-        "passivation": _default_passivation_block(),
+        "passivation": _default_passivation_block(include_cation_ligand=include_cation_ligand),
         "facets": facets_yaml,
         "symmetry": {"proper_rotations_only": True},
     }
@@ -1095,7 +1179,10 @@ def _run_repassivation_posttreatment(
     from builder.facets import detect_facets_from_nc, expand_facets
     from builder.alloying_posttreat import run_alloying_posttreatment
     from builder.facet_reconstruction import _native_facets_and_planes, reconstruct_polar_facets
-    from builder.ligand_exchange_posttreat import run_ligand_exchange_posttreatment
+    from builder.ligand_exchange_posttreat import (
+        rebalance_ligand_exchange_charge,
+        run_ligand_exchange_posttreatment,
+    )
     from builder.neutral_ligand_posttreat import run_neutral_ligand_posttreatment
     from builder.passivation_iterative import charge_balance_iterative
     from builder.z_type_displacement_posttreat import run_z_type_displacement_posttreatment
@@ -1212,12 +1299,39 @@ def _run_repassivation_posttreatment(
             )
             ledger.extend({"z_type": True, **entry} for entry in z_ledger)
 
+        # 3b. Neutral exchange (optional; after displacement, before X-type exchange)
+        neutral_exchange_spec = getattr(cfg.post_treatment, "neutral_exchange", None)
+        if neutral_exchange_spec is not None and neutral_exchange_spec.enabled:
+            from builder.neutral_exchange_posttreat import run_neutral_exchange_posttreatment
+            syms, pts, ne_ledger = run_neutral_exchange_posttreatment(
+                syms, pts, cfg, struct, planes, cif_path
+            )
+            ledger.extend({"neutral_exchange": True, **entry} for entry in ne_ledger)
+
         # 4. Charged ligand exchange (X-type)
         if lig_ex is not None and lig_ex.enabled:
             syms, pts, x_ledger = run_ligand_exchange_posttreatment(
                 syms, pts, cfg, struct, planes, cif_path
             )
             ledger.extend(x_ledger)
+            if x_ledger:
+                q_element = int(sum(int(cfg.charges.get(sym, 0)) for sym in syms))
+                q_ignored = int(sum(int(entry.get("ignored_element_charge", 0)) for entry in x_ledger))
+                q_exchange = int(sum(int(entry.get("charge", 0)) for entry in x_ledger))
+                q_total = q_element - q_ignored + q_exchange
+                if q_total != 0:
+                    if log_sink is not None:
+                        msg = (
+                            "[ligand-exchange:charge-balance] "
+                            f"residual Q={q_total:+d}; running ligand-only exchange compensation\n"
+                        )
+                        if hasattr(log_sink, "put"):
+                            log_sink.put(msg)
+                        elif hasattr(log_sink, "append"):
+                            log_sink.append(msg)
+                    syms, pts = rebalance_ligand_exchange_charge(
+                        syms, pts, cfg, struct, planes, cif_path, x_ledger, verbose=False
+                    )
 
         # 5. Neutral ligand passivation (L-type; after exchange, same as nc-builder)
         if neutral_spec is not None and neutral_spec.enabled:
@@ -1301,7 +1415,12 @@ def _detect_surface_post_options_for_xyz(
         from builder.facets import detect_facets_from_nc, expand_facets
         from builder.facet_reconstruction import _native_facets_and_planes
         from builder.alloying_posttreat import detect_alloying_options
-        from builder.analysis import coord_numbers_bipartite, bulk_cn_opposite_by_interior
+        from builder.analysis import (
+            coord_numbers_bipartite,
+            bulk_cn_opposite_by_interior,
+            derive_pair_cuts_from_cif,
+        )
+        from builder.ligand_exchange_posttreat import _bound_hosts
     except Exception as exc:
         logging.error(f"Post-treatment option imports failed: {exc}")
         return out
@@ -1334,37 +1453,79 @@ def _detect_surface_post_options_for_xyz(
                 syms, pts, struct.lattice, cfg.charges, facet_seeds, cfg.passivation.surf_tol
             )
 
-        out["alloying_options"] = detect_alloying_options(syms, pts, cfg, struct, planes)
-        for sym in sorted(set(syms)):
-            if int(cfg.charges.get(sym, 0)) != 0 and sym not in {s.specie.symbol for s in struct.sites}:
-                out["x_type_options"].append({
-                    "dummy": sym,
-                    "charge": int(cfg.charges.get(sym, 0)),
-                    "available_count": int(sum(1 for s in syms if s == sym)),
-                })
-
         surface = np.zeros(len(pts), bool)
         for normal, d in planes:
             normal = np.asarray(normal, float)
             surface |= ((float(d) - pts @ normal) < float(cfg.passivation.surf_tol))
-        cn = coord_numbers_bipartite(syms, pts, cfg.charges, pair_cuts=None)
-        bulk_cn = bulk_cn_opposite_by_interior(syms, pts, planes, cfg.passivation.surf_tol, cfg.charges, pair_cuts=None)
-        counts = {"cation": 0, "anion": 0}
+        pair_cuts = derive_pair_cuts_from_cif(str(core_cif_path), cfg.charges, safety=1.00)
+        cn = coord_numbers_bipartite(syms, pts, cfg.charges, pair_cuts=pair_cuts)
+        bulk_cn = bulk_cn_opposite_by_interior(
+            syms, pts, planes, cfg.passivation.surf_tol, cfg.charges, pair_cuts=pair_cuts
+        )
         native = {s.specie.symbol for s in struct.sites}
+        non_native_coords = [pts[j] for j, s in enumerate(syms) if s not in native]
+
+        def is_passivated(idx: int, cutoff: float = 3.5) -> bool:
+            if not non_native_coords:
+                return False
+            pos = pts[idx]
+            dists = np.linalg.norm(np.asarray(non_native_coords) - pos, axis=1)
+            return bool(np.min(dists) < cutoff)
+
+        out["alloying_options"] = detect_alloying_options(syms, pts, cfg, struct, planes)
+        for sym in sorted(set(syms)):
+            q = int(cfg.charges.get(sym, 0))
+            if q == 0:
+                continue
+            if sym in native:
+                available = 0
+                for i, s in enumerate(syms):
+                    if s != sym or not bool(surface[i]) or is_passivated(i):
+                        continue
+                    target_cn = int(bulk_cn.get(sym, 0))
+                    if target_cn > 0 and int(cn[i]) >= target_cn:
+                        continue
+                    if not _bound_hosts(syms, pts, i, cfg.charges, pair_cuts):
+                        continue
+                    available += 1
+                source = "native_surface"
+            else:
+                available = int(sum(1 for s in syms if s == sym))
+                source = "placeholder"
+            if available <= 0:
+                continue
+            out["x_type_options"].append({
+                "replace": sym,
+                "dummy": sym,
+                "charge": q,
+                "replace_charge": q,
+                "ligand_charge": -1 if q < 0 else 1,
+                "site_type": "anion" if q < 0 else "cation",
+                "available_count": available,
+                "source": source,
+            })
+
+        l_type_by_species: Dict[str, dict] = {}
         for i, sym in enumerate(syms):
-            if sym not in native or not bool(surface[i]):
+            if sym not in native or not bool(surface[i]) or is_passivated(i):
                 continue
             q = int(cfg.charges.get(sym, 0))
             deficit = max(0, int(bulk_cn.get(sym, 0)) - int(cn[i]))
-            if q > 0:
-                counts["cation"] += deficit
-            elif q < 0:
-                counts["anion"] += deficit
-        out["l_type_options"] = [
-            {"target": "cation", "available_count": int(counts["cation"])},
-            {"target": "anion", "available_count": int(counts["anion"])},
-            {"target": "both", "available_count": int(counts["cation"] + counts["anion"])},
-        ]
+            if q == 0 or deficit <= 0:
+                continue
+            site_type = "cation" if q > 0 else "anion"
+            entry = l_type_by_species.setdefault(sym, {
+                "element": sym,
+                "target_symbol": sym,
+                "target": site_type,
+                "site_type": site_type,
+                "available_count": 0,
+            })
+            entry["available_count"] += int(deficit)
+        out["l_type_options"] = sorted(
+            l_type_by_species.values(),
+            key=lambda item: (item["site_type"], item["element"]),
+        )
     except Exception as exc:
         logging.error(f"Post-treatment option detection failed: {exc}", exc_info=True)
     return out
@@ -1617,6 +1778,7 @@ async def build_nanocrystal(files: List[UploadFile] = File(...), options: str = 
             final_charges["Cl"] = -1.0
         if "Rb" not in final_charges:
             final_charges["Rb"] = 1.0
+        _augment_charges_for_neutral_exchange(final_charges, opts)
 
         passivation_block = {"ligand": "Cl", "surf_tol": 2.0}
 
@@ -2054,6 +2216,7 @@ async def build_nanocrystal_stream(
             for job in opts.alloying_jobs or []:
                 if job.replacement.strip():
                     final_charges.setdefault(job.replacement.strip(), int(job.replacement_charge))
+            _augment_charges_for_neutral_exchange(final_charges, opts)
 
             pass_defaults = _default_passivation_block(include_cation_ligand=needs_rb)
 
