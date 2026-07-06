@@ -113,7 +113,10 @@
   let zTypeOptions = $state([]);
   let alloyingEnabled = $state(false);
   let alloyingOptions = $state([]);
+  let xTypeEnabled = $state(false);
   let xTypeOptions = $state([]);
+  let neutralExchangeEnabled = $derived(neutralExchangeOptions.some(opt => opt.enabled));
+  let neutralExchangeOptions = $state([]);
   let lTypeOptions = $state([]);
   let detectedAnions = $state([]);
   let detectedCations = $state([]);
@@ -206,6 +209,7 @@
       for (const [el, count] of Object.entries(shell)) {
           inorganicElements[el] = (inorganicElements[el] || 0) + count;
       }
+      const countedElements = { ...inorganicElements };
 
       const knownDummies = ['Cl', 'Br', 'I', 'F', 'Na', 'K', 'Rb', 'Cs'];
       for (const dummy of knownDummies) {
@@ -214,7 +218,20 @@
               const extraDummies = calculatedStoich[dummy] - coreCount; // Only count dummies NOT part of the core
               if (extraDummies > 0) {
                   charge += (OXIDATION_STATES[dummy] || 0) * extraDummies;
+                  countedElements[dummy] = (countedElements[dummy] || 0) + extraDummies;
               }
+          }
+      }
+
+      // Neutral exchange can introduce inorganic replacement cations that are
+      // not part of the original core/shell groups, e.g. In in CdCl2 -> InBr3.
+      // Count only positive inorganic leftovers here so neutral organic ligands
+      // are not atom-wise charged.
+      for (const [el, count] of Object.entries(calculatedStoich)) {
+          const uncounted = count - (countedElements[el] || 0);
+          const ox = OXIDATION_STATES[el] || 0;
+          if (uncounted > 0 && ox > 0) {
+              charge += ox * uncounted;
           }
       }
       return charge;
@@ -234,19 +251,24 @@
     return `${opt.cation}|${opt.anion}|${opt.anion_count}`;
   }
 
+  function xTypeKey(opt) {
+    return `${opt.replace || opt.dummy}|${opt.replace_charge ?? opt.charge}|${opt.site_type || ''}`;
+  }
+
   function zTypeAvailable(opt) {
     return opt?.candidate_count || 0;
   }
 
-  function syncZTypeCountFromRatio(opt) {
-    const available = zTypeAvailable(opt);
-    opt.target_count = Math.max(0, Math.min(available, Math.round(Number(opt.ratio || 0) * available)));
+  function lTypeKey(opt) {
+    return `${opt.target_symbol || opt.element || opt.target}|${opt.site_type || opt.target || ''}`;
   }
 
-  function syncZTypeRatioFromCount(opt) {
-    const available = zTypeAvailable(opt);
-    opt.target_count = Math.max(0, Math.min(available, Math.round(Number(opt.target_count || 0))));
-    opt.ratio = available > 0 ? opt.target_count / available : 0;
+  function optionAvailable(opt, kind = '') {
+    if (!opt) return 0;
+    if (kind === 'alloy') return alloyAvailable(opt);
+    if (kind === 'x_type') return xTypeAvailable(opt);
+    if (kind === 'l_type') return opt.available_count || 0;
+    return zTypeAvailable(opt);
   }
 
   function alloyAvailable(opt) {
@@ -256,24 +278,98 @@
     return opt.total_count || 0;
   }
 
-  function syncAlloyCountFromRatio(opt) {
-    const available = alloyAvailable(opt);
-    opt.target_count = Math.max(0, Math.min(available, Math.round(Number(opt.ratio || 0) * available)));
+  function xTypeAvailable(opt) {
+    return opt?.available_count || 0;
   }
 
-  function syncAlloyRatioFromCount(opt) {
-    const available = alloyAvailable(opt);
-    opt.target_count = Math.max(0, Math.min(available, Math.round(Number(opt.target_count || 0))));
-    opt.ratio = available > 0 ? opt.target_count / available : 0;
+  function ensureJobs(opt, kind) {
+    if (!opt.jobs || opt.jobs.length === 0) {
+      opt.jobs = [makeDefaultJob(kind, opt)];
+    }
+    clampOptionJobs(opt, kind);
   }
 
-  function syncLigandCountFromRatio(lig, available) {
-    lig.target_count = Math.max(0, Math.min(available, Math.round(Number(lig.ratio || 0) * available)));
+  function makeDefaultJob(kind, opt) {
+    const base = {
+      id: crypto.randomUUID(),
+      ratio: 0,
+      target_count: 0,
+      distribution: opt?.distribution || 'random',
+    };
+    if (kind === 'alloy') {
+      const defaultReplacement = opt?.site_type === 'cation' ? (detectedCations.find((s) => s !== opt.element) || 'Zn') : (detectedAnions.find((s) => s !== opt.element) || 'S');
+      return {
+        ...base,
+        replacement: opt?.replacement || defaultReplacement,
+        replacement_charge: opt?.replacement_charge ?? (OXIDATION_STATES[defaultReplacement] || 0),
+      };
+    }
+    if (kind === 'neutral_exchange') {
+      return {
+        ...base,
+        exchange_type: (opt?.exchange_type === 'salt' ? 'mxn' : opt?.exchange_type) || 'mxn',
+        smiles: opt?.smiles || '',
+      };
+    }
+    return {
+      ...base,
+      smiles: opt?.smiles || '',
+      target: opt?.target || (opt?.site_type === 'cation' ? 'cation' : 'anion'),
+      target_symbol: opt?.target_symbol || opt?.element || null,
+    };
   }
 
-  function syncLigandRatioFromCount(lig, available) {
-    lig.target_count = Math.max(0, Math.min(available, Math.round(Number(lig.target_count || 0))));
-    lig.ratio = available > 0 ? lig.target_count / available : 0;
+  function normalizeJobs(prev, kind, opt) {
+    const jobs = Array.isArray(prev.jobs) ? prev.jobs : [];
+    if (jobs.length > 0) {
+      return jobs.map((job) => ({ ...makeDefaultJob(kind, opt), ...job, id: job.id || crypto.randomUUID() }));
+    }
+    if ((prev.target_count || 0) > 0 || prev.smiles || prev.replacement) {
+      return [{ ...makeDefaultJob(kind, opt), ...prev, id: crypto.randomUUID() }];
+    }
+    return [];
+  }
+
+  function addOptionJob(opt, kind) {
+    opt.jobs = [...(opt.jobs || []), makeDefaultJob(kind, opt)];
+    clampOptionJobs(opt, kind);
+  }
+
+  function removeOptionJob(opt, job, kind) {
+    opt.jobs = (opt.jobs || []).filter((candidate) => candidate !== job);
+    clampOptionJobs(opt, kind);
+  }
+
+  function siblingJobTotal(opt, exceptJob = null) {
+    return (opt.jobs || []).reduce((sum, job) => sum + (job === exceptJob ? 0 : Number(job.target_count || 0)), 0);
+  }
+
+  function clampJobCount(opt, job, kind) {
+    const available = optionAvailable(opt, kind);
+    const remaining = Math.max(0, available - siblingJobTotal(opt, job));
+    job.target_count = Math.max(0, Math.min(remaining, Math.round(Number(job.target_count || 0))));
+    job.ratio = available > 0 ? job.target_count / available : 0;
+  }
+
+  function syncJobCountFromRatio(opt, job, kind) {
+    const available = optionAvailable(opt, kind);
+    const requested = Math.round(Number(job.ratio || 0) * available);
+    job.target_count = requested;
+    clampJobCount(opt, job, kind);
+  }
+
+  function syncJobRatioFromCount(opt, job, kind) {
+    clampJobCount(opt, job, kind);
+  }
+
+  function clampOptionJobs(opt, kind) {
+    for (const job of opt.jobs || []) {
+      clampJobCount(opt, job, kind);
+    }
+  }
+
+  function optionJobTotal(opt) {
+    return (opt.jobs || []).reduce((sum, job) => sum + Number(job.target_count || 0), 0);
   }
 
   function selectionPercent(count, available) {
@@ -289,20 +385,31 @@
     }));
   }
 
-  function xTypeAvailable(dummy) {
-    return xTypeOptions.find((opt) => opt.dummy === dummy)?.available_count || 0;
-  }
-
-  function lTypeAvailable(target) {
-    return lTypeOptions.find((opt) => opt.target === target)?.available_count || 0;
-  }
-
   function decorateZTypeOptions(options) {
     const previous = new Map(zTypeOptions.map((opt) => [zTypeKey(opt), opt]));
     return (options || []).map((opt) => {
       const prev = previous.get(zTypeKey(opt)) || {};
-      const next = { ...opt, enabled: prev.enabled || false, ratio: prev.ratio ?? 0, target_count: prev.target_count ?? 0, distribution: prev.distribution || 'random' };
-      syncZTypeRatioFromCount(next);
+      const next = { ...opt, enabled: prev.enabled || false, distribution: prev.distribution || 'random' };
+      next.jobs = normalizeJobs(prev, 'z_type', next);
+      if (next.jobs.length > 1) {
+        next.jobs = [next.jobs[0]];
+      }
+      clampOptionJobs(next, 'z_type');
+      return next;
+    });
+  }
+
+  function decorateNeutralExchangeOptions(options) {
+    const previous = new Map(neutralExchangeOptions.map((opt) => [zTypeKey(opt), opt]));
+    return (options || []).map((opt) => {
+      const prev = previous.get(zTypeKey(opt)) || {};
+      const next = {
+        ...opt,
+        enabled: prev.enabled || false,
+        distribution: prev.distribution || 'random',
+      };
+      next.jobs = normalizeJobs(prev, 'neutral_exchange', next);
+      clampOptionJobs(next, 'neutral_exchange');
       return next;
     });
   }
@@ -315,14 +422,53 @@
       const next = {
         ...opt,
         enabled: prev.enabled || false,
-        replacement: prev.replacement || defaultReplacement,
-        replacement_charge: prev.replacement_charge ?? (OXIDATION_STATES[defaultReplacement] || 0),
         region: prev.region || 'surface',
-        ratio: prev.ratio ?? 0,
-        target_count: prev.target_count ?? 0,
         distribution: prev.distribution || 'random',
       };
-      syncAlloyRatioFromCount(next);
+      next.jobs = normalizeJobs(prev, 'alloy', {
+        ...next,
+        replacement: prev.replacement || defaultReplacement,
+        replacement_charge: prev.replacement_charge ?? (OXIDATION_STATES[defaultReplacement] || 0),
+      });
+      clampOptionJobs(next, 'alloy');
+      return next;
+    });
+  }
+
+  function decorateXTypeOptions(options) {
+    const previous = new Map(xTypeOptions.map((opt) => [xTypeKey(opt), opt]));
+    return (options || []).map((opt) => {
+      const key = xTypeKey(opt);
+      const prev = previous.get(key) || {};
+      const siteType = opt.site_type || (Number(opt.replace_charge ?? opt.charge ?? 0) < 0 ? 'anion' : 'cation');
+      const next = {
+        ...opt,
+        replace: opt.replace || opt.dummy,
+        dummy: opt.dummy || opt.replace,
+        site_type: siteType,
+        replace_charge: opt.replace_charge ?? opt.charge,
+        ligand_charge: opt.ligand_charge ?? (siteType === 'anion' ? -1 : 1),
+        enabled: prev.enabled || false,
+        distribution: prev.distribution || 'uniform',
+      };
+      next.jobs = normalizeJobs(prev, 'x_type', next);
+      clampOptionJobs(next, 'x_type');
+      return next;
+    });
+  }
+
+  function decorateLTypeOptions(options) {
+    const previous = new Map(lTypeOptions.map((opt) => [lTypeKey(opt), opt]));
+    return (options || []).map((opt) => {
+      const key = lTypeKey(opt);
+      const prev = previous.get(key) || {};
+      const next = {
+        ...opt,
+        enabled: prev.enabled || false,
+        distribution: prev.distribution || 'random',
+      };
+      next.jobs = normalizeJobs(prev, 'l_type', next);
+      clampOptionJobs(next, 'l_type');
       return next;
     });
   }
@@ -461,11 +607,77 @@
     }
   });
 
+  function getQDFamily(name, cations = [], anions = []) {
+    const n = name.toLowerCase();
+    
+    // Check elements first if available
+    if (cations.length > 0 && anions.length > 0) {
+      // ABX3: e.g. CsPbCl3
+      const hasCs = cations.includes('Cs');
+      const hasPb = cations.includes('Pb');
+      const hasHalide = anions.some(a => ['Cl', 'Br', 'I'].includes(a));
+      if (hasCs && hasPb && hasHalide) return 'ABX3';
+      
+      // II-VI: CdSe, CdS, CdTe, ZnS, ZnSe, ZnTe, HgS, HgSe, HgTe
+      const hasII = cations.some(c => ['Cd', 'Zn', 'Hg'].includes(c));
+      const hasVI = anions.some(a => ['S', 'Se', 'Te', 'O'].includes(a));
+      if (hasII && hasVI) return 'II-VI';
+      
+      // III-V: GaAs, InP, InAs, InSb, GaP, GaSb
+      const hasIII = cations.some(c => ['In', 'Ga', 'Al'].includes(c));
+      const hasV = anions.some(a => ['P', 'As', 'Sb', 'N'].includes(a));
+      if (hasIII && hasV) return 'III-V';
+      
+      // IV-VI: PbS, PbSe, PbTe
+      const hasIV = cations.some(c => ['Pb', 'Sn', 'Ge'].includes(c));
+      const hasVI_2 = anions.some(a => ['S', 'Se', 'Te', 'O'].includes(a));
+      if (hasIV && hasVI_2) return 'IV-VI';
+    }
+    
+    // Fall back to filename check
+    if (n.includes('abx3') || n.includes('cspb') || n.includes('perovskite')) return 'ABX3';
+    if (n.includes('ii-vi') || n.includes('cdse') || n.includes('cds') || n.includes('cdte') || n.includes('zns') || n.includes('znse') || n.includes('znte') || n.includes('hgs') || n.includes('hgse') || n.includes('hgte')) return 'II-VI';
+    if (n.includes('iii-v') || n.includes('gaas') || n.includes('gap') || n.includes('gasb') || n.includes('inas') || n.includes('inp') || n.includes('insb')) return 'III-V';
+    if (n.includes('iv-vi') || n.includes('pbs') || n.includes('pbse') || n.includes('pbte')) return 'IV-VI';
+    
+    return null;
+  }
+
   async function analyzeCif(file) {
     isAnalyzingCif = true;
     detectedFacets = [];
     coreFacets = [];
     logs += `[status] Analyzing crystallographic symmetry of ${file.name}...\n`;
+    
+    const family = getQDFamily(file.name);
+    if (family === 'II-VI') {
+      sizeUnitCells = [3.0, 3.0, 3.0];
+      posQ = 'add';
+      const n = file.name.toLowerCase();
+      if (n.includes('cd')) centerIon = 'Cd';
+      else if (n.includes('zn')) centerIon = 'Zn';
+      else if (n.includes('hg')) centerIon = 'Hg';
+      else centerIon = 'Cd';
+    } else if (family === 'III-V') {
+      sizeUnitCells = [2.0, 2.0, 2.0];
+      posQ = 'add';
+      const n = file.name.toLowerCase();
+      if (n.includes('in')) centerIon = 'In';
+      else if (n.includes('ga')) centerIon = 'Ga';
+      else if (n.includes('al')) centerIon = 'Al';
+      else centerIon = 'In';
+    } else if (family === 'IV-VI') {
+      sizeUnitCells = [2.0, 2.0, 2.0];
+      posQ = 'add';
+      const n = file.name.toLowerCase();
+      if (n.includes('pbse')) centerIon = 'Se';
+      else if (n.includes('pbte')) centerIon = 'Te';
+      else centerIon = 'S';
+    } else if (family === 'ABX3') {
+      sizeUnitCells = [3.0, 3.0, 3.0];
+      posQ = 'remove';
+      centerIon = 'Cs';
+    }
     
     const formData = new FormData();
     formData.append('file', file);
@@ -487,14 +699,89 @@
         detectedAnions = data.anions || [];
         detectedCations = data.cations || [];
         detectedSpecies = data.species || data.cations || [];
-        centerIon = '';
-        logs += `[status] CIF analyzed successfully: Spacegroup ${data.spacegroup || 'N/A'} (Lattice Phase: ${data.phase || 'unknown'}).\n`;
         
-        if (detectedFacets.length > 0) {
-          const first = detectedFacets[0];
-          const term = first.terminations.includes('cation_rich') ? 'cation_rich' : null;
-          coreFacets = [makeFacetEntry(first, { termination: term })];
+        const refinedFamily = getQDFamily(file.name, detectedCations, detectedAnions);
+        
+        if (refinedFamily === 'II-VI') {
+          sizeUnitCells = [3.0, 3.0, 3.0];
+          posQ = 'add';
+          const cat = detectedCations.find(c => ['Cd', 'Zn', 'Hg'].includes(c)) || detectedCations[0] || 'Cd';
+          centerIon = cat;
+          
+          coreFacets = [];
+          const f100 = detectedFacets.find(f => f.family === '{100}' || f.family === '100');
+          if (f100) {
+            coreFacets.push(makeFacetEntry(f100, { termination: 'cation_rich', gamma: 1.0 }));
+          } else {
+            coreFacets.push({ id: crypto.randomUUID(), hkl: '100', gamma: 1.0, scope: 'family', family: '{100}', termination: 'cation_rich' });
+          }
+          
+          const f111 = detectedFacets.find(f => f.family === '{111}' || f.family === '111');
+          if (f111) {
+            coreFacets.push(makeFacetEntry(f111, { termination: 'cation_rich', gamma: 1.0 }));
+            coreFacets.push(makeFacetEntry(f111, { termination: 'anion_rich', gamma: 1.0 }));
+          } else {
+            coreFacets.push({ id: crypto.randomUUID(), hkl: '111', gamma: 1.0, scope: 'family', family: '{111}', termination: 'cation_rich' });
+            coreFacets.push({ id: crypto.randomUUID(), hkl: '111', gamma: 1.0, scope: 'family', family: '{111}', termination: 'anion_rich' });
+          }
+        } else if (refinedFamily === 'III-V') {
+          sizeUnitCells = [2.0, 2.0, 2.0];
+          posQ = 'add';
+          const cat = detectedCations.find(c => ['In', 'Ga', 'Al'].includes(c)) || detectedCations[0] || 'In';
+          centerIon = cat;
+          
+          coreFacets = [];
+          const f111 = detectedFacets.find(f => f.family === '{111}' || f.family === '111');
+          if (f111) {
+            coreFacets.push(makeFacetEntry(f111, { termination: 'cation_rich', gamma: 0.8 }));
+            coreFacets.push(makeFacetEntry(f111, { termination: 'anion_rich', gamma: 1.6 }));
+          } else {
+            coreFacets.push({ id: crypto.randomUUID(), hkl: '111', gamma: 0.8, scope: 'family', family: '{111}', termination: 'cation_rich' });
+            coreFacets.push({ id: crypto.randomUUID(), hkl: '111', gamma: 1.6, scope: 'family', family: '{111}', termination: 'anion_rich' });
+          }
+        } else if (refinedFamily === 'IV-VI') {
+          sizeUnitCells = [2.0, 2.0, 2.0];
+          posQ = 'add';
+          const ani = detectedAnions.find(a => ['S', 'Se', 'Te'].includes(a)) || detectedAnions[0] || 'S';
+          centerIon = ani;
+          
+          coreFacets = [];
+          const f100 = detectedFacets.find(f => f.family === '{100}' || f.family === '100');
+          if (f100) {
+            const term = f100.terminations.includes('stoichiometric') ? 'stoichiometric' : (f100.terminations[0] || null);
+            coreFacets.push(makeFacetEntry(f100, { termination: term, gamma: 0.8 }));
+          } else {
+            coreFacets.push({ id: crypto.randomUUID(), hkl: '100', gamma: 0.8, scope: 'family', family: '{100}', termination: 'stoichiometric' });
+          }
+          const f111 = detectedFacets.find(f => f.family === '{111}' || f.family === '111');
+          if (f111) {
+            coreFacets.push(makeFacetEntry(f111, { termination: 'cation_rich', gamma: 1.0 }));
+          } else {
+            coreFacets.push({ id: crypto.randomUUID(), hkl: '111', gamma: 1.0, scope: 'family', family: '{111}', termination: 'cation_rich' });
+          }
+        } else if (refinedFamily === 'ABX3') {
+          sizeUnitCells = [3.0, 3.0, 3.0];
+          posQ = 'remove';
+          const cat = detectedCations.includes('Cs') ? 'Cs' : (detectedCations[0] || 'Cs');
+          centerIon = cat;
+          
+          coreFacets = [];
+          const f100 = detectedFacets.find(f => f.family === '{100}' || f.family === '100');
+          if (f100) {
+            const term = f100.terminations[0] || null;
+            coreFacets.push(makeFacetEntry(f100, { termination: term, gamma: 1.0 }));
+          } else {
+            coreFacets.push({ id: crypto.randomUUID(), hkl: '100', gamma: 1.0, scope: 'family', family: '{100}', termination: null });
+          }
+        } else {
+          centerIon = '';
+          if (detectedFacets.length > 0) {
+            const first = detectedFacets[0];
+            const term = first.terminations.includes('cation_rich') ? 'cation_rich' : null;
+            coreFacets = [makeFacetEntry(first, { termination: term })];
+          }
         }
+        logs += `[status] CIF analyzed successfully: Spacegroup ${data.spacegroup || 'N/A'} (Lattice Phase: ${data.phase || 'unknown'}).\n`;
       } else {
         throw new Error(data.error || 'Unknown error');
       }
@@ -505,7 +792,31 @@
       detectedAnions = [];
       detectedCations = [];
       detectedSpecies = [];
-      coreFacets = [{ id: crypto.randomUUID(), hkl: '100', gamma: 1.0, scope: 'family', family: '{100}', termination: null }];
+      
+      const failedFamily = getQDFamily(file.name, detectedCations, detectedAnions);
+      if (failedFamily === 'II-VI') {
+        coreFacets = [
+          { id: crypto.randomUUID(), hkl: '100', gamma: 1.0, scope: 'family', family: '{100}', termination: 'cation_rich' },
+          { id: crypto.randomUUID(), hkl: '111', gamma: 1.0, scope: 'family', family: '{111}', termination: 'cation_rich' },
+          { id: crypto.randomUUID(), hkl: '111', gamma: 1.0, scope: 'family', family: '{111}', termination: 'anion_rich' }
+        ];
+      } else if (failedFamily === 'III-V') {
+        coreFacets = [
+          { id: crypto.randomUUID(), hkl: '111', gamma: 0.8, scope: 'family', family: '{111}', termination: 'cation_rich' },
+          { id: crypto.randomUUID(), hkl: '111', gamma: 1.6, scope: 'family', family: '{111}', termination: 'anion_rich' }
+        ];
+      } else if (failedFamily === 'IV-VI') {
+        coreFacets = [
+          { id: crypto.randomUUID(), hkl: '100', gamma: 0.8, scope: 'family', family: '{100}', termination: 'stoichiometric' },
+          { id: crypto.randomUUID(), hkl: '111', gamma: 1.0, scope: 'family', family: '{111}', termination: 'cation_rich' }
+        ];
+      } else if (failedFamily === 'ABX3') {
+        coreFacets = [
+          { id: crypto.randomUUID(), hkl: '100', gamma: 1.0, scope: 'family', family: '{100}', termination: null }
+        ];
+      } else {
+        coreFacets = [{ id: crypto.randomUUID(), hkl: '100', gamma: 1.0, scope: 'family', family: '{100}', termination: null }];
+      }
     } finally {
       isAnalyzingCif = false;
     }
@@ -634,8 +945,10 @@
     neutralDist = 'random';
     zTypeEnabled = false;
     zTypeOptions = [];
+    neutralExchangeOptions = [];
     alloyingEnabled = false;
     alloyingOptions = [];
+    xTypeEnabled = false;
     xTypeOptions = [];
     lTypeOptions = [];
     latticeLengths = [5.0, 5.0, 5.0];
@@ -715,11 +1028,34 @@
         interface_mixing_width: s.interface_mixing_width !== undefined ? s.interface_mixing_width : 3.0,
       })),
       cap_distribution: capDist,
+      x_type_enabled: skipCoreBuild ? xTypeEnabled : false,
       cap_anionic_jobs: skipCoreBuild
-        ? anionicLigands.map(l => ({ smiles: l.smiles, ratio: l.ratio, target_count: l.target_count || 0, dummy: l.dummy }))
+        ? xTypeOptions
+            .filter(opt => xTypeEnabled && opt.enabled && opt.site_type === 'anion')
+            .flatMap(opt => (opt.jobs || []).filter(job => job.smiles?.trim() && job.target_count > 0).map(job => ({
+              smiles: job.smiles,
+              ratio: job.ratio,
+              target_count: job.target_count || 0,
+              dummy: opt.replace || opt.dummy,
+              replace: opt.replace || opt.dummy,
+              replace_charge: opt.replace_charge,
+              ligand_charge: null,
+              distribution: job.distribution || opt.distribution || 'uniform',
+            })))
         : [],
       cap_cationic_jobs: skipCoreBuild
-        ? cationicLigands.map(l => ({ smiles: l.smiles, ratio: l.ratio, target_count: l.target_count || 0, dummy: l.dummy }))
+        ? xTypeOptions
+            .filter(opt => xTypeEnabled && opt.enabled && opt.site_type === 'cation')
+            .flatMap(opt => (opt.jobs || []).filter(job => job.smiles?.trim() && job.target_count > 0).map(job => ({
+              smiles: job.smiles,
+              ratio: job.ratio,
+              target_count: job.target_count || 0,
+              dummy: opt.replace || opt.dummy,
+              replace: opt.replace || opt.dummy,
+              replace_charge: opt.replace_charge,
+              ligand_charge: null,
+              distribution: job.distribution || opt.distribution || 'uniform',
+            })))
         : [],
       skip_core_build: skipCoreBuild,
       xyz_unpassivated: skipCoreBuild ? lastUnpassivatedXyz : null,
@@ -728,36 +1064,52 @@
       reconstruction_min_separation: 'auto',
       neutral_enabled: skipCoreBuild ? neutralEnabled : false,
       neutral_jobs: skipCoreBuild
-        ? neutralLigands.map(l => ({
-            target: l.target,
-            smiles: l.smiles,
-            ratio: l.ratio,
-            target_count: l.target_count || 0,
-            distribution: neutralDist,
-          }))
+        ? lTypeOptions
+            .filter(opt => neutralEnabled && opt.enabled)
+            .flatMap(opt => (opt.jobs || []).filter(job => job.smiles?.trim() && job.target_count > 0).map(job => ({
+              target: opt.target || job.target || 'anion',
+              target_symbol: opt.target_symbol || opt.element || job.target_symbol || null,
+              smiles: job.smiles,
+              ratio: job.ratio,
+              target_count: job.target_count || 0,
+              distribution: job.distribution || opt.distribution || neutralDist,
+            })))
         : [],
       z_type_enabled: skipCoreBuild ? zTypeEnabled : false,
       z_type_jobs: skipCoreBuild && zTypeEnabled
-        ? zTypeOptions.filter(opt => opt.enabled && opt.target_count > 0).map(opt => ({
+        ? zTypeOptions.filter(opt => opt.enabled).flatMap(opt => (opt.jobs || []).filter(job => job.target_count > 0).map(job => ({
             cation: opt.cation,
             anion: opt.anion,
             anion_count: opt.anion_count,
-            target_count: opt.target_count,
-            ratio: opt.ratio,
-            distribution: opt.distribution,
-          }))
+            target_count: job.target_count,
+            ratio: job.ratio,
+            distribution: job.distribution || opt.distribution,
+          })))
+        : [],
+      neutral_exchange_enabled: skipCoreBuild ? (xTypeEnabled && neutralExchangeEnabled) : false,
+      neutral_exchange_jobs: skipCoreBuild && xTypeEnabled && neutralExchangeEnabled
+        ? neutralExchangeOptions.filter(opt => opt.enabled).flatMap(opt => (opt.jobs || []).filter(job => job.target_count > 0 && job.smiles?.trim()).map(job => ({
+            cation: opt.cation,
+            anion: opt.anion,
+            anion_count: opt.anion_count,
+            exchange_type: job.exchange_type === 'salt' ? 'mxn' : (job.exchange_type || 'mxn'),
+            smiles: job.smiles,
+            target_count: job.target_count,
+            ratio: job.ratio,
+            distribution: job.distribution || opt.distribution,
+          })))
         : [],
       alloying_enabled: skipCoreBuild ? alloyingEnabled : false,
       alloying_jobs: skipCoreBuild && alloyingEnabled
-        ? alloyingOptions.filter(opt => opt.enabled && opt.target_count > 0 && opt.replacement).map(opt => ({
+        ? alloyingOptions.filter(opt => opt.enabled).flatMap(opt => (opt.jobs || []).filter(job => job.target_count > 0 && job.replacement).map(job => ({
             replace: opt.element,
-            replacement: opt.replacement,
-            replacement_charge: opt.replacement_charge,
+            replacement: job.replacement,
+            replacement_charge: job.replacement_charge,
             region: opt.region,
-            ratio: opt.ratio,
-            target_count: opt.target_count,
-            distribution: opt.distribution,
-          }))
+            ratio: job.ratio,
+            target_count: job.target_count,
+            distribution: job.distribution || opt.distribution,
+          })))
         : [],
       center_ion: centerIon || null
     };
@@ -808,9 +1160,10 @@
       if (finalResult && finalResult.status === 'success') {
         xyzData = finalResult.xyz_passivated || finalResult.xyz || finalResult.xyz_unpassivated || "";
         zTypeOptions = decorateZTypeOptions(finalResult.z_type_options || []);
+        neutralExchangeOptions = decorateNeutralExchangeOptions(finalResult.z_type_options || []);
         alloyingOptions = decorateAlloyingOptions(finalResult.alloying_options || []);
-        xTypeOptions = finalResult.x_type_options || [];
-        lTypeOptions = finalResult.l_type_options || [];
+        xTypeOptions = decorateXTypeOptions(finalResult.x_type_options || []);
+        lTypeOptions = decorateLTypeOptions(finalResult.l_type_options || []);
         if (!skipCoreBuild) {
             lastUnpassivatedXyz = finalResult.xyz_dummy || finalResult.xyz_unpassivated || finalResult.xyz_passivated || xyzData;
             sidebarView = 'postTreatment';
@@ -885,7 +1238,7 @@
                       <div class="border border-accent-100 rounded-xl p-3 bg-white/70 space-y-2">
                         <label class="space-y-2 text-xs font-bold text-slate-700 min-w-0 block">
                           <span class="flex items-center gap-2 whitespace-nowrap">
-                            <input type="checkbox" bind:checked={opt.enabled} class="accent-accent-600 rounded shrink-0">
+                            <input type="checkbox" bind:checked={opt.enabled} onchange={() => ensureJobs(opt, 'alloy')} class="accent-accent-600 rounded shrink-0">
                             <span>Replace {opt.element}</span>
                           </span>
                           <span class="flex flex-wrap gap-1.5 text-[10px] text-slate-500">
@@ -894,24 +1247,35 @@
                           </span>
                         </label>
                         {#if opt.enabled}
-                          <div class="grid grid-cols-[1fr_4rem_4rem] gap-2">
-                            <input type="text" bind:value={opt.replacement} placeholder="Ion" class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
-                            <input type="number" bind:value={opt.replacement_charge} step="1" title="Replacement ion charge" class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
-                            <select bind:value={opt.region} onchange={() => syncAlloyCountFromRatio(opt)} class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium cursor-pointer min-w-0">
+                          <div class="grid grid-cols-[1fr_4rem] gap-2">
+                            <select bind:value={opt.region} onchange={() => clampOptionJobs(opt, 'alloy')} class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium cursor-pointer min-w-0">
                               <option value="surface">Surf</option><option value="core">Core</option><option value="both">Both</option>
                             </select>
+                            <button type="button" class="bg-white hover:bg-accent-50 border border-accent-200 text-[10px] py-1.5 rounded-lg text-accent-700 font-bold transition-colors" onclick={() => addOptionJob(opt, 'alloy')}>+ Add</button>
                           </div>
-                          <div class="grid grid-cols-[1fr_5rem] gap-2 items-center">
-                            <div class="space-y-1">
-                              <div class="flex justify-between text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span>Available: {alloyAvailable(opt)}</span><span>Replace: {opt.target_count} / {alloyAvailable(opt)} ({selectionPercent(opt.target_count, alloyAvailable(opt))}%)</span></div>
-                              <input type="range" min="0" max="1" step="0.01" bind:value={opt.ratio} oninput={() => syncAlloyCountFromRatio(opt)} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
-                            </div>
-                            <input type="number" min="0" max={alloyAvailable(opt)} step="1" bind:value={opt.target_count} oninput={() => syncAlloyRatioFromCount(opt)} class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
-                          </div>
-                          <div class="flex flex-wrap gap-1.5 text-[10px] bg-white p-2 rounded-lg border border-accent-100">
-                            <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={opt.distribution} value="uniform" class="accent-accent-600 shrink-0"> Uniform</label>
-                            <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={opt.distribution} value="segmented" class="accent-accent-600 shrink-0"> Segmented</label>
-                            <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={opt.distribution} value="random" class="accent-accent-600 shrink-0"> Random</label>
+                          <div class="space-y-2">
+                            {#each opt.jobs || [] as job (job.id)}
+                              <div class="border border-accent-100 rounded-lg p-2 bg-white/80 space-y-2">
+                                <div class="grid grid-cols-[1fr_4rem_28px] gap-2">
+                                  <input type="text" bind:value={job.replacement} placeholder="Ion" class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+                                  <input type="number" bind:value={job.replacement_charge} step="1" title="Replacement ion charge" class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+                                  <button type="button" class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors" onclick={() => removeOptionJob(opt, job, 'alloy')}>x</button>
+                                </div>
+                                <div class="grid grid-cols-[1fr_5rem] gap-2 items-center">
+                                  <div class="space-y-1">
+                                    <div class="flex justify-between text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span>Available: {alloyAvailable(opt)}</span><span>Replace: {job.target_count} / {alloyAvailable(opt)} ({selectionPercent(job.target_count, alloyAvailable(opt))}%)</span></div>
+                                    <input type="range" min="0" max="1" step="0.01" bind:value={job.ratio} oninput={() => syncJobCountFromRatio(opt, job, 'alloy')} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
+                                  </div>
+                                  <input type="number" min="0" max={alloyAvailable(opt)} step="1" bind:value={job.target_count} oninput={() => syncJobRatioFromCount(opt, job, 'alloy')} class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+                                </div>
+                                <div class="flex flex-wrap gap-1.5 text-[10px] bg-white p-2 rounded-lg border border-accent-100">
+                                  <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.distribution} value="uniform" class="accent-accent-600 shrink-0"> Uniform</label>
+                                  <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.distribution} value="segmented" class="accent-accent-600 shrink-0"> Segmented</label>
+                                  <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.distribution} value="random" class="accent-accent-600 shrink-0"> Random</label>
+                                </div>
+                              </div>
+                            {/each}
+                            <div class="text-[9px] font-bold text-slate-500 uppercase tracking-wider text-right">Total: {optionJobTotal(opt)} / {alloyAvailable(opt)}</div>
                           </div>
                         {/if}
                       </div>
@@ -941,21 +1305,29 @@
                 {#each zTypeOptions as opt (zTypeKey(opt))}
                   <div class="border border-accent-100 rounded-xl p-3 bg-white/70 space-y-2">
                     <label class="flex items-center justify-between gap-2 text-xs font-bold text-slate-700">
-                      <span class="inline-flex items-baseline gap-0.5"><input type="checkbox" bind:checked={opt.enabled} class="accent-accent-600 rounded mr-1.5 shrink-0"> <span>{#each formulaParts(opt.label || opt.formula) as part}{#if part.subscript}<sub>{part.text}</sub>{:else}{part.text}{/if}{/each}</span></span>
+                      <span class="inline-flex items-baseline gap-0.5"><input type="checkbox" bind:checked={opt.enabled} onchange={() => ensureJobs(opt, 'z_type')} class="accent-accent-600 rounded mr-1.5 shrink-0"> <span>{#each formulaParts(opt.label || opt.formula) as part}{#if part.subscript}<sub>{part.text}</sub>{:else}{part.text}{/if}{/each}</span></span>
                       <span class="text-[10px] text-slate-400">available {opt.candidate_count}</span>
                     </label>
                     {#if opt.enabled}
-                      <div class="grid grid-cols-[1fr_5rem] gap-2 items-center">
-                        <div class="space-y-1">
-                          <div class="flex justify-between text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span>Available: {zTypeAvailable(opt)}</span><span>Remove: {opt.target_count} / {zTypeAvailable(opt)} ({selectionPercent(opt.target_count, zTypeAvailable(opt))}%)</span></div>
-                          <input type="range" min="0" max="1" step="0.01" bind:value={opt.ratio} oninput={() => syncZTypeCountFromRatio(opt)} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
-                        </div>
-                        <input type="number" min="0" max={zTypeAvailable(opt)} step="1" bind:value={opt.target_count} oninput={() => syncZTypeRatioFromCount(opt)} class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
-                      </div>
-                      <div class="flex flex-wrap gap-1.5 text-[10px] bg-white p-2 rounded-lg border border-accent-100">
-                        <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={opt.distribution} value="uniform" class="accent-accent-600 shrink-0"> Uniform</label>
-                        <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={opt.distribution} value="segmented" class="accent-accent-600 shrink-0"> Segmented</label>
-                        <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={opt.distribution} value="random" class="accent-accent-600 shrink-0"> Random</label>
+                      <div class="space-y-2">
+                        {#each opt.jobs || [] as job (job.id)}
+                          <div class="border border-accent-100 rounded-lg p-2 bg-white/80 space-y-2">
+                            <div class="grid grid-cols-[1fr_5rem_28px] gap-2 items-center">
+                              <div class="space-y-1">
+                                <div class="flex justify-between text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span>Available: {zTypeAvailable(opt)}</span><span>Remove: {job.target_count} / {zTypeAvailable(opt)} ({selectionPercent(job.target_count, zTypeAvailable(opt))}%)</span></div>
+                                <input type="range" min="0" max="1" step="0.01" bind:value={job.ratio} oninput={() => syncJobCountFromRatio(opt, job, 'z_type')} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
+                              </div>
+                              <input type="number" min="0" max={zTypeAvailable(opt)} step="1" bind:value={job.target_count} oninput={() => syncJobRatioFromCount(opt, job, 'z_type')} class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+                              <button type="button" class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors h-full" onclick={() => removeOptionJob(opt, job, 'z_type')}>x</button>
+                            </div>
+                            <div class="flex flex-wrap gap-1.5 text-[10px] bg-white p-2 rounded-lg border border-accent-100">
+                              <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.distribution} value="uniform" class="accent-accent-600 shrink-0"> Uniform</label>
+                              <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.distribution} value="segmented" class="accent-accent-600 shrink-0"> Segmented</label>
+                              <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.distribution} value="random" class="accent-accent-600 shrink-0"> Random</label>
+                            </div>
+                          </div>
+                        {/each}
+                        <div class="text-[9px] font-bold text-slate-500 uppercase tracking-wider text-right">Total: {optionJobTotal(opt)} / {zTypeAvailable(opt)}</div>
                       </div>
                     {/if}
                   </div>
@@ -964,127 +1336,205 @@
             {/if}
           </div>
           <div class="border border-accent-200 bg-accent-50/20 p-4 rounded-2xl space-y-3">
-            <span class="block text-[10px] font-extrabold text-accent-700 uppercase tracking-widest flex items-center gap-1.5">
-              X-type Ligand Exchange
+            <label class="flex items-center gap-2 font-extrabold text-accent-700 text-[10px] uppercase tracking-widest cursor-pointer select-none">
+              <input type="checkbox" bind:checked={xTypeEnabled} disabled={xTypeOptions.length === 0 && neutralExchangeOptions.length === 0} class="accent-accent-600 rounded">
+              X-type & Neutral Ligand Exchange
               <span class="text-[10px] bg-slate-100 hover:bg-slate-200 text-slate-400 hover:text-slate-600 w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold font-mono cursor-help select-none shrink-0"
-                    onmouseenter={() => tooltipText = "Replaces native/placeholder dummy atoms (Cl/Rb) with actual organic ligand chains (carboxylates/thiols) without any overlaps."}
+                    role="tooltip"
+                    onmouseenter={() => tooltipText = "Replaces charged surface species with charged organic ligands (X-type) or replaces neutral surface Z-type groups with MXn species, zwitterions, or neutral L-type ligands."}
                     onmouseleave={() => tooltipText = ""}>
                 i
               </span>
-            </span>
-            <span class="block text-[9px] font-bold text-accent-600 uppercase tracking-wider">Anionic Ligands</span>
-            {#if anionicLigands.length > 0}
-              <div class="grid grid-cols-[1fr_3.5rem_28px] gap-2 text-[8px] text-accent-500 uppercase font-bold tracking-widest mb-1 px-1">
-                <span>SMILES</span><span>Dummy</span><span></span>
-              </div>
-            {/if}
-            {#each anionicLigands as lig, i (lig.id)}
-              <div class="grid grid-cols-[1fr_3.5rem_28px] gap-2 mb-2">
-                <input type="text" bind:value={lig.smiles} placeholder="e.g. CCCC(=O)O" class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
-                <select bind:value={lig.dummy} onchange={() => syncLigandCountFromRatio(lig, xTypeAvailable(lig.dummy))} class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium cursor-pointer text-center">
-                  {#each Array.from(new Set(['Cl', ...detectedAnions])) as opt}
-                    <option value={opt}>{opt}</option>
-                  {/each}
-                </select>
-                <button class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors" onclick={() => anionicLigands.splice(i, 1)}>✕</button>
-              </div>
-              <div class="grid grid-cols-[1fr_4.5rem] gap-2 mb-2 text-[10px] items-center">
-                <div class="space-y-1">
-                  <div class="flex justify-between text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span>Available {lig.dummy}: {xTypeAvailable(lig.dummy)}</span><span>Exchange: {lig.target_count || 0} / {xTypeAvailable(lig.dummy)} ({selectionPercent(lig.target_count, xTypeAvailable(lig.dummy))}%)</span></div>
-                  <input type="range" min="0" max="1" step="0.01" bind:value={lig.ratio} oninput={() => syncLigandCountFromRatio(lig, xTypeAvailable(lig.dummy))} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
-                </div>
-                <input type="number" min="0" max={xTypeAvailable(lig.dummy)} step="1" bind:value={lig.target_count} oninput={() => syncLigandRatioFromCount(lig, xTypeAvailable(lig.dummy))} placeholder="count" class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
-              </div>
-            {/each}
-            <button class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-[10px] py-1.5 rounded-lg text-accent-700 font-bold transition-colors" onclick={() => anionicLigands.push({ id: crypto.randomUUID(), smiles: '', ratio: 0, target_count: 0, dummy: 'Cl' })}>+ Add Anionic Ligand</button>
-            {#if !showCationic}
-              <button class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-[10px] py-1.5 rounded-lg text-accent-700 font-bold transition-colors" onclick={() => showCationic = true}>+ Add Cationic Exchange</button>
-            {:else}
-              <span class="block text-[9px] font-bold text-accent-600 uppercase tracking-wider pt-2 border-t border-accent-100">Cationic Ligands</span>
-              {#if cationicLigands.length > 0}
-                <div class="grid grid-cols-[1fr_3.5rem_28px] gap-2 text-[8px] text-accent-500 uppercase font-bold tracking-widest mb-1 px-1">
-                  <span>SMILES</span><span>Dummy</span><span></span>
-                </div>
-              {/if}
-              {#each cationicLigands as lig, i (lig.id)}
-                <div class="grid grid-cols-[1fr_3.5rem_28px] gap-2 mb-2">
-                  <input type="text" bind:value={lig.smiles} placeholder="e.g. CCCCCCCCC[N+](C)(C)C" class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
-                  <select bind:value={lig.dummy} onchange={() => syncLigandCountFromRatio(lig, xTypeAvailable(lig.dummy))} class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium cursor-pointer text-center">
-                    {#each Array.from(new Set(['Rb', ...detectedCations])) as opt}
-                      <option value={opt}>{opt}</option>
+            </label>
+            {#if xTypeOptions.length === 0 && neutralExchangeOptions.length === 0}
+              <p class="text-[10px] text-slate-500 leading-snug">No exchangeable surface sites detected on the current structure.</p>
+            {:else if xTypeEnabled}
+              <div class="space-y-3 bg-white/60 p-3 rounded-xl border border-accent-100">
+                {#each ['anion', 'cation'] as siteType}
+                  {@const optsForType = xTypeOptions.filter((opt) => opt.site_type === siteType)}
+                  {#if optsForType.length > 0}
+                    <div class="space-y-2">
+                      <span class="block text-[9px] font-bold text-accent-600 uppercase tracking-wider">{siteType === 'anion' ? 'Anion Exchange' : 'Cation Exchange'}</span>
+                      {#each optsForType as opt (xTypeKey(opt))}
+                        <div class="border border-accent-100 rounded-xl p-3 bg-white/70 space-y-2">
+                          <label class="space-y-2 text-xs font-bold text-slate-700 min-w-0 block">
+                            <span class="flex items-center gap-2 whitespace-nowrap">
+                              <input type="checkbox" bind:checked={opt.enabled} onchange={() => ensureJobs(opt, 'x_type')} class="accent-accent-600 rounded shrink-0">
+                              <span>Exchange {opt.replace || opt.dummy} (q = {opt.replace_charge > 0 ? '+' : ''}{opt.replace_charge})</span>
+                            </span>
+                            <span class="flex flex-wrap gap-1.5 text-[10px] text-slate-500">
+                              <span class="rounded-full bg-slate-100 px-2 py-0.5 whitespace-nowrap">available {xTypeAvailable(opt)}</span>
+                            </span>
+                          </label>
+                          {#if opt.enabled}
+                            <div class="space-y-2">
+                              {#each opt.jobs || [] as job (job.id)}
+                                <div class="border border-accent-100 rounded-lg p-2 bg-white/80 space-y-2">
+                                  <div class="grid grid-cols-[1fr_28px] gap-2 items-center">
+                                    <input type="text" bind:value={job.smiles} placeholder={siteType === 'anion' ? 'e.g. CCCC(=O)O' : 'e.g. CCCN'} class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium w-full">
+                                    <button type="button" class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors h-full" onclick={() => removeOptionJob(opt, job, 'x_type')}>x</button>
+                                  </div>
+                                  <div class="grid grid-cols-[1fr_5rem] gap-2 items-center">
+                                    <div class="space-y-1">
+                                      <div class="flex justify-between text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span>Available: {xTypeAvailable(opt)}</span><span>Exchange: {job.target_count || 0} / {xTypeAvailable(opt)} ({selectionPercent(job.target_count, xTypeAvailable(opt))}%)</span></div>
+                                      <input type="range" min="0" max="1" step="0.01" bind:value={job.ratio} oninput={() => syncJobCountFromRatio(opt, job, 'x_type')} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
+                                    </div>
+                                    <input type="number" min="0" max={xTypeAvailable(opt)} step="1" bind:value={job.target_count} oninput={() => syncJobRatioFromCount(opt, job, 'x_type')} class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+                                  </div>
+                                  <div class="flex flex-wrap gap-1.5 text-[10px] bg-white p-2 rounded-lg border border-accent-100">
+                                    <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.distribution} value="uniform" class="accent-accent-600 shrink-0"> Uniform</label>
+                                    <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.distribution} value="segmented" class="accent-accent-600 shrink-0"> Segmented</label>
+                                    <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.distribution} value="random" class="accent-accent-600 shrink-0"> Random</label>
+                                  </div>
+                                </div>
+                              {/each}
+                              <button type="button" class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-[10px] py-1.5 rounded-lg text-accent-700 font-bold transition-colors" onclick={() => addOptionJob(opt, 'x_type')}>+ Add ligand</button>
+                              <div class="text-[9px] font-bold text-slate-500 uppercase tracking-wider text-right">Total: {optionJobTotal(opt)} / {xTypeAvailable(opt)}</div>
+                            </div>
+                          {/if}
+                        </div>
+                      {/each}
+                    </div>
+                  {/if}
+                {/each}
+
+                {#if neutralExchangeOptions.length > 0}
+                  <div class="space-y-2 pt-2 border-t border-accent-100/50">
+                    <span class="block text-[9px] font-bold text-accent-600 uppercase tracking-wider">Neutral Exchange</span>
+                    {#each neutralExchangeOptions as opt (zTypeKey(opt))}
+                      <div class="border border-accent-100 rounded-xl p-3 bg-white/70 space-y-2">
+                        <label class="space-y-2 text-xs font-bold text-slate-700 min-w-0 block">
+                          <span class="flex items-center gap-2 whitespace-nowrap">
+                            <input type="checkbox" bind:checked={opt.enabled} onchange={() => ensureJobs(opt, 'neutral_exchange')} class="accent-accent-600 rounded shrink-0">
+                            <span>Exchange {#each formulaParts(opt.label || opt.formula) as part}{#if part.subscript}<sub>{part.text}</sub>{:else}{part.text}{/if}{/each}</span>
+                          </span>
+                          <span class="flex flex-wrap gap-1.5 text-[10px] text-slate-500">
+                            <span class="rounded-full bg-slate-100 px-2 py-0.5 whitespace-nowrap">available {zTypeAvailable(opt)}</span>
+                          </span>
+                        </label>
+                        {#if opt.enabled}
+                          <div class="space-y-2">
+                            {#each opt.jobs || [] as job (job.id)}
+                              <div class="border border-accent-100 rounded-lg p-2 bg-white/80 space-y-2">
+                                <div class="flex flex-wrap gap-1.5 text-[10px] bg-slate-50 p-1.5 rounded-lg border border-slate-200">
+                                  <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.exchange_type} value="mxn" class="accent-accent-600 shrink-0"> MXn exchange</label>
+                                  <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.exchange_type} value="zwitterion" class="accent-accent-600 shrink-0"> zwitterion</label>
+                                  <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.exchange_type} value="l_type" class="accent-accent-600 shrink-0"> l-type</label>
+                                </div>
+                                <div class="grid grid-cols-[1fr_28px] gap-2 items-center">
+                                  <input type="text" bind:value={job.smiles}
+                                         placeholder={
+                                           job.exchange_type === 'mxn' ? 'e.g. InBr3, CsBr, ZnBr2, or [Zn+2].CC(=O)[O-].CC(=O)[O-]' :
+                                           job.exchange_type === 'zwitterion' ? 'e.g. [NH3+]CC[S-] or [NH3+]CC(=O)[O-]' :
+                                           'e.g. CN (methylamine) or CCCS (neutral thiol)'
+                                         }
+                                         class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium w-full">
+                                  <button type="button" class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors h-full" onclick={() => removeOptionJob(opt, job, 'neutral_exchange')}>x</button>
+                                </div>
+                                <div class="flex flex-wrap gap-1 items-center text-[9px]">
+                                  <span class="text-slate-400 font-bold uppercase mr-1">Templates:</span>
+                                  {#if job.exchange_type === 'mxn'}
+                                    <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.smiles = 'InBr3'}>InBr₃</button>
+                                    <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.smiles = 'CsBr'}>CsBr</button>
+                                    <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.smiles = 'ZnBr2'}>ZnBr₂</button>
+                                    <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.smiles = '[Zn+2].CC(=O)[O-].CC(=O)[O-]'}>Zn acetate</button>
+                                  {:else if job.exchange_type === 'zwitterion'}
+                                    <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.smiles = '[NH3+]CC[S-]'}>Cysteamine</button>
+                                    <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.smiles = '[NH3+]CC(=O)[O-]'}>Glycine</button>
+                                    <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.smiles = '[NH3+]CCCCCCCCCC(=O)[O-]'}>11-aminoundecanoic</button>
+                                  {:else if job.exchange_type === 'l_type'}
+                                    <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.smiles = 'CN'}>Methylamine</button>
+                                    <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.smiles = 'CCCCC(=O)O'}>Pentanoic Acid</button>
+                                    <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.smiles = 'CCCCS'}>Pentanethiol</button>
+                                  {/if}
+                                </div>
+                                <div class="grid grid-cols-[1fr_5rem] gap-2 items-center">
+                                  <div class="space-y-1">
+                                    <div class="flex justify-between text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span>Available: {zTypeAvailable(opt)}</span><span>Exchange: {job.target_count || 0} / {zTypeAvailable(opt)} ({selectionPercent(job.target_count, zTypeAvailable(opt))}%)</span></div>
+                                    <input type="range" min="0" max="1" step="0.01" bind:value={job.ratio} oninput={() => syncJobCountFromRatio(opt, job, 'neutral_exchange')} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
+                                  </div>
+                                  <input type="number" min="0" max={zTypeAvailable(opt)} step="1" bind:value={job.target_count} oninput={() => syncJobRatioFromCount(opt, job, 'neutral_exchange')} class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+                                </div>
+                                <div class="flex flex-wrap gap-1.5 text-[10px] bg-white p-2 rounded-lg border border-accent-100">
+                                  <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.distribution} value="uniform" class="accent-accent-600 shrink-0"> Uniform</label>
+                                  <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.distribution} value="segmented" class="accent-accent-600 shrink-0"> Segmented</label>
+                                  <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.distribution} value="random" class="accent-accent-600 shrink-0"> Random</label>
+                                </div>
+                              </div>
+                            {/each}
+                            <button type="button" class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-[10px] py-1.5 rounded-lg text-accent-700 font-bold transition-colors" onclick={() => addOptionJob(opt, 'neutral_exchange')}>+ Add exchange</button>
+                            <div class="text-[9px] font-bold text-slate-500 uppercase tracking-wider text-right">Total: {optionJobTotal(opt)} / {zTypeAvailable(opt)}</div>
+                          </div>
+                        {/if}
+                      </div>
                     {/each}
-                  </select>
-                  <button class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors" onclick={() => cationicLigands.splice(i, 1)}>✕</button>
-                </div>
-                <div class="grid grid-cols-[1fr_4.5rem] gap-2 mb-2 text-[10px] items-center">
-                  <div class="space-y-1">
-                    <div class="flex justify-between text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span>Available {lig.dummy}: {xTypeAvailable(lig.dummy)}</span><span>Exchange: {lig.target_count || 0} / {xTypeAvailable(lig.dummy)} ({selectionPercent(lig.target_count, xTypeAvailable(lig.dummy))}%)</span></div>
-                    <input type="range" min="0" max="1" step="0.01" bind:value={lig.ratio} oninput={() => syncLigandCountFromRatio(lig, xTypeAvailable(lig.dummy))} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
                   </div>
-                  <input type="number" min="0" max={xTypeAvailable(lig.dummy)} step="1" bind:value={lig.target_count} oninput={() => syncLigandRatioFromCount(lig, xTypeAvailable(lig.dummy))} placeholder="count" class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
-                </div>
-              {/each}
-              <button class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-[10px] py-1.5 rounded-lg text-accent-700 font-bold transition-colors" onclick={() => cationicLigands.push({ id: crypto.randomUUID(), smiles: '', ratio: 0, target_count: 0, dummy: 'Rb' })}>+ Add Cationic Ligand</button>
+                {/if}
+              </div>
             {/if}
-            <span class="block text-[9px] font-bold text-accent-600 uppercase tracking-wider pt-2 border-t border-accent-100">Distribution</span>
-            <div class="flex flex-wrap gap-1.5 text-[10px] bg-white p-2 rounded-lg border border-accent-100">
-              <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1">
-                <input type="radio" bind:group={capDist} value="uniform" class="accent-accent-600 shrink-0"> Uniform
-              </label>
-              <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1">
-                <input type="radio" bind:group={capDist} value="segmented" class="accent-accent-600 shrink-0"> Segmented
-              </label>
-              <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1">
-                <input type="radio" bind:group={capDist} value="random" class="accent-accent-600 shrink-0"> Random
-              </label>
-            </div>
           </div>
           <div class="border border-accent-200 bg-accent-50/20 p-4 rounded-2xl space-y-3">
             <label class="flex items-center gap-2 font-extrabold text-accent-700 text-[10px] uppercase tracking-widest cursor-pointer select-none">
-              <input type="checkbox" bind:checked={neutralEnabled} class="accent-accent-600 rounded">
+              <input type="checkbox" bind:checked={neutralEnabled} disabled={lTypeOptions.length === 0} class="accent-accent-600 rounded">
               L-type Ligand Passivation
             </label>
-            {#if neutralEnabled}
+            {#if lTypeOptions.length === 0}
+              <p class="text-[10px] text-slate-500 leading-snug">No L-type passivation sites detected on the current structure.</p>
+            {:else if neutralEnabled}
               <div class="space-y-3 bg-white/60 p-3 rounded-xl border border-accent-100">
-                {#if neutralLigands.length > 0}
-                  <div class="grid grid-cols-[1fr_4.5rem_28px] gap-2 text-[8px] text-accent-500 uppercase font-bold tracking-widest px-1">
-                    <span>SMILES</span><span>Target</span><span></span>
-                  </div>
-                {/if}
-                {#each neutralLigands as lig, i (lig.id)}
-                  <div class="grid grid-cols-[1fr_4.5rem_28px] gap-2">
-                    <input type="text" bind:value={lig.smiles} placeholder="e.g. CCCN" class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
-                    <select bind:value={lig.target} onchange={() => syncLigandCountFromRatio(lig, lTypeAvailable(lig.target))} class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium cursor-pointer text-center">
-                      <option value="cation">Cation</option>
-                      <option value="anion">Anion</option>
-                      <option value="both">Both</option>
-                    </select>
-                    <button class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors" onclick={() => neutralLigands.splice(i, 1)}>✕</button>
-                  </div>
-                  <div class="grid grid-cols-[1fr_4.5rem] gap-2 text-[10px] items-center">
-                    <div class="space-y-1">
-                      <div class="flex justify-between text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span>Available {lig.target}: {lTypeAvailable(lig.target)}</span><span>Passivate: {lig.target_count || 0} / {lTypeAvailable(lig.target)} ({selectionPercent(lig.target_count, lTypeAvailable(lig.target))}%)</span></div>
-                      <input type="range" min="0" max="1" step="0.01" bind:value={lig.ratio} oninput={() => syncLigandCountFromRatio(lig, lTypeAvailable(lig.target))} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
+                {#each ['cation', 'anion'] as siteType}
+                  {@const optsForType = lTypeOptions.filter((opt) => opt.site_type === siteType)}
+                  {#if optsForType.length > 0}
+                    <div class="space-y-2">
+                      <span class="block text-[9px] font-bold text-accent-600 uppercase tracking-wider">{siteType === 'cation' ? 'Cation Sites' : 'Anion Sites'}</span>
+                      {#each optsForType as opt (lTypeKey(opt))}
+                        <div class="border border-accent-100 rounded-xl p-3 bg-white/70 space-y-2">
+                          <label class="space-y-2 text-xs font-bold text-slate-700 min-w-0 block">
+                            <span class="flex items-center gap-2 whitespace-nowrap">
+                              <input type="checkbox" bind:checked={opt.enabled} onchange={() => ensureJobs(opt, 'l_type')} class="accent-accent-600 rounded shrink-0">
+                              <span>Passivate {opt.element || opt.target_symbol || opt.target}</span>
+                            </span>
+                            <span class="flex flex-wrap gap-1.5 text-[10px] text-slate-500">
+                              <span class="rounded-full bg-slate-100 px-2 py-0.5 whitespace-nowrap">available {opt.available_count}</span>
+                            </span>
+                          </label>
+                          {#if opt.enabled}
+                            <div class="space-y-2">
+                              {#each opt.jobs || [] as job (job.id)}
+                                <div class="border border-accent-100 rounded-lg p-2 bg-white/80 space-y-2">
+                                  <div class="grid grid-cols-[1fr_28px] gap-2">
+                                    <input type="text" bind:value={job.smiles} placeholder="e.g. CCCN" class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+                                    <button type="button" class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors" onclick={() => removeOptionJob(opt, job, 'l_type')}>x</button>
+                                  </div>
+                                  <div class="flex flex-wrap gap-1 items-center text-[9px]">
+                                    <span class="text-slate-400 font-bold uppercase mr-1">Templates:</span>
+                                    <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.smiles = 'CN'}>Methylamine</button>
+                                    <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.smiles = 'CCCCC(=O)O'}>Pentanoic Acid</button>
+                                    <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.smiles = 'CCCCS'}>Pentanethiol</button>
+                                  </div>
+                                  <div class="grid grid-cols-[1fr_5rem] gap-2 text-[10px] items-center">
+                                    <div class="space-y-1">
+                                      <div class="flex justify-between text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span>Available: {opt.available_count}</span><span>Passivate: {job.target_count || 0} / {opt.available_count} ({selectionPercent(job.target_count, opt.available_count)}%)</span></div>
+                                      <input type="range" min="0" max="1" step="0.01" bind:value={job.ratio} oninput={() => syncJobCountFromRatio(opt, job, 'l_type')} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
+                                    </div>
+                                    <input type="number" min="0" max={opt.available_count} step="1" bind:value={job.target_count} oninput={() => syncJobRatioFromCount(opt, job, 'l_type')} class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+                                  </div>
+                                  <div class="flex flex-wrap gap-1.5 text-[10px] bg-white p-2 rounded-lg border border-accent-100">
+                                    <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.distribution} value="uniform" class="accent-accent-600 shrink-0"> Uniform</label>
+                                    <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.distribution} value="segmented" class="accent-accent-600 shrink-0"> Segmented</label>
+                                    <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.distribution} value="random" class="accent-accent-600 shrink-0"> Random</label>
+                                  </div>
+                                </div>
+                              {/each}
+                              <button type="button" class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-[10px] py-1.5 rounded-lg text-accent-700 font-bold transition-colors" onclick={() => addOptionJob(opt, 'l_type')}>+ Add L-type passivant</button>
+                              <div class="text-[9px] font-bold text-slate-500 uppercase tracking-wider text-right">Total: {optionJobTotal(opt)} / {opt.available_count}</div>
+                            </div>
+                          {/if}
+                        </div>
+                      {/each}
                     </div>
-                    <input type="number" min="0" max={lTypeAvailable(lig.target)} step="1" bind:value={lig.target_count} oninput={() => syncLigandRatioFromCount(lig, lTypeAvailable(lig.target))} placeholder="count" class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
-                  </div>
+                  {/if}
                 {/each}
-                <button class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-[10px] py-1.5 rounded-lg text-accent-700 font-bold transition-colors"
-                        onclick={() => neutralLigands.push({ id: crypto.randomUUID(), smiles: '', target: 'cation', ratio: 0, target_count: 0 })}>
-                  + Add L-type Passivant
-                </button>
-                <span class="block text-[9px] font-bold text-accent-600 uppercase tracking-wider pt-2 border-t border-accent-100">Distribution</span>
-                <div class="flex flex-wrap gap-1.5 text-[10px] bg-white p-2 rounded-lg border border-accent-100">
-                  <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1">
-                    <input type="radio" bind:group={neutralDist} value="uniform" class="accent-accent-600 shrink-0"> Uniform
-                  </label>
-                  <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1">
-                    <input type="radio" bind:group={neutralDist} value="segmented" class="accent-accent-600 shrink-0"> Segmented
-                  </label>
-                  <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1">
-                    <input type="radio" bind:group={neutralDist} value="random" class="accent-accent-600 shrink-0"> Random
-                  </label>
-                </div>
               </div>
             {/if}
           </div>
