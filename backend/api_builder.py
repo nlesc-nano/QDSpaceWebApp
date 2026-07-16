@@ -643,6 +643,24 @@ def _augment_charges_for_neutral_exchange(charges: Dict[str, float], opts: Build
                 charges.setdefault(sym, _COMMON_FORMAL_CHARGES[sym])
 
 
+def _validate_neutral_exchange_jobs(opts: BuildOptions) -> None:
+    if not getattr(opts, "neutral_exchange_enabled", False):
+        return
+    from builder.neutral_exchange_posttreat import _validate_zwitterion_smiles
+
+    for index, job in enumerate(getattr(opts, "neutral_exchange_jobs", None) or [], start=1):
+        exchange_type = (getattr(job, "exchange_type", None) or "mxn").lower()
+        if exchange_type != "zwitterion":
+            continue
+        smiles = (getattr(job, "smiles", "") or "").strip()
+        if not smiles:
+            continue
+        try:
+            _validate_zwitterion_smiles(smiles)
+        except ValueError as exc:
+            raise ValueError(f"Neutral exchange job {index}: {exc}") from exc
+
+
 def run_cmd(cmd: List[str], cwd: Path) -> Tuple[str, str]:
     if cmd[0] == "nc-builder":
         exe = shutil.which("nc-builder")
@@ -1706,6 +1724,10 @@ async def build_nanocrystal(files: List[UploadFile] = File(...), options: str = 
         opts = BuildOptions.parse_raw(options)
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Invalid options JSON: {e}")
+    try:
+        _validate_neutral_exchange_jobs(opts)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
     tmpdir = tempfile.mkdtemp(prefix="qdb_")
     logging.info(f"Temporary directory created at: {tmpdir}")
@@ -2145,6 +2167,10 @@ async def build_nanocrystal_stream(
         opts = BuildOptions.parse_raw(options)
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Invalid options JSON: {e}")
+    try:
+        _validate_neutral_exchange_jobs(opts)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
     tmpdir = tempfile.mkdtemp(prefix="qdb_stream_")
     tmp_path = Path(tmpdir)
@@ -2302,7 +2328,7 @@ async def build_nanocrystal_stream(
                         await asyncio.sleep(0.05)
                 except Exception as e:
                     yield json.dumps({"event": "log", "line": f"[error] Repassivation failed: {e}"}) + "\n"
-                    yield json.dumps({"event": "result", "status": "failed"}) + "\n"
+                    yield json.dumps({"event": "result", "status": "failed", "error": str(e)}) + "\n"
                     return
 
                 yield json.dumps({
@@ -2697,7 +2723,7 @@ async def build_nanocrystal_stream(
             # Stream a readable error instead of letting the connection drop
             tb = traceback.format_exc(limit=5)
             yield json.dumps({"event": "log", "line": f"[fatal] {e}\n{tb}"}) + "\n"
-            yield json.dumps({"event": "result", "status": "failed"}) + "\n"
+            yield json.dumps({"event": "result", "status": "failed", "error": str(e)}) + "\n"
         finally:
             logging.info(f"Cleaning up temporary directory: {tmpdir}")
             # shutil.rmtree(tmpdir, ignore_errors=True)

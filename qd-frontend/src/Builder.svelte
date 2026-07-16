@@ -12,6 +12,59 @@
     'F': -1, 'Cl': -1, 'Br': -1, 'I': -1
   };
 
+  const PHOSPHONATE_SHORTHAND = 'COP(=O)OCC[NH3+]';
+  const PHOSPHONATE_ZWITTERION = 'COP(=O)([O-])OCC[NH3+]';
+
+  function explicitBracketCharges(smiles) {
+    let total = 0;
+    let hasPositive = false;
+    let hasNegative = false;
+    for (const match of String(smiles || '').matchAll(/\[([^\]]+)\]/g)) {
+      const token = match[1];
+      const numbered = token.match(/([+-])(\d+)$/);
+      const repeated = token.match(/(\+{1,3}|-{1,3})$/);
+      let charge = 0;
+      if (numbered) {
+        charge = (numbered[1] === '+' ? 1 : -1) * Number(numbered[2]);
+      } else if (repeated) {
+        charge = repeated[1][0] === '+' ? repeated[1].length : -repeated[1].length;
+      }
+      total += charge;
+      hasPositive ||= charge > 0;
+      hasNegative ||= charge < 0;
+    }
+    return { total, hasPositive, hasNegative };
+  }
+
+  function zwitterionValidationMessage(smiles) {
+    const value = String(smiles || '').trim();
+    if (!value) return null;
+    const charges = explicitBracketCharges(value);
+    if (charges.total === 0 && charges.hasPositive && charges.hasNegative) return null;
+
+    const suggestion = value.replace(/\s+/g, '') === PHOSPHONATE_SHORTHAND
+      ? ` Did you mean '${PHOSPHONATE_ZWITTERION}'?`
+      : '';
+    if (charges.total !== 0) {
+      const signedCharge = charges.total > 0 ? `+${charges.total}` : `${charges.total}`;
+      return `Invalid zwitterion SMILES '${value}': formal charge is ${signedCharge}; zwitterions require net charge 0.${suggestion}`;
+    }
+    return `Invalid zwitterion SMILES '${value}': zwitterions require explicit positive and negative centers.${suggestion}`;
+  }
+
+  function validateZwitterionJobs() {
+    let firstError = null;
+    for (const option of neutralExchangeOptions) {
+      if (!option.enabled) continue;
+      for (const job of option.jobs || []) {
+        if (job.exchange_type !== 'zwitterion' || !(job.target_count > 0)) continue;
+        const message = zwitterionValidationMessage(job.smiles);
+        if (message && !firstError) firstError = message;
+      }
+    }
+    return firstError;
+  }
+
   // --- Bulk CIF Templates ---
   const bulkTemplates = {
     "ABX3": [
@@ -992,6 +1045,13 @@
       alert('No built structure found. Please run a full build first.');
       return;
     }
+    if (skipCoreBuild) {
+      const zwitterionError = validateZwitterionJobs();
+      if (zwitterionError) {
+        logs += `[error] ${zwitterionError}\n`;
+        return;
+      }
+    }
 
     isBuilding = true;
     if (!skipCoreBuild) {
@@ -1127,7 +1187,14 @@
       const res = await fetch(BUILD_STREAM_URL, { method: 'POST', body: formData });
       if (!res.ok) {
         const errorText = await res.text();
-        throw new Error(`HTTP ${res.status}: ${errorText}`);
+        let detail = errorText;
+        try {
+          const parsed = JSON.parse(errorText);
+          detail = parsed.detail || parsed.error || errorText;
+        } catch (_err) {
+          // Keep the plain response body.
+        }
+        throw new Error(detail || `HTTP ${res.status}`);
       }
 
       const reader = res.body.getReader();
@@ -1173,7 +1240,7 @@
         if (finalResult.last_command) logs += `[cmd][final] ${finalResult.last_command}\n`;
         logs += "\n[status] Rendered.\n";
       } else {
-        logs += "[error] Build failed.\n";
+        logs += `[error] ${finalResult?.error || 'Build failed.'}\n`;
       }
     } catch (err) {
       logs += `[error] fetch failed: ${err.message}\n`;
@@ -1415,6 +1482,7 @@
                         {#if opt.enabled}
                           <div class="space-y-2">
                             {#each opt.jobs || [] as job (job.id)}
+                              {@const zwitterionError = job.exchange_type === 'zwitterion' ? zwitterionValidationMessage(job.smiles) : null}
                               <div class="border border-accent-100 rounded-lg p-2 bg-white/80 space-y-2">
                                 <div class="flex flex-wrap gap-1.5 text-[10px] bg-slate-50 p-1.5 rounded-lg border border-slate-200">
                                   <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.exchange_type} value="mxn" class="accent-accent-600 shrink-0"> MXn exchange</label>
@@ -1428,9 +1496,12 @@
                                            job.exchange_type === 'zwitterion' ? 'e.g. [NH3+]CC[S-] or [NH3+]CC(=O)[O-]' :
                                            'e.g. CN (methylamine) or CCCS (neutral thiol)'
                                          }
-                                         class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium w-full">
+                                         class="border-none ring-1 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 outline-none font-medium w-full {zwitterionError ? 'ring-red-400 focus:ring-red-400' : 'ring-accent-200 focus:ring-accent-400'}">
                                   <button type="button" class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors h-full" onclick={() => removeOptionJob(opt, job, 'neutral_exchange')}>x</button>
                                 </div>
+                                {#if zwitterionError}
+                                  <p class="text-[10px] leading-snug text-red-600 font-semibold">{zwitterionError}</p>
+                                {/if}
                                 <div class="flex flex-wrap gap-1 items-center text-[9px]">
                                   <span class="text-slate-400 font-bold uppercase mr-1">Templates:</span>
                                   {#if job.exchange_type === 'mxn'}
