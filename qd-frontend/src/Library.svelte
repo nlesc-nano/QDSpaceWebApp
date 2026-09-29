@@ -21,6 +21,7 @@
     source: "",
     dMin: null,
     dMax: null,
+    unrelaxed: false,
     optimized: false,
     md: false,
     properties: false,
@@ -40,7 +41,6 @@
   let activePropertyTab = $state("fuzzy_sf");
   let plotUrls = $state({ fuzzy_sf: null, fuzzy_soc: null, exciton_sf: null, exciton_soc: null });
 
-  const STAGE_LABEL = { start: "Start", geo_opt: "Optimized", md: "MD" };
   const SOURCE_LABEL = { builder: "Builder", dft: "DFT", "builder+dft": "Builder + DFT" };
 
   onMount(async () => {
@@ -59,12 +59,29 @@
   const dOf = (r) => r.size?.d_nm ?? 0;
   const functionalsOf = (r) => uniq(r.stages.map((s) => s.functional));
 
+  const hasUnrelaxed = (r) => r.stages.some((s) => s.stage === "start");
+
   function stageLabel(st) {
-    let label = STAGE_LABEL[st.stage] || st.stage;
-    if (st.stage === "start") label = st.dft_start ? "DFT start" : (current?.source?.startsWith("builder") ? "Builder start" : "Start");
-    if (st.functional) label += ` · ${st.functional}`;
-    return label;
+    if (st.stage === "start") {
+      if (st.dft_start) return "Unrelaxed · DFT input";
+      return current?.source?.startsWith("builder") ? "Unrelaxed · builder" : "Unrelaxed";
+    }
+    if (st.stage === "geo_opt") return `Relaxed · ${st.functional || "functional unknown"}`;
+    if (st.stage === "md") return st.functional ? `MD · ${st.functional}` : "MD";
+    return st.stage;
   }
+
+  // "Cd68Se55Cl26" -> [{t:"Cd"},{t:"68",sub:true},...] for subscript rendering.
+  const formulaParts = (f) =>
+    String(f).split(/(\d+)/).filter(Boolean).map((t) => ({ t, sub: /^\d+$/.test(t) }));
+
+  // Relaxed geometry with no unrelaxed input (e.g. legacy "old/" files).
+  const relaxedOnlyNote = (r) => {
+    if (hasUnrelaxed(r)) return "";
+    const opt = r.stages.find((s) => s.stage === "geo_opt");
+    if (!opt) return "";
+    return opt.functional ? "relaxed only" : "relaxed only · functional unknown";
+  };
 
   // Filters except composition (the composition chips list what these leave).
   function passesBase(r, f) {
@@ -74,9 +91,10 @@
     if (f.surface && r.surface !== f.surface) return false;
     if (f.source === "builder" && !r.source.includes("builder")) return false;
     if (f.source === "dft" && !r.source.includes("dft")) return false;
-    if (f.functional && !functionalsOf(r).includes(f.functional)) return false;
+    if (f.source === "dft" && f.functional && !functionalsOf(r).includes(f.functional)) return false;
     if (f.dMin !== null && f.dMin !== "" && dOf(r) < Number(f.dMin)) return false;
     if (f.dMax !== null && f.dMax !== "" && dOf(r) > Number(f.dMax)) return false;
+    if (f.unrelaxed && !hasUnrelaxed(r)) return false;
     if (f.optimized && !r.flags?.optimized) return false;
     if (f.md && !r.flags?.md) return false;
     if (f.properties && !r.flags?.properties) return false;
@@ -133,7 +151,7 @@
   function clearFilters() {
     Object.assign(filters, {
       family: "", material: "", centre: "", surface: "", functional: "", source: "",
-      dMin: null, dMax: null, optimized: false, md: false, properties: false,
+      dMin: null, dMax: null, unrelaxed: false, optimized: false, md: false, properties: false,
     });
     selectedFormulas = [];
   }
@@ -274,6 +292,7 @@
   function badgeClass(kind) {
     return {
       clean: "bg-slate-100 text-slate-700 border-slate-200",
+      unrelaxed: "bg-sky-50 text-sky-800 border-sky-200",
       reconstructed: "bg-amber-50 text-amber-800 border-amber-200",
       opt: "bg-emerald-50 text-emerald-800 border-emerald-200",
       md: "bg-indigo-50 text-indigo-800 border-indigo-200",
@@ -321,24 +340,14 @@
         </label>
       </div>
 
-      <div class="grid grid-cols-2 gap-3">
-        <label class="block">
-          <span class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">Centre</span>
-          <select class="w-full ring-1 ring-slate-200 rounded-xl p-2.5 text-sm bg-slate-50 outline-none font-medium"
-                  bind:value={filters.centre} onchange={() => (selectedFormulas = [])}>
-            <option value="">All</option>
-            {#each centres as c}<option value={c}>{c === "interstitial" ? "interstitial" : `${c}-centred`}</option>{/each}
-          </select>
-        </label>
-        <label class="block">
-          <span class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">Functional</span>
-          <select class="w-full ring-1 ring-slate-200 rounded-xl p-2.5 text-sm bg-slate-50 outline-none font-medium"
-                  bind:value={filters.functional} onchange={() => (selectedFormulas = [])}>
-            <option value="">Any</option>
-            {#each functionals as f}<option value={f}>{f}</option>{/each}
-          </select>
-        </label>
-      </div>
+      <label class="block">
+        <span class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">Centre</span>
+        <select class="w-full ring-1 ring-slate-200 rounded-xl p-2.5 text-sm bg-slate-50 outline-none font-medium"
+                bind:value={filters.centre} onchange={() => (selectedFormulas = [])}>
+          <option value="">All</option>
+          {#each centres as c}<option value={c}>{c === "interstitial" ? "interstitial" : `${c}-centred`}</option>{/each}
+        </select>
+      </label>
 
       <div>
         <span class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">Surface</span>
@@ -355,9 +364,19 @@
         <div class="flex gap-1 bg-slate-100 p-1 rounded-xl">
           {#each [["", "All"], ["builder", "Builder"], ["dft", "DFT"]] as [v, label]}
             <button class="flex-1 px-2 py-1.5 rounded-lg text-xs font-bold transition-all {filters.source === v ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-800'}"
-                    onclick={() => { filters.source = v; selectedFormulas = []; }}>{label}</button>
+                    onclick={() => { filters.source = v; if (v !== "dft") filters.functional = ""; selectedFormulas = []; }}>{label}</button>
           {/each}
         </div>
+        {#if filters.source === "dft"}
+          <label class="block mt-3">
+            <span class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">Functional</span>
+            <select class="w-full ring-1 ring-slate-200 rounded-xl p-2.5 text-sm bg-slate-50 outline-none font-medium"
+                    bind:value={filters.functional} onchange={() => (selectedFormulas = [])}>
+              <option value="">Any</option>
+              {#each functionals as f}<option value={f}>{f}</option>{/each}
+            </select>
+          </label>
+        {/if}
       </div>
 
       <div>
@@ -377,7 +396,8 @@
       <div>
         <span class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">Available data</span>
         <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
-          <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" bind:checked={filters.optimized} class="accent-accent-600" /> <span class="font-medium text-slate-700">Optimized</span></label>
+          <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" bind:checked={filters.unrelaxed} class="accent-accent-600" /> <span class="font-medium text-slate-700">Unrelaxed</span></label>
+          <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" bind:checked={filters.optimized} class="accent-accent-600" /> <span class="font-medium text-slate-700">Relaxed</span></label>
           <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" bind:checked={filters.md} class="accent-accent-600" /> <span class="font-medium text-slate-700">MD</span></label>
           <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" bind:checked={filters.properties} class="accent-accent-600" /> <span class="font-medium text-slate-700">Properties</span></label>
         </div>
@@ -390,7 +410,7 @@
         <div class="flex flex-wrap gap-1.5 {showAllFormulas ? '' : 'max-h-28 overflow-hidden'}">
           {#each formulaChips as chip}
             <button class="px-2 py-1 rounded-lg text-[11px] font-mono font-bold border transition-all {selectedFormulas.includes(chip.formula) ? 'bg-accent-600 text-white border-accent-600' : 'bg-white text-slate-700 border-slate-200 hover:border-accent-400'}"
-                    title="{chip.d.toFixed(2)} nm" onclick={() => toggleFormula(chip.formula)}>{chip.formula}</button>
+                    title="{chip.d.toFixed(2)} nm" onclick={() => toggleFormula(chip.formula)}>{#each formulaParts(chip.formula) as p}{#if p.sub}<sub>{p.t}</sub>{:else}{p.t}{/if}{/each}</button>
           {:else}
             <span class="text-xs text-slate-400 italic">No structures in range.</span>
           {/each}
@@ -414,17 +434,23 @@
           <button class="text-left px-3 py-2.5 rounded-xl transition-all {current?.id === r.id ? 'bg-accent-50 ring-1 ring-accent-400' : 'hover:bg-slate-50'}"
                   onclick={() => selectStructure(r)}>
             <div class="flex justify-between items-baseline gap-2">
-              <span class="font-mono text-[13px] font-bold text-slate-900 truncate">{r.formula}</span>
+              <span class="text-[13px] font-bold text-slate-900 truncate">{#each formulaParts(r.formula) as p}{#if p.sub}<sub>{p.t}</sub>{:else}{p.t}{/if}{/each}</span>
               <span class="text-xs font-bold text-slate-500 whitespace-nowrap">{dOf(r).toFixed(2)} nm</span>
             </div>
             <div class="flex flex-wrap gap-1 mt-1">
               <span class="text-[10px] font-bold text-slate-500">{r.material} · {r.centre}-centred</span>
               <span class="px-1.5 rounded border text-[10px] font-bold {badgeClass(r.surface)}">{r.surface}</span>
               <span class="px-1.5 rounded border text-[10px] font-bold {badgeClass('source')}">{SOURCE_LABEL[r.source] || r.source}</span>
-              {#if r.flags?.optimized}<span class="px-1.5 rounded border text-[10px] font-bold {badgeClass('opt')}">OPT</span>{/if}
+              {#if hasUnrelaxed(r)}<span class="px-1.5 rounded border text-[10px] font-bold {badgeClass('unrelaxed')}">Unrelaxed</span>{/if}
+              {#if r.flags?.optimized}<span class="px-1.5 rounded border text-[10px] font-bold {badgeClass('opt')}">Relaxed{functionalsOf(r).length ? " · " + functionalsOf(r).join("/") : ""}</span>{/if}
               {#if r.flags?.md}<span class="px-1.5 rounded border text-[10px] font-bold {badgeClass('md')}">MD</span>{/if}
               {#if r.flags?.properties}<span class="px-1.5 rounded border text-[10px] font-bold {badgeClass('props')}">Props</span>{/if}
             </div>
+            {#if relaxedOnlyNote(r)}
+              <div class="text-[10px] text-slate-400 mt-0.5 truncate" title={(r.origin?.legacy_paths || []).join(", ")}>
+                {relaxedOnlyNote(r)} · {(r.origin?.legacy_paths || [])[0]}
+              </div>
+            {/if}
           </button>
         {:else}
           <span class="text-sm text-slate-400 italic p-4 text-center">{loadError || "No structures found."}</span>
@@ -439,7 +465,7 @@
       <div class="relative flex-1 min-h-[400px] bg-white rounded-[1.5rem] p-4 border border-slate-100 shadow-sm flex flex-col">
         <div class="flex flex-wrap justify-between items-center gap-3 mb-3 px-2">
           <div class="flex items-center gap-3 min-w-0">
-            <h2 class="font-heading font-bold text-xl text-slate-900 truncate">{current ? current.formula : "3D Structure Viewer"}</h2>
+            <h2 class="font-heading font-bold text-xl text-slate-900 truncate">{#if current}{#each formulaParts(current.formula) as p}{#if p.sub}<sub>{p.t}</sub>{:else}{p.t}{/if}{/each}{:else}3D Structure Viewer{/if}</h2>
             {#if current}
               <div class="flex gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200 overflow-x-auto">
                 {#each current.stages as st, i}
