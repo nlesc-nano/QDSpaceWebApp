@@ -157,7 +157,19 @@
   let cationicLigands = $state([]);
   
   let reconEnabled = $state(false);
-  let reconRatio = $state(0.5);
+  // {111} reconstruction applies to zinc-blende cores with both cation-rich
+  // {111} and anion-rich {-1-1-1} facets active (QD_Builder skips otherwise).
+  const is111Facet = (f) => {
+    const fam = String(f.family || '').replace(/[{}]/g, '');
+    if (fam) return fam === '111';
+    const digits = String(f.hkl || '').match(/\d/g) || [];
+    return digits.length === 3 && digits.every((d) => d === '1');
+  };
+  let reconAvailable = $derived(
+    currentCorePhase === 'zinc-blende'
+      && coreFacets.some((f) => is111Facet(f) && f.termination === 'cation_rich')
+      && coreFacets.some((f) => is111Facet(f) && f.termination === 'anion_rich')
+  );
 
   let neutralEnabled = $state(false);
   let neutralLigands = $state([]);
@@ -1119,9 +1131,7 @@
         : [],
       skip_core_build: skipCoreBuild,
       xyz_unpassivated: skipCoreBuild ? lastUnpassivatedXyz : null,
-      reconstruction_enabled: skipCoreBuild ? reconEnabled : false,
-      reconstruction_target_reduction: skipCoreBuild ? reconRatio : 0.5,
-      reconstruction_min_separation: 'auto',
+      reconstruction_enabled: skipCoreBuild ? (reconEnabled && reconAvailable) : false,
       neutral_enabled: skipCoreBuild ? neutralEnabled : false,
       neutral_jobs: skipCoreBuild
         ? lTypeOptions
@@ -1610,29 +1620,28 @@
             {/if}
           </div>
           <div class="border border-accent-200 bg-accent-50/20 p-4 rounded-2xl">
-            <label class="flex items-center gap-2 font-extrabold text-accent-700 text-[10px] uppercase tracking-widest cursor-pointer select-none">
-              <input type="checkbox" bind:checked={reconEnabled} class="accent-accent-600 rounded">
-              Polar Surface Reconstruction
+            <label class="flex items-center gap-2 font-extrabold text-accent-700 text-[10px] uppercase tracking-widest select-none {reconAvailable ? 'cursor-pointer' : 'opacity-50 cursor-not-allowed'}">
+              <input type="checkbox" bind:checked={reconEnabled} disabled={!reconAvailable} class="accent-accent-600 rounded">
+              Polar {'{'}111{'}'} Surface Reconstruction
             </label>
             <p class="text-[10px] text-slate-500 mt-2 leading-snug">
-              Cl placeholders on polar facets (auto spacing). Runs before ligand exchange.
+              {#if reconAvailable}
+                Sub-surface cation vacancies on anion-rich (-1-1-1) facets (2-coordinated anions → Cl), then Cl stripping and cation removal on cation-rich (111) facets to keep the dot neutral. Runs before ligand exchange.
+              {:else}
+                Available for zinc-blende II-VI / III-V cores with both cation-rich (111) and anion-rich (-1-1-1) facets enabled.
+              {/if}
             </p>
 
-            {#if reconEnabled}
-              <!-- Reconstruction Ratio Selector -->
-              <div class="space-y-1.5 mt-3 p-3 bg-white border border-accent-100 rounded-xl">
-                <div class="flex justify-between items-center text-xs">
-                  <span class="font-bold text-slate-700">Reconstruction Ratio</span>
-                  <span class="font-mono bg-accent-50 text-accent-700 px-2 py-0.5 rounded font-bold">{Math.round(reconRatio * 100)}%</span>
-                </div>
-                <input 
-                  type="range" 
-                  min="0.1" 
-                  max="0.9" 
-                  step="0.05" 
-                  bind:value={reconRatio}
-                  class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer"
-                />
+            {#if finalResult?.reconstruction}
+              {@const rc = finalResult.reconstruction}
+              <div class="mt-3 p-3 bg-white border border-accent-100 rounded-xl text-[10px] text-slate-600 space-y-0.5">
+                {#if rc.status === 'applied'}
+                  <div><span class="font-bold text-slate-700">Anion-rich facets:</span> {rc.anion_facets.reduce((a, f) => a + f.vacancies, 0)} {rc.cation} vacancies, {rc.anion_facets.reduce((a, f) => a + f.anions_to_ligand, 0)} {rc.anion} → {rc.ligand}{rc.anion_facets.some((f) => f.chain_breaks) ? `, ${rc.anion_facets.reduce((a, f) => a + (f.chain_breaks || 0), 0)} ${rc.anion} → ${rc.ligand} chain breaks` : ''}</div>
+                  <div><span class="font-bold text-slate-700">Cation-rich facets:</span> {rc.ligands_stripped} {rc.ligand} stripped, {rc.cations_removed} {rc.cation} removed{rc.ligands_added ? `, ${rc.ligands_added} ${rc.ligand} added` : ''}</div>
+                  <div><span class="font-bold text-slate-700">Net charge:</span> {rc.total_charge_after >= 0 ? '+' : ''}{rc.total_charge_after}</div>
+                {:else}
+                  <div>Skipped: {rc.reason}</div>
+                {/if}
               </div>
             {/if}
           </div>

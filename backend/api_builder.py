@@ -18,6 +18,7 @@ import threading
 import queue
 import asyncio
 import contextlib
+import inspect
 from builder.main import main as nc_builder_main
 
 from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
@@ -169,6 +170,7 @@ class BuildOptions(BaseModel):
 
     # New Surface Reconstruction and Neutral passivation fields
     reconstruction_enabled: Optional[bool] = False
+    # Ignored since the {111} reconstruction rewrite; kept so older clients validate.
     reconstruction_target_reduction: Optional[float] = 0.5
     reconstruction_min_separation: Optional[str] = "auto"
     neutral_enabled: Optional[bool] = False
@@ -1015,13 +1017,12 @@ def _normalize_hkl_string(h: str) -> str:
 def _build_post_treatment_from_opts(opts: BuildOptions) -> dict:
     post_treatment: dict = {}
     if opts.reconstruction_enabled:
+        # Polar {111} reconstruction (zinc-blende II-VI / III-V with both
+        # cation_rich {111} and anion_rich {-1-1-1} active); QD_Builder decides
+        # applicability and skips with a log message otherwise.
         post_treatment["surface_reconstruction"] = {
             "enabled": True,
             "ligand": "Cl",
-            "facets": "auto",
-            "target_reduction": opts.reconstruction_target_reduction or 0.5,
-            "min_separation": opts.reconstruction_min_separation or "auto",
-            "distribution": "fps",
             "seed": 1337,
         }
     if opts.z_type_enabled and opts.z_type_jobs:
@@ -1260,6 +1261,10 @@ def _run_repassivation_posttreatment(
                 prepass_min_cn_edge=cfg.passivation.prepass_min_cn_edge,
                 prepass_min_cn_vertex=cfg.passivation.prepass_min_cn_vertex,
             )
+            recon_ledger: dict = {}
+            recon_kwargs = {}
+            if "ledger" in inspect.signature(reconstruct_polar_facets).parameters:
+                recon_kwargs["ledger"] = recon_ledger
             syms, pts = reconstruct_polar_facets(
                 syms,
                 pts,
@@ -1274,7 +1279,10 @@ def _run_repassivation_posttreatment(
                 verbose=False,
                 write_all=False,
                 prefix=str(tmp_path / "repass"),
+                **recon_kwargs,
             )
+            if recon_ledger:
+                ledger.append({"surface_reconstruction": True, **recon_ledger})
 
         _facets, planes = _detect_planes()
         if log_sink is not None:
@@ -2402,6 +2410,9 @@ async def build_nanocrystal_stream(
                     "ligand_detail": ligand_detail,
                     "z_type_options": z_type_options,
                     **post_options,
+                    "reconstruction": next(
+                        (e for e in ledger if e.get("surface_reconstruction")), None
+                    ),
                     "size_metrics": None,
                 }
                 yield json.dumps({"event": "result", **payload}) + "\n"
