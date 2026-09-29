@@ -1,6 +1,10 @@
 <script>
-  import { untrack } from 'svelte';
+  import { onMount, tick, untrack } from 'svelte';
   import Viewer from './Viewer.svelte';
+  import { bulkTemplates } from './bulkTemplates.js';
+
+  // Hand-off from the Library: { template, xyz, facets, centre, unitCells, label }
+  let { handoff = null, onHandoffConsumed = () => {} } = $props();
 
   // --- Common Oxidation States for QD Elements & Ligands ---
   const OXIDATION_STATES = {
@@ -66,37 +70,6 @@
   }
 
   // --- Bulk CIF Templates ---
-  const bulkTemplates = {
-    "ABX3": [
-      { name: "CsPbCl3", phase: "cubic", a: 5.680, path: "/ABX3/bulk_cifs/CsPbCl3_cubic.cif" },
-      { name: "CsPbBr3", phase: "cubic", a: 5.949, path: "/ABX3/bulk_cifs/CsPbBr3_cubic.cif" },
-      { name: "CsPbI3", phase: "cubic", a: 6.275, path: "/ABX3/bulk_cifs/CsPbI3_cubic.cif" }
-    ],
-    "II-VI": [
-      { name: "CdS", phase: "zinc-blende", a: 5.886, path: "/II-VI/bulk_cifs/CdS_zb.cif" },
-      { name: "CdSe", phase: "zinc-blende", a: 6.141, path: "/II-VI/bulk_cifs/CdSe_zb.cif" },
-      { name: "CdTe", phase: "zinc-blende", a: 6.564, path: "/II-VI/bulk_cifs/CdTe_zb.cif" },
-      { name: "ZnS", phase: "zinc-blende", a: 5.387, path: "/II-VI/bulk_cifs/ZnS_zb.cif" },
-      { name: "ZnSe", phase: "zinc-blende", a: 5.665, path: "/II-VI/bulk_cifs/ZnSe_zb.cif" },
-      { name: "ZnTe", phase: "zinc-blende", a: 6.111, path: "/II-VI/bulk_cifs/ZnTe_zb.cif" },
-      { name: "HgS", phase: "zinc-blende", a: 5.939, path: "/II-VI/bulk_cifs/HgS_zb.cif" },
-      { name: "HgSe", phase: "zinc-blende", a: 6.193, path: "/II-VI/bulk_cifs/HgSe_zb.cif" },
-      { name: "HgTe", phase: "zinc-blende", a: 6.580, path: "/II-VI/bulk_cifs/HgTe_zb.cif" }
-    ],
-    "III-V": [
-      { name: "GaAs", phase: "zinc-blende", a: 5.750, path: "/III-V/bulk_cifs/GaAs_zb.cif" },
-      { name: "GaP", phase: "zinc-blende", a: 5.452, path: "/III-V/bulk_cifs/GaP_zb.cif" },
-      { name: "GaSb", phase: "zinc-blende", a: 6.137, path: "/III-V/bulk_cifs/GaSb_zb.cif" },
-      { name: "InAs", phase: "zinc-blende", a: 6.107, path: "/III-V/bulk_cifs/InAs_zb.cif" },
-      { name: "InP", phase: "zinc-blende", a: 5.904, path: "/III-V/bulk_cifs/InP_zb.cif" },
-      { name: "InSb", phase: "zinc-blende", a: 6.633, path: "/III-V/bulk_cifs/InSb_zb.cif" }
-    ],
-    "IV-VI": [
-      { name: "PbS", phase: "rock-salt", a: 5.976, path: "/IV-VI/bulk_cifs/PbS_rs.cif" },
-      { name: "PbSe", phase: "rock-salt", a: 6.182, path: "/IV-VI/bulk_cifs/PbSe_rs.cif" },
-      { name: "PbTe", phase: "rock-salt", a: 6.542, path: "/IV-VI/bulk_cifs/PbTe_rs.cif" }
-    ]
-  };
 
   let activeFamilyTab = $state("II-VI");
   let isLoadingTemplate = $state(false);
@@ -660,10 +633,11 @@
   });
 
   // CIF Facet Analysis Trigger
+  let cifAnalysis = null;
   $effect(() => {
     if (coreFile) {
       untrack(() => {
-        analyzeCif(coreFile);
+        cifAnalysis = analyzeCif(coreFile);
       });
     } else {
       detectedFacets = [];
@@ -1051,6 +1025,46 @@
   // ==========================================
   // API BUILD STREAM
   // ==========================================
+  // ==========================================
+  // Library hand-off: open a library structure in post-treatment
+  // ==========================================
+  function familyOf(hkl) {
+    const digits = (String(hkl).match(/\d/g) || []).map(Number).sort((a, b) => b - a);
+    return `{${digits.join('')}}`;
+  }
+
+  async function applyHandoff(h) {
+    onReset();
+    logs = `[status] Opening library structure ${h.label} in post-treatment...\n`;
+    await loadTemplate(h.template);
+    await tick();
+    if (cifAnalysis) await cifAnalysis;
+    if (h.facets && h.facets.length) {
+      coreFacets = h.facets.map((f) => ({
+        id: crypto.randomUUID(),
+        hkl: String(f.hkl),
+        gamma: Number(f.gamma ?? 1.0),
+        scope: f.scope || 'family',
+        family: familyOf(f.hkl),
+        termination: f.termination || null,
+      }));
+    }
+    if (h.centre && detectedSpecies.includes(h.centre)) centerIon = h.centre;
+    if (h.unitCells) sizeUnitCells = [h.unitCells, h.unitCells, h.unitCells];
+    xyzData = h.xyz;
+    lastUnpassivatedXyz = h.xyz;
+    sidebarView = 'postTreatment';
+    passivateExpanded = true;
+    // Empty repassivation: returns the post-treatment options for this structure.
+    await onBuild(true);
+    logs += `[status] Library structure ${h.label} ready for post-treatment.\n`;
+    onHandoffConsumed();
+  }
+
+  onMount(() => {
+    if (handoff) applyHandoff(handoff);
+  });
+
   async function onBuild(skipCoreBuild = false) {
     if (!coreFile) { alert('Please upload a core .cif file.'); return; }
     if (skipCoreBuild && !lastUnpassivatedXyz) {
