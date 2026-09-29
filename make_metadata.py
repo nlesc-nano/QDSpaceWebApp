@@ -253,6 +253,25 @@ def main():
     for relpath in xyz_files:
         entry = parse_metadata(relpath)
         full_path = os.path.join(target_dir, relpath)
+
+        # Builder library series: the structure record is authoritative.
+        record_path = os.path.join(os.path.dirname(full_path), "record.json")
+        if os.path.isfile(record_path):
+            with open(record_path) as f:
+                record = json.load(f)
+            entry.update({
+                "filename": f"{record['id']}.xyz",
+                "system_type": record["family"],
+                "material": record["material"],
+                "size": record["size"]["d_nm"],
+                "functional": "",
+                "basis": "",
+                "run_type": "Start",
+                "code": "QD_Builder",
+                "centre": record["centre"],
+                "surface": record["surface"],
+                "record_id": record["id"],
+            })
         
         # Uncomment if you have your count_atoms functions in the file
         # atom_counts = count_atoms(full_path)

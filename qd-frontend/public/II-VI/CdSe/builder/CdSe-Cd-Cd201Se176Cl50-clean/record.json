@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "id": "CdSe-Cd-Cd201Se176Cl50-clean",
+  "material": "CdSe",
+  "family": "II-VI",
+  "phase": "zinc-blende",
+  "surface": "clean",
+  "source": "builder",
+  "formula": "Cd201Se176Cl50",
+  "composition": {
+    "Cd": 201,
+    "Se": 176,
+    "Cl": 50
+  },
+  "core": {
+    "Cd": 201,
+    "Se": 176
+  },
+  "ligands": {
+    "Cl": 50
+  },
+  "n_atoms": 427,
+  "total_charge": 0,
+  "centre": "Cd",
+  "centre_offset_A": 0.0,
+  "size": {
+    "n_core": 377,
+    "d_nm": 2.753,
+    "d_max_nm": 2.746,
+    "d_hull_nm": 2.475,
+    "unit_cells": 2.25,
+    "unit_cells_all": [
+      2.25
+    ]
+  },
+  "fingerprint": "49e0118e0818a2c1",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cdse_zb.yaml",
+    "qd_builder_commit": "63decd1b8b35908fbe0a76ca53b7f7dbd67e03bb",
+    "qd_builder_dirty": false,
+    "cif": "CdSe_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Cd": 2,
+        "Se": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        2.25,
+        2.25,
+        2.25
+      ],
+      "construction_origin": {
+        "center_on_species": "Cd"
+      }
+    }
+  }
+}

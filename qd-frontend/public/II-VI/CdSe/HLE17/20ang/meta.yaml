@@ -1,0 +1,10 @@
+source: dft
+surface: clean
+family: II-VI
+material: CdSe
+phase: zinc-blende
+dft:
+  code: CP2K
+  functional: HLE17
+  basis: DZVP
+notes: ''

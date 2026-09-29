@@ -1,0 +1,10 @@
+source: dft
+surface: clean
+family: II-VI
+material: HgSe
+phase: zinc-blende
+dft:
+  code: CP2K
+  functional: PBE
+  basis: null
+notes: ''
