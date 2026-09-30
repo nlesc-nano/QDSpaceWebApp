@@ -33,7 +33,7 @@
       1.25
     ]
   },
-  "fingerprint": "32983675200e1748",
+  "fingerprint": "caa5facb71bfe0b9",
   "stages": [
     {
       "stage": "start",
@@ -43,7 +43,7 @@
   "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",

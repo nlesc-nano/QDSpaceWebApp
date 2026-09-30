@@ -13,7 +13,7 @@
 | ABX3 | CsPbCl3 | 5 | 0 | 5 | 0 | 0 | Cs:4, interstitial:1 |
 | ABX3 | CsPbI3 | 2 | 0 | 2 | 0 | 0 | Pb:2 |
 | II-VI | CdS | 5 | 0 | 5 | 0 | 0 | S:5 |
-| II-VI | CdSe | 77 | 64 | 10 | 3 | 33 | Cd:34, Se:43 |
+| II-VI | CdSe | 79 | 66 | 10 | 3 | 35 | Cd:35, Se:44 |
 | II-VI | CdTe | 5 | 0 | 5 | 0 | 0 | Te:5 |
 | II-VI | HgS | 5 | 0 | 5 | 0 | 0 | S:5 |
 | II-VI | HgSe | 5 | 0 | 5 | 0 | 0 | Se:5 |

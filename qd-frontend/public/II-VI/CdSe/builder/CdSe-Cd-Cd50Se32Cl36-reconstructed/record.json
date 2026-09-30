@@ -1,39 +1,39 @@
 {
   "schema_version": 1,
-  "id": "CdSe-Se-Cd600Se489Cl222-reconstructed",
+  "id": "CdSe-Cd-Cd50Se32Cl36-reconstructed",
   "material": "CdSe",
   "family": "II-VI",
   "phase": "zinc-blende",
   "surface": "reconstructed",
   "source": "builder",
-  "formula": "Cd600Se489Cl222",
+  "formula": "Cd50Se32Cl36",
   "composition": {
-    "Cd": 600,
-    "Se": 489,
-    "Cl": 222
+    "Cd": 50,
+    "Se": 32,
+    "Cl": 36
   },
   "core": {
-    "Cd": 600,
-    "Se": 489
+    "Cd": 50,
+    "Se": 32
   },
   "ligands": {
-    "Cl": 222
+    "Cl": 36
   },
-  "n_atoms": 1311,
+  "n_atoms": 118,
   "total_charge": 0,
-  "centre": "Se",
-  "centre_offset_A": 0.0,
+  "centre": "Cd",
+  "centre_offset_A": 0.106,
   "size": {
-    "n_core": 1089,
-    "d_nm": 3.977,
-    "d_max_nm": 4.374,
-    "d_hull_nm": 3.788,
-    "unit_cells": 3.25,
+    "n_core": 82,
+    "d_nm": 1.679,
+    "d_max_nm": 1.747,
+    "d_hull_nm": 1.412,
+    "unit_cells": 1.5,
     "unit_cells_all": [
-      3.25
+      1.5
     ]
   },
-  "fingerprint": "a4af461ee44ed776",
+  "fingerprint": "c1f3d8640f934374",
   "stages": [
     {
       "stage": "start",
@@ -85,12 +85,12 @@
         "proper_rotations_only": true
       },
       "size_unit_cells": [
-        3.25,
-        3.25,
-        3.25
+        1.5,
+        1.5,
+        1.5
       ],
       "construction_origin": {
-        "center_on_species": "Se"
+        "center_on_species": "Cd"
       },
       "post_treatment": {
         "surface_reconstruction": {
@@ -111,8 +111,8 @@
             1,
             1
           ],
-          "vacancies": 6,
-          "anions_to_ligand": 18,
+          "vacancies": 0,
+          "anions_to_ligand": 0,
           "chain_breaks": 0
         },
         {
@@ -121,8 +121,8 @@
             -1,
             -1
           ],
-          "vacancies": 6,
-          "anions_to_ligand": 18,
+          "vacancies": 0,
+          "anions_to_ligand": 0,
           "chain_breaks": 0
         },
         {
@@ -131,8 +131,8 @@
             1,
             -1
           ],
-          "vacancies": 6,
-          "anions_to_ligand": 18,
+          "vacancies": 0,
+          "anions_to_ligand": 0,
           "chain_breaks": 0
         },
         {
@@ -141,8 +141,8 @@
             -1,
             1
           ],
-          "vacancies": 6,
-          "anions_to_ligand": 18,
+          "vacancies": 0,
+          "anions_to_ligand": 0,
           "chain_breaks": 0
         }
       ],
@@ -154,7 +154,7 @@
             -1
           ],
           "ligands_stripped": 2,
-          "cations_removed": 4,
+          "cations_removed": 2,
           "ligands_added": 0
         },
         {
@@ -164,7 +164,7 @@
             1
           ],
           "ligands_stripped": 2,
-          "cations_removed": 4,
+          "cations_removed": 1,
           "ligands_added": 0
         },
         {
@@ -173,8 +173,8 @@
             1,
             1
           ],
-          "ligands_stripped": 2,
-          "cations_removed": 4,
+          "ligands_stripped": 3,
+          "cations_removed": 1,
           "ligands_added": 0
         },
         {
@@ -183,24 +183,24 @@
             -1,
             -1
           ],
-          "ligands_stripped": 2,
-          "cations_removed": 4,
+          "ligands_stripped": 3,
+          "cations_removed": 1,
           "ligands_added": 0
         }
       ],
-      "anion_side_charge_delta": 24,
-      "ligands_stripped": 8,
-      "cations_removed": 16,
+      "anion_side_charge_delta": 0,
+      "ligands_stripped": 10,
+      "cations_removed": 5,
       "ligands_added": 0,
       "ligands_added_by_mu": {
         "mu3": 0,
         "mu2": 0,
         "mu1": 0
       },
-      "symmetric": false,
+      "symmetric": true,
       "total_charge_before": 0,
       "total_charge_after": 0
     }
   },
-  "parent": "CdSe-Se-Cd640Se561Cl158-clean"
+  "parent": "CdSe-Cd-Cd55Se32Cl46-clean"
 }

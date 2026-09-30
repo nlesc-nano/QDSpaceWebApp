@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "generated": "2026-09-30T08:37:47+00:00",
+ "generated": "2026-09-30T08:55:27+00:00",
  "structures": [
   {
    "schema_version": 1,
@@ -48,7 +48,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -260,7 +260,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -364,7 +364,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -467,7 +467,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -679,7 +679,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -783,7 +783,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -996,7 +996,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1099,7 +1099,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1311,7 +1311,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1414,7 +1414,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1626,7 +1626,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1729,7 +1729,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1941,7 +1941,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2044,7 +2044,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2256,7 +2256,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2468,7 +2468,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2571,7 +2571,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2674,7 +2674,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2777,7 +2777,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2989,7 +2989,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3092,7 +3092,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3304,7 +3304,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3516,7 +3516,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3619,7 +3619,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3722,7 +3722,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3934,7 +3934,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4146,7 +4146,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4249,7 +4249,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4309,6 +4309,218 @@
   },
   {
    "schema_version": 1,
+   "id": "CdSe-Cd-Cd50Se32Cl36-reconstructed",
+   "material": "CdSe",
+   "family": "II-VI",
+   "phase": "zinc-blende",
+   "surface": "reconstructed",
+   "source": "builder",
+   "formula": "Cd50Se32Cl36",
+   "composition": {
+    "Cd": 50,
+    "Se": 32,
+    "Cl": 36
+   },
+   "core": {
+    "Cd": 50,
+    "Se": 32
+   },
+   "ligands": {
+    "Cl": 36
+   },
+   "n_atoms": 118,
+   "total_charge": 0,
+   "centre": "Cd",
+   "centre_offset_A": 0.106,
+   "size": {
+    "n_core": 82,
+    "d_nm": 1.679,
+    "d_max_nm": 1.747,
+    "d_hull_nm": 1.412,
+    "unit_cells": 1.5,
+    "unit_cells_all": [
+     1.5
+    ]
+   },
+   "fingerprint": "c1f3d8640f934374",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "II-VI/CdSe/builder/CdSe-Cd-Cd50Se32Cl36-reconstructed/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cdse_zb.yaml",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_dirty": false,
+    "cif": "CdSe_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Cd": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.5,
+      1.5,
+      1.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Cd"
+     },
+     "post_treatment": {
+      "surface_reconstruction": {
+       "enabled": true,
+       "ligand": "Cl"
+      }
+     }
+    },
+    "reconstruction_ledger": {
+     "status": "applied",
+     "ligand": "Cl",
+     "cation": "Cd",
+     "anion": "Se",
+     "anion_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 0
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        -1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 0
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        -1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 0
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 0
+      }
+     ],
+     "cation_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        -1
+       ],
+       "ligands_stripped": 2,
+       "cations_removed": 2,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        1
+       ],
+       "ligands_stripped": 2,
+       "cations_removed": 1,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        1
+       ],
+       "ligands_stripped": 3,
+       "cations_removed": 1,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        -1
+       ],
+       "ligands_stripped": 3,
+       "cations_removed": 1,
+       "ligands_added": 0
+      }
+     ],
+     "anion_side_charge_delta": 0,
+     "ligands_stripped": 10,
+     "cations_removed": 5,
+     "ligands_added": 0,
+     "ligands_added_by_mu": {
+      "mu3": 0,
+      "mu2": 0,
+      "mu1": 0
+     },
+     "symmetric": true,
+     "total_charge_before": 0,
+     "total_charge_after": 0
+    }
+   },
+   "parent": "CdSe-Cd-Cd55Se32Cl46-clean",
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
    "id": "CdSe-Cd-Cd55Se32Cl46-clean",
    "material": "CdSe",
    "family": "II-VI",
@@ -4352,7 +4564,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4455,7 +4667,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4667,7 +4879,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4770,7 +4982,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4982,7 +5194,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5075,7 +5287,7 @@
      1.75
     ]
    },
-   "fingerprint": "6a018ac529a2b7b1",
+   "fingerprint": "39bcd14892b3b44b",
    "stages": [
     {
      "stage": "start",
@@ -5085,7 +5297,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5297,7 +5509,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5400,7 +5612,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5612,7 +5824,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5715,7 +5927,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5927,7 +6139,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6031,7 +6243,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6262,7 +6474,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6372,7 +6584,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6597,7 +6809,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6707,7 +6919,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6810,7 +7022,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7022,7 +7234,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7125,7 +7337,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7337,7 +7549,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7440,7 +7652,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7652,7 +7864,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7745,7 +7957,7 @@
      1.25
     ]
    },
-   "fingerprint": "32983675200e1748",
+   "fingerprint": "caa5facb71bfe0b9",
    "stages": [
     {
      "stage": "start",
@@ -7755,7 +7967,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7859,7 +8071,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8072,7 +8284,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8285,7 +8497,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8389,7 +8601,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8492,7 +8704,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8704,7 +8916,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8807,7 +9019,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9019,7 +9231,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9122,7 +9334,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9334,7 +9546,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9546,7 +9758,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9668,7 +9880,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9735,6 +9947,218 @@
   },
   {
    "schema_version": 1,
+   "id": "CdSe-Se-Cd83Se59Cl48-reconstructed",
+   "material": "CdSe",
+   "family": "II-VI",
+   "phase": "zinc-blende",
+   "surface": "reconstructed",
+   "source": "builder",
+   "formula": "Cd83Se59Cl48",
+   "composition": {
+    "Cd": 83,
+    "Se": 59,
+    "Cl": 48
+   },
+   "core": {
+    "Cd": 83,
+    "Se": 59
+   },
+   "ligands": {
+    "Cl": 48
+   },
+   "n_atoms": 190,
+   "total_charge": 0,
+   "centre": "Se",
+   "centre_offset_A": 0.108,
+   "size": {
+    "n_core": 142,
+    "d_nm": 2.038,
+    "d_max_nm": 2.2,
+    "d_hull_nm": 1.764,
+    "unit_cells": 1.75,
+    "unit_cells_all": [
+     1.75
+    ]
+   },
+   "fingerprint": "ccb12b7067228b15",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "II-VI/CdSe/builder/CdSe-Se-Cd83Se59Cl48-reconstructed/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cdse_zb.yaml",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_dirty": false,
+    "cif": "CdSe_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Cd": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.75,
+      1.75,
+      1.75
+     ],
+     "construction_origin": {
+      "center_on_species": "Se"
+     },
+     "post_treatment": {
+      "surface_reconstruction": {
+       "enabled": true,
+       "ligand": "Cl"
+      }
+     }
+    },
+    "reconstruction_ledger": {
+     "status": "applied",
+     "ligand": "Cl",
+     "cation": "Cd",
+     "anion": "Se",
+     "anion_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 0
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        -1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 0
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        -1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 0
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 0
+      }
+     ],
+     "cation_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        -1
+       ],
+       "ligands_stripped": 4,
+       "cations_removed": 3,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        1
+       ],
+       "ligands_stripped": 4,
+       "cations_removed": 2,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        1
+       ],
+       "ligands_stripped": 5,
+       "cations_removed": 2,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        -1
+       ],
+       "ligands_stripped": 5,
+       "cations_removed": 2,
+       "ligands_added": 0
+      }
+     ],
+     "anion_side_charge_delta": 0,
+     "ligands_stripped": 18,
+     "cations_removed": 9,
+     "ligands_added": 0,
+     "ligands_added_by_mu": {
+      "mu3": 0,
+      "mu2": 0,
+      "mu1": 0
+     },
+     "symmetric": false,
+     "total_charge_before": 0,
+     "total_charge_after": 0
+    }
+   },
+   "parent": "CdSe-Se-Cd92Se59Cl66-clean",
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
    "id": "CdSe-Se-Cd843Se731Cl224-reconstructed",
    "material": "CdSe",
    "family": "II-VI",
@@ -9778,7 +10202,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9990,7 +10414,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -10093,7 +10517,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -10196,7 +10620,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "513262be0677b2883f18732bdb90bf5f00f51018",
+    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
