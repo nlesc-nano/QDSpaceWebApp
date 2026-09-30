@@ -43,7 +43,7 @@
   "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "inp_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "f59a4ea2db6061a41862cb5c4273ab2e62365b36",
     "qd_builder_dirty": false,
     "cif": "InP_zb.cif",
     "positive_q_mode": "add",
