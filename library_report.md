@@ -2,7 +2,7 @@
 
 - legacy structure groups: 174
 - same start, other functional (merged): 23
-- merged with builder twins: 3
+- merged with builder twins: 4
 - meta.yaml written: 0
 - id collisions (suffixed): 29
 - errors: 2
@@ -32,7 +32,7 @@
 | III-V | GaP | 10 | 0 | 10 | 0 | 0 | Ga:9, P:1 |
 | III-V | GaSb | 8 | 0 | 8 | 0 | 0 | Ga:7, Sb:1 |
 | III-V | InAs | 15 | 0 | 15 | 0 | 0 | As:1, In:14 |
-| III-V | InP | 14 | 0 | 14 | 0 | 0 | In:13, P:1 |
+| III-V | InP | 43 | 29 | 13 | 1 | 10 | In:27, P:16 |
 | III-V | InSb | 9 | 0 | 9 | 0 | 0 | In:8, Sb:1 |
 | IV-VI | PbS | 4 | 0 | 4 | 0 | 0 | Pb:4 |
 | IV-VI | PbSe | 3 | 0 | 3 | 0 | 0 | Pb:3 |
@@ -43,6 +43,7 @@
 - II-VI/CdSe/HLE17/12ang -> CdSe-Se-Cd16Se13Cl6-clean (Δr̄ = 0.388 Å)
 - II-VI/CdSe/HLE17/20ang -> CdSe-Se-Cd68Se55Cl26-clean (Δr̄ = 0.265 Å)
 - II-VI/CdSe/HLE17/28ang -> CdSe-Se-Cd176Se147Cl58-clean (Δr̄ = 0.209 Å)
+- III-V/InP/old/InP_84.xyz -> InP-In-In31P20Cl33-clean (Δr̄ = 0.492 Å)
 
 ## Same start geometry, other functional
 

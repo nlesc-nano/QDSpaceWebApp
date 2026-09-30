@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "id": "InP-P-In36P23Cl39-reconstructed",
+  "material": "InP",
+  "family": "III-V",
+  "phase": "zinc-blende",
+  "surface": "reconstructed",
+  "source": "builder",
+  "formula": "In36P23Cl39",
+  "composition": {
+    "In": 36,
+    "P": 23,
+    "Cl": 39
+  },
+  "core": {
+    "In": 36,
+    "P": 23
+  },
+  "ligands": {
+    "Cl": 39
+  },
+  "n_atoms": 98,
+  "total_charge": 0,
+  "centre": "P",
+  "centre_offset_A": 0.123,
+  "size": {
+    "n_core": 59,
+    "d_nm": 1.521,
+    "d_max_nm": 1.553,
+    "d_hull_nm": 1.167,
+    "unit_cells": 0.75,
+    "unit_cells_all": [
+      0.75
+    ]
+  },
+  "fingerprint": "2e5f55e9fc15cd63",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "In": 3,
+        "P": -3,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 0.8
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.6
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        0.75,
+        0.75,
+        0.75
+      ],
+      "construction_origin": {
+        "center_on_species": "P"
+      },
+      "post_treatment": {
+        "surface_reconstruction": {
+          "enabled": true,
+          "ligand": "Cl"
+        }
+      }
+    },
+    "reconstruction_ledger": {
+      "status": "applied",
+      "ligand": "Cl",
+      "cation": "In",
+      "anion": "P",
+      "anion_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 0,
+          "chain_breaks": 2
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 0,
+          "chain_breaks": 2
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 0,
+          "chain_breaks": 2
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 0,
+          "chain_breaks": 2
+        }
+      ],
+      "cation_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            1
+          ],
+          "ligands_stripped": 4,
+          "cations_removed": 1,
+          "ligands_added": 5
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            -1
+          ],
+          "ligands_stripped": 3,
+          "cations_removed": 1,
+          "ligands_added": 4
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            -1
+          ],
+          "ligands_stripped": 4,
+          "cations_removed": 1,
+          "ligands_added": 5
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            1
+          ],
+          "ligands_stripped": 4,
+          "cations_removed": 1,
+          "ligands_added": 5
+        }
+      ],
+      "anion_side_charge_delta": 16,
+      "ligands_stripped": 15,
+      "cations_removed": 4,
+      "ligands_added": 19,
+      "ligands_added_by_mu": {
+        "mu3": 0,
+        "mu2": 0,
+        "mu1": 19
+      },
+      "symmetric": false,
+      "total_charge_before": 0,
+      "total_charge_after": 0
+    }
+  },
+  "parent": "InP-P-In40P31Cl27-clean"
+}

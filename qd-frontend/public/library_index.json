@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "generated": "2026-09-30T08:55:27+00:00",
+ "generated": "2026-09-30T09:05:32+00:00",
  "structures": [
   {
    "schema_version": 1,
@@ -48,7 +48,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -260,7 +260,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -364,7 +364,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -467,7 +467,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -679,7 +679,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -783,7 +783,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -996,7 +996,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1099,7 +1099,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1311,7 +1311,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1414,7 +1414,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1626,7 +1626,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1729,7 +1729,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1941,7 +1941,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2044,7 +2044,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2256,7 +2256,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2468,7 +2468,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2571,7 +2571,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2674,7 +2674,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2777,7 +2777,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2989,7 +2989,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3092,7 +3092,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3304,7 +3304,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3516,7 +3516,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3619,7 +3619,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3722,7 +3722,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3934,7 +3934,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4146,7 +4146,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4249,7 +4249,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4352,7 +4352,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4564,7 +4564,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4667,7 +4667,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4879,7 +4879,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4982,7 +4982,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5194,7 +5194,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5297,7 +5297,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5509,7 +5509,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5612,7 +5612,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5824,7 +5824,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5927,7 +5927,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6139,7 +6139,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6243,7 +6243,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6474,7 +6474,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6584,7 +6584,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6809,7 +6809,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6919,7 +6919,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7022,7 +7022,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7234,7 +7234,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7337,7 +7337,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7549,7 +7549,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7652,7 +7652,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7864,7 +7864,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7967,7 +7967,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8071,7 +8071,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8284,7 +8284,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8497,7 +8497,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8601,7 +8601,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8704,7 +8704,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8916,7 +8916,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9019,7 +9019,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9231,7 +9231,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9334,7 +9334,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9546,7 +9546,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9758,7 +9758,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9880,7 +9880,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9990,7 +9990,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -10202,7 +10202,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -10414,7 +10414,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -10517,7 +10517,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -10620,7 +10620,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "9ea2c7e0b00cfa43e1af92414b8378f0db5700cc",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -10780,6 +10780,4015 @@
     }
    },
    "parent": "CdSe-Se-Cd1036Se923Cl226-clean",
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-In-In129P108Cl63-reconstructed",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "reconstructed",
+   "source": "builder",
+   "formula": "In129P108Cl63",
+   "composition": {
+    "In": 129,
+    "P": 108,
+    "Cl": 63
+   },
+   "core": {
+    "In": 129,
+    "P": 108
+   },
+   "ligands": {
+    "Cl": 63
+   },
+   "n_atoms": 300,
+   "total_charge": 0,
+   "centre": "In",
+   "centre_offset_A": 0.064,
+   "size": {
+    "n_core": 237,
+    "d_nm": 2.517,
+    "d_max_nm": 2.944,
+    "d_hull_nm": 1.994,
+    "unit_cells": 1.25,
+    "unit_cells_all": [
+     1.25
+    ]
+   },
+   "fingerprint": "eea4769db9d8e232",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-In-In129P108Cl63-reconstructed/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.25,
+      1.25,
+      1.25
+     ],
+     "construction_origin": {
+      "center_on_species": "In"
+     },
+     "post_treatment": {
+      "surface_reconstruction": {
+       "enabled": true,
+       "ligand": "Cl"
+      }
+     }
+    },
+    "reconstruction_ledger": {
+     "status": "applied",
+     "ligand": "Cl",
+     "cation": "In",
+     "anion": "P",
+     "anion_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        -1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 2
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 2
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 2
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        -1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 2
+      }
+     ],
+     "cation_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        1
+       ],
+       "ligands_stripped": 17,
+       "cations_removed": 5,
+       "ligands_added": 6
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        -1
+       ],
+       "ligands_stripped": 17,
+       "cations_removed": 5,
+       "ligands_added": 6
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        -1
+       ],
+       "ligands_stripped": 17,
+       "cations_removed": 5,
+       "ligands_added": 6
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        1
+       ],
+       "ligands_stripped": 18,
+       "cations_removed": 5,
+       "ligands_added": 7
+      }
+     ],
+     "anion_side_charge_delta": 16,
+     "ligands_stripped": 69,
+     "cations_removed": 20,
+     "ligands_added": 25,
+     "ligands_added_by_mu": {
+      "mu3": 0,
+      "mu2": 0,
+      "mu1": 25
+     },
+     "symmetric": false,
+     "total_charge_before": 0,
+     "total_charge_after": 0
+    }
+   },
+   "parent": "InP-In-In149P116Cl99-clean",
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-In-In1458P1424Cl102-reconstructed",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "reconstructed",
+   "source": "builder",
+   "formula": "In1458P1424Cl102",
+   "composition": {
+    "In": 1458,
+    "P": 1424,
+    "Cl": 102
+   },
+   "core": {
+    "In": 1458,
+    "P": 1424
+   },
+   "ligands": {
+    "Cl": 102
+   },
+   "n_atoms": 2984,
+   "total_charge": 0,
+   "centre": "In",
+   "centre_offset_A": 0.006,
+   "size": {
+    "n_core": 2882,
+    "d_nm": 5.781,
+    "d_max_nm": 7.25,
+    "d_hull_nm": 4.984,
+    "unit_cells": 3.0,
+    "unit_cells_all": [
+     3.0
+    ]
+   },
+   "fingerprint": "fcbc3d531cad89a1",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-In-In1458P1424Cl102-reconstructed/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.0,
+      3.0,
+      3.0
+     ],
+     "construction_origin": {
+      "center_on_species": "In"
+     },
+     "post_treatment": {
+      "surface_reconstruction": {
+       "enabled": true,
+       "ligand": "Cl"
+      }
+     }
+    },
+    "reconstruction_ledger": {
+     "status": "applied",
+     "ligand": "Cl",
+     "cation": "In",
+     "anion": "P",
+     "anion_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        -1
+       ],
+       "vacancies": 3,
+       "anions_to_ligand": 9,
+       "chain_breaks": 0
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        1
+       ],
+       "vacancies": 3,
+       "anions_to_ligand": 9,
+       "chain_breaks": 0
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        1
+       ],
+       "vacancies": 3,
+       "anions_to_ligand": 9,
+       "chain_breaks": 0
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        -1
+       ],
+       "vacancies": 3,
+       "anions_to_ligand": 9,
+       "chain_breaks": 0
+      }
+     ],
+     "cation_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        1
+       ],
+       "ligands_stripped": 111,
+       "cations_removed": 41,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        -1
+       ],
+       "ligands_stripped": 111,
+       "cations_removed": 40,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        -1
+       ],
+       "ligands_stripped": 113,
+       "cations_removed": 40,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        1
+       ],
+       "ligands_stripped": 112,
+       "cations_removed": 40,
+       "ligands_added": 0
+      }
+     ],
+     "anion_side_charge_delta": 36,
+     "ligands_stripped": 447,
+     "cations_removed": 161,
+     "ligands_added": 0,
+     "ligands_added_by_mu": {
+      "mu3": 0,
+      "mu2": 0,
+      "mu1": 0
+     },
+     "symmetric": true,
+     "total_charge_before": 0,
+     "total_charge_after": 0
+    }
+   },
+   "parent": "InP-In-In1631P1460Cl513-clean",
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-In-In149P116Cl99-clean",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "In149P116Cl99",
+   "composition": {
+    "In": 149,
+    "P": 116,
+    "Cl": 99
+   },
+   "core": {
+    "In": 149,
+    "P": 116
+   },
+   "ligands": {
+    "Cl": 99
+   },
+   "n_atoms": 364,
+   "total_charge": 0,
+   "centre": "In",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 265,
+    "d_nm": 2.571,
+    "d_max_nm": 2.937,
+    "d_hull_nm": 1.998,
+    "unit_cells": 1.25,
+    "unit_cells_all": [
+     1.25
+    ]
+   },
+   "fingerprint": "1f3cf5ece5c9070f",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-In-In149P116Cl99-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.25,
+      1.25,
+      1.25
+     ],
+     "construction_origin": {
+      "center_on_species": "In"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-In-In161P139Cl66-clean",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "In161P139Cl66",
+   "composition": {
+    "In": 161,
+    "P": 139,
+    "Cl": 66
+   },
+   "core": {
+    "In": 161,
+    "P": 139
+   },
+   "ligands": {
+    "Cl": 66
+   },
+   "n_atoms": 366,
+   "total_charge": 0,
+   "centre": "In",
+   "centre_offset_A": 0.035,
+   "size": {
+    "n_core": 300,
+    "d_nm": 2.7,
+    "d_max_nm": 3.447,
+    "d_hull_nm": 2.196,
+    "unit_cells": 1.5,
+    "unit_cells_all": [
+     1.5
+    ]
+   },
+   "fingerprint": "b29c16415fbcf5b6",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-In-In161P139Cl66-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.5,
+      1.5,
+      1.5
+     ],
+     "construction_origin": {
+      "center_on_species": "In"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-In-In1631P1460Cl513-clean",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "In1631P1460Cl513",
+   "composition": {
+    "In": 1631,
+    "P": 1460,
+    "Cl": 513
+   },
+   "core": {
+    "In": 1631,
+    "P": 1460
+   },
+   "ligands": {
+    "Cl": 513
+   },
+   "n_atoms": 3604,
+   "total_charge": 0,
+   "centre": "In",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 3091,
+    "d_nm": 5.901,
+    "d_max_nm": 7.249,
+    "d_hull_nm": 4.984,
+    "unit_cells": 3.0,
+    "unit_cells_all": [
+     3.0
+    ]
+   },
+   "fingerprint": "1e8e5a4a719b7f80",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-In-In1631P1460Cl513-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.0,
+      3.0,
+      3.0
+     ],
+     "construction_origin": {
+      "center_on_species": "In"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-In-In165P139Cl78-clean",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "In165P139Cl78",
+   "composition": {
+    "In": 165,
+    "P": 139,
+    "Cl": 78
+   },
+   "core": {
+    "In": 165,
+    "P": 139
+   },
+   "ligands": {
+    "Cl": 78
+   },
+   "n_atoms": 382,
+   "total_charge": 0,
+   "centre": "In",
+   "centre_offset_A": 0.209,
+   "size": {
+    "n_core": 304,
+    "d_nm": 2.723,
+    "d_max_nm": 4.126,
+    "d_hull_nm": 2.206,
+    "unit_cells": 1.75,
+    "unit_cells_all": [
+     1.75
+    ]
+   },
+   "fingerprint": "c642e231c3bd811f",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-In-In165P139Cl78-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.75,
+      1.75,
+      1.75
+     ],
+     "construction_origin": {
+      "center_on_species": "In"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-In-In27P20Cl21-reconstructed",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "reconstructed",
+   "source": "builder",
+   "formula": "In27P20Cl21",
+   "composition": {
+    "In": 27,
+    "P": 20,
+    "Cl": 21
+   },
+   "core": {
+    "In": 27,
+    "P": 20
+   },
+   "ligands": {
+    "Cl": 21
+   },
+   "n_atoms": 68,
+   "total_charge": 0,
+   "centre": "In",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 47,
+    "d_nm": 1.471,
+    "d_max_nm": 1.534,
+    "d_hull_nm": 1.0,
+    "unit_cells": 0.75,
+    "unit_cells_all": [
+     0.75
+    ]
+   },
+   "fingerprint": "b166b1a3f3820b87",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-In-In27P20Cl21-reconstructed/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      0.75,
+      0.75,
+      0.75
+     ],
+     "construction_origin": {
+      "center_on_species": "In"
+     },
+     "post_treatment": {
+      "surface_reconstruction": {
+       "enabled": true,
+       "ligand": "Cl"
+      }
+     }
+    },
+    "reconstruction_ledger": {
+     "status": "applied",
+     "ligand": "Cl",
+     "cation": "In",
+     "anion": "P",
+     "anion_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        -1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 0
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 0
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 0
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        -1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 0
+      }
+     ],
+     "cation_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        1
+       ],
+       "ligands_stripped": 3,
+       "cations_removed": 1,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        -1
+       ],
+       "ligands_stripped": 3,
+       "cations_removed": 1,
+       "ligands_added": 1
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        -1
+       ],
+       "ligands_stripped": 4,
+       "cations_removed": 1,
+       "ligands_added": 1
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        1
+       ],
+       "ligands_stripped": 5,
+       "cations_removed": 1,
+       "ligands_added": 1
+      }
+     ],
+     "anion_side_charge_delta": 0,
+     "ligands_stripped": 15,
+     "cations_removed": 4,
+     "ligands_added": 3,
+     "ligands_added_by_mu": {
+      "mu3": 0,
+      "mu2": 0,
+      "mu1": 3
+     },
+     "symmetric": true,
+     "total_charge_before": 0,
+     "total_charge_after": 0
+    }
+   },
+   "parent": "InP-In-In31P20Cl33-clean",
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-In-In31P20Cl33-clean",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "clean",
+   "source": "builder+dft",
+   "formula": "In31P20Cl33",
+   "composition": {
+    "In": 31,
+    "P": 20,
+    "Cl": 33
+   },
+   "core": {
+    "In": 31,
+    "P": 20
+   },
+   "ligands": {
+    "Cl": 33
+   },
+   "n_atoms": 84,
+   "total_charge": 0,
+   "centre": "In",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 51,
+    "d_nm": 1.444,
+    "d_max_nm": 1.534,
+    "d_hull_nm": 1.0,
+    "unit_cells": 0.75,
+    "unit_cells_all": [
+     0.75
+    ]
+   },
+   "fingerprint": "58bf7bcd78956c9e",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-In-In31P20Cl33-clean/start.xyz"
+    },
+    {
+     "stage": "start",
+     "file": "III-V/InP/old/InP_84.xyz",
+     "dft_start": true
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      0.75,
+      0.75,
+      0.75
+     ],
+     "construction_origin": {
+      "center_on_species": "In"
+     }
+    },
+    "legacy_paths": [
+     "III-V/InP/old/InP_84.xyz"
+    ],
+    "dft_twin_deviation_A": 0.492
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-In-In354P336Cl54-reconstructed",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "reconstructed",
+   "source": "builder",
+   "formula": "In354P336Cl54",
+   "composition": {
+    "In": 354,
+    "P": 336,
+    "Cl": 54
+   },
+   "core": {
+    "In": 354,
+    "P": 336
+   },
+   "ligands": {
+    "Cl": 54
+   },
+   "n_atoms": 744,
+   "total_charge": 0,
+   "centre": "In",
+   "centre_offset_A": 0.018,
+   "size": {
+    "n_core": 690,
+    "d_nm": 3.609,
+    "d_max_nm": 4.371,
+    "d_hull_nm": 2.994,
+    "unit_cells": 2.0,
+    "unit_cells_all": [
+     2.0
+    ]
+   },
+   "fingerprint": "b30a702aab636a80",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-In-In354P336Cl54-reconstructed/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.0,
+      2.0,
+      2.0
+     ],
+     "construction_origin": {
+      "center_on_species": "In"
+     },
+     "post_treatment": {
+      "surface_reconstruction": {
+       "enabled": true,
+       "ligand": "Cl"
+      }
+     }
+    },
+    "reconstruction_ledger": {
+     "status": "applied",
+     "ligand": "Cl",
+     "cation": "In",
+     "anion": "P",
+     "anion_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        -1
+       ],
+       "vacancies": 1,
+       "anions_to_ligand": 3,
+       "chain_breaks": 0
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        1
+       ],
+       "vacancies": 1,
+       "anions_to_ligand": 3,
+       "chain_breaks": 0
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        1
+       ],
+       "vacancies": 1,
+       "anions_to_ligand": 3,
+       "chain_breaks": 0
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        -1
+       ],
+       "vacancies": 1,
+       "anions_to_ligand": 3,
+       "chain_breaks": 0
+      }
+     ],
+     "cation_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        1
+       ],
+       "ligands_stripped": 39,
+       "cations_removed": 15,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        -1
+       ],
+       "ligands_stripped": 39,
+       "cations_removed": 14,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        -1
+       ],
+       "ligands_stripped": 40,
+       "cations_removed": 14,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        1
+       ],
+       "ligands_stripped": 41,
+       "cations_removed": 14,
+       "ligands_added": 0
+      }
+     ],
+     "anion_side_charge_delta": 12,
+     "ligands_stripped": 159,
+     "cations_removed": 57,
+     "ligands_added": 0,
+     "ligands_added_by_mu": {
+      "mu3": 0,
+      "mu2": 0,
+      "mu1": 0
+     },
+     "symmetric": true,
+     "total_charge_before": 0,
+     "total_charge_after": 0
+    }
+   },
+   "parent": "InP-In-In415P348Cl201-clean",
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-In-In35P26Cl27-clean",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "In35P26Cl27",
+   "composition": {
+    "In": 35,
+    "P": 26,
+    "Cl": 27
+   },
+   "core": {
+    "In": 35,
+    "P": 26
+   },
+   "ligands": {
+    "Cl": 27
+   },
+   "n_atoms": 88,
+   "total_charge": 0,
+   "centre": "In",
+   "centre_offset_A": 0.145,
+   "size": {
+    "n_core": 61,
+    "d_nm": 1.559,
+    "d_max_nm": 2.062,
+    "d_hull_nm": 1.146,
+    "unit_cells": 1.0,
+    "unit_cells_all": [
+     1.0
+    ]
+   },
+   "fingerprint": "8ae355a19ad9c0a1",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-In-In35P26Cl27-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "construction_origin": {
+      "center_on_species": "In"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-In-In415P348Cl201-clean",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "In415P348Cl201",
+   "composition": {
+    "In": 415,
+    "P": 348,
+    "Cl": 201
+   },
+   "core": {
+    "In": 415,
+    "P": 348
+   },
+   "ligands": {
+    "Cl": 201
+   },
+   "n_atoms": 964,
+   "total_charge": 0,
+   "centre": "In",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 763,
+    "d_nm": 3.684,
+    "d_max_nm": 4.369,
+    "d_hull_nm": 2.994,
+    "unit_cells": 2.0,
+    "unit_cells_all": [
+     2.0
+    ]
+   },
+   "fingerprint": "a20a501ff34f9910",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-In-In415P348Cl201-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.0,
+      2.0,
+      2.0
+     ],
+     "construction_origin": {
+      "center_on_species": "In"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-In-In439P398Cl123-clean",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "In439P398Cl123",
+   "composition": {
+    "In": 439,
+    "P": 398,
+    "Cl": 123
+   },
+   "core": {
+    "In": 439,
+    "P": 398
+   },
+   "ligands": {
+    "Cl": 123
+   },
+   "n_atoms": 960,
+   "total_charge": 0,
+   "centre": "In",
+   "centre_offset_A": 0.042,
+   "size": {
+    "n_core": 837,
+    "d_nm": 3.838,
+    "d_max_nm": 4.875,
+    "d_hull_nm": 3.212,
+    "unit_cells": 2.25,
+    "unit_cells_all": [
+     2.25
+    ]
+   },
+   "fingerprint": "352fa1b4a4fe07cc",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-In-In439P398Cl123-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.25,
+      2.25,
+      2.25
+     ],
+     "construction_origin": {
+      "center_on_species": "In"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-In-In776P748Cl84-reconstructed",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "reconstructed",
+   "source": "builder",
+   "formula": "In776P748Cl84",
+   "composition": {
+    "In": 776,
+    "P": 748,
+    "Cl": 84
+   },
+   "core": {
+    "In": 776,
+    "P": 748
+   },
+   "ligands": {
+    "Cl": 84
+   },
+   "n_atoms": 1608,
+   "total_charge": 0,
+   "centre": "In",
+   "centre_offset_A": 0.009,
+   "size": {
+    "n_core": 1524,
+    "d_nm": 4.691,
+    "d_max_nm": 5.808,
+    "d_hull_nm": 3.988,
+    "unit_cells": 2.5,
+    "unit_cells_all": [
+     2.5
+    ]
+   },
+   "fingerprint": "6992324686f65d00",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-In-In776P748Cl84-reconstructed/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.5,
+      2.5,
+      2.5
+     ],
+     "construction_origin": {
+      "center_on_species": "In"
+     },
+     "post_treatment": {
+      "surface_reconstruction": {
+       "enabled": true,
+       "ligand": "Cl"
+      }
+     }
+    },
+    "reconstruction_ledger": {
+     "status": "applied",
+     "ligand": "Cl",
+     "cation": "In",
+     "anion": "P",
+     "anion_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        -1
+       ],
+       "vacancies": 1,
+       "anions_to_ligand": 3,
+       "chain_breaks": 4
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        1
+       ],
+       "vacancies": 1,
+       "anions_to_ligand": 3,
+       "chain_breaks": 4
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        1
+       ],
+       "vacancies": 1,
+       "anions_to_ligand": 3,
+       "chain_breaks": 4
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        -1
+       ],
+       "vacancies": 1,
+       "anions_to_ligand": 3,
+       "chain_breaks": 4
+      }
+     ],
+     "cation_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        1
+       ],
+       "ligands_stripped": 70,
+       "cations_removed": 28,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        -1
+       ],
+       "ligands_stripped": 71,
+       "cations_removed": 27,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        -1
+       ],
+       "ligands_stripped": 72,
+       "cations_removed": 27,
+       "ligands_added": 1
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        1
+       ],
+       "ligands_stripped": 72,
+       "cations_removed": 27,
+       "ligands_added": 1
+      }
+     ],
+     "anion_side_charge_delta": 44,
+     "ligands_stripped": 285,
+     "cations_removed": 109,
+     "ligands_added": 2,
+     "ligands_added_by_mu": {
+      "mu3": 0,
+      "mu2": 0,
+      "mu1": 2
+     },
+     "symmetric": true,
+     "total_charge_before": 0,
+     "total_charge_after": 0
+    }
+   },
+   "parent": "InP-In-In889P776Cl339-clean",
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-In-In889P776Cl339-clean",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "In889P776Cl339",
+   "composition": {
+    "In": 889,
+    "P": 776,
+    "Cl": 339
+   },
+   "core": {
+    "In": 889,
+    "P": 776
+   },
+   "ligands": {
+    "Cl": 339
+   },
+   "n_atoms": 2004,
+   "total_charge": 0,
+   "centre": "In",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 1665,
+    "d_nm": 4.794,
+    "d_max_nm": 5.807,
+    "d_hull_nm": 3.989,
+    "unit_cells": 2.5,
+    "unit_cells_all": [
+     2.5
+    ]
+   },
+   "fingerprint": "81147e475e041eb1",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-In-In889P776Cl339-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.5,
+      2.5,
+      2.5
+     ],
+     "construction_origin": {
+      "center_on_species": "In"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-In-In929P863Cl198-clean",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "In929P863Cl198",
+   "composition": {
+    "In": 929,
+    "P": 863,
+    "Cl": 198
+   },
+   "core": {
+    "In": 929,
+    "P": 863
+   },
+   "ligands": {
+    "Cl": 198
+   },
+   "n_atoms": 1990,
+   "total_charge": 0,
+   "centre": "In",
+   "centre_offset_A": 0.035,
+   "size": {
+    "n_core": 1792,
+    "d_nm": 4.95,
+    "d_max_nm": 6.31,
+    "d_hull_nm": 4.218,
+    "unit_cells": 2.75,
+    "unit_cells_all": [
+     2.75
+    ]
+   },
+   "fingerprint": "59f4be7cb9b56b3b",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-In-In929P863Cl198-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.75,
+      2.75,
+      2.75
+     ],
+     "construction_origin": {
+      "center_on_species": "In"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-P-In1000P889Cl333-clean",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "In1000P889Cl333",
+   "composition": {
+    "In": 1000,
+    "P": 889,
+    "Cl": 333
+   },
+   "core": {
+    "In": 1000,
+    "P": 889
+   },
+   "ligands": {
+    "Cl": 333
+   },
+   "n_atoms": 2222,
+   "total_charge": 0,
+   "centre": "P",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 1889,
+    "d_nm": 4.921,
+    "d_max_nm": 5.807,
+    "d_hull_nm": 4.184,
+    "unit_cells": 2.5,
+    "unit_cells_all": [
+     2.5
+    ]
+   },
+   "fingerprint": "06d79c9435047064",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-P-In1000P889Cl333-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.5,
+      2.5,
+      2.5
+     ],
+     "construction_origin": {
+      "center_on_species": "P"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-P-In1060P929Cl393-clean",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "In1060P929Cl393",
+   "composition": {
+    "In": 1060,
+    "P": 929,
+    "Cl": 393
+   },
+   "core": {
+    "In": 1060,
+    "P": 929
+   },
+   "ligands": {
+    "Cl": 393
+   },
+   "n_atoms": 2382,
+   "total_charge": 0,
+   "centre": "P",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 1989,
+    "d_nm": 5.116,
+    "d_max_nm": 6.304,
+    "d_hull_nm": 4.252,
+    "unit_cells": 2.75,
+    "unit_cells_all": [
+     2.75
+    ]
+   },
+   "fingerprint": "7442e34155510abe",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-P-In1060P929Cl393-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.75,
+      2.75,
+      2.75
+     ],
+     "construction_origin": {
+      "center_on_species": "P"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-P-In116P99Cl51-clean",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "In116P99Cl51",
+   "composition": {
+    "In": 116,
+    "P": 99,
+    "Cl": 51
+   },
+   "core": {
+    "In": 116,
+    "P": 99
+   },
+   "ligands": {
+    "Cl": 51
+   },
+   "n_atoms": 266,
+   "total_charge": 0,
+   "centre": "P",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 215,
+    "d_nm": 2.379,
+    "d_max_nm": 2.937,
+    "d_hull_nm": 1.93,
+    "unit_cells": 1.25,
+    "unit_cells_all": [
+     1.25
+    ]
+   },
+   "fingerprint": "9b4f3fa6c5e030bd",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-P-In116P99Cl51-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.25,
+      1.25,
+      1.25
+     ],
+     "construction_origin": {
+      "center_on_species": "P"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-P-In1460P1374Cl258-clean",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "In1460P1374Cl258",
+   "composition": {
+    "In": 1460,
+    "P": 1374,
+    "Cl": 258
+   },
+   "core": {
+    "In": 1460,
+    "P": 1374
+   },
+   "ligands": {
+    "Cl": 258
+   },
+   "n_atoms": 3092,
+   "total_charge": 0,
+   "centre": "P",
+   "centre_offset_A": 0.022,
+   "size": {
+    "n_core": 2834,
+    "d_nm": 5.747,
+    "d_max_nm": 7.252,
+    "d_hull_nm": 4.956,
+    "unit_cells": 3.0,
+    "unit_cells_all": [
+     3.0
+    ]
+   },
+   "fingerprint": "9dca10a98b867a75",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-P-In1460P1374Cl258-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.0,
+      3.0,
+      3.0
+     ],
+     "construction_origin": {
+      "center_on_species": "P"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-P-In168P153Cl45-reconstructed",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "reconstructed",
+   "source": "builder",
+   "formula": "In168P153Cl45",
+   "composition": {
+    "In": 168,
+    "P": 153,
+    "Cl": 45
+   },
+   "core": {
+    "In": 168,
+    "P": 153
+   },
+   "ligands": {
+    "Cl": 45
+   },
+   "n_atoms": 366,
+   "total_charge": 0,
+   "centre": "P",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 321,
+    "d_nm": 2.842,
+    "d_max_nm": 3.443,
+    "d_hull_nm": 2.256,
+    "unit_cells": 1.5,
+    "unit_cells_all": [
+     1.5
+    ]
+   },
+   "fingerprint": "af96da1789f045e7",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-P-In168P153Cl45-reconstructed/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.5,
+      1.5,
+      1.5
+     ],
+     "construction_origin": {
+      "center_on_species": "P"
+     },
+     "post_treatment": {
+      "surface_reconstruction": {
+       "enabled": true,
+       "ligand": "Cl"
+      }
+     }
+    },
+    "reconstruction_ledger": {
+     "status": "applied",
+     "ligand": "Cl",
+     "cation": "In",
+     "anion": "P",
+     "anion_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        -1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 2
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 2
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 2
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        -1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 2
+      }
+     ],
+     "cation_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        1
+       ],
+       "ligands_stripped": 23,
+       "cations_removed": 9,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        -1
+       ],
+       "ligands_stripped": 23,
+       "cations_removed": 9,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        -1
+       ],
+       "ligands_stripped": 24,
+       "cations_removed": 9,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        1
+       ],
+       "ligands_stripped": 23,
+       "cations_removed": 9,
+       "ligands_added": 1
+      }
+     ],
+     "anion_side_charge_delta": 16,
+     "ligands_stripped": 93,
+     "cations_removed": 36,
+     "ligands_added": 1,
+     "ligands_added_by_mu": {
+      "mu3": 0,
+      "mu2": 0,
+      "mu1": 1
+     },
+     "symmetric": true,
+     "total_charge_before": 0,
+     "total_charge_after": 0
+    }
+   },
+   "parent": "InP-P-In204P161Cl129-clean",
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-P-In204P161Cl129-clean",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "In204P161Cl129",
+   "composition": {
+    "In": 204,
+    "P": 161,
+    "Cl": 129
+   },
+   "core": {
+    "In": 204,
+    "P": 161
+   },
+   "ligands": {
+    "Cl": 129
+   },
+   "n_atoms": 494,
+   "total_charge": 0,
+   "centre": "P",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 365,
+    "d_nm": 2.895,
+    "d_max_nm": 3.443,
+    "d_hull_nm": 2.259,
+    "unit_cells": 1.5,
+    "unit_cells_all": [
+     1.5
+    ]
+   },
+   "fingerprint": "7e852fb135ed1d89",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-P-In204P161Cl129-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.5,
+      1.5,
+      1.5
+     ],
+     "construction_origin": {
+      "center_on_species": "P"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-P-In324P298Cl78-clean",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "In324P298Cl78",
+   "composition": {
+    "In": 324,
+    "P": 298,
+    "Cl": 78
+   },
+   "core": {
+    "In": 324,
+    "P": 298
+   },
+   "ligands": {
+    "Cl": 78
+   },
+   "n_atoms": 700,
+   "total_charge": 0,
+   "centre": "P",
+   "centre_offset_A": 0.02,
+   "size": {
+    "n_core": 622,
+    "d_nm": 3.317,
+    "d_max_nm": 3.864,
+    "d_hull_nm": 2.87,
+    "unit_cells": 1.75,
+    "unit_cells_all": [
+     1.75
+    ]
+   },
+   "fingerprint": "9fc6d50bdd4d0309",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-P-In324P298Cl78-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.75,
+      1.75,
+      1.75
+     ],
+     "construction_origin": {
+      "center_on_species": "P"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-P-In348P314Cl102-clean",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "In348P314Cl102",
+   "composition": {
+    "In": 348,
+    "P": 314,
+    "Cl": 102
+   },
+   "core": {
+    "In": 348,
+    "P": 314
+   },
+   "ligands": {
+    "Cl": 102
+   },
+   "n_atoms": 764,
+   "total_charge": 0,
+   "centre": "P",
+   "centre_offset_A": 0.047,
+   "size": {
+    "n_core": 662,
+    "d_nm": 3.514,
+    "d_max_nm": 4.378,
+    "d_hull_nm": 2.948,
+    "unit_cells": 2.0,
+    "unit_cells_all": [
+     2.0
+    ]
+   },
+   "fingerprint": "3d7b32af858675d6",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-P-In348P314Cl102-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.0,
+      2.0,
+      2.0
+     ],
+     "construction_origin": {
+      "center_on_species": "P"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-P-In360P320Cl120-clean",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "In360P320Cl120",
+   "composition": {
+    "In": 360,
+    "P": 320,
+    "Cl": 120
+   },
+   "core": {
+    "In": 360,
+    "P": 320
+   },
+   "ligands": {
+    "Cl": 120
+   },
+   "n_atoms": 800,
+   "total_charge": 0,
+   "centre": "P",
+   "centre_offset_A": 0.118,
+   "size": {
+    "n_core": 680,
+    "d_nm": 3.567,
+    "d_max_nm": 4.981,
+    "d_hull_nm": 2.975,
+    "unit_cells": 2.25,
+    "unit_cells_all": [
+     2.25
+    ]
+   },
+   "fingerprint": "e1f5ab0431723052",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-P-In360P320Cl120-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.25,
+      2.25,
+      2.25
+     ],
+     "construction_origin": {
+      "center_on_species": "P"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-P-In36P23Cl39-reconstructed",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "reconstructed",
+   "source": "builder",
+   "formula": "In36P23Cl39",
+   "composition": {
+    "In": 36,
+    "P": 23,
+    "Cl": 39
+   },
+   "core": {
+    "In": 36,
+    "P": 23
+   },
+   "ligands": {
+    "Cl": 39
+   },
+   "n_atoms": 98,
+   "total_charge": 0,
+   "centre": "P",
+   "centre_offset_A": 0.123,
+   "size": {
+    "n_core": 59,
+    "d_nm": 1.521,
+    "d_max_nm": 1.553,
+    "d_hull_nm": 1.167,
+    "unit_cells": 0.75,
+    "unit_cells_all": [
+     0.75
+    ]
+   },
+   "fingerprint": "2e5f55e9fc15cd63",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-P-In36P23Cl39-reconstructed/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      0.75,
+      0.75,
+      0.75
+     ],
+     "construction_origin": {
+      "center_on_species": "P"
+     },
+     "post_treatment": {
+      "surface_reconstruction": {
+       "enabled": true,
+       "ligand": "Cl"
+      }
+     }
+    },
+    "reconstruction_ledger": {
+     "status": "applied",
+     "ligand": "Cl",
+     "cation": "In",
+     "anion": "P",
+     "anion_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        -1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 2
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 2
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 2
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        -1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 2
+      }
+     ],
+     "cation_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        1
+       ],
+       "ligands_stripped": 4,
+       "cations_removed": 1,
+       "ligands_added": 5
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        -1
+       ],
+       "ligands_stripped": 3,
+       "cations_removed": 1,
+       "ligands_added": 4
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        -1
+       ],
+       "ligands_stripped": 4,
+       "cations_removed": 1,
+       "ligands_added": 5
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        1
+       ],
+       "ligands_stripped": 4,
+       "cations_removed": 1,
+       "ligands_added": 5
+      }
+     ],
+     "anion_side_charge_delta": 16,
+     "ligands_stripped": 15,
+     "cations_removed": 4,
+     "ligands_added": 19,
+     "ligands_added_by_mu": {
+      "mu3": 0,
+      "mu2": 0,
+      "mu1": 19
+     },
+     "symmetric": false,
+     "total_charge_before": 0,
+     "total_charge_after": 0
+    }
+   },
+   "parent": "InP-P-In40P31Cl27-clean",
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-P-In40P31Cl27-clean",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "In40P31Cl27",
+   "composition": {
+    "In": 40,
+    "P": 31,
+    "Cl": 27
+   },
+   "core": {
+    "In": 40,
+    "P": 31
+   },
+   "ligands": {
+    "Cl": 27
+   },
+   "n_atoms": 98,
+   "total_charge": 0,
+   "centre": "P",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 71,
+    "d_nm": 1.551,
+    "d_max_nm": 1.534,
+    "d_hull_nm": 1.179,
+    "unit_cells": 0.75,
+    "unit_cells_all": [
+     0.75
+    ]
+   },
+   "fingerprint": "9dde8002006b99a1",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-P-In40P31Cl27-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      0.75,
+      0.75,
+      0.75
+     ],
+     "construction_origin": {
+      "center_on_species": "P"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-P-In44P35Cl27-reconstructed",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "reconstructed",
+   "source": "builder",
+   "formula": "In44P35Cl27",
+   "composition": {
+    "In": 44,
+    "P": 35,
+    "Cl": 27
+   },
+   "core": {
+    "In": 44,
+    "P": 35
+   },
+   "ligands": {
+    "Cl": 27
+   },
+   "n_atoms": 106,
+   "total_charge": 0,
+   "centre": "P",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 79,
+    "d_nm": 1.801,
+    "d_max_nm": 2.045,
+    "d_hull_nm": 1.259,
+    "unit_cells": 1.0,
+    "unit_cells_all": [
+     1.0
+    ]
+   },
+   "fingerprint": "d537ac349f859b93",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-P-In44P35Cl27-reconstructed/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "construction_origin": {
+      "center_on_species": "P"
+     },
+     "post_treatment": {
+      "surface_reconstruction": {
+       "enabled": true,
+       "ligand": "Cl"
+      }
+     }
+    },
+    "reconstruction_ledger": {
+     "status": "applied",
+     "ligand": "Cl",
+     "cation": "In",
+     "anion": "P",
+     "anion_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        -1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 0
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 0
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 0
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        -1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 0
+      }
+     ],
+     "cation_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        1
+       ],
+       "ligands_stripped": 6,
+       "cations_removed": 2,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        -1
+       ],
+       "ligands_stripped": 7,
+       "cations_removed": 2,
+       "ligands_added": 2
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        -1
+       ],
+       "ligands_stripped": 7,
+       "cations_removed": 2,
+       "ligands_added": 1
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        1
+       ],
+       "ligands_stripped": 7,
+       "cations_removed": 2,
+       "ligands_added": 0
+      }
+     ],
+     "anion_side_charge_delta": 0,
+     "ligands_stripped": 27,
+     "cations_removed": 8,
+     "ligands_added": 3,
+     "ligands_added_by_mu": {
+      "mu3": 0,
+      "mu2": 0,
+      "mu1": 3
+     },
+     "symmetric": true,
+     "total_charge_before": 0,
+     "total_charge_after": 0
+    }
+   },
+   "parent": "InP-P-In52P35Cl51-clean",
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-P-In52P35Cl51-clean",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "In52P35Cl51",
+   "composition": {
+    "In": 52,
+    "P": 35,
+    "Cl": 51
+   },
+   "core": {
+    "In": 52,
+    "P": 35
+   },
+   "ligands": {
+    "Cl": 51
+   },
+   "n_atoms": 138,
+   "total_charge": 0,
+   "centre": "P",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 87,
+    "d_nm": 1.773,
+    "d_max_nm": 2.045,
+    "d_hull_nm": 1.259,
+    "unit_cells": 1.0,
+    "unit_cells_all": [
+     1.0
+    ]
+   },
+   "fingerprint": "a9159b369925150d",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-P-In52P35Cl51-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "construction_origin": {
+      "center_on_species": "P"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-P-In881P853Cl84-reconstructed",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "reconstructed",
+   "source": "builder",
+   "formula": "In881P853Cl84",
+   "composition": {
+    "In": 881,
+    "P": 853,
+    "Cl": 84
+   },
+   "core": {
+    "In": 881,
+    "P": 853
+   },
+   "ligands": {
+    "Cl": 84
+   },
+   "n_atoms": 1818,
+   "total_charge": 0,
+   "centre": "P",
+   "centre_offset_A": 0.01,
+   "size": {
+    "n_core": 1734,
+    "d_nm": 4.81,
+    "d_max_nm": 5.809,
+    "d_hull_nm": 4.184,
+    "unit_cells": 2.5,
+    "unit_cells_all": [
+     2.5
+    ]
+   },
+   "fingerprint": "52c455ee7e8e142b",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-P-In881P853Cl84-reconstructed/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.5,
+      2.5,
+      2.5
+     ],
+     "construction_origin": {
+      "center_on_species": "P"
+     },
+     "post_treatment": {
+      "surface_reconstruction": {
+       "enabled": true,
+       "ligand": "Cl"
+      }
+     }
+    },
+    "reconstruction_ledger": {
+     "status": "applied",
+     "ligand": "Cl",
+     "cation": "In",
+     "anion": "P",
+     "anion_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        -1
+       ],
+       "vacancies": 3,
+       "anions_to_ligand": 9,
+       "chain_breaks": 0
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        1
+       ],
+       "vacancies": 3,
+       "anions_to_ligand": 9,
+       "chain_breaks": 0
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        1
+       ],
+       "vacancies": 3,
+       "anions_to_ligand": 9,
+       "chain_breaks": 0
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        -1
+       ],
+       "vacancies": 3,
+       "anions_to_ligand": 9,
+       "chain_breaks": 0
+      }
+     ],
+     "cation_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        1
+       ],
+       "ligands_stripped": 71,
+       "cations_removed": 27,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        -1
+       ],
+       "ligands_stripped": 71,
+       "cations_removed": 27,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        -1
+       ],
+       "ligands_stripped": 71,
+       "cations_removed": 27,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        1
+       ],
+       "ligands_stripped": 72,
+       "cations_removed": 26,
+       "ligands_added": 0
+      }
+     ],
+     "anion_side_charge_delta": 36,
+     "ligands_stripped": 285,
+     "cations_removed": 107,
+     "ligands_added": 0,
+     "ligands_added_by_mu": {
+      "mu3": 0,
+      "mu2": 0,
+      "mu1": 0
+     },
+     "symmetric": true,
+     "total_charge_before": 0,
+     "total_charge_after": 0
+    }
+   },
+   "parent": "InP-P-In1000P889Cl333-clean",
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "InP-P-In931P901Cl90-reconstructed",
+   "material": "InP",
+   "family": "III-V",
+   "phase": "zinc-blende",
+   "surface": "reconstructed",
+   "source": "builder",
+   "formula": "In931P901Cl90",
+   "composition": {
+    "In": 931,
+    "P": 901,
+    "Cl": 90
+   },
+   "core": {
+    "In": 931,
+    "P": 901
+   },
+   "ligands": {
+    "Cl": 90
+   },
+   "n_atoms": 1922,
+   "total_charge": 0,
+   "centre": "P",
+   "centre_offset_A": 0.009,
+   "size": {
+    "n_core": 1832,
+    "d_nm": 5.009,
+    "d_max_nm": 6.305,
+    "d_hull_nm": 4.251,
+    "unit_cells": 2.75,
+    "unit_cells_all": [
+     2.75
+    ]
+   },
+   "fingerprint": "412fe8ab5a6b15ed",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "III-V/InP/builder/InP-P-In931P901Cl90-reconstructed/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "In": 3,
+      "P": -3,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.6
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.75,
+      2.75,
+      2.75
+     ],
+     "construction_origin": {
+      "center_on_species": "P"
+     },
+     "post_treatment": {
+      "surface_reconstruction": {
+       "enabled": true,
+       "ligand": "Cl"
+      }
+     }
+    },
+    "reconstruction_ledger": {
+     "status": "applied",
+     "ligand": "Cl",
+     "cation": "In",
+     "anion": "P",
+     "anion_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        -1
+       ],
+       "vacancies": 1,
+       "anions_to_ligand": 3,
+       "chain_breaks": 4
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        1
+       ],
+       "vacancies": 1,
+       "anions_to_ligand": 3,
+       "chain_breaks": 4
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        1
+       ],
+       "vacancies": 1,
+       "anions_to_ligand": 3,
+       "chain_breaks": 4
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        -1
+       ],
+       "vacancies": 1,
+       "anions_to_ligand": 3,
+       "chain_breaks": 4
+      }
+     ],
+     "cation_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        1
+       ],
+       "ligands_stripped": 83,
+       "cations_removed": 32,
+       "ligands_added": 1
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        -1
+       ],
+       "ligands_stripped": 83,
+       "cations_removed": 31,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        -1
+       ],
+       "ligands_stripped": 83,
+       "cations_removed": 31,
+       "ligands_added": 0
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        1
+       ],
+       "ligands_stripped": 84,
+       "cations_removed": 31,
+       "ligands_added": 1
+      }
+     ],
+     "anion_side_charge_delta": 44,
+     "ligands_stripped": 333,
+     "cations_removed": 125,
+     "ligands_added": 2,
+     "ligands_added_by_mu": {
+      "mu3": 0,
+      "mu2": 0,
+      "mu1": 2
+     },
+     "symmetric": true,
+     "total_charge_before": 0,
+     "total_charge_after": 0
+    }
+   },
+   "parent": "InP-P-In1060P929Cl393-clean",
    "properties": {},
    "flags": {
     "optimized": false,
@@ -18186,57 +22195,6 @@
    "flags": {
     "optimized": false,
     "md": true,
-    "properties": false
-   }
-  },
-  {
-   "schema_version": 1,
-   "id": "InP-In-In31P20Cl33-clean",
-   "material": "InP",
-   "family": "III-V",
-   "phase": "zinc-blende",
-   "surface": "clean",
-   "source": "dft",
-   "formula": "In31P20Cl33",
-   "composition": {
-    "P": 20,
-    "In": 31,
-    "Cl": 33
-   },
-   "core": {
-    "P": 20,
-    "In": 31
-   },
-   "ligands": {
-    "Cl": 33
-   },
-   "n_atoms": 84,
-   "total_charge": 0,
-   "centre": "In",
-   "centre_offset_A": 0.281,
-   "size": {
-    "n_core": 51,
-    "d_nm": 1.421,
-    "d_max_nm": 1.584,
-    "d_hull_nm": 1.013
-   },
-   "fingerprint": "0fdc5642298e1bfb",
-   "stages": [
-    {
-     "stage": "start",
-     "file": "III-V/InP/old/InP_84.xyz"
-    }
-   ],
-   "origin": {
-    "legacy_paths": [
-     "III-V/InP/old/InP_84.xyz"
-    ],
-    "notes": ""
-   },
-   "properties": {},
-   "flags": {
-    "optimized": false,
-    "md": false,
     "properties": false
    }
   },

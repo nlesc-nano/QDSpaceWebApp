@@ -4230,6 +4230,516 @@
       "diameter_hull": 43.63464466353333
     }
   },
+  "III-V/InP/builder/InP-In-In129P108Cl63-reconstructed/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-In-In129P108Cl63-reconstructed.xyz",
+    "size": 2.517,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "In",
+    "surface": "reconstructed",
+    "record_id": "InP-In-In129P108Cl63-reconstructed",
+    "size_metrics": {
+      "R_eff_hull": 13.057905666666665,
+      "diameter_hull": 26.11581133333333
+    }
+  },
+  "III-V/InP/builder/InP-In-In1458P1424Cl102-reconstructed/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-In-In1458P1424Cl102-reconstructed.xyz",
+    "size": 5.781,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "In",
+    "surface": "reconstructed",
+    "record_id": "InP-In-In1458P1424Cl102-reconstructed",
+    "size_metrics": {
+      "R_eff_hull": 30.769763833333332,
+      "diameter_hull": 61.539527666666665
+    }
+  },
+  "III-V/InP/builder/InP-In-In149P116Cl99-clean/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-In-In149P116Cl99-clean.xyz",
+    "size": 2.571,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "In",
+    "surface": "clean",
+    "record_id": "InP-In-In149P116Cl99-clean",
+    "size_metrics": {
+      "R_eff_hull": 13.057905499999999,
+      "diameter_hull": 26.115810999999997
+    }
+  },
+  "III-V/InP/builder/InP-In-In161P139Cl66-clean/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-In-In161P139Cl66-clean.xyz",
+    "size": 2.7,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "In",
+    "surface": "clean",
+    "record_id": "InP-In-In161P139Cl66-clean",
+    "size_metrics": {
+      "R_eff_hull": 13.057905499999999,
+      "diameter_hull": 26.115810999999997
+    }
+  },
+  "III-V/InP/builder/InP-In-In1631P1460Cl513-clean/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-In-In1631P1460Cl513-clean.xyz",
+    "size": 5.901,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "In",
+    "surface": "clean",
+    "record_id": "InP-In-In1631P1460Cl513-clean",
+    "size_metrics": {
+      "R_eff_hull": 30.769764,
+      "diameter_hull": 61.539528
+    }
+  },
+  "III-V/InP/builder/InP-In-In165P139Cl78-clean/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-In-In165P139Cl78-clean.xyz",
+    "size": 2.723,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "In",
+    "surface": "clean",
+    "record_id": "InP-In-In165P139Cl78-clean",
+    "size_metrics": {
+      "R_eff_hull": 13.057905499999999,
+      "diameter_hull": 26.115810999999997
+    }
+  },
+  "III-V/InP/builder/InP-In-In27P20Cl21-reconstructed/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-In-In27P20Cl21-reconstructed.xyz",
+    "size": 1.471,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "In",
+    "surface": "reconstructed",
+    "record_id": "InP-In-In27P20Cl21-reconstructed",
+    "size_metrics": {
+      "R_eff_hull": 7.153952833333332,
+      "diameter_hull": 14.307905666666665
+    }
+  },
+  "III-V/InP/builder/InP-In-In31P20Cl33-clean/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-In-In31P20Cl33-clean.xyz",
+    "size": 1.444,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "In",
+    "surface": "clean",
+    "record_id": "InP-In-In31P20Cl33-clean",
+    "size_metrics": {
+      "R_eff_hull": 7.1539525,
+      "diameter_hull": 14.307905
+    }
+  },
+  "III-V/InP/builder/InP-In-In354P336Cl54-reconstructed/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-In-In354P336Cl54-reconstructed.xyz",
+    "size": 3.609,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "In",
+    "surface": "reconstructed",
+    "record_id": "InP-In-In354P336Cl54-reconstructed",
+    "size_metrics": {
+      "R_eff_hull": 18.961858333333332,
+      "diameter_hull": 37.923716666666664
+    }
+  },
+  "III-V/InP/builder/InP-In-In35P26Cl27-clean/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-In-In35P26Cl27-clean.xyz",
+    "size": 1.559,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "In",
+    "surface": "clean",
+    "record_id": "InP-In-In35P26Cl27-clean",
+    "size_metrics": {
+      "R_eff_hull": 7.153952999999999,
+      "diameter_hull": 14.307905999999997
+    }
+  },
+  "III-V/InP/builder/InP-In-In415P348Cl201-clean/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-In-In415P348Cl201-clean.xyz",
+    "size": 3.684,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "In",
+    "surface": "clean",
+    "record_id": "InP-In-In415P348Cl201-clean",
+    "size_metrics": {
+      "R_eff_hull": 18.961858333333332,
+      "diameter_hull": 37.923716666666664
+    }
+  },
+  "III-V/InP/builder/InP-In-In439P398Cl123-clean/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-In-In439P398Cl123-clean.xyz",
+    "size": 3.838,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "In",
+    "surface": "clean",
+    "record_id": "InP-In-In439P398Cl123-clean",
+    "size_metrics": {
+      "R_eff_hull": 18.961858499999998,
+      "diameter_hull": 37.923716999999996
+    }
+  },
+  "III-V/InP/builder/InP-In-In776P748Cl84-reconstructed/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-In-In776P748Cl84-reconstructed.xyz",
+    "size": 4.691,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "In",
+    "surface": "reconstructed",
+    "record_id": "InP-In-In776P748Cl84-reconstructed",
+    "size_metrics": {
+      "R_eff_hull": 24.865810999999997,
+      "diameter_hull": 49.731621999999994
+    }
+  },
+  "III-V/InP/builder/InP-In-In889P776Cl339-clean/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-In-In889P776Cl339-clean.xyz",
+    "size": 4.794,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "In",
+    "surface": "clean",
+    "record_id": "InP-In-In889P776Cl339-clean",
+    "size_metrics": {
+      "R_eff_hull": 24.865810999999997,
+      "diameter_hull": 49.731621999999994
+    }
+  },
+  "III-V/InP/builder/InP-In-In929P863Cl198-clean/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-In-In929P863Cl198-clean.xyz",
+    "size": 4.95,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "In",
+    "surface": "clean",
+    "record_id": "InP-In-In929P863Cl198-clean",
+    "size_metrics": {
+      "R_eff_hull": 24.865810999999997,
+      "diameter_hull": 49.731621999999994
+    }
+  },
+  "III-V/InP/builder/InP-P-In1000P889Cl333-clean/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-P-In1000P889Cl333-clean.xyz",
+    "size": 4.921,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "P",
+    "surface": "clean",
+    "record_id": "InP-P-In1000P889Cl333-clean",
+    "size_metrics": {
+      "R_eff_hull": 26.341798999999998,
+      "diameter_hull": 52.683597999999996
+    }
+  },
+  "III-V/InP/builder/InP-P-In1060P929Cl393-clean/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-P-In1060P929Cl393-clean.xyz",
+    "size": 5.116,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "P",
+    "surface": "clean",
+    "record_id": "InP-P-In1060P929Cl393-clean",
+    "size_metrics": {
+      "R_eff_hull": 26.341799166666664,
+      "diameter_hull": 52.68359833333333
+    }
+  },
+  "III-V/InP/builder/InP-P-In116P99Cl51-clean/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-P-In116P99Cl51-clean.xyz",
+    "size": 2.379,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "P",
+    "surface": "clean",
+    "record_id": "InP-P-In116P99Cl51-clean",
+    "size_metrics": {
+      "R_eff_hull": 11.581917166666665,
+      "diameter_hull": 23.16383433333333
+    }
+  },
+  "III-V/InP/builder/InP-P-In1460P1374Cl258-clean/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-P-In1460P1374Cl258-clean.xyz",
+    "size": 5.747,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "P",
+    "surface": "clean",
+    "record_id": "InP-P-In1460P1374Cl258-clean",
+    "size_metrics": {
+      "R_eff_hull": 29.29377583333333,
+      "diameter_hull": 58.58755166666666
+    }
+  },
+  "III-V/InP/builder/InP-P-In168P153Cl45-reconstructed/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-P-In168P153Cl45-reconstructed.xyz",
+    "size": 2.842,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "P",
+    "surface": "reconstructed",
+    "record_id": "InP-P-In168P153Cl45-reconstructed",
+    "size_metrics": {
+      "R_eff_hull": 14.533893999999998,
+      "diameter_hull": 29.067787999999997
+    }
+  },
+  "III-V/InP/builder/InP-P-In204P161Cl129-clean/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-P-In204P161Cl129-clean.xyz",
+    "size": 2.895,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "P",
+    "surface": "clean",
+    "record_id": "InP-P-In204P161Cl129-clean",
+    "size_metrics": {
+      "R_eff_hull": 14.533893666666666,
+      "diameter_hull": 29.06778733333333
+    }
+  },
+  "III-V/InP/builder/InP-P-In324P298Cl78-clean/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-P-In324P298Cl78-clean.xyz",
+    "size": 3.317,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "P",
+    "surface": "clean",
+    "record_id": "InP-P-In324P298Cl78-clean",
+    "size_metrics": {
+      "R_eff_hull": 17.485870499999997,
+      "diameter_hull": 34.971740999999994
+    }
+  },
+  "III-V/InP/builder/InP-P-In348P314Cl102-clean/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-P-In348P314Cl102-clean.xyz",
+    "size": 3.514,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "P",
+    "surface": "clean",
+    "record_id": "InP-P-In348P314Cl102-clean",
+    "size_metrics": {
+      "R_eff_hull": 17.48587,
+      "diameter_hull": 34.97174
+    }
+  },
+  "III-V/InP/builder/InP-P-In360P320Cl120-clean/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-P-In360P320Cl120-clean.xyz",
+    "size": 3.567,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "P",
+    "surface": "clean",
+    "record_id": "InP-P-In360P320Cl120-clean",
+    "size_metrics": {
+      "R_eff_hull": 17.48587,
+      "diameter_hull": 34.97174
+    }
+  },
+  "III-V/InP/builder/InP-P-In36P23Cl39-reconstructed/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-P-In36P23Cl39-reconstructed.xyz",
+    "size": 1.521,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "P",
+    "surface": "reconstructed",
+    "record_id": "InP-P-In36P23Cl39-reconstructed",
+    "size_metrics": {
+      "R_eff_hull": 8.629941,
+      "diameter_hull": 17.259882
+    }
+  },
+  "III-V/InP/builder/InP-P-In40P31Cl27-clean/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-P-In40P31Cl27-clean.xyz",
+    "size": 1.551,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "P",
+    "surface": "clean",
+    "record_id": "InP-P-In40P31Cl27-clean",
+    "size_metrics": {
+      "R_eff_hull": 8.629941,
+      "diameter_hull": 17.259882
+    }
+  },
+  "III-V/InP/builder/InP-P-In44P35Cl27-reconstructed/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-P-In44P35Cl27-reconstructed.xyz",
+    "size": 1.801,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "P",
+    "surface": "reconstructed",
+    "record_id": "InP-P-In44P35Cl27-reconstructed",
+    "size_metrics": {
+      "R_eff_hull": 8.629941,
+      "diameter_hull": 17.259882
+    }
+  },
+  "III-V/InP/builder/InP-P-In52P35Cl51-clean/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-P-In52P35Cl51-clean.xyz",
+    "size": 1.773,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "P",
+    "surface": "clean",
+    "record_id": "InP-P-In52P35Cl51-clean",
+    "size_metrics": {
+      "R_eff_hull": 8.629941,
+      "diameter_hull": 17.259882
+    }
+  },
+  "III-V/InP/builder/InP-P-In881P853Cl84-reconstructed/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-P-In881P853Cl84-reconstructed.xyz",
+    "size": 4.81,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "P",
+    "surface": "reconstructed",
+    "record_id": "InP-P-In881P853Cl84-reconstructed",
+    "size_metrics": {
+      "R_eff_hull": 26.341798999999998,
+      "diameter_hull": 52.683597999999996
+    }
+  },
+  "III-V/InP/builder/InP-P-In931P901Cl90-reconstructed/start.xyz": {
+    "system_type": "III-V",
+    "material": "InP",
+    "filename": "InP-P-In931P901Cl90-reconstructed.xyz",
+    "size": 5.009,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "P",
+    "surface": "reconstructed",
+    "record_id": "InP-P-In931P901Cl90-reconstructed",
+    "size_metrics": {
+      "R_eff_hull": 26.341799166666664,
+      "diameter_hull": 52.68359833333333
+    }
+  },
   "III-V/InP/old/InP_1116.xyz": {
     "system_type": "III-V",
     "material": "InP",
