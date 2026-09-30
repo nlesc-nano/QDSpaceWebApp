@@ -8,21 +8,21 @@ Cd,1.0,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facet
 Cd,1.25,clean,kept,CdSe-Cd-Cd31Se22Cl18-clean,Cd31Se22Cl18,1.478,71,0
 Cd,1.25,reconstructed,rejected: keeps 4/22 anions of its clean parent,,Cd25Se4Cl42,1.49,71,0
 Cd,1.5,clean,kept,CdSe-Cd-Cd55Se32Cl46-clean,Cd55Se32Cl46,1.717,133,0
-Cd,1.5,reconstructed,kept,CdSe-Cd-Cd48Se28Cl40-reconstructed,Cd48Se28Cl40,1.639,116,0
+Cd,1.5,reconstructed,kept,CdSe-Cd-Cd55Se28Cl54-reconstructed,Cd55Se28Cl54,1.698,137,0
 Cd,1.75,clean,kept,CdSe-Cd-Cd107Se86Cl42-clean,Cd107Se86Cl42,2.231,235,0
 Cd,1.75,reconstructed,kept,CdSe-Cd-Cd95Se60Cl70-reconstructed,Cd95Se60Cl70,2.192,225,0
 Cd,2.0,clean,kept,CdSe-Cd-Cd147Se104Cl86-clean,Cd147Se104Cl86,2.442,337,0
-Cd,2.0,reconstructed,kept,CdSe-Cd-Cd134Se92Cl84-reconstructed,Cd134Se92Cl84,2.369,310,0
+Cd,2.0,reconstructed,kept,CdSe-Cd-Cd139Se92Cl94-reconstructed,Cd139Se92Cl94,2.395,325,0
 Cd,2.25,clean,kept,CdSe-Cd-Cd201Se176Cl50-clean,Cd201Se176Cl50,2.753,427,0
 Cd,2.25,reconstructed,kept,CdSe-Cd-Cd177Se140Cl74-reconstructed,Cd177Se140Cl74,2.675,391,0
 Cd,2.5,clean,kept,CdSe-Cd-Cd309Se240Cl138-clean,Cd309Se240Cl138,3.169,687,0
-Cd,2.5,reconstructed,kept,CdSe-Cd-Cd292Se224Cl136-reconstructed,Cd292Se224Cl136,3.103,652,0
+Cd,2.5,reconstructed,kept,CdSe-Cd-Cd301Se224Cl154-reconstructed,Cd301Se224Cl154,3.131,679,0
 Cd,2.75,clean,kept,CdSe-Cd-Cd405Se360Cl90-clean,Cd405Se360Cl90,3.494,855,0
-Cd,2.75,reconstructed,kept,CdSe-Cd-Cd369Se304Cl130-reconstructed,Cd369Se304Cl130,3.397,803,0
+Cd,2.75,reconstructed,kept,CdSe-Cd-Cd373Se304Cl138-reconstructed,Cd373Se304Cl138,3.405,815,0
 Cd,3.0,clean,kept,CdSe-Cd-Cd477Se414Cl126-clean,Cd477Se414Cl126,3.705,1017,0
 Cd,3.0,reconstructed,kept,CdSe-Cd-Cd446Se352Cl188-reconstructed,Cd446Se352Cl188,3.626,986,0
 Cd,3.25,clean,kept,CdSe-Cd-Cd711Se640Cl142-clean,Cd711Se640Cl142,4.23,1493,0
-Cd,3.25,reconstructed,kept,CdSe-Cd-Cd660Se560Cl200-reconstructed,Cd660Se560Cl200,4.127,1420,0
+Cd,3.25,reconstructed,kept,CdSe-Cd-Cd663Se560Cl206-reconstructed,Cd663Se560Cl206,4.13,1429,0
 Cd,3.5,clean,kept,CdSe-Cd-Cd811Se718Cl186-clean,Cd811Se718Cl186,4.437,1715,0
 Cd,3.5,reconstructed,kept,CdSe-Cd-Cd768Se632Cl272-reconstructed,Cd768Se632Cl272,4.35,1672,0
 Cd,3.75,clean,kept,CdSe-Cd-Cd1139Se1036Cl206-clean,Cd1139Se1036Cl206,4.964,2381,0
@@ -56,7 +56,7 @@ Se,1.25,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} face
 Se,1.5,clean,kept,CdSe-Se-Cd68Se55Cl26-clean,Cd68Se55Cl26,1.89,149,0
 Se,1.5,reconstructed,kept,CdSe-Se-Cd60Se39Cl42-reconstructed,Cd60Se39Cl42,1.866,141,0
 Se,1.75,clean,kept,CdSe-Se-Cd92Se59Cl66-clean,Cd92Se59Cl66,2.069,217,0
-Se,1.75,reconstructed,kept,CdSe-Se-Cd81Se55Cl52-reconstructed,Cd81Se55Cl52,1.999,188,0
+Se,1.75,reconstructed,kept,CdSe-Se-Cd92Se55Cl74-reconstructed,Cd92Se55Cl74,2.048,221,0
 Se,2.0,clean,kept,CdSe-Se-Cd176Se147Cl58-clean,Cd176Se147Cl58,2.624,381,0
 Se,2.0,reconstructed,kept,CdSe-Se-Cd156Se111Cl90-reconstructed,Cd156Se111Cl90,2.525,357,0
 Se,2.25,clean,duplicate of CdSe-Se-Cd176Se147Cl58-clean,CdSe-Se-Cd176Se147Cl58-clean,Cd176Se147Cl58,2.624,381,0
@@ -66,11 +66,11 @@ Se,2.5,reconstructed,kept,CdSe-Se-Cd333Se261Cl144-reconstructed,Cd333Se261Cl144,
 Se,2.75,clean,duplicate of CdSe-Se-Cd360Se309Cl102-clean,CdSe-Se-Cd360Se309Cl102-clean,Cd360Se309Cl102,3.355,771,0
 Se,2.75,reconstructed,duplicate of CdSe-Se-Cd333Se261Cl144-reconstructed,CdSe-Se-Cd333Se261Cl144-reconstructed,Cd333Se261Cl144,3.26,738,0
 Se,3.0,clean,kept,CdSe-Se-Cd540Se477Cl126-clean,Cd540Se477Cl126,3.86,1143,0
-Se,3.0,reconstructed,kept,CdSe-Se-Cd494Se421Cl146-reconstructed,Cd494Se421Cl146,3.753,1061,0
+Se,3.0,reconstructed,kept,CdSe-Se-Cd508Se421Cl174-reconstructed,Cd508Se421Cl174,3.768,1103,0
 Se,3.25,clean,kept,CdSe-Se-Cd640Se561Cl158-clean,Cd640Se561Cl158,4.084,1359,0
 Se,3.25,reconstructed,kept,CdSe-Se-Cd600Se489Cl222-reconstructed,Cd600Se489Cl222,3.977,1311,0
 Se,3.5,clean,kept,CdSe-Se-Cd904Se811Cl186-clean,Cd904Se811Cl186,4.595,1901,0
-Se,3.5,reconstructed,kept,CdSe-Se-Cd843Se731Cl224-reconstructed,Cd843Se731Cl224,4.488,1798,0
+Se,3.5,reconstructed,kept,CdSe-Se-Cd856Se731Cl250-reconstructed,Cd856Se731Cl250,4.493,1837,0
 Se,3.75,clean,kept,CdSe-Se-Cd1036Se923Cl226-clean,Cd1036Se923Cl226,4.812,2185,0
 Se,3.75,reconstructed,kept,CdSe-Se-Cd985Se831Cl308-reconstructed,Cd985Se831Cl308,4.717,2124,0
 Se,4.0,clean,kept,CdSe-Se-Cd1216Se1139Cl154-clean,Cd1216Se1139Cl154,5.092,2509,0
@@ -80,11 +80,11 @@ Se,4.25,reconstructed,kept,CdSe-Se-Cd1502Se1295Cl414-reconstructed,Cd1502Se1295C
 Se,4.5,clean,kept,CdSe-Se-Cd1820Se1709Cl222-clean,Cd1820Se1709Cl222,5.83,3751,0
 Se,4.5,reconstructed,kept,CdSe-Se-Cd1721Se1517Cl408-reconstructed,Cd1721Se1517Cl408,5.71,3646,0
 Se,4.75,clean,kept,CdSe-Se-Cd2048Se1877Cl342-clean,Cd2048Se1877Cl342,6.06,4267,0
-Se,4.75,reconstructed,kept,CdSe-Se-Cd1951Se1737Cl428-reconstructed,Cd1951Se1737Cl428,5.946,4116,0
+Se,4.75,reconstructed,kept,CdSe-Se-Cd1960Se1737Cl446-reconstructed,Cd1960Se1737Cl446,5.948,4143,0
 Se,5.0,clean,kept,CdSe-Se-Cd2592Se2441Cl302-clean,Cd2592Se2441Cl302,6.566,5335,0
 Se,5.0,reconstructed,kept,CdSe-Se-Cd2470Se2205Cl530-reconstructed,Cd2470Se2205Cl530,6.44,5205,0
 Se,5.25,clean,kept,CdSe-Se-Cd2868Se2649Cl438-clean,Cd2868Se2649Cl438,6.79,5955,0
-Se,5.25,reconstructed,kept,CdSe-Se-Cd2750Se2473Cl554-reconstructed,Cd2750Se2473Cl554,6.673,5777,0
+Se,5.25,reconstructed,kept,CdSe-Se-Cd2756Se2473Cl566-reconstructed,Cd2756Se2473Cl566,6.674,5795,0
 Se,5.5,clean,kept,CdSe-Se-Cd3552Se3355Cl394-clean,Cd3552Se3355Cl394,7.3,7301,0
 Se,5.5,reconstructed,kept,CdSe-Se-Cd3405Se3071Cl668-reconstructed,Cd3405Se3071Cl668,7.172,7144,0
 Se,5.75,clean,duplicate of CdSe-Se-Cd3552Se3355Cl394-clean,CdSe-Se-Cd3552Se3355Cl394-clean,Cd3552Se3355Cl394,7.3,7301,0

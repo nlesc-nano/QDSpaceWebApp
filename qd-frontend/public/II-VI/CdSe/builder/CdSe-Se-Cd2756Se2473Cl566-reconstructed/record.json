@@ -1,39 +1,39 @@
 {
   "schema_version": 1,
-  "id": "CdSe-Se-Cd2750Se2473Cl554-reconstructed",
+  "id": "CdSe-Se-Cd2756Se2473Cl566-reconstructed",
   "material": "CdSe",
   "family": "II-VI",
   "phase": "zinc-blende",
   "surface": "reconstructed",
   "source": "builder",
-  "formula": "Cd2750Se2473Cl554",
+  "formula": "Cd2756Se2473Cl566",
   "composition": {
-    "Cd": 2750,
+    "Cd": 2756,
     "Se": 2473,
-    "Cl": 554
+    "Cl": 566
   },
   "core": {
-    "Cd": 2750,
+    "Cd": 2756,
     "Se": 2473
   },
   "ligands": {
-    "Cl": 554
+    "Cl": 566
   },
-  "n_atoms": 5777,
+  "n_atoms": 5795,
   "total_charge": 0,
   "centre": "Se",
-  "centre_offset_A": 0.007,
+  "centre_offset_A": 0.01,
   "size": {
-    "n_core": 5223,
-    "d_nm": 6.673,
-    "d_max_nm": 7.44,
+    "n_core": 5229,
+    "d_nm": 6.674,
+    "d_max_nm": 7.441,
     "d_hull_nm": 6.489,
     "unit_cells": 5.25,
     "unit_cells_all": [
       5.25
     ]
   },
-  "fingerprint": "dbe08181fcd09c95",
+  "fingerprint": "38316befde787ce6",
   "stages": [
     {
       "stage": "start",
@@ -43,7 +43,7 @@
   "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -102,6 +102,7 @@
     "reconstruction_ledger": {
       "status": "applied",
       "ligand": "Cl",
+      "cation_removal": "mirror",
       "cation": "Cd",
       "anion": "Se",
       "anion_facets": [
@@ -154,8 +155,8 @@
             -1
           ],
           "ligands_stripped": 15,
-          "cations_removed": 16,
-          "ligands_added": 0
+          "cations_removed": 14,
+          "ligands_added": 3
         },
         {
           "hkl": [
@@ -164,8 +165,8 @@
             1
           ],
           "ligands_stripped": 15,
-          "cations_removed": 16,
-          "ligands_added": 0
+          "cations_removed": 14,
+          "ligands_added": 3
         },
         {
           "hkl": [
@@ -174,8 +175,8 @@
             1
           ],
           "ligands_stripped": 15,
-          "cations_removed": 15,
-          "ligands_added": 0
+          "cations_removed": 14,
+          "ligands_added": 3
         },
         {
           "hkl": [
@@ -184,16 +185,16 @@
             -1
           ],
           "ligands_stripped": 15,
-          "cations_removed": 15,
-          "ligands_added": 0
+          "cations_removed": 14,
+          "ligands_added": 3
         }
       ],
       "anion_side_charge_delta": 64,
       "ligands_stripped": 60,
-      "cations_removed": 62,
-      "ligands_added": 0,
+      "cations_removed": 56,
+      "ligands_added": 12,
       "ligands_added_by_mu": {
-        "mu3": 0,
+        "mu3": 12,
         "mu2": 0,
         "mu1": 0
       },

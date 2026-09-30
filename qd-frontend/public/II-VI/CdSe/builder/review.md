@@ -13,21 +13,21 @@
 | Cd | 1.25 | clean | kept | Cd31Se22Cl18 | 1.478 | 71 |
 | Cd | 1.25 | reconstructed | rejected: keeps 4/22 anions of its clean parent | Cd25Se4Cl42 | 1.49 | 71 |
 | Cd | 1.5 | clean | kept | Cd55Se32Cl46 | 1.717 | 133 |
-| Cd | 1.5 | reconstructed | kept | Cd48Se28Cl40 | 1.639 | 116 |
+| Cd | 1.5 | reconstructed | kept | Cd55Se28Cl54 | 1.698 | 137 |
 | Cd | 1.75 | clean | kept | Cd107Se86Cl42 | 2.231 | 235 |
 | Cd | 1.75 | reconstructed | kept | Cd95Se60Cl70 | 2.192 | 225 |
 | Cd | 2.0 | clean | kept | Cd147Se104Cl86 | 2.442 | 337 |
-| Cd | 2.0 | reconstructed | kept | Cd134Se92Cl84 | 2.369 | 310 |
+| Cd | 2.0 | reconstructed | kept | Cd139Se92Cl94 | 2.395 | 325 |
 | Cd | 2.25 | clean | kept | Cd201Se176Cl50 | 2.753 | 427 |
 | Cd | 2.25 | reconstructed | kept | Cd177Se140Cl74 | 2.675 | 391 |
 | Cd | 2.5 | clean | kept | Cd309Se240Cl138 | 3.169 | 687 |
-| Cd | 2.5 | reconstructed | kept | Cd292Se224Cl136 | 3.103 | 652 |
+| Cd | 2.5 | reconstructed | kept | Cd301Se224Cl154 | 3.131 | 679 |
 | Cd | 2.75 | clean | kept | Cd405Se360Cl90 | 3.494 | 855 |
-| Cd | 2.75 | reconstructed | kept | Cd369Se304Cl130 | 3.397 | 803 |
+| Cd | 2.75 | reconstructed | kept | Cd373Se304Cl138 | 3.405 | 815 |
 | Cd | 3.0 | clean | kept | Cd477Se414Cl126 | 3.705 | 1017 |
 | Cd | 3.0 | reconstructed | kept | Cd446Se352Cl188 | 3.626 | 986 |
 | Cd | 3.25 | clean | kept | Cd711Se640Cl142 | 4.23 | 1493 |
-| Cd | 3.25 | reconstructed | kept | Cd660Se560Cl200 | 4.127 | 1420 |
+| Cd | 3.25 | reconstructed | kept | Cd663Se560Cl206 | 4.13 | 1429 |
 | Cd | 3.5 | clean | kept | Cd811Se718Cl186 | 4.437 | 1715 |
 | Cd | 3.5 | reconstructed | kept | Cd768Se632Cl272 | 4.35 | 1672 |
 | Cd | 3.75 | clean | kept | Cd1139Se1036Cl206 | 4.964 | 2381 |
@@ -61,7 +61,7 @@
 | Se | 1.5 | clean | kept | Cd68Se55Cl26 | 1.89 | 149 |
 | Se | 1.5 | reconstructed | kept | Cd60Se39Cl42 | 1.866 | 141 |
 | Se | 1.75 | clean | kept | Cd92Se59Cl66 | 2.069 | 217 |
-| Se | 1.75 | reconstructed | kept | Cd81Se55Cl52 | 1.999 | 188 |
+| Se | 1.75 | reconstructed | kept | Cd92Se55Cl74 | 2.048 | 221 |
 | Se | 2.0 | clean | kept | Cd176Se147Cl58 | 2.624 | 381 |
 | Se | 2.0 | reconstructed | kept | Cd156Se111Cl90 | 2.525 | 357 |
 | Se | 2.25 | clean | duplicate of CdSe-Se-Cd176Se147Cl58-clean | Cd176Se147Cl58 | 2.624 | 381 |
@@ -71,11 +71,11 @@
 | Se | 2.75 | clean | duplicate of CdSe-Se-Cd360Se309Cl102-clean | Cd360Se309Cl102 | 3.355 | 771 |
 | Se | 2.75 | reconstructed | duplicate of CdSe-Se-Cd333Se261Cl144-reconstructed | Cd333Se261Cl144 | 3.26 | 738 |
 | Se | 3.0 | clean | kept | Cd540Se477Cl126 | 3.86 | 1143 |
-| Se | 3.0 | reconstructed | kept | Cd494Se421Cl146 | 3.753 | 1061 |
+| Se | 3.0 | reconstructed | kept | Cd508Se421Cl174 | 3.768 | 1103 |
 | Se | 3.25 | clean | kept | Cd640Se561Cl158 | 4.084 | 1359 |
 | Se | 3.25 | reconstructed | kept | Cd600Se489Cl222 | 3.977 | 1311 |
 | Se | 3.5 | clean | kept | Cd904Se811Cl186 | 4.595 | 1901 |
-| Se | 3.5 | reconstructed | kept | Cd843Se731Cl224 | 4.488 | 1798 |
+| Se | 3.5 | reconstructed | kept | Cd856Se731Cl250 | 4.493 | 1837 |
 | Se | 3.75 | clean | kept | Cd1036Se923Cl226 | 4.812 | 2185 |
 | Se | 3.75 | reconstructed | kept | Cd985Se831Cl308 | 4.717 | 2124 |
 | Se | 4.0 | clean | kept | Cd1216Se1139Cl154 | 5.092 | 2509 |
@@ -85,11 +85,11 @@
 | Se | 4.5 | clean | kept | Cd1820Se1709Cl222 | 5.83 | 3751 |
 | Se | 4.5 | reconstructed | kept | Cd1721Se1517Cl408 | 5.71 | 3646 |
 | Se | 4.75 | clean | kept | Cd2048Se1877Cl342 | 6.06 | 4267 |
-| Se | 4.75 | reconstructed | kept | Cd1951Se1737Cl428 | 5.946 | 4116 |
+| Se | 4.75 | reconstructed | kept | Cd1960Se1737Cl446 | 5.948 | 4143 |
 | Se | 5.0 | clean | kept | Cd2592Se2441Cl302 | 6.566 | 5335 |
 | Se | 5.0 | reconstructed | kept | Cd2470Se2205Cl530 | 6.44 | 5205 |
 | Se | 5.25 | clean | kept | Cd2868Se2649Cl438 | 6.79 | 5955 |
-| Se | 5.25 | reconstructed | kept | Cd2750Se2473Cl554 | 6.673 | 5777 |
+| Se | 5.25 | reconstructed | kept | Cd2756Se2473Cl566 | 6.674 | 5795 |
 | Se | 5.5 | clean | kept | Cd3552Se3355Cl394 | 7.3 | 7301 |
 | Se | 5.5 | reconstructed | kept | Cd3405Se3071Cl668 | 7.172 | 7144 |
 | Se | 5.75 | clean | duplicate of CdSe-Se-Cd3552Se3355Cl394-clean | Cd3552Se3355Cl394 | 7.3 | 7301 |

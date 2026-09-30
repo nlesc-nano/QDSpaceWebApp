@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "generated": "2026-09-30T10:13:09+00:00",
+ "generated": "2026-09-30T13:52:20+00:00",
  "structures": [
   {
    "schema_version": 1,
@@ -48,7 +48,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -107,6 +107,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -260,7 +261,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -364,7 +365,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -424,50 +425,50 @@
   },
   {
    "schema_version": 1,
-   "id": "CdSe-Cd-Cd134Se92Cl84-reconstructed",
+   "id": "CdSe-Cd-Cd139Se92Cl94-reconstructed",
    "material": "CdSe",
    "family": "II-VI",
    "phase": "zinc-blende",
    "surface": "reconstructed",
    "source": "builder",
-   "formula": "Cd134Se92Cl84",
+   "formula": "Cd139Se92Cl94",
    "composition": {
-    "Cd": 134,
+    "Cd": 139,
     "Se": 92,
-    "Cl": 84
+    "Cl": 94
    },
    "core": {
-    "Cd": 134,
+    "Cd": 139,
     "Se": 92
    },
    "ligands": {
-    "Cl": 84
+    "Cl": 94
    },
-   "n_atoms": 310,
+   "n_atoms": 325,
    "total_charge": 0,
    "centre": "Cd",
-   "centre_offset_A": 0.058,
+   "centre_offset_A": 0.0,
    "size": {
-    "n_core": 226,
-    "d_nm": 2.369,
-    "d_max_nm": 2.611,
-    "d_hull_nm": 2.137,
+    "n_core": 231,
+    "d_nm": 2.395,
+    "d_max_nm": 2.605,
+    "d_hull_nm": 2.151,
     "unit_cells": 2.0,
     "unit_cells_all": [
      2.0
     ]
    },
-   "fingerprint": "fb278f7268312e02",
+   "fingerprint": "2f8ea3915d5fbf1b",
    "stages": [
     {
      "stage": "start",
-     "file": "II-VI/CdSe/builder/CdSe-Cd-Cd134Se92Cl84-reconstructed/start.xyz"
+     "file": "II-VI/CdSe/builder/CdSe-Cd-Cd139Se92Cl94-reconstructed/start.xyz"
     }
    ],
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -526,6 +527,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -578,8 +580,8 @@
         -1
        ],
        "ligands_stripped": 3,
-       "cations_removed": 3,
-       "ligands_added": 0
+       "cations_removed": 1,
+       "ligands_added": 2
       },
       {
        "hkl": [
@@ -588,8 +590,8 @@
         1
        ],
        "ligands_stripped": 3,
-       "cations_removed": 2,
-       "ligands_added": 0
+       "cations_removed": 1,
+       "ligands_added": 2
       },
       {
        "hkl": [
@@ -598,8 +600,8 @@
         1
        ],
        "ligands_stripped": 4,
-       "cations_removed": 2,
-       "ligands_added": 0
+       "cations_removed": 1,
+       "ligands_added": 3
       },
       {
        "hkl": [
@@ -608,17 +610,17 @@
         -1
        ],
        "ligands_stripped": 4,
-       "cations_removed": 2,
-       "ligands_added": 0
+       "cations_removed": 1,
+       "ligands_added": 3
       }
      ],
      "anion_side_charge_delta": 4,
      "ligands_stripped": 14,
-     "cations_removed": 9,
-     "ligands_added": 0,
+     "cations_removed": 4,
+     "ligands_added": 10,
      "ligands_added_by_mu": {
       "mu3": 0,
-      "mu2": 0,
+      "mu2": 10,
       "mu1": 0
      },
      "symmetric": false,
@@ -679,7 +681,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -783,7 +785,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -842,6 +844,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -996,7 +999,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1099,7 +1102,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1158,6 +1161,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -1311,7 +1315,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1414,7 +1418,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1473,6 +1477,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -1626,7 +1631,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1729,7 +1734,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1788,6 +1793,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -1941,7 +1947,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2044,7 +2050,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2103,6 +2109,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -2213,50 +2220,50 @@
   },
   {
    "schema_version": 1,
-   "id": "CdSe-Cd-Cd292Se224Cl136-reconstructed",
+   "id": "CdSe-Cd-Cd301Se224Cl154-reconstructed",
    "material": "CdSe",
    "family": "II-VI",
    "phase": "zinc-blende",
    "surface": "reconstructed",
    "source": "builder",
-   "formula": "Cd292Se224Cl136",
+   "formula": "Cd301Se224Cl154",
    "composition": {
-    "Cd": 292,
+    "Cd": 301,
     "Se": 224,
-    "Cl": 136
+    "Cl": 154
    },
    "core": {
-    "Cd": 292,
+    "Cd": 301,
     "Se": 224
    },
    "ligands": {
-    "Cl": 136
+    "Cl": 154
    },
-   "n_atoms": 652,
+   "n_atoms": 679,
    "total_charge": 0,
    "centre": "Cd",
-   "centre_offset_A": 0.034,
+   "centre_offset_A": 0.0,
    "size": {
-    "n_core": 516,
-    "d_nm": 3.103,
+    "n_core": 525,
+    "d_nm": 3.131,
     "d_max_nm": 3.474,
-    "d_hull_nm": 2.869,
+    "d_hull_nm": 2.886,
     "unit_cells": 2.5,
     "unit_cells_all": [
      2.5
     ]
    },
-   "fingerprint": "c2d01ebf9d975ee8",
+   "fingerprint": "37477773d700b707",
    "stages": [
     {
      "stage": "start",
-     "file": "II-VI/CdSe/builder/CdSe-Cd-Cd292Se224Cl136-reconstructed/start.xyz"
+     "file": "II-VI/CdSe/builder/CdSe-Cd-Cd301Se224Cl154-reconstructed/start.xyz"
     }
    ],
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2315,6 +2322,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -2367,8 +2375,8 @@
         -1
        ],
        "ligands_stripped": 4,
-       "cations_removed": 4,
-       "ligands_added": 0
+       "cations_removed": 1,
+       "ligands_added": 4
       },
       {
        "hkl": [
@@ -2377,8 +2385,8 @@
         1
        ],
        "ligands_stripped": 4,
-       "cations_removed": 3,
-       "ligands_added": 0
+       "cations_removed": 1,
+       "ligands_added": 4
       },
       {
        "hkl": [
@@ -2387,8 +2395,8 @@
         1
        ],
        "ligands_stripped": 5,
-       "cations_removed": 3,
-       "ligands_added": 0
+       "cations_removed": 1,
+       "ligands_added": 5
       },
       {
        "hkl": [
@@ -2397,18 +2405,18 @@
         -1
        ],
        "ligands_stripped": 5,
-       "cations_removed": 3,
-       "ligands_added": 0
+       "cations_removed": 1,
+       "ligands_added": 5
       }
      ],
      "anion_side_charge_delta": 8,
      "ligands_stripped": 18,
-     "cations_removed": 13,
-     "ligands_added": 0,
+     "cations_removed": 4,
+     "ligands_added": 18,
      "ligands_added_by_mu": {
-      "mu3": 0,
-      "mu2": 0,
-      "mu1": 0
+      "mu3": 8,
+      "mu2": 4,
+      "mu1": 6
      },
      "symmetric": true,
      "total_charge_before": 0,
@@ -2468,7 +2476,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2571,7 +2579,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2674,7 +2682,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2777,7 +2785,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2836,6 +2844,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -2989,7 +2998,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3092,7 +3101,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3151,6 +3160,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -3261,218 +3271,6 @@
   },
   {
    "schema_version": 1,
-   "id": "CdSe-Cd-Cd369Se304Cl130-reconstructed",
-   "material": "CdSe",
-   "family": "II-VI",
-   "phase": "zinc-blende",
-   "surface": "reconstructed",
-   "source": "builder",
-   "formula": "Cd369Se304Cl130",
-   "composition": {
-    "Cd": 369,
-    "Se": 304,
-    "Cl": 130
-   },
-   "core": {
-    "Cd": 369,
-    "Se": 304
-   },
-   "ligands": {
-    "Cl": 130
-   },
-   "n_atoms": 803,
-   "total_charge": 0,
-   "centre": "Cd",
-   "centre_offset_A": 0.017,
-   "size": {
-    "n_core": 673,
-    "d_nm": 3.397,
-    "d_max_nm": 3.584,
-    "d_hull_nm": 3.216,
-    "unit_cells": 2.75,
-    "unit_cells_all": [
-     2.75
-    ]
-   },
-   "fingerprint": "808621a8f0d3172a",
-   "stages": [
-    {
-     "stage": "start",
-     "file": "II-VI/CdSe/builder/CdSe-Cd-Cd369Se304Cl130-reconstructed/start.xyz"
-    }
-   ],
-   "origin": {
-    "generator": "builder.scripts.generate_library",
-    "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
-    "qd_builder_dirty": false,
-    "cif": "CdSe_zb.cif",
-    "positive_q_mode": "add",
-    "recipe": {
-     "charges": {
-      "Cd": 2,
-      "Se": -2,
-      "Cl": -1
-     },
-     "passivation": {
-      "ligand": "Cl",
-      "surf_tol": 2.0,
-      "prepass_mode": "role-aware",
-      "prepass_min_cn_terrace": 3,
-      "prepass_min_cn_edge": 2,
-      "prepass_min_cn_vertex": 1
-     },
-     "facets": [
-      {
-       "hkl": "100",
-       "scope": "family",
-       "termination": "cation_rich",
-       "gamma": 1.0
-      },
-      {
-       "hkl": "111",
-       "scope": "family",
-       "termination": "cation_rich",
-       "gamma": 1.0
-      },
-      {
-       "hkl": "-1-1-1",
-       "scope": "family",
-       "termination": "anion_rich",
-       "gamma": 1.0
-      }
-     ],
-     "symmetry": {
-      "proper_rotations_only": true
-     },
-     "size_unit_cells": [
-      2.75,
-      2.75,
-      2.75
-     ],
-     "construction_origin": {
-      "center_on_species": "Cd"
-     },
-     "post_treatment": {
-      "surface_reconstruction": {
-       "enabled": true,
-       "ligand": "Cl"
-      }
-     }
-    },
-    "reconstruction_ledger": {
-     "status": "applied",
-     "ligand": "Cl",
-     "cation": "Cd",
-     "anion": "Se",
-     "anion_facets": [
-      {
-       "hkl": [
-        1,
-        1,
-        1
-       ],
-       "vacancies": 4,
-       "anions_to_ligand": 12,
-       "chain_breaks": 2
-      },
-      {
-       "hkl": [
-        1,
-        -1,
-        -1
-       ],
-       "vacancies": 4,
-       "anions_to_ligand": 12,
-       "chain_breaks": 2
-      },
-      {
-       "hkl": [
-        -1,
-        1,
-        -1
-       ],
-       "vacancies": 4,
-       "anions_to_ligand": 12,
-       "chain_breaks": 2
-      },
-      {
-       "hkl": [
-        -1,
-        -1,
-        1
-       ],
-       "vacancies": 4,
-       "anions_to_ligand": 12,
-       "chain_breaks": 2
-      }
-     ],
-     "cation_facets": [
-      {
-       "hkl": [
-        1,
-        1,
-        -1
-       ],
-       "ligands_stripped": 4,
-       "cations_removed": 5,
-       "ligands_added": 0
-      },
-      {
-       "hkl": [
-        1,
-        -1,
-        1
-       ],
-       "ligands_stripped": 4,
-       "cations_removed": 5,
-       "ligands_added": 0
-      },
-      {
-       "hkl": [
-        -1,
-        1,
-        1
-       ],
-       "ligands_stripped": 5,
-       "cations_removed": 5,
-       "ligands_added": 1
-      },
-      {
-       "hkl": [
-        -1,
-        -1,
-        -1
-       ],
-       "ligands_stripped": 5,
-       "cations_removed": 5,
-       "ligands_added": 1
-      }
-     ],
-     "anion_side_charge_delta": 24,
-     "ligands_stripped": 18,
-     "cations_removed": 20,
-     "ligands_added": 2,
-     "ligands_added_by_mu": {
-      "mu3": 2,
-      "mu2": 0,
-      "mu1": 0
-     },
-     "symmetric": false,
-     "total_charge_before": 0,
-     "total_charge_after": 0
-    }
-   },
-   "parent": "CdSe-Cd-Cd405Se360Cl90-clean",
-   "properties": {},
-   "flags": {
-    "optimized": false,
-    "md": false,
-    "properties": false
-   }
-  },
-  {
-   "schema_version": 1,
    "id": "CdSe-Cd-Cd3739Se3552Cl374-clean",
    "material": "CdSe",
    "family": "II-VI",
@@ -3516,7 +3314,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3576,6 +3374,219 @@
   },
   {
    "schema_version": 1,
+   "id": "CdSe-Cd-Cd373Se304Cl138-reconstructed",
+   "material": "CdSe",
+   "family": "II-VI",
+   "phase": "zinc-blende",
+   "surface": "reconstructed",
+   "source": "builder",
+   "formula": "Cd373Se304Cl138",
+   "composition": {
+    "Cd": 373,
+    "Se": 304,
+    "Cl": 138
+   },
+   "core": {
+    "Cd": 373,
+    "Se": 304
+   },
+   "ligands": {
+    "Cl": 138
+   },
+   "n_atoms": 815,
+   "total_charge": 0,
+   "centre": "Cd",
+   "centre_offset_A": 0.028,
+   "size": {
+    "n_core": 677,
+    "d_nm": 3.405,
+    "d_max_nm": 3.586,
+    "d_hull_nm": 3.216,
+    "unit_cells": 2.75,
+    "unit_cells_all": [
+     2.75
+    ]
+   },
+   "fingerprint": "87d4430896e1e366",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "II-VI/CdSe/builder/CdSe-Cd-Cd373Se304Cl138-reconstructed/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cdse_zb.yaml",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
+    "qd_builder_dirty": false,
+    "cif": "CdSe_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Cd": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.75,
+      2.75,
+      2.75
+     ],
+     "construction_origin": {
+      "center_on_species": "Cd"
+     },
+     "post_treatment": {
+      "surface_reconstruction": {
+       "enabled": true,
+       "ligand": "Cl"
+      }
+     }
+    },
+    "reconstruction_ledger": {
+     "status": "applied",
+     "ligand": "Cl",
+     "cation_removal": "mirror",
+     "cation": "Cd",
+     "anion": "Se",
+     "anion_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        1
+       ],
+       "vacancies": 4,
+       "anions_to_ligand": 12,
+       "chain_breaks": 2
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        -1
+       ],
+       "vacancies": 4,
+       "anions_to_ligand": 12,
+       "chain_breaks": 2
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        -1
+       ],
+       "vacancies": 4,
+       "anions_to_ligand": 12,
+       "chain_breaks": 2
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        1
+       ],
+       "vacancies": 4,
+       "anions_to_ligand": 12,
+       "chain_breaks": 2
+      }
+     ],
+     "cation_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        -1
+       ],
+       "ligands_stripped": 4,
+       "cations_removed": 4,
+       "ligands_added": 3
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        1
+       ],
+       "ligands_stripped": 4,
+       "cations_removed": 4,
+       "ligands_added": 3
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        1
+       ],
+       "ligands_stripped": 5,
+       "cations_removed": 4,
+       "ligands_added": 2
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        -1
+       ],
+       "ligands_stripped": 5,
+       "cations_removed": 4,
+       "ligands_added": 2
+      }
+     ],
+     "anion_side_charge_delta": 24,
+     "ligands_stripped": 18,
+     "cations_removed": 16,
+     "ligands_added": 10,
+     "ligands_added_by_mu": {
+      "mu3": 10,
+      "mu2": 0,
+      "mu1": 0
+     },
+     "symmetric": false,
+     "total_charge_before": 0,
+     "total_charge_after": 0
+    }
+   },
+   "parent": "CdSe-Cd-Cd405Se360Cl90-clean",
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
    "id": "CdSe-Cd-Cd405Se360Cl90-clean",
    "material": "CdSe",
    "family": "II-VI",
@@ -3619,7 +3630,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3722,7 +3733,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3781,6 +3792,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -3934,7 +3946,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3993,6 +4005,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -4146,7 +4159,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4249,7 +4262,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4309,50 +4322,50 @@
   },
   {
    "schema_version": 1,
-   "id": "CdSe-Cd-Cd48Se28Cl40-reconstructed",
+   "id": "CdSe-Cd-Cd55Se28Cl54-reconstructed",
    "material": "CdSe",
    "family": "II-VI",
    "phase": "zinc-blende",
    "surface": "reconstructed",
    "source": "builder",
-   "formula": "Cd48Se28Cl40",
+   "formula": "Cd55Se28Cl54",
    "composition": {
-    "Cd": 48,
+    "Cd": 55,
     "Se": 28,
-    "Cl": 40
+    "Cl": 54
    },
    "core": {
-    "Cd": 48,
+    "Cd": 55,
     "Se": 28
    },
    "ligands": {
-    "Cl": 40
+    "Cl": 54
    },
-   "n_atoms": 116,
+   "n_atoms": 137,
    "total_charge": 0,
    "centre": "Cd",
-   "centre_offset_A": 0.114,
+   "centre_offset_A": 0.0,
    "size": {
-    "n_core": 76,
-    "d_nm": 1.639,
-    "d_max_nm": 1.748,
-    "d_hull_nm": 1.391,
+    "n_core": 83,
+    "d_nm": 1.698,
+    "d_max_nm": 1.737,
+    "d_hull_nm": 1.434,
     "unit_cells": 1.5,
     "unit_cells_all": [
      1.5
     ]
    },
-   "fingerprint": "55f8f3c791998b6b",
+   "fingerprint": "7734f81924aebf39",
    "stages": [
     {
      "stage": "start",
-     "file": "II-VI/CdSe/builder/CdSe-Cd-Cd48Se28Cl40-reconstructed/start.xyz"
+     "file": "II-VI/CdSe/builder/CdSe-Cd-Cd55Se28Cl54-reconstructed/start.xyz"
     }
    ],
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4411,6 +4424,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -4463,8 +4477,8 @@
         -1
        ],
        "ligands_stripped": 2,
-       "cations_removed": 2,
-       "ligands_added": 0
+       "cations_removed": 0,
+       "ligands_added": 3
       },
       {
        "hkl": [
@@ -4473,8 +4487,8 @@
         1
        ],
        "ligands_stripped": 2,
-       "cations_removed": 2,
-       "ligands_added": 0
+       "cations_removed": 0,
+       "ligands_added": 3
       },
       {
        "hkl": [
@@ -4483,8 +4497,8 @@
         1
        ],
        "ligands_stripped": 3,
-       "cations_removed": 2,
-       "ligands_added": 0
+       "cations_removed": 0,
+       "ligands_added": 4
       },
       {
        "hkl": [
@@ -4493,18 +4507,18 @@
         -1
        ],
        "ligands_stripped": 3,
-       "cations_removed": 1,
-       "ligands_added": 0
+       "cations_removed": 0,
+       "ligands_added": 4
       }
      ],
      "anion_side_charge_delta": 4,
      "ligands_stripped": 10,
-     "cations_removed": 7,
-     "ligands_added": 0,
+     "cations_removed": 0,
+     "ligands_added": 14,
      "ligands_added_by_mu": {
-      "mu3": 0,
+      "mu3": 4,
       "mu2": 0,
-      "mu1": 0
+      "mu1": 10
      },
      "symmetric": true,
      "total_charge_before": 0,
@@ -4564,7 +4578,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4624,50 +4638,50 @@
   },
   {
    "schema_version": 1,
-   "id": "CdSe-Cd-Cd660Se560Cl200-reconstructed",
+   "id": "CdSe-Cd-Cd663Se560Cl206-reconstructed",
    "material": "CdSe",
    "family": "II-VI",
    "phase": "zinc-blende",
    "surface": "reconstructed",
    "source": "builder",
-   "formula": "Cd660Se560Cl200",
+   "formula": "Cd663Se560Cl206",
    "composition": {
-    "Cd": 660,
+    "Cd": 663,
     "Se": 560,
-    "Cl": 200
+    "Cl": 206
    },
    "core": {
-    "Cd": 660,
+    "Cd": 663,
     "Se": 560
    },
    "ligands": {
-    "Cl": 200
+    "Cl": 206
    },
-   "n_atoms": 1420,
+   "n_atoms": 1429,
    "total_charge": 0,
    "centre": "Cd",
-   "centre_offset_A": 0.027,
+   "centre_offset_A": 0.038,
    "size": {
-    "n_core": 1220,
-    "d_nm": 4.127,
-    "d_max_nm": 4.433,
+    "n_core": 1223,
+    "d_nm": 4.13,
+    "d_max_nm": 4.435,
     "d_hull_nm": 3.954,
     "unit_cells": 3.25,
     "unit_cells_all": [
      3.25
     ]
    },
-   "fingerprint": "809e7adee377aef4",
+   "fingerprint": "6eaa73023cff3412",
    "stages": [
     {
      "stage": "start",
-     "file": "II-VI/CdSe/builder/CdSe-Cd-Cd660Se560Cl200-reconstructed/start.xyz"
+     "file": "II-VI/CdSe/builder/CdSe-Cd-Cd663Se560Cl206-reconstructed/start.xyz"
     }
    ],
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4726,6 +4740,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -4778,8 +4793,8 @@
         -1
        ],
        "ligands_stripped": 5,
-       "cations_removed": 7,
-       "ligands_added": 0
+       "cations_removed": 6,
+       "ligands_added": 1
       },
       {
        "hkl": [
@@ -4788,8 +4803,8 @@
         1
        ],
        "ligands_stripped": 5,
-       "cations_removed": 7,
-       "ligands_added": 0
+       "cations_removed": 6,
+       "ligands_added": 2
       },
       {
        "hkl": [
@@ -4798,8 +4813,8 @@
         1
        ],
        "ligands_stripped": 6,
-       "cations_removed": 7,
-       "ligands_added": 0
+       "cations_removed": 6,
+       "ligands_added": 2
       },
       {
        "hkl": [
@@ -4809,15 +4824,15 @@
        ],
        "ligands_stripped": 6,
        "cations_removed": 6,
-       "ligands_added": 0
+       "ligands_added": 1
       }
      ],
      "anion_side_charge_delta": 32,
      "ligands_stripped": 22,
-     "cations_removed": 27,
-     "ligands_added": 0,
+     "cations_removed": 24,
+     "ligands_added": 6,
      "ligands_added_by_mu": {
-      "mu3": 0,
+      "mu3": 6,
       "mu2": 0,
       "mu1": 0
      },
@@ -4879,7 +4894,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4982,7 +4997,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5041,6 +5056,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -5194,7 +5210,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5297,7 +5313,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5356,6 +5372,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -5509,7 +5526,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5612,7 +5629,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5671,6 +5688,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -5824,7 +5842,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5927,7 +5945,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5986,6 +6004,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -6139,7 +6158,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6243,7 +6262,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6302,6 +6321,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -6474,7 +6494,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6584,7 +6604,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6643,6 +6663,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -6809,7 +6830,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6919,7 +6940,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6979,32 +7000,32 @@
   },
   {
    "schema_version": 1,
-   "id": "CdSe-Se-Cd1951Se1737Cl428-reconstructed",
+   "id": "CdSe-Se-Cd1960Se1737Cl446-reconstructed",
    "material": "CdSe",
    "family": "II-VI",
    "phase": "zinc-blende",
    "surface": "reconstructed",
    "source": "builder",
-   "formula": "Cd1951Se1737Cl428",
+   "formula": "Cd1960Se1737Cl446",
    "composition": {
-    "Cd": 1951,
+    "Cd": 1960,
     "Se": 1737,
-    "Cl": 428
+    "Cl": 446
    },
    "core": {
-    "Cd": 1951,
+    "Cd": 1960,
     "Se": 1737
    },
    "ligands": {
-    "Cl": 428
+    "Cl": 446
    },
-   "n_atoms": 4116,
+   "n_atoms": 4143,
    "total_charge": 0,
    "centre": "Se",
-   "centre_offset_A": 0.018,
+   "centre_offset_A": 0.019,
    "size": {
-    "n_core": 3688,
-    "d_nm": 5.946,
+    "n_core": 3697,
+    "d_nm": 5.948,
     "d_max_nm": 6.581,
     "d_hull_nm": 5.764,
     "unit_cells": 4.75,
@@ -7012,17 +7033,17 @@
      4.75
     ]
    },
-   "fingerprint": "9a1cff58d357928c",
+   "fingerprint": "427acc9e9443f28a",
    "stages": [
     {
      "stage": "start",
-     "file": "II-VI/CdSe/builder/CdSe-Se-Cd1951Se1737Cl428-reconstructed/start.xyz"
+     "file": "II-VI/CdSe/builder/CdSe-Se-Cd1960Se1737Cl446-reconstructed/start.xyz"
     }
    ],
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7081,6 +7102,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -7133,8 +7155,8 @@
         -1
        ],
        "ligands_stripped": 13,
-       "cations_removed": 14,
-       "ligands_added": 0
+       "cations_removed": 11,
+       "ligands_added": 4
       },
       {
        "hkl": [
@@ -7143,8 +7165,8 @@
         1
        ],
        "ligands_stripped": 13,
-       "cations_removed": 13,
-       "ligands_added": 0
+       "cations_removed": 11,
+       "ligands_added": 4
       },
       {
        "hkl": [
@@ -7153,8 +7175,8 @@
         1
        ],
        "ligands_stripped": 14,
-       "cations_removed": 13,
-       "ligands_added": 0
+       "cations_removed": 11,
+       "ligands_added": 5
       },
       {
        "hkl": [
@@ -7163,16 +7185,16 @@
         -1
        ],
        "ligands_stripped": 14,
-       "cations_removed": 13,
-       "ligands_added": 0
+       "cations_removed": 11,
+       "ligands_added": 5
       }
      ],
      "anion_side_charge_delta": 52,
      "ligands_stripped": 54,
-     "cations_removed": 53,
-     "ligands_added": 0,
+     "cations_removed": 44,
+     "ligands_added": 18,
      "ligands_added_by_mu": {
-      "mu3": 0,
+      "mu3": 18,
       "mu2": 0,
       "mu1": 0
      },
@@ -7234,7 +7256,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7337,7 +7359,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7396,6 +7418,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -7549,7 +7572,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7609,50 +7632,50 @@
   },
   {
    "schema_version": 1,
-   "id": "CdSe-Se-Cd2750Se2473Cl554-reconstructed",
+   "id": "CdSe-Se-Cd2756Se2473Cl566-reconstructed",
    "material": "CdSe",
    "family": "II-VI",
    "phase": "zinc-blende",
    "surface": "reconstructed",
    "source": "builder",
-   "formula": "Cd2750Se2473Cl554",
+   "formula": "Cd2756Se2473Cl566",
    "composition": {
-    "Cd": 2750,
+    "Cd": 2756,
     "Se": 2473,
-    "Cl": 554
+    "Cl": 566
    },
    "core": {
-    "Cd": 2750,
+    "Cd": 2756,
     "Se": 2473
    },
    "ligands": {
-    "Cl": 554
+    "Cl": 566
    },
-   "n_atoms": 5777,
+   "n_atoms": 5795,
    "total_charge": 0,
    "centre": "Se",
-   "centre_offset_A": 0.007,
+   "centre_offset_A": 0.01,
    "size": {
-    "n_core": 5223,
-    "d_nm": 6.673,
-    "d_max_nm": 7.44,
+    "n_core": 5229,
+    "d_nm": 6.674,
+    "d_max_nm": 7.441,
     "d_hull_nm": 6.489,
     "unit_cells": 5.25,
     "unit_cells_all": [
      5.25
     ]
    },
-   "fingerprint": "dbe08181fcd09c95",
+   "fingerprint": "38316befde787ce6",
    "stages": [
     {
      "stage": "start",
-     "file": "II-VI/CdSe/builder/CdSe-Se-Cd2750Se2473Cl554-reconstructed/start.xyz"
+     "file": "II-VI/CdSe/builder/CdSe-Se-Cd2756Se2473Cl566-reconstructed/start.xyz"
     }
    ],
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7711,6 +7734,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -7763,8 +7787,8 @@
         -1
        ],
        "ligands_stripped": 15,
-       "cations_removed": 16,
-       "ligands_added": 0
+       "cations_removed": 14,
+       "ligands_added": 3
       },
       {
        "hkl": [
@@ -7773,8 +7797,8 @@
         1
        ],
        "ligands_stripped": 15,
-       "cations_removed": 16,
-       "ligands_added": 0
+       "cations_removed": 14,
+       "ligands_added": 3
       },
       {
        "hkl": [
@@ -7783,8 +7807,8 @@
         1
        ],
        "ligands_stripped": 15,
-       "cations_removed": 15,
-       "ligands_added": 0
+       "cations_removed": 14,
+       "ligands_added": 3
       },
       {
        "hkl": [
@@ -7793,16 +7817,16 @@
         -1
        ],
        "ligands_stripped": 15,
-       "cations_removed": 15,
-       "ligands_added": 0
+       "cations_removed": 14,
+       "ligands_added": 3
       }
      ],
      "anion_side_charge_delta": 64,
      "ligands_stripped": 60,
-     "cations_removed": 62,
-     "ligands_added": 0,
+     "cations_removed": 56,
+     "ligands_added": 12,
      "ligands_added_by_mu": {
-      "mu3": 0,
+      "mu3": 12,
       "mu2": 0,
       "mu1": 0
      },
@@ -7864,7 +7888,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7967,7 +7991,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8071,7 +8095,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8130,6 +8154,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -8284,7 +8309,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8343,6 +8368,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -8497,7 +8523,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8601,7 +8627,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8704,7 +8730,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8763,6 +8789,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -8916,7 +8943,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8976,32 +9003,32 @@
   },
   {
    "schema_version": 1,
-   "id": "CdSe-Se-Cd494Se421Cl146-reconstructed",
+   "id": "CdSe-Se-Cd508Se421Cl174-reconstructed",
    "material": "CdSe",
    "family": "II-VI",
    "phase": "zinc-blende",
    "surface": "reconstructed",
    "source": "builder",
-   "formula": "Cd494Se421Cl146",
+   "formula": "Cd508Se421Cl174",
    "composition": {
-    "Cd": 494,
+    "Cd": 508,
     "Se": 421,
-    "Cl": 146
+    "Cl": 174
    },
    "core": {
-    "Cd": 494,
+    "Cd": 508,
     "Se": 421
    },
    "ligands": {
-    "Cl": 146
+    "Cl": 174
    },
-   "n_atoms": 1061,
+   "n_atoms": 1103,
    "total_charge": 0,
    "centre": "Se",
-   "centre_offset_A": 0.038,
+   "centre_offset_A": 0.047,
    "size": {
-    "n_core": 915,
-    "d_nm": 3.753,
+    "n_core": 929,
+    "d_nm": 3.768,
     "d_max_nm": 4.023,
     "d_hull_nm": 3.566,
     "unit_cells": 3.0,
@@ -9009,17 +9036,17 @@
      3.0
     ]
    },
-   "fingerprint": "281d02214e1ce39a",
+   "fingerprint": "2bdfe9ff44ecaebd",
    "stages": [
     {
      "stage": "start",
-     "file": "II-VI/CdSe/builder/CdSe-Se-Cd494Se421Cl146-reconstructed/start.xyz"
+     "file": "II-VI/CdSe/builder/CdSe-Se-Cd508Se421Cl174-reconstructed/start.xyz"
     }
    ],
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9078,6 +9105,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -9130,8 +9158,8 @@
         -1
        ],
        "ligands_stripped": 9,
-       "cations_removed": 8,
-       "ligands_added": 0
+       "cations_removed": 4,
+       "ligands_added": 7
       },
       {
        "hkl": [
@@ -9140,8 +9168,8 @@
         1
        ],
        "ligands_stripped": 9,
-       "cations_removed": 8,
-       "ligands_added": 0
+       "cations_removed": 4,
+       "ligands_added": 7
       },
       {
        "hkl": [
@@ -9150,8 +9178,8 @@
         1
        ],
        "ligands_stripped": 9,
-       "cations_removed": 7,
-       "ligands_added": 0
+       "cations_removed": 4,
+       "ligands_added": 7
       },
       {
        "hkl": [
@@ -9160,17 +9188,17 @@
         -1
        ],
        "ligands_stripped": 9,
-       "cations_removed": 7,
-       "ligands_added": 0
+       "cations_removed": 4,
+       "ligands_added": 7
       }
      ],
      "anion_side_charge_delta": 24,
      "ligands_stripped": 36,
-     "cations_removed": 30,
-     "ligands_added": 0,
+     "cations_removed": 16,
+     "ligands_added": 28,
      "ligands_added_by_mu": {
-      "mu3": 0,
-      "mu2": 0,
+      "mu3": 14,
+      "mu2": 14,
       "mu1": 0
      },
      "symmetric": false,
@@ -9231,7 +9259,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9334,7 +9362,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9393,6 +9421,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -9546,7 +9575,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9605,6 +9634,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -9758,7 +9788,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9880,7 +9910,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9947,262 +9977,50 @@
   },
   {
    "schema_version": 1,
-   "id": "CdSe-Se-Cd81Se55Cl52-reconstructed",
+   "id": "CdSe-Se-Cd856Se731Cl250-reconstructed",
    "material": "CdSe",
    "family": "II-VI",
    "phase": "zinc-blende",
    "surface": "reconstructed",
    "source": "builder",
-   "formula": "Cd81Se55Cl52",
+   "formula": "Cd856Se731Cl250",
    "composition": {
-    "Cd": 81,
-    "Se": 55,
-    "Cl": 52
-   },
-   "core": {
-    "Cd": 81,
-    "Se": 55
-   },
-   "ligands": {
-    "Cl": 52
-   },
-   "n_atoms": 188,
-   "total_charge": 0,
-   "centre": "Se",
-   "centre_offset_A": 0.112,
-   "size": {
-    "n_core": 136,
-    "d_nm": 1.999,
-    "d_max_nm": 2.203,
-    "d_hull_nm": 1.75,
-    "unit_cells": 1.75,
-    "unit_cells_all": [
-     1.75
-    ]
-   },
-   "fingerprint": "efaf43352f204320",
-   "stages": [
-    {
-     "stage": "start",
-     "file": "II-VI/CdSe/builder/CdSe-Se-Cd81Se55Cl52-reconstructed/start.xyz"
-    }
-   ],
-   "origin": {
-    "generator": "builder.scripts.generate_library",
-    "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
-    "qd_builder_dirty": false,
-    "cif": "CdSe_zb.cif",
-    "positive_q_mode": "add",
-    "recipe": {
-     "charges": {
-      "Cd": 2,
-      "Se": -2,
-      "Cl": -1
-     },
-     "passivation": {
-      "ligand": "Cl",
-      "surf_tol": 2.0,
-      "prepass_mode": "role-aware",
-      "prepass_min_cn_terrace": 3,
-      "prepass_min_cn_edge": 2,
-      "prepass_min_cn_vertex": 1
-     },
-     "facets": [
-      {
-       "hkl": "100",
-       "scope": "family",
-       "termination": "cation_rich",
-       "gamma": 1.0
-      },
-      {
-       "hkl": "111",
-       "scope": "family",
-       "termination": "cation_rich",
-       "gamma": 1.0
-      },
-      {
-       "hkl": "-1-1-1",
-       "scope": "family",
-       "termination": "anion_rich",
-       "gamma": 1.0
-      }
-     ],
-     "symmetry": {
-      "proper_rotations_only": true
-     },
-     "size_unit_cells": [
-      1.75,
-      1.75,
-      1.75
-     ],
-     "construction_origin": {
-      "center_on_species": "Se"
-     },
-     "post_treatment": {
-      "surface_reconstruction": {
-       "enabled": true,
-       "ligand": "Cl"
-      }
-     }
-    },
-    "reconstruction_ledger": {
-     "status": "applied",
-     "ligand": "Cl",
-     "cation": "Cd",
-     "anion": "Se",
-     "anion_facets": [
-      {
-       "hkl": [
-        1,
-        1,
-        1
-       ],
-       "vacancies": 0,
-       "anions_to_ligand": 0,
-       "chain_breaks": 1
-      },
-      {
-       "hkl": [
-        1,
-        -1,
-        -1
-       ],
-       "vacancies": 0,
-       "anions_to_ligand": 0,
-       "chain_breaks": 1
-      },
-      {
-       "hkl": [
-        -1,
-        1,
-        -1
-       ],
-       "vacancies": 0,
-       "anions_to_ligand": 0,
-       "chain_breaks": 1
-      },
-      {
-       "hkl": [
-        -1,
-        -1,
-        1
-       ],
-       "vacancies": 0,
-       "anions_to_ligand": 0,
-       "chain_breaks": 1
-      }
-     ],
-     "cation_facets": [
-      {
-       "hkl": [
-        1,
-        1,
-        -1
-       ],
-       "ligands_stripped": 4,
-       "cations_removed": 3,
-       "ligands_added": 0
-      },
-      {
-       "hkl": [
-        1,
-        -1,
-        1
-       ],
-       "ligands_stripped": 4,
-       "cations_removed": 3,
-       "ligands_added": 0
-      },
-      {
-       "hkl": [
-        -1,
-        1,
-        1
-       ],
-       "ligands_stripped": 5,
-       "cations_removed": 3,
-       "ligands_added": 0
-      },
-      {
-       "hkl": [
-        -1,
-        -1,
-        -1
-       ],
-       "ligands_stripped": 5,
-       "cations_removed": 2,
-       "ligands_added": 0
-      }
-     ],
-     "anion_side_charge_delta": 4,
-     "ligands_stripped": 18,
-     "cations_removed": 11,
-     "ligands_added": 0,
-     "ligands_added_by_mu": {
-      "mu3": 0,
-      "mu2": 0,
-      "mu1": 0
-     },
-     "symmetric": false,
-     "total_charge_before": 0,
-     "total_charge_after": 0
-    }
-   },
-   "parent": "CdSe-Se-Cd92Se59Cl66-clean",
-   "properties": {},
-   "flags": {
-    "optimized": false,
-    "md": false,
-    "properties": false
-   }
-  },
-  {
-   "schema_version": 1,
-   "id": "CdSe-Se-Cd843Se731Cl224-reconstructed",
-   "material": "CdSe",
-   "family": "II-VI",
-   "phase": "zinc-blende",
-   "surface": "reconstructed",
-   "source": "builder",
-   "formula": "Cd843Se731Cl224",
-   "composition": {
-    "Cd": 843,
+    "Cd": 856,
     "Se": 731,
-    "Cl": 224
+    "Cl": 250
    },
    "core": {
-    "Cd": 843,
+    "Cd": 856,
     "Se": 731
    },
    "ligands": {
-    "Cl": 224
+    "Cl": 250
    },
-   "n_atoms": 1798,
+   "n_atoms": 1837,
    "total_charge": 0,
    "centre": "Se",
-   "centre_offset_A": 0.019,
+   "centre_offset_A": 0.014,
    "size": {
-    "n_core": 1574,
-    "d_nm": 4.488,
-    "d_max_nm": 4.868,
+    "n_core": 1587,
+    "d_nm": 4.493,
+    "d_max_nm": 4.867,
     "d_hull_nm": 4.304,
     "unit_cells": 3.5,
     "unit_cells_all": [
      3.5
     ]
    },
-   "fingerprint": "b3de5a239c93c444",
+   "fingerprint": "80286b8a2b47d2d9",
    "stages": [
     {
      "stage": "start",
-     "file": "II-VI/CdSe/builder/CdSe-Se-Cd843Se731Cl224-reconstructed/start.xyz"
+     "file": "II-VI/CdSe/builder/CdSe-Se-Cd856Se731Cl250-reconstructed/start.xyz"
     }
    ],
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -10261,6 +10079,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
@@ -10313,8 +10132,8 @@
         -1
        ],
        "ligands_stripped": 10,
-       "cations_removed": 10,
-       "ligands_added": 0
+       "cations_removed": 6,
+       "ligands_added": 6
       },
       {
        "hkl": [
@@ -10323,8 +10142,8 @@
         1
        ],
        "ligands_stripped": 10,
-       "cations_removed": 9,
-       "ligands_added": 0
+       "cations_removed": 6,
+       "ligands_added": 6
       },
       {
        "hkl": [
@@ -10333,8 +10152,8 @@
         1
        ],
        "ligands_stripped": 11,
-       "cations_removed": 9,
-       "ligands_added": 0
+       "cations_removed": 6,
+       "ligands_added": 7
       },
       {
        "hkl": [
@@ -10343,17 +10162,17 @@
         -1
        ],
        "ligands_stripped": 11,
-       "cations_removed": 9,
-       "ligands_added": 0
+       "cations_removed": 6,
+       "ligands_added": 7
       }
      ],
      "anion_side_charge_delta": 32,
      "ligands_stripped": 42,
-     "cations_removed": 37,
-     "ligands_added": 0,
+     "cations_removed": 24,
+     "ligands_added": 26,
      "ligands_added_by_mu": {
-      "mu3": 0,
-      "mu2": 0,
+      "mu3": 20,
+      "mu2": 6,
       "mu1": 0
      },
      "symmetric": false,
@@ -10414,7 +10233,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -10474,6 +10293,219 @@
   },
   {
    "schema_version": 1,
+   "id": "CdSe-Se-Cd92Se55Cl74-reconstructed",
+   "material": "CdSe",
+   "family": "II-VI",
+   "phase": "zinc-blende",
+   "surface": "reconstructed",
+   "source": "builder",
+   "formula": "Cd92Se55Cl74",
+   "composition": {
+    "Cd": 92,
+    "Se": 55,
+    "Cl": 74
+   },
+   "core": {
+    "Cd": 92,
+    "Se": 55
+   },
+   "ligands": {
+    "Cl": 74
+   },
+   "n_atoms": 221,
+   "total_charge": 0,
+   "centre": "Se",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 147,
+    "d_nm": 2.048,
+    "d_max_nm": 2.193,
+    "d_hull_nm": 1.778,
+    "unit_cells": 1.75,
+    "unit_cells_all": [
+     1.75
+    ]
+   },
+   "fingerprint": "df5ac30c150cd858",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "II-VI/CdSe/builder/CdSe-Se-Cd92Se55Cl74-reconstructed/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cdse_zb.yaml",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
+    "qd_builder_dirty": false,
+    "cif": "CdSe_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Cd": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "-1-1-1",
+       "scope": "family",
+       "termination": "anion_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.75,
+      1.75,
+      1.75
+     ],
+     "construction_origin": {
+      "center_on_species": "Se"
+     },
+     "post_treatment": {
+      "surface_reconstruction": {
+       "enabled": true,
+       "ligand": "Cl"
+      }
+     }
+    },
+    "reconstruction_ledger": {
+     "status": "applied",
+     "ligand": "Cl",
+     "cation_removal": "mirror",
+     "cation": "Cd",
+     "anion": "Se",
+     "anion_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 1
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        -1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 1
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        -1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 1
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        1
+       ],
+       "vacancies": 0,
+       "anions_to_ligand": 0,
+       "chain_breaks": 1
+      }
+     ],
+     "cation_facets": [
+      {
+       "hkl": [
+        1,
+        1,
+        -1
+       ],
+       "ligands_stripped": 4,
+       "cations_removed": 0,
+       "ligands_added": 5
+      },
+      {
+       "hkl": [
+        1,
+        -1,
+        1
+       ],
+       "ligands_stripped": 4,
+       "cations_removed": 0,
+       "ligands_added": 5
+      },
+      {
+       "hkl": [
+        -1,
+        1,
+        1
+       ],
+       "ligands_stripped": 5,
+       "cations_removed": 0,
+       "ligands_added": 6
+      },
+      {
+       "hkl": [
+        -1,
+        -1,
+        -1
+       ],
+       "ligands_stripped": 5,
+       "cations_removed": 0,
+       "ligands_added": 6
+      }
+     ],
+     "anion_side_charge_delta": 4,
+     "ligands_stripped": 18,
+     "cations_removed": 0,
+     "ligands_added": 22,
+     "ligands_added_by_mu": {
+      "mu3": 4,
+      "mu2": 0,
+      "mu1": 18
+     },
+     "symmetric": false,
+     "total_charge_before": 0,
+     "total_charge_after": 0
+    }
+   },
+   "parent": "CdSe-Se-Cd92Se59Cl66-clean",
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
    "id": "CdSe-Se-Cd92Se59Cl66-clean",
    "material": "CdSe",
    "family": "II-VI",
@@ -10517,7 +10549,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -10620,7 +10652,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -10679,6 +10711,7 @@
     "reconstruction_ledger": {
      "status": "applied",
      "ligand": "Cl",
+     "cation_removal": "mirror",
      "cation": "Cd",
      "anion": "Se",
      "anion_facets": [
