@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "generated": "2026-09-30T07:01:07+00:00",
+ "generated": "2026-09-30T07:11:44+00:00",
  "structures": [
   {
    "schema_version": 1,
@@ -48,7 +48,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -260,7 +260,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -364,7 +364,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -457,7 +457,7 @@
      2.0
     ]
    },
-   "fingerprint": "a3df7ca63e718a1e",
+   "fingerprint": "43953c0b938aa174",
    "stages": [
     {
      "stage": "start",
@@ -467,7 +467,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -571,7 +571,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -784,7 +784,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -887,7 +887,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1099,7 +1099,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1202,7 +1202,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1414,7 +1414,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1517,7 +1517,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1729,7 +1729,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -1832,7 +1832,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2044,7 +2044,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2256,7 +2256,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2359,7 +2359,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2462,7 +2462,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2565,7 +2565,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2777,7 +2777,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -2880,7 +2880,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3092,7 +3092,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3304,7 +3304,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3397,7 +3397,7 @@
      2.75
     ]
    },
-   "fingerprint": "4e4b7c9d568265a1",
+   "fingerprint": "3453a09f1ab14fb5",
    "stages": [
     {
      "stage": "start",
@@ -3407,7 +3407,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3510,7 +3510,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3722,7 +3722,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -3934,7 +3934,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4037,7 +4037,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4140,7 +4140,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4243,7 +4243,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4455,7 +4455,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4558,7 +4558,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4770,7 +4770,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -4873,7 +4873,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5085,7 +5085,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5188,7 +5188,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5400,7 +5400,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5503,7 +5503,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5715,7 +5715,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -5819,7 +5819,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6050,7 +6050,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6160,7 +6160,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6385,7 +6385,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6495,7 +6495,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6598,7 +6598,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6800,7 +6800,7 @@
      4.75
     ]
    },
-   "fingerprint": "f032543ef389f7d0",
+   "fingerprint": "179edbd71130a349",
    "stages": [
     {
      "stage": "start",
@@ -6810,7 +6810,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -6913,7 +6913,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7125,7 +7125,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7228,7 +7228,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7440,7 +7440,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7543,7 +7543,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7647,7 +7647,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -7860,7 +7860,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8073,7 +8073,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8177,7 +8177,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8280,7 +8280,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8492,7 +8492,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8595,7 +8595,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8797,7 +8797,7 @@
      3.0
     ]
    },
-   "fingerprint": "57bdad25e2cbf248",
+   "fingerprint": "6b9b82fba3954934",
    "stages": [
     {
      "stage": "start",
@@ -8807,7 +8807,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -8910,7 +8910,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9122,7 +9122,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9334,7 +9334,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9456,7 +9456,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9566,7 +9566,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9768,7 +9768,7 @@
      3.5
     ]
    },
-   "fingerprint": "62dad01126f8f07b",
+   "fingerprint": "0217ebadf05efe31",
    "stages": [
     {
      "stage": "start",
@@ -9778,7 +9778,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9871,7 +9871,7 @@
      1.75
     ]
    },
-   "fingerprint": "e71611995e298d27",
+   "fingerprint": "d776774db206c114",
    "stages": [
     {
      "stage": "start",
@@ -9881,7 +9881,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -9984,7 +9984,7 @@
    "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "7bf4342bd3f92b232b01696934841463be7260e3",
+    "qd_builder_commit": "f458a0ad7f11344fbdcc1ef709125cea64b06fb2",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
