@@ -43,7 +43,7 @@
   "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "63decd1b8b35908fbe0a76ca53b7f7dbd67e03bb",
+    "qd_builder_commit": "47819e394f11895cd074b8e30d980e18e79942e5",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",

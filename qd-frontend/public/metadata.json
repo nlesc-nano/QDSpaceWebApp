@@ -507,7 +507,7 @@
     "system_type": "II-VI",
     "material": "CdSe",
     "filename": "CdSe-Cd-Cd1072Se928Cl288-reconstructed.xyz",
-    "size": 4.855,
+    "size": 4.853,
     "functional": "",
     "basis": "",
     "run_type": "Start",
@@ -571,18 +571,18 @@
       "diameter_hull": 20.921627
     }
   },
-  "II-VI/CdSe/builder/CdSe-Cd-Cd1625Se1428Cl394-reconstructed/start.xyz": {
+  "II-VI/CdSe/builder/CdSe-Cd-Cd1624Se1428Cl392-reconstructed/start.xyz": {
     "system_type": "II-VI",
     "material": "CdSe",
-    "filename": "CdSe-Cd-Cd1625Se1428Cl394-reconstructed.xyz",
-    "size": 5.582,
+    "filename": "CdSe-Cd-Cd1624Se1428Cl392-reconstructed.xyz",
+    "size": 5.583,
     "functional": "",
     "basis": "",
     "run_type": "Start",
     "code": "QD_Builder",
     "centre": "Cd",
     "surface": "reconstructed",
-    "record_id": "CdSe-Cd-Cd1625Se1428Cl394-reconstructed",
+    "record_id": "CdSe-Cd-Cd1624Se1428Cl392-reconstructed",
     "size_metrics": {
       "R_eff_hull": 25.812169666666666,
       "diameter_hull": 51.62433933333333
@@ -605,18 +605,18 @@
       "diameter_hull": 51.624339
     }
   },
-  "II-VI/CdSe/builder/CdSe-Cd-Cd182Se140Cl84-reconstructed/start.xyz": {
+  "II-VI/CdSe/builder/CdSe-Cd-Cd177Se140Cl74-reconstructed/start.xyz": {
     "system_type": "II-VI",
     "material": "CdSe",
-    "filename": "CdSe-Cd-Cd182Se140Cl84-reconstructed.xyz",
-    "size": 2.678,
+    "filename": "CdSe-Cd-Cd177Se140Cl74-reconstructed.xyz",
+    "size": 2.675,
     "functional": "",
     "basis": "",
     "run_type": "Start",
     "code": "QD_Builder",
     "centre": "Cd",
     "surface": "reconstructed",
-    "record_id": "CdSe-Cd-Cd182Se140Cl84-reconstructed",
+    "record_id": "CdSe-Cd-Cd177Se140Cl74-reconstructed",
     "size_metrics": {
       "R_eff_hull": 13.531085,
       "diameter_hull": 27.06217
@@ -643,7 +643,7 @@
     "system_type": "II-VI",
     "material": "CdSe",
     "filename": "CdSe-Cd-Cd2055Se1810Cl490-reconstructed.xyz",
-    "size": 6.074,
+    "size": 6.073,
     "functional": "",
     "basis": "",
     "run_type": "Start",
@@ -677,7 +677,7 @@
     "system_type": "II-VI",
     "material": "CdSe",
     "filename": "CdSe-Cd-Cd2336Se2080Cl512-reconstructed.xyz",
-    "size": 6.313,
+    "size": 6.311,
     "functional": "",
     "basis": "",
     "run_type": "Start",
@@ -711,7 +711,7 @@
     "system_type": "II-VI",
     "material": "CdSe",
     "filename": "CdSe-Cd-Cd2892Se2579Cl626-reconstructed.xyz",
-    "size": 6.804,
+    "size": 6.803,
     "functional": "",
     "basis": "",
     "run_type": "Start",
@@ -796,7 +796,7 @@
     "system_type": "II-VI",
     "material": "CdSe",
     "filename": "CdSe-Cd-Cd3228Se2904Cl648-reconstructed.xyz",
-    "size": 7.039,
+    "size": 7.037,
     "functional": "",
     "basis": "",
     "run_type": "Start",
@@ -830,7 +830,7 @@
     "system_type": "II-VI",
     "material": "CdSe",
     "filename": "CdSe-Cd-Cd3564Se3240Cl648-reconstructed.xyz",
-    "size": 7.286,
+    "size": 7.283,
     "functional": "",
     "basis": "",
     "run_type": "Start",
@@ -841,6 +841,23 @@
     "size_metrics": {
       "R_eff_hull": 35.022982999999996,
       "diameter_hull": 70.04596599999999
+    }
+  },
+  "II-VI/CdSe/builder/CdSe-Cd-Cd369Se304Cl130-reconstructed/start.xyz": {
+    "system_type": "II-VI",
+    "material": "CdSe",
+    "filename": "CdSe-Cd-Cd369Se304Cl130-reconstructed.xyz",
+    "size": 3.397,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Cd",
+    "surface": "reconstructed",
+    "record_id": "CdSe-Cd-Cd369Se304Cl130-reconstructed",
+    "size_metrics": {
+      "R_eff_hull": 16.601356,
+      "diameter_hull": 33.202712
     }
   },
   "II-VI/CdSe/builder/CdSe-Cd-Cd3739Se3552Cl374-clean/start.xyz": {
@@ -858,23 +875,6 @@
     "size_metrics": {
       "R_eff_hull": 35.022982999999996,
       "diameter_hull": 70.04596599999999
-    }
-  },
-  "II-VI/CdSe/builder/CdSe-Cd-Cd377Se304Cl146-reconstructed/start.xyz": {
-    "system_type": "II-VI",
-    "material": "CdSe",
-    "filename": "CdSe-Cd-Cd377Se304Cl146-reconstructed.xyz",
-    "size": 3.409,
-    "functional": "",
-    "basis": "",
-    "run_type": "Start",
-    "code": "QD_Builder",
-    "centre": "Cd",
-    "surface": "reconstructed",
-    "record_id": "CdSe-Cd-Cd377Se304Cl146-reconstructed",
-    "size_metrics": {
-      "R_eff_hull": 16.601356,
-      "diameter_hull": 33.202712
     }
   },
   "II-VI/CdSe/builder/CdSe-Cd-Cd405Se360Cl90-clean/start.xyz": {
@@ -898,7 +898,7 @@
     "system_type": "II-VI",
     "material": "CdSe",
     "filename": "CdSe-Cd-Cd4320Se3920Cl800-reconstructed.xyz",
-    "size": 7.768,
+    "size": 7.766,
     "functional": "",
     "basis": "",
     "run_type": "Start",
@@ -979,21 +979,21 @@
       "diameter_hull": 14.781084333333334
     }
   },
-  "II-VI/CdSe/builder/CdSe-Cd-Cd664Se560Cl208-reconstructed/start.xyz": {
+  "II-VI/CdSe/builder/CdSe-Cd-Cd660Se560Cl200-reconstructed/start.xyz": {
     "system_type": "II-VI",
     "material": "CdSe",
-    "filename": "CdSe-Cd-Cd664Se560Cl208-reconstructed.xyz",
-    "size": 4.128,
+    "filename": "CdSe-Cd-Cd660Se560Cl200-reconstructed.xyz",
+    "size": 4.127,
     "functional": "",
     "basis": "",
     "run_type": "Start",
     "code": "QD_Builder",
     "centre": "Cd",
     "surface": "reconstructed",
-    "record_id": "CdSe-Cd-Cd664Se560Cl208-reconstructed",
+    "record_id": "CdSe-Cd-Cd660Se560Cl200-reconstructed",
     "size_metrics": {
-      "R_eff_hull": 19.671627333333333,
-      "diameter_hull": 39.34325466666667
+      "R_eff_hull": 19.6716275,
+      "diameter_hull": 39.343255
     }
   },
   "II-VI/CdSe/builder/CdSe-Cd-Cd711Se640Cl142-clean/start.xyz": {
@@ -1047,18 +1047,18 @@
       "diameter_hull": 39.343254
     }
   },
-  "II-VI/CdSe/builder/CdSe-Cd-Cd94Se60Cl68-reconstructed/start.xyz": {
+  "II-VI/CdSe/builder/CdSe-Cd-Cd95Se60Cl70-reconstructed/start.xyz": {
     "system_type": "II-VI",
     "material": "CdSe",
-    "filename": "CdSe-Cd-Cd94Se60Cl68-reconstructed.xyz",
-    "size": 2.178,
+    "filename": "CdSe-Cd-Cd95Se60Cl70-reconstructed.xyz",
+    "size": 2.192,
     "functional": "",
     "basis": "",
     "run_type": "Start",
     "code": "QD_Builder",
     "centre": "Cd",
     "surface": "reconstructed",
-    "record_id": "CdSe-Cd-Cd94Se60Cl68-reconstructed",
+    "record_id": "CdSe-Cd-Cd95Se60Cl70-reconstructed",
     "size_metrics": {
       "R_eff_hull": 10.460813833333333,
       "diameter_hull": 20.921627666666666
@@ -1081,10 +1081,10 @@
       "diameter_hull": 42.413526
     }
   },
-  "II-VI/CdSe/builder/CdSe-Se-Cd1140Se987Cl306-reconstructed/start.xyz": {
+  "II-VI/CdSe/builder/CdSe-Se-Cd1138Se987Cl302-reconstructed/start.xyz": {
     "system_type": "II-VI",
     "material": "CdSe",
-    "filename": "CdSe-Se-Cd1140Se987Cl306-reconstructed.xyz",
+    "filename": "CdSe-Se-Cd1138Se987Cl302-reconstructed.xyz",
     "size": 4.976,
     "functional": "",
     "basis": "",
@@ -1092,7 +1092,7 @@
     "code": "QD_Builder",
     "centre": "Se",
     "surface": "reconstructed",
-    "record_id": "CdSe-Se-Cd1140Se987Cl306-reconstructed",
+    "record_id": "CdSe-Se-Cd1138Se987Cl302-reconstructed",
     "size_metrics": {
       "R_eff_hull": 24.277034,
       "diameter_hull": 48.554068
@@ -1187,7 +1187,7 @@
     "system_type": "II-VI",
     "material": "CdSe",
     "filename": "CdSe-Se-Cd1721Se1517Cl408-reconstructed.xyz",
-    "size": 5.712,
+    "size": 5.71,
     "functional": "",
     "basis": "",
     "run_type": "Start",
@@ -1234,10 +1234,10 @@
       "diameter_hull": 54.69460999999999
     }
   },
-  "II-VI/CdSe/builder/CdSe-Se-Cd1955Se1737Cl436-reconstructed/start.xyz": {
+  "II-VI/CdSe/builder/CdSe-Se-Cd1951Se1737Cl428-reconstructed/start.xyz": {
     "system_type": "II-VI",
     "material": "CdSe",
-    "filename": "CdSe-Se-Cd1955Se1737Cl436-reconstructed.xyz",
+    "filename": "CdSe-Se-Cd1951Se1737Cl428-reconstructed.xyz",
     "size": 5.946,
     "functional": "",
     "basis": "",
@@ -1245,10 +1245,10 @@
     "code": "QD_Builder",
     "centre": "Se",
     "surface": "reconstructed",
-    "record_id": "CdSe-Se-Cd1955Se1737Cl436-reconstructed",
+    "record_id": "CdSe-Se-Cd1951Se1737Cl428-reconstructed",
     "size_metrics": {
-      "R_eff_hull": 27.347305333333328,
-      "diameter_hull": 54.694610666666655
+      "R_eff_hull": 27.34730516666666,
+      "diameter_hull": 54.69461033333332
     }
   },
   "II-VI/CdSe/builder/CdSe-Se-Cd2048Se1877Cl342-clean/start.xyz": {
@@ -1272,7 +1272,7 @@
     "system_type": "II-VI",
     "material": "CdSe",
     "filename": "CdSe-Se-Cd2470Se2205Cl530-reconstructed.xyz",
-    "size": 6.442,
+    "size": 6.44,
     "functional": "",
     "basis": "",
     "run_type": "Start",
@@ -1306,7 +1306,7 @@
     "system_type": "II-VI",
     "material": "CdSe",
     "filename": "CdSe-Se-Cd2750Se2473Cl554-reconstructed.xyz",
-    "size": 6.675,
+    "size": 6.673,
     "functional": "",
     "basis": "",
     "run_type": "Start",
@@ -1374,7 +1374,7 @@
     "system_type": "II-VI",
     "material": "CdSe",
     "filename": "CdSe-Se-Cd3405Se3071Cl668-reconstructed.xyz",
-    "size": 7.174,
+    "size": 7.172,
     "functional": "",
     "basis": "",
     "run_type": "Start",
@@ -1425,7 +1425,7 @@
     "system_type": "II-VI",
     "material": "CdSe",
     "filename": "CdSe-Se-Cd4546Se4135Cl822-reconstructed.xyz",
-    "size": 7.905,
+    "size": 7.904,
     "functional": "",
     "basis": "",
     "run_type": "Start",
@@ -1455,21 +1455,21 @@
       "diameter_hull": 73.11623766666668
     }
   },
-  "II-VI/CdSe/builder/CdSe-Se-Cd501Se421Cl160-reconstructed/start.xyz": {
+  "II-VI/CdSe/builder/CdSe-Se-Cd494Se421Cl146-reconstructed/start.xyz": {
     "system_type": "II-VI",
     "material": "CdSe",
-    "filename": "CdSe-Se-Cd501Se421Cl160-reconstructed.xyz",
-    "size": 3.763,
+    "filename": "CdSe-Se-Cd494Se421Cl146-reconstructed.xyz",
+    "size": 3.753,
     "functional": "",
     "basis": "",
     "run_type": "Start",
     "code": "QD_Builder",
     "centre": "Se",
     "surface": "reconstructed",
-    "record_id": "CdSe-Se-Cd501Se421Cl160-reconstructed",
+    "record_id": "CdSe-Se-Cd494Se421Cl146-reconstructed",
     "size_metrics": {
-      "R_eff_hull": 18.136491666666664,
-      "diameter_hull": 36.27298333333333
+      "R_eff_hull": 18.136491833333334,
+      "diameter_hull": 36.27298366666667
     }
   },
   "II-VI/CdSe/builder/CdSe-Se-Cd540Se477Cl126-clean/start.xyz": {
@@ -1506,6 +1506,23 @@
       "diameter_hull": 36.272984
     }
   },
+  "II-VI/CdSe/builder/CdSe-Se-Cd60Se39Cl42-reconstructed/start.xyz": {
+    "system_type": "II-VI",
+    "material": "CdSe",
+    "filename": "CdSe-Se-Cd60Se39Cl42-reconstructed.xyz",
+    "size": 1.867,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Se",
+    "surface": "reconstructed",
+    "record_id": "CdSe-Se-Cd60Se39Cl42-reconstructed",
+    "size_metrics": {
+      "R_eff_hull": 8.925678,
+      "diameter_hull": 17.851356
+    }
+  },
   "II-VI/CdSe/builder/CdSe-Se-Cd640Se561Cl158-clean/start.xyz": {
     "system_type": "II-VI",
     "material": "CdSe",
@@ -1521,23 +1538,6 @@
     "size_metrics": {
       "R_eff_hull": 18.136491666666668,
       "diameter_hull": 36.272983333333336
-    }
-  },
-  "II-VI/CdSe/builder/CdSe-Se-Cd64Se39Cl50-reconstructed/start.xyz": {
-    "system_type": "II-VI",
-    "material": "CdSe",
-    "filename": "CdSe-Se-Cd64Se39Cl50-reconstructed.xyz",
-    "size": 1.875,
-    "functional": "",
-    "basis": "",
-    "run_type": "Start",
-    "code": "QD_Builder",
-    "centre": "Se",
-    "surface": "reconstructed",
-    "record_id": "CdSe-Se-Cd64Se39Cl50-reconstructed",
-    "size_metrics": {
-      "R_eff_hull": 8.925678,
-      "diameter_hull": 17.851356
     }
   },
   "II-VI/CdSe/builder/CdSe-Se-Cd68Se55Cl26-clean/start.xyz": {
@@ -1557,21 +1557,21 @@
       "diameter_hull": 17.851356
     }
   },
-  "II-VI/CdSe/builder/CdSe-Se-Cd848Se731Cl234-reconstructed/start.xyz": {
+  "II-VI/CdSe/builder/CdSe-Se-Cd843Se731Cl224-reconstructed/start.xyz": {
     "system_type": "II-VI",
     "material": "CdSe",
-    "filename": "CdSe-Se-Cd848Se731Cl234-reconstructed.xyz",
-    "size": 4.489,
+    "filename": "CdSe-Se-Cd843Se731Cl224-reconstructed.xyz",
+    "size": 4.488,
     "functional": "",
     "basis": "",
     "run_type": "Start",
     "code": "QD_Builder",
     "centre": "Se",
     "surface": "reconstructed",
-    "record_id": "CdSe-Se-Cd848Se731Cl234-reconstructed",
+    "record_id": "CdSe-Se-Cd843Se731Cl224-reconstructed",
     "size_metrics": {
-      "R_eff_hull": 21.206762833333332,
-      "diameter_hull": 42.413525666666665
+      "R_eff_hull": 21.206762666666666,
+      "diameter_hull": 42.41352533333333
     }
   },
   "II-VI/CdSe/builder/CdSe-Se-Cd904Se811Cl186-clean/start.xyz": {

@@ -22,18 +22,18 @@
   "n_atoms": 6780,
   "total_charge": 0,
   "centre": "Cd",
-  "centre_offset_A": 0.004,
+  "centre_offset_A": 0.005,
   "size": {
     "n_core": 6132,
-    "d_nm": 7.039,
-    "d_max_nm": 7.864,
+    "d_nm": 7.037,
+    "d_max_nm": 7.865,
     "d_hull_nm": 6.86,
     "unit_cells": 5.5,
     "unit_cells_all": [
       5.5
     ]
   },
-  "fingerprint": "c9afa4205f73ae8d",
+  "fingerprint": "b3a73253f659378b",
   "stages": [
     {
       "stage": "start",
@@ -43,7 +43,7 @@
   "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "63decd1b8b35908fbe0a76ca53b7f7dbd67e03bb",
+    "qd_builder_commit": "47819e394f11895cd074b8e30d980e18e79942e5",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",

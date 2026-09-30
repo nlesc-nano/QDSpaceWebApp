@@ -3,7 +3,7 @@
 - legacy structure groups: 174
 - same start, other functional (merged): 23
 - merged with builder twins: 3
-- meta.yaml written: 137
+- meta.yaml written: 0
 - id collisions (suffixed): 29
 - errors: 2
 
