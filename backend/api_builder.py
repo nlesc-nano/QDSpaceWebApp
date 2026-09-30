@@ -1573,6 +1573,11 @@ def format_facets_for_yaml(facets) -> List[dict]:
             sc = f.get("scope", "family")
             term = f.get("termination", None)
 
+        # "stoichiometric" (non-polar) is a CIF-analysis label, not a builder termination
+        term = str(term).strip().lower() if term is not None else None
+        if term not in ("cation_rich", "anion_rich"):
+            term = None
+
         h_str = _normalize_hkl_string(str(h).strip())
         if sc == "family" and h_str.startswith("-") and term != "anion_rich":
             h_str = h_str.lstrip("-") or h_str
