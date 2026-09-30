@@ -69,6 +69,108 @@
       "diameter_hull": 51.63453377353334
     }
   },
+  "ABX3/CsPbBr3/builder/CsPbBr3-Cs-Cs112Pb64Br240-clean/start.xyz": {
+    "system_type": "ABX3",
+    "material": "CsPbBr3",
+    "filename": "CsPbBr3-Cs-Cs112Pb64Br240-clean.xyz",
+    "size": 3.312,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Cs",
+    "surface": "clean",
+    "record_id": "CsPbBr3-Cs-Cs112Pb64Br240-clean",
+    "size_metrics": {
+      "R_eff_hull": 13.147261499999999,
+      "diameter_hull": 26.294522999999998
+    }
+  },
+  "ABX3/CsPbBr3/builder/CsPbBr3-Cs-Cs1300Pb1000Br3300-clean/start.xyz": {
+    "system_type": "ABX3",
+    "material": "CsPbBr3",
+    "filename": "CsPbBr3-Cs-Cs1300Pb1000Br3300-clean.xyz",
+    "size": 7.958,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Cs",
+    "surface": "clean",
+    "record_id": "CsPbBr3-Cs-Cs1300Pb1000Br3300-clean",
+    "size_metrics": {
+      "R_eff_hull": 30.993154166666667,
+      "diameter_hull": 61.986308333333334
+    }
+  },
+  "ABX3/CsPbBr3/builder/CsPbBr3-Cs-Cs20Pb8Br36-clean/start.xyz": {
+    "system_type": "ABX3",
+    "material": "CsPbBr3",
+    "filename": "CsPbBr3-Cs-Cs20Pb8Br36-clean.xyz",
+    "size": 1.727,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Cs",
+    "surface": "clean",
+    "record_id": "CsPbBr3-Cs-Cs20Pb8Br36-clean",
+    "size_metrics": {
+      "R_eff_hull": 7.1986305,
+      "diameter_hull": 14.397261
+    }
+  },
+  "ABX3/CsPbBr3/builder/CsPbBr3-Cs-Cs2160Pb1728Br5616-clean/start.xyz": {
+    "system_type": "ABX3",
+    "material": "CsPbBr3",
+    "filename": "CsPbBr3-Cs-Cs2160Pb1728Br5616-clean.xyz",
+    "size": 9.498,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Cs",
+    "surface": "clean",
+    "record_id": "CsPbBr3-Cs-Cs2160Pb1728Br5616-clean",
+    "size_metrics": {
+      "R_eff_hull": 36.941784999999996,
+      "diameter_hull": 73.88356999999999
+    }
+  },
+  "ABX3/CsPbBr3/builder/CsPbBr3-Cs-Cs324Pb216Br756-clean/start.xyz": {
+    "system_type": "ABX3",
+    "material": "CsPbBr3",
+    "filename": "CsPbBr3-Cs-Cs324Pb216Br756-clean.xyz",
+    "size": 4.869,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Cs",
+    "surface": "clean",
+    "record_id": "CsPbBr3-Cs-Cs324Pb216Br756-clean",
+    "size_metrics": {
+      "R_eff_hull": 19.095892,
+      "diameter_hull": 38.191784
+    }
+  },
+  "ABX3/CsPbBr3/builder/CsPbBr3-Cs-Cs704Pb512Br1728-clean/start.xyz": {
+    "system_type": "ABX3",
+    "material": "CsPbBr3",
+    "filename": "CsPbBr3-Cs-Cs704Pb512Br1728-clean.xyz",
+    "size": 6.415,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Cs",
+    "surface": "clean",
+    "record_id": "CsPbBr3-Cs-Cs704Pb512Br1728-clean",
+    "size_metrics": {
+      "R_eff_hull": 25.044523166666664,
+      "diameter_hull": 50.08904633333333
+    }
+  },
   "ABX3/CsPbBr3/start/Cs20Pb8Br36_HLE17_12ang_Start.xyz": {
     "system_type": "ABX3",
     "material": "CsPbBr3",
@@ -153,6 +255,108 @@
       "diameter_hull": 50.62350834383333
     }
   },
+  "ABX3/CsPbCl3/builder/CsPbCl3-Cs-Cs112Pb64Cl240-clean/start.xyz": {
+    "system_type": "ABX3",
+    "material": "CsPbCl3",
+    "filename": "CsPbCl3-Cs-Cs112Pb64Cl240-clean.xyz",
+    "size": 3.162,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Cs",
+    "surface": "clean",
+    "record_id": "CsPbCl3-Cs-Cs112Pb64Cl240-clean",
+    "size_metrics": {
+      "R_eff_hull": 12.6096895,
+      "diameter_hull": 25.219379
+    }
+  },
+  "ABX3/CsPbCl3/builder/CsPbCl3-Cs-Cs1300Pb1000Cl3300-clean/start.xyz": {
+    "system_type": "ABX3",
+    "material": "CsPbCl3",
+    "filename": "CsPbCl3-Cs-Cs1300Pb1000Cl3300-clean.xyz",
+    "size": 7.598,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Cs",
+    "surface": "clean",
+    "record_id": "CsPbCl3-Cs-Cs1300Pb1000Cl3300-clean",
+    "size_metrics": {
+      "R_eff_hull": 29.649223833333334,
+      "diameter_hull": 59.29844766666667
+    }
+  },
+  "ABX3/CsPbCl3/builder/CsPbCl3-Cs-Cs20Pb8Cl36-clean/start.xyz": {
+    "system_type": "ABX3",
+    "material": "CsPbCl3",
+    "filename": "CsPbCl3-Cs-Cs20Pb8Cl36-clean.xyz",
+    "size": 1.649,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Cs",
+    "surface": "clean",
+    "record_id": "CsPbCl3-Cs-Cs20Pb8Cl36-clean",
+    "size_metrics": {
+      "R_eff_hull": 6.929844499999999,
+      "diameter_hull": 13.859688999999998
+    }
+  },
+  "ABX3/CsPbCl3/builder/CsPbCl3-Cs-Cs2160Pb1728Cl5616-clean/start.xyz": {
+    "system_type": "ABX3",
+    "material": "CsPbCl3",
+    "filename": "CsPbCl3-Cs-Cs2160Pb1728Cl5616-clean.xyz",
+    "size": 9.069,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Cs",
+    "surface": "clean",
+    "record_id": "CsPbCl3-Cs-Cs2160Pb1728Cl5616-clean",
+    "size_metrics": {
+      "R_eff_hull": 35.32906883333334,
+      "diameter_hull": 70.65813766666668
+    }
+  },
+  "ABX3/CsPbCl3/builder/CsPbCl3-Cs-Cs324Pb216Cl756-clean/start.xyz": {
+    "system_type": "ABX3",
+    "material": "CsPbCl3",
+    "filename": "CsPbCl3-Cs-Cs324Pb216Cl756-clean.xyz",
+    "size": 4.649,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Cs",
+    "surface": "clean",
+    "record_id": "CsPbCl3-Cs-Cs324Pb216Cl756-clean",
+    "size_metrics": {
+      "R_eff_hull": 18.289534333333336,
+      "diameter_hull": 36.57906866666667
+    }
+  },
+  "ABX3/CsPbCl3/builder/CsPbCl3-Cs-Cs704Pb512Cl1728-clean/start.xyz": {
+    "system_type": "ABX3",
+    "material": "CsPbCl3",
+    "filename": "CsPbCl3-Cs-Cs704Pb512Cl1728-clean.xyz",
+    "size": 6.125,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Cs",
+    "surface": "clean",
+    "record_id": "CsPbCl3-Cs-Cs704Pb512Cl1728-clean",
+    "size_metrics": {
+      "R_eff_hull": 23.969379,
+      "diameter_hull": 47.938758
+    }
+  },
   "ABX3/CsPbI3/HLE17/24ang/geo_opt/Cs54Pb27I108_HLE17_24ang_OPT.xyz": {
     "system_type": "ABX3",
     "material": "CsPbI3",
@@ -179,6 +383,108 @@
     "size_metrics": {
       "R_eff_hull": 18.458916936133335,
       "diameter_hull": 36.91783387226667
+    }
+  },
+  "ABX3/CsPbI3/builder/CsPbI3-Cs-Cs112Pb64I240-clean/start.xyz": {
+    "system_type": "ABX3",
+    "material": "CsPbI3",
+    "filename": "CsPbI3-Cs-Cs112Pb64I240-clean.xyz",
+    "size": 3.493,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Cs",
+    "surface": "clean",
+    "record_id": "CsPbI3-Cs-Cs112Pb64I240-clean",
+    "size_metrics": {
+      "R_eff_hull": 13.80028483333333,
+      "diameter_hull": 27.60056966666666
+    }
+  },
+  "ABX3/CsPbI3/builder/CsPbI3-Cs-Cs1300Pb1000I3300-clean/start.xyz": {
+    "system_type": "ABX3",
+    "material": "CsPbI3",
+    "filename": "CsPbI3-Cs-Cs1300Pb1000I3300-clean.xyz",
+    "size": 8.395,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Cs",
+    "surface": "clean",
+    "record_id": "CsPbI3-Cs-Cs1300Pb1000I3300-clean",
+    "size_metrics": {
+      "R_eff_hull": 32.6257115,
+      "diameter_hull": 65.251423
+    }
+  },
+  "ABX3/CsPbI3/builder/CsPbI3-Cs-Cs20Pb8I36-clean/start.xyz": {
+    "system_type": "ABX3",
+    "material": "CsPbI3",
+    "filename": "CsPbI3-Cs-Cs20Pb8I36-clean.xyz",
+    "size": 1.822,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Cs",
+    "surface": "clean",
+    "record_id": "CsPbI3-Cs-Cs20Pb8I36-clean",
+    "size_metrics": {
+      "R_eff_hull": 7.525142,
+      "diameter_hull": 15.050284
+    }
+  },
+  "ABX3/CsPbI3/builder/CsPbI3-Cs-Cs2160Pb1728I5616-clean/start.xyz": {
+    "system_type": "ABX3",
+    "material": "CsPbI3",
+    "filename": "CsPbI3-Cs-Cs2160Pb1728I5616-clean.xyz",
+    "size": 10.019,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Cs",
+    "surface": "clean",
+    "record_id": "CsPbI3-Cs-Cs2160Pb1728I5616-clean",
+    "size_metrics": {
+      "R_eff_hull": 38.900853833333336,
+      "diameter_hull": 77.80170766666667
+    }
+  },
+  "ABX3/CsPbI3/builder/CsPbI3-Cs-Cs324Pb216I756-clean/start.xyz": {
+    "system_type": "ABX3",
+    "material": "CsPbI3",
+    "filename": "CsPbI3-Cs-Cs324Pb216I756-clean.xyz",
+    "size": 5.137,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Cs",
+    "surface": "clean",
+    "record_id": "CsPbI3-Cs-Cs324Pb216I756-clean",
+    "size_metrics": {
+      "R_eff_hull": 20.075427,
+      "diameter_hull": 40.150854
+    }
+  },
+  "ABX3/CsPbI3/builder/CsPbI3-Cs-Cs704Pb512I1728-clean/start.xyz": {
+    "system_type": "ABX3",
+    "material": "CsPbI3",
+    "filename": "CsPbI3-Cs-Cs704Pb512I1728-clean.xyz",
+    "size": 6.767,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Cs",
+    "surface": "clean",
+    "record_id": "CsPbI3-Cs-Cs704Pb512I1728-clean",
+    "size_metrics": {
+      "R_eff_hull": 26.350568999999997,
+      "diameter_hull": 52.70113799999999
     }
   },
   "II-VI/CdS/HLE17/12ang/geo_opt/Cd16S13Cl6_HLE17_12ang_OPT.xyz": {
@@ -17308,6 +17614,465 @@
       "diameter_hull": 38.81178625533334
     }
   },
+  "IV-VI/PbS/builder/PbS-Pb-Pb1115S976Cl278-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-Pb-Pb1115S976Cl278-clean.xyz",
+    "size": 4.759,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbS-Pb-Pb1115S976Cl278-clean",
+    "size_metrics": {
+      "R_eff_hull": 22.166607,
+      "diameter_hull": 44.333214
+    }
+  },
+  "IV-VI/PbS/builder/PbS-Pb-Pb1139S990Cl298-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-Pb-Pb1139S990Cl298-clean.xyz",
+    "size": 4.795,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbS-Pb-Pb1139S990Cl298-clean",
+    "size_metrics": {
+      "R_eff_hull": 22.166607,
+      "diameter_hull": 44.333214
+    }
+  },
+  "IV-VI/PbS/builder/PbS-Pb-Pb1289S1074Cl430-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-Pb-Pb1289S1074Cl430-clean.xyz",
+    "size": 4.991,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbS-Pb-Pb1289S1074Cl430-clean",
+    "size_metrics": {
+      "R_eff_hull": 25.154693999999996,
+      "diameter_hull": 50.30938799999999
+    }
+  },
+  "IV-VI/PbS/builder/PbS-Pb-Pb135S116Cl38-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-Pb-Pb135S116Cl38-clean.xyz",
+    "size": 2.331,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbS-Pb-Pb135S116Cl38-clean",
+    "size_metrics": {
+      "R_eff_hull": 10.21426,
+      "diameter_hull": 20.42852
+    }
+  },
+  "IV-VI/PbS/builder/PbS-Pb-Pb147S130Cl34-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-Pb-Pb147S130Cl34-clean.xyz",
+    "size": 2.429,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbS-Pb-Pb147S130Cl34-clean",
+    "size_metrics": {
+      "R_eff_hull": 10.21426,
+      "diameter_hull": 20.42852
+    }
+  },
+  "IV-VI/PbS/builder/PbS-Pb-Pb297S260Cl74-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-Pb-Pb297S260Cl74-clean.xyz",
+    "size": 3.058,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbS-Pb-Pb297S260Cl74-clean",
+    "size_metrics": {
+      "R_eff_hull": 13.202346999999998,
+      "diameter_hull": 26.404693999999996
+    }
+  },
+  "IV-VI/PbS/builder/PbS-Pb-Pb309S278Cl62-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-Pb-Pb309S278Cl62-clean.xyz",
+    "size": 3.126,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbS-Pb-Pb309S278Cl62-clean",
+    "size_metrics": {
+      "R_eff_hull": 13.202346999999998,
+      "diameter_hull": 26.404693999999996
+    }
+  },
+  "IV-VI/PbS/builder/PbS-Pb-Pb405S320Cl170-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-Pb-Pb405S320Cl170-clean.xyz",
+    "size": 3.353,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbS-Pb-Pb405S320Cl170-clean",
+    "size_metrics": {
+      "R_eff_hull": 16.190433666666667,
+      "diameter_hull": 32.380867333333335
+    }
+  },
+  "IV-VI/PbS/builder/PbS-Pb-Pb43S38Cl10-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-Pb-Pb43S38Cl10-clean.xyz",
+    "size": 1.585,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbS-Pb-Pb43S38Cl10-clean",
+    "size_metrics": {
+      "R_eff_hull": 7.226173499999999,
+      "diameter_hull": 14.452346999999998
+    }
+  },
+  "IV-VI/PbS/builder/PbS-Pb-Pb549S490Cl118-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-Pb-Pb549S490Cl118-clean.xyz",
+    "size": 3.776,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbS-Pb-Pb549S490Cl118-clean",
+    "size_metrics": {
+      "R_eff_hull": 16.190433499999997,
+      "diameter_hull": 32.380866999999995
+    }
+  },
+  "IV-VI/PbS/builder/PbS-Pb-Pb55S48Cl14-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-Pb-Pb55S48Cl14-clean.xyz",
+    "size": 1.747,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbS-Pb-Pb55S48Cl14-clean",
+    "size_metrics": {
+      "R_eff_hull": 7.226173,
+      "diameter_hull": 14.452346
+    }
+  },
+  "IV-VI/PbS/builder/PbS-Pb-Pb687S586Cl202-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-Pb-Pb687S586Cl202-clean.xyz",
+    "size": 4.032,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbS-Pb-Pb687S586Cl202-clean",
+    "size_metrics": {
+      "R_eff_hull": 19.17852,
+      "diameter_hull": 38.35704
+    }
+  },
+  "IV-VI/PbS/builder/PbS-Pb-Pb711S596Cl230-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-Pb-Pb711S596Cl230-clean.xyz",
+    "size": 4.077,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbS-Pb-Pb711S596Cl230-clean",
+    "size_metrics": {
+      "R_eff_hull": 19.17852,
+      "diameter_hull": 38.35704
+    }
+  },
+  "IV-VI/PbS/builder/PbS-S-Pb116S85Cl62-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-S-Pb116S85Cl62-clean.xyz",
+    "size": 2.174,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "S",
+    "surface": "clean",
+    "record_id": "PbS-S-Pb116S85Cl62-clean",
+    "size_metrics": {
+      "R_eff_hull": 10.21426,
+      "diameter_hull": 20.42852
+    }
+  },
+  "IV-VI/PbS/builder/PbS-S-Pb1264S1139Cl250-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-S-Pb1264S1139Cl250-clean.xyz",
+    "size": 4.988,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "S",
+    "surface": "clean",
+    "record_id": "PbS-S-Pb1264S1139Cl250-clean",
+    "size_metrics": {
+      "R_eff_hull": 22.166607,
+      "diameter_hull": 44.333214
+    }
+  },
+  "IV-VI/PbS/builder/PbS-S-Pb1480S1289Cl382-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-S-Pb1480S1289Cl382-clean.xyz",
+    "size": 5.235,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "S",
+    "surface": "clean",
+    "record_id": "PbS-S-Pb1480S1289Cl382-clean",
+    "size_metrics": {
+      "R_eff_hull": 25.15469383333333,
+      "diameter_hull": 50.30938766666666
+    }
+  },
+  "IV-VI/PbS/builder/PbS-S-Pb14S13Cl2-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-S-Pb14S13Cl2-clean.xyz",
+    "size": 1.091,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "S",
+    "surface": "clean",
+    "record_id": "PbS-S-Pb14S13Cl2-clean",
+    "size_metrics": {
+      "R_eff_hull": 4.238087,
+      "diameter_hull": 8.476174
+    }
+  },
+  "IV-VI/PbS/builder/PbS-S-Pb164S147Cl34-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-S-Pb164S147Cl34-clean.xyz",
+    "size": 2.54,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "S",
+    "surface": "clean",
+    "record_id": "PbS-S-Pb164S147Cl34-clean",
+    "size_metrics": {
+      "R_eff_hull": 10.21426,
+      "diameter_hull": 20.42852
+    }
+  },
+  "IV-VI/PbS/builder/PbS-S-Pb260S211Cl98-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-S-Pb260S211Cl98-clean.xyz",
+    "size": 2.892,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "S",
+    "surface": "clean",
+    "record_id": "PbS-S-Pb260S211Cl98-clean",
+    "size_metrics": {
+      "R_eff_hull": 13.202346999999998,
+      "diameter_hull": 26.404693999999996
+    }
+  },
+  "IV-VI/PbS/builder/PbS-S-Pb340S309Cl62-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-S-Pb340S309Cl62-clean.xyz",
+    "size": 3.252,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "S",
+    "surface": "clean",
+    "record_id": "PbS-S-Pb340S309Cl62-clean",
+    "size_metrics": {
+      "R_eff_hull": 13.202346833333332,
+      "diameter_hull": 26.404693666666663
+    }
+  },
+  "IV-VI/PbS/builder/PbS-S-Pb38S21Cl34-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-S-Pb38S21Cl34-clean.xyz",
+    "size": 1.455,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "S",
+    "surface": "clean",
+    "record_id": "PbS-S-Pb38S21Cl34-clean",
+    "size_metrics": {
+      "R_eff_hull": 7.226173,
+      "diameter_hull": 14.452346
+    }
+  },
+  "IV-VI/PbS/builder/PbS-S-Pb466S405Cl122-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-S-Pb466S405Cl122-clean.xyz",
+    "size": 3.544,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "S",
+    "surface": "clean",
+    "record_id": "PbS-S-Pb466S405Cl122-clean",
+    "size_metrics": {
+      "R_eff_hull": 16.1904335,
+      "diameter_hull": 32.380867
+    }
+  },
+  "IV-VI/PbS/builder/PbS-S-Pb490S419Cl142-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-S-Pb490S419Cl142-clean.xyz",
+    "size": 3.606,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "S",
+    "surface": "clean",
+    "record_id": "PbS-S-Pb490S419Cl142-clean",
+    "size_metrics": {
+      "R_eff_hull": 16.190433666666667,
+      "diameter_hull": 32.380867333333335
+    }
+  },
+  "IV-VI/PbS/builder/PbS-S-Pb586S461Cl250-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-S-Pb586S461Cl250-clean.xyz",
+    "size": 3.805,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "S",
+    "surface": "clean",
+    "record_id": "PbS-S-Pb586S461Cl250-clean",
+    "size_metrics": {
+      "R_eff_hull": 19.17852,
+      "diameter_hull": 38.35704
+    }
+  },
+  "IV-VI/PbS/builder/PbS-S-Pb62S55Cl14-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-S-Pb62S55Cl14-clean.xyz",
+    "size": 1.824,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "S",
+    "surface": "clean",
+    "record_id": "PbS-S-Pb62S55Cl14-clean",
+    "size_metrics": {
+      "R_eff_hull": 7.226173333333333,
+      "diameter_hull": 14.452346666666665
+    }
+  },
+  "IV-VI/PbS/builder/PbS-S-Pb802S711Cl182-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-S-Pb802S711Cl182-clean.xyz",
+    "size": 4.269,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "S",
+    "surface": "clean",
+    "record_id": "PbS-S-Pb802S711Cl182-clean",
+    "size_metrics": {
+      "R_eff_hull": 19.178520499999998,
+      "diameter_hull": 38.357040999999995
+    }
+  },
+  "IV-VI/PbS/builder/PbS-S-Pb976S813Cl326-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbS",
+    "filename": "PbS-S-Pb976S813Cl326-clean.xyz",
+    "size": 4.537,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "S",
+    "surface": "clean",
+    "record_id": "PbS-S-Pb976S813Cl326-clean",
+    "size_metrics": {
+      "R_eff_hull": 22.166607,
+      "diameter_hull": 44.333214
+    }
+  },
   "IV-VI/PbSe/PBE/14ang/geo_opt/Pb79Se44Cl70_PBE_14ang_OPT.xyz": {
     "system_type": "IV-VI",
     "material": "PbSe",
@@ -17392,6 +18157,465 @@
       "diameter_hull": 11.943800000000001
     }
   },
+  "IV-VI/PbSe/builder/PbSe-Pb-Pb1115Se976Cl278-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Pb-Pb1115Se976Cl278-clean.xyz",
+    "size": 4.923,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbSe-Pb-Pb1115Se976Cl278-clean",
+    "size_metrics": {
+      "R_eff_hull": 22.885764833333337,
+      "diameter_hull": 45.77152966666667
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Pb-Pb1139Se990Cl298-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Pb-Pb1139Se990Cl298-clean.xyz",
+    "size": 4.961,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbSe-Pb-Pb1139Se990Cl298-clean",
+    "size_metrics": {
+      "R_eff_hull": 22.885765000000003,
+      "diameter_hull": 45.771530000000006
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Pb-Pb1289Se1074Cl430-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Pb-Pb1289Se1074Cl430-clean.xyz",
+    "size": 5.163,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbSe-Pb-Pb1289Se1074Cl430-clean",
+    "size_metrics": {
+      "R_eff_hull": 25.976588000000003,
+      "diameter_hull": 51.953176000000006
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Pb-Pb135Se116Cl38-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Pb-Pb135Se116Cl38-clean.xyz",
+    "size": 2.412,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbSe-Pb-Pb135Se116Cl38-clean",
+    "size_metrics": {
+      "R_eff_hull": 10.522470666666667,
+      "diameter_hull": 21.044941333333334
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Pb-Pb147Se130Cl34-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Pb-Pb147Se130Cl34-clean.xyz",
+    "size": 2.513,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbSe-Pb-Pb147Se130Cl34-clean",
+    "size_metrics": {
+      "R_eff_hull": 10.522471,
+      "diameter_hull": 21.044942
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Pb-Pb297Se260Cl74-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Pb-Pb297Se260Cl74-clean.xyz",
+    "size": 3.163,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbSe-Pb-Pb297Se260Cl74-clean",
+    "size_metrics": {
+      "R_eff_hull": 13.613294000000002,
+      "diameter_hull": 27.226588000000003
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Pb-Pb309Se278Cl62-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Pb-Pb309Se278Cl62-clean.xyz",
+    "size": 3.234,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbSe-Pb-Pb309Se278Cl62-clean",
+    "size_metrics": {
+      "R_eff_hull": 13.613294000000002,
+      "diameter_hull": 27.226588000000003
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Pb-Pb405Se320Cl170-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Pb-Pb405Se320Cl170-clean.xyz",
+    "size": 3.468,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbSe-Pb-Pb405Se320Cl170-clean",
+    "size_metrics": {
+      "R_eff_hull": 16.704118,
+      "diameter_hull": 33.408236
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Pb-Pb43Se38Cl10-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Pb-Pb43Se38Cl10-clean.xyz",
+    "size": 1.64,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbSe-Pb-Pb43Se38Cl10-clean",
+    "size_metrics": {
+      "R_eff_hull": 7.431647166666667,
+      "diameter_hull": 14.863294333333334
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Pb-Pb549Se490Cl118-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Pb-Pb549Se490Cl118-clean.xyz",
+    "size": 3.905,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbSe-Pb-Pb549Se490Cl118-clean",
+    "size_metrics": {
+      "R_eff_hull": 16.704117666666665,
+      "diameter_hull": 33.40823533333333
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Pb-Pb55Se48Cl14-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Pb-Pb55Se48Cl14-clean.xyz",
+    "size": 1.807,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbSe-Pb-Pb55Se48Cl14-clean",
+    "size_metrics": {
+      "R_eff_hull": 7.431647000000001,
+      "diameter_hull": 14.863294000000002
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Pb-Pb687Se586Cl202-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Pb-Pb687Se586Cl202-clean.xyz",
+    "size": 4.171,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbSe-Pb-Pb687Se586Cl202-clean",
+    "size_metrics": {
+      "R_eff_hull": 19.794941166666668,
+      "diameter_hull": 39.589882333333335
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Pb-Pb711Se596Cl230-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Pb-Pb711Se596Cl230-clean.xyz",
+    "size": 4.216,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbSe-Pb-Pb711Se596Cl230-clean",
+    "size_metrics": {
+      "R_eff_hull": 19.794941,
+      "diameter_hull": 39.589882
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Se-Pb116Se85Cl62-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Se-Pb116Se85Cl62-clean.xyz",
+    "size": 2.249,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Se",
+    "surface": "clean",
+    "record_id": "PbSe-Se-Pb116Se85Cl62-clean",
+    "size_metrics": {
+      "R_eff_hull": 10.522471,
+      "diameter_hull": 21.044942
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Se-Pb1264Se1139Cl250-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Se-Pb1264Se1139Cl250-clean.xyz",
+    "size": 5.159,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Se",
+    "surface": "clean",
+    "record_id": "PbSe-Se-Pb1264Se1139Cl250-clean",
+    "size_metrics": {
+      "R_eff_hull": 22.88576466666667,
+      "diameter_hull": 45.77152933333334
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Se-Pb1480Se1289Cl382-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Se-Pb1480Se1289Cl382-clean.xyz",
+    "size": 5.415,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Se",
+    "surface": "clean",
+    "record_id": "PbSe-Se-Pb1480Se1289Cl382-clean",
+    "size_metrics": {
+      "R_eff_hull": 25.97658816666667,
+      "diameter_hull": 51.95317633333334
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Se-Pb14Se13Cl2-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Se-Pb14Se13Cl2-clean.xyz",
+    "size": 1.129,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Se",
+    "surface": "clean",
+    "record_id": "PbSe-Se-Pb14Se13Cl2-clean",
+    "size_metrics": {
+      "R_eff_hull": 4.340824,
+      "diameter_hull": 8.681648
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Se-Pb164Se147Cl34-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Se-Pb164Se147Cl34-clean.xyz",
+    "size": 2.628,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Se",
+    "surface": "clean",
+    "record_id": "PbSe-Se-Pb164Se147Cl34-clean",
+    "size_metrics": {
+      "R_eff_hull": 10.522470833333333,
+      "diameter_hull": 21.044941666666666
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Se-Pb260Se211Cl98-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Se-Pb260Se211Cl98-clean.xyz",
+    "size": 2.991,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Se",
+    "surface": "clean",
+    "record_id": "PbSe-Se-Pb260Se211Cl98-clean",
+    "size_metrics": {
+      "R_eff_hull": 13.613294000000002,
+      "diameter_hull": 27.226588000000003
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Se-Pb340Se309Cl62-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Se-Pb340Se309Cl62-clean.xyz",
+    "size": 3.364,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Se",
+    "surface": "clean",
+    "record_id": "PbSe-Se-Pb340Se309Cl62-clean",
+    "size_metrics": {
+      "R_eff_hull": 13.613294000000002,
+      "diameter_hull": 27.226588000000003
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Se-Pb38Se21Cl34-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Se-Pb38Se21Cl34-clean.xyz",
+    "size": 1.504,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Se",
+    "surface": "clean",
+    "record_id": "PbSe-Se-Pb38Se21Cl34-clean",
+    "size_metrics": {
+      "R_eff_hull": 7.431647000000001,
+      "diameter_hull": 14.863294000000002
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Se-Pb466Se405Cl122-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Se-Pb466Se405Cl122-clean.xyz",
+    "size": 3.666,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Se",
+    "surface": "clean",
+    "record_id": "PbSe-Se-Pb466Se405Cl122-clean",
+    "size_metrics": {
+      "R_eff_hull": 16.7041175,
+      "diameter_hull": 33.408235
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Se-Pb490Se419Cl142-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Se-Pb490Se419Cl142-clean.xyz",
+    "size": 3.73,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Se",
+    "surface": "clean",
+    "record_id": "PbSe-Se-Pb490Se419Cl142-clean",
+    "size_metrics": {
+      "R_eff_hull": 16.704118,
+      "diameter_hull": 33.408236
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Se-Pb586Se461Cl250-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Se-Pb586Se461Cl250-clean.xyz",
+    "size": 3.936,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Se",
+    "surface": "clean",
+    "record_id": "PbSe-Se-Pb586Se461Cl250-clean",
+    "size_metrics": {
+      "R_eff_hull": 19.794941,
+      "diameter_hull": 39.589882
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Se-Pb62Se55Cl14-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Se-Pb62Se55Cl14-clean.xyz",
+    "size": 1.887,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Se",
+    "surface": "clean",
+    "record_id": "PbSe-Se-Pb62Se55Cl14-clean",
+    "size_metrics": {
+      "R_eff_hull": 7.431647000000001,
+      "diameter_hull": 14.863294000000002
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Se-Pb802Se711Cl182-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Se-Pb802Se711Cl182-clean.xyz",
+    "size": 4.415,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Se",
+    "surface": "clean",
+    "record_id": "PbSe-Se-Pb802Se711Cl182-clean",
+    "size_metrics": {
+      "R_eff_hull": 19.794941,
+      "diameter_hull": 39.589882
+    }
+  },
+  "IV-VI/PbSe/builder/PbSe-Se-Pb976Se813Cl326-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbSe",
+    "filename": "PbSe-Se-Pb976Se813Cl326-clean.xyz",
+    "size": 4.694,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Se",
+    "surface": "clean",
+    "record_id": "PbSe-Se-Pb976Se813Cl326-clean",
+    "size_metrics": {
+      "R_eff_hull": 22.885765000000003,
+      "diameter_hull": 45.771530000000006
+    }
+  },
   "IV-VI/PbTe/PBE/14ang/geo_op/Pb79Te44Cl70_PBE_14ang_OPT.xyz": {
     "system_type": "IV-VI",
     "material": "PbTe",
@@ -17474,6 +18698,465 @@
     "size_metrics": {
       "R_eff_hull": 7.393975021666666,
       "diameter_hull": 14.787950043333332
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Pb-Pb1115Te976Cl278-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Pb-Pb1115Te976Cl278-clean.xyz",
+    "size": 5.209,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbTe-Pb-Pb1115Te976Cl278-clean",
+    "size_metrics": {
+      "R_eff_hull": 24.146277666666666,
+      "diameter_hull": 48.29255533333333
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Pb-Pb1139Te990Cl298-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Pb-Pb1139Te990Cl298-clean.xyz",
+    "size": 5.248,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbTe-Pb-Pb1139Te990Cl298-clean",
+    "size_metrics": {
+      "R_eff_hull": 24.146278,
+      "diameter_hull": 48.292556
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Pb-Pb1289Te1074Cl430-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Pb-Pb1289Te1074Cl430-clean.xyz",
+    "size": 5.464,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbTe-Pb-Pb1289Te1074Cl430-clean",
+    "size_metrics": {
+      "R_eff_hull": 27.417174,
+      "diameter_hull": 54.834348
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Pb-Pb135Te116Cl38-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Pb-Pb135Te116Cl38-clean.xyz",
+    "size": 2.552,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbTe-Pb-Pb135Te116Cl38-clean",
+    "size_metrics": {
+      "R_eff_hull": 11.06269033333333,
+      "diameter_hull": 22.12538066666666
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Pb-Pb147Te130Cl34-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Pb-Pb147Te130Cl34-clean.xyz",
+    "size": 2.659,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbTe-Pb-Pb147Te130Cl34-clean",
+    "size_metrics": {
+      "R_eff_hull": 11.062689999999998,
+      "diameter_hull": 22.125379999999996
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Pb-Pb297Te260Cl74-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Pb-Pb297Te260Cl74-clean.xyz",
+    "size": 3.347,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbTe-Pb-Pb297Te260Cl74-clean",
+    "size_metrics": {
+      "R_eff_hull": 14.333587,
+      "diameter_hull": 28.667174
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Pb-Pb309Te278Cl62-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Pb-Pb309Te278Cl62-clean.xyz",
+    "size": 3.422,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbTe-Pb-Pb309Te278Cl62-clean",
+    "size_metrics": {
+      "R_eff_hull": 14.333587,
+      "diameter_hull": 28.667174
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Pb-Pb405Te320Cl170-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Pb-Pb405Te320Cl170-clean.xyz",
+    "size": 3.67,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbTe-Pb-Pb405Te320Cl170-clean",
+    "size_metrics": {
+      "R_eff_hull": 17.604484,
+      "diameter_hull": 35.208968
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Pb-Pb43Te38Cl10-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Pb-Pb43Te38Cl10-clean.xyz",
+    "size": 1.735,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbTe-Pb-Pb43Te38Cl10-clean",
+    "size_metrics": {
+      "R_eff_hull": 7.791793666666667,
+      "diameter_hull": 15.583587333333334
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Pb-Pb549Te490Cl118-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Pb-Pb549Te490Cl118-clean.xyz",
+    "size": 4.133,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbTe-Pb-Pb549Te490Cl118-clean",
+    "size_metrics": {
+      "R_eff_hull": 17.604484,
+      "diameter_hull": 35.208968
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Pb-Pb55Te48Cl14-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Pb-Pb55Te48Cl14-clean.xyz",
+    "size": 1.912,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbTe-Pb-Pb55Te48Cl14-clean",
+    "size_metrics": {
+      "R_eff_hull": 7.791794,
+      "diameter_hull": 15.583588
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Pb-Pb687Te586Cl202-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Pb-Pb687Te586Cl202-clean.xyz",
+    "size": 4.414,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbTe-Pb-Pb687Te586Cl202-clean",
+    "size_metrics": {
+      "R_eff_hull": 20.875381,
+      "diameter_hull": 41.750762
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Pb-Pb711Te596Cl230-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Pb-Pb711Te596Cl230-clean.xyz",
+    "size": 4.462,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Pb",
+    "surface": "clean",
+    "record_id": "PbTe-Pb-Pb711Te596Cl230-clean",
+    "size_metrics": {
+      "R_eff_hull": 20.875381,
+      "diameter_hull": 41.750762
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Te-Pb116Te85Cl62-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Te-Pb116Te85Cl62-clean.xyz",
+    "size": 2.38,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Te",
+    "surface": "clean",
+    "record_id": "PbTe-Te-Pb116Te85Cl62-clean",
+    "size_metrics": {
+      "R_eff_hull": 11.062689999999998,
+      "diameter_hull": 22.125379999999996
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Te-Pb1264Te1139Cl250-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Te-Pb1264Te1139Cl250-clean.xyz",
+    "size": 5.46,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Te",
+    "surface": "clean",
+    "record_id": "PbTe-Te-Pb1264Te1139Cl250-clean",
+    "size_metrics": {
+      "R_eff_hull": 24.1462775,
+      "diameter_hull": 48.292555
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Te-Pb1480Te1289Cl382-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Te-Pb1480Te1289Cl382-clean.xyz",
+    "size": 5.731,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Te",
+    "surface": "clean",
+    "record_id": "PbTe-Te-Pb1480Te1289Cl382-clean",
+    "size_metrics": {
+      "R_eff_hull": 27.4171745,
+      "diameter_hull": 54.834349
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Te-Pb14Te13Cl2-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Te-Pb14Te13Cl2-clean.xyz",
+    "size": 1.194,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Te",
+    "surface": "clean",
+    "record_id": "PbTe-Te-Pb14Te13Cl2-clean",
+    "size_metrics": {
+      "R_eff_hull": 5.611196,
+      "diameter_hull": 11.222392
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Te-Pb164Te147Cl34-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Te-Pb164Te147Cl34-clean.xyz",
+    "size": 2.781,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Te",
+    "surface": "clean",
+    "record_id": "PbTe-Te-Pb164Te147Cl34-clean",
+    "size_metrics": {
+      "R_eff_hull": 14.333587000000001,
+      "diameter_hull": 28.667174000000003
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Te-Pb260Te211Cl98-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Te-Pb260Te211Cl98-clean.xyz",
+    "size": 3.165,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Te",
+    "surface": "clean",
+    "record_id": "PbTe-Te-Pb260Te211Cl98-clean",
+    "size_metrics": {
+      "R_eff_hull": 14.333587,
+      "diameter_hull": 28.667174
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Te-Pb340Te309Cl62-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Te-Pb340Te309Cl62-clean.xyz",
+    "size": 3.56,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Te",
+    "surface": "clean",
+    "record_id": "PbTe-Te-Pb340Te309Cl62-clean",
+    "size_metrics": {
+      "R_eff_hull": 17.604484166666666,
+      "diameter_hull": 35.20896833333333
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Te-Pb38Te21Cl34-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Te-Pb38Te21Cl34-clean.xyz",
+    "size": 1.592,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Te",
+    "surface": "clean",
+    "record_id": "PbTe-Te-Pb38Te21Cl34-clean",
+    "size_metrics": {
+      "R_eff_hull": 7.791794,
+      "diameter_hull": 15.583588
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Te-Pb466Te405Cl122-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Te-Pb466Te405Cl122-clean.xyz",
+    "size": 3.879,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Te",
+    "surface": "clean",
+    "record_id": "PbTe-Te-Pb466Te405Cl122-clean",
+    "size_metrics": {
+      "R_eff_hull": 17.604484,
+      "diameter_hull": 35.208968
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Te-Pb490Te419Cl142-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Te-Pb490Te419Cl142-clean.xyz",
+    "size": 3.947,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Te",
+    "surface": "clean",
+    "record_id": "PbTe-Te-Pb490Te419Cl142-clean",
+    "size_metrics": {
+      "R_eff_hull": 17.604484,
+      "diameter_hull": 35.208968
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Te-Pb586Te461Cl250-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Te-Pb586Te461Cl250-clean.xyz",
+    "size": 4.165,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Te",
+    "surface": "clean",
+    "record_id": "PbTe-Te-Pb586Te461Cl250-clean",
+    "size_metrics": {
+      "R_eff_hull": 20.875381,
+      "diameter_hull": 41.750762
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Te-Pb62Te55Cl14-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Te-Pb62Te55Cl14-clean.xyz",
+    "size": 1.997,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Te",
+    "surface": "clean",
+    "record_id": "PbTe-Te-Pb62Te55Cl14-clean",
+    "size_metrics": {
+      "R_eff_hull": 11.06269033333333,
+      "diameter_hull": 22.12538066666666
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Te-Pb802Te711Cl182-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Te-Pb802Te711Cl182-clean.xyz",
+    "size": 4.673,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Te",
+    "surface": "clean",
+    "record_id": "PbTe-Te-Pb802Te711Cl182-clean",
+    "size_metrics": {
+      "R_eff_hull": 20.875381,
+      "diameter_hull": 41.750762
+    }
+  },
+  "IV-VI/PbTe/builder/PbTe-Te-Pb976Te813Cl326-clean/start.xyz": {
+    "system_type": "IV-VI",
+    "material": "PbTe",
+    "filename": "PbTe-Te-Pb976Te813Cl326-clean.xyz",
+    "size": 4.966,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Te",
+    "surface": "clean",
+    "record_id": "PbTe-Te-Pb976Te813Cl326-clean",
+    "size_metrics": {
+      "R_eff_hull": 24.146278,
+      "diameter_hull": 48.292556
     }
   }
 }

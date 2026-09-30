@@ -1,0 +1,31 @@
+centre,unit_cells,surface,status,id,formula,d_nm,n_atoms,Q
+Pb,0.5,clean,rejected: core 0 < 20 atoms; centre detected as unknown,,,0.0,0,0
+Pb,0.75,clean,rejected: charge -2,,Pb13Se14,1.129,27,-2
+Pb,1.0,clean,kept,PbSe-Pb-Pb43Se38Cl10-clean,Pb43Se38Cl10,1.64,91,0
+Pb,1.25,clean,kept,PbSe-Pb-Pb55Se48Cl14-clean,Pb55Se48Cl14,1.807,117,0
+Pb,1.5,clean,kept,PbSe-Pb-Pb135Se116Cl38-clean,Pb135Se116Cl38,2.412,289,0
+Pb,1.75,clean,kept,PbSe-Pb-Pb147Se130Cl34-clean,Pb147Se130Cl34,2.513,311,0
+Pb,2.0,clean,kept,PbSe-Pb-Pb297Se260Cl74-clean,Pb297Se260Cl74,3.163,631,0
+Pb,2.25,clean,kept,PbSe-Pb-Pb309Se278Cl62-clean,Pb309Se278Cl62,3.234,649,0
+Pb,2.5,clean,kept,PbSe-Pb-Pb549Se490Cl118-clean,Pb549Se490Cl118,3.905,1157,0
+Pb,2.75,clean,kept,PbSe-Pb-Pb405Se320Cl170-clean,Pb405Se320Cl170,3.468,895,0
+Pb,3.0,clean,kept,PbSe-Pb-Pb687Se586Cl202-clean,Pb687Se586Cl202,4.171,1475,0
+Pb,3.25,clean,kept,PbSe-Pb-Pb711Se596Cl230-clean,Pb711Se596Cl230,4.216,1537,0
+Pb,3.5,clean,kept,PbSe-Pb-Pb1115Se976Cl278-clean,Pb1115Se976Cl278,4.923,2369,0
+Pb,3.75,clean,kept,PbSe-Pb-Pb1139Se990Cl298-clean,Pb1139Se990Cl298,4.961,2427,0
+Pb,4.0,clean,kept,PbSe-Pb-Pb1289Se1074Cl430-clean,Pb1289Se1074Cl430,5.163,2793,0
+Se,0.5,clean,rejected: charge -2; core 7 < 20 atoms,,Pb6Se1Cl12,0.739,19,-2
+Se,0.75,clean,kept,PbSe-Se-Pb14Se13Cl2-clean,Pb14Se13Cl2,1.129,29,0
+Se,1.0,clean,kept,PbSe-Se-Pb38Se21Cl34-clean,Pb38Se21Cl34,1.504,93,0
+Se,1.25,clean,kept,PbSe-Se-Pb62Se55Cl14-clean,Pb62Se55Cl14,1.887,131,0
+Se,1.5,clean,kept,PbSe-Se-Pb116Se85Cl62-clean,Pb116Se85Cl62,2.249,263,0
+Se,1.75,clean,kept,PbSe-Se-Pb164Se147Cl34-clean,Pb164Se147Cl34,2.628,345,0
+Se,2.0,clean,kept,PbSe-Se-Pb260Se211Cl98-clean,Pb260Se211Cl98,2.991,569,0
+Se,2.25,clean,kept,PbSe-Se-Pb340Se309Cl62-clean,Pb340Se309Cl62,3.364,711,0
+Se,2.5,clean,kept,PbSe-Se-Pb490Se419Cl142-clean,Pb490Se419Cl142,3.73,1051,0
+Se,2.75,clean,kept,PbSe-Se-Pb466Se405Cl122-clean,Pb466Se405Cl122,3.666,993,0
+Se,3.0,clean,kept,PbSe-Se-Pb586Se461Cl250-clean,Pb586Se461Cl250,3.936,1297,0
+Se,3.25,clean,kept,PbSe-Se-Pb802Se711Cl182-clean,Pb802Se711Cl182,4.415,1695,0
+Se,3.5,clean,kept,PbSe-Se-Pb976Se813Cl326-clean,Pb976Se813Cl326,4.694,2115,0
+Se,3.75,clean,kept,PbSe-Se-Pb1264Se1139Cl250-clean,Pb1264Se1139Cl250,5.159,2653,0
+Se,4.0,clean,kept,PbSe-Se-Pb1480Se1289Cl382-clean,Pb1480Se1289Cl382,5.415,3151,0

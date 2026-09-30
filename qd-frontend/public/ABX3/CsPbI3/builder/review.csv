@@ -1,0 +1,7 @@
+centre,unit_cells,surface,status,id,formula,d_nm,n_atoms,Q
+Cs,1.0,clean,kept,CsPbI3-Cs-Cs20Pb8I36-clean,Cs20Pb8I36,1.822,64,0
+Cs,2.0,clean,kept,CsPbI3-Cs-Cs112Pb64I240-clean,Cs112Pb64I240,3.493,416,0
+Cs,3.0,clean,kept,CsPbI3-Cs-Cs324Pb216I756-clean,Cs324Pb216I756,5.137,1296,0
+Cs,4.0,clean,kept,CsPbI3-Cs-Cs704Pb512I1728-clean,Cs704Pb512I1728,6.767,2944,0
+Cs,5.0,clean,kept,CsPbI3-Cs-Cs1300Pb1000I3300-clean,Cs1300Pb1000I3300,8.395,5600,0
+Cs,6.0,clean,kept,CsPbI3-Cs-Cs2160Pb1728I5616-clean,Cs2160Pb1728I5616,10.019,9504,0

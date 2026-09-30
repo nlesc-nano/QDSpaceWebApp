@@ -1,7 +1,1636 @@
 {
  "schema_version": 1,
- "generated": "2026-09-30T14:44:33+00:00",
+ "generated": "2026-09-30T15:09:52+00:00",
  "structures": [
+  {
+   "schema_version": 1,
+   "id": "CsPbBr3-Cs-Cs112Pb64Br240-clean",
+   "material": "CsPbBr3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs112Pb64Br240",
+   "composition": {
+    "Cs": 112,
+    "Pb": 64,
+    "Br": 240
+   },
+   "core": {
+    "Cs": 112,
+    "Pb": 64,
+    "Br": 240
+   },
+   "ligands": {},
+   "n_atoms": 416,
+   "total_charge": 0,
+   "centre": "Cs",
+   "centre_offset_A": 0.121,
+   "size": {
+    "n_core": 416,
+    "d_nm": 3.312,
+    "d_max_nm": 3.59,
+    "d_hull_nm": 2.932,
+    "unit_cells": 2.0,
+    "unit_cells_all": [
+     2.0
+    ]
+   },
+   "fingerprint": "30172b9925f08fbe",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbBr3/builder/CsPbBr3-Cs-Cs112Pb64Br240-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbbr3_cubic.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "CsPbBr3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Br": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.0,
+      2.0,
+      2.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Cs"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbBr3-Cs-Cs1300Pb1000Br3300-clean",
+   "material": "CsPbBr3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs1300Pb1000Br3300",
+   "composition": {
+    "Cs": 1300,
+    "Pb": 1000,
+    "Br": 3300
+   },
+   "core": {
+    "Cs": 1300,
+    "Pb": 1000,
+    "Br": 3300
+   },
+   "ligands": {},
+   "n_atoms": 5600,
+   "total_charge": 0,
+   "centre": "Cs",
+   "centre_offset_A": 0.037,
+   "size": {
+    "n_core": 5600,
+    "d_nm": 7.958,
+    "d_max_nm": 9.672,
+    "d_hull_nm": 7.377,
+    "unit_cells": 5.0,
+    "unit_cells_all": [
+     5.0
+    ]
+   },
+   "fingerprint": "5f08309fa500f7a0",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbBr3/builder/CsPbBr3-Cs-Cs1300Pb1000Br3300-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbbr3_cubic.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "CsPbBr3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Br": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      5.0,
+      5.0,
+      5.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Cs"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbBr3-Cs-Cs20Pb8Br36-clean",
+   "material": "CsPbBr3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder+dft",
+   "formula": "Cs20Pb8Br36",
+   "composition": {
+    "Cs": 20,
+    "Pb": 8,
+    "Br": 36
+   },
+   "core": {
+    "Cs": 20,
+    "Pb": 8,
+    "Br": 36
+   },
+   "ligands": {},
+   "n_atoms": 64,
+   "total_charge": 0,
+   "centre": "Cs",
+   "centre_offset_A": 0.161,
+   "size": {
+    "n_core": 64,
+    "d_nm": 1.727,
+    "d_max_nm": 2.028,
+    "d_hull_nm": 1.401,
+    "unit_cells": 1.0,
+    "unit_cells_all": [
+     1.0
+    ]
+   },
+   "fingerprint": "ee7d14b569be524d",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbBr3/builder/CsPbBr3-Cs-Cs20Pb8Br36-clean/start.xyz"
+    },
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbBr3/start/Cs20Pb8Br36_HLE17_12ang_Start.xyz",
+     "dft_start": true
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbbr3_cubic.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "CsPbBr3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Br": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Cs"
+     }
+    },
+    "legacy_paths": [
+     "ABX3/CsPbBr3"
+    ],
+    "dft_twin_deviation_A": 0.0
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbBr3-Cs-Cs2160Pb1728Br5616-clean",
+   "material": "CsPbBr3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs2160Pb1728Br5616",
+   "composition": {
+    "Cs": 2160,
+    "Pb": 1728,
+    "Br": 5616
+   },
+   "core": {
+    "Cs": 2160,
+    "Pb": 1728,
+    "Br": 5616
+   },
+   "ligands": {},
+   "n_atoms": 9504,
+   "total_charge": 0,
+   "centre": "Cs",
+   "centre_offset_A": 0.011,
+   "size": {
+    "n_core": 9504,
+    "d_nm": 9.498,
+    "d_max_nm": 11.719,
+    "d_hull_nm": 8.854,
+    "unit_cells": 6.0,
+    "unit_cells_all": [
+     6.0
+    ]
+   },
+   "fingerprint": "135b0dea780ed34f",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbBr3/builder/CsPbBr3-Cs-Cs2160Pb1728Br5616-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbbr3_cubic.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "CsPbBr3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Br": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      6.0,
+      6.0,
+      6.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Cs"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbBr3-Cs-Cs324Pb216Br756-clean",
+   "material": "CsPbBr3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs324Pb216Br756",
+   "composition": {
+    "Cs": 324,
+    "Pb": 216,
+    "Br": 756
+   },
+   "core": {
+    "Cs": 324,
+    "Pb": 216,
+    "Br": 756
+   },
+   "ligands": {},
+   "n_atoms": 1296,
+   "total_charge": 0,
+   "centre": "Cs",
+   "centre_offset_A": 0.019,
+   "size": {
+    "n_core": 1296,
+    "d_nm": 4.869,
+    "d_max_nm": 5.584,
+    "d_hull_nm": 4.419,
+    "unit_cells": 3.0,
+    "unit_cells_all": [
+     3.0
+    ]
+   },
+   "fingerprint": "08fee3b71db3ddd8",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbBr3/builder/CsPbBr3-Cs-Cs324Pb216Br756-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbbr3_cubic.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "CsPbBr3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Br": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.0,
+      3.0,
+      3.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Cs"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbBr3-Cs-Cs704Pb512Br1728-clean",
+   "material": "CsPbBr3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs704Pb512Br1728",
+   "composition": {
+    "Cs": 704,
+    "Pb": 512,
+    "Br": 1728
+   },
+   "core": {
+    "Cs": 704,
+    "Pb": 512,
+    "Br": 1728
+   },
+   "ligands": {},
+   "n_atoms": 2944,
+   "total_charge": 0,
+   "centre": "Cs",
+   "centre_offset_A": 0.044,
+   "size": {
+    "n_core": 2944,
+    "d_nm": 6.415,
+    "d_max_nm": 7.625,
+    "d_hull_nm": 5.899,
+    "unit_cells": 4.0,
+    "unit_cells_all": [
+     4.0
+    ]
+   },
+   "fingerprint": "1fd0d91b738da7b7",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbBr3/builder/CsPbBr3-Cs-Cs704Pb512Br1728-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbbr3_cubic.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "CsPbBr3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Br": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      4.0,
+      4.0,
+      4.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Cs"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbCl3-Cs-Cs112Pb64Cl240-clean",
+   "material": "CsPbCl3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs112Pb64Cl240",
+   "composition": {
+    "Cs": 112,
+    "Pb": 64,
+    "Cl": 240
+   },
+   "core": {
+    "Cs": 112,
+    "Pb": 64,
+    "Cl": 240
+   },
+   "ligands": {},
+   "n_atoms": 416,
+   "total_charge": 0,
+   "centre": "Cs",
+   "centre_offset_A": 0.116,
+   "size": {
+    "n_core": 416,
+    "d_nm": 3.162,
+    "d_max_nm": 3.428,
+    "d_hull_nm": 2.799,
+    "unit_cells": 2.0,
+    "unit_cells_all": [
+     2.0
+    ]
+   },
+   "fingerprint": "7d350454a0276d87",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbCl3/builder/CsPbCl3-Cs-Cs112Pb64Cl240-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbcl3_cubic.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "CsPbCl3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Cl": -1,
+      "Br": -1
+     },
+     "passivation": {
+      "ligand": "Br",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.0,
+      2.0,
+      2.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Cs"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbCl3-Cs-Cs1300Pb1000Cl3300-clean",
+   "material": "CsPbCl3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs1300Pb1000Cl3300",
+   "composition": {
+    "Cs": 1300,
+    "Pb": 1000,
+    "Cl": 3300
+   },
+   "core": {
+    "Cs": 1300,
+    "Pb": 1000,
+    "Cl": 3300
+   },
+   "ligands": {},
+   "n_atoms": 5600,
+   "total_charge": 0,
+   "centre": "Cs",
+   "centre_offset_A": 0.051,
+   "size": {
+    "n_core": 5600,
+    "d_nm": 7.598,
+    "d_max_nm": 9.236,
+    "d_hull_nm": 7.044,
+    "unit_cells": 5.0,
+    "unit_cells_all": [
+     5.0
+    ]
+   },
+   "fingerprint": "e69deb90f405c9f9",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbCl3/builder/CsPbCl3-Cs-Cs1300Pb1000Cl3300-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbcl3_cubic.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "CsPbCl3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Cl": -1,
+      "Br": -1
+     },
+     "passivation": {
+      "ligand": "Br",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      5.0,
+      5.0,
+      5.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Cs"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbCl3-Cs-Cs20Pb8Cl36-clean",
+   "material": "CsPbCl3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs20Pb8Cl36",
+   "composition": {
+    "Cs": 20,
+    "Pb": 8,
+    "Cl": 36
+   },
+   "core": {
+    "Cs": 20,
+    "Pb": 8,
+    "Cl": 36
+   },
+   "ligands": {},
+   "n_atoms": 64,
+   "total_charge": 0,
+   "centre": "Cs",
+   "centre_offset_A": 0.154,
+   "size": {
+    "n_core": 64,
+    "d_nm": 1.649,
+    "d_max_nm": 1.937,
+    "d_hull_nm": 1.337,
+    "unit_cells": 1.0,
+    "unit_cells_all": [
+     1.0
+    ]
+   },
+   "fingerprint": "8af4ade3dd89dbf7",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbCl3/builder/CsPbCl3-Cs-Cs20Pb8Cl36-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbcl3_cubic.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "CsPbCl3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Cl": -1,
+      "Br": -1
+     },
+     "passivation": {
+      "ligand": "Br",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Cs"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbCl3-Cs-Cs2160Pb1728Cl5616-clean",
+   "material": "CsPbCl3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs2160Pb1728Cl5616",
+   "composition": {
+    "Cs": 2160,
+    "Pb": 1728,
+    "Cl": 5616
+   },
+   "core": {
+    "Cs": 2160,
+    "Pb": 1728,
+    "Cl": 5616
+   },
+   "ligands": {},
+   "n_atoms": 9504,
+   "total_charge": 0,
+   "centre": "Cs",
+   "centre_offset_A": 0.011,
+   "size": {
+    "n_core": 9504,
+    "d_nm": 9.069,
+    "d_max_nm": 11.19,
+    "d_hull_nm": 8.454,
+    "unit_cells": 6.0,
+    "unit_cells_all": [
+     6.0
+    ]
+   },
+   "fingerprint": "eabe075f62b94074",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbCl3/builder/CsPbCl3-Cs-Cs2160Pb1728Cl5616-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbcl3_cubic.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "CsPbCl3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Cl": -1,
+      "Br": -1
+     },
+     "passivation": {
+      "ligand": "Br",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      6.0,
+      6.0,
+      6.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Cs"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbCl3-Cs-Cs324Pb216Cl756-clean",
+   "material": "CsPbCl3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs324Pb216Cl756",
+   "composition": {
+    "Cs": 324,
+    "Pb": 216,
+    "Cl": 756
+   },
+   "core": {
+    "Cs": 324,
+    "Pb": 216,
+    "Cl": 756
+   },
+   "ligands": {},
+   "n_atoms": 1296,
+   "total_charge": 0,
+   "centre": "Cs",
+   "centre_offset_A": 0.019,
+   "size": {
+    "n_core": 1296,
+    "d_nm": 4.649,
+    "d_max_nm": 5.332,
+    "d_hull_nm": 4.219,
+    "unit_cells": 3.0,
+    "unit_cells_all": [
+     3.0
+    ]
+   },
+   "fingerprint": "2bee3e13f8018af2",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbCl3/builder/CsPbCl3-Cs-Cs324Pb216Cl756-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbcl3_cubic.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "CsPbCl3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Cl": -1,
+      "Br": -1
+     },
+     "passivation": {
+      "ligand": "Br",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.0,
+      3.0,
+      3.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Cs"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbCl3-Cs-Cs704Pb512Cl1728-clean",
+   "material": "CsPbCl3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs704Pb512Cl1728",
+   "composition": {
+    "Cs": 704,
+    "Pb": 512,
+    "Cl": 1728
+   },
+   "core": {
+    "Cs": 704,
+    "Pb": 512,
+    "Cl": 1728
+   },
+   "ligands": {},
+   "n_atoms": 2944,
+   "total_charge": 0,
+   "centre": "Cs",
+   "centre_offset_A": 0.032,
+   "size": {
+    "n_core": 2944,
+    "d_nm": 6.125,
+    "d_max_nm": 7.28,
+    "d_hull_nm": 5.633,
+    "unit_cells": 4.0,
+    "unit_cells_all": [
+     4.0
+    ]
+   },
+   "fingerprint": "f23c032add4a0401",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbCl3/builder/CsPbCl3-Cs-Cs704Pb512Cl1728-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbcl3_cubic.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "CsPbCl3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Cl": -1,
+      "Br": -1
+     },
+     "passivation": {
+      "ligand": "Br",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      4.0,
+      4.0,
+      4.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Cs"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbI3-Cs-Cs112Pb64I240-clean",
+   "material": "CsPbI3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs112Pb64I240",
+   "composition": {
+    "Cs": 112,
+    "Pb": 64,
+    "I": 240
+   },
+   "core": {
+    "Cs": 112,
+    "Pb": 64,
+    "I": 240
+   },
+   "ligands": {},
+   "n_atoms": 416,
+   "total_charge": 0,
+   "centre": "Cs",
+   "centre_offset_A": 0.095,
+   "size": {
+    "n_core": 416,
+    "d_nm": 3.493,
+    "d_max_nm": 3.781,
+    "d_hull_nm": 3.092,
+    "unit_cells": 2.0,
+    "unit_cells_all": [
+     2.0
+    ]
+   },
+   "fingerprint": "263d74dcbe1f0605",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbI3/builder/CsPbI3-Cs-Cs112Pb64I240-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbi3_cubic.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "CsPbI3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "I": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.0,
+      2.0,
+      2.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Cs"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbI3-Cs-Cs1300Pb1000I3300-clean",
+   "material": "CsPbI3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs1300Pb1000I3300",
+   "composition": {
+    "Cs": 1300,
+    "Pb": 1000,
+    "I": 3300
+   },
+   "core": {
+    "Cs": 1300,
+    "Pb": 1000,
+    "I": 3300
+   },
+   "ligands": {},
+   "n_atoms": 5600,
+   "total_charge": 0,
+   "centre": "Cs",
+   "centre_offset_A": 0.036,
+   "size": {
+    "n_core": 5600,
+    "d_nm": 8.395,
+    "d_max_nm": 10.202,
+    "d_hull_nm": 7.782,
+    "unit_cells": 5.0,
+    "unit_cells_all": [
+     5.0
+    ]
+   },
+   "fingerprint": "606edaae18e8f8d0",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbI3/builder/CsPbI3-Cs-Cs1300Pb1000I3300-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbi3_cubic.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "CsPbI3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "I": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      5.0,
+      5.0,
+      5.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Cs"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbI3-Cs-Cs20Pb8I36-clean",
+   "material": "CsPbI3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs20Pb8I36",
+   "composition": {
+    "Cs": 20,
+    "Pb": 8,
+    "I": 36
+   },
+   "core": {
+    "Cs": 20,
+    "Pb": 8,
+    "I": 36
+   },
+   "ligands": {},
+   "n_atoms": 64,
+   "total_charge": 0,
+   "centre": "Cs",
+   "centre_offset_A": 0.17,
+   "size": {
+    "n_core": 64,
+    "d_nm": 1.822,
+    "d_max_nm": 2.14,
+    "d_hull_nm": 1.477,
+    "unit_cells": 1.0,
+    "unit_cells_all": [
+     1.0
+    ]
+   },
+   "fingerprint": "b6cb8b2ff9777acc",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbI3/builder/CsPbI3-Cs-Cs20Pb8I36-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbi3_cubic.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "CsPbI3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "I": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Cs"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbI3-Cs-Cs2160Pb1728I5616-clean",
+   "material": "CsPbI3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs2160Pb1728I5616",
+   "composition": {
+    "Cs": 2160,
+    "Pb": 1728,
+    "I": 5616
+   },
+   "core": {
+    "Cs": 2160,
+    "Pb": 1728,
+    "I": 5616
+   },
+   "ligands": {},
+   "n_atoms": 9504,
+   "total_charge": 0,
+   "centre": "Cs",
+   "centre_offset_A": 0.012,
+   "size": {
+    "n_core": 9504,
+    "d_nm": 10.019,
+    "d_max_nm": 12.362,
+    "d_hull_nm": 9.34,
+    "unit_cells": 6.0,
+    "unit_cells_all": [
+     6.0
+    ]
+   },
+   "fingerprint": "2d02f5d287901222",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbI3/builder/CsPbI3-Cs-Cs2160Pb1728I5616-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbi3_cubic.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "CsPbI3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "I": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      6.0,
+      6.0,
+      6.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Cs"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbI3-Cs-Cs324Pb216I756-clean",
+   "material": "CsPbI3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs324Pb216I756",
+   "composition": {
+    "Cs": 324,
+    "Pb": 216,
+    "I": 756
+   },
+   "core": {
+    "Cs": 324,
+    "Pb": 216,
+    "I": 756
+   },
+   "ligands": {},
+   "n_atoms": 1296,
+   "total_charge": 0,
+   "centre": "Cs",
+   "centre_offset_A": 0.021,
+   "size": {
+    "n_core": 1296,
+    "d_nm": 5.137,
+    "d_max_nm": 5.89,
+    "d_hull_nm": 4.662,
+    "unit_cells": 3.0,
+    "unit_cells_all": [
+     3.0
+    ]
+   },
+   "fingerprint": "202f1ebaa1accb64",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbI3/builder/CsPbI3-Cs-Cs324Pb216I756-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbi3_cubic.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "CsPbI3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "I": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.0,
+      3.0,
+      3.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Cs"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbI3-Cs-Cs704Pb512I1728-clean",
+   "material": "CsPbI3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs704Pb512I1728",
+   "composition": {
+    "Cs": 704,
+    "Pb": 512,
+    "I": 1728
+   },
+   "core": {
+    "Cs": 704,
+    "Pb": 512,
+    "I": 1728
+   },
+   "ligands": {},
+   "n_atoms": 2944,
+   "total_charge": 0,
+   "centre": "Cs",
+   "centre_offset_A": 0.044,
+   "size": {
+    "n_core": 2944,
+    "d_nm": 6.767,
+    "d_max_nm": 8.044,
+    "d_hull_nm": 6.223,
+    "unit_cells": 4.0,
+    "unit_cells_all": [
+     4.0
+    ]
+   },
+   "fingerprint": "64efe662bf895895",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbI3/builder/CsPbI3-Cs-Cs704Pb512I1728-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbi3_cubic.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "CsPbI3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "I": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      4.0,
+      4.0,
+      4.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Cs"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
   {
    "schema_version": 1,
    "id": "CdS-Cd-Cd1072S928Cl288-reconstructed",
@@ -124233,46 +125862,7772 @@
   },
   {
    "schema_version": 1,
-   "id": "CsPbBr3-Cs-Cs20Pb8Br36-clean",
-   "material": "CsPbBr3",
-   "family": "ABX3",
-   "phase": "cubic perovskite",
+   "id": "PbS-Pb-Pb1115S976Cl278-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
    "surface": "clean",
-   "source": "dft",
-   "formula": "Cs20Pb8Br36",
+   "source": "builder",
+   "formula": "Pb1115S976Cl278",
    "composition": {
-    "Pb": 8,
-    "Br": 36,
-    "Cs": 20
+    "Pb": 1115,
+    "S": 976,
+    "Cl": 278
    },
    "core": {
-    "Pb": 8,
-    "Br": 36,
-    "Cs": 20
+    "Pb": 1115,
+    "S": 976
    },
-   "ligands": {},
-   "n_atoms": 64,
+   "ligands": {
+    "Cl": 278
+   },
+   "n_atoms": 2369,
    "total_charge": 0,
-   "centre": "Cs",
-   "centre_offset_A": 0.161,
+   "centre": "Pb",
+   "centre_offset_A": 0.0,
    "size": {
-    "n_core": 64,
-    "d_nm": 1.727,
-    "d_max_nm": 2.028,
-    "d_hull_nm": 1.401
+    "n_core": 2091,
+    "d_nm": 4.759,
+    "d_max_nm": 5.071,
+    "d_hull_nm": 4.506,
+    "unit_cells": 3.5,
+    "unit_cells_all": [
+     3.5
+    ]
    },
-   "fingerprint": "ee7d14b569be524d",
+   "fingerprint": "f0ee515addaafba4",
    "stages": [
     {
      "stage": "start",
-     "file": "ABX3/CsPbBr3/start/Cs20Pb8Br36_HLE17_12ang_Start.xyz"
+     "file": "IV-VI/PbS/builder/PbS-Pb-Pb1115S976Cl278-clean/start.xyz"
     }
    ],
    "origin": {
-    "legacy_paths": [
-     "ABX3/CsPbBr3"
-    ],
-    "notes": ""
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.5,
+      3.5,
+      3.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-Pb-Pb1139S990Cl298-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb1139S990Cl298",
+   "composition": {
+    "Pb": 1139,
+    "S": 990,
+    "Cl": 298
+   },
+   "core": {
+    "Pb": 1139,
+    "S": 990
+   },
+   "ligands": {
+    "Cl": 298
+   },
+   "n_atoms": 2427,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.038,
+   "size": {
+    "n_core": 2129,
+    "d_nm": 4.795,
+    "d_max_nm": 5.148,
+    "d_hull_nm": 4.593,
+    "unit_cells": 3.75,
+    "unit_cells_all": [
+     3.75
+    ]
+   },
+   "fingerprint": "bfccfef0796756b5",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-Pb-Pb1139S990Cl298-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.75,
+      3.75,
+      3.75
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-Pb-Pb1289S1074Cl430-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb1289S1074Cl430",
+   "composition": {
+    "Pb": 1289,
+    "S": 1074,
+    "Cl": 430
+   },
+   "core": {
+    "Pb": 1289,
+    "S": 1074
+   },
+   "ligands": {
+    "Cl": 430
+   },
+   "n_atoms": 2793,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.021,
+   "size": {
+    "n_core": 2363,
+    "d_nm": 4.991,
+    "d_max_nm": 5.349,
+    "d_hull_nm": 4.723,
+    "unit_cells": 4.0,
+    "unit_cells_all": [
+     4.0
+    ]
+   },
+   "fingerprint": "493cbc47f7e7c2dd",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-Pb-Pb1289S1074Cl430-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      4.0,
+      4.0,
+      4.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-Pb-Pb135S116Cl38-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb135S116Cl38",
+   "composition": {
+    "Pb": 135,
+    "S": 116,
+    "Cl": 38
+   },
+   "core": {
+    "Pb": 135,
+    "S": 116
+   },
+   "ligands": {
+    "Cl": 38
+   },
+   "n_atoms": 289,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 251,
+    "d_nm": 2.331,
+    "d_max_nm": 2.236,
+    "d_hull_nm": 2.062,
+    "unit_cells": 1.5,
+    "unit_cells_all": [
+     1.5
+    ]
+   },
+   "fingerprint": "52c884a07f075386",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-Pb-Pb135S116Cl38-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.5,
+      1.5,
+      1.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-Pb-Pb147S130Cl34-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb147S130Cl34",
+   "composition": {
+    "Pb": 147,
+    "S": 130,
+    "Cl": 34
+   },
+   "core": {
+    "Pb": 147,
+    "S": 130
+   },
+   "ligands": {
+    "Cl": 34
+   },
+   "n_atoms": 311,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.136,
+   "size": {
+    "n_core": 277,
+    "d_nm": 2.429,
+    "d_max_nm": 2.56,
+    "d_hull_nm": 2.147,
+    "unit_cells": 1.75,
+    "unit_cells_all": [
+     1.75
+    ]
+   },
+   "fingerprint": "3eb9f369b3c30e43",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-Pb-Pb147S130Cl34-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.75,
+      1.75,
+      1.75
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-Pb-Pb297S260Cl74-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb297S260Cl74",
+   "composition": {
+    "Pb": 297,
+    "S": 260,
+    "Cl": 74
+   },
+   "core": {
+    "Pb": 297,
+    "S": 260
+   },
+   "ligands": {
+    "Cl": 74
+   },
+   "n_atoms": 631,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 557,
+    "d_nm": 3.058,
+    "d_max_nm": 3.047,
+    "d_hull_nm": 2.773,
+    "unit_cells": 2.0,
+    "unit_cells_all": [
+     2.0
+    ]
+   },
+   "fingerprint": "ed2cc9940e842051",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-Pb-Pb297S260Cl74-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.0,
+      2.0,
+      2.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-Pb-Pb309S278Cl62-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb309S278Cl62",
+   "composition": {
+    "Pb": 309,
+    "S": 278,
+    "Cl": 62
+   },
+   "core": {
+    "Pb": 309,
+    "S": 278
+   },
+   "ligands": {
+    "Cl": 62
+   },
+   "n_atoms": 649,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.092,
+   "size": {
+    "n_core": 587,
+    "d_nm": 3.126,
+    "d_max_nm": 3.396,
+    "d_hull_nm": 2.851,
+    "unit_cells": 2.25,
+    "unit_cells_all": [
+     2.25
+    ]
+   },
+   "fingerprint": "3af207df8ac65087",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-Pb-Pb309S278Cl62-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.25,
+      2.25,
+      2.25
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-Pb-Pb405S320Cl170-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb405S320Cl170",
+   "composition": {
+    "Pb": 405,
+    "S": 320,
+    "Cl": 170
+   },
+   "core": {
+    "Pb": 405,
+    "S": 320
+   },
+   "ligands": {
+    "Cl": 170
+   },
+   "n_atoms": 895,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.1,
+   "size": {
+    "n_core": 725,
+    "d_nm": 3.353,
+    "d_max_nm": 3.504,
+    "d_hull_nm": 3.116,
+    "unit_cells": 2.75,
+    "unit_cells_all": [
+     2.75
+    ]
+   },
+   "fingerprint": "491bfb9f9ec0f501",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-Pb-Pb405S320Cl170-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.75,
+      2.75,
+      2.75
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-Pb-Pb43S38Cl10-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb43S38Cl10",
+   "composition": {
+    "Pb": 43,
+    "S": 38,
+    "Cl": 10
+   },
+   "core": {
+    "Pb": 43,
+    "S": 38
+   },
+   "ligands": {
+    "Cl": 10
+   },
+   "n_atoms": 91,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 81,
+    "d_nm": 1.585,
+    "d_max_nm": 1.464,
+    "d_hull_nm": 1.322,
+    "unit_cells": 1.0,
+    "unit_cells_all": [
+     1.0
+    ]
+   },
+   "fingerprint": "a8820ef68909593a",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-Pb-Pb43S38Cl10-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-Pb-Pb549S490Cl118-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb549S490Cl118",
+   "composition": {
+    "Pb": 549,
+    "S": 490,
+    "Cl": 118
+   },
+   "core": {
+    "Pb": 549,
+    "S": 490
+   },
+   "ligands": {
+    "Cl": 118
+   },
+   "n_atoms": 1157,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 1039,
+    "d_nm": 3.776,
+    "d_max_nm": 3.873,
+    "d_hull_nm": 3.478,
+    "unit_cells": 2.5,
+    "unit_cells_all": [
+     2.5
+    ]
+   },
+   "fingerprint": "8e582295f8b44e86",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-Pb-Pb549S490Cl118-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.5,
+      2.5,
+      2.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-Pb-Pb55S48Cl14-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb55S48Cl14",
+   "composition": {
+    "Pb": 55,
+    "S": 48,
+    "Cl": 14
+   },
+   "core": {
+    "Pb": 55,
+    "S": 48
+   },
+   "ligands": {
+    "Cl": 14
+   },
+   "n_atoms": 117,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.041,
+   "size": {
+    "n_core": 103,
+    "d_nm": 1.747,
+    "d_max_nm": 1.801,
+    "d_hull_nm": 1.446,
+    "unit_cells": 1.25,
+    "unit_cells_all": [
+     1.25
+    ]
+   },
+   "fingerprint": "4e154ad40dcfd0af",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-Pb-Pb55S48Cl14-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.25,
+      1.25,
+      1.25
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-Pb-Pb687S586Cl202-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb687S586Cl202",
+   "composition": {
+    "Pb": 687,
+    "S": 586,
+    "Cl": 202
+   },
+   "core": {
+    "Pb": 687,
+    "S": 586
+   },
+   "ligands": {
+    "Cl": 202
+   },
+   "n_atoms": 1475,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 1273,
+    "d_nm": 4.032,
+    "d_max_nm": 4.226,
+    "d_hull_nm": 3.791,
+    "unit_cells": 3.0,
+    "unit_cells_all": [
+     3.0
+    ]
+   },
+   "fingerprint": "e04f95f20aabb291",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-Pb-Pb687S586Cl202-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.0,
+      3.0,
+      3.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-Pb-Pb711S596Cl230-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb711S596Cl230",
+   "composition": {
+    "Pb": 711,
+    "S": 596,
+    "Cl": 230
+   },
+   "core": {
+    "Pb": 711,
+    "S": 596
+   },
+   "ligands": {
+    "Cl": 230
+   },
+   "n_atoms": 1537,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.047,
+   "size": {
+    "n_core": 1307,
+    "d_nm": 4.077,
+    "d_max_nm": 4.318,
+    "d_hull_nm": 3.869,
+    "unit_cells": 3.25,
+    "unit_cells_all": [
+     3.25
+    ]
+   },
+   "fingerprint": "61a4b281179191e2",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-Pb-Pb711S596Cl230-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.25,
+      3.25,
+      3.25
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-S-Pb116S85Cl62-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb116S85Cl62",
+   "composition": {
+    "Pb": 116,
+    "S": 85,
+    "Cl": 62
+   },
+   "core": {
+    "Pb": 116,
+    "S": 85
+   },
+   "ligands": {
+    "Cl": 62
+   },
+   "n_atoms": 263,
+   "total_charge": 0,
+   "centre": "S",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 201,
+    "d_nm": 2.174,
+    "d_max_nm": 2.155,
+    "d_hull_nm": 1.96,
+    "unit_cells": 1.5,
+    "unit_cells_all": [
+     1.5
+    ]
+   },
+   "fingerprint": "5cd36627c5325ccb",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-S-Pb116S85Cl62-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.5,
+      1.5,
+      1.5
+     ],
+     "construction_origin": {
+      "center_on_species": "S"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-S-Pb1264S1139Cl250-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb1264S1139Cl250",
+   "composition": {
+    "Pb": 1264,
+    "S": 1139,
+    "Cl": 250
+   },
+   "core": {
+    "Pb": 1264,
+    "S": 1139
+   },
+   "ligands": {
+    "Cl": 250
+   },
+   "n_atoms": 2653,
+   "total_charge": 0,
+   "centre": "S",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 2403,
+    "d_nm": 4.988,
+    "d_max_nm": 5.176,
+    "d_hull_nm": 4.706,
+    "unit_cells": 3.75,
+    "unit_cells_all": [
+     3.75
+    ]
+   },
+   "fingerprint": "47f85011bade906b",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-S-Pb1264S1139Cl250-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.75,
+      3.75,
+      3.75
+     ],
+     "construction_origin": {
+      "center_on_species": "S"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-S-Pb1480S1289Cl382-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb1480S1289Cl382",
+   "composition": {
+    "Pb": 1480,
+    "S": 1289,
+    "Cl": 382
+   },
+   "core": {
+    "Pb": 1480,
+    "S": 1289
+   },
+   "ligands": {
+    "Cl": 382
+   },
+   "n_atoms": 3151,
+   "total_charge": 0,
+   "centre": "S",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 2769,
+    "d_nm": 5.235,
+    "d_max_nm": 5.51,
+    "d_hull_nm": 4.978,
+    "unit_cells": 4.0,
+    "unit_cells_all": [
+     4.0
+    ]
+   },
+   "fingerprint": "1d9263ecfa0cb874",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-S-Pb1480S1289Cl382-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      4.0,
+      4.0,
+      4.0
+     ],
+     "construction_origin": {
+      "center_on_species": "S"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-S-Pb14S13Cl2-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb14S13Cl2",
+   "composition": {
+    "Pb": 14,
+    "S": 13,
+    "Cl": 2
+   },
+   "core": {
+    "Pb": 14,
+    "S": 13
+   },
+   "ligands": {
+    "Cl": 2
+   },
+   "n_atoms": 29,
+   "total_charge": 0,
+   "centre": "S",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 27,
+    "d_nm": 1.091,
+    "d_max_nm": 1.035,
+    "d_hull_nm": 0.741,
+    "unit_cells": 0.75,
+    "unit_cells_all": [
+     0.75
+    ]
+   },
+   "fingerprint": "9f26ed5061a50d6f",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-S-Pb14S13Cl2-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      0.75,
+      0.75,
+      0.75
+     ],
+     "construction_origin": {
+      "center_on_species": "S"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-S-Pb164S147Cl34-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb164S147Cl34",
+   "composition": {
+    "Pb": 164,
+    "S": 147,
+    "Cl": 34
+   },
+   "core": {
+    "Pb": 164,
+    "S": 147
+   },
+   "ligands": {
+    "Cl": 34
+   },
+   "n_atoms": 345,
+   "total_charge": 0,
+   "centre": "S",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 311,
+    "d_nm": 2.54,
+    "d_max_nm": 2.605,
+    "d_hull_nm": 2.187,
+    "unit_cells": 1.75,
+    "unit_cells_all": [
+     1.75
+    ]
+   },
+   "fingerprint": "091c9fc76a3b07a5",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-S-Pb164S147Cl34-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.75,
+      1.75,
+      1.75
+     ],
+     "construction_origin": {
+      "center_on_species": "S"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-S-Pb260S211Cl98-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb260S211Cl98",
+   "composition": {
+    "Pb": 260,
+    "S": 211,
+    "Cl": 98
+   },
+   "core": {
+    "Pb": 260,
+    "S": 211
+   },
+   "ligands": {
+    "Cl": 98
+   },
+   "n_atoms": 569,
+   "total_charge": 0,
+   "centre": "S",
+   "centre_offset_A": 0.069,
+   "size": {
+    "n_core": 471,
+    "d_nm": 2.892,
+    "d_max_nm": 3.001,
+    "d_hull_nm": 2.677,
+    "unit_cells": 2.0,
+    "unit_cells_all": [
+     2.0
+    ]
+   },
+   "fingerprint": "0bd514c3ce1faa71",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-S-Pb260S211Cl98-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.0,
+      2.0,
+      2.0
+     ],
+     "construction_origin": {
+      "center_on_species": "S"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-S-Pb340S309Cl62-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb340S309Cl62",
+   "composition": {
+    "Pb": 340,
+    "S": 309,
+    "Cl": 62
+   },
+   "core": {
+    "Pb": 340,
+    "S": 309
+   },
+   "ligands": {
+    "Cl": 62
+   },
+   "n_atoms": 711,
+   "total_charge": 0,
+   "centre": "S",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 649,
+    "d_nm": 3.252,
+    "d_max_nm": 3.433,
+    "d_hull_nm": 2.895,
+    "unit_cells": 2.25,
+    "unit_cells_all": [
+     2.25
+    ]
+   },
+   "fingerprint": "9f2443ae088a8fe0",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-S-Pb340S309Cl62-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.25,
+      2.25,
+      2.25
+     ],
+     "construction_origin": {
+      "center_on_species": "S"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-S-Pb38S21Cl34-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb38S21Cl34",
+   "composition": {
+    "Pb": 38,
+    "S": 21,
+    "Cl": 34
+   },
+   "core": {
+    "Pb": 38,
+    "S": 21
+   },
+   "ligands": {
+    "Cl": 34
+   },
+   "n_atoms": 93,
+   "total_charge": 0,
+   "centre": "S",
+   "centre_offset_A": 0.203,
+   "size": {
+    "n_core": 59,
+    "d_nm": 1.455,
+    "d_max_nm": 1.431,
+    "d_hull_nm": 1.201,
+    "unit_cells": 1.0,
+    "unit_cells_all": [
+     1.0
+    ]
+   },
+   "fingerprint": "dd3374152afd0771",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-S-Pb38S21Cl34-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "construction_origin": {
+      "center_on_species": "S"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-S-Pb466S405Cl122-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb466S405Cl122",
+   "composition": {
+    "Pb": 466,
+    "S": 405,
+    "Cl": 122
+   },
+   "core": {
+    "Pb": 466,
+    "S": 405
+   },
+   "ligands": {
+    "Cl": 122
+   },
+   "n_atoms": 993,
+   "total_charge": 0,
+   "centre": "S",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 871,
+    "d_nm": 3.544,
+    "d_max_nm": 3.536,
+    "d_hull_nm": 3.285,
+    "unit_cells": 2.75,
+    "unit_cells_all": [
+     2.75
+    ]
+   },
+   "fingerprint": "631126b221cbdf63",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-S-Pb466S405Cl122-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.75,
+      2.75,
+      2.75
+     ],
+     "construction_origin": {
+      "center_on_species": "S"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-S-Pb490S419Cl142-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb490S419Cl142",
+   "composition": {
+    "Pb": 490,
+    "S": 419,
+    "Cl": 142
+   },
+   "core": {
+    "Pb": 490,
+    "S": 419
+   },
+   "ligands": {
+    "Cl": 142
+   },
+   "n_atoms": 1051,
+   "total_charge": 0,
+   "centre": "S",
+   "centre_offset_A": 0.034,
+   "size": {
+    "n_core": 909,
+    "d_nm": 3.606,
+    "d_max_nm": 3.833,
+    "d_hull_nm": 3.391,
+    "unit_cells": 2.5,
+    "unit_cells_all": [
+     2.5
+    ]
+   },
+   "fingerprint": "9152c891d52fe52b",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-S-Pb490S419Cl142-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.5,
+      2.5,
+      2.5
+     ],
+     "construction_origin": {
+      "center_on_species": "S"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-S-Pb586S461Cl250-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb586S461Cl250",
+   "composition": {
+    "Pb": 586,
+    "S": 461,
+    "Cl": 250
+   },
+   "core": {
+    "Pb": 586,
+    "S": 461
+   },
+   "ligands": {
+    "Cl": 250
+   },
+   "n_atoms": 1297,
+   "total_charge": 0,
+   "centre": "S",
+   "centre_offset_A": 0.016,
+   "size": {
+    "n_core": 1047,
+    "d_nm": 3.805,
+    "d_max_nm": 4.012,
+    "d_hull_nm": 3.555,
+    "unit_cells": 3.0,
+    "unit_cells_all": [
+     3.0
+    ]
+   },
+   "fingerprint": "c5cbea7589280f8c",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-S-Pb586S461Cl250-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.0,
+      3.0,
+      3.0
+     ],
+     "construction_origin": {
+      "center_on_species": "S"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-S-Pb62S55Cl14-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb62S55Cl14",
+   "composition": {
+    "Pb": 62,
+    "S": 55,
+    "Cl": 14
+   },
+   "core": {
+    "Pb": 62,
+    "S": 55
+   },
+   "ligands": {
+    "Cl": 14
+   },
+   "n_atoms": 131,
+   "total_charge": 0,
+   "centre": "S",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 117,
+    "d_nm": 1.824,
+    "d_max_nm": 1.793,
+    "d_hull_nm": 1.473,
+    "unit_cells": 1.25,
+    "unit_cells_all": [
+     1.25
+    ]
+   },
+   "fingerprint": "fb3f28e674c8f00d",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-S-Pb62S55Cl14-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.25,
+      1.25,
+      1.25
+     ],
+     "construction_origin": {
+      "center_on_species": "S"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-S-Pb802S711Cl182-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb802S711Cl182",
+   "composition": {
+    "Pb": 802,
+    "S": 711,
+    "Cl": 182
+   },
+   "core": {
+    "Pb": 802,
+    "S": 711
+   },
+   "ligands": {
+    "Cl": 182
+   },
+   "n_atoms": 1695,
+   "total_charge": 0,
+   "centre": "S",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 1513,
+    "d_nm": 4.269,
+    "d_max_nm": 4.351,
+    "d_hull_nm": 3.999,
+    "unit_cells": 3.25,
+    "unit_cells_all": [
+     3.25
+    ]
+   },
+   "fingerprint": "ff5a0afc432d43f8",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-S-Pb802S711Cl182-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.25,
+      3.25,
+      3.25
+     ],
+     "construction_origin": {
+      "center_on_species": "S"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbS-S-Pb976S813Cl326-clean",
+   "material": "PbS",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb976S813Cl326",
+   "composition": {
+    "Pb": 976,
+    "S": 813,
+    "Cl": 326
+   },
+   "core": {
+    "Pb": 976,
+    "S": 813
+   },
+   "ligands": {
+    "Cl": 326
+   },
+   "n_atoms": 2115,
+   "total_charge": 0,
+   "centre": "S",
+   "centre_offset_A": 0.035,
+   "size": {
+    "n_core": 1789,
+    "d_nm": 4.537,
+    "d_max_nm": 4.824,
+    "d_hull_nm": 4.306,
+    "unit_cells": 3.5,
+    "unit_cells_all": [
+     3.5
+    ]
+   },
+   "fingerprint": "52ca550bd4eaba2d",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbS/builder/PbS-S-Pb976S813Cl326-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbs_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbS_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "S": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.5,
+      3.5,
+      3.5
+     ],
+     "construction_origin": {
+      "center_on_species": "S"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Pb-Pb1115Se976Cl278-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb1115Se976Cl278",
+   "composition": {
+    "Pb": 1115,
+    "Se": 976,
+    "Cl": 278
+   },
+   "core": {
+    "Pb": 1115,
+    "Se": 976
+   },
+   "ligands": {
+    "Cl": 278
+   },
+   "n_atoms": 2369,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 2091,
+    "d_nm": 4.923,
+    "d_max_nm": 5.245,
+    "d_hull_nm": 4.661,
+    "unit_cells": 3.5,
+    "unit_cells_all": [
+     3.5
+    ]
+   },
+   "fingerprint": "255677760e6e37b3",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Pb-Pb1115Se976Cl278-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.5,
+      3.5,
+      3.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Pb-Pb1139Se990Cl298-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb1139Se990Cl298",
+   "composition": {
+    "Pb": 1139,
+    "Se": 990,
+    "Cl": 298
+   },
+   "core": {
+    "Pb": 1139,
+    "Se": 990
+   },
+   "ligands": {
+    "Cl": 298
+   },
+   "n_atoms": 2427,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.042,
+   "size": {
+    "n_core": 2129,
+    "d_nm": 4.961,
+    "d_max_nm": 5.326,
+    "d_hull_nm": 4.741,
+    "unit_cells": 3.75,
+    "unit_cells_all": [
+     3.75
+    ]
+   },
+   "fingerprint": "ba089d007821c13d",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Pb-Pb1139Se990Cl298-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.75,
+      3.75,
+      3.75
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Pb-Pb1289Se1074Cl430-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb1289Se1074Cl430",
+   "composition": {
+    "Pb": 1289,
+    "Se": 1074,
+    "Cl": 430
+   },
+   "core": {
+    "Pb": 1289,
+    "Se": 1074
+   },
+   "ligands": {
+    "Cl": 430
+   },
+   "n_atoms": 2793,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.021,
+   "size": {
+    "n_core": 2363,
+    "d_nm": 5.163,
+    "d_max_nm": 5.533,
+    "d_hull_nm": 4.888,
+    "unit_cells": 4.0,
+    "unit_cells_all": [
+     4.0
+    ]
+   },
+   "fingerprint": "bacb56a21d85d333",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Pb-Pb1289Se1074Cl430-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      4.0,
+      4.0,
+      4.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Pb-Pb135Se116Cl38-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb135Se116Cl38",
+   "composition": {
+    "Pb": 135,
+    "Se": 116,
+    "Cl": 38
+   },
+   "core": {
+    "Pb": 135,
+    "Se": 116
+   },
+   "ligands": {
+    "Cl": 38
+   },
+   "n_atoms": 289,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 251,
+    "d_nm": 2.412,
+    "d_max_nm": 2.313,
+    "d_hull_nm": 2.133,
+    "unit_cells": 1.5,
+    "unit_cells_all": [
+     1.5
+    ]
+   },
+   "fingerprint": "5661ce65fb470445",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Pb-Pb135Se116Cl38-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.5,
+      1.5,
+      1.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Pb-Pb147Se130Cl34-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb147Se130Cl34",
+   "composition": {
+    "Pb": 147,
+    "Se": 130,
+    "Cl": 34
+   },
+   "core": {
+    "Pb": 147,
+    "Se": 130
+   },
+   "ligands": {
+    "Cl": 34
+   },
+   "n_atoms": 311,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.091,
+   "size": {
+    "n_core": 277,
+    "d_nm": 2.513,
+    "d_max_nm": 2.638,
+    "d_hull_nm": 2.224,
+    "unit_cells": 1.75,
+    "unit_cells_all": [
+     1.75
+    ]
+   },
+   "fingerprint": "030e0b274bee2c85",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Pb-Pb147Se130Cl34-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.75,
+      1.75,
+      1.75
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Pb-Pb297Se260Cl74-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb297Se260Cl74",
+   "composition": {
+    "Pb": 297,
+    "Se": 260,
+    "Cl": 74
+   },
+   "core": {
+    "Pb": 297,
+    "Se": 260
+   },
+   "ligands": {
+    "Cl": 74
+   },
+   "n_atoms": 631,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 557,
+    "d_nm": 3.163,
+    "d_max_nm": 3.152,
+    "d_hull_nm": 2.869,
+    "unit_cells": 2.0,
+    "unit_cells_all": [
+     2.0
+    ]
+   },
+   "fingerprint": "245deefe6777a11c",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Pb-Pb297Se260Cl74-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.0,
+      2.0,
+      2.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Pb-Pb309Se278Cl62-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb309Se278Cl62",
+   "composition": {
+    "Pb": 309,
+    "Se": 278,
+    "Cl": 62
+   },
+   "core": {
+    "Pb": 309,
+    "Se": 278
+   },
+   "ligands": {
+    "Cl": 62
+   },
+   "n_atoms": 649,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.095,
+   "size": {
+    "n_core": 587,
+    "d_nm": 3.234,
+    "d_max_nm": 3.511,
+    "d_hull_nm": 2.949,
+    "unit_cells": 2.25,
+    "unit_cells_all": [
+     2.25
+    ]
+   },
+   "fingerprint": "aabeda2fcac53d11",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Pb-Pb309Se278Cl62-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.25,
+      2.25,
+      2.25
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Pb-Pb405Se320Cl170-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb405Se320Cl170",
+   "composition": {
+    "Pb": 405,
+    "Se": 320,
+    "Cl": 170
+   },
+   "core": {
+    "Pb": 405,
+    "Se": 320
+   },
+   "ligands": {
+    "Cl": 170
+   },
+   "n_atoms": 895,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.089,
+   "size": {
+    "n_core": 725,
+    "d_nm": 3.468,
+    "d_max_nm": 3.621,
+    "d_hull_nm": 3.233,
+    "unit_cells": 2.75,
+    "unit_cells_all": [
+     2.75
+    ]
+   },
+   "fingerprint": "eec1f53546b70d93",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Pb-Pb405Se320Cl170-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.75,
+      2.75,
+      2.75
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Pb-Pb43Se38Cl10-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb43Se38Cl10",
+   "composition": {
+    "Pb": 43,
+    "Se": 38,
+    "Cl": 10
+   },
+   "core": {
+    "Pb": 43,
+    "Se": 38
+   },
+   "ligands": {
+    "Cl": 10
+   },
+   "n_atoms": 91,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 81,
+    "d_nm": 1.64,
+    "d_max_nm": 1.514,
+    "d_hull_nm": 1.367,
+    "unit_cells": 1.0,
+    "unit_cells_all": [
+     1.0
+    ]
+   },
+   "fingerprint": "98c5e051cbba59a5",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Pb-Pb43Se38Cl10-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Pb-Pb549Se490Cl118-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb549Se490Cl118",
+   "composition": {
+    "Pb": 549,
+    "Se": 490,
+    "Cl": 118
+   },
+   "core": {
+    "Pb": 549,
+    "Se": 490
+   },
+   "ligands": {
+    "Cl": 118
+   },
+   "n_atoms": 1157,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 1039,
+    "d_nm": 3.905,
+    "d_max_nm": 4.006,
+    "d_hull_nm": 3.597,
+    "unit_cells": 2.5,
+    "unit_cells_all": [
+     2.5
+    ]
+   },
+   "fingerprint": "a7e13eff61289e98",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Pb-Pb549Se490Cl118-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.5,
+      2.5,
+      2.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Pb-Pb55Se48Cl14-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb55Se48Cl14",
+   "composition": {
+    "Pb": 55,
+    "Se": 48,
+    "Cl": 14
+   },
+   "core": {
+    "Pb": 55,
+    "Se": 48
+   },
+   "ligands": {
+    "Cl": 14
+   },
+   "n_atoms": 117,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.112,
+   "size": {
+    "n_core": 103,
+    "d_nm": 1.807,
+    "d_max_nm": 1.875,
+    "d_hull_nm": 1.496,
+    "unit_cells": 1.25,
+    "unit_cells_all": [
+     1.25
+    ]
+   },
+   "fingerprint": "ae4e7720925258b9",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Pb-Pb55Se48Cl14-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.25,
+      1.25,
+      1.25
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Pb-Pb687Se586Cl202-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb687Se586Cl202",
+   "composition": {
+    "Pb": 687,
+    "Se": 586,
+    "Cl": 202
+   },
+   "core": {
+    "Pb": 687,
+    "Se": 586
+   },
+   "ligands": {
+    "Cl": 202
+   },
+   "n_atoms": 1475,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 1273,
+    "d_nm": 4.171,
+    "d_max_nm": 4.371,
+    "d_hull_nm": 3.921,
+    "unit_cells": 3.0,
+    "unit_cells_all": [
+     3.0
+    ]
+   },
+   "fingerprint": "b911e42a70cd2c77",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Pb-Pb687Se586Cl202-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.0,
+      3.0,
+      3.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Pb-Pb711Se596Cl230-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb711Se596Cl230",
+   "composition": {
+    "Pb": 711,
+    "Se": 596,
+    "Cl": 230
+   },
+   "core": {
+    "Pb": 711,
+    "Se": 596
+   },
+   "ligands": {
+    "Cl": 230
+   },
+   "n_atoms": 1537,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.056,
+   "size": {
+    "n_core": 1307,
+    "d_nm": 4.216,
+    "d_max_nm": 4.468,
+    "d_hull_nm": 4.003,
+    "unit_cells": 3.25,
+    "unit_cells_all": [
+     3.25
+    ]
+   },
+   "fingerprint": "42edcb7e4b449b91",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Pb-Pb711Se596Cl230-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.25,
+      3.25,
+      3.25
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Se-Pb116Se85Cl62-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb116Se85Cl62",
+   "composition": {
+    "Pb": 116,
+    "Se": 85,
+    "Cl": 62
+   },
+   "core": {
+    "Pb": 116,
+    "Se": 85
+   },
+   "ligands": {
+    "Cl": 62
+   },
+   "n_atoms": 263,
+   "total_charge": 0,
+   "centre": "Se",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 201,
+    "d_nm": 2.249,
+    "d_max_nm": 2.229,
+    "d_hull_nm": 2.027,
+    "unit_cells": 1.5,
+    "unit_cells_all": [
+     1.5
+    ]
+   },
+   "fingerprint": "9991830400e82cc9",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Se-Pb116Se85Cl62-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.5,
+      1.5,
+      1.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Se"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Se-Pb1264Se1139Cl250-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb1264Se1139Cl250",
+   "composition": {
+    "Pb": 1264,
+    "Se": 1139,
+    "Cl": 250
+   },
+   "core": {
+    "Pb": 1264,
+    "Se": 1139
+   },
+   "ligands": {
+    "Cl": 250
+   },
+   "n_atoms": 2653,
+   "total_charge": 0,
+   "centre": "Se",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 2403,
+    "d_nm": 5.159,
+    "d_max_nm": 5.353,
+    "d_hull_nm": 4.868,
+    "unit_cells": 3.75,
+    "unit_cells_all": [
+     3.75
+    ]
+   },
+   "fingerprint": "39ea318f10de09ad",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Se-Pb1264Se1139Cl250-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.75,
+      3.75,
+      3.75
+     ],
+     "construction_origin": {
+      "center_on_species": "Se"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Se-Pb1480Se1289Cl382-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb1480Se1289Cl382",
+   "composition": {
+    "Pb": 1480,
+    "Se": 1289,
+    "Cl": 382
+   },
+   "core": {
+    "Pb": 1480,
+    "Se": 1289
+   },
+   "ligands": {
+    "Cl": 382
+   },
+   "n_atoms": 3151,
+   "total_charge": 0,
+   "centre": "Se",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 2769,
+    "d_nm": 5.415,
+    "d_max_nm": 5.699,
+    "d_hull_nm": 5.149,
+    "unit_cells": 4.0,
+    "unit_cells_all": [
+     4.0
+    ]
+   },
+   "fingerprint": "e5c08911c9edff68",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Se-Pb1480Se1289Cl382-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      4.0,
+      4.0,
+      4.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Se"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Se-Pb14Se13Cl2-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb14Se13Cl2",
+   "composition": {
+    "Pb": 14,
+    "Se": 13,
+    "Cl": 2
+   },
+   "core": {
+    "Pb": 14,
+    "Se": 13
+   },
+   "ligands": {
+    "Cl": 2
+   },
+   "n_atoms": 29,
+   "total_charge": 0,
+   "centre": "Se",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 27,
+    "d_nm": 1.129,
+    "d_max_nm": 1.071,
+    "d_hull_nm": 0.767,
+    "unit_cells": 0.75,
+    "unit_cells_all": [
+     0.75
+    ]
+   },
+   "fingerprint": "0dc6a1d95f401260",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Se-Pb14Se13Cl2-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      0.75,
+      0.75,
+      0.75
+     ],
+     "construction_origin": {
+      "center_on_species": "Se"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Se-Pb164Se147Cl34-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb164Se147Cl34",
+   "composition": {
+    "Pb": 164,
+    "Se": 147,
+    "Cl": 34
+   },
+   "core": {
+    "Pb": 164,
+    "Se": 147
+   },
+   "ligands": {
+    "Cl": 34
+   },
+   "n_atoms": 345,
+   "total_charge": 0,
+   "centre": "Se",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 311,
+    "d_nm": 2.628,
+    "d_max_nm": 2.695,
+    "d_hull_nm": 2.262,
+    "unit_cells": 1.75,
+    "unit_cells_all": [
+     1.75
+    ]
+   },
+   "fingerprint": "bce91537368df16f",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Se-Pb164Se147Cl34-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.75,
+      1.75,
+      1.75
+     ],
+     "construction_origin": {
+      "center_on_species": "Se"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Se-Pb260Se211Cl98-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb260Se211Cl98",
+   "composition": {
+    "Pb": 260,
+    "Se": 211,
+    "Cl": 98
+   },
+   "core": {
+    "Pb": 260,
+    "Se": 211
+   },
+   "ligands": {
+    "Cl": 98
+   },
+   "n_atoms": 569,
+   "total_charge": 0,
+   "centre": "Se",
+   "centre_offset_A": 0.07,
+   "size": {
+    "n_core": 471,
+    "d_nm": 2.991,
+    "d_max_nm": 3.104,
+    "d_hull_nm": 2.77,
+    "unit_cells": 2.0,
+    "unit_cells_all": [
+     2.0
+    ]
+   },
+   "fingerprint": "272e21a231bd5173",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Se-Pb260Se211Cl98-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.0,
+      2.0,
+      2.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Se"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Se-Pb340Se309Cl62-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb340Se309Cl62",
+   "composition": {
+    "Pb": 340,
+    "Se": 309,
+    "Cl": 62
+   },
+   "core": {
+    "Pb": 340,
+    "Se": 309
+   },
+   "ligands": {
+    "Cl": 62
+   },
+   "n_atoms": 711,
+   "total_charge": 0,
+   "centre": "Se",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 649,
+    "d_nm": 3.364,
+    "d_max_nm": 3.551,
+    "d_hull_nm": 2.994,
+    "unit_cells": 2.25,
+    "unit_cells_all": [
+     2.25
+    ]
+   },
+   "fingerprint": "91f2e7e0c57eb440",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Se-Pb340Se309Cl62-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.25,
+      2.25,
+      2.25
+     ],
+     "construction_origin": {
+      "center_on_species": "Se"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Se-Pb38Se21Cl34-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb38Se21Cl34",
+   "composition": {
+    "Pb": 38,
+    "Se": 21,
+    "Cl": 34
+   },
+   "core": {
+    "Pb": 38,
+    "Se": 21
+   },
+   "ligands": {
+    "Cl": 34
+   },
+   "n_atoms": 93,
+   "total_charge": 0,
+   "centre": "Se",
+   "centre_offset_A": 0.234,
+   "size": {
+    "n_core": 59,
+    "d_nm": 1.504,
+    "d_max_nm": 1.472,
+    "d_hull_nm": 1.242,
+    "unit_cells": 1.0,
+    "unit_cells_all": [
+     1.0
+    ]
+   },
+   "fingerprint": "e9e95cea57930e98",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Se-Pb38Se21Cl34-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Se"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Se-Pb466Se405Cl122-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb466Se405Cl122",
+   "composition": {
+    "Pb": 466,
+    "Se": 405,
+    "Cl": 122
+   },
+   "core": {
+    "Pb": 466,
+    "Se": 405
+   },
+   "ligands": {
+    "Cl": 122
+   },
+   "n_atoms": 993,
+   "total_charge": 0,
+   "centre": "Se",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 871,
+    "d_nm": 3.666,
+    "d_max_nm": 3.657,
+    "d_hull_nm": 3.398,
+    "unit_cells": 2.75,
+    "unit_cells_all": [
+     2.75
+    ]
+   },
+   "fingerprint": "0c4a5fc64a9fafae",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Se-Pb466Se405Cl122-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.75,
+      2.75,
+      2.75
+     ],
+     "construction_origin": {
+      "center_on_species": "Se"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Se-Pb490Se419Cl142-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb490Se419Cl142",
+   "composition": {
+    "Pb": 490,
+    "Se": 419,
+    "Cl": 142
+   },
+   "core": {
+    "Pb": 490,
+    "Se": 419
+   },
+   "ligands": {
+    "Cl": 142
+   },
+   "n_atoms": 1051,
+   "total_charge": 0,
+   "centre": "Se",
+   "centre_offset_A": 0.051,
+   "size": {
+    "n_core": 909,
+    "d_nm": 3.73,
+    "d_max_nm": 3.968,
+    "d_hull_nm": 3.511,
+    "unit_cells": 2.5,
+    "unit_cells_all": [
+     2.5
+    ]
+   },
+   "fingerprint": "19b9f7301e3bc6cf",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Se-Pb490Se419Cl142-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.5,
+      2.5,
+      2.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Se"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Se-Pb586Se461Cl250-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb586Se461Cl250",
+   "composition": {
+    "Pb": 586,
+    "Se": 461,
+    "Cl": 250
+   },
+   "core": {
+    "Pb": 586,
+    "Se": 461
+   },
+   "ligands": {
+    "Cl": 250
+   },
+   "n_atoms": 1297,
+   "total_charge": 0,
+   "centre": "Se",
+   "centre_offset_A": 0.007,
+   "size": {
+    "n_core": 1047,
+    "d_nm": 3.936,
+    "d_max_nm": 4.148,
+    "d_hull_nm": 3.678,
+    "unit_cells": 3.0,
+    "unit_cells_all": [
+     3.0
+    ]
+   },
+   "fingerprint": "1e40af3c7a5ea0cb",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Se-Pb586Se461Cl250-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.0,
+      3.0,
+      3.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Se"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Se-Pb62Se55Cl14-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb62Se55Cl14",
+   "composition": {
+    "Pb": 62,
+    "Se": 55,
+    "Cl": 14
+   },
+   "core": {
+    "Pb": 62,
+    "Se": 55
+   },
+   "ligands": {
+    "Cl": 14
+   },
+   "n_atoms": 131,
+   "total_charge": 0,
+   "centre": "Se",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 117,
+    "d_nm": 1.887,
+    "d_max_nm": 1.854,
+    "d_hull_nm": 1.523,
+    "unit_cells": 1.25,
+    "unit_cells_all": [
+     1.25
+    ]
+   },
+   "fingerprint": "583242b57a53471a",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Se-Pb62Se55Cl14-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.25,
+      1.25,
+      1.25
+     ],
+     "construction_origin": {
+      "center_on_species": "Se"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Se-Pb802Se711Cl182-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb802Se711Cl182",
+   "composition": {
+    "Pb": 802,
+    "Se": 711,
+    "Cl": 182
+   },
+   "core": {
+    "Pb": 802,
+    "Se": 711
+   },
+   "ligands": {
+    "Cl": 182
+   },
+   "n_atoms": 1695,
+   "total_charge": 0,
+   "centre": "Se",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 1513,
+    "d_nm": 4.415,
+    "d_max_nm": 4.5,
+    "d_hull_nm": 4.136,
+    "unit_cells": 3.25,
+    "unit_cells_all": [
+     3.25
+    ]
+   },
+   "fingerprint": "6b47ca94f5a98d04",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Se-Pb802Se711Cl182-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.25,
+      3.25,
+      3.25
+     ],
+     "construction_origin": {
+      "center_on_species": "Se"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbSe-Se-Pb976Se813Cl326-clean",
+   "material": "PbSe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb976Se813Cl326",
+   "composition": {
+    "Pb": 976,
+    "Se": 813,
+    "Cl": 326
+   },
+   "core": {
+    "Pb": 976,
+    "Se": 813
+   },
+   "ligands": {
+    "Cl": 326
+   },
+   "n_atoms": 2115,
+   "total_charge": 0,
+   "centre": "Se",
+   "centre_offset_A": 0.034,
+   "size": {
+    "n_core": 1789,
+    "d_nm": 4.694,
+    "d_max_nm": 4.991,
+    "d_hull_nm": 4.465,
+    "unit_cells": 3.5,
+    "unit_cells_all": [
+     3.5
+    ]
+   },
+   "fingerprint": "508bf9cdb4e78721",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbSe/builder/PbSe-Se-Pb976Se813Cl326-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbse_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbSe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Se": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.5,
+      3.5,
+      3.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Se"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Pb-Pb1115Te976Cl278-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb1115Te976Cl278",
+   "composition": {
+    "Pb": 1115,
+    "Te": 976,
+    "Cl": 278
+   },
+   "core": {
+    "Pb": 1115,
+    "Te": 976
+   },
+   "ligands": {
+    "Cl": 278
+   },
+   "n_atoms": 2369,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 2091,
+    "d_nm": 5.209,
+    "d_max_nm": 5.551,
+    "d_hull_nm": 4.933,
+    "unit_cells": 3.5,
+    "unit_cells_all": [
+     3.5
+    ]
+   },
+   "fingerprint": "f84b6ce768b1ed6b",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Pb-Pb1115Te976Cl278-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.5,
+      3.5,
+      3.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Pb-Pb1139Te990Cl298-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb1139Te990Cl298",
+   "composition": {
+    "Pb": 1139,
+    "Te": 990,
+    "Cl": 298
+   },
+   "core": {
+    "Pb": 1139,
+    "Te": 990
+   },
+   "ligands": {
+    "Cl": 298
+   },
+   "n_atoms": 2427,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.056,
+   "size": {
+    "n_core": 2129,
+    "d_nm": 5.248,
+    "d_max_nm": 5.638,
+    "d_hull_nm": 5.009,
+    "unit_cells": 3.75,
+    "unit_cells_all": [
+     3.75
+    ]
+   },
+   "fingerprint": "68eb24d78faaf57d",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Pb-Pb1139Te990Cl298-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.75,
+      3.75,
+      3.75
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Pb-Pb1289Te1074Cl430-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb1289Te1074Cl430",
+   "composition": {
+    "Pb": 1289,
+    "Te": 1074,
+    "Cl": 430
+   },
+   "core": {
+    "Pb": 1289,
+    "Te": 1074
+   },
+   "ligands": {
+    "Cl": 430
+   },
+   "n_atoms": 2793,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.018,
+   "size": {
+    "n_core": 2363,
+    "d_nm": 5.464,
+    "d_max_nm": 5.854,
+    "d_hull_nm": 5.18,
+    "unit_cells": 4.0,
+    "unit_cells_all": [
+     4.0
+    ]
+   },
+   "fingerprint": "a523fef79f32e94a",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Pb-Pb1289Te1074Cl430-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      4.0,
+      4.0,
+      4.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Pb-Pb135Te116Cl38-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb135Te116Cl38",
+   "composition": {
+    "Pb": 135,
+    "Te": 116,
+    "Cl": 38
+   },
+   "core": {
+    "Pb": 135,
+    "Te": 116
+   },
+   "ligands": {
+    "Cl": 38
+   },
+   "n_atoms": 289,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 251,
+    "d_nm": 2.552,
+    "d_max_nm": 2.448,
+    "d_hull_nm": 2.257,
+    "unit_cells": 1.5,
+    "unit_cells_all": [
+     1.5
+    ]
+   },
+   "fingerprint": "dccc4c2dfec54f7f",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Pb-Pb135Te116Cl38-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.5,
+      1.5,
+      1.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Pb-Pb147Te130Cl34-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb147Te130Cl34",
+   "composition": {
+    "Pb": 147,
+    "Te": 130,
+    "Cl": 34
+   },
+   "core": {
+    "Pb": 147,
+    "Te": 130
+   },
+   "ligands": {
+    "Cl": 34
+   },
+   "n_atoms": 311,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.117,
+   "size": {
+    "n_core": 277,
+    "d_nm": 2.659,
+    "d_max_nm": 2.799,
+    "d_hull_nm": 2.355,
+    "unit_cells": 1.75,
+    "unit_cells_all": [
+     1.75
+    ]
+   },
+   "fingerprint": "8816e5691185a810",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Pb-Pb147Te130Cl34-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.75,
+      1.75,
+      1.75
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Pb-Pb297Te260Cl74-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb297Te260Cl74",
+   "composition": {
+    "Pb": 297,
+    "Te": 260,
+    "Cl": 74
+   },
+   "core": {
+    "Pb": 297,
+    "Te": 260
+   },
+   "ligands": {
+    "Cl": 74
+   },
+   "n_atoms": 631,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 557,
+    "d_nm": 3.347,
+    "d_max_nm": 3.336,
+    "d_hull_nm": 3.036,
+    "unit_cells": 2.0,
+    "unit_cells_all": [
+     2.0
+    ]
+   },
+   "fingerprint": "2f0c65d994cf58e0",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Pb-Pb297Te260Cl74-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.0,
+      2.0,
+      2.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Pb-Pb309Te278Cl62-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb309Te278Cl62",
+   "composition": {
+    "Pb": 309,
+    "Te": 278,
+    "Cl": 62
+   },
+   "core": {
+    "Pb": 309,
+    "Te": 278
+   },
+   "ligands": {
+    "Cl": 62
+   },
+   "n_atoms": 649,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.097,
+   "size": {
+    "n_core": 587,
+    "d_nm": 3.422,
+    "d_max_nm": 3.717,
+    "d_hull_nm": 3.122,
+    "unit_cells": 2.25,
+    "unit_cells_all": [
+     2.25
+    ]
+   },
+   "fingerprint": "3da72aca8c4e53ef",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Pb-Pb309Te278Cl62-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.25,
+      2.25,
+      2.25
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Pb-Pb405Te320Cl170-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb405Te320Cl170",
+   "composition": {
+    "Pb": 405,
+    "Te": 320,
+    "Cl": 170
+   },
+   "core": {
+    "Pb": 405,
+    "Te": 320
+   },
+   "ligands": {
+    "Cl": 170
+   },
+   "n_atoms": 895,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.079,
+   "size": {
+    "n_core": 725,
+    "d_nm": 3.67,
+    "d_max_nm": 3.83,
+    "d_hull_nm": 3.436,
+    "unit_cells": 2.75,
+    "unit_cells_all": [
+     2.75
+    ]
+   },
+   "fingerprint": "469370ce92b22d8c",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Pb-Pb405Te320Cl170-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.75,
+      2.75,
+      2.75
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Pb-Pb43Te38Cl10-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb43Te38Cl10",
+   "composition": {
+    "Pb": 43,
+    "Te": 38,
+    "Cl": 10
+   },
+   "core": {
+    "Pb": 43,
+    "Te": 38
+   },
+   "ligands": {
+    "Cl": 10
+   },
+   "n_atoms": 91,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 81,
+    "d_nm": 1.735,
+    "d_max_nm": 1.602,
+    "d_hull_nm": 1.447,
+    "unit_cells": 1.0,
+    "unit_cells_all": [
+     1.0
+    ]
+   },
+   "fingerprint": "5c998a68a7e0e2d9",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Pb-Pb43Te38Cl10-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Pb-Pb549Te490Cl118-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb549Te490Cl118",
+   "composition": {
+    "Pb": 549,
+    "Te": 490,
+    "Cl": 118
+   },
+   "core": {
+    "Pb": 549,
+    "Te": 490
+   },
+   "ligands": {
+    "Cl": 118
+   },
+   "n_atoms": 1157,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 1039,
+    "d_nm": 4.133,
+    "d_max_nm": 4.24,
+    "d_hull_nm": 3.807,
+    "unit_cells": 2.5,
+    "unit_cells_all": [
+     2.5
+    ]
+   },
+   "fingerprint": "b7f154dd53f664e8",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Pb-Pb549Te490Cl118-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.5,
+      2.5,
+      2.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Pb-Pb55Te48Cl14-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb55Te48Cl14",
+   "composition": {
+    "Pb": 55,
+    "Te": 48,
+    "Cl": 14
+   },
+   "core": {
+    "Pb": 55,
+    "Te": 48
+   },
+   "ligands": {
+    "Cl": 14
+   },
+   "n_atoms": 117,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.119,
+   "size": {
+    "n_core": 103,
+    "d_nm": 1.912,
+    "d_max_nm": 1.984,
+    "d_hull_nm": 1.583,
+    "unit_cells": 1.25,
+    "unit_cells_all": [
+     1.25
+    ]
+   },
+   "fingerprint": "55716b3dcffbe36f",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Pb-Pb55Te48Cl14-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.25,
+      1.25,
+      1.25
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Pb-Pb687Te586Cl202-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb687Te586Cl202",
+   "composition": {
+    "Pb": 687,
+    "Te": 586,
+    "Cl": 202
+   },
+   "core": {
+    "Pb": 687,
+    "Te": 586
+   },
+   "ligands": {
+    "Cl": 202
+   },
+   "n_atoms": 1475,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 1273,
+    "d_nm": 4.414,
+    "d_max_nm": 4.626,
+    "d_hull_nm": 4.15,
+    "unit_cells": 3.0,
+    "unit_cells_all": [
+     3.0
+    ]
+   },
+   "fingerprint": "12212962eac1757f",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Pb-Pb687Te586Cl202-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.0,
+      3.0,
+      3.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Pb-Pb711Te596Cl230-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb711Te596Cl230",
+   "composition": {
+    "Pb": 711,
+    "Te": 596,
+    "Cl": 230
+   },
+   "core": {
+    "Pb": 711,
+    "Te": 596
+   },
+   "ligands": {
+    "Cl": 230
+   },
+   "n_atoms": 1537,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.068,
+   "size": {
+    "n_core": 1307,
+    "d_nm": 4.462,
+    "d_max_nm": 4.73,
+    "d_hull_nm": 4.228,
+    "unit_cells": 3.25,
+    "unit_cells_all": [
+     3.25
+    ]
+   },
+   "fingerprint": "d458ad079e1a801b",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Pb-Pb711Te596Cl230-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.25,
+      3.25,
+      3.25
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Te-Pb116Te85Cl62-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb116Te85Cl62",
+   "composition": {
+    "Pb": 116,
+    "Te": 85,
+    "Cl": 62
+   },
+   "core": {
+    "Pb": 116,
+    "Te": 85
+   },
+   "ligands": {
+    "Cl": 62
+   },
+   "n_atoms": 263,
+   "total_charge": 0,
+   "centre": "Te",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 201,
+    "d_nm": 2.38,
+    "d_max_nm": 2.359,
+    "d_hull_nm": 2.145,
+    "unit_cells": 1.5,
+    "unit_cells_all": [
+     1.5
+    ]
+   },
+   "fingerprint": "6f3e3532248cbeb0",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Te-Pb116Te85Cl62-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.5,
+      1.5,
+      1.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Te"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Te-Pb1264Te1139Cl250-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb1264Te1139Cl250",
+   "composition": {
+    "Pb": 1264,
+    "Te": 1139,
+    "Cl": 250
+   },
+   "core": {
+    "Pb": 1264,
+    "Te": 1139
+   },
+   "ligands": {
+    "Cl": 250
+   },
+   "n_atoms": 2653,
+   "total_charge": 0,
+   "centre": "Te",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 2403,
+    "d_nm": 5.46,
+    "d_max_nm": 5.665,
+    "d_hull_nm": 5.151,
+    "unit_cells": 3.75,
+    "unit_cells_all": [
+     3.75
+    ]
+   },
+   "fingerprint": "02d5e1e4d145942e",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Te-Pb1264Te1139Cl250-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.75,
+      3.75,
+      3.75
+     ],
+     "construction_origin": {
+      "center_on_species": "Te"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Te-Pb1480Te1289Cl382-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb1480Te1289Cl382",
+   "composition": {
+    "Pb": 1480,
+    "Te": 1289,
+    "Cl": 382
+   },
+   "core": {
+    "Pb": 1480,
+    "Te": 1289
+   },
+   "ligands": {
+    "Cl": 382
+   },
+   "n_atoms": 3151,
+   "total_charge": 0,
+   "centre": "Te",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 2769,
+    "d_nm": 5.731,
+    "d_max_nm": 6.031,
+    "d_hull_nm": 5.449,
+    "unit_cells": 4.0,
+    "unit_cells_all": [
+     4.0
+    ]
+   },
+   "fingerprint": "00619735abafff7b",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Te-Pb1480Te1289Cl382-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      4.0,
+      4.0,
+      4.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Te"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Te-Pb14Te13Cl2-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb14Te13Cl2",
+   "composition": {
+    "Pb": 14,
+    "Te": 13,
+    "Cl": 2
+   },
+   "core": {
+    "Pb": 14,
+    "Te": 13
+   },
+   "ligands": {
+    "Cl": 2
+   },
+   "n_atoms": 29,
+   "total_charge": 0,
+   "centre": "Te",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 27,
+    "d_nm": 1.194,
+    "d_max_nm": 1.133,
+    "d_hull_nm": 0.812,
+    "unit_cells": 0.75,
+    "unit_cells_all": [
+     0.75
+    ]
+   },
+   "fingerprint": "d1d95141c70c09b4",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Te-Pb14Te13Cl2-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      0.75,
+      0.75,
+      0.75
+     ],
+     "construction_origin": {
+      "center_on_species": "Te"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Te-Pb164Te147Cl34-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb164Te147Cl34",
+   "composition": {
+    "Pb": 164,
+    "Te": 147,
+    "Cl": 34
+   },
+   "core": {
+    "Pb": 164,
+    "Te": 147
+   },
+   "ligands": {
+    "Cl": 34
+   },
+   "n_atoms": 345,
+   "total_charge": 0,
+   "centre": "Te",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 311,
+    "d_nm": 2.781,
+    "d_max_nm": 2.852,
+    "d_hull_nm": 2.394,
+    "unit_cells": 1.75,
+    "unit_cells_all": [
+     1.75
+    ]
+   },
+   "fingerprint": "a7821d405e29f522",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Te-Pb164Te147Cl34-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.75,
+      1.75,
+      1.75
+     ],
+     "construction_origin": {
+      "center_on_species": "Te"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Te-Pb260Te211Cl98-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb260Te211Cl98",
+   "composition": {
+    "Pb": 260,
+    "Te": 211,
+    "Cl": 98
+   },
+   "core": {
+    "Pb": 260,
+    "Te": 211
+   },
+   "ligands": {
+    "Cl": 98
+   },
+   "n_atoms": 569,
+   "total_charge": 0,
+   "centre": "Te",
+   "centre_offset_A": 0.043,
+   "size": {
+    "n_core": 471,
+    "d_nm": 3.165,
+    "d_max_nm": 3.278,
+    "d_hull_nm": 2.914,
+    "unit_cells": 2.0,
+    "unit_cells_all": [
+     2.0
+    ]
+   },
+   "fingerprint": "402452130ca44824",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Te-Pb260Te211Cl98-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.0,
+      2.0,
+      2.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Te"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Te-Pb340Te309Cl62-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb340Te309Cl62",
+   "composition": {
+    "Pb": 340,
+    "Te": 309,
+    "Cl": 62
+   },
+   "core": {
+    "Pb": 340,
+    "Te": 309
+   },
+   "ligands": {
+    "Cl": 62
+   },
+   "n_atoms": 711,
+   "total_charge": 0,
+   "centre": "Te",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 649,
+    "d_nm": 3.56,
+    "d_max_nm": 3.758,
+    "d_hull_nm": 3.169,
+    "unit_cells": 2.25,
+    "unit_cells_all": [
+     2.25
+    ]
+   },
+   "fingerprint": "fa95bac41753ba2a",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Te-Pb340Te309Cl62-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.25,
+      2.25,
+      2.25
+     ],
+     "construction_origin": {
+      "center_on_species": "Te"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Te-Pb38Te21Cl34-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb38Te21Cl34",
+   "composition": {
+    "Pb": 38,
+    "Te": 21,
+    "Cl": 34
+   },
+   "core": {
+    "Pb": 38,
+    "Te": 21
+   },
+   "ligands": {
+    "Cl": 34
+   },
+   "n_atoms": 93,
+   "total_charge": 0,
+   "centre": "Te",
+   "centre_offset_A": 0.222,
+   "size": {
+    "n_core": 59,
+    "d_nm": 1.592,
+    "d_max_nm": 1.566,
+    "d_hull_nm": 1.315,
+    "unit_cells": 1.0,
+    "unit_cells_all": [
+     1.0
+    ]
+   },
+   "fingerprint": "3930c3102cdc6c99",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Te-Pb38Te21Cl34-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Te"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Te-Pb466Te405Cl122-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb466Te405Cl122",
+   "composition": {
+    "Pb": 466,
+    "Te": 405,
+    "Cl": 122
+   },
+   "core": {
+    "Pb": 466,
+    "Te": 405
+   },
+   "ligands": {
+    "Cl": 122
+   },
+   "n_atoms": 993,
+   "total_charge": 0,
+   "centre": "Te",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 871,
+    "d_nm": 3.879,
+    "d_max_nm": 3.87,
+    "d_hull_nm": 3.596,
+    "unit_cells": 2.75,
+    "unit_cells_all": [
+     2.75
+    ]
+   },
+   "fingerprint": "bdf636688cfc6e72",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Te-Pb466Te405Cl122-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.75,
+      2.75,
+      2.75
+     ],
+     "construction_origin": {
+      "center_on_species": "Te"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Te-Pb490Te419Cl142-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb490Te419Cl142",
+   "composition": {
+    "Pb": 490,
+    "Te": 419,
+    "Cl": 142
+   },
+   "core": {
+    "Pb": 490,
+    "Te": 419
+   },
+   "ligands": {
+    "Cl": 142
+   },
+   "n_atoms": 1051,
+   "total_charge": 0,
+   "centre": "Te",
+   "centre_offset_A": 0.061,
+   "size": {
+    "n_core": 909,
+    "d_nm": 3.947,
+    "d_max_nm": 4.2,
+    "d_hull_nm": 3.691,
+    "unit_cells": 2.5,
+    "unit_cells_all": [
+     2.5
+    ]
+   },
+   "fingerprint": "8122da2877745a71",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Te-Pb490Te419Cl142-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.5,
+      2.5,
+      2.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Te"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Te-Pb586Te461Cl250-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb586Te461Cl250",
+   "composition": {
+    "Pb": 586,
+    "Te": 461,
+    "Cl": 250
+   },
+   "core": {
+    "Pb": 586,
+    "Te": 461
+   },
+   "ligands": {
+    "Cl": 250
+   },
+   "n_atoms": 1297,
+   "total_charge": 0,
+   "centre": "Te",
+   "centre_offset_A": 0.023,
+   "size": {
+    "n_core": 1047,
+    "d_nm": 4.165,
+    "d_max_nm": 4.393,
+    "d_hull_nm": 3.892,
+    "unit_cells": 3.0,
+    "unit_cells_all": [
+     3.0
+    ]
+   },
+   "fingerprint": "0a45c1ce9cd68172",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Te-Pb586Te461Cl250-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.0,
+      3.0,
+      3.0
+     ],
+     "construction_origin": {
+      "center_on_species": "Te"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Te-Pb62Te55Cl14-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb62Te55Cl14",
+   "composition": {
+    "Pb": 62,
+    "Te": 55,
+    "Cl": 14
+   },
+   "core": {
+    "Pb": 62,
+    "Te": 55
+   },
+   "ligands": {
+    "Cl": 14
+   },
+   "n_atoms": 131,
+   "total_charge": 0,
+   "centre": "Te",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 117,
+    "d_nm": 1.997,
+    "d_max_nm": 1.963,
+    "d_hull_nm": 1.612,
+    "unit_cells": 1.25,
+    "unit_cells_all": [
+     1.25
+    ]
+   },
+   "fingerprint": "5b5e8f07a173f28e",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Te-Pb62Te55Cl14-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 0.8
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.25,
+      1.25,
+      1.25
+     ],
+     "construction_origin": {
+      "center_on_species": "Te"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Te-Pb802Te711Cl182-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb802Te711Cl182",
+   "composition": {
+    "Pb": 802,
+    "Te": 711,
+    "Cl": 182
+   },
+   "core": {
+    "Pb": 802,
+    "Te": 711
+   },
+   "ligands": {
+    "Cl": 182
+   },
+   "n_atoms": 1695,
+   "total_charge": 0,
+   "centre": "Te",
+   "centre_offset_A": 0.0,
+   "size": {
+    "n_core": 1513,
+    "d_nm": 4.673,
+    "d_max_nm": 4.762,
+    "d_hull_nm": 4.377,
+    "unit_cells": 3.25,
+    "unit_cells_all": [
+     3.25
+    ]
+   },
+   "fingerprint": "152aba422da3eeae",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Te-Pb802Te711Cl182-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.25,
+      3.25,
+      3.25
+     ],
+     "construction_origin": {
+      "center_on_species": "Te"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "PbTe-Te-Pb976Te813Cl326-clean",
+   "material": "PbTe",
+   "family": "IV-VI",
+   "phase": "rock-salt",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Pb976Te813Cl326",
+   "composition": {
+    "Pb": 976,
+    "Te": 813,
+    "Cl": 326
+   },
+   "core": {
+    "Pb": 976,
+    "Te": 813
+   },
+   "ligands": {
+    "Cl": 326
+   },
+   "n_atoms": 2115,
+   "total_charge": 0,
+   "centre": "Te",
+   "centre_offset_A": 0.03,
+   "size": {
+    "n_core": 1789,
+    "d_nm": 4.966,
+    "d_max_nm": 5.28,
+    "d_hull_nm": 4.72,
+    "unit_cells": 3.5,
+    "unit_cells_all": [
+     3.5
+    ]
+   },
+   "fingerprint": "8e62d45d0a9d8029",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "IV-VI/PbTe/builder/PbTe-Te-Pb976Te813Cl326-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
+    "qd_builder_dirty": true,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+     "charges": {
+      "Pb": 2,
+      "Te": -2,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      },
+      {
+       "hkl": "111",
+       "scope": "family",
+       "termination": "cation_rich",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.5,
+      3.5,
+      3.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Te"
+     }
+    }
    },
    "properties": {},
    "flags": {
@@ -124395,7 +133750,7 @@
   },
   {
    "schema_version": 1,
-   "id": "CsPbBr3-Cs-Cs112Pb64Br240-clean",
+   "id": "CsPbBr3-Cs-Cs112Pb64Br240-clean-v2",
    "material": "CsPbBr3",
    "family": "ABX3",
    "phase": "cubic perovskite",
@@ -124451,7 +133806,7 @@
   },
   {
    "schema_version": 1,
-   "id": "CsPbBr3-Cs-Cs324Pb216Br756-clean",
+   "id": "CsPbBr3-Cs-Cs324Pb216Br756-clean-v2",
    "material": "CsPbBr3",
    "family": "ABX3",
    "phase": "cubic perovskite",
@@ -124507,7 +133862,7 @@
   },
   {
    "schema_version": 1,
-   "id": "CsPbBr3-Cs-Cs704Pb512Br1728-clean",
+   "id": "CsPbBr3-Cs-Cs704Pb512Br1728-clean-v2",
    "material": "CsPbBr3",
    "family": "ABX3",
    "phase": "cubic perovskite",
@@ -124560,7 +133915,7 @@
   },
   {
    "schema_version": 1,
-   "id": "CsPbCl3-Cs-Cs20Pb8Cl36-clean",
+   "id": "CsPbCl3-Cs-Cs20Pb8Cl36-clean-v2",
    "material": "CsPbCl3",
    "family": "ABX3",
    "phase": "cubic perovskite",
@@ -124616,7 +133971,7 @@
   },
   {
    "schema_version": 1,
-   "id": "CsPbCl3-Cs-Cs112Pb64Cl240-clean",
+   "id": "CsPbCl3-Cs-Cs112Pb64Cl240-clean-v2",
    "material": "CsPbCl3",
    "family": "ABX3",
    "phase": "cubic perovskite",

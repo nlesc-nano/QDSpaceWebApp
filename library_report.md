@@ -2,16 +2,16 @@
 
 - legacy structure groups: 174
 - same start, other functional (merged): 23
-- merged with builder twins: 19
+- merged with builder twins: 20
 - meta.yaml written: 0
-- id collisions (suffixed): 43
+- id collisions (suffixed): 48
 - errors: 2
 
 | family | material | structures | builder | dft | builder+dft | reconstructed | centres |
 |---|---|---|---|---|---|---|---|
-| ABX3 | CsPbBr3 | 6 | 0 | 6 | 0 | 0 | Cs:6 |
-| ABX3 | CsPbCl3 | 5 | 0 | 5 | 0 | 0 | Cs:4, interstitial:1 |
-| ABX3 | CsPbI3 | 2 | 0 | 2 | 0 | 0 | Pb:2 |
+| ABX3 | CsPbBr3 | 11 | 5 | 5 | 1 | 0 | Cs:11 |
+| ABX3 | CsPbCl3 | 11 | 6 | 5 | 0 | 0 | Cs:10, interstitial:1 |
+| ABX3 | CsPbI3 | 8 | 6 | 2 | 0 | 0 | Cs:6, Pb:2 |
 | II-VI | CdS | 71 | 66 | 2 | 3 | 33 | Cd:35, S:36 |
 | II-VI | CdSe | 79 | 66 | 10 | 3 | 35 | Cd:35, Se:44 |
 | II-VI | CdTe | 74 | 69 | 5 | 0 | 33 | Cd:35, Te:39 |
@@ -34,12 +34,13 @@
 | III-V | InAs | 45 | 30 | 15 | 0 | 10 | As:16, In:29 |
 | III-V | InP | 43 | 29 | 13 | 1 | 10 | In:27, P:16 |
 | III-V | InSb | 39 | 30 | 9 | 0 | 10 | In:23, Sb:16 |
-| IV-VI | PbS | 4 | 0 | 4 | 0 | 0 | Pb:4 |
-| IV-VI | PbSe | 3 | 0 | 3 | 0 | 0 | Pb:3 |
-| IV-VI | PbTe | 3 | 0 | 3 | 0 | 0 | Pb:3 |
+| IV-VI | PbS | 31 | 27 | 4 | 0 | 0 | Pb:17, S:14 |
+| IV-VI | PbSe | 30 | 27 | 3 | 0 | 0 | Pb:16, Se:14 |
+| IV-VI | PbTe | 30 | 27 | 3 | 0 | 0 | Pb:16, Te:14 |
 
 ## Merged with builder twins
 
+- ABX3/CsPbBr3 -> CsPbBr3-Cs-Cs20Pb8Br36-clean (Δr̄ = 0.000 Å)
 - II-VI/CdS/HLE17/12ang -> CdS-S-Cd16S13Cl6-clean (Δr̄ = 0.346 Å)
 - II-VI/CdS/HLE17/20ang -> CdS-S-Cd68S55Cl26-clean (Δr̄ = 0.251 Å)
 - II-VI/CdS/HLE17/28ang -> CdS-S-Cd176S147Cl58-clean (Δr̄ = 0.466 Å)
@@ -90,6 +91,11 @@
 
 - CsPbBr3-Cs-Cs20Pb8Br36-clean -> CsPbBr3-Cs-Cs20Pb8Br36-clean-v2 (ABX3/CsPbBr3/HLE17/12ang)
 - CsPbBr3-Cs-Cs20Pb8Br36-clean -> CsPbBr3-Cs-Cs20Pb8Br36-clean-v3 (ABX3/CsPbBr3/HLE17/16ang)
+- CsPbBr3-Cs-Cs112Pb64Br240-clean -> CsPbBr3-Cs-Cs112Pb64Br240-clean-v2 (ABX3/CsPbBr3/HLE17/24ang)
+- CsPbBr3-Cs-Cs324Pb216Br756-clean -> CsPbBr3-Cs-Cs324Pb216Br756-clean-v2 (ABX3/CsPbBr3/HLE17/37ang)
+- CsPbBr3-Cs-Cs704Pb512Br1728-clean -> CsPbBr3-Cs-Cs704Pb512Br1728-clean-v2 (ABX3/CsPbBr3/HLE17/48ang)
+- CsPbCl3-Cs-Cs20Pb8Cl36-clean -> CsPbCl3-Cs-Cs20Pb8Cl36-clean-v2 (ABX3/CsPbCl3/HLE17/12ang)
+- CsPbCl3-Cs-Cs112Pb64Cl240-clean -> CsPbCl3-Cs-Cs112Pb64Cl240-clean-v2 (ABX3/CsPbCl3/HLE17/24ang)
 - CdSe-Se-Cd176Se147Cl58-clean -> CdSe-Se-Cd176Se147Cl58-clean-v2 (II-VI/CdSe/old/Cd176_OPT.xyz)
 - CdSe-Se-Cd176Se147Cl58-clean -> CdSe-Se-Cd176Se147Cl58-clean-v3 (II-VI/CdSe/old/Cd176_pure_OPT.xyz)
 - CdSe-Se-Cd68Se55Cl26-clean -> CdSe-Se-Cd68Se55Cl26-clean-v2 (II-VI/CdSe/old/Cd68_OPT.xyz)
