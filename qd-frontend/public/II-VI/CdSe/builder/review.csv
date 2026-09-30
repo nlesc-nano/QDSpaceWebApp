@@ -54,7 +54,7 @@ Se,1.0,reconstructed,skipped: found 0 anion- and 0 cation-terminated {111} facet
 Se,1.25,clean,kept,CdSe-Se-Cd28Se13Cl30-clean,Cd28Se13Cl30,1.339,71,0
 Se,1.25,reconstructed,skipped: found 0 anion- and 4 cation-terminated {111} facets; need both,,,,,
 Se,1.5,clean,kept,CdSe-Se-Cd68Se55Cl26-clean,Cd68Se55Cl26,1.89,149,0
-Se,1.5,reconstructed,kept,CdSe-Se-Cd60Se39Cl42-reconstructed,Cd60Se39Cl42,1.867,141,0
+Se,1.5,reconstructed,kept,CdSe-Se-Cd60Se39Cl42-reconstructed,Cd60Se39Cl42,1.866,141,0
 Se,1.75,clean,kept,CdSe-Se-Cd92Se59Cl66-clean,Cd92Se59Cl66,2.069,217,0
 Se,1.75,reconstructed,skipped: found 0 anion- and 4 cation-terminated {111} facets; need both,,,,,
 Se,2.0,clean,kept,CdSe-Se-Cd176Se147Cl58-clean,Cd176Se147Cl58,2.624,381,0

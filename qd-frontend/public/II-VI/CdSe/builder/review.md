@@ -59,7 +59,7 @@
 | Se | 1.25 | clean | kept | Cd28Se13Cl30 | 1.339 | 71 |
 | Se | 1.25 | reconstructed | skipped: found 0 anion- and 4 cation-terminated {111} facets; need both |  |  |  |
 | Se | 1.5 | clean | kept | Cd68Se55Cl26 | 1.89 | 149 |
-| Se | 1.5 | reconstructed | kept | Cd60Se39Cl42 | 1.867 | 141 |
+| Se | 1.5 | reconstructed | kept | Cd60Se39Cl42 | 1.866 | 141 |
 | Se | 1.75 | clean | kept | Cd92Se59Cl66 | 2.069 | 217 |
 | Se | 1.75 | reconstructed | skipped: found 0 anion- and 4 cation-terminated {111} facets; need both |  |  |  |
 | Se | 2.0 | clean | kept | Cd176Se147Cl58 | 2.624 | 381 |
