@@ -554,6 +554,23 @@
       "diameter_hull": 45.483797
     }
   },
+  "II-VI/CdSe/builder/CdSe-Cd-Cd134Se92Cl84-reconstructed/start.xyz": {
+    "system_type": "II-VI",
+    "material": "CdSe",
+    "filename": "CdSe-Cd-Cd134Se92Cl84-reconstructed.xyz",
+    "size": 2.369,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "QD_Builder",
+    "centre": "Cd",
+    "surface": "reconstructed",
+    "record_id": "CdSe-Cd-Cd134Se92Cl84-reconstructed",
+    "size_metrics": {
+      "R_eff_hull": 10.460813666666667,
+      "diameter_hull": 20.921627333333333
+    }
+  },
   "II-VI/CdSe/builder/CdSe-Cd-Cd147Se104Cl86-clean/start.xyz": {
     "system_type": "II-VI",
     "material": "CdSe",

@@ -2,17 +2,17 @@ centre,unit_cells,surface,status,id,formula,d_nm,n_atoms,Q
 Cd,0.5,clean,rejected: core 0 < 20 atoms; centre detected as unknown,,,0.0,0,0
 Cd,0.5,reconstructed,skipped: found 0 anion- and 0 cation-terminated {111} facets; need both,,,,,
 Cd,0.75,clean,rejected: core 17 < 20 atoms,,Cd13Se4Cl18,0.999,35,0
-Cd,0.75,reconstructed,skipped: found 0 anion- and 0 cation-terminated {111} facets; need both,,,,,
+Cd,0.75,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
 Cd,1.0,clean,rejected: core 17 < 20 atoms,,Cd13Se4Cl18,0.999,35,0
-Cd,1.0,reconstructed,skipped: found 0 anion- and 0 cation-terminated {111} facets; need both,,,,,
+Cd,1.0,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
 Cd,1.25,clean,kept,CdSe-Cd-Cd31Se22Cl18-clean,Cd31Se22Cl18,1.478,71,0
-Cd,1.25,reconstructed,skipped: found 1 anion- and 0 cation-terminated {111} facets; need both,,,,,
+Cd,1.25,reconstructed,rejected: keeps 4/22 anions of its clean parent,,Cd25Se4Cl42,1.49,71,0
 Cd,1.5,clean,kept,CdSe-Cd-Cd55Se32Cl46-clean,Cd55Se32Cl46,1.717,133,0
 Cd,1.5,reconstructed,skipped: found 0 anion- and 4 cation-terminated {111} facets; need both,,,,,
 Cd,1.75,clean,kept,CdSe-Cd-Cd107Se86Cl42-clean,Cd107Se86Cl42,2.231,235,0
 Cd,1.75,reconstructed,kept,CdSe-Cd-Cd95Se60Cl70-reconstructed,Cd95Se60Cl70,2.192,225,0
 Cd,2.0,clean,kept,CdSe-Cd-Cd147Se104Cl86-clean,Cd147Se104Cl86,2.442,337,0
-Cd,2.0,reconstructed,skipped: found 0 anion- and 4 cation-terminated {111} facets; need both,,,,,
+Cd,2.0,reconstructed,kept,CdSe-Cd-Cd134Se92Cl84-reconstructed,Cd134Se92Cl84,2.369,310,0
 Cd,2.25,clean,kept,CdSe-Cd-Cd201Se176Cl50-clean,Cd201Se176Cl50,2.753,427,0
 Cd,2.25,reconstructed,kept,CdSe-Cd-Cd177Se140Cl74-reconstructed,Cd177Se140Cl74,2.675,391,0
 Cd,2.5,clean,kept,CdSe-Cd-Cd309Se240Cl138-clean,Cd309Se240Cl138,3.169,687,0
@@ -48,11 +48,11 @@ Cd,6.0,reconstructed,kept,CdSe-Cd-Cd4320Se3920Cl800-reconstructed,Cd4320Se3920Cl
 Se,0.5,clean,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
 Se,0.5,reconstructed,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
 Se,0.75,clean,rejected: core 5 < 20 atoms,,Cd4Se1Cl6,0.614,11,0
-Se,0.75,reconstructed,skipped: found 0 anion- and 0 cation-terminated {111} facets; need both,,,,,
+Se,0.75,reconstructed,skipped: found 0 anion- and 4 cation-terminated {111} facets; need both,,,,,
 Se,1.0,clean,kept,CdSe-Se-Cd16Se13Cl6-clean,Cd16Se13Cl6,1.14,35,0
-Se,1.0,reconstructed,skipped: found 0 anion- and 0 cation-terminated {111} facets; need both,,,,,
+Se,1.0,reconstructed,rejected: core 16 < 20 atoms; keeps 2/13 anions of its clean parent; centre detected as interstitial,,Cd14Se2Cl24,1.229,40,0
 Se,1.25,clean,kept,CdSe-Se-Cd28Se13Cl30-clean,Cd28Se13Cl30,1.339,71,0
-Se,1.25,reconstructed,skipped: found 0 anion- and 4 cation-terminated {111} facets; need both,,,,,
+Se,1.25,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
 Se,1.5,clean,kept,CdSe-Se-Cd68Se55Cl26-clean,Cd68Se55Cl26,1.89,149,0
 Se,1.5,reconstructed,kept,CdSe-Se-Cd60Se39Cl42-reconstructed,Cd60Se39Cl42,1.866,141,0
 Se,1.75,clean,kept,CdSe-Se-Cd92Se59Cl66-clean,Cd92Se59Cl66,2.069,217,0

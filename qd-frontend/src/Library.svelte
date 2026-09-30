@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import Viewer from "./Viewer.svelte";
   import { templateFor } from "./bulkTemplates.js";
+  import { makeZip } from "./zip.js";
 
   // Opens a structure in the Builder's post-treatment view (set by App).
   let { onOpenInBuilder = null } = $props();
@@ -273,6 +274,70 @@
     a.click();
   }
 
+  // --- Download every structure left by the filters as one zip ---
+  let zipIncludeMD = $state(false);
+  let zipStatus = $state("");
+
+  function stageFileName(st, used) {
+    let base;
+    if (st.stage === "start") base = st.dft_start ? "unrelaxed_dft_input" : "unrelaxed";
+    else if (st.stage === "geo_opt") base = `relaxed_${st.functional || "functional_unknown"}`;
+    else if (st.stage === "md") base = `md_${st.functional || "trajectory"}`;
+    else base = st.stage;
+    let name = `${base}.xyz`;
+    for (let k = 2; used.has(name); k++) name = `${base}_${k}.xyz`;
+    used.add(name);
+    return name;
+  }
+
+  function csvCell(v) {
+    const t = v === null || v === undefined ? "" : String(v);
+    return /[",\n]/.test(t) ? `"${t.replace(/"/g, '""')}"` : t;
+  }
+
+  async function downloadMatchesZip() {
+    const list = matches;
+    if (!list.length) return;
+    if (list.length > 150 && !confirm(`Download ${list.length} structures as one zip?`)) return;
+    const enc = new TextEncoder();
+    const files = [];
+    const header = ["id", "formula", "material", "family", "centre", "surface", "source",
+                    "d_nm", "n_atoms", "total_charge", "unit_cells", "files"];
+    const rows = [header];
+    try {
+      for (let k = 0; k < list.length; k++) {
+        const r = list[k];
+        zipStatus = `Fetching ${k + 1}/${list.length}…`;
+        const used = new Set();
+        const names = [];
+        for (const st of r.stages) {
+          if (st.stage === "md" && !zipIncludeMD) continue;
+          const res = await fetch(`/${st.file}`);
+          if (!res.ok) continue;
+          const name = stageFileName(st, used);
+          files.push({ name: `${r.id}/${name}`, data: new Uint8Array(await res.arrayBuffer()) });
+          names.push(name);
+        }
+        files.push({ name: `${r.id}/record.json`, data: enc.encode(JSON.stringify(r, null, 1)) });
+        rows.push([r.id, r.formula, r.material, r.family, r.centre, r.surface, r.source,
+                   dOf(r).toFixed(3), r.n_atoms, r.total_charge, r.size?.unit_cells ?? "", names.join(" ")]);
+      }
+      files.push({ name: "index.csv", data: enc.encode(rows.map((row) => row.map(csvCell).join(",")).join("\n") + "\n") });
+      zipStatus = "Packing…";
+      const blob = makeZip(files);
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      const tag = [filters.material || filters.family || "library", filters.surface, filters.centre && `${filters.centre}-centred`]
+        .filter(Boolean).join("_");
+      a.download = `qdspace_${tag}_${list.length}_structures.zip`;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 10000);
+      zipStatus = `${list.length} structures, ${(blob.size / 1e6).toFixed(1)} MB`;
+    } catch (err) {
+      zipStatus = `Download failed: ${err.message}`;
+    }
+  }
+
   let builderTemplate = $derived(current ? templateFor(current.family, current.material) : null);
   let canOpenInBuilder = $derived(Boolean(onOpenInBuilder && builderTemplate && xyzText && !isMD));
 
@@ -428,6 +493,16 @@
       <div class="p-5 pb-3 font-heading font-bold text-slate-900 flex justify-between">
         <span>Matches ({matches.length})</span>
         <span class="text-xs text-slate-400 font-sans font-medium">sorted by diameter</span>
+      </div>
+      <div class="px-5 pb-3 flex flex-wrap items-center gap-x-3 gap-y-1.5">
+        <button class="bg-accent-600 hover:bg-accent-700 disabled:bg-slate-300 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors"
+                onclick={downloadMatchesZip} disabled={!matches.length || zipStatus.startsWith("Fetching") || zipStatus === "Packing…"}>
+          Download matches (.zip)
+        </button>
+        <label class="flex items-center gap-1.5 text-xs text-slate-600 cursor-pointer">
+          <input type="checkbox" bind:checked={zipIncludeMD} class="accent-accent-600" /> include MD
+        </label>
+        {#if zipStatus}<span class="text-[11px] text-slate-500">{zipStatus}</span>{/if}
       </div>
       <div class="px-3 pb-3 overflow-y-auto flex flex-col gap-1">
         {#each matches as r (r.id)}

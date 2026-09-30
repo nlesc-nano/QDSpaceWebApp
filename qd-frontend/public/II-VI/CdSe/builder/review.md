@@ -1,23 +1,23 @@
 # CdSe library series
 
-66 unique structures kept out of 92 builds.
+67 unique structures kept out of 92 builds.
 
 | centre | cells | surface | status | formula | d (nm) | atoms |
 |---|---|---|---|---|---|---|
 | Cd | 0.5 | clean | rejected: core 0 < 20 atoms; centre detected as unknown |  | 0.0 | 0 |
 | Cd | 0.5 | reconstructed | skipped: found 0 anion- and 0 cation-terminated {111} facets; need both |  |  |  |
 | Cd | 0.75 | clean | rejected: core 17 < 20 atoms | Cd13Se4Cl18 | 0.999 | 35 |
-| Cd | 0.75 | reconstructed | skipped: found 0 anion- and 0 cation-terminated {111} facets; need both |  |  |  |
+| Cd | 0.75 | reconstructed | skipped: found 0 anion- and 8 cation-terminated {111} facets; need both |  |  |  |
 | Cd | 1.0 | clean | rejected: core 17 < 20 atoms | Cd13Se4Cl18 | 0.999 | 35 |
-| Cd | 1.0 | reconstructed | skipped: found 0 anion- and 0 cation-terminated {111} facets; need both |  |  |  |
+| Cd | 1.0 | reconstructed | skipped: found 0 anion- and 8 cation-terminated {111} facets; need both |  |  |  |
 | Cd | 1.25 | clean | kept | Cd31Se22Cl18 | 1.478 | 71 |
-| Cd | 1.25 | reconstructed | skipped: found 1 anion- and 0 cation-terminated {111} facets; need both |  |  |  |
+| Cd | 1.25 | reconstructed | rejected: keeps 4/22 anions of its clean parent | Cd25Se4Cl42 | 1.49 | 71 |
 | Cd | 1.5 | clean | kept | Cd55Se32Cl46 | 1.717 | 133 |
 | Cd | 1.5 | reconstructed | skipped: found 0 anion- and 4 cation-terminated {111} facets; need both |  |  |  |
 | Cd | 1.75 | clean | kept | Cd107Se86Cl42 | 2.231 | 235 |
 | Cd | 1.75 | reconstructed | kept | Cd95Se60Cl70 | 2.192 | 225 |
 | Cd | 2.0 | clean | kept | Cd147Se104Cl86 | 2.442 | 337 |
-| Cd | 2.0 | reconstructed | skipped: found 0 anion- and 4 cation-terminated {111} facets; need both |  |  |  |
+| Cd | 2.0 | reconstructed | kept | Cd134Se92Cl84 | 2.369 | 310 |
 | Cd | 2.25 | clean | kept | Cd201Se176Cl50 | 2.753 | 427 |
 | Cd | 2.25 | reconstructed | kept | Cd177Se140Cl74 | 2.675 | 391 |
 | Cd | 2.5 | clean | kept | Cd309Se240Cl138 | 3.169 | 687 |
@@ -53,11 +53,11 @@
 | Se | 0.5 | clean | rejected: ValueError: zero-size array to reduction operation maximum which has no identity |  |  |  |
 | Se | 0.5 | reconstructed | rejected: ValueError: zero-size array to reduction operation maximum which has no identity |  |  |  |
 | Se | 0.75 | clean | rejected: core 5 < 20 atoms | Cd4Se1Cl6 | 0.614 | 11 |
-| Se | 0.75 | reconstructed | skipped: found 0 anion- and 0 cation-terminated {111} facets; need both |  |  |  |
+| Se | 0.75 | reconstructed | skipped: found 0 anion- and 4 cation-terminated {111} facets; need both |  |  |  |
 | Se | 1.0 | clean | kept | Cd16Se13Cl6 | 1.14 | 35 |
-| Se | 1.0 | reconstructed | skipped: found 0 anion- and 0 cation-terminated {111} facets; need both |  |  |  |
+| Se | 1.0 | reconstructed | rejected: core 16 < 20 atoms; keeps 2/13 anions of its clean parent; centre detected as interstitial | Cd14Se2Cl24 | 1.229 | 40 |
 | Se | 1.25 | clean | kept | Cd28Se13Cl30 | 1.339 | 71 |
-| Se | 1.25 | reconstructed | skipped: found 0 anion- and 4 cation-terminated {111} facets; need both |  |  |  |
+| Se | 1.25 | reconstructed | skipped: found 0 anion- and 8 cation-terminated {111} facets; need both |  |  |  |
 | Se | 1.5 | clean | kept | Cd68Se55Cl26 | 1.89 | 149 |
 | Se | 1.5 | reconstructed | kept | Cd60Se39Cl42 | 1.866 | 141 |
 | Se | 1.75 | clean | kept | Cd92Se59Cl66 | 2.069 | 217 |
