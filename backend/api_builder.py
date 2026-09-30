@@ -1184,7 +1184,9 @@ def _run_repassivation_posttreatment(
     )
     minimal_yaml = {
         "charges": charges,
-        "passivation": _default_passivation_block(include_cation_ligand=include_cation_ligand),
+        "passivation": _default_passivation_block(
+            include_cation_ligand=include_cation_ligand, ligand=_anion_placeholder_for_cif(core_cif_path)
+        ),
         "facets": facets_yaml,
         "symmetry": {"proper_rotations_only": True},
     }
@@ -1397,7 +1399,7 @@ def _detect_z_type_options_for_xyz(
         ]
         minimal_yaml = {
             "charges": charges,
-            "passivation": _default_passivation_block(),
+            "passivation": _default_passivation_block(ligand=_anion_placeholder_for_cif(core_cif_path)),
             "facets": facets_yaml,
             "symmetry": {"proper_rotations_only": True},
         }
@@ -1458,7 +1460,7 @@ def _detect_surface_post_options_for_xyz(
         ]
         minimal_yaml = {
             "charges": charges,
-            "passivation": _default_passivation_block(),
+            "passivation": _default_passivation_block(ligand=_anion_placeholder_for_cif(core_cif_path)),
             "facets": facets_yaml,
             "symmetry": {"proper_rotations_only": True},
         }
@@ -1610,9 +1612,26 @@ def format_facets_for_yaml(facets) -> List[dict]:
     return out
 
 
-def _default_passivation_block(*, include_cation_ligand: bool = False) -> dict:
+def _anion_placeholder(native_elements) -> str:
+    """Anion ligand placeholder: Cl, unless Cl is a native species (CsPbCl3)."""
+    native = set(native_elements or ())
+    for sym in ("Cl", "Br", "I", "F"):
+        if sym not in native:
+            return sym
+    return "Cl"
+
+
+def _anion_placeholder_for_cif(cif_path) -> str:
+    try:
+        from pymatgen.core import Structure
+        return _anion_placeholder({site.specie.symbol for site in Structure.from_file(str(cif_path)).sites})
+    except Exception:
+        return "Cl"
+
+
+def _default_passivation_block(*, include_cation_ligand: bool = False, ligand: str = "Cl") -> dict:
     block = {
-        "ligand": "Cl",
+        "ligand": ligand,
         "surf_tol": 2.0,
         "prepass_mode": "role-aware",
         "prepass_min_cn_terrace": 3,
@@ -2249,7 +2268,8 @@ async def build_nanocrystal_stream(
                         final_charges.update(sc)
                         shell_elements.update(sc.keys())
 
-            final_charges.setdefault("Cl", -1.0)
+            anion_ph = _anion_placeholder(core_elements | shell_elements)
+            final_charges.setdefault(anion_ph, -1.0)
             if needs_rb:
                 final_charges.setdefault("Rb", 1.0)
             for job in opts.alloying_jobs or []:
@@ -2257,7 +2277,9 @@ async def build_nanocrystal_stream(
                     final_charges.setdefault(job.replacement.strip(), int(job.replacement_charge))
             _augment_charges_for_neutral_exchange(final_charges, opts)
 
-            pass_defaults = _default_passivation_block(include_cation_ligand=needs_rb)
+            pass_defaults = _default_passivation_block(include_cation_ligand=needs_rb, ligand=anion_ph)
+            if anion_ph != "Cl":
+                yield json.dumps({"event": "log", "line": f"[info] Cl is native here; using {anion_ph} as the anion ligand placeholder"}) + "\n"
 
             # ---- Repassivation-only: post-treatment on stored XYZ (no Wulff rebuild) ----
             if is_repassivate:
