@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "id": "GaAs-As-Ga204As153Cl153-reconstructed",
+  "material": "GaAs",
+  "family": "III-V",
+  "phase": "zinc-blende",
+  "surface": "reconstructed",
+  "source": "builder",
+  "formula": "Ga204As153Cl153",
+  "composition": {
+    "Ga": 204,
+    "As": 153,
+    "Cl": 153
+  },
+  "core": {
+    "Ga": 204,
+    "As": 153
+  },
+  "ligands": {
+    "Cl": 153
+  },
+  "n_atoms": 510,
+  "total_charge": 0,
+  "centre": "As",
+  "centre_offset_A": 0.0,
+  "size": {
+    "n_core": 357,
+    "d_nm": 2.776,
+    "d_max_nm": 3.353,
+    "d_hull_nm": 2.197,
+    "unit_cells": 1.5,
+    "unit_cells_all": [
+      1.5
+    ]
+  },
+  "fingerprint": "4808e5978205e00d",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "gaas_zb.yaml",
+    "qd_builder_commit": "650da1f5efcf1aa6f939b2b80a22a62a3a98bce9",
+    "qd_builder_dirty": true,
+    "cif": "GaAs_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Ga": 3,
+        "As": -3,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 0.8
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.6
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "construction_origin": {
+        "center_on_species": "As"
+      },
+      "post_treatment": {
+        "surface_reconstruction": {
+          "enabled": true,
+          "ligand": "Cl"
+        }
+      }
+    },
+    "reconstruction_ledger": {
+      "status": "applied",
+      "ligand": "Cl",
+      "cation_removal": "mirror",
+      "cation": "Ga",
+      "anion": "As",
+      "anion_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 0,
+          "chain_breaks": 2
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 0,
+          "chain_breaks": 2
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 0,
+          "chain_breaks": 2
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 0,
+          "chain_breaks": 2
+        }
+      ],
+      "cation_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            1
+          ],
+          "ligands_stripped": 23,
+          "cations_removed": 0,
+          "ligands_added": 27
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            -1
+          ],
+          "ligands_stripped": 23,
+          "cations_removed": 0,
+          "ligands_added": 27
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            -1
+          ],
+          "ligands_stripped": 24,
+          "cations_removed": 0,
+          "ligands_added": 27
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            1
+          ],
+          "ligands_stripped": 23,
+          "cations_removed": 0,
+          "ligands_added": 28
+        }
+      ],
+      "anion_side_charge_delta": 16,
+      "ligands_stripped": 93,
+      "cations_removed": 0,
+      "ligands_added": 109,
+      "ligands_added_by_mu": {
+        "mu3": 0,
+        "mu2": 0,
+        "mu1": 109
+      },
+      "symmetric": true,
+      "total_charge_before": 0,
+      "total_charge_after": 0
+    }
+  },
+  "parent": "GaAs-As-Ga204As161Cl129-clean"
+}

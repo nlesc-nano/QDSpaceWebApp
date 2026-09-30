@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "id": "ZnS-S-Zn4720S4471Cl498-clean",
+  "material": "ZnS",
+  "family": "II-VI",
+  "phase": "zinc-blende",
+  "surface": "clean",
+  "source": "builder",
+  "formula": "Zn4720S4471Cl498",
+  "composition": {
+    "Zn": 4720,
+    "S": 4471,
+    "Cl": 498
+  },
+  "core": {
+    "Zn": 4720,
+    "S": 4471
+  },
+  "ligands": {
+    "Cl": 498
+  },
+  "n_atoms": 9689,
+  "total_charge": 0,
+  "centre": "S",
+  "centre_offset_A": 0.0,
+  "size": {
+    "n_core": 9191,
+    "d_nm": 7.047,
+    "d_max_nm": 7.709,
+    "d_hull_nm": 6.786,
+    "unit_cells": 6.0,
+    "unit_cells_all": [
+      6.0
+    ]
+  },
+  "fingerprint": "8b4bc29f1f281073",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "zns_zb.yaml",
+    "qd_builder_commit": "650da1f5efcf1aa6f939b2b80a22a62a3a98bce9",
+    "qd_builder_dirty": true,
+    "cif": "ZnS_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Zn": 2,
+        "S": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        6.0,
+        6.0,
+        6.0
+      ],
+      "construction_origin": {
+        "center_on_species": "S"
+      }
+    }
+  }
+}

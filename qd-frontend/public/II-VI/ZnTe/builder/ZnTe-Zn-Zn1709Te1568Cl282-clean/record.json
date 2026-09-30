@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "id": "ZnTe-Zn-Zn1709Te1568Cl282-clean",
+  "material": "ZnTe",
+  "family": "II-VI",
+  "phase": "zinc-blende",
+  "surface": "clean",
+  "source": "builder",
+  "formula": "Zn1709Te1568Cl282",
+  "composition": {
+    "Zn": 1709,
+    "Te": 1568,
+    "Cl": 282
+  },
+  "core": {
+    "Zn": 1709,
+    "Te": 1568
+  },
+  "ligands": {
+    "Cl": 282
+  },
+  "n_atoms": 3559,
+  "total_charge": 0,
+  "centre": "Zn",
+  "centre_offset_A": 0.0,
+  "size": {
+    "n_core": 3277,
+    "d_nm": 5.669,
+    "d_max_nm": 6.111,
+    "d_hull_nm": 5.387,
+    "unit_cells": 4.25,
+    "unit_cells_all": [
+      4.25,
+      4.5
+    ]
+  },
+  "fingerprint": "424a66eaacd64b7d",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "znte_zb.yaml",
+    "qd_builder_commit": "650da1f5efcf1aa6f939b2b80a22a62a3a98bce9",
+    "qd_builder_dirty": true,
+    "cif": "ZnTe_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Zn": 2,
+        "Te": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        4.25,
+        4.25,
+        4.25
+      ],
+      "construction_origin": {
+        "center_on_species": "Zn"
+      }
+    }
+  }
+}

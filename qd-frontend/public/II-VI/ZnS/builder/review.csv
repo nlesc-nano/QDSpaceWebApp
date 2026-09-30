@@ -1,0 +1,93 @@
+centre,unit_cells,surface,status,id,formula,d_nm,n_atoms,Q
+Zn,0.5,clean,rejected: core 0 < 20 atoms; centre detected as unknown,,,0.0,0,0
+Zn,0.5,reconstructed,skipped: found 0 anion- and 0 cation-terminated {111} facets; need both,,,,,
+Zn,0.75,clean,rejected: core 17 < 20 atoms,,Zn13S4Cl18,0.877,35,0
+Zn,0.75,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Zn,1.0,clean,rejected: core 17 < 20 atoms,,Zn13S4Cl18,0.877,35,0
+Zn,1.0,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Zn,1.25,clean,kept,ZnS-Zn-Zn31S22Cl18-clean,Zn31S22Cl18,1.296,71,0
+Zn,1.25,reconstructed,rejected: keeps 5/22 anions of its clean parent,,Zn26S5Cl42,1.318,73,0
+Zn,1.5,clean,kept,ZnS-Zn-Zn55S32Cl46-clean,Zn55S32Cl46,1.506,133,0
+Zn,1.5,reconstructed,kept,ZnS-Zn-Zn55S28Cl54-reconstructed,Zn55S28Cl54,1.49,137,0
+Zn,1.75,clean,kept,ZnS-Zn-Zn107S86Cl42-clean,Zn107S86Cl42,1.957,235,0
+Zn,1.75,reconstructed,kept,ZnS-Zn-Zn99S63Cl72-reconstructed,Zn99S63Cl72,1.933,234,0
+Zn,2.0,clean,kept,ZnS-Zn-Zn147S104Cl86-clean,Zn147S104Cl86,2.143,337,0
+Zn,2.0,reconstructed,kept,ZnS-Zn-Zn139S92Cl94-reconstructed,Zn139S92Cl94,2.102,325,0
+Zn,2.25,clean,kept,ZnS-Zn-Zn201S176Cl50-clean,Zn201S176Cl50,2.416,427,0
+Zn,2.25,reconstructed,kept,ZnS-Zn-Zn177S140Cl74-reconstructed,Zn177S140Cl74,2.347,391,0
+Zn,2.5,clean,kept,ZnS-Zn-Zn309S240Cl138-clean,Zn309S240Cl138,2.78,687,0
+Zn,2.5,reconstructed,kept,ZnS-Zn-Zn301S224Cl154-reconstructed,Zn301S224Cl154,2.747,679,0
+Zn,2.75,clean,kept,ZnS-Zn-Zn405S360Cl90-clean,Zn405S360Cl90,3.066,855,0
+Zn,2.75,reconstructed,kept,ZnS-Zn-Zn373S304Cl138-reconstructed,Zn373S304Cl138,2.988,815,0
+Zn,3.0,clean,kept,ZnS-Zn-Zn477S414Cl126-clean,Zn477S414Cl126,3.251,1017,0
+Zn,3.0,reconstructed,kept,ZnS-Zn-Zn446S352Cl188-reconstructed,Zn446S352Cl188,3.182,986,0
+Zn,3.25,clean,kept,ZnS-Zn-Zn711S640Cl142-clean,Zn711S640Cl142,3.711,1493,0
+Zn,3.25,reconstructed,kept,ZnS-Zn-Zn663S560Cl206-reconstructed,Zn663S560Cl206,3.624,1429,0
+Zn,3.5,clean,kept,ZnS-Zn-Zn811S718Cl186-clean,Zn811S718Cl186,3.892,1715,0
+Zn,3.5,reconstructed,kept,ZnS-Zn-Zn768S632Cl272-reconstructed,Zn768S632Cl272,3.817,1672,0
+Zn,3.75,clean,kept,ZnS-Zn-Zn1139S1036Cl206-clean,Zn1139S1036Cl206,4.355,2381,0
+Zn,3.75,reconstructed,kept,ZnS-Zn-Zn1072S928Cl288-reconstructed,Zn1072S928Cl288,4.257,2288,0
+Zn,4.0,clean,duplicate of ZnS-Zn-Zn1139S1036Cl206-clean,ZnS-Zn-Zn1139S1036Cl206-clean,Zn1139S1036Cl206,4.355,2381,0
+Zn,4.0,reconstructed,duplicate of ZnS-Zn-Zn1072S928Cl288-reconstructed,ZnS-Zn-Zn1072S928Cl288-reconstructed,Zn1072S928Cl288,4.257,2288,0
+Zn,4.25,clean,kept,ZnS-Zn-Zn1709S1568Cl282-clean,Zn1709S1568Cl282,4.997,3559,0
+Zn,4.25,reconstructed,kept,ZnS-Zn-Zn1624S1428Cl392-reconstructed,Zn1624S1428Cl392,4.898,3444,0
+Zn,4.5,clean,duplicate of ZnS-Zn-Zn1709S1568Cl282-clean,ZnS-Zn-Zn1709S1568Cl282-clean,Zn1709S1568Cl282,4.997,3559,0
+Zn,4.5,reconstructed,duplicate of ZnS-Zn-Zn1624S1428Cl392-reconstructed,ZnS-Zn-Zn1624S1428Cl392-reconstructed,Zn1624S1428Cl392,4.898,3444,0
+Zn,4.75,clean,kept,ZnS-Zn-Zn2165S2030Cl270-clean,Zn2165S2030Cl270,5.426,4465,0
+Zn,4.75,reconstructed,kept,ZnS-Zn-Zn2054S1808Cl492-reconstructed,Zn2054S1808Cl492,5.327,4354,0
+Zn,5.0,clean,kept,ZnS-Zn-Zn2441S2256Cl370-clean,Zn2441S2256Cl370,5.638,5067,0
+Zn,5.0,reconstructed,kept,ZnS-Zn-Zn2336S2080Cl512-reconstructed,Zn2336S2080Cl512,5.537,4928,0
+Zn,5.25,clean,kept,ZnS-Zn-Zn3027S2850Cl354-clean,Zn3027S2850Cl354,6.072,6231,0
+Zn,5.25,reconstructed,kept,ZnS-Zn-Zn2892S2580Cl624-reconstructed,Zn2892S2580Cl624,5.969,6096,0
+Zn,5.5,clean,kept,ZnS-Zn-Zn3355S3120Cl470-clean,Zn3355S3120Cl470,6.279,6945,0
+Zn,5.5,reconstructed,kept,ZnS-Zn-Zn3228S2904Cl648-reconstructed,Zn3228S2904Cl648,6.174,6780,0
+Zn,5.75,clean,kept,ZnS-Zn-Zn3739S3552Cl374-clean,Zn3739S3552Cl374,6.517,7665,0
+Zn,5.75,reconstructed,kept,ZnS-Zn-Zn3564S3240Cl648-reconstructed,Zn3564S3240Cl648,6.39,7452,0
+Zn,6.0,clean,kept,ZnS-Zn-Zn4471S4180Cl582-clean,Zn4471S4180Cl582,6.919,9233,0
+Zn,6.0,reconstructed,kept,ZnS-Zn-Zn4320S3920Cl800-reconstructed,Zn4320S3920Cl800,6.814,9040,0
+S,0.5,clean,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
+S,0.5,reconstructed,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
+S,0.75,clean,rejected: core 5 < 20 atoms,,Zn4S1Cl6,0.539,11,0
+S,0.75,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+S,1.0,clean,kept,ZnS-S-Zn16S13Cl6-clean,Zn16S13Cl6,1.0,35,0
+S,1.0,reconstructed,rejected: core 16 < 20 atoms; keeps 2/13 anions of its clean parent; centre detected as interstitial,,Zn14S2Cl24,1.078,40,0
+S,1.25,clean,kept,ZnS-S-Zn28S13Cl30-clean,Zn28S13Cl30,1.175,71,0
+S,1.25,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+S,1.5,clean,kept,ZnS-S-Zn68S55Cl26-clean,Zn68S55Cl26,1.658,149,0
+S,1.5,reconstructed,kept,ZnS-S-Zn60S39Cl42-reconstructed,Zn60S39Cl42,1.637,141,0
+S,1.75,clean,kept,ZnS-S-Zn92S59Cl66-clean,Zn92S59Cl66,1.816,217,0
+S,1.75,reconstructed,kept,ZnS-S-Zn92S55Cl74-reconstructed,Zn92S55Cl74,1.797,221,0
+S,2.0,clean,kept,ZnS-S-Zn176S147Cl58-clean,Zn176S147Cl58,2.303,381,0
+S,2.0,reconstructed,kept,ZnS-S-Zn156S111Cl90-reconstructed,Zn156S111Cl90,2.215,357,0
+S,2.25,clean,duplicate of ZnS-S-Zn176S147Cl58-clean,ZnS-S-Zn176S147Cl58-clean,Zn176S147Cl58,2.303,381,0
+S,2.25,reconstructed,duplicate of ZnS-S-Zn156S111Cl90-reconstructed,ZnS-S-Zn156S111Cl90-reconstructed,Zn156S111Cl90,2.215,357,0
+S,2.5,clean,kept,ZnS-S-Zn360S309Cl102-clean,Zn360S309Cl102,2.943,771,0
+S,2.5,reconstructed,kept,ZnS-S-Zn333S261Cl144-reconstructed,Zn333S261Cl144,2.86,738,0
+S,2.75,clean,duplicate of ZnS-S-Zn360S309Cl102-clean,ZnS-S-Zn360S309Cl102-clean,Zn360S309Cl102,2.943,771,0
+S,2.75,reconstructed,duplicate of ZnS-S-Zn333S261Cl144-reconstructed,ZnS-S-Zn333S261Cl144-reconstructed,Zn333S261Cl144,2.86,738,0
+S,3.0,clean,kept,ZnS-S-Zn540S477Cl126-clean,Zn540S477Cl126,3.387,1143,0
+S,3.0,reconstructed,kept,ZnS-S-Zn508S421Cl174-reconstructed,Zn508S421Cl174,3.306,1103,0
+S,3.25,clean,kept,ZnS-S-Zn640S561Cl158-clean,Zn640S561Cl158,3.583,1359,0
+S,3.25,reconstructed,kept,ZnS-S-Zn600S489Cl222-reconstructed,Zn600S489Cl222,3.489,1311,0
+S,3.5,clean,kept,ZnS-S-Zn904S811Cl186-clean,Zn904S811Cl186,4.032,1901,0
+S,3.5,reconstructed,kept,ZnS-S-Zn856S731Cl250-reconstructed,Zn856S731Cl250,3.942,1837,0
+S,3.75,clean,kept,ZnS-S-Zn1036S923Cl226-clean,Zn1036S923Cl226,4.222,2185,0
+S,3.75,reconstructed,kept,ZnS-S-Zn985S831Cl308-reconstructed,Zn985S831Cl308,4.138,2124,0
+S,4.0,clean,kept,ZnS-S-Zn1216S1139Cl154-clean,Zn1216S1139Cl154,4.468,2509,0
+S,4.0,reconstructed,kept,ZnS-S-Zn1138S987Cl302-reconstructed,Zn1138S987Cl302,4.366,2427,0
+S,4.25,clean,kept,ZnS-S-Zn1568S1415Cl306-clean,Zn1568S1415Cl306,4.86,3289,0
+S,4.25,reconstructed,kept,ZnS-S-Zn1502S1295Cl414-reconstructed,Zn1502S1295Cl414,4.77,3211,0
+S,4.5,clean,kept,ZnS-S-Zn1820S1709Cl222-clean,Zn1820S1709Cl222,5.115,3751,0
+S,4.5,reconstructed,kept,ZnS-S-Zn1721S1517Cl408-reconstructed,Zn1721S1517Cl408,5.009,3646,0
+S,4.75,clean,kept,ZnS-S-Zn2048S1877Cl342-clean,Zn2048S1877Cl342,5.316,4267,0
+S,4.75,reconstructed,kept,ZnS-S-Zn1960S1737Cl446-reconstructed,Zn1960S1737Cl446,5.218,4143,0
+S,5.0,clean,kept,ZnS-S-Zn2592S2441Cl302-clean,Zn2592S2441Cl302,5.76,5335,0
+S,5.0,reconstructed,kept,ZnS-S-Zn2470S2205Cl530-reconstructed,Zn2470S2205Cl530,5.65,5205,0
+S,5.25,clean,kept,ZnS-S-Zn2868S2649Cl438-clean,Zn2868S2649Cl438,5.957,5955,0
+S,5.25,reconstructed,kept,ZnS-S-Zn2756S2473Cl566-reconstructed,Zn2756S2473Cl566,5.855,5795,0
+S,5.5,clean,kept,ZnS-S-Zn3552S3355Cl394-clean,Zn3552S3355Cl394,6.404,7301,0
+S,5.5,reconstructed,kept,ZnS-S-Zn3405S3071Cl668-reconstructed,Zn3405S3071Cl668,6.293,7144,0
+S,5.75,clean,duplicate of ZnS-S-Zn3552S3355Cl394-clean,ZnS-S-Zn3552S3355Cl394-clean,Zn3552S3355Cl394,6.404,7301,0
+S,5.75,reconstructed,duplicate of ZnS-S-Zn3405S3071Cl668-reconstructed,ZnS-S-Zn3405S3071Cl668-reconstructed,Zn3405S3071Cl668,6.293,7144,0
+S,6.0,clean,kept,ZnS-S-Zn4720S4471Cl498-clean,Zn4720S4471Cl498,7.047,9689,0
+S,6.0,reconstructed,kept,ZnS-S-Zn4546S4135Cl822-reconstructed,Zn4546S4135Cl822,6.934,9503,0

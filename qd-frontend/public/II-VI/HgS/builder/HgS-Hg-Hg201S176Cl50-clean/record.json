@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "id": "HgS-Hg-Hg201S176Cl50-clean",
+  "material": "HgS",
+  "family": "II-VI",
+  "phase": "zinc-blende",
+  "surface": "clean",
+  "source": "builder",
+  "formula": "Hg201S176Cl50",
+  "composition": {
+    "Hg": 201,
+    "S": 176,
+    "Cl": 50
+  },
+  "core": {
+    "Hg": 201,
+    "S": 176
+  },
+  "ligands": {
+    "Cl": 50
+  },
+  "n_atoms": 427,
+  "total_charge": 0,
+  "centre": "Hg",
+  "centre_offset_A": 0.0,
+  "size": {
+    "n_core": 377,
+    "d_nm": 2.663,
+    "d_max_nm": 2.656,
+    "d_hull_nm": 2.394,
+    "unit_cells": 2.25,
+    "unit_cells_all": [
+      2.25
+    ]
+  },
+  "fingerprint": "4809ef3f379d6507",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "hgs_zb.yaml",
+    "qd_builder_commit": "650da1f5efcf1aa6f939b2b80a22a62a3a98bce9",
+    "qd_builder_dirty": true,
+    "cif": "HgS_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Hg": 2,
+        "S": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "110",
+          "scope": "family",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        2.25,
+        2.25,
+        2.25
+      ],
+      "construction_origin": {
+        "center_on_species": "Hg"
+      }
+    }
+  }
+}

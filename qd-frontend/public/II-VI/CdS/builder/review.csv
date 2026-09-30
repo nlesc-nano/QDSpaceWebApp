@@ -1,0 +1,93 @@
+centre,unit_cells,surface,status,id,formula,d_nm,n_atoms,Q
+Cd,0.5,clean,rejected: core 0 < 20 atoms; centre detected as unknown,,,0.0,0,0
+Cd,0.5,reconstructed,skipped: found 0 anion- and 0 cation-terminated {111} facets; need both,,,,,
+Cd,0.75,clean,rejected: core 17 < 20 atoms,,Cd13S4Cl18,0.958,35,0
+Cd,0.75,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Cd,1.0,clean,rejected: core 17 < 20 atoms,,Cd13S4Cl18,0.958,35,0
+Cd,1.0,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Cd,1.25,clean,kept,CdS-Cd-Cd31S22Cl18-clean,Cd31S22Cl18,1.417,71,0
+Cd,1.25,reconstructed,rejected: keeps 5/22 anions of its clean parent,,Cd24S5Cl38,1.451,67,0
+Cd,1.5,clean,kept,CdS-Cd-Cd55S32Cl46-clean,Cd55S32Cl46,1.646,133,0
+Cd,1.5,reconstructed,kept,CdS-Cd-Cd55S28Cl54-reconstructed,Cd55S28Cl54,1.628,137,0
+Cd,1.75,clean,kept,CdS-Cd-Cd107S86Cl42-clean,Cd107S86Cl42,2.138,235,0
+Cd,1.75,reconstructed,kept,CdS-Cd-Cd95S60Cl70-reconstructed,Cd95S60Cl70,2.105,225,0
+Cd,2.0,clean,kept,CdS-Cd-Cd147S104Cl86-clean,Cd147S104Cl86,2.341,337,0
+Cd,2.0,reconstructed,kept,CdS-Cd-Cd139S92Cl94-reconstructed,Cd139S92Cl94,2.296,325,0
+Cd,2.25,clean,kept,CdS-Cd-Cd201S176Cl50-clean,Cd201S176Cl50,2.639,427,0
+Cd,2.25,reconstructed,kept,CdS-Cd-Cd177S140Cl74-reconstructed,Cd177S140Cl74,2.564,391,0
+Cd,2.5,clean,kept,CdS-Cd-Cd309S240Cl138-clean,Cd309S240Cl138,3.037,687,0
+Cd,2.5,reconstructed,kept,CdS-Cd-Cd301S224Cl154-reconstructed,Cd301S224Cl154,3.002,679,0
+Cd,2.75,clean,kept,CdS-Cd-Cd405S360Cl90-clean,Cd405S360Cl90,3.349,855,0
+Cd,2.75,reconstructed,kept,CdS-Cd-Cd373S304Cl138-reconstructed,Cd373S304Cl138,3.264,815,0
+Cd,3.0,clean,kept,CdS-Cd-Cd477S414Cl126-clean,Cd477S414Cl126,3.551,1017,0
+Cd,3.0,reconstructed,kept,CdS-Cd-Cd446S352Cl188-reconstructed,Cd446S352Cl188,3.477,986,0
+Cd,3.25,clean,kept,CdS-Cd-Cd711S640Cl142-clean,Cd711S640Cl142,4.055,1493,0
+Cd,3.25,reconstructed,kept,CdS-Cd-Cd663S560Cl206-reconstructed,Cd663S560Cl206,3.959,1429,0
+Cd,3.5,clean,kept,CdS-Cd-Cd811S718Cl186-clean,Cd811S718Cl186,4.253,1715,0
+Cd,3.5,reconstructed,kept,CdS-Cd-Cd768S632Cl272-reconstructed,Cd768S632Cl272,4.17,1672,0
+Cd,3.75,clean,kept,CdS-Cd-Cd1139S1036Cl206-clean,Cd1139S1036Cl206,4.758,2381,0
+Cd,3.75,reconstructed,kept,CdS-Cd-Cd1072S928Cl288-reconstructed,Cd1072S928Cl288,4.651,2288,0
+Cd,4.0,clean,duplicate of CdS-Cd-Cd1139S1036Cl206-clean,CdS-Cd-Cd1139S1036Cl206-clean,Cd1139S1036Cl206,4.758,2381,0
+Cd,4.0,reconstructed,duplicate of CdS-Cd-Cd1072S928Cl288-reconstructed,CdS-Cd-Cd1072S928Cl288-reconstructed,Cd1072S928Cl288,4.651,2288,0
+Cd,4.25,clean,kept,CdS-Cd-Cd1709S1568Cl282-clean,Cd1709S1568Cl282,5.46,3559,0
+Cd,4.25,reconstructed,kept,CdS-Cd-Cd1624S1428Cl392-reconstructed,Cd1624S1428Cl392,5.352,3444,0
+Cd,4.5,clean,duplicate of CdS-Cd-Cd1709S1568Cl282-clean,CdS-Cd-Cd1709S1568Cl282-clean,Cd1709S1568Cl282,5.46,3559,0
+Cd,4.5,reconstructed,duplicate of CdS-Cd-Cd1624S1428Cl392-reconstructed,CdS-Cd-Cd1624S1428Cl392-reconstructed,Cd1624S1428Cl392,5.352,3444,0
+Cd,4.75,clean,kept,CdS-Cd-Cd2165S2030Cl270-clean,Cd2165S2030Cl270,5.928,4465,0
+Cd,4.75,reconstructed,kept,CdS-Cd-Cd2055S1809Cl492-reconstructed,Cd2055S1809Cl492,5.82,4356,0
+Cd,5.0,clean,kept,CdS-Cd-Cd2441S2256Cl370-clean,Cd2441S2256Cl370,6.16,5067,0
+Cd,5.0,reconstructed,kept,CdS-Cd-Cd2336S2080Cl512-reconstructed,Cd2336S2080Cl512,6.049,4928,0
+Cd,5.25,clean,kept,CdS-Cd-Cd3027S2850Cl354-clean,Cd3027S2850Cl354,6.634,6231,0
+Cd,5.25,reconstructed,kept,CdS-Cd-Cd2894S2583Cl622-reconstructed,Cd2894S2583Cl622,6.523,6099,0
+Cd,5.5,clean,kept,CdS-Cd-Cd3355S3120Cl470-clean,Cd3355S3120Cl470,6.86,6945,0
+Cd,5.5,reconstructed,kept,CdS-Cd-Cd3228S2904Cl648-reconstructed,Cd3228S2904Cl648,6.745,6780,0
+Cd,5.75,clean,kept,CdS-Cd-Cd3739S3552Cl374-clean,Cd3739S3552Cl374,7.12,7665,0
+Cd,5.75,reconstructed,kept,CdS-Cd-Cd3564S3240Cl648-reconstructed,Cd3564S3240Cl648,6.981,7452,0
+Cd,6.0,clean,kept,CdS-Cd-Cd4471S4180Cl582-clean,Cd4471S4180Cl582,7.559,9233,0
+Cd,6.0,reconstructed,kept,CdS-Cd-Cd4320S3920Cl800-reconstructed,Cd4320S3920Cl800,7.444,9040,0
+S,0.5,clean,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
+S,0.5,reconstructed,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
+S,0.75,clean,rejected: core 5 < 20 atoms,,Cd4S1Cl6,0.589,11,0
+S,0.75,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+S,1.0,clean,kept,CdS-S-Cd16S13Cl6-clean,Cd16S13Cl6,1.093,35,0
+S,1.0,reconstructed,rejected: core 16 < 20 atoms; keeps 2/13 anions of its clean parent; centre detected as interstitial,,Cd14S2Cl24,1.178,40,0
+S,1.25,clean,kept,CdS-S-Cd28S13Cl30-clean,Cd28S13Cl30,1.284,71,0
+S,1.25,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+S,1.5,clean,kept,CdS-S-Cd68S55Cl26-clean,Cd68S55Cl26,1.811,149,0
+S,1.5,reconstructed,kept,CdS-S-Cd60S39Cl42-reconstructed,Cd60S39Cl42,1.789,141,0
+S,1.75,clean,kept,CdS-S-Cd92S59Cl66-clean,Cd92S59Cl66,1.984,217,0
+S,1.75,reconstructed,kept,CdS-S-Cd92S55Cl74-reconstructed,Cd92S55Cl74,1.963,221,0
+S,2.0,clean,kept,CdS-S-Cd176S147Cl58-clean,Cd176S147Cl58,2.516,381,0
+S,2.0,reconstructed,kept,CdS-S-Cd156S111Cl90-reconstructed,Cd156S111Cl90,2.42,357,0
+S,2.25,clean,duplicate of CdS-S-Cd176S147Cl58-clean,CdS-S-Cd176S147Cl58-clean,Cd176S147Cl58,2.516,381,0
+S,2.25,reconstructed,duplicate of CdS-S-Cd156S111Cl90-reconstructed,CdS-S-Cd156S111Cl90-reconstructed,Cd156S111Cl90,2.42,357,0
+S,2.5,clean,kept,CdS-S-Cd360S309Cl102-clean,Cd360S309Cl102,3.216,771,0
+S,2.5,reconstructed,kept,CdS-S-Cd333S261Cl144-reconstructed,Cd333S261Cl144,3.125,738,0
+S,2.75,clean,duplicate of CdS-S-Cd360S309Cl102-clean,CdS-S-Cd360S309Cl102-clean,Cd360S309Cl102,3.216,771,0
+S,2.75,reconstructed,duplicate of CdS-S-Cd333S261Cl144-reconstructed,CdS-S-Cd333S261Cl144-reconstructed,Cd333S261Cl144,3.125,738,0
+S,3.0,clean,kept,CdS-S-Cd540S477Cl126-clean,Cd540S477Cl126,3.7,1143,0
+S,3.0,reconstructed,kept,CdS-S-Cd508S421Cl174-reconstructed,Cd508S421Cl174,3.612,1103,0
+S,3.25,clean,kept,CdS-S-Cd640S561Cl158-clean,Cd640S561Cl158,3.914,1359,0
+S,3.25,reconstructed,kept,CdS-S-Cd600S489Cl222-reconstructed,Cd600S489Cl222,3.812,1311,0
+S,3.5,clean,kept,CdS-S-Cd904S811Cl186-clean,Cd904S811Cl186,4.405,1901,0
+S,3.5,reconstructed,kept,CdS-S-Cd856S731Cl250-reconstructed,Cd856S731Cl250,4.306,1837,0
+S,3.75,clean,kept,CdS-S-Cd1036S923Cl226-clean,Cd1036S923Cl226,4.612,2185,0
+S,3.75,reconstructed,kept,CdS-S-Cd985S831Cl308-reconstructed,Cd985S831Cl308,4.521,2124,0
+S,4.0,clean,kept,CdS-S-Cd1216S1139Cl154-clean,Cd1216S1139Cl154,4.881,2509,0
+S,4.0,reconstructed,kept,CdS-S-Cd1138S987Cl302-reconstructed,Cd1138S987Cl302,4.77,2427,0
+S,4.25,clean,kept,CdS-S-Cd1568S1415Cl306-clean,Cd1568S1415Cl306,5.31,3289,0
+S,4.25,reconstructed,kept,CdS-S-Cd1502S1295Cl414-reconstructed,Cd1502S1295Cl414,5.212,3211,0
+S,4.5,clean,kept,CdS-S-Cd1820S1709Cl222-clean,Cd1820S1709Cl222,5.588,3751,0
+S,4.5,reconstructed,kept,CdS-S-Cd1721S1517Cl408-reconstructed,Cd1721S1517Cl408,5.473,3646,0
+S,4.75,clean,kept,CdS-S-Cd2048S1877Cl342-clean,Cd2048S1877Cl342,5.808,4267,0
+S,4.75,reconstructed,kept,CdS-S-Cd1960S1737Cl446-reconstructed,Cd1960S1737Cl446,5.701,4143,0
+S,5.0,clean,kept,CdS-S-Cd2592S2441Cl302-clean,Cd2592S2441Cl302,6.293,5335,0
+S,5.0,reconstructed,kept,CdS-S-Cd2470S2205Cl530-reconstructed,Cd2470S2205Cl530,6.173,5205,0
+S,5.25,clean,kept,CdS-S-Cd2868S2649Cl438-clean,Cd2868S2649Cl438,6.509,5955,0
+S,5.25,reconstructed,kept,CdS-S-Cd2756S2473Cl566-reconstructed,Cd2756S2473Cl566,6.397,5795,0
+S,5.5,clean,kept,CdS-S-Cd3552S3355Cl394-clean,Cd3552S3355Cl394,6.997,7301,0
+S,5.5,reconstructed,kept,CdS-S-Cd3405S3071Cl668-reconstructed,Cd3405S3071Cl668,6.875,7144,0
+S,5.75,clean,duplicate of CdS-S-Cd3552S3355Cl394-clean,CdS-S-Cd3552S3355Cl394-clean,Cd3552S3355Cl394,6.997,7301,0
+S,5.75,reconstructed,duplicate of CdS-S-Cd3405S3071Cl668-reconstructed,CdS-S-Cd3405S3071Cl668-reconstructed,Cd3405S3071Cl668,6.875,7144,0
+S,6.0,clean,kept,CdS-S-Cd4720S4471Cl498-clean,Cd4720S4471Cl498,7.699,9689,0
+S,6.0,reconstructed,kept,CdS-S-Cd4546S4135Cl822-reconstructed,Cd4546S4135Cl822,7.576,9503,0

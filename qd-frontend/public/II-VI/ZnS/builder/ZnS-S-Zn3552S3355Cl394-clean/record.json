@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "id": "ZnS-S-Zn3552S3355Cl394-clean",
+  "material": "ZnS",
+  "family": "II-VI",
+  "phase": "zinc-blende",
+  "surface": "clean",
+  "source": "builder",
+  "formula": "Zn3552S3355Cl394",
+  "composition": {
+    "Zn": 3552,
+    "S": 3355,
+    "Cl": 394
+  },
+  "core": {
+    "Zn": 3552,
+    "S": 3355
+  },
+  "ligands": {
+    "Cl": 394
+  },
+  "n_atoms": 7301,
+  "total_charge": 0,
+  "centre": "S",
+  "centre_offset_A": 0.0,
+  "size": {
+    "n_core": 6907,
+    "d_nm": 6.404,
+    "d_max_nm": 6.957,
+    "d_hull_nm": 6.148,
+    "unit_cells": 5.5,
+    "unit_cells_all": [
+      5.5,
+      5.75
+    ]
+  },
+  "fingerprint": "269654cdca1821e8",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "zns_zb.yaml",
+    "qd_builder_commit": "650da1f5efcf1aa6f939b2b80a22a62a3a98bce9",
+    "qd_builder_dirty": true,
+    "cif": "ZnS_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Zn": 2,
+        "S": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        5.5,
+        5.5,
+        5.5
+      ],
+      "construction_origin": {
+        "center_on_species": "S"
+      }
+    }
+  }
+}

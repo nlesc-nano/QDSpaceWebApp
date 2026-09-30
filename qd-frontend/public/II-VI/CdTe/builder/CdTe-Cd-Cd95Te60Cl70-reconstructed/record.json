@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "id": "CdTe-Cd-Cd95Te60Cl70-reconstructed",
+  "material": "CdTe",
+  "family": "II-VI",
+  "phase": "zinc-blende",
+  "surface": "reconstructed",
+  "source": "builder",
+  "formula": "Cd95Te60Cl70",
+  "composition": {
+    "Cd": 95,
+    "Te": 60,
+    "Cl": 70
+  },
+  "core": {
+    "Cd": 95,
+    "Te": 60
+  },
+  "ligands": {
+    "Cl": 70
+  },
+  "n_atoms": 225,
+  "total_charge": 0,
+  "centre": "Cd",
+  "centre_offset_A": 0.052,
+  "size": {
+    "n_core": 155,
+    "d_nm": 2.347,
+    "d_max_nm": 2.464,
+    "d_hull_nm": 2.059,
+    "unit_cells": 1.75,
+    "unit_cells_all": [
+      1.75
+    ]
+  },
+  "fingerprint": "d188634b9c766262",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cdte_zb.yaml",
+    "qd_builder_commit": "650da1f5efcf1aa6f939b2b80a22a62a3a98bce9",
+    "qd_builder_dirty": true,
+    "cif": "CdTe_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Cd": 2,
+        "Te": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        1.75,
+        1.75,
+        1.75
+      ],
+      "construction_origin": {
+        "center_on_species": "Cd"
+      },
+      "post_treatment": {
+        "surface_reconstruction": {
+          "enabled": true,
+          "ligand": "Cl"
+        }
+      }
+    },
+    "reconstruction_ledger": {
+      "status": "applied",
+      "ligand": "Cl",
+      "cation_removal": "mirror",
+      "cation": "Cd",
+      "anion": "Te",
+      "anion_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            -1
+          ],
+          "vacancies": 2,
+          "anions_to_ligand": 6,
+          "chain_breaks": 1
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            1
+          ],
+          "vacancies": 2,
+          "anions_to_ligand": 6,
+          "chain_breaks": 1
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            1
+          ],
+          "vacancies": 2,
+          "anions_to_ligand": 6,
+          "chain_breaks": 0
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            -1
+          ],
+          "vacancies": 2,
+          "anions_to_ligand": 6,
+          "chain_breaks": 0
+        }
+      ],
+      "cation_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            1
+          ],
+          "ligands_stripped": 0,
+          "cations_removed": 1,
+          "ligands_added": 2
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            -1
+          ],
+          "ligands_stripped": 0,
+          "cations_removed": 1,
+          "ligands_added": 0
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            -1
+          ],
+          "ligands_stripped": 0,
+          "cations_removed": 1,
+          "ligands_added": 0
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            1
+          ],
+          "ligands_stripped": 0,
+          "cations_removed": 1,
+          "ligands_added": 0
+        }
+      ],
+      "anion_side_charge_delta": 10,
+      "ligands_stripped": 0,
+      "cations_removed": 4,
+      "ligands_added": 2,
+      "ligands_added_by_mu": {
+        "mu3": 0,
+        "mu2": 2,
+        "mu1": 0
+      },
+      "symmetric": true,
+      "total_charge_before": 0,
+      "total_charge_after": 0
+    }
+  },
+  "parent": "CdTe-Cd-Cd107Te86Cl42-clean"
+}
