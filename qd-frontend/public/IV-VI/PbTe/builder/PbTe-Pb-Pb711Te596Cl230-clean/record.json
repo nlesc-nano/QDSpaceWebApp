@@ -43,8 +43,8 @@
   "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "pbte_rs.yaml",
-    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
-    "qd_builder_dirty": true,
+    "qd_builder_commit": "ca20e383430e384d4da76f7c876e52900ddf03d3",
+    "qd_builder_dirty": false,
     "cif": "PbTe_rs.cif",
     "positive_q_mode": "add",
     "recipe": {

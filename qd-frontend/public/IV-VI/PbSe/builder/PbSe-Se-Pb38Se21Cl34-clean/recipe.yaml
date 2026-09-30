@@ -12,7 +12,7 @@ passivation:
 facets:
 - hkl: '100'
   scope: family
-  gamma: 0.8
+  gamma: 1.0
 - hkl: '111'
   scope: family
   termination: cation_rich
@@ -20,8 +20,8 @@ facets:
 symmetry:
   proper_rotations_only: true
 size_unit_cells:
-- 1.0
-- 1.0
-- 1.0
+- 1.25
+- 1.25
+- 1.25
 construction_origin:
   center_on_species: Se

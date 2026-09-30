@@ -1,28 +1,28 @@
 centre,unit_cells,surface,status,id,formula,d_nm,n_atoms,Q
 Pb,0.5,clean,rejected: core 0 < 20 atoms; centre detected as unknown,,,0.0,0,0
-Pb,0.75,clean,rejected: charge -2,,Pb13Te14,1.194,27,-2
-Pb,1.0,clean,kept,PbTe-Pb-Pb43Te38Cl10-clean,Pb43Te38Cl10,1.735,91,0
-Pb,1.25,clean,kept,PbTe-Pb-Pb55Te48Cl14-clean,Pb55Te48Cl14,1.912,117,0
-Pb,1.5,clean,kept,PbTe-Pb-Pb135Te116Cl38-clean,Pb135Te116Cl38,2.552,289,0
-Pb,1.75,clean,kept,PbTe-Pb-Pb147Te130Cl34-clean,Pb147Te130Cl34,2.659,311,0
-Pb,2.0,clean,kept,PbTe-Pb-Pb297Te260Cl74-clean,Pb297Te260Cl74,3.347,631,0
-Pb,2.25,clean,kept,PbTe-Pb-Pb309Te278Cl62-clean,Pb309Te278Cl62,3.422,649,0
-Pb,2.5,clean,kept,PbTe-Pb-Pb549Te490Cl118-clean,Pb549Te490Cl118,4.133,1157,0
+Pb,0.75,clean,rejected: core 0 < 20 atoms; centre detected as unknown,,,0.0,0,0
+Pb,1.0,clean,rejected: charge -6,,Pb19Te6Cl32,1.241,57,-6
+Pb,1.25,clean,kept,PbTe-Pb-Pb43Te38Cl10-clean,Pb43Te38Cl10,1.735,91,0
+Pb,1.5,clean,kept,PbTe-Pb-Pb79Te42Cl74-clean,Pb79Te42Cl74,2.052,195,0
+Pb,1.75,clean,kept,PbTe-Pb-Pb135Te116Cl38-clean,Pb135Te116Cl38,2.552,289,0
+Pb,2.0,clean,kept,PbTe-Pb-Pb177Te140Cl74-clean,Pb177Te140Cl74,2.784,391,0
+Pb,2.25,clean,kept,PbTe-Pb-Pb201Te142Cl118-clean,Pb201Te142Cl118,2.87,461,0
+Pb,2.5,clean,kept,PbTe-Pb-Pb381Te314Cl134-clean,Pb381Te314Cl134,3.609,829,0
 Pb,2.75,clean,kept,PbTe-Pb-Pb405Te320Cl170-clean,Pb405Te320Cl170,3.67,895,0
 Pb,3.0,clean,kept,PbTe-Pb-Pb687Te586Cl202-clean,Pb687Te586Cl202,4.414,1475,0
 Pb,3.25,clean,kept,PbTe-Pb-Pb711Te596Cl230-clean,Pb711Te596Cl230,4.462,1537,0
 Pb,3.5,clean,kept,PbTe-Pb-Pb1115Te976Cl278-clean,Pb1115Te976Cl278,5.209,2369,0
 Pb,3.75,clean,kept,PbTe-Pb-Pb1139Te990Cl298-clean,Pb1139Te990Cl298,5.248,2427,0
 Pb,4.0,clean,kept,PbTe-Pb-Pb1289Te1074Cl430-clean,Pb1289Te1074Cl430,5.464,2793,0
-Te,0.5,clean,rejected: charge -2; core 7 < 20 atoms,,Pb6Te1Cl12,0.782,19,-2
-Te,0.75,clean,kept,PbTe-Te-Pb14Te13Cl2-clean,Pb14Te13Cl2,1.194,29,0
-Te,1.0,clean,kept,PbTe-Te-Pb38Te21Cl34-clean,Pb38Te21Cl34,1.592,93,0
-Te,1.25,clean,kept,PbTe-Te-Pb62Te55Cl14-clean,Pb62Te55Cl14,1.997,131,0
-Te,1.5,clean,kept,PbTe-Te-Pb116Te85Cl62-clean,Pb116Te85Cl62,2.38,263,0
-Te,1.75,clean,kept,PbTe-Te-Pb164Te147Cl34-clean,Pb164Te147Cl34,2.781,345,0
-Te,2.0,clean,kept,PbTe-Te-Pb260Te211Cl98-clean,Pb260Te211Cl98,3.165,569,0
-Te,2.25,clean,kept,PbTe-Te-Pb340Te309Cl62-clean,Pb340Te309Cl62,3.56,711,0
-Te,2.5,clean,kept,PbTe-Te-Pb490Te419Cl142-clean,Pb490Te419Cl142,3.947,1051,0
+Te,0.5,clean,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
+Te,0.75,clean,rejected: charge -2; core 7 < 20 atoms,,Pb6Te1Cl12,0.782,19,-2
+Te,1.0,clean,kept,PbTe-Te-Pb14Te13Cl2-clean,Pb14Te13Cl2,1.194,29,0
+Te,1.25,clean,kept,PbTe-Te-Pb38Te21Cl34-clean,Pb38Te21Cl34,1.592,93,0
+Te,1.5,clean,kept,PbTe-Te-Pb92Te79Cl26-clean,Pb92Te79Cl26,2.248,197,0
+Te,1.75,clean,kept,PbTe-Te-Pb116Te85Cl62-clean,Pb116Te85Cl62,2.38,263,0
+Te,2.0,clean,kept,PbTe-Te-Pb140Te79Cl122-clean,Pb140Te79Cl122,2.508,341,0
+Te,2.25,clean,kept,PbTe-Te-Pb236Te201Cl70-clean,Pb236Te201Cl70,3.076,507,0
+Te,2.5,clean,kept,PbTe-Te-Pb314Te223Cl182-clean,Pb314Te223Cl182,3.352,719,0
 Te,2.75,clean,kept,PbTe-Te-Pb466Te405Cl122-clean,Pb466Te405Cl122,3.879,993,0
 Te,3.0,clean,kept,PbTe-Te-Pb586Te461Cl250-clean,Pb586Te461Cl250,4.165,1297,0
 Te,3.25,clean,kept,PbTe-Te-Pb802Te711Cl182-clean,Pb802Te711Cl182,4.673,1695,0

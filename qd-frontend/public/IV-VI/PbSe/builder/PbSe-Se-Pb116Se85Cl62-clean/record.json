@@ -28,9 +28,9 @@
     "d_nm": 2.249,
     "d_max_nm": 2.229,
     "d_hull_nm": 2.027,
-    "unit_cells": 1.5,
+    "unit_cells": 1.75,
     "unit_cells_all": [
-      1.5
+      1.75
     ]
   },
   "fingerprint": "9991830400e82cc9",
@@ -43,8 +43,8 @@
   "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "pbse_rs.yaml",
-    "qd_builder_commit": "ee1971d7b179923e256987f2a59bd3276b2dd5b7",
-    "qd_builder_dirty": true,
+    "qd_builder_commit": "ca20e383430e384d4da76f7c876e52900ddf03d3",
+    "qd_builder_dirty": false,
     "cif": "PbSe_rs.cif",
     "positive_q_mode": "add",
     "recipe": {
@@ -65,7 +65,7 @@
         {
           "hkl": "100",
           "scope": "family",
-          "gamma": 0.8
+          "gamma": 1.0
         },
         {
           "hkl": "111",
@@ -78,9 +78,9 @@
         "proper_rotations_only": true
       },
       "size_unit_cells": [
-        1.5,
-        1.5,
-        1.5
+        1.75,
+        1.75,
+        1.75
       ],
       "construction_origin": {
         "center_on_species": "Se"

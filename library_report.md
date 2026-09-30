@@ -34,9 +34,9 @@
 | III-V | InAs | 45 | 30 | 15 | 0 | 10 | As:16, In:29 |
 | III-V | InP | 43 | 29 | 13 | 1 | 10 | In:27, P:16 |
 | III-V | InSb | 39 | 30 | 9 | 0 | 10 | In:23, Sb:16 |
-| IV-VI | PbS | 31 | 27 | 4 | 0 | 0 | Pb:17, S:14 |
-| IV-VI | PbSe | 30 | 27 | 3 | 0 | 0 | Pb:16, Se:14 |
-| IV-VI | PbTe | 30 | 27 | 3 | 0 | 0 | Pb:16, Te:14 |
+| IV-VI | PbS | 29 | 25 | 4 | 0 | 0 | Pb:16, S:13 |
+| IV-VI | PbSe | 28 | 25 | 3 | 0 | 0 | Pb:15, Se:13 |
+| IV-VI | PbTe | 28 | 25 | 3 | 0 | 0 | Pb:15, Te:13 |
 
 ## Merged with builder twins
 

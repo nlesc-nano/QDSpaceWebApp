@@ -788,9 +788,9 @@
           const f100 = detectedFacets.find(f => f.family === '{100}' || f.family === '100');
           if (f100) {
             const term = f100.terminations.includes('stoichiometric') ? 'stoichiometric' : (f100.terminations[0] || null);
-            coreFacets.push(makeFacetEntry(f100, { termination: term, gamma: 0.8 }));
+            coreFacets.push(makeFacetEntry(f100, { termination: term, gamma: 1.0 }));
           } else {
-            coreFacets.push({ id: crypto.randomUUID(), hkl: '100', gamma: 0.8, scope: 'family', family: '{100}', termination: 'stoichiometric' });
+            coreFacets.push({ id: crypto.randomUUID(), hkl: '100', gamma: 1.0, scope: 'family', family: '{100}', termination: 'stoichiometric' });
           }
           const f111 = detectedFacets.find(f => f.family === '{111}' || f.family === '111');
           if (f111) {
@@ -846,7 +846,7 @@
         ];
       } else if (failedFamily === 'IV-VI') {
         coreFacets = [
-          { id: crypto.randomUUID(), hkl: '100', gamma: 0.8, scope: 'family', family: '{100}', termination: 'stoichiometric' },
+          { id: crypto.randomUUID(), hkl: '100', gamma: 1.0, scope: 'family', family: '{100}', termination: 'stoichiometric' },
           { id: crypto.randomUUID(), hkl: '111', gamma: 1.0, scope: 'family', family: '{111}', termination: 'cation_rich' }
         ];
       } else if (failedFamily === 'ABX3') {
