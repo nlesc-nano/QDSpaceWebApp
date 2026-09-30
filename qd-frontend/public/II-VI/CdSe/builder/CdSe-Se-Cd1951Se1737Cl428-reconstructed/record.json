@@ -43,7 +43,7 @@
   "origin": {
     "generator": "builder.scripts.generate_library",
     "config": "cdse_zb.yaml",
-    "qd_builder_commit": "2d822b659be49685676f0bba6482dad67658c410",
+    "qd_builder_commit": "7f4808d17bcb3dfead19c0f8b251c656460d2341",
     "qd_builder_dirty": false,
     "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
@@ -173,7 +173,7 @@
             1,
             1
           ],
-          "ligands_stripped": 13,
+          "ligands_stripped": 14,
           "cations_removed": 13,
           "ligands_added": 0
         },
@@ -183,7 +183,7 @@
             -1,
             -1
           ],
-          "ligands_stripped": 15,
+          "ligands_stripped": 14,
           "cations_removed": 13,
           "ligands_added": 0
         }
