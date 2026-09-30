@@ -2,7 +2,7 @@ centre,unit_cells,surface,status,id,formula,d_nm,n_atoms,Q
 In,0.5,clean,rejected: core 0 < 20 atoms; centre detected as unknown,,,0.0,0,0
 In,0.5,reconstructed,skipped: found 0 anion- and 0 cation-terminated {111} facets; need both,,,,,
 In,0.75,clean,kept,InP-In-In31P20Cl33-clean,In31P20Cl33,1.444,84,0
-In,0.75,reconstructed,kept,InP-In-In27P20Cl21-reconstructed,In27P20Cl21,1.471,68,0
+In,0.75,reconstructed,kept,InP-In-In27P16Cl33-reconstructed,In27P16Cl33,1.414,76,0
 In,1.0,clean,kept,InP-In-In35P26Cl27-clean,In35P26Cl27,1.559,88,0
 In,1.0,reconstructed,rejected: charge +21; keeps 4/26 anions of its clean parent,,In27P4Cl48,1.468,79,21
 In,1.25,clean,kept,InP-In-In149P116Cl99-clean,In149P116Cl99,2.571,364,0
@@ -26,7 +26,7 @@ P,0.5,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets
 P,0.75,clean,kept,InP-P-In40P31Cl27-clean,In40P31Cl27,1.551,98,0
 P,0.75,reconstructed,kept,InP-P-In36P23Cl39-reconstructed,In36P23Cl39,1.521,98,0
 P,1.0,clean,kept,InP-P-In52P35Cl51-clean,In52P35Cl51,1.773,138,0
-P,1.0,reconstructed,kept,InP-P-In44P35Cl27-reconstructed,In44P35Cl27,1.801,106,0
+P,1.0,reconstructed,kept,InP-P-In44P31Cl39-reconstructed,In44P31Cl39,1.745,114,0
 P,1.25,clean,kept,InP-P-In116P99Cl51-clean,In116P99Cl51,2.379,266,0
 P,1.25,reconstructed,rejected: charge +69; keeps 31/99 anions of its clean parent,,In96P31Cl126,2.343,253,69
 P,1.5,clean,kept,InP-P-In204P161Cl129-clean,In204P161Cl129,2.895,494,0

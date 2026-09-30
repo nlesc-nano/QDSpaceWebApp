@@ -8,7 +8,7 @@ Cd,1.0,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facet
 Cd,1.25,clean,kept,CdSe-Cd-Cd31Se22Cl18-clean,Cd31Se22Cl18,1.478,71,0
 Cd,1.25,reconstructed,rejected: keeps 4/22 anions of its clean parent,,Cd25Se4Cl42,1.49,71,0
 Cd,1.5,clean,kept,CdSe-Cd-Cd55Se32Cl46-clean,Cd55Se32Cl46,1.717,133,0
-Cd,1.5,reconstructed,kept,CdSe-Cd-Cd50Se32Cl36-reconstructed,Cd50Se32Cl36,1.679,118,0
+Cd,1.5,reconstructed,kept,CdSe-Cd-Cd48Se28Cl40-reconstructed,Cd48Se28Cl40,1.639,116,0
 Cd,1.75,clean,kept,CdSe-Cd-Cd107Se86Cl42-clean,Cd107Se86Cl42,2.231,235,0
 Cd,1.75,reconstructed,kept,CdSe-Cd-Cd95Se60Cl70-reconstructed,Cd95Se60Cl70,2.192,225,0
 Cd,2.0,clean,kept,CdSe-Cd-Cd147Se104Cl86-clean,Cd147Se104Cl86,2.442,337,0
@@ -56,7 +56,7 @@ Se,1.25,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} face
 Se,1.5,clean,kept,CdSe-Se-Cd68Se55Cl26-clean,Cd68Se55Cl26,1.89,149,0
 Se,1.5,reconstructed,kept,CdSe-Se-Cd60Se39Cl42-reconstructed,Cd60Se39Cl42,1.866,141,0
 Se,1.75,clean,kept,CdSe-Se-Cd92Se59Cl66-clean,Cd92Se59Cl66,2.069,217,0
-Se,1.75,reconstructed,kept,CdSe-Se-Cd83Se59Cl48-reconstructed,Cd83Se59Cl48,2.038,190,0
+Se,1.75,reconstructed,kept,CdSe-Se-Cd81Se55Cl52-reconstructed,Cd81Se55Cl52,1.999,188,0
 Se,2.0,clean,kept,CdSe-Se-Cd176Se147Cl58-clean,Cd176Se147Cl58,2.624,381,0
 Se,2.0,reconstructed,kept,CdSe-Se-Cd156Se111Cl90-reconstructed,Cd156Se111Cl90,2.525,357,0
 Se,2.25,clean,duplicate of CdSe-Se-Cd176Se147Cl58-clean,CdSe-Se-Cd176Se147Cl58-clean,Cd176Se147Cl58,2.624,381,0

@@ -13,7 +13,7 @@
 | Cd | 1.25 | clean | kept | Cd31Se22Cl18 | 1.478 | 71 |
 | Cd | 1.25 | reconstructed | rejected: keeps 4/22 anions of its clean parent | Cd25Se4Cl42 | 1.49 | 71 |
 | Cd | 1.5 | clean | kept | Cd55Se32Cl46 | 1.717 | 133 |
-| Cd | 1.5 | reconstructed | kept | Cd50Se32Cl36 | 1.679 | 118 |
+| Cd | 1.5 | reconstructed | kept | Cd48Se28Cl40 | 1.639 | 116 |
 | Cd | 1.75 | clean | kept | Cd107Se86Cl42 | 2.231 | 235 |
 | Cd | 1.75 | reconstructed | kept | Cd95Se60Cl70 | 2.192 | 225 |
 | Cd | 2.0 | clean | kept | Cd147Se104Cl86 | 2.442 | 337 |
@@ -61,7 +61,7 @@
 | Se | 1.5 | clean | kept | Cd68Se55Cl26 | 1.89 | 149 |
 | Se | 1.5 | reconstructed | kept | Cd60Se39Cl42 | 1.866 | 141 |
 | Se | 1.75 | clean | kept | Cd92Se59Cl66 | 2.069 | 217 |
-| Se | 1.75 | reconstructed | kept | Cd83Se59Cl48 | 2.038 | 190 |
+| Se | 1.75 | reconstructed | kept | Cd81Se55Cl52 | 1.999 | 188 |
 | Se | 2.0 | clean | kept | Cd176Se147Cl58 | 2.624 | 381 |
 | Se | 2.0 | reconstructed | kept | Cd156Se111Cl90 | 2.525 | 357 |
 | Se | 2.25 | clean | duplicate of CdSe-Se-Cd176Se147Cl58-clean | Cd176Se147Cl58 | 2.624 | 381 |

@@ -1,39 +1,39 @@
 {
   "schema_version": 1,
-  "id": "InP-P-In44P35Cl27-reconstructed",
-  "material": "InP",
-  "family": "III-V",
+  "id": "CdSe-Se-Cd81Se55Cl52-reconstructed",
+  "material": "CdSe",
+  "family": "II-VI",
   "phase": "zinc-blende",
   "surface": "reconstructed",
   "source": "builder",
-  "formula": "In44P35Cl27",
+  "formula": "Cd81Se55Cl52",
   "composition": {
-    "In": 44,
-    "P": 35,
-    "Cl": 27
+    "Cd": 81,
+    "Se": 55,
+    "Cl": 52
   },
   "core": {
-    "In": 44,
-    "P": 35
+    "Cd": 81,
+    "Se": 55
   },
   "ligands": {
-    "Cl": 27
+    "Cl": 52
   },
-  "n_atoms": 106,
+  "n_atoms": 188,
   "total_charge": 0,
-  "centre": "P",
-  "centre_offset_A": 0.0,
+  "centre": "Se",
+  "centre_offset_A": 0.112,
   "size": {
-    "n_core": 79,
-    "d_nm": 1.801,
-    "d_max_nm": 2.045,
-    "d_hull_nm": 1.259,
-    "unit_cells": 1.0,
+    "n_core": 136,
+    "d_nm": 1.999,
+    "d_max_nm": 2.203,
+    "d_hull_nm": 1.75,
+    "unit_cells": 1.75,
     "unit_cells_all": [
-      1.0
+      1.75
     ]
   },
-  "fingerprint": "d537ac349f859b93",
+  "fingerprint": "efaf43352f204320",
   "stages": [
     {
       "stage": "start",
@@ -42,15 +42,15 @@
   ],
   "origin": {
     "generator": "builder.scripts.generate_library",
-    "config": "inp_zb.yaml",
-    "qd_builder_commit": "c458734cc5ca6c6884c97c239a9aea2dd6e8750c",
+    "config": "cdse_zb.yaml",
+    "qd_builder_commit": "318261e830f313db23ba8e776ccd1428aeba7971",
     "qd_builder_dirty": false,
-    "cif": "InP_zb.cif",
+    "cif": "CdSe_zb.cif",
     "positive_q_mode": "add",
     "recipe": {
       "charges": {
-        "In": 3,
-        "P": -3,
+        "Cd": 2,
+        "Se": -2,
         "Cl": -1
       },
       "passivation": {
@@ -63,28 +63,34 @@
       },
       "facets": [
         {
+          "hkl": "100",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
           "hkl": "111",
           "scope": "family",
           "termination": "cation_rich",
-          "gamma": 0.8
+          "gamma": 1.0
         },
         {
           "hkl": "-1-1-1",
           "scope": "family",
           "termination": "anion_rich",
-          "gamma": 1.6
+          "gamma": 1.0
         }
       ],
       "symmetry": {
         "proper_rotations_only": true
       },
       "size_unit_cells": [
-        1.0,
-        1.0,
-        1.0
+        1.75,
+        1.75,
+        1.75
       ],
       "construction_origin": {
-        "center_on_species": "P"
+        "center_on_species": "Se"
       },
       "post_treatment": {
         "surface_reconstruction": {
@@ -96,48 +102,48 @@
     "reconstruction_ledger": {
       "status": "applied",
       "ligand": "Cl",
-      "cation": "In",
-      "anion": "P",
+      "cation": "Cd",
+      "anion": "Se",
       "anion_facets": [
         {
           "hkl": [
             1,
             1,
-            -1
+            1
           ],
           "vacancies": 0,
           "anions_to_ligand": 0,
-          "chain_breaks": 0
+          "chain_breaks": 1
         },
         {
           "hkl": [
             1,
             -1,
-            1
+            -1
           ],
           "vacancies": 0,
           "anions_to_ligand": 0,
-          "chain_breaks": 0
+          "chain_breaks": 1
         },
         {
           "hkl": [
             -1,
             1,
-            1
+            -1
           ],
           "vacancies": 0,
           "anions_to_ligand": 0,
-          "chain_breaks": 0
+          "chain_breaks": 1
         },
         {
           "hkl": [
             -1,
             -1,
-            -1
+            1
           ],
           "vacancies": 0,
           "anions_to_ligand": 0,
-          "chain_breaks": 0
+          "chain_breaks": 1
         }
       ],
       "cation_facets": [
@@ -145,56 +151,56 @@
           "hkl": [
             1,
             1,
-            1
+            -1
           ],
-          "ligands_stripped": 6,
-          "cations_removed": 2,
+          "ligands_stripped": 4,
+          "cations_removed": 3,
           "ligands_added": 0
         },
         {
           "hkl": [
             1,
             -1,
-            -1
+            1
           ],
-          "ligands_stripped": 7,
-          "cations_removed": 2,
-          "ligands_added": 2
+          "ligands_stripped": 4,
+          "cations_removed": 3,
+          "ligands_added": 0
         },
         {
           "hkl": [
             -1,
             1,
-            -1
+            1
           ],
-          "ligands_stripped": 7,
-          "cations_removed": 2,
-          "ligands_added": 1
+          "ligands_stripped": 5,
+          "cations_removed": 3,
+          "ligands_added": 0
         },
         {
           "hkl": [
             -1,
             -1,
-            1
+            -1
           ],
-          "ligands_stripped": 7,
+          "ligands_stripped": 5,
           "cations_removed": 2,
           "ligands_added": 0
         }
       ],
-      "anion_side_charge_delta": 0,
-      "ligands_stripped": 27,
-      "cations_removed": 8,
-      "ligands_added": 3,
+      "anion_side_charge_delta": 4,
+      "ligands_stripped": 18,
+      "cations_removed": 11,
+      "ligands_added": 0,
       "ligands_added_by_mu": {
         "mu3": 0,
         "mu2": 0,
-        "mu1": 3
+        "mu1": 0
       },
-      "symmetric": true,
+      "symmetric": false,
       "total_charge_before": 0,
       "total_charge_after": 0
     }
   },
-  "parent": "InP-P-In52P35Cl51-clean"
+  "parent": "CdSe-Se-Cd92Se59Cl66-clean"
 }

@@ -7,7 +7,7 @@
 | In | 0.5 | clean | rejected: core 0 < 20 atoms; centre detected as unknown |  | 0.0 | 0 |
 | In | 0.5 | reconstructed | skipped: found 0 anion- and 0 cation-terminated {111} facets; need both |  |  |  |
 | In | 0.75 | clean | kept | In31P20Cl33 | 1.444 | 84 |
-| In | 0.75 | reconstructed | kept | In27P20Cl21 | 1.471 | 68 |
+| In | 0.75 | reconstructed | kept | In27P16Cl33 | 1.414 | 76 |
 | In | 1.0 | clean | kept | In35P26Cl27 | 1.559 | 88 |
 | In | 1.0 | reconstructed | rejected: charge +21; keeps 4/26 anions of its clean parent | In27P4Cl48 | 1.468 | 79 |
 | In | 1.25 | clean | kept | In149P116Cl99 | 2.571 | 364 |
@@ -31,7 +31,7 @@
 | P | 0.75 | clean | kept | In40P31Cl27 | 1.551 | 98 |
 | P | 0.75 | reconstructed | kept | In36P23Cl39 | 1.521 | 98 |
 | P | 1.0 | clean | kept | In52P35Cl51 | 1.773 | 138 |
-| P | 1.0 | reconstructed | kept | In44P35Cl27 | 1.801 | 106 |
+| P | 1.0 | reconstructed | kept | In44P31Cl39 | 1.745 | 114 |
 | P | 1.25 | clean | kept | In116P99Cl51 | 2.379 | 266 |
 | P | 1.25 | reconstructed | rejected: charge +69; keeps 31/99 anions of its clean parent | In96P31Cl126 | 2.343 | 253 |
 | P | 1.5 | clean | kept | In204P161Cl129 | 2.895 | 494 |
