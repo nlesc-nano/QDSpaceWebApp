@@ -1,0 +1,10 @@
+source: dft
+surface: clean
+family: III-V
+material: GaAs
+phase: zinc-blende
+dft:
+  code: CP2K
+  functional: HLE17
+  basis: DZVP
+notes: ''

@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "id": "HgSe-Hg-Hg2971Se2760Cl422-reconstructed",
+  "material": "HgSe",
+  "family": "II-VI",
+  "phase": "zinc-blende",
+  "surface": "reconstructed",
+  "source": "builder",
+  "formula": "Hg2971Se2760Cl422",
+  "composition": {
+    "Hg": 2971,
+    "Se": 2760,
+    "Cl": 422
+  },
+  "core": {
+    "Hg": 2971,
+    "Se": 2760
+  },
+  "ligands": {
+    "Cl": 422
+  },
+  "n_atoms": 6153,
+  "total_charge": 0,
+  "centre": "Hg",
+  "centre_offset_A": 0.002,
+  "size": {
+    "n_core": 5731,
+    "d_nm": 6.897,
+    "d_max_nm": 7.169,
+    "d_hull_nm": 6.72,
+    "unit_cells": 5.5,
+    "unit_cells_all": [
+      5.5
+    ]
+  },
+  "fingerprint": "e3773a665043b76b",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "hgse_zb.yaml",
+    "qd_builder_commit": "650da1f5efcf1aa6f939b2b80a22a62a3a98bce9",
+    "qd_builder_dirty": true,
+    "cif": "HgSe_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Hg": 2,
+        "Se": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "110",
+          "scope": "family",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        5.5,
+        5.5,
+        5.5
+      ],
+      "construction_origin": {
+        "center_on_species": "Hg"
+      },
+      "post_treatment": {
+        "surface_reconstruction": {
+          "enabled": true,
+          "ligand": "Cl"
+        }
+      }
+    },
+    "reconstruction_ledger": {
+      "status": "applied",
+      "ligand": "Cl",
+      "cation_removal": "mirror",
+      "cation": "Hg",
+      "anion": "Se",
+      "anion_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            1
+          ],
+          "vacancies": 9,
+          "anions_to_ligand": 27,
+          "chain_breaks": 3
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            -1
+          ],
+          "vacancies": 9,
+          "anions_to_ligand": 27,
+          "chain_breaks": 3
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            -1
+          ],
+          "vacancies": 9,
+          "anions_to_ligand": 27,
+          "chain_breaks": 3
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            1
+          ],
+          "vacancies": 9,
+          "anions_to_ligand": 27,
+          "chain_breaks": 3
+        }
+      ],
+      "cation_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            -1
+          ],
+          "ligands_stripped": 9,
+          "cations_removed": 9,
+          "ligands_added": 3
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            1
+          ],
+          "ligands_stripped": 9,
+          "cations_removed": 9,
+          "ligands_added": 3
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            1
+          ],
+          "ligands_stripped": 10,
+          "cations_removed": 9,
+          "ligands_added": 4
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            -1
+          ],
+          "ligands_stripped": 10,
+          "cations_removed": 9,
+          "ligands_added": 4
+        }
+      ],
+      "anion_side_charge_delta": 48,
+      "ligands_stripped": 38,
+      "cations_removed": 36,
+      "ligands_added": 14,
+      "ligands_added_by_mu": {
+        "mu3": 14,
+        "mu2": 0,
+        "mu1": 0
+      },
+      "symmetric": false,
+      "total_charge_before": 0,
+      "total_charge_after": 0
+    }
+  },
+  "parent": "HgSe-Hg-Hg3043Se2880Cl326-clean"
+}

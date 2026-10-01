@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "id": "CdSe-Cd-Cd477Se414Cl126-clean",
+  "material": "CdSe",
+  "family": "II-VI",
+  "phase": "zinc-blende",
+  "surface": "clean",
+  "source": "builder",
+  "formula": "Cd477Se414Cl126",
+  "composition": {
+    "Cd": 477,
+    "Se": 414,
+    "Cl": 126
+  },
+  "core": {
+    "Cd": 477,
+    "Se": 414
+  },
+  "ligands": {
+    "Cl": 126
+  },
+  "n_atoms": 1017,
+  "total_charge": 0,
+  "centre": "Cd",
+  "centre_offset_A": 0.031,
+  "size": {
+    "n_core": 891,
+    "d_nm": 3.705,
+    "d_max_nm": 3.984,
+    "d_hull_nm": 3.424,
+    "unit_cells": 3.0,
+    "unit_cells_all": [
+      3.0
+    ]
+  },
+  "fingerprint": "966caa6316690a0f",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cdse_zb.yaml",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
+    "qd_builder_dirty": false,
+    "cif": "CdSe_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Cd": 2,
+        "Se": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        3.0,
+        3.0,
+        3.0
+      ],
+      "construction_origin": {
+        "center_on_species": "Cd"
+      }
+    }
+  }
+}

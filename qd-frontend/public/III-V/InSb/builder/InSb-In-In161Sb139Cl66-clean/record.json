@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "id": "InSb-In-In161Sb139Cl66-clean",
+  "material": "InSb",
+  "family": "III-V",
+  "phase": "zinc-blende",
+  "surface": "clean",
+  "source": "builder",
+  "formula": "In161Sb139Cl66",
+  "composition": {
+    "In": 161,
+    "Sb": 139,
+    "Cl": 66
+  },
+  "core": {
+    "In": 161,
+    "Sb": 139
+  },
+  "ligands": {
+    "Cl": 66
+  },
+  "n_atoms": 366,
+  "total_charge": 0,
+  "centre": "In",
+  "centre_offset_A": 0.039,
+  "size": {
+    "n_core": 300,
+    "d_nm": 3.033,
+    "d_max_nm": 3.873,
+    "d_hull_nm": 2.468,
+    "unit_cells": 1.5,
+    "unit_cells_all": [
+      1.5
+    ]
+  },
+  "fingerprint": "e887aef1aeedbb8b",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "insb_zb.yaml",
+    "qd_builder_commit": "650da1f5efcf1aa6f939b2b80a22a62a3a98bce9",
+    "qd_builder_dirty": true,
+    "cif": "InSb_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "In": 3,
+        "Sb": -3,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 0.8
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.6
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "construction_origin": {
+        "center_on_species": "In"
+      }
+    }
+  }
+}

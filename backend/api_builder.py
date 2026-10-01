@@ -18,6 +18,7 @@ import threading
 import queue
 import asyncio
 import contextlib
+import inspect
 from builder.main import main as nc_builder_main
 
 from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
@@ -169,6 +170,7 @@ class BuildOptions(BaseModel):
 
     # New Surface Reconstruction and Neutral passivation fields
     reconstruction_enabled: Optional[bool] = False
+    # Ignored since the {111} reconstruction rewrite; kept so older clients validate.
     reconstruction_target_reduction: Optional[float] = 0.5
     reconstruction_min_separation: Optional[str] = "auto"
     neutral_enabled: Optional[bool] = False
@@ -643,6 +645,24 @@ def _augment_charges_for_neutral_exchange(charges: Dict[str, float], opts: Build
                 charges.setdefault(sym, _COMMON_FORMAL_CHARGES[sym])
 
 
+def _validate_neutral_exchange_jobs(opts: BuildOptions) -> None:
+    if not getattr(opts, "neutral_exchange_enabled", False):
+        return
+    from builder.neutral_exchange_posttreat import _validate_zwitterion_smiles
+
+    for index, job in enumerate(getattr(opts, "neutral_exchange_jobs", None) or [], start=1):
+        exchange_type = (getattr(job, "exchange_type", None) or "mxn").lower()
+        if exchange_type != "zwitterion":
+            continue
+        smiles = (getattr(job, "smiles", "") or "").strip()
+        if not smiles:
+            continue
+        try:
+            _validate_zwitterion_smiles(smiles)
+        except ValueError as exc:
+            raise ValueError(f"Neutral exchange job {index}: {exc}") from exc
+
+
 def run_cmd(cmd: List[str], cwd: Path) -> Tuple[str, str]:
     if cmd[0] == "nc-builder":
         exe = shutil.which("nc-builder")
@@ -997,13 +1017,12 @@ def _normalize_hkl_string(h: str) -> str:
 def _build_post_treatment_from_opts(opts: BuildOptions) -> dict:
     post_treatment: dict = {}
     if opts.reconstruction_enabled:
+        # Polar {111} reconstruction (zinc-blende II-VI / III-V with both
+        # cation_rich {111} and anion_rich {-1-1-1} active); QD_Builder decides
+        # applicability and skips with a log message otherwise.
         post_treatment["surface_reconstruction"] = {
             "enabled": True,
             "ligand": "Cl",
-            "facets": "auto",
-            "target_reduction": opts.reconstruction_target_reduction or 0.5,
-            "min_separation": opts.reconstruction_min_separation or "auto",
-            "distribution": "fps",
             "seed": 1337,
         }
     if opts.z_type_enabled and opts.z_type_jobs:
@@ -1165,7 +1184,9 @@ def _run_repassivation_posttreatment(
     )
     minimal_yaml = {
         "charges": charges,
-        "passivation": _default_passivation_block(include_cation_ligand=include_cation_ligand),
+        "passivation": _default_passivation_block(
+            include_cation_ligand=include_cation_ligand, ligand=_anion_placeholder_for_cif(core_cif_path)
+        ),
         "facets": facets_yaml,
         "symmetry": {"proper_rotations_only": True},
     }
@@ -1242,6 +1263,10 @@ def _run_repassivation_posttreatment(
                 prepass_min_cn_edge=cfg.passivation.prepass_min_cn_edge,
                 prepass_min_cn_vertex=cfg.passivation.prepass_min_cn_vertex,
             )
+            recon_ledger: dict = {}
+            recon_kwargs = {}
+            if "ledger" in inspect.signature(reconstruct_polar_facets).parameters:
+                recon_kwargs["ledger"] = recon_ledger
             syms, pts = reconstruct_polar_facets(
                 syms,
                 pts,
@@ -1256,7 +1281,10 @@ def _run_repassivation_posttreatment(
                 verbose=False,
                 write_all=False,
                 prefix=str(tmp_path / "repass"),
+                **recon_kwargs,
             )
+            if recon_ledger:
+                ledger.append({"surface_reconstruction": True, **recon_ledger})
 
         _facets, planes = _detect_planes()
         if log_sink is not None:
@@ -1371,7 +1399,7 @@ def _detect_z_type_options_for_xyz(
         ]
         minimal_yaml = {
             "charges": charges,
-            "passivation": _default_passivation_block(),
+            "passivation": _default_passivation_block(ligand=_anion_placeholder_for_cif(core_cif_path)),
             "facets": facets_yaml,
             "symmetry": {"proper_rotations_only": True},
         }
@@ -1432,7 +1460,7 @@ def _detect_surface_post_options_for_xyz(
         ]
         minimal_yaml = {
             "charges": charges,
-            "passivation": _default_passivation_block(),
+            "passivation": _default_passivation_block(ligand=_anion_placeholder_for_cif(core_cif_path)),
             "facets": facets_yaml,
             "symmetry": {"proper_rotations_only": True},
         }
@@ -1547,6 +1575,11 @@ def format_facets_for_yaml(facets) -> List[dict]:
             sc = f.get("scope", "family")
             term = f.get("termination", None)
 
+        # "stoichiometric" (non-polar) is a CIF-analysis label, not a builder termination
+        term = str(term).strip().lower() if term is not None else None
+        if term not in ("cation_rich", "anion_rich"):
+            term = None
+
         h_str = _normalize_hkl_string(str(h).strip())
         if sc == "family" and h_str.startswith("-") and term != "anion_rich":
             h_str = h_str.lstrip("-") or h_str
@@ -1579,9 +1612,26 @@ def format_facets_for_yaml(facets) -> List[dict]:
     return out
 
 
-def _default_passivation_block(*, include_cation_ligand: bool = False) -> dict:
+def _anion_placeholder(native_elements) -> str:
+    """Anion ligand placeholder: Cl, unless Cl is a native species (CsPbCl3)."""
+    native = set(native_elements or ())
+    for sym in ("Cl", "Br", "I", "F"):
+        if sym not in native:
+            return sym
+    return "Cl"
+
+
+def _anion_placeholder_for_cif(cif_path) -> str:
+    try:
+        from pymatgen.core import Structure
+        return _anion_placeholder({site.specie.symbol for site in Structure.from_file(str(cif_path)).sites})
+    except Exception:
+        return "Cl"
+
+
+def _default_passivation_block(*, include_cation_ligand: bool = False, ligand: str = "Cl") -> dict:
     block = {
-        "ligand": "Cl",
+        "ligand": ligand,
         "surf_tol": 2.0,
         "prepass_mode": "role-aware",
         "prepass_min_cn_terrace": 3,
@@ -1706,6 +1756,10 @@ async def build_nanocrystal(files: List[UploadFile] = File(...), options: str = 
         opts = BuildOptions.parse_raw(options)
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Invalid options JSON: {e}")
+    try:
+        _validate_neutral_exchange_jobs(opts)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
     tmpdir = tempfile.mkdtemp(prefix="qdb_")
     logging.info(f"Temporary directory created at: {tmpdir}")
@@ -2145,6 +2199,10 @@ async def build_nanocrystal_stream(
         opts = BuildOptions.parse_raw(options)
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Invalid options JSON: {e}")
+    try:
+        _validate_neutral_exchange_jobs(opts)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
     tmpdir = tempfile.mkdtemp(prefix="qdb_stream_")
     tmp_path = Path(tmpdir)
@@ -2210,7 +2268,8 @@ async def build_nanocrystal_stream(
                         final_charges.update(sc)
                         shell_elements.update(sc.keys())
 
-            final_charges.setdefault("Cl", -1.0)
+            anion_ph = _anion_placeholder(core_elements | shell_elements)
+            final_charges.setdefault(anion_ph, -1.0)
             if needs_rb:
                 final_charges.setdefault("Rb", 1.0)
             for job in opts.alloying_jobs or []:
@@ -2218,7 +2277,9 @@ async def build_nanocrystal_stream(
                     final_charges.setdefault(job.replacement.strip(), int(job.replacement_charge))
             _augment_charges_for_neutral_exchange(final_charges, opts)
 
-            pass_defaults = _default_passivation_block(include_cation_ligand=needs_rb)
+            pass_defaults = _default_passivation_block(include_cation_ligand=needs_rb, ligand=anion_ph)
+            if anion_ph != "Cl":
+                yield json.dumps({"event": "log", "line": f"[info] Cl is native here; using {anion_ph} as the anion ligand placeholder"}) + "\n"
 
             # ---- Repassivation-only: post-treatment on stored XYZ (no Wulff rebuild) ----
             if is_repassivate:
@@ -2302,7 +2363,7 @@ async def build_nanocrystal_stream(
                         await asyncio.sleep(0.05)
                 except Exception as e:
                     yield json.dumps({"event": "log", "line": f"[error] Repassivation failed: {e}"}) + "\n"
-                    yield json.dumps({"event": "result", "status": "failed"}) + "\n"
+                    yield json.dumps({"event": "result", "status": "failed", "error": str(e)}) + "\n"
                     return
 
                 yield json.dumps({
@@ -2376,6 +2437,9 @@ async def build_nanocrystal_stream(
                     "ligand_detail": ligand_detail,
                     "z_type_options": z_type_options,
                     **post_options,
+                    "reconstruction": next(
+                        (e for e in ledger if e.get("surface_reconstruction")), None
+                    ),
                     "size_metrics": None,
                 }
                 yield json.dumps({"event": "result", **payload}) + "\n"
@@ -2697,7 +2761,7 @@ async def build_nanocrystal_stream(
             # Stream a readable error instead of letting the connection drop
             tb = traceback.format_exc(limit=5)
             yield json.dumps({"event": "log", "line": f"[fatal] {e}\n{tb}"}) + "\n"
-            yield json.dumps({"event": "result", "status": "failed"}) + "\n"
+            yield json.dumps({"event": "result", "status": "failed", "error": str(e)}) + "\n"
         finally:
             logging.info(f"Cleaning up temporary directory: {tmpdir}")
             # shutil.rmtree(tmpdir, ignore_errors=True)

@@ -1,0 +1,93 @@
+centre,unit_cells,surface,status,id,formula,d_nm,n_atoms,Q
+Hg,0.5,clean,rejected: core 0 < 20 atoms; centre detected as unknown,,,0.0,0,0
+Hg,0.5,reconstructed,skipped: found 0 anion- and 0 cation-terminated {111} facets; need both,,,,,
+Hg,0.75,clean,rejected: core 17 < 20 atoms,,Hg13Te4Cl18,1.071,35,0
+Hg,0.75,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Hg,1.0,clean,rejected: core 17 < 20 atoms,,Hg13Te4Cl18,1.071,35,0
+Hg,1.0,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Hg,1.25,clean,kept,HgTe-Hg-Hg31Te22Cl18-clean,Hg31Te22Cl18,1.585,71,0
+Hg,1.25,reconstructed,rejected: keeps 4/22 anions of its clean parent,,Hg25Te4Cl42,1.6,71,0
+Hg,1.5,clean,kept,HgTe-Hg-Hg55Te32Cl46-clean,Hg55Te32Cl46,1.84,133,0
+Hg,1.5,reconstructed,kept,HgTe-Hg-Hg55Te28Cl54-reconstructed,Hg55Te28Cl54,1.82,137,0
+Hg,1.75,clean,kept,HgTe-Hg-Hg83Te68Cl30-clean,Hg83Te68Cl30,2.172,181,0
+Hg,1.75,reconstructed,kept,HgTe-Hg-Hg75Te48Cl54-reconstructed,Hg75Te48Cl54,2.095,177,0
+Hg,2.0,clean,kept,HgTe-Hg-Hg135Te104Cl62-clean,Hg135Te104Cl62,2.557,301,0
+Hg,2.0,reconstructed,kept,HgTe-Hg-Hg127Te92Cl70-reconstructed,Hg127Te92Cl70,2.497,289,0
+Hg,2.25,clean,kept,HgTe-Hg-Hg201Te176Cl50-clean,Hg201Te176Cl50,2.95,427,0
+Hg,2.25,reconstructed,kept,HgTe-Hg-Hg177Te140Cl74-reconstructed,Hg177Te140Cl74,2.866,391,0
+Hg,2.5,clean,kept,HgTe-Hg-Hg297Te240Cl114-clean,Hg297Te240Cl114,3.357,651,0
+Hg,2.5,reconstructed,kept,HgTe-Hg-Hg289Te224Cl130-reconstructed,Hg289Te224Cl130,3.314,643,0
+Hg,2.75,clean,kept,HgTe-Hg-Hg369Te336Cl66-clean,Hg369Te336Cl66,3.63,771,0
+Hg,2.75,reconstructed,kept,HgTe-Hg-Hg345Te300Cl90-reconstructed,Hg345Te300Cl90,3.558,735,0
+Hg,3.0,clean,kept,HgTe-Hg-Hg453Te402Cl102-clean,Hg453Te402Cl102,3.898,957,0
+Hg,3.0,reconstructed,kept,HgTe-Hg-Hg431Te349Cl164-reconstructed,Hg431Te349Cl164,3.837,944,0
+Hg,3.25,clean,kept,HgTe-Hg-Hg675Te616Cl118-clean,Hg675Te616Cl118,4.449,1409,0
+Hg,3.25,reconstructed,kept,HgTe-Hg-Hg643Te560Cl166-reconstructed,Hg643Te560Cl166,4.377,1369,0
+Hg,3.5,clean,kept,HgTe-Hg-Hg715Te658Cl114-clean,Hg715Te658Cl114,4.552,1487,0
+Hg,3.5,reconstructed,kept,HgTe-Hg-Hg695Te602Cl186-reconstructed,Hg695Te602Cl186,4.497,1483,0
+Hg,3.75,clean,kept,HgTe-Hg-Hg1007Te940Cl134-clean,Hg1007Te940Cl134,5.101,2081,0
+Hg,3.75,reconstructed,kept,HgTe-Hg-Hg975Te880Cl190-reconstructed,Hg975Te880Cl190,5.032,2045,0
+Hg,4.0,clean,kept,HgTe-Hg-Hg1103Te1012Cl182-clean,Hg1103Te1012Cl182,5.254,2297,0
+Hg,4.0,reconstructed,kept,HgTe-Hg-Hg1048Te928Cl240-reconstructed,Hg1048Te928Cl240,5.167,2216,0
+Hg,4.25,clean,kept,HgTe-Hg-Hg1577Te1472Cl210-clean,Hg1577Te1472Cl210,5.929,3259,0
+Hg,4.25,reconstructed,kept,HgTe-Hg-Hg1529Te1388Cl282-reconstructed,Hg1529Te1388Cl282,5.858,3199,0
+Hg,4.5,clean,duplicate of HgTe-Hg-Hg1577Te1472Cl210-clean,HgTe-Hg-Hg1577Te1472Cl210-clean,Hg1577Te1472Cl210,5.929,3259,0
+Hg,4.5,reconstructed,duplicate of HgTe-Hg-Hg1529Te1388Cl282-reconstructed,HgTe-Hg-Hg1529Te1388Cl282-reconstructed,Hg1529Te1388Cl282,5.858,3199,0
+Hg,4.75,clean,kept,HgTe-Hg-Hg1997Te1898Cl198-clean,Hg1997Te1898Cl198,6.44,4093,0
+Hg,4.75,reconstructed,kept,HgTe-Hg-Hg1929Te1746Cl366-reconstructed,Hg1929Te1746Cl366,6.358,4041,0
+Hg,5.0,clean,kept,HgTe-Hg-Hg2309Te2160Cl298-clean,Hg2309Te2160Cl298,6.742,4767,0
+Hg,5.0,reconstructed,kept,HgTe-Hg-Hg2237Te2040Cl394-reconstructed,Hg2237Te2040Cl394,6.66,4671,0
+Hg,5.25,clean,kept,HgTe-Hg-Hg2643Te2538Cl210-clean,Hg2643Te2538Cl210,7.078,5391,0
+Hg,5.25,reconstructed,kept,HgTe-Hg-Hg2583Te2386Cl394-reconstructed,Hg2583Te2386Cl394,7.007,5363,0
+Hg,5.5,clean,kept,HgTe-Hg-Hg3043Te2880Cl326-clean,Hg3043Te2880Cl326,7.402,6249,0
+Hg,5.5,reconstructed,kept,HgTe-Hg-Hg2971Te2760Cl422-reconstructed,Hg2971Te2760Cl422,7.329,6153,0
+Hg,5.75,clean,kept,HgTe-Hg-Hg3535Te3384Cl302-clean,Hg3535Te3384Cl302,7.795,7221,0
+Hg,5.75,reconstructed,kept,HgTe-Hg-Hg3414Te3180Cl468-reconstructed,Hg3414Te3180Cl468,7.698,7062,0
+Hg,6.0,clean,kept,HgTe-Hg-Hg3871Te3700Cl342-clean,Hg3871Te3700Cl342,8.033,7913,0
+Hg,6.0,reconstructed,kept,HgTe-Hg-Hg3815Te3596Cl438-reconstructed,Hg3815Te3596Cl438,7.979,7849,0
+Te,0.5,clean,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
+Te,0.5,reconstructed,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
+Te,0.75,clean,rejected: core 5 < 20 atoms,,Hg4Te1Cl6,0.658,11,0
+Te,0.75,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Te,1.0,clean,kept,HgTe-Te-Hg16Te13Cl6-clean,Hg16Te13Cl6,1.222,35,0
+Te,1.0,reconstructed,rejected: core 16 < 20 atoms; keeps 2/13 anions of its clean parent; centre detected as interstitial,,Hg14Te2Cl24,1.317,40,0
+Te,1.25,clean,kept,HgTe-Te-Hg28Te13Cl30-clean,Hg28Te13Cl30,1.435,71,0
+Te,1.25,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Te,1.5,clean,kept,HgTe-Te-Hg68Te55Cl26-clean,Hg68Te55Cl26,2.025,149,0
+Te,1.5,reconstructed,kept,HgTe-Te-Hg60Te39Cl42-reconstructed,Hg60Te39Cl42,1.999,141,0
+Te,1.75,clean,duplicate of HgTe-Te-Hg68Te55Cl26-clean,HgTe-Te-Hg68Te55Cl26-clean,Hg68Te55Cl26,2.025,149,0
+Te,1.75,reconstructed,duplicate of HgTe-Te-Hg60Te39Cl42-reconstructed,HgTe-Te-Hg60Te39Cl42-reconstructed,Hg60Te39Cl42,1.999,141,0
+Te,2.0,clean,kept,HgTe-Te-Hg152Te135Cl34-clean,Hg152Te135Cl34,2.688,321,0
+Te,2.0,reconstructed,kept,HgTe-Te-Hg148Te115Cl66-reconstructed,Hg148Te115Cl66,2.65,329,0
+Te,2.25,clean,kept,HgTe-Te-Hg176Te147Cl58-clean,Hg176Te147Cl58,2.812,381,0
+Te,2.25,reconstructed,kept,HgTe-Te-Hg156Te111Cl90-reconstructed,Hg156Te111Cl90,2.706,357,0
+Te,2.5,clean,kept,HgTe-Te-Hg336Te297Cl78-clean,Hg336Te297Cl78,3.511,711,0
+Te,2.5,reconstructed,kept,HgTe-Te-Hg320Te261Cl118-reconstructed,Hg320Te261Cl118,3.453,699,0
+Te,2.75,clean,duplicate of HgTe-Te-Hg336Te297Cl78-clean,HgTe-Te-Hg336Te297Cl78-clean,Hg336Te297Cl78,3.511,711,0
+Te,2.75,reconstructed,duplicate of HgTe-Te-Hg320Te261Cl118-reconstructed,HgTe-Te-Hg320Te261Cl118-reconstructed,Hg320Te261Cl118,3.453,699,0
+Te,3.0,clean,kept,HgTe-Te-Hg504Te453Cl102-clean,Hg504Te453Cl102,4.035,1059,0
+Te,3.0,reconstructed,kept,HgTe-Te-Hg480Te417Cl126-reconstructed,Hg480Te417Cl126,3.966,1023,0
+Te,3.25,clean,kept,HgTe-Te-Hg616Te549Cl134-clean,Hg616Te549Cl134,4.315,1299,0
+Te,3.25,reconstructed,kept,HgTe-Te-Hg588Te493Cl190-reconstructed,Hg588Te493Cl190,4.24,1271,0
+Te,3.5,clean,kept,HgTe-Te-Hg760Te703Cl114-clean,Hg760Te703Cl114,4.637,1577,0
+Te,3.5,reconstructed,kept,HgTe-Te-Hg752Te683Cl138-reconstructed,Hg752Te683Cl138,4.61,1573,0
+Te,3.75,clean,kept,HgTe-Te-Hg940Te863Cl154-clean,Hg940Te863Cl154,4.983,1957,0
+Te,3.75,reconstructed,kept,HgTe-Te-Hg912Te807Cl210-reconstructed,Hg912Te807Cl210,4.922,1929,0
+Te,4.0,clean,kept,HgTe-Te-Hg1168Te1103Cl130-clean,Hg1168Te1103Cl130,5.376,2401,0
+Te,4.0,reconstructed,kept,HgTe-Te-Hg1106Te983Cl246-reconstructed,Hg1106Te983Cl246,5.282,2335,0
+Te,4.25,clean,kept,HgTe-Te-Hg1472Te1355Cl234-clean,Hg1472Te1355Cl234,5.798,3061,0
+Te,4.25,reconstructed,kept,HgTe-Te-Hg1428Te1271Cl314-reconstructed,Hg1428Te1271Cl314,5.728,3013,0
+Te,4.5,clean,kept,HgTe-Te-Hg1652Te1577Cl150-clean,Hg1652Te1577Cl150,6.04,3379,0
+Te,4.5,reconstructed,kept,HgTe-Te-Hg1592Te1457Cl270-reconstructed,Hg1592Te1457Cl270,5.958,3319,0
+Te,4.75,clean,kept,HgTe-Te-Hg1916Te1781Cl270-clean,Hg1916Te1781Cl270,6.332,3967,0
+Te,4.75,reconstructed,kept,HgTe-Te-Hg1868Te1697Cl342-reconstructed,Hg1868Te1697Cl342,6.263,3907,0
+Te,5.0,clean,kept,HgTe-Te-Hg2424Te2309Cl230-clean,Hg2424Te2309Cl230,6.864,4963,0
+Te,5.0,reconstructed,kept,HgTe-Te-Hg2340Te2149Cl382-reconstructed,Hg2340Te2149Cl382,6.776,4871,0
+Te,5.25,clean,kept,HgTe-Te-Hg2556Te2409Cl294-clean,Hg2556Te2409Cl294,6.981,5259,0
+Te,5.25,reconstructed,kept,HgTe-Te-Hg2508Te2337Cl342-reconstructed,Hg2508Te2337Cl342,6.925,5187,0
+Te,5.5,clean,kept,HgTe-Te-Hg3168Te3043Cl250-clean,Hg3168Te3043Cl250,7.514,6461,0
+Te,5.5,reconstructed,kept,HgTe-Te-Hg3100Te2891Cl418-reconstructed,Hg3100Te2891Cl418,7.442,6409,0
+Te,5.75,clean,kept,HgTe-Te-Hg3384Te3223Cl322-clean,Hg3384Te3223Cl322,7.677,6929,0
+Te,5.75,reconstructed,kept,HgTe-Te-Hg3275Te3015Cl520-reconstructed,Hg3275Te3015Cl520,7.582,6810,0
+Te,6.0,clean,kept,HgTe-Te-Hg4000Te3871Cl258-clean,Hg4000Te3871Cl258,8.134,8129,0
+Te,6.0,reconstructed,kept,HgTe-Te-Hg3936Te3727Cl418-reconstructed,Hg3936Te3727Cl418,8.071,8081,0

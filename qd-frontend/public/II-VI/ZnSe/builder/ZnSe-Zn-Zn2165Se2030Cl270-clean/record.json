@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "id": "ZnSe-Zn-Zn2165Se2030Cl270-clean",
+  "material": "ZnSe",
+  "family": "II-VI",
+  "phase": "zinc-blende",
+  "surface": "clean",
+  "source": "builder",
+  "formula": "Zn2165Se2030Cl270",
+  "composition": {
+    "Zn": 2165,
+    "Se": 2030,
+    "Cl": 270
+  },
+  "core": {
+    "Zn": 2165,
+    "Se": 2030
+  },
+  "ligands": {
+    "Cl": 270
+  },
+  "n_atoms": 4465,
+  "total_charge": 0,
+  "centre": "Zn",
+  "centre_offset_A": 0.019,
+  "size": {
+    "n_core": 4195,
+    "d_nm": 5.705,
+    "d_max_nm": 6.157,
+    "d_hull_nm": 5.441,
+    "unit_cells": 4.75,
+    "unit_cells_all": [
+      4.75
+    ]
+  },
+  "fingerprint": "c37b8413e4fb44d4",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "znse_zb.yaml",
+    "qd_builder_commit": "650da1f5efcf1aa6f939b2b80a22a62a3a98bce9",
+    "qd_builder_dirty": true,
+    "cif": "ZnSe_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Zn": 2,
+        "Se": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        4.75,
+        4.75,
+        4.75
+      ],
+      "construction_origin": {
+        "center_on_species": "Zn"
+      }
+    }
+  }
+}

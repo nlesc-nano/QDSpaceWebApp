@@ -1,6 +1,10 @@
 <script>
-  import { untrack } from 'svelte';
+  import { onMount, tick, untrack } from 'svelte';
   import Viewer from './Viewer.svelte';
+  import { bulkTemplates } from './bulkTemplates.js';
+
+  // Hand-off from the Library: { template, xyz, facets, centre, unitCells, label }
+  let { handoff = null, onHandoffConsumed = () => {} } = $props();
 
   // --- Common Oxidation States for QD Elements & Ligands ---
   const OXIDATION_STATES = {
@@ -12,38 +16,60 @@
     'F': -1, 'Cl': -1, 'Br': -1, 'I': -1
   };
 
+  const PHOSPHONATE_SHORTHAND = 'COP(=O)OCC[NH3+]';
+  const PHOSPHONATE_ZWITTERION = 'COP(=O)([O-])OCC[NH3+]';
+
+  function explicitBracketCharges(smiles) {
+    let total = 0;
+    let hasPositive = false;
+    let hasNegative = false;
+    for (const match of String(smiles || '').matchAll(/\[([^\]]+)\]/g)) {
+      const token = match[1];
+      const numbered = token.match(/([+-])(\d+)$/);
+      const repeated = token.match(/(\+{1,3}|-{1,3})$/);
+      let charge = 0;
+      if (numbered) {
+        charge = (numbered[1] === '+' ? 1 : -1) * Number(numbered[2]);
+      } else if (repeated) {
+        charge = repeated[1][0] === '+' ? repeated[1].length : -repeated[1].length;
+      }
+      total += charge;
+      hasPositive ||= charge > 0;
+      hasNegative ||= charge < 0;
+    }
+    return { total, hasPositive, hasNegative };
+  }
+
+  function zwitterionValidationMessage(smiles) {
+    const value = String(smiles || '').trim();
+    if (!value) return null;
+    const charges = explicitBracketCharges(value);
+    if (charges.total === 0 && charges.hasPositive && charges.hasNegative) return null;
+
+    const suggestion = value.replace(/\s+/g, '') === PHOSPHONATE_SHORTHAND
+      ? ` Did you mean '${PHOSPHONATE_ZWITTERION}'?`
+      : '';
+    if (charges.total !== 0) {
+      const signedCharge = charges.total > 0 ? `+${charges.total}` : `${charges.total}`;
+      return `Invalid zwitterion SMILES '${value}': formal charge is ${signedCharge}; zwitterions require net charge 0.${suggestion}`;
+    }
+    return `Invalid zwitterion SMILES '${value}': zwitterions require explicit positive and negative centers.${suggestion}`;
+  }
+
+  function validateZwitterionJobs() {
+    let firstError = null;
+    for (const option of neutralExchangeOptions) {
+      if (!option.enabled) continue;
+      for (const job of option.jobs || []) {
+        if (job.exchange_type !== 'zwitterion' || !(job.target_count > 0)) continue;
+        const message = zwitterionValidationMessage(job.smiles);
+        if (message && !firstError) firstError = message;
+      }
+    }
+    return firstError;
+  }
+
   // --- Bulk CIF Templates ---
-  const bulkTemplates = {
-    "ABX3": [
-      { name: "CsPbCl3", phase: "cubic", a: 5.680, path: "/ABX3/bulk_cifs/CsPbCl3_cubic.cif" },
-      { name: "CsPbBr3", phase: "cubic", a: 5.949, path: "/ABX3/bulk_cifs/CsPbBr3_cubic.cif" },
-      { name: "CsPbI3", phase: "cubic", a: 6.275, path: "/ABX3/bulk_cifs/CsPbI3_cubic.cif" }
-    ],
-    "II-VI": [
-      { name: "CdS", phase: "zinc-blende", a: 5.886, path: "/II-VI/bulk_cifs/CdS_zb.cif" },
-      { name: "CdSe", phase: "zinc-blende", a: 6.141, path: "/II-VI/bulk_cifs/CdSe_zb.cif" },
-      { name: "CdTe", phase: "zinc-blende", a: 6.564, path: "/II-VI/bulk_cifs/CdTe_zb.cif" },
-      { name: "ZnS", phase: "zinc-blende", a: 5.387, path: "/II-VI/bulk_cifs/ZnS_zb.cif" },
-      { name: "ZnSe", phase: "zinc-blende", a: 5.665, path: "/II-VI/bulk_cifs/ZnSe_zb.cif" },
-      { name: "ZnTe", phase: "zinc-blende", a: 6.111, path: "/II-VI/bulk_cifs/ZnTe_zb.cif" },
-      { name: "HgS", phase: "zinc-blende", a: 5.939, path: "/II-VI/bulk_cifs/HgS_zb.cif" },
-      { name: "HgSe", phase: "zinc-blende", a: 6.193, path: "/II-VI/bulk_cifs/HgSe_zb.cif" },
-      { name: "HgTe", phase: "zinc-blende", a: 6.580, path: "/II-VI/bulk_cifs/HgTe_zb.cif" }
-    ],
-    "III-V": [
-      { name: "GaAs", phase: "zinc-blende", a: 5.750, path: "/III-V/bulk_cifs/GaAs_zb.cif" },
-      { name: "GaP", phase: "zinc-blende", a: 5.452, path: "/III-V/bulk_cifs/GaP_zb.cif" },
-      { name: "GaSb", phase: "zinc-blende", a: 6.137, path: "/III-V/bulk_cifs/GaSb_zb.cif" },
-      { name: "InAs", phase: "zinc-blende", a: 6.107, path: "/III-V/bulk_cifs/InAs_zb.cif" },
-      { name: "InP", phase: "zinc-blende", a: 5.904, path: "/III-V/bulk_cifs/InP_zb.cif" },
-      { name: "InSb", phase: "zinc-blende", a: 6.633, path: "/III-V/bulk_cifs/InSb_zb.cif" }
-    ],
-    "IV-VI": [
-      { name: "PbS", phase: "rock-salt", a: 5.976, path: "/IV-VI/bulk_cifs/PbS_rs.cif" },
-      { name: "PbSe", phase: "rock-salt", a: 6.182, path: "/IV-VI/bulk_cifs/PbSe_rs.cif" },
-      { name: "PbTe", phase: "rock-salt", a: 6.542, path: "/IV-VI/bulk_cifs/PbTe_rs.cif" }
-    ]
-  };
 
   let activeFamilyTab = $state("II-VI");
   let isLoadingTemplate = $state(false);
@@ -104,7 +130,19 @@
   let cationicLigands = $state([]);
   
   let reconEnabled = $state(false);
-  let reconRatio = $state(0.5);
+  // {111} reconstruction applies to zinc-blende cores with both cation-rich
+  // {111} and anion-rich {-1-1-1} facets active (QD_Builder skips otherwise).
+  const is111Facet = (f) => {
+    const fam = String(f.family || '').replace(/[{}]/g, '');
+    if (fam) return fam === '111';
+    const digits = String(f.hkl || '').match(/\d/g) || [];
+    return digits.length === 3 && digits.every((d) => d === '1');
+  };
+  let reconAvailable = $derived(
+    currentCorePhase === 'zinc-blende'
+      && coreFacets.some((f) => is111Facet(f) && f.termination === 'cation_rich')
+      && coreFacets.some((f) => is111Facet(f) && f.termination === 'anion_rich')
+  );
 
   let neutralEnabled = $state(false);
   let neutralLigands = $state([]);
@@ -595,10 +633,11 @@
   });
 
   // CIF Facet Analysis Trigger
+  let cifAnalysis = null;
   $effect(() => {
     if (coreFile) {
       untrack(() => {
-        analyzeCif(coreFile);
+        cifAnalysis = analyzeCif(coreFile);
       });
     } else {
       detectedFacets = [];
@@ -749,9 +788,9 @@
           const f100 = detectedFacets.find(f => f.family === '{100}' || f.family === '100');
           if (f100) {
             const term = f100.terminations.includes('stoichiometric') ? 'stoichiometric' : (f100.terminations[0] || null);
-            coreFacets.push(makeFacetEntry(f100, { termination: term, gamma: 0.8 }));
+            coreFacets.push(makeFacetEntry(f100, { termination: term, gamma: 1.0 }));
           } else {
-            coreFacets.push({ id: crypto.randomUUID(), hkl: '100', gamma: 0.8, scope: 'family', family: '{100}', termination: 'stoichiometric' });
+            coreFacets.push({ id: crypto.randomUUID(), hkl: '100', gamma: 1.0, scope: 'family', family: '{100}', termination: 'stoichiometric' });
           }
           const f111 = detectedFacets.find(f => f.family === '{111}' || f.family === '111');
           if (f111) {
@@ -807,7 +846,7 @@
         ];
       } else if (failedFamily === 'IV-VI') {
         coreFacets = [
-          { id: crypto.randomUUID(), hkl: '100', gamma: 0.8, scope: 'family', family: '{100}', termination: 'stoichiometric' },
+          { id: crypto.randomUUID(), hkl: '100', gamma: 1.0, scope: 'family', family: '{100}', termination: 'stoichiometric' },
           { id: crypto.randomUUID(), hkl: '111', gamma: 1.0, scope: 'family', family: '{111}', termination: 'cation_rich' }
         ];
       } else if (failedFamily === 'ABX3') {
@@ -986,11 +1025,58 @@
   // ==========================================
   // API BUILD STREAM
   // ==========================================
+  // ==========================================
+  // Library hand-off: open a library structure in post-treatment
+  // ==========================================
+  function familyOf(hkl) {
+    const digits = (String(hkl).match(/\d/g) || []).map(Number).sort((a, b) => b - a);
+    return `{${digits.join('')}}`;
+  }
+
+  async function applyHandoff(h) {
+    onReset();
+    logs = `[status] Opening library structure ${h.label} in post-treatment...\n`;
+    await loadTemplate(h.template);
+    await tick();
+    if (cifAnalysis) await cifAnalysis;
+    if (h.facets && h.facets.length) {
+      coreFacets = h.facets.map((f) => ({
+        id: crypto.randomUUID(),
+        hkl: String(f.hkl),
+        gamma: Number(f.gamma ?? 1.0),
+        scope: f.scope || 'family',
+        family: familyOf(f.hkl),
+        termination: f.termination || null,
+      }));
+    }
+    if (h.centre && detectedSpecies.includes(h.centre)) centerIon = h.centre;
+    if (h.unitCells) sizeUnitCells = [h.unitCells, h.unitCells, h.unitCells];
+    xyzData = h.xyz;
+    lastUnpassivatedXyz = h.xyz;
+    sidebarView = 'postTreatment';
+    passivateExpanded = true;
+    // Empty repassivation: returns the post-treatment options for this structure.
+    await onBuild(true);
+    logs += `[status] Library structure ${h.label} ready for post-treatment.\n`;
+    onHandoffConsumed();
+  }
+
+  onMount(() => {
+    if (handoff) applyHandoff(handoff);
+  });
+
   async function onBuild(skipCoreBuild = false) {
     if (!coreFile) { alert('Please upload a core .cif file.'); return; }
     if (skipCoreBuild && !lastUnpassivatedXyz) {
       alert('No built structure found. Please run a full build first.');
       return;
+    }
+    if (skipCoreBuild) {
+      const zwitterionError = validateZwitterionJobs();
+      if (zwitterionError) {
+        logs += `[error] ${zwitterionError}\n`;
+        return;
+      }
     }
 
     isBuilding = true;
@@ -1059,9 +1145,7 @@
         : [],
       skip_core_build: skipCoreBuild,
       xyz_unpassivated: skipCoreBuild ? lastUnpassivatedXyz : null,
-      reconstruction_enabled: skipCoreBuild ? reconEnabled : false,
-      reconstruction_target_reduction: skipCoreBuild ? reconRatio : 0.5,
-      reconstruction_min_separation: 'auto',
+      reconstruction_enabled: skipCoreBuild ? (reconEnabled && reconAvailable) : false,
       neutral_enabled: skipCoreBuild ? neutralEnabled : false,
       neutral_jobs: skipCoreBuild
         ? lTypeOptions
@@ -1127,7 +1211,14 @@
       const res = await fetch(BUILD_STREAM_URL, { method: 'POST', body: formData });
       if (!res.ok) {
         const errorText = await res.text();
-        throw new Error(`HTTP ${res.status}: ${errorText}`);
+        let detail = errorText;
+        try {
+          const parsed = JSON.parse(errorText);
+          detail = parsed.detail || parsed.error || errorText;
+        } catch (_err) {
+          // Keep the plain response body.
+        }
+        throw new Error(detail || `HTTP ${res.status}`);
       }
 
       const reader = res.body.getReader();
@@ -1173,7 +1264,7 @@
         if (finalResult.last_command) logs += `[cmd][final] ${finalResult.last_command}\n`;
         logs += "\n[status] Rendered.\n";
       } else {
-        logs += "[error] Build failed.\n";
+        logs += `[error] ${finalResult?.error || 'Build failed.'}\n`;
       }
     } catch (err) {
       logs += `[error] fetch failed: ${err.message}\n`;
@@ -1415,6 +1506,7 @@
                         {#if opt.enabled}
                           <div class="space-y-2">
                             {#each opt.jobs || [] as job (job.id)}
+                              {@const zwitterionError = job.exchange_type === 'zwitterion' ? zwitterionValidationMessage(job.smiles) : null}
                               <div class="border border-accent-100 rounded-lg p-2 bg-white/80 space-y-2">
                                 <div class="flex flex-wrap gap-1.5 text-[10px] bg-slate-50 p-1.5 rounded-lg border border-slate-200">
                                   <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.exchange_type} value="mxn" class="accent-accent-600 shrink-0"> MXn exchange</label>
@@ -1428,9 +1520,12 @@
                                            job.exchange_type === 'zwitterion' ? 'e.g. [NH3+]CC[S-] or [NH3+]CC(=O)[O-]' :
                                            'e.g. CN (methylamine) or CCCS (neutral thiol)'
                                          }
-                                         class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium w-full">
+                                         class="border-none ring-1 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 outline-none font-medium w-full {zwitterionError ? 'ring-red-400 focus:ring-red-400' : 'ring-accent-200 focus:ring-accent-400'}">
                                   <button type="button" class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors h-full" onclick={() => removeOptionJob(opt, job, 'neutral_exchange')}>x</button>
                                 </div>
+                                {#if zwitterionError}
+                                  <p class="text-[10px] leading-snug text-red-600 font-semibold">{zwitterionError}</p>
+                                {/if}
                                 <div class="flex flex-wrap gap-1 items-center text-[9px]">
                                   <span class="text-slate-400 font-bold uppercase mr-1">Templates:</span>
                                   {#if job.exchange_type === 'mxn'}
@@ -1539,29 +1634,28 @@
             {/if}
           </div>
           <div class="border border-accent-200 bg-accent-50/20 p-4 rounded-2xl">
-            <label class="flex items-center gap-2 font-extrabold text-accent-700 text-[10px] uppercase tracking-widest cursor-pointer select-none">
-              <input type="checkbox" bind:checked={reconEnabled} class="accent-accent-600 rounded">
-              Polar Surface Reconstruction
+            <label class="flex items-center gap-2 font-extrabold text-accent-700 text-[10px] uppercase tracking-widest select-none {reconAvailable ? 'cursor-pointer' : 'opacity-50 cursor-not-allowed'}">
+              <input type="checkbox" bind:checked={reconEnabled} disabled={!reconAvailable} class="accent-accent-600 rounded">
+              Polar {'{'}111{'}'} Surface Reconstruction
             </label>
             <p class="text-[10px] text-slate-500 mt-2 leading-snug">
-              Cl placeholders on polar facets (auto spacing). Runs before ligand exchange.
+              {#if reconAvailable}
+                Sub-surface cation vacancies on anion-rich (-1-1-1) facets (2-coordinated anions → Cl), then Cl stripping and cation removal on cation-rich (111) facets to keep the dot neutral. Runs before ligand exchange.
+              {:else}
+                Available for zinc-blende II-VI / III-V cores with both cation-rich (111) and anion-rich (-1-1-1) facets enabled.
+              {/if}
             </p>
 
-            {#if reconEnabled}
-              <!-- Reconstruction Ratio Selector -->
-              <div class="space-y-1.5 mt-3 p-3 bg-white border border-accent-100 rounded-xl">
-                <div class="flex justify-between items-center text-xs">
-                  <span class="font-bold text-slate-700">Reconstruction Ratio</span>
-                  <span class="font-mono bg-accent-50 text-accent-700 px-2 py-0.5 rounded font-bold">{Math.round(reconRatio * 100)}%</span>
-                </div>
-                <input 
-                  type="range" 
-                  min="0.1" 
-                  max="0.9" 
-                  step="0.05" 
-                  bind:value={reconRatio}
-                  class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer"
-                />
+            {#if finalResult?.reconstruction}
+              {@const rc = finalResult.reconstruction}
+              <div class="mt-3 p-3 bg-white border border-accent-100 rounded-xl text-[10px] text-slate-600 space-y-0.5">
+                {#if rc.status === 'applied'}
+                  <div><span class="font-bold text-slate-700">Anion-rich facets:</span> {rc.anion_facets.reduce((a, f) => a + f.vacancies, 0)} {rc.cation} vacancies, {rc.anion_facets.reduce((a, f) => a + f.anions_to_ligand, 0)} {rc.anion} → {rc.ligand}{rc.anion_facets.some((f) => f.chain_breaks) ? `, ${rc.anion_facets.reduce((a, f) => a + (f.chain_breaks || 0), 0)} ${rc.anion} → ${rc.ligand} chain breaks` : ''}</div>
+                  <div><span class="font-bold text-slate-700">Cation-rich facets:</span> {rc.ligands_stripped} {rc.ligand} stripped, {rc.cations_removed} {rc.cation} removed{rc.ligands_added ? `, ${rc.ligands_added} ${rc.ligand} added` : ''}</div>
+                  <div><span class="font-bold text-slate-700">Net charge:</span> {rc.total_charge_after >= 0 ? '+' : ''}{rc.total_charge_after}</div>
+                {:else}
+                  <div>Skipped: {rc.reason}</div>
+                {/if}
               </div>
             {/if}
           </div>

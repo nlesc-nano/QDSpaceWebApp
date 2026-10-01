@@ -1,0 +1,10 @@
+source: dft
+surface: clean
+family: IV-VI
+material: PbTe
+phase: rock-salt
+dft:
+  code: CP2K
+  functional: PBE
+  basis: null
+notes: ''

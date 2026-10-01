@@ -6,7 +6,14 @@
   import Builder from './Builder.svelte';
   import Library from './Library.svelte';
 
-  let currentRoute = 'home'; 
+  let currentRoute = 'home';
+
+  // Library -> Builder hand-off (open a library structure in post-treatment)
+  let builderHandoff = null;
+  function openInBuilder(handoff) {
+    builderHandoff = handoff;
+    currentRoute = 'builder';
+  }
 </script>
 
 <div class="min-h-screen bg-slate-50 text-slate-900 flex flex-col">
@@ -21,9 +28,9 @@
       <Contact />
       
     {:else if currentRoute === 'builder'}
-      <Builder />
+      <Builder handoff={builderHandoff} onHandoffConsumed={() => (builderHandoff = null)} />
     {:else if currentRoute === 'library'}
-      <Library />
+      <Library onOpenInBuilder={openInBuilder} />
     {/if}
     
   </div>

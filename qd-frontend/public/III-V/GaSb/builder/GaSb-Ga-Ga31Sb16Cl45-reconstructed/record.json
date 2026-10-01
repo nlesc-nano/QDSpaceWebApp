@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "id": "GaSb-Ga-Ga31Sb16Cl45-reconstructed",
+  "material": "GaSb",
+  "family": "III-V",
+  "phase": "zinc-blende",
+  "surface": "reconstructed",
+  "source": "builder",
+  "formula": "Ga31Sb16Cl45",
+  "composition": {
+    "Ga": 31,
+    "Sb": 16,
+    "Cl": 45
+  },
+  "core": {
+    "Ga": 31,
+    "Sb": 16
+  },
+  "ligands": {
+    "Cl": 45
+  },
+  "n_atoms": 92,
+  "total_charge": 0,
+  "centre": "Ga",
+  "centre_offset_A": 0.0,
+  "size": {
+    "n_core": 47,
+    "d_nm": 1.443,
+    "d_max_nm": 1.503,
+    "d_hull_nm": 1.033,
+    "unit_cells": 0.75,
+    "unit_cells_all": [
+      0.75
+    ]
+  },
+  "fingerprint": "cce90d9da6d354f1",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "gasb_zb.yaml",
+    "qd_builder_commit": "650da1f5efcf1aa6f939b2b80a22a62a3a98bce9",
+    "qd_builder_dirty": true,
+    "cif": "GaSb_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Ga": 3,
+        "Sb": -3,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 0.8
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.6
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        0.75,
+        0.75,
+        0.75
+      ],
+      "construction_origin": {
+        "center_on_species": "Ga"
+      },
+      "post_treatment": {
+        "surface_reconstruction": {
+          "enabled": true,
+          "ligand": "Cl"
+        }
+      }
+    },
+    "reconstruction_ledger": {
+      "status": "applied",
+      "ligand": "Cl",
+      "cation_removal": "mirror",
+      "cation": "Ga",
+      "anion": "Sb",
+      "anion_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 0,
+          "chain_breaks": 1
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 0,
+          "chain_breaks": 1
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 0,
+          "chain_breaks": 1
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 0,
+          "chain_breaks": 1
+        }
+      ],
+      "cation_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            -1
+          ],
+          "ligands_stripped": 3,
+          "cations_removed": 0,
+          "ligands_added": 5
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            1
+          ],
+          "ligands_stripped": 3,
+          "cations_removed": 0,
+          "ligands_added": 5
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            1
+          ],
+          "ligands_stripped": 4,
+          "cations_removed": 0,
+          "ligands_added": 5
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            -1
+          ],
+          "ligands_stripped": 5,
+          "cations_removed": 0,
+          "ligands_added": 8
+        }
+      ],
+      "anion_side_charge_delta": 8,
+      "ligands_stripped": 15,
+      "cations_removed": 0,
+      "ligands_added": 23,
+      "ligands_added_by_mu": {
+        "mu3": 0,
+        "mu2": 0,
+        "mu1": 23
+      },
+      "symmetric": true,
+      "total_charge_before": 0,
+      "total_charge_after": 0
+    }
+  },
+  "parent": "GaSb-Ga-Ga31Sb20Cl33-clean"
+}

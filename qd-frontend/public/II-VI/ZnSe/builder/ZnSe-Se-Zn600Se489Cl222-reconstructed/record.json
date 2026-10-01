@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "id": "ZnSe-Se-Zn600Se489Cl222-reconstructed",
+  "material": "ZnSe",
+  "family": "II-VI",
+  "phase": "zinc-blende",
+  "surface": "reconstructed",
+  "source": "builder",
+  "formula": "Zn600Se489Cl222",
+  "composition": {
+    "Zn": 600,
+    "Se": 489,
+    "Cl": 222
+  },
+  "core": {
+    "Zn": 600,
+    "Se": 489
+  },
+  "ligands": {
+    "Cl": 222
+  },
+  "n_atoms": 1311,
+  "total_charge": 0,
+  "centre": "Se",
+  "centre_offset_A": 0.0,
+  "size": {
+    "n_core": 1089,
+    "d_nm": 3.669,
+    "d_max_nm": 4.036,
+    "d_hull_nm": 3.495,
+    "unit_cells": 3.25,
+    "unit_cells_all": [
+      3.25
+    ]
+  },
+  "fingerprint": "0ec76aa4f6614903",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "znse_zb.yaml",
+    "qd_builder_commit": "650da1f5efcf1aa6f939b2b80a22a62a3a98bce9",
+    "qd_builder_dirty": true,
+    "cif": "ZnSe_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Zn": 2,
+        "Se": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        3.25,
+        3.25,
+        3.25
+      ],
+      "construction_origin": {
+        "center_on_species": "Se"
+      },
+      "post_treatment": {
+        "surface_reconstruction": {
+          "enabled": true,
+          "ligand": "Cl"
+        }
+      }
+    },
+    "reconstruction_ledger": {
+      "status": "applied",
+      "ligand": "Cl",
+      "cation_removal": "mirror",
+      "cation": "Zn",
+      "anion": "Se",
+      "anion_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            1
+          ],
+          "vacancies": 6,
+          "anions_to_ligand": 18,
+          "chain_breaks": 0
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            -1
+          ],
+          "vacancies": 6,
+          "anions_to_ligand": 18,
+          "chain_breaks": 0
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            -1
+          ],
+          "vacancies": 6,
+          "anions_to_ligand": 18,
+          "chain_breaks": 0
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            1
+          ],
+          "vacancies": 6,
+          "anions_to_ligand": 18,
+          "chain_breaks": 0
+        }
+      ],
+      "cation_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            -1
+          ],
+          "ligands_stripped": 2,
+          "cations_removed": 4,
+          "ligands_added": 0
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            1
+          ],
+          "ligands_stripped": 2,
+          "cations_removed": 4,
+          "ligands_added": 0
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            1
+          ],
+          "ligands_stripped": 2,
+          "cations_removed": 4,
+          "ligands_added": 0
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            -1
+          ],
+          "ligands_stripped": 2,
+          "cations_removed": 4,
+          "ligands_added": 0
+        }
+      ],
+      "anion_side_charge_delta": 24,
+      "ligands_stripped": 8,
+      "cations_removed": 16,
+      "ligands_added": 0,
+      "ligands_added_by_mu": {
+        "mu3": 0,
+        "mu2": 0,
+        "mu1": 0
+      },
+      "symmetric": false,
+      "total_charge_before": 0,
+      "total_charge_after": 0
+    }
+  },
+  "parent": "ZnSe-Se-Zn640Se561Cl158-clean"
+}

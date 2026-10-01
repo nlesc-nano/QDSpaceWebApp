@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "id": "CdSe-Se-Cd60Se39Cl42-reconstructed",
+  "material": "CdSe",
+  "family": "II-VI",
+  "phase": "zinc-blende",
+  "surface": "reconstructed",
+  "source": "builder",
+  "formula": "Cd60Se39Cl42",
+  "composition": {
+    "Cd": 60,
+    "Se": 39,
+    "Cl": 42
+  },
+  "core": {
+    "Cd": 60,
+    "Se": 39
+  },
+  "ligands": {
+    "Cl": 42
+  },
+  "n_atoms": 141,
+  "total_charge": 0,
+  "centre": "Se",
+  "centre_offset_A": 0.228,
+  "size": {
+    "n_core": 99,
+    "d_nm": 1.866,
+    "d_max_nm": 1.86,
+    "d_hull_nm": 1.604,
+    "unit_cells": 1.5,
+    "unit_cells_all": [
+      1.5
+    ]
+  },
+  "fingerprint": "8e892c57612579ef",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cdse_zb.yaml",
+    "qd_builder_commit": "1d48e5683e24ae770dfd2c9a56ef882a9726a2d6",
+    "qd_builder_dirty": false,
+    "cif": "CdSe_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Cd": 2,
+        "Se": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "construction_origin": {
+        "center_on_species": "Se"
+      },
+      "post_treatment": {
+        "surface_reconstruction": {
+          "enabled": true,
+          "ligand": "Cl"
+        }
+      }
+    },
+    "reconstruction_ledger": {
+      "status": "applied",
+      "ligand": "Cl",
+      "cation_removal": "mirror",
+      "cation": "Cd",
+      "anion": "Se",
+      "anion_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            1
+          ],
+          "vacancies": 1,
+          "anions_to_ligand": 3,
+          "chain_breaks": 1
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            -1
+          ],
+          "vacancies": 1,
+          "anions_to_ligand": 3,
+          "chain_breaks": 1
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            -1
+          ],
+          "vacancies": 1,
+          "anions_to_ligand": 3,
+          "chain_breaks": 1
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            1
+          ],
+          "vacancies": 1,
+          "anions_to_ligand": 3,
+          "chain_breaks": 1
+        }
+      ],
+      "cation_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            -1
+          ],
+          "ligands_stripped": 0,
+          "cations_removed": 1,
+          "ligands_added": 0
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            1
+          ],
+          "ligands_stripped": 0,
+          "cations_removed": 1,
+          "ligands_added": 1
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            1
+          ],
+          "ligands_stripped": 1,
+          "cations_removed": 1,
+          "ligands_added": 1
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            -1
+          ],
+          "ligands_stripped": 1,
+          "cations_removed": 1,
+          "ligands_added": 0
+        }
+      ],
+      "anion_side_charge_delta": 8,
+      "ligands_stripped": 2,
+      "cations_removed": 4,
+      "ligands_added": 2,
+      "ligands_added_by_mu": {
+        "mu3": 0,
+        "mu2": 2,
+        "mu1": 0
+      },
+      "symmetric": false,
+      "total_charge_before": 0,
+      "total_charge_after": 0
+    }
+  },
+  "parent": "CdSe-Se-Cd68Se55Cl26-clean"
+}

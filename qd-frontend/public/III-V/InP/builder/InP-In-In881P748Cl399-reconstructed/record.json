@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "id": "InP-In-In881P748Cl399-reconstructed",
+  "material": "InP",
+  "family": "III-V",
+  "phase": "zinc-blende",
+  "surface": "reconstructed",
+  "source": "builder",
+  "formula": "In881P748Cl399",
+  "composition": {
+    "In": 881,
+    "P": 748,
+    "Cl": 399
+  },
+  "core": {
+    "In": 881,
+    "P": 748
+  },
+  "ligands": {
+    "Cl": 399
+  },
+  "n_atoms": 2028,
+  "total_charge": 0,
+  "centre": "In",
+  "centre_offset_A": 0.0,
+  "size": {
+    "n_core": 1629,
+    "d_nm": 4.726,
+    "d_max_nm": 5.807,
+    "d_hull_nm": 3.988,
+    "unit_cells": 2.5,
+    "unit_cells_all": [
+      2.5
+    ]
+  },
+  "fingerprint": "0f50f012a1cbdb65",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "f59a4ea2db6061a41862cb5c4273ab2e62365b36",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "In": 3,
+        "P": -3,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 0.8
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.6
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "construction_origin": {
+        "center_on_species": "In"
+      },
+      "post_treatment": {
+        "surface_reconstruction": {
+          "enabled": true,
+          "ligand": "Cl"
+        }
+      }
+    },
+    "reconstruction_ledger": {
+      "status": "applied",
+      "ligand": "Cl",
+      "cation_removal": "mirror",
+      "cation": "In",
+      "anion": "P",
+      "anion_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            -1
+          ],
+          "vacancies": 1,
+          "anions_to_ligand": 3,
+          "chain_breaks": 4
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            1
+          ],
+          "vacancies": 1,
+          "anions_to_ligand": 3,
+          "chain_breaks": 4
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            1
+          ],
+          "vacancies": 1,
+          "anions_to_ligand": 3,
+          "chain_breaks": 4
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            -1
+          ],
+          "vacancies": 1,
+          "anions_to_ligand": 3,
+          "chain_breaks": 4
+        }
+      ],
+      "cation_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            1
+          ],
+          "ligands_stripped": 70,
+          "cations_removed": 1,
+          "ligands_added": 78
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            -1
+          ],
+          "ligands_stripped": 71,
+          "cations_removed": 1,
+          "ligands_added": 79
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            -1
+          ],
+          "ligands_stripped": 72,
+          "cations_removed": 1,
+          "ligands_added": 80
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            1
+          ],
+          "ligands_stripped": 72,
+          "cations_removed": 1,
+          "ligands_added": 80
+        }
+      ],
+      "anion_side_charge_delta": 44,
+      "ligands_stripped": 285,
+      "cations_removed": 4,
+      "ligands_added": 317,
+      "ligands_added_by_mu": {
+        "mu3": 0,
+        "mu2": 0,
+        "mu1": 317
+      },
+      "symmetric": true,
+      "total_charge_before": 0,
+      "total_charge_after": 0
+    }
+  },
+  "parent": "InP-In-In889P776Cl339-clean"
+}

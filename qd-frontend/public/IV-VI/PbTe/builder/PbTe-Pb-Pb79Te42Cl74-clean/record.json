@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "id": "PbTe-Pb-Pb79Te42Cl74-clean",
+  "material": "PbTe",
+  "family": "IV-VI",
+  "phase": "rock-salt",
+  "surface": "clean",
+  "source": "builder",
+  "formula": "Pb79Te42Cl74",
+  "composition": {
+    "Pb": 79,
+    "Te": 42,
+    "Cl": 74
+  },
+  "core": {
+    "Pb": 79,
+    "Te": 42
+  },
+  "ligands": {
+    "Cl": 74
+  },
+  "n_atoms": 195,
+  "total_charge": 0,
+  "centre": "Pb",
+  "centre_offset_A": 0.0,
+  "size": {
+    "n_core": 121,
+    "d_nm": 2.052,
+    "d_max_nm": 2.069,
+    "d_hull_nm": 1.758,
+    "unit_cells": 1.5,
+    "unit_cells_all": [
+      1.5
+    ]
+  },
+  "fingerprint": "0e8fdb825861059e",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "pbte_rs.yaml",
+    "qd_builder_commit": "ca20e383430e384d4da76f7c876e52900ddf03d3",
+    "qd_builder_dirty": false,
+    "cif": "PbTe_rs.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Pb": 2,
+        "Te": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "construction_origin": {
+        "center_on_species": "Pb"
+      }
+    }
+  }
+}

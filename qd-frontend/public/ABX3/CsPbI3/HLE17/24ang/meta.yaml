@@ -1,0 +1,10 @@
+source: dft
+surface: clean
+family: ABX3
+material: CsPbI3
+phase: cubic perovskite
+dft:
+  code: CP2K
+  functional: HLE17
+  basis: DZVP
+notes: ''

@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "id": "CdTe-Te-Cd4546Te4135Cl822-reconstructed",
+  "material": "CdTe",
+  "family": "II-VI",
+  "phase": "zinc-blende",
+  "surface": "reconstructed",
+  "source": "builder",
+  "formula": "Cd4546Te4135Cl822",
+  "composition": {
+    "Cd": 4546,
+    "Te": 4135,
+    "Cl": 822
+  },
+  "core": {
+    "Cd": 4546,
+    "Te": 4135
+  },
+  "ligands": {
+    "Cl": 822
+  },
+  "n_atoms": 9503,
+  "total_charge": 0,
+  "centre": "Te",
+  "centre_offset_A": 0.007,
+  "size": {
+    "n_core": 8681,
+    "d_nm": 8.449,
+    "d_max_nm": 9.394,
+    "d_hull_nm": 8.269,
+    "unit_cells": 6.0,
+    "unit_cells_all": [
+      6.0
+    ]
+  },
+  "fingerprint": "087c39e723fe9fc6",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cdte_zb.yaml",
+    "qd_builder_commit": "650da1f5efcf1aa6f939b2b80a22a62a3a98bce9",
+    "qd_builder_dirty": true,
+    "cif": "CdTe_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Cd": 2,
+        "Te": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        6.0,
+        6.0,
+        6.0
+      ],
+      "construction_origin": {
+        "center_on_species": "Te"
+      },
+      "post_treatment": {
+        "surface_reconstruction": {
+          "enabled": true,
+          "ligand": "Cl"
+        }
+      }
+    },
+    "reconstruction_ledger": {
+      "status": "applied",
+      "ligand": "Cl",
+      "cation_removal": "mirror",
+      "cation": "Cd",
+      "anion": "Te",
+      "anion_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            -1
+          ],
+          "vacancies": 28,
+          "anions_to_ligand": 84,
+          "chain_breaks": 0
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            1
+          ],
+          "vacancies": 28,
+          "anions_to_ligand": 84,
+          "chain_breaks": 0
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            1
+          ],
+          "vacancies": 28,
+          "anions_to_ligand": 84,
+          "chain_breaks": 0
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            -1
+          ],
+          "vacancies": 28,
+          "anions_to_ligand": 84,
+          "chain_breaks": 0
+        }
+      ],
+      "cation_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            1
+          ],
+          "ligands_stripped": 3,
+          "cations_removed": 16,
+          "ligands_added": 0
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            -1
+          ],
+          "ligands_stripped": 3,
+          "cations_removed": 16,
+          "ligands_added": 0
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            -1
+          ],
+          "ligands_stripped": 3,
+          "cations_removed": 15,
+          "ligands_added": 0
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            1
+          ],
+          "ligands_stripped": 3,
+          "cations_removed": 15,
+          "ligands_added": 0
+        }
+      ],
+      "anion_side_charge_delta": 112,
+      "ligands_stripped": 12,
+      "cations_removed": 62,
+      "ligands_added": 0,
+      "ligands_added_by_mu": {
+        "mu3": 0,
+        "mu2": 0,
+        "mu1": 0
+      },
+      "symmetric": false,
+      "total_charge_before": 0,
+      "total_charge_after": 0
+    }
+  },
+  "parent": "CdTe-Te-Cd4720Te4471Cl498-clean"
+}

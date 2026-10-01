@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "id": "HgS-Hg-Hg1529S1388Cl282-reconstructed",
+  "material": "HgS",
+  "family": "II-VI",
+  "phase": "zinc-blende",
+  "surface": "reconstructed",
+  "source": "builder",
+  "formula": "Hg1529S1388Cl282",
+  "composition": {
+    "Hg": 1529,
+    "S": 1388,
+    "Cl": 282
+  },
+  "core": {
+    "Hg": 1529,
+    "S": 1388
+  },
+  "ligands": {
+    "Cl": 282
+  },
+  "n_atoms": 3199,
+  "total_charge": 0,
+  "centre": "Hg",
+  "centre_offset_A": 0.021,
+  "size": {
+    "n_core": 2917,
+    "d_nm": 5.287,
+    "d_max_nm": 5.448,
+    "d_hull_nm": 5.115,
+    "unit_cells": 4.25,
+    "unit_cells_all": [
+      4.25,
+      4.5
+    ]
+  },
+  "fingerprint": "6400b2eef0990fec",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "hgs_zb.yaml",
+    "qd_builder_commit": "650da1f5efcf1aa6f939b2b80a22a62a3a98bce9",
+    "qd_builder_dirty": true,
+    "cif": "HgS_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Hg": 2,
+        "S": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "110",
+          "scope": "family",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        4.25,
+        4.25,
+        4.25
+      ],
+      "construction_origin": {
+        "center_on_species": "Hg"
+      },
+      "post_treatment": {
+        "surface_reconstruction": {
+          "enabled": true,
+          "ligand": "Cl"
+        }
+      }
+    },
+    "reconstruction_ledger": {
+      "status": "applied",
+      "ligand": "Cl",
+      "cation_removal": "mirror",
+      "cation": "Hg",
+      "anion": "S",
+      "anion_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            -1
+          ],
+          "vacancies": 6,
+          "anions_to_ligand": 18,
+          "chain_breaks": 3
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            1
+          ],
+          "vacancies": 6,
+          "anions_to_ligand": 18,
+          "chain_breaks": 3
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            1
+          ],
+          "vacancies": 6,
+          "anions_to_ligand": 18,
+          "chain_breaks": 3
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            -1
+          ],
+          "vacancies": 6,
+          "anions_to_ligand": 18,
+          "chain_breaks": 3
+        }
+      ],
+      "cation_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            1
+          ],
+          "ligands_stripped": 7,
+          "cations_removed": 6,
+          "ligands_added": 4
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            -1
+          ],
+          "ligands_stripped": 7,
+          "cations_removed": 6,
+          "ligands_added": 4
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            -1
+          ],
+          "ligands_stripped": 8,
+          "cations_removed": 6,
+          "ligands_added": 5
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            1
+          ],
+          "ligands_stripped": 8,
+          "cations_removed": 6,
+          "ligands_added": 5
+        }
+      ],
+      "anion_side_charge_delta": 36,
+      "ligands_stripped": 30,
+      "cations_removed": 24,
+      "ligands_added": 18,
+      "ligands_added_by_mu": {
+        "mu3": 18,
+        "mu2": 0,
+        "mu1": 0
+      },
+      "symmetric": false,
+      "total_charge_before": 0,
+      "total_charge_after": 0
+    }
+  },
+  "parent": "HgS-Hg-Hg1577S1472Cl210-clean"
+}

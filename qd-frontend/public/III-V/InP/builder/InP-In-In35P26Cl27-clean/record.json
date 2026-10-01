@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "id": "InP-In-In35P26Cl27-clean",
+  "material": "InP",
+  "family": "III-V",
+  "phase": "zinc-blende",
+  "surface": "clean",
+  "source": "builder",
+  "formula": "In35P26Cl27",
+  "composition": {
+    "In": 35,
+    "P": 26,
+    "Cl": 27
+  },
+  "core": {
+    "In": 35,
+    "P": 26
+  },
+  "ligands": {
+    "Cl": 27
+  },
+  "n_atoms": 88,
+  "total_charge": 0,
+  "centre": "In",
+  "centre_offset_A": 0.145,
+  "size": {
+    "n_core": 61,
+    "d_nm": 1.559,
+    "d_max_nm": 2.062,
+    "d_hull_nm": 1.146,
+    "unit_cells": 1.0,
+    "unit_cells_all": [
+      1.0
+    ]
+  },
+  "fingerprint": "8ae355a19ad9c0a1",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb.yaml",
+    "qd_builder_commit": "f59a4ea2db6061a41862cb5c4273ab2e62365b36",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "In": 3,
+        "P": -3,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 0.8
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.6
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "construction_origin": {
+        "center_on_species": "In"
+      }
+    }
+  }
+}

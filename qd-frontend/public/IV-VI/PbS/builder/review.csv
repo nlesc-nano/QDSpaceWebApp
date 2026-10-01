@@ -1,0 +1,31 @@
+centre,unit_cells,surface,status,id,formula,d_nm,n_atoms,Q
+Pb,0.5,clean,rejected: core 0 < 20 atoms; centre detected as unknown,,,0.0,0,0
+Pb,0.75,clean,rejected: core 0 < 20 atoms; centre detected as unknown,,,0.0,0,0
+Pb,1.0,clean,rejected: charge -6,,Pb19S6Cl32,1.134,57,-6
+Pb,1.25,clean,kept,PbS-Pb-Pb43S38Cl10-clean,Pb43S38Cl10,1.585,91,0
+Pb,1.5,clean,kept,PbS-Pb-Pb79S42Cl74-clean,Pb79S42Cl74,1.874,195,0
+Pb,1.75,clean,kept,PbS-Pb-Pb135S116Cl38-clean,Pb135S116Cl38,2.331,289,0
+Pb,2.0,clean,kept,PbS-Pb-Pb177S140Cl74-clean,Pb177S140Cl74,2.543,391,0
+Pb,2.25,clean,kept,PbS-Pb-Pb201S142Cl118-clean,Pb201S142Cl118,2.621,461,0
+Pb,2.5,clean,kept,PbS-Pb-Pb381S314Cl134-clean,Pb381S314Cl134,3.297,829,0
+Pb,2.75,clean,kept,PbS-Pb-Pb405S320Cl170-clean,Pb405S320Cl170,3.353,895,0
+Pb,3.0,clean,kept,PbS-Pb-Pb687S586Cl202-clean,Pb687S586Cl202,4.032,1475,0
+Pb,3.25,clean,kept,PbS-Pb-Pb711S596Cl230-clean,Pb711S596Cl230,4.077,1537,0
+Pb,3.5,clean,kept,PbS-Pb-Pb1115S976Cl278-clean,Pb1115S976Cl278,4.759,2369,0
+Pb,3.75,clean,kept,PbS-Pb-Pb1139S990Cl298-clean,Pb1139S990Cl298,4.795,2427,0
+Pb,4.0,clean,kept,PbS-Pb-Pb1289S1074Cl430-clean,Pb1289S1074Cl430,4.991,2793,0
+S,0.5,clean,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
+S,0.75,clean,rejected: charge -2; core 7 < 20 atoms,,Pb6S1Cl12,0.714,19,-2
+S,1.0,clean,kept,PbS-S-Pb14S13Cl2-clean,Pb14S13Cl2,1.091,29,0
+S,1.25,clean,kept,PbS-S-Pb38S21Cl34-clean,Pb38S21Cl34,1.455,93,0
+S,1.5,clean,kept,PbS-S-Pb92S79Cl26-clean,Pb92S79Cl26,2.054,197,0
+S,1.75,clean,kept,PbS-S-Pb116S85Cl62-clean,Pb116S85Cl62,2.174,263,0
+S,2.0,clean,kept,PbS-S-Pb140S79Cl122-clean,Pb140S79Cl122,2.292,341,0
+S,2.25,clean,kept,PbS-S-Pb236S201Cl70-clean,Pb236S201Cl70,2.81,507,0
+S,2.5,clean,kept,PbS-S-Pb314S223Cl182-clean,Pb314S223Cl182,3.063,719,0
+S,2.75,clean,kept,PbS-S-Pb466S405Cl122-clean,Pb466S405Cl122,3.544,993,0
+S,3.0,clean,kept,PbS-S-Pb586S461Cl250-clean,Pb586S461Cl250,3.805,1297,0
+S,3.25,clean,kept,PbS-S-Pb802S711Cl182-clean,Pb802S711Cl182,4.269,1695,0
+S,3.5,clean,kept,PbS-S-Pb976S813Cl326-clean,Pb976S813Cl326,4.537,2115,0
+S,3.75,clean,kept,PbS-S-Pb1264S1139Cl250-clean,Pb1264S1139Cl250,4.988,2653,0
+S,4.0,clean,kept,PbS-S-Pb1480S1289Cl382-clean,Pb1480S1289Cl382,5.235,3151,0
