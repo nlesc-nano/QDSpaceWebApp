@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "id": "AlSb-Sb-Al976Sb853Cl369-reconstructed",
+  "material": "AlSb",
+  "family": "III-V",
+  "phase": "zinc-blende",
+  "surface": "reconstructed",
+  "source": "builder",
+  "formula": "Al976Sb853Cl369",
+  "composition": {
+    "Al": 976,
+    "Sb": 853,
+    "Cl": 369
+  },
+  "core": {
+    "Al": 976,
+    "Sb": 853
+  },
+  "ligands": {
+    "Cl": 369
+  },
+  "n_atoms": 2198,
+  "total_charge": 0,
+  "centre": "Sb",
+  "centre_offset_A": 0.0,
+  "size": {
+    "n_core": 1829,
+    "d_nm": 5.074,
+    "d_max_nm": 6.089,
+    "d_hull_nm": 4.387,
+    "unit_cells": 2.5,
+    "unit_cells_all": [
+      2.5
+    ]
+  },
+  "fingerprint": "9bbafb0516cfdd24",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "alsb_zb.yaml",
+    "qd_builder_commit": "aec13b4b3fbbe96e250ce71852deb26206d998ca",
+    "qd_builder_dirty": true,
+    "cif": "AlSb_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Al": 3,
+        "Sb": -3,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 0.8
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.6
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "construction_origin": {
+        "center_on_species": "Sb"
+      },
+      "post_treatment": {
+        "surface_reconstruction": {
+          "enabled": true,
+          "ligand": "Cl"
+        }
+      }
+    },
+    "reconstruction_ledger": {
+      "status": "applied",
+      "ligand": "Cl",
+      "cation_removal": "mirror",
+      "cation": "Al",
+      "anion": "Sb",
+      "anion_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            -1
+          ],
+          "vacancies": 3,
+          "anions_to_ligand": 9,
+          "chain_breaks": 0
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            1
+          ],
+          "vacancies": 3,
+          "anions_to_ligand": 9,
+          "chain_breaks": 0
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            1
+          ],
+          "vacancies": 3,
+          "anions_to_ligand": 9,
+          "chain_breaks": 0
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            -1
+          ],
+          "vacancies": 3,
+          "anions_to_ligand": 9,
+          "chain_breaks": 0
+        }
+      ],
+      "cation_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            1
+          ],
+          "ligands_stripped": 71,
+          "cations_removed": 3,
+          "ligands_added": 71
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            -1
+          ],
+          "ligands_stripped": 71,
+          "cations_removed": 3,
+          "ligands_added": 71
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            -1
+          ],
+          "ligands_stripped": 71,
+          "cations_removed": 3,
+          "ligands_added": 71
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            1
+          ],
+          "ligands_stripped": 72,
+          "cations_removed": 3,
+          "ligands_added": 72
+        }
+      ],
+      "anion_side_charge_delta": 36,
+      "ligands_stripped": 285,
+      "cations_removed": 12,
+      "ligands_added": 285,
+      "ligands_added_by_mu": {
+        "mu3": 0,
+        "mu2": 0,
+        "mu1": 285
+      },
+      "symmetric": true,
+      "total_charge_before": 0,
+      "total_charge_after": 0
+    }
+  },
+  "parent": "AlSb-Sb-Al1000Sb889Cl333-clean"
+}

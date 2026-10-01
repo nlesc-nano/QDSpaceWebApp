@@ -16,8 +16,10 @@
   let filters = $state({
     family: "",
     material: "",
+    phase: "",
     centre: "",
     surface: "",
+    facet: "",
     functional: "",
     source: "",
     dMin: null,
@@ -43,6 +45,7 @@
   let plotUrls = $state({ fuzzy_sf: null, fuzzy_soc: null, exciton_sf: null, exciton_soc: null });
 
   const SOURCE_LABEL = { builder: "Builder", dft: "DFT", "builder+dft": "Builder + DFT" };
+  const PHASE_SHORT = { "zinc-blende": "zb", wurtzite: "wz", "rock-salt": "rs" };
 
   onMount(async () => {
     try {
@@ -84,12 +87,41 @@
     return opt.functional ? "relaxed only" : "relaxed only · functional unknown";
   };
 
+  // --- Centre role (cation / anion / interstitial) ---
+  const ANIONS = new Set(["O", "S", "Se", "Te", "N", "P", "As", "Sb", "F", "Cl", "Br", "I"]);
+  const centreRole = (c) => (c === "interstitial" ? "interstitial" : ANIONS.has(c) ? "anion" : "cation");
+  const centreLabel = (c) => (c === "interstitial" ? "interstitial" : `${c}-centred`);
+
+  // --- Facet recipe (builder records: origin.recipe.facets) ---
+  const facetsOf = (r) => r.origin?.recipe?.facets || null;
+  const hklText = (hkl) => String(hkl);
+  // Facet family for filtering: sign and order dropped, so "-1-1-1" -> "111", "010" -> "100".
+  const hklFamily = (hkl) => (String(hkl).match(/\d/g) || []).sort().reverse().join("");
+  const facetFamiliesOf = (r) => uniq((facetsOf(r) || []).map((f) => hklFamily(f.hkl)));
+  const gammaText = (g) => (g === undefined || g === null ? "?" : Number(g).toFixed(1));
+  const terminationText = (t) => (t ? String(t).replace("_", "-") : "stoichiometric");
+  const recipeKey = (r) => {
+    const fs = facetsOf(r);
+    return fs ? fs.map((f) => `${f.hkl}:${gammaText(f.gamma)}:${f.termination || ""}`).join("|") : "";
+  };
+  const recipeLabel = (r) => (facetsOf(r) || []).map((f) => `{${hklText(f.hkl)}}${gammaText(f.gamma)}`).join(" · ");
+  const recipeTooltip = (r) =>
+    (facetsOf(r) || [])
+      .map((f) => `{${hklText(f.hkl)}}  γ = ${gammaText(f.gamma)}  ${terminationText(f.termination)}`)
+      .join("\n");
+  // One dot colour per distinct recipe, assigned over the whole index so it is
+  // stable under filtering.
+  const RECIPE_DOTS = ["bg-cyan-500", "bg-fuchsia-500", "bg-lime-500", "bg-orange-500", "bg-violet-500",
+                       "bg-rose-500", "bg-yellow-500", "bg-teal-500", "bg-stone-500", "bg-blue-500"];
+
   // Filters except composition (the composition chips list what these leave).
   function passesBase(r, f) {
     if (f.family && r.family !== f.family) return false;
     if (f.material && r.material !== f.material) return false;
+    if (f.phase && r.phase !== f.phase) return false;
     if (f.centre && r.centre !== f.centre) return false;
     if (f.surface && r.surface !== f.surface) return false;
+    if (f.facet && !facetFamiliesOf(r).includes(f.facet)) return false;
     if (f.source === "builder" && !r.source.includes("builder")) return false;
     if (f.source === "dft" && !r.source.includes("dft")) return false;
     if (f.source === "dft" && f.functional && !functionalsOf(r).includes(f.functional)) return false;
@@ -114,13 +146,25 @@
   let materials = $derived(
     uniq(structures.filter((r) => !filters.family || r.family === filters.family).map((r) => r.material)).sort(),
   );
-  let scoped = $derived(
+  let scopedMaterial = $derived(
     structures.filter(
       (r) => (!filters.family || r.family === filters.family) && (!filters.material || r.material === filters.material),
     ),
   );
+  let phases = $derived(uniq(scopedMaterial.map((r) => r.phase)).sort());
+  let scoped = $derived(scopedMaterial.filter((r) => !filters.phase || r.phase === filters.phase));
   let centres = $derived(uniq(scoped.map((r) => r.centre)).sort());
   let functionals = $derived(uniq(scoped.flatMap(functionalsOf)).sort());
+  let recipeDot = $derived.by(() => {
+    const counts = new Map();
+    for (const r of structures) {
+      const k = recipeKey(r);
+      if (k) counts.set(k, (counts.get(k) || 0) + 1);
+    }
+    const keys = [...counts.keys()].sort((a, b) => counts.get(b) - counts.get(a) || a.localeCompare(b));
+    return new Map(keys.map((k, i) => [k, RECIPE_DOTS[i % RECIPE_DOTS.length]]));
+  });
+  let facetFamilies = $derived(uniq(scoped.flatMap(facetFamiliesOf)).sort());
   let dBounds = $derived.by(() => {
     const ds = scoped.map(dOf).filter((d) => d > 0);
     return ds.length ? [Math.floor(Math.min(...ds) * 10) / 10, Math.ceil(Math.max(...ds) * 10) / 10] : [0, 0];
@@ -134,8 +178,10 @@
 
   function resetBelow(level) {
     if (level <= 0) filters.material = "";
-    if (level <= 1) {
+    if (level <= 1) filters.phase = "";
+    if (level <= 2) {
       filters.centre = "";
+      filters.facet = "";
       filters.functional = "";
       filters.dMin = null;
       filters.dMax = null;
@@ -151,7 +197,7 @@
 
   function clearFilters() {
     Object.assign(filters, {
-      family: "", material: "", centre: "", surface: "", functional: "", source: "",
+      family: "", material: "", phase: "", centre: "", surface: "", facet: "", functional: "", source: "",
       dMin: null, dMax: null, unrelaxed: false, optimized: false, md: false, properties: false,
     });
     selectedFormulas = [];
@@ -301,7 +347,7 @@
     if (list.length > 150 && !confirm(`Download ${list.length} structures as one zip?`)) return;
     const enc = new TextEncoder();
     const files = [];
-    const header = ["id", "formula", "material", "family", "centre", "surface", "source",
+    const header = ["id", "formula", "material", "family", "centre", "surface", "facets", "source",
                     "d_nm", "n_atoms", "total_charge", "unit_cells", "files"];
     const rows = [header];
     try {
@@ -319,7 +365,7 @@
           names.push(name);
         }
         files.push({ name: `${r.id}/record.json`, data: enc.encode(JSON.stringify(r, null, 1)) });
-        rows.push([r.id, r.formula, r.material, r.family, r.centre, r.surface, r.source,
+        rows.push([r.id, r.formula, r.material, r.family, r.centre, r.surface, recipeTooltip(r).replace(/\n/g, "; "), r.source,
                    dOf(r).toFixed(3), r.n_atoms, r.total_charge, r.size?.unit_cells ?? "", names.join(" ")]);
       }
       files.push({ name: "index.csv", data: enc.encode(rows.map((row) => row.map(csvCell).join(",")).join("\n") + "\n") });
@@ -338,7 +384,7 @@
     }
   }
 
-  let builderTemplate = $derived(current ? templateFor(current.family, current.material) : null);
+  let builderTemplate = $derived(current ? templateFor(current.family, current.material, current.phase) : null);
   let canOpenInBuilder = $derived(Boolean(onOpenInBuilder && builderTemplate && xyzText && !isMD));
 
   function openInBuilder() {
@@ -357,6 +403,9 @@
   function badgeClass(kind) {
     return {
       clean: "bg-slate-100 text-slate-700 border-slate-200",
+      cation: "bg-rose-50 text-rose-800 border-rose-200",
+      anion: "bg-teal-50 text-teal-800 border-teal-200",
+      interstitial: "bg-violet-50 text-violet-800 border-violet-200",
       unrelaxed: "bg-sky-50 text-sky-800 border-sky-200",
       reconstructed: "bg-amber-50 text-amber-800 border-amber-200",
       opt: "bg-emerald-50 text-emerald-800 border-emerald-200",
@@ -405,14 +454,37 @@
         </label>
       </div>
 
+      {#if phases.length}
+        <label class="block">
+          <span class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">Phase</span>
+          <select class="w-full ring-1 ring-slate-200 rounded-xl p-2.5 text-sm bg-slate-50 outline-none font-medium"
+                  value={phases.length === 1 ? phases[0] : filters.phase}
+                  onchange={(e) => { filters.phase = e.currentTarget.value; resetBelow(2); }}>
+            {#if phases.length > 1}<option value="">All</option>{/if}
+            {#each phases as p}<option value={p}>{p}</option>{/each}
+          </select>
+        </label>
+      {/if}
+
       <label class="block">
         <span class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">Centre</span>
         <select class="w-full ring-1 ring-slate-200 rounded-xl p-2.5 text-sm bg-slate-50 outline-none font-medium"
                 bind:value={filters.centre} onchange={() => (selectedFormulas = [])}>
           <option value="">All</option>
-          {#each centres as c}<option value={c}>{c === "interstitial" ? "interstitial" : `${c}-centred`}</option>{/each}
+          {#each centres as c}<option value={c}>{centreLabel(c)}</option>{/each}
         </select>
       </label>
+
+      {#if facetFamilies.length}
+        <label class="block">
+          <span class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">Facet</span>
+          <select class="w-full ring-1 ring-slate-200 rounded-xl p-2.5 text-sm bg-slate-50 outline-none font-medium"
+                  bind:value={filters.facet} onchange={() => (selectedFormulas = [])}>
+            <option value="">All</option>
+            {#each facetFamilies as h}<option value={h}>{`{${h}}`}</option>{/each}
+          </select>
+        </label>
+      {/if}
 
       <div>
         <span class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">Surface</span>
@@ -513,7 +585,12 @@
               <span class="text-xs font-bold text-slate-500 whitespace-nowrap">{dOf(r).toFixed(2)} nm</span>
             </div>
             <div class="flex flex-wrap gap-1 mt-1">
-              <span class="text-[10px] font-bold text-slate-500">{r.material} · {r.centre}-centred</span>
+              <span class="text-[10px] font-bold text-slate-500">{r.material}{#if PHASE_SHORT[r.phase]} <span class="font-medium text-slate-400">{PHASE_SHORT[r.phase]}</span>{/if}</span>
+              <span class="px-1.5 rounded border text-[10px] font-bold {badgeClass(centreRole(r.centre))}">{centreLabel(r.centre)}</span>
+              {#if facetsOf(r)}
+                <span class="inline-flex items-center gap-1 px-1.5 rounded border text-[10px] font-mono font-bold bg-white text-slate-600 border-slate-200"
+                      title={recipeTooltip(r)}><span class="w-1.5 h-1.5 rounded-full {recipeDot.get(recipeKey(r)) || 'bg-slate-400'}"></span>{recipeLabel(r)}</span>
+              {/if}
               <span class="px-1.5 rounded border text-[10px] font-bold {badgeClass(r.surface)}">{r.surface}</span>
               <span class="px-1.5 rounded border text-[10px] font-bold {badgeClass('source')}">{SOURCE_LABEL[r.source] || r.source}</span>
               {#if hasUnrelaxed(r)}<span class="px-1.5 rounded border text-[10px] font-bold {badgeClass('unrelaxed')}">Unrelaxed</span>{/if}
@@ -582,7 +659,7 @@
           {#if current}
             <div class="space-y-1.5 text-sm text-slate-700 bg-slate-50 p-3 rounded-2xl mb-4">
               <p class="flex justify-between"><strong class="text-slate-900">Material</strong><span>{current.material} · {current.family} · {current.phase}</span></p>
-              <p class="flex justify-between"><strong class="text-slate-900">Centre</strong><span>{current.centre}</span></p>
+              <p class="flex justify-between"><strong class="text-slate-900">Centre</strong><span class="px-1.5 rounded border text-xs font-bold {badgeClass(centreRole(current.centre))}">{centreLabel(current.centre)}</span></p>
               <p class="flex justify-between"><strong class="text-slate-900">Surface</strong><span>{current.surface}</span></p>
               <p class="flex justify-between"><strong class="text-slate-900">Diameter</strong><span>{dOf(current).toFixed(2)} nm <span class="text-slate-400">(max {current.size?.d_max_nm?.toFixed(2)})</span></span></p>
               {#if current.size?.unit_cells}
@@ -598,6 +675,23 @@
                 <span class="bg-brand-50 text-brand-800 border border-brand-100 px-3 py-1 rounded-lg font-bold text-xs">{el}: {n}</span>
               {/each}
             </div>
+            {#if facetsOf(current)}
+              <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full {recipeDot.get(recipeKey(current)) || 'bg-slate-400'}"></span>Facets
+              </h3>
+              <table class="w-full text-xs text-slate-700 mb-4">
+                <thead><tr class="text-slate-400 text-left"><th class="font-bold pb-1">hkl</th><th class="font-bold pb-1">γ</th><th class="font-bold pb-1">termination</th></tr></thead>
+                <tbody>
+                  {#each facetsOf(current) as f}
+                    <tr class="border-t border-slate-100">
+                      <td class="py-1 font-mono font-bold">{"{"}{hklText(f.hkl)}{"}"}</td>
+                      <td class="py-1 font-mono">{gammaText(f.gamma)}</td>
+                      <td class="py-1">{terminationText(f.termination)}</td>
+                    </tr>
+                  {/each}
+                </tbody>
+              </table>
+            {/if}
             <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Ligands</h3>
             <div class="flex flex-wrap gap-2">
               {#each Object.entries(current.ligands || {}) as [el, n]}

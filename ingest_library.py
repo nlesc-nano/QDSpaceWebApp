@@ -164,11 +164,11 @@ def load_builder_records(dirs: List[str], prefix: str):
 
 
 def _best_match(rec: dict, sig, pool, tol: float):
-    """Closest (record, distance) in pool with the same material/formula/centre/surface."""
+    """Closest (record, distance) in pool with the same material/phase/formula/centre/surface."""
     best = None
     for other, other_sig in pool:
-        if (other["material"], other["formula"], other["centre"], other["surface"]) != (
-            rec["material"], rec["formula"], rec["centre"], rec["surface"]
+        if (other["material"], other.get("phase"), other["formula"], other["centre"], other["surface"]) != (
+            rec["material"], rec.get("phase"), rec["formula"], rec["centre"], rec["surface"]
         ):
             continue
         d = signature_distance(sig, other_sig)
@@ -207,13 +207,29 @@ def main(argv=None) -> int:
     ap.add_argument("--write-meta", action="store_true", help="write prefilled meta.yaml files")
     args = ap.parse_args(argv)
 
+    # builder/ holds the default recipe; builder_<tag>/ holds variant recipes
+    # (e.g. builder_100).  Sorted, so the default series comes first.
     builder_dirs = args.builder if args.builder is not None else [
-        str(p) for p in sorted(PUBLIC.glob("*/*/builder")) if p.is_dir()
+        str(p) for p in sorted(PUBLIC.glob("*/*/builder*")) if p.is_dir()
     ]
     builder = load_builder_records(builder_dirs, args.builder_prefix)
+    # A variant recipe can cut the same structure as the default one: keep the
+    # first and note the other recipe on it.
+    by_fp: Dict[str, dict] = {}
+    unique_builder = []
+    builder_dupes: List[str] = []
+    for rec, sig in builder:
+        first = by_fp.get(rec["fingerprint"])
+        if first is not None:
+            first["origin"].setdefault("also_from_recipes", []).append(rec["origin"].get("recipe"))
+            builder_dupes.append(f"{rec['origin'].get('config')}: {rec['id']} -> {first['id']}")
+            continue
+        by_fp[rec["fingerprint"]] = rec
+        unique_builder.append((rec, sig))
+    builder = unique_builder
 
     legacy: List[tuple] = []   # (record, signature, has_start) after merging identical starts
-    report = {"legacy_groups": 0, "merged": [], "same_start": [], "meta_written": 0,
+    report = {"builder_dupes": builder_dupes, "legacy_groups": 0, "merged": [], "same_start": [], "meta_written": 0,
               "collisions": [], "errors": []}
     groups = group_legacy_files([
         f for f in find_xyz_files(str(PUBLIC))
@@ -284,6 +300,7 @@ def _write_report(path: Path, records: List[dict], rep: dict) -> None:
     for r in records:
         by_mat[(r["family"], r["material"])].append(r)
     lines = ["# Library index report", "",
+             f"- builder variant-recipe duplicates (merged): {len(rep['builder_dupes'])}",
              f"- legacy structure groups: {rep['legacy_groups']}",
              f"- same start, other functional (merged): {len(rep['same_start'])}",
              f"- merged with builder twins: {len(rep['merged'])}",
@@ -300,7 +317,8 @@ def _write_report(path: Path, records: List[dict], rep: dict) -> None:
             {c: sum(1 for r in rs if r["centre"] == c) for c in {r["centre"] for r in rs}}.items()))
         lines.append(f"| {fam} | {mat} | {len(rs)} | {src['builder']} | {src['dft']} | {src['builder+dft']} | "
                      f"{sum(1 for r in rs if r['surface'] == 'reconstructed')} | {centres} |")
-    for title, key in (("Merged with builder twins", "merged"),
+    for title, key in (("Builder variant-recipe duplicates", "builder_dupes"),
+                       ("Merged with builder twins", "merged"),
                        ("Same start geometry, other functional", "same_start"),
                        ("Id collisions", "collisions"),
                        ("Errors", "errors")):

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "id": "CdSe-Se-Cd2189Se2153Cl72-clean",
+  "material": "CdSe",
+  "family": "II-VI",
+  "phase": "wurtzite",
+  "surface": "clean",
+  "source": "builder",
+  "formula": "Cd2189Se2153Cl72",
+  "composition": {
+    "Cd": 2189,
+    "Se": 2153,
+    "Cl": 72
+  },
+  "core": {
+    "Cd": 2189,
+    "Se": 2153
+  },
+  "ligands": {
+    "Cl": 72
+  },
+  "n_atoms": 4414,
+  "total_charge": 0,
+  "centre": "Se",
+  "centre_offset_A": 0.439,
+  "size": {
+    "n_core": 4342,
+    "d_nm": 6.384,
+    "d_max_nm": 7.606,
+    "d_hull_nm": 5.974,
+    "unit_cells": 6.25,
+    "unit_cells_all": [
+      6.25
+    ]
+  },
+  "fingerprint": "e67c2ae53b6b19d0",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cdse_wz.yaml",
+    "qd_builder_commit": "aec13b4b3fbbe96e250ce71852deb26206d998ca",
+    "qd_builder_dirty": true,
+    "cif": "CdSe_wz.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Cd": 2,
+        "Se": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "001",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "00-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        6.25,
+        6.25,
+        3.831262
+      ],
+      "construction_origin": {
+        "center_on_species": "Se"
+      }
+    }
+  }
+}

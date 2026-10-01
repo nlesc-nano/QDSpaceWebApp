@@ -1,0 +1,45 @@
+centre,unit_cells,surface,status,id,formula,d_nm,n_atoms,Q
+Al,0.5,clean,rejected: core 0 < 20 atoms; no atom at the construction origin,,,0.0,0,0
+Al,0.5,reconstructed,skipped: found 0 anion- and 0 cation-terminated {111} facets; need both,,,,,
+Al,0.75,clean,rejected: charge +3; core 17 < 20 atoms,,Al13Sb4Cl24,1.007,41,3
+Al,0.75,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Al,1.0,clean,kept,AlSb-Al-Al35Sb26Cl27-clean,Al35Sb26Cl27,1.635,88,0
+Al,1.0,reconstructed,rejected: charge +21; keeps 4/26 anions of its clean parent,,Al27Sb4Cl48,1.539,79,21
+Al,1.25,clean,kept,AlSb-Al-Al119Sb80Cl117-clean,Al119Sb80Cl117,2.379,316,0
+Al,1.25,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Al,1.5,clean,kept,AlSb-Al-Al161Sb139Cl66-clean,Al161Sb139Cl66,2.831,366,0
+Al,1.5,reconstructed,rejected: charge +99; keeps 68/139 anions of its clean parent,,Al149Sb68Cl144,2.752,361,99
+Al,1.75,clean,kept,AlSb-Al-Al165Sb139Cl78-clean,Al165Sb139Cl78,2.874,382,0
+Al,1.75,reconstructed,rejected: charge +85,,Al149Sb73Cl143,2.802,365,85
+Al,2.0,clean,kept,AlSb-Al-Al373Sb300Cl219-clean,Al373Sb300Cl219,3.648,892,0
+Al,2.0,reconstructed,kept,AlSb-Al-Al365Sb288Cl231-reconstructed,Al365Sb288Cl231,3.573,884,0
+Al,2.25,clean,kept,AlSb-Al-Al439Sb398Cl123-clean,Al439Sb398Cl123,4.026,960,0
+Al,2.25,reconstructed,rejected: charge +165,,Al403Sb256Cl276,3.821,935,165
+Al,2.5,clean,kept,AlSb-Al-Al835Sb716Cl357-clean,Al835Sb716Cl357,4.858,1908,0
+Al,2.5,reconstructed,kept,AlSb-Al-Al827Sb696Cl393-reconstructed,Al827Sb696Cl393,4.796,1916,0
+Al,2.75,clean,kept,AlSb-Al-Al863Sb794Cl207-clean,Al863Sb794Cl207,4.993,1864,0
+Al,2.75,reconstructed,rejected: charge +219,,Al831Sb625Cl399,4.91,1855,219
+Al,3.0,clean,kept,AlSb-Al-Al1421Sb1232Cl567-clean,Al1421Sb1232Cl567,5.769,3220,0
+Al,3.0,reconstructed,kept,AlSb-Al-Al1413Sb1216Cl591-reconstructed,Al1413Sb1216Cl591,5.727,3220,0
+Sb,0.5,clean,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
+Sb,0.5,reconstructed,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
+Sb,0.75,clean,rejected: charge +3,,Al28Sb13Cl42,1.35,83,3
+Sb,0.75,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Sb,1.0,clean,rejected: charge +3,,Al28Sb13Cl42,1.35,83,3
+Sb,1.0,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Sb,1.25,clean,rejected: charge +3,,Al80Sb59Cl60,2.06,199,3
+Sb,1.25,reconstructed,rejected: charge +15,,Al72Sb43Cl72,2.03,187,15
+Sb,1.5,clean,kept,AlSb-Sb-Al168Sb119Cl147-clean,Al168Sb119Cl147,2.717,434,0
+Sb,1.5,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Sb,1.75,clean,kept,AlSb-Sb-Al288Sb259Cl87-clean,Al288Sb259Cl87,3.293,634,0
+Sb,1.75,reconstructed,rejected: charge +41,,Al260Sb185Cl184,3.242,629,41
+Sb,2.0,clean,kept,AlSb-Sb-Al348Sb314Cl102-clean,Al348Sb314Cl102,3.682,764,0
+Sb,2.0,reconstructed,rejected: charge +141,,Al316Sb190Cl237,3.511,743,141
+Sb,2.25,clean,kept,AlSb-Sb-Al360Sb320Cl120-clean,Al360Sb320Cl120,3.787,800,0
+Sb,2.25,reconstructed,rejected: charge +183,,Al348Sb207Cl240,3.685,795,183
+Sb,2.5,clean,kept,AlSb-Sb-Al844Sb715Cl387-clean,Al844Sb715Cl387,4.751,1946,0
+Sb,2.5,reconstructed,kept,AlSb-Sb-Al836Sb699Cl411-reconstructed,Al836Sb699Cl411,4.702,1946,0
+Sb,2.75,clean,kept,AlSb-Sb-Al1000Sb863Cl411-clean,Al1000Sb863Cl411,5.195,2274,0
+Sb,2.75,reconstructed,kept,AlSb-Sb-Al992Sb843Cl447-reconstructed,Al992Sb843Cl447,5.136,2282,0
+Sb,3.0,clean,kept,AlSb-Sb-Al1388Sb1299Cl267-clean,Al1388Sb1299Cl267,5.865,2954,0
+Sb,3.0,reconstructed,rejected: charge +293,,Al1332Sb1051Cl550,5.764,2933,293

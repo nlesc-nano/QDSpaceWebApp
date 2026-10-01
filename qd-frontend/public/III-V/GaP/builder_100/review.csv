@@ -1,0 +1,45 @@
+centre,unit_cells,surface,status,id,formula,d_nm,n_atoms,Q
+Ga,0.5,clean,rejected: core 0 < 20 atoms; centre detected as unknown,,,0.0,0,0
+Ga,0.5,reconstructed,skipped: found 0 anion- and 0 cation-terminated {111} facets; need both,,,,,
+Ga,0.75,clean,rejected: charge +3; core 17 < 20 atoms,,Ga13P4Cl24,0.887,41,3
+Ga,0.75,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Ga,1.0,clean,kept,GaP-Ga-Ga35P26Cl27-clean,Ga35P26Cl27,1.44,88,0
+Ga,1.0,reconstructed,rejected: charge +21; keeps 4/26 anions of its clean parent,,Ga27P4Cl48,1.356,79,21
+Ga,1.25,clean,kept,GaP-Ga-Ga119P80Cl117-clean,Ga119P80Cl117,2.095,316,0
+Ga,1.25,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Ga,1.5,clean,kept,GaP-Ga-Ga161P139Cl66-clean,Ga161P139Cl66,2.493,366,0
+Ga,1.5,reconstructed,rejected: charge +99; keeps 68/139 anions of its clean parent,,Ga149P68Cl144,2.424,361,99
+Ga,1.75,clean,kept,GaP-Ga-Ga165P139Cl78-clean,Ga165P139Cl78,2.54,382,0
+Ga,1.75,reconstructed,rejected: charge +95,,Ga153P74Cl142,2.448,369,95
+Ga,2.0,clean,kept,GaP-Ga-Ga373P300Cl219-clean,Ga373P300Cl219,3.213,892,0
+Ga,2.0,reconstructed,kept,GaP-Ga-Ga365P288Cl231-reconstructed,Ga365P288Cl231,3.147,884,0
+Ga,2.25,clean,kept,GaP-Ga-Ga439P398Cl123-clean,Ga439P398Cl123,3.541,960,0
+Ga,2.25,reconstructed,rejected: charge +165,,Ga399P250Cl282,3.331,931,165
+Ga,2.5,clean,kept,GaP-Ga-Ga835P716Cl357-clean,Ga835P716Cl357,4.279,1908,0
+Ga,2.5,reconstructed,kept,GaP-Ga-Ga827P696Cl393-reconstructed,Ga827P696Cl393,4.224,1916,0
+Ga,2.75,clean,kept,GaP-Ga-Ga863P794Cl207-clean,Ga863P794Cl207,4.399,1864,0
+Ga,2.75,reconstructed,rejected: charge +207,,Ga823P619Cl405,4.319,1847,207
+Ga,3.0,clean,kept,GaP-Ga-Ga1421P1232Cl567-clean,Ga1421P1232Cl567,5.081,3220,0
+Ga,3.0,reconstructed,kept,GaP-Ga-Ga1413P1216Cl591-reconstructed,Ga1413P1216Cl591,5.044,3220,0
+P,0.5,clean,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
+P,0.5,reconstructed,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
+P,0.75,clean,rejected: charge +3,,Ga28P13Cl42,1.189,83,3
+P,0.75,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+P,1.0,clean,rejected: charge +3,,Ga28P13Cl42,1.189,83,3
+P,1.0,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+P,1.25,clean,rejected: charge +3,,Ga80P59Cl60,1.815,199,3
+P,1.25,reconstructed,rejected: charge +15,,Ga72P43Cl72,1.788,187,15
+P,1.5,clean,kept,GaP-P-Ga168P119Cl147-clean,Ga168P119Cl147,2.393,434,0
+P,1.5,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+P,1.75,clean,kept,GaP-P-Ga288P259Cl87-clean,Ga288P259Cl87,2.9,634,0
+P,1.75,reconstructed,rejected: charge +41,,Ga260P185Cl184,2.855,629,41
+P,2.0,clean,kept,GaP-P-Ga348P314Cl102-clean,Ga348P314Cl102,3.246,764,0
+P,2.0,reconstructed,rejected: charge +139,,Ga320P197Cl230,3.088,747,139
+P,2.25,clean,kept,GaP-P-Ga360P320Cl120-clean,Ga360P320Cl120,3.308,800,0
+P,2.25,reconstructed,rejected: charge +163,,Ga340P205Cl242,3.252,787,163
+P,2.5,clean,kept,GaP-P-Ga844P715Cl387-clean,Ga844P715Cl387,4.185,1946,0
+P,2.5,reconstructed,kept,GaP-P-Ga836P699Cl411-reconstructed,Ga836P699Cl411,4.141,1946,0
+P,2.75,clean,kept,GaP-P-Ga1000P863Cl411-clean,Ga1000P863Cl411,4.575,2274,0
+P,2.75,reconstructed,kept,GaP-P-Ga992P843Cl447-reconstructed,Ga992P843Cl447,4.523,2282,0
+P,3.0,clean,kept,GaP-P-Ga1388P1299Cl267-clean,Ga1388P1299Cl267,5.167,2954,0
+P,3.0,reconstructed,rejected: charge +327,,Ga1348P1058Cl543,5.054,2949,327

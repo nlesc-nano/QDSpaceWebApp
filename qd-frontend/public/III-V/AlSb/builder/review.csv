@@ -1,0 +1,45 @@
+centre,unit_cells,surface,status,id,formula,d_nm,n_atoms,Q
+Al,0.5,clean,rejected: core 0 < 20 atoms; no atom at the construction origin,,,0.0,0,0
+Al,0.5,reconstructed,skipped: found 0 anion- and 0 cation-terminated {111} facets; need both,,,,,
+Al,0.75,clean,kept,AlSb-Al-Al31Sb20Cl33-clean,Al31Sb20Cl33,1.514,84,0
+Al,0.75,reconstructed,kept,AlSb-Al-Al31Sb16Cl45-reconstructed,Al31Sb16Cl45,1.456,92,0
+Al,1.0,clean,kept,AlSb-Al-Al35Sb26Cl27-clean,Al35Sb26Cl27,1.635,88,0
+Al,1.0,reconstructed,rejected: charge +21; keeps 4/26 anions of its clean parent,,Al27Sb4Cl48,1.539,79,21
+Al,1.25,clean,kept,AlSb-Al-Al149Sb116Cl99-clean,Al149Sb116Cl99,2.695,364,0
+Al,1.25,reconstructed,kept,AlSb-Al-Al149Sb108Cl123-reconstructed,Al149Sb108Cl123,2.646,380,0
+Al,1.5,clean,kept,AlSb-Al-Al161Sb139Cl66-clean,Al161Sb139Cl66,2.831,366,0
+Al,1.5,reconstructed,rejected: charge +99; keeps 68/139 anions of its clean parent,,Al149Sb68Cl144,2.752,361,99
+Al,1.75,clean,kept,AlSb-Al-Al165Sb139Cl78-clean,Al165Sb139Cl78,2.874,382,0
+Al,1.75,reconstructed,rejected: charge +85,,Al149Sb73Cl143,2.802,365,85
+Al,2.0,clean,kept,AlSb-Al-Al415Sb348Cl201-clean,Al415Sb348Cl201,3.863,964,0
+Al,2.0,reconstructed,kept,AlSb-Al-Al407Sb336Cl213-reconstructed,Al407Sb336Cl213,3.807,956,0
+Al,2.25,clean,kept,AlSb-Al-Al439Sb398Cl123-clean,Al439Sb398Cl123,4.026,960,0
+Al,2.25,reconstructed,rejected: charge +165,,Al403Sb256Cl276,3.821,935,165
+Al,2.5,clean,kept,AlSb-Al-Al889Sb776Cl339-clean,Al889Sb776Cl339,5.026,2004,0
+Al,2.5,reconstructed,kept,AlSb-Al-Al881Sb748Cl399-reconstructed,Al881Sb748Cl399,4.955,2028,0
+Al,2.75,clean,kept,AlSb-Al-Al929Sb863Cl198-clean,Al929Sb863Cl198,5.196,1990,0
+Al,2.75,reconstructed,rejected: charge +321,,Al889Sb631Cl453,4.98,1973,321
+Al,3.0,clean,kept,AlSb-Al-Al1631Sb1460Cl513-clean,Al1631Sb1460Cl513,6.187,3604,0
+Al,3.0,reconstructed,kept,AlSb-Al-Al1607Sb1424Cl549-reconstructed,Al1607Sb1424Cl549,6.108,3580,0
+Sb,0.5,clean,rejected: core 5 < 20 atoms,,Al4Sb1Cl9,0.619,14,0
+Sb,0.5,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Sb,0.75,clean,kept,AlSb-Sb-Al40Sb31Cl27-clean,Al40Sb31Cl27,1.626,98,0
+Sb,0.75,reconstructed,kept,AlSb-Sb-Al40Sb23Cl51-reconstructed,Al40Sb23Cl51,1.579,114,0
+Sb,1.0,clean,kept,AlSb-Sb-Al52Sb35Cl51-clean,Al52Sb35Cl51,1.859,138,0
+Sb,1.0,reconstructed,kept,AlSb-Sb-Al52Sb31Cl63-reconstructed,Al52Sb31Cl63,1.804,146,0
+Sb,1.25,clean,kept,AlSb-Sb-Al116Sb99Cl51-clean,Al116Sb99Cl51,2.495,266,0
+Sb,1.25,reconstructed,rejected: charge +69; keeps 31/99 anions of its clean parent,,Al96Sb31Cl126,2.456,253,69
+Sb,1.5,clean,kept,AlSb-Sb-Al204Sb161Cl129-clean,Al204Sb161Cl129,3.035,494,0
+Sb,1.5,reconstructed,kept,AlSb-Sb-Al204Sb153Cl153-reconstructed,Al204Sb153Cl153,2.989,510,0
+Sb,1.75,clean,kept,AlSb-Sb-Al324Sb298Cl78-clean,Al324Sb298Cl78,3.478,700,0
+Sb,1.75,reconstructed,rejected: charge +89,,Al276Sb170Cl229,3.304,675,89
+Sb,2.0,clean,kept,AlSb-Sb-Al348Sb314Cl102-clean,Al348Sb314Cl102,3.682,764,0
+Sb,2.0,reconstructed,rejected: charge +141,,Al316Sb190Cl237,3.511,743,141
+Sb,2.25,clean,kept,AlSb-Sb-Al360Sb320Cl120-clean,Al360Sb320Cl120,3.787,800,0
+Sb,2.25,reconstructed,rejected: charge +183,,Al348Sb207Cl240,3.685,795,183
+Sb,2.5,clean,kept,AlSb-Sb-Al1000Sb889Cl333-clean,Al1000Sb889Cl333,5.16,2222,0
+Sb,2.5,reconstructed,kept,AlSb-Sb-Al976Sb853Cl369-reconstructed,Al976Sb853Cl369,5.074,2198,0
+Sb,2.75,clean,kept,AlSb-Sb-Al1060Sb929Cl393-clean,Al1060Sb929Cl393,5.363,2382,0
+Sb,2.75,reconstructed,kept,AlSb-Sb-Al1052Sb901Cl453-reconstructed,Al1052Sb901Cl453,5.295,2406,0
+Sb,3.0,clean,kept,AlSb-Sb-Al1460Sb1374Cl258-clean,Al1460Sb1374Cl258,6.027,3092,0
+Sb,3.0,reconstructed,rejected: charge +445,,Al1412Sb1060Cl611,5.834,3083,445

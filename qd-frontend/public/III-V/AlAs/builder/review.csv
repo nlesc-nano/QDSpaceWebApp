@@ -1,0 +1,45 @@
+centre,unit_cells,surface,status,id,formula,d_nm,n_atoms,Q
+Al,0.5,clean,rejected: core 0 < 20 atoms; no atom at the construction origin,,,0.0,0,0
+Al,0.5,reconstructed,skipped: found 0 anion- and 0 cation-terminated {111} facets; need both,,,,,
+Al,0.75,clean,kept,AlAs-Al-Al31As20Cl33-clean,Al31As20Cl33,1.389,84,0
+Al,0.75,reconstructed,kept,AlAs-Al-Al31As16Cl45-reconstructed,Al31As16Cl45,1.336,92,0
+Al,1.0,clean,kept,AlAs-Al-Al35As26Cl27-clean,Al35As26Cl27,1.501,88,0
+Al,1.0,reconstructed,rejected: charge +21; keeps 4/26 anions of its clean parent,,Al27As4Cl48,1.412,79,21
+Al,1.25,clean,kept,AlAs-Al-Al149As116Cl99-clean,Al149As116Cl99,2.473,364,0
+Al,1.25,reconstructed,kept,AlAs-Al-Al149As108Cl123-reconstructed,Al149As108Cl123,2.428,380,0
+Al,1.5,clean,kept,AlAs-Al-Al161As139Cl66-clean,Al161As139Cl66,2.599,366,0
+Al,1.5,reconstructed,rejected: charge +99; keeps 62/139 anions of its clean parent,,Al145As62Cl150,2.533,357,99
+Al,1.75,clean,kept,AlAs-Al-Al165As139Cl78-clean,Al165As139Cl78,2.63,382,0
+Al,1.75,reconstructed,rejected: charge +85,,Al149As73Cl143,2.58,365,85
+Al,2.0,clean,kept,AlAs-Al-Al415As348Cl201-clean,Al415As348Cl201,3.545,964,0
+Al,2.0,reconstructed,kept,AlAs-Al-Al407As336Cl213-reconstructed,Al407As336Cl213,3.493,956,0
+Al,2.25,clean,kept,AlAs-Al-Al439As398Cl123-clean,Al439As398Cl123,3.689,960,0
+Al,2.25,reconstructed,rejected: charge +183,,Al411As259Cl273,3.492,943,183
+Al,2.5,clean,kept,AlAs-Al-Al889As776Cl339-clean,Al889As776Cl339,4.612,2004,0
+Al,2.5,reconstructed,kept,AlAs-Al-Al881As748Cl399-reconstructed,Al881As748Cl399,4.546,2028,0
+Al,2.75,clean,kept,AlAs-Al-Al929As863Cl198-clean,Al929As863Cl198,4.763,1990,0
+Al,2.75,reconstructed,rejected: charge +325,,Al889As629Cl455,4.576,1973,325
+Al,3.0,clean,kept,AlAs-Al-Al1631As1460Cl513-clean,Al1631As1460Cl513,5.677,3604,0
+Al,3.0,reconstructed,kept,AlAs-Al-Al1607As1424Cl549-reconstructed,Al1607As1424Cl549,5.605,3580,0
+As,0.5,clean,rejected: core 5 < 20 atoms,,Al4As1Cl9,0.568,14,0
+As,0.5,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+As,0.75,clean,kept,AlAs-As-Al40As31Cl27-clean,Al40As31Cl27,1.492,98,0
+As,0.75,reconstructed,kept,AlAs-As-Al40As23Cl51-reconstructed,Al40As23Cl51,1.449,114,0
+As,1.0,clean,kept,AlAs-As-Al52As35Cl51-clean,Al52As35Cl51,1.706,138,0
+As,1.0,reconstructed,kept,AlAs-As-Al52As31Cl63-reconstructed,Al52As31Cl63,1.655,146,0
+As,1.25,clean,kept,AlAs-As-Al116As99Cl51-clean,Al116As99Cl51,2.289,266,0
+As,1.25,reconstructed,rejected: charge +69; keeps 31/99 anions of its clean parent,,Al96As31Cl126,2.254,253,69
+As,1.5,clean,kept,AlAs-As-Al204As161Cl129-clean,Al204As161Cl129,2.785,494,0
+As,1.5,reconstructed,kept,AlAs-As-Al204As153Cl153-reconstructed,Al204As153Cl153,2.742,510,0
+As,1.75,clean,kept,AlAs-As-Al324As298Cl78-clean,Al324As298Cl78,3.191,700,0
+As,1.75,reconstructed,rejected: charge +89,,Al276As170Cl229,3.032,675,89
+As,2.0,clean,kept,AlAs-As-Al348As314Cl102-clean,Al348As314Cl102,3.38,764,0
+As,2.0,reconstructed,rejected: charge +133,,Al316As194Cl233,3.2,743,133
+As,2.25,clean,kept,AlAs-As-Al360As320Cl120-clean,Al360As320Cl120,3.462,800,0
+As,2.25,reconstructed,rejected: charge +159,,Al340As207Cl240,3.4,787,159
+As,2.5,clean,kept,AlAs-As-Al1000As889Cl333-clean,Al1000As889Cl333,4.735,2222,0
+As,2.5,reconstructed,kept,AlAs-As-Al976As853Cl369-reconstructed,Al976As853Cl369,4.656,2198,0
+As,2.75,clean,kept,AlAs-As-Al1060As929Cl393-clean,Al1060As929Cl393,4.921,2382,0
+As,2.75,reconstructed,kept,AlAs-As-Al1052As901Cl453-reconstructed,Al1052As901Cl453,4.859,2406,0
+As,3.0,clean,kept,AlAs-As-Al1460As1374Cl258-clean,Al1460As1374Cl258,5.53,3092,0
+As,3.0,reconstructed,rejected: charge +435,,Al1416As1071Cl600,5.357,3087,435
