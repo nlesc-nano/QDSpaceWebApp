@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "id": "GaSb-Ga-Ga165Sb139Cl78-clean",
+  "material": "GaSb",
+  "family": "III-V",
+  "phase": "zinc-blende",
+  "surface": "clean",
+  "source": "builder",
+  "formula": "Ga165Sb139Cl78",
+  "composition": {
+    "Ga": 165,
+    "Sb": 139,
+    "Cl": 78
+  },
+  "core": {
+    "Ga": 165,
+    "Sb": 139
+  },
+  "ligands": {
+    "Cl": 78
+  },
+  "n_atoms": 382,
+  "total_charge": 0,
+  "centre": "Ga",
+  "centre_offset_A": 0.149,
+  "size": {
+    "n_core": 304,
+    "d_nm": 2.837,
+    "d_max_nm": 4.279,
+    "d_hull_nm": 2.292,
+    "unit_cells": 1.75,
+    "unit_cells_all": [
+      1.75
+    ]
+  },
+  "fingerprint": "082b968ab1338d85",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "gasb_zb_100.yaml",
+    "qd_builder_commit": "aec13b4b3fbbe96e250ce71852deb26206d998ca",
+    "qd_builder_dirty": false,
+    "cif": "GaSb_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Ga": 3,
+        "Sb": -3,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.2
+        },
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 0.8
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.6
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        1.75,
+        1.75,
+        1.75
+      ],
+      "construction_origin": {
+        "center_on_species": "Ga"
+      }
+    }
+  }
+}

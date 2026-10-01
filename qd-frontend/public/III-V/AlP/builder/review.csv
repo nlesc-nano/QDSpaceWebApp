@@ -1,0 +1,45 @@
+centre,unit_cells,surface,status,id,formula,d_nm,n_atoms,Q
+Al,0.5,clean,rejected: core 0 < 20 atoms; no atom at the construction origin,,,0.0,0,0
+Al,0.5,reconstructed,skipped: found 0 anion- and 0 cation-terminated {111} facets; need both,,,,,
+Al,0.75,clean,kept,AlP-Al-Al31P20Cl33-clean,Al31P20Cl33,1.338,84,0
+Al,0.75,reconstructed,kept,AlP-Al-Al31P16Cl45-reconstructed,Al31P16Cl45,1.287,92,0
+Al,1.0,clean,kept,AlP-Al-Al35P26Cl27-clean,Al35P26Cl27,1.445,88,0
+Al,1.0,reconstructed,rejected: charge +21; keeps 4/26 anions of its clean parent,,Al27P4Cl48,1.36,79,21
+Al,1.25,clean,kept,AlP-Al-Al149P116Cl99-clean,Al149P116Cl99,2.382,364,0
+Al,1.25,reconstructed,kept,AlP-Al-Al149P108Cl123-reconstructed,Al149P108Cl123,2.338,380,0
+Al,1.5,clean,kept,AlP-Al-Al161P139Cl66-clean,Al161P139Cl66,2.501,366,0
+Al,1.5,reconstructed,rejected: charge +97,,Al153P75Cl137,2.411,365,97
+Al,1.75,clean,kept,AlP-Al-Al165P139Cl78-clean,Al165P139Cl78,2.523,382,0
+Al,1.75,reconstructed,rejected: charge +91,,Al149P70Cl146,2.462,365,91
+Al,2.0,clean,kept,AlP-Al-Al415P348Cl201-clean,Al415P348Cl201,3.414,964,0
+Al,2.0,reconstructed,kept,AlP-Al-Al407P336Cl213-reconstructed,Al407P336Cl213,3.364,956,0
+Al,2.25,clean,kept,AlP-Al-Al439P398Cl123-clean,Al439P398Cl123,3.555,960,0
+Al,2.25,reconstructed,rejected: charge +179,,Al411P261Cl271,3.373,943,179
+Al,2.5,clean,kept,AlP-Al-Al889P776Cl339-clean,Al889P776Cl339,4.441,2004,0
+Al,2.5,reconstructed,kept,AlP-Al-Al881P748Cl399-reconstructed,Al881P748Cl399,4.378,2028,0
+Al,2.75,clean,kept,AlP-Al-Al929P863Cl198-clean,Al929P863Cl198,4.593,1990,0
+Al,2.75,reconstructed,rejected: charge +317,,Al885P627Cl457,4.414,1969,317
+Al,3.0,clean,kept,AlP-Al-Al1631P1460Cl513-clean,Al1631P1460Cl513,5.468,3604,0
+Al,3.0,reconstructed,kept,AlP-Al-Al1607P1424Cl549-reconstructed,Al1607P1424Cl549,5.398,3580,0
+P,0.5,clean,rejected: core 5 < 20 atoms,,Al4P1Cl9,0.547,14,0
+P,0.5,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+P,0.75,clean,kept,AlP-P-Al40P31Cl27-clean,Al40P31Cl27,1.437,98,0
+P,0.75,reconstructed,kept,AlP-P-Al40P23Cl51-reconstructed,Al40P23Cl51,1.395,114,0
+P,1.0,clean,kept,AlP-P-Al52P35Cl51-clean,Al52P35Cl51,1.643,138,0
+P,1.0,reconstructed,kept,AlP-P-Al52P31Cl63-reconstructed,Al52P31Cl63,1.594,146,0
+P,1.25,clean,kept,AlP-P-Al116P99Cl51-clean,Al116P99Cl51,2.204,266,0
+P,1.25,reconstructed,rejected: charge +69; keeps 31/99 anions of its clean parent,,Al96P31Cl126,2.171,253,69
+P,1.5,clean,kept,AlP-P-Al204P161Cl129-clean,Al204P161Cl129,2.682,494,0
+P,1.5,reconstructed,kept,AlP-P-Al204P153Cl153-reconstructed,Al204P153Cl153,2.641,510,0
+P,1.75,clean,kept,AlP-P-Al324P298Cl78-clean,Al324P298Cl78,3.073,700,0
+P,1.75,reconstructed,rejected: charge +89,,Al276P170Cl229,2.92,675,89
+P,2.0,clean,kept,AlP-P-Al348P314Cl102-clean,Al348P314Cl102,3.257,764,0
+P,2.0,reconstructed,rejected: charge +137,,Al312P186Cl241,3.086,739,137
+P,2.25,clean,kept,AlP-P-Al360P320Cl120-clean,Al360P320Cl120,3.321,800,0
+P,2.25,reconstructed,rejected: charge +165,,Al336P198Cl249,3.254,783,165
+P,2.5,clean,kept,AlP-P-Al1000P889Cl333-clean,Al1000P889Cl333,4.56,2222,0
+P,2.5,reconstructed,kept,AlP-P-Al976P853Cl369-reconstructed,Al976P853Cl369,4.483,2198,0
+P,2.75,clean,kept,AlP-P-Al1060P929Cl393-clean,Al1060P929Cl393,4.74,2382,0
+P,2.75,reconstructed,kept,AlP-P-Al1052P901Cl453-reconstructed,Al1052P901Cl453,4.679,2406,0
+P,3.0,clean,kept,AlP-P-Al1460P1374Cl258-clean,Al1460P1374Cl258,5.334,3092,0
+P,3.0,reconstructed,rejected: charge +429,,Al1404P1056Cl615,5.144,3075,429

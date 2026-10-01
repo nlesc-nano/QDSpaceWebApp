@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "id": "CdSe-Se-Cd615Se593Cl44-clean",
+  "material": "CdSe",
+  "family": "II-VI",
+  "phase": "wurtzite",
+  "surface": "clean",
+  "source": "builder",
+  "formula": "Cd615Se593Cl44",
+  "composition": {
+    "Cd": 615,
+    "Se": 593,
+    "Cl": 44
+  },
+  "core": {
+    "Cd": 615,
+    "Se": 593
+  },
+  "ligands": {
+    "Cl": 44
+  },
+  "n_atoms": 1252,
+  "total_charge": 0,
+  "centre": "Se",
+  "centre_offset_A": 1.152,
+  "size": {
+    "n_core": 1208,
+    "d_nm": 4.167,
+    "d_max_nm": 5.087,
+    "d_hull_nm": 3.806,
+    "unit_cells": 4.25,
+    "unit_cells_all": [
+      4.25
+    ]
+  },
+  "fingerprint": "6268ba96ff09fe73",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cdse_wz.yaml",
+    "qd_builder_commit": "aec13b4b3fbbe96e250ce71852deb26206d998ca",
+    "qd_builder_dirty": true,
+    "cif": "CdSe_wz.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Cd": 2,
+        "Se": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "001",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "00-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        4.25,
+        4.25,
+        2.605258
+      ],
+      "construction_origin": {
+        "center_on_species": "Se"
+      }
+    }
+  }
+}

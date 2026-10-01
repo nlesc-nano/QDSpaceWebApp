@@ -1,0 +1,45 @@
+centre,unit_cells,surface,status,id,formula,d_nm,n_atoms,Q
+In,0.5,clean,rejected: core 0 < 20 atoms; centre detected as unknown,,,0.0,0,0
+In,0.5,reconstructed,skipped: found 0 anion- and 0 cation-terminated {111} facets; need both,,,,,
+In,0.75,clean,rejected: charge +3; core 17 < 20 atoms,,In13As4Cl24,0.994,41,3
+In,0.75,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+In,1.0,clean,kept,InAs-In-In35As26Cl27-clean,In35As26Cl27,1.614,88,0
+In,1.0,reconstructed,rejected: charge +21; keeps 4/26 anions of its clean parent,,In27As4Cl48,1.519,79,21
+In,1.25,clean,kept,InAs-In-In119As80Cl117-clean,In119As80Cl117,2.347,316,0
+In,1.25,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+In,1.5,clean,kept,InAs-In-In161As139Cl66-clean,In161As139Cl66,2.794,366,0
+In,1.5,reconstructed,rejected: charge +99; keeps 62/139 anions of its clean parent,,In145As62Cl150,2.723,357,99
+In,1.75,clean,kept,InAs-In-In165As139Cl78-clean,In165As139Cl78,2.831,382,0
+In,1.75,reconstructed,rejected: charge +83,,In153As80Cl136,2.779,369,83
+In,2.0,clean,kept,InAs-In-In373As300Cl219-clean,In373As300Cl219,3.599,892,0
+In,2.0,reconstructed,kept,InAs-In-In365As288Cl231-reconstructed,In365As288Cl231,3.525,884,0
+In,2.25,clean,kept,InAs-In-In439As398Cl123-clean,In439As398Cl123,3.965,960,0
+In,2.25,reconstructed,rejected: charge +189,,In415As262Cl270,3.773,947,189
+In,2.5,clean,kept,InAs-In-In835As716Cl357-clean,In835As716Cl357,4.793,1908,0
+In,2.5,reconstructed,kept,InAs-In-In827As696Cl393-reconstructed,In827As696Cl393,4.732,1916,0
+In,2.75,clean,kept,InAs-In-In863As794Cl207-clean,In863As794Cl207,4.93,1864,0
+In,2.75,reconstructed,rejected: charge +233,,In831As618Cl406,4.831,1855,233
+In,3.0,clean,kept,InAs-In-In1421As1232Cl567-clean,In1421As1232Cl567,5.692,3220,0
+In,3.0,reconstructed,kept,InAs-In-In1413As1216Cl591-reconstructed,In1413As1216Cl591,5.65,3220,0
+As,0.5,clean,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
+As,0.5,reconstructed,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
+As,0.75,clean,rejected: charge +3,,In28As13Cl42,1.332,83,3
+As,0.75,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+As,1.0,clean,rejected: charge +3,,In28As13Cl42,1.332,83,3
+As,1.0,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+As,1.25,clean,rejected: charge +3,,In80As59Cl60,2.033,199,3
+As,1.25,reconstructed,rejected: charge +15,,In72As43Cl72,2.003,187,15
+As,1.5,clean,kept,InAs-As-In168As119Cl147-clean,In168As119Cl147,2.681,434,0
+As,1.5,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+As,1.75,clean,kept,InAs-As-In288As259Cl87-clean,In288As259Cl87,3.249,634,0
+As,1.75,reconstructed,rejected: charge +41,,In260As185Cl184,3.198,629,41
+As,2.0,clean,kept,InAs-As-In348As314Cl102-clean,In348As314Cl102,3.639,764,0
+As,2.0,reconstructed,rejected: charge +137,,In316As192Cl235,3.463,743,137
+As,2.25,clean,kept,InAs-As-In360As320Cl120-clean,In360As320Cl120,3.698,800,0
+As,2.25,reconstructed,rejected: charge +151,,In336As205Cl242,3.637,783,151
+As,2.5,clean,kept,InAs-As-In844As715Cl387-clean,In844As715Cl387,4.688,1946,0
+As,2.5,reconstructed,kept,InAs-As-In836As699Cl411-reconstructed,In836As699Cl411,4.639,1946,0
+As,2.75,clean,kept,InAs-As-In1000As863Cl411-clean,In1000As863Cl411,5.125,2274,0
+As,2.75,reconstructed,kept,InAs-As-In992As843Cl447-reconstructed,In992As843Cl447,5.067,2282,0
+As,3.0,clean,kept,InAs-As-In1388As1299Cl267-clean,In1388As1299Cl267,5.789,2954,0
+As,3.0,reconstructed,rejected: charge +301,,In1336As1053Cl548,5.659,2937,301

@@ -138,11 +138,19 @@
     const digits = String(f.hkl || '').match(/\d/g) || [];
     return digits.length === 3 && digits.every((d) => d === '1');
   };
-  let reconAvailable = $derived(
-    currentCorePhase === 'zinc-blende'
-      && coreFacets.some((f) => is111Facet(f) && f.termination === 'cation_rich')
-      && coreFacets.some((f) => is111Facet(f) && f.termination === 'anion_rich')
-  );
+  // Wurtzite: the polar (001)/(00-1) pair plays the role of {111}/{-1-1-1}.
+  const is001Facet = (f) => {
+    const fam = String(f.family || '').replace(/[{}]/g, '');
+    if (fam) return fam === '001';
+    const digits = String(f.hkl || '').match(/\d/g) || [];
+    return digits.length === 3 && digits[0] === '0' && digits[1] === '0' && digits[2] !== '0';
+  };
+  let reconAvailable = $derived.by(() => {
+    const polar = currentCorePhase === 'zinc-blende' ? is111Facet : currentCorePhase === 'wurtzite' ? is001Facet : null;
+    return Boolean(polar)
+      && coreFacets.some((f) => polar(f) && f.termination === 'cation_rich')
+      && coreFacets.some((f) => polar(f) && f.termination === 'anion_rich');
+  });
 
   let neutralEnabled = $state(false);
   let neutralLigands = $state([]);
@@ -662,7 +670,7 @@
       const hasVI = anions.some(a => ['S', 'Se', 'Te', 'O'].includes(a));
       if (hasII && hasVI) return 'II-VI';
       
-      // III-V: GaAs, InP, InAs, InSb, GaP, GaSb
+      // III-V: GaAs, InP, InAs, InSb, GaP, GaSb, AlP, AlAs, AlSb
       const hasIII = cations.some(c => ['In', 'Ga', 'Al'].includes(c));
       const hasV = anions.some(a => ['P', 'As', 'Sb', 'N'].includes(a));
       if (hasIII && hasV) return 'III-V';
@@ -676,7 +684,7 @@
     // Fall back to filename check
     if (n.includes('abx3') || n.includes('cspb') || n.includes('perovskite')) return 'ABX3';
     if (n.includes('ii-vi') || n.includes('cdse') || n.includes('cds') || n.includes('cdte') || n.includes('zns') || n.includes('znse') || n.includes('znte') || n.includes('hgs') || n.includes('hgse') || n.includes('hgte')) return 'II-VI';
-    if (n.includes('iii-v') || n.includes('gaas') || n.includes('gap') || n.includes('gasb') || n.includes('inas') || n.includes('inp') || n.includes('insb')) return 'III-V';
+    if (n.includes('iii-v') || n.includes('gaas') || n.includes('gap') || n.includes('gasb') || n.includes('inas') || n.includes('inp') || n.includes('insb') || n.includes('alp') || n.includes('alas') || n.includes('alsb')) return 'III-V';
     if (n.includes('iv-vi') || n.includes('pbs') || n.includes('pbse') || n.includes('pbte')) return 'IV-VI';
     
     return null;
@@ -741,7 +749,21 @@
         
         const refinedFamily = getQDFamily(file.name, detectedCations, detectedAnions);
         
-        if (refinedFamily === 'II-VI') {
+        if (refinedFamily === 'II-VI' && currentCorePhase === 'wurtzite') {
+          // Six {100} prisms plus the polar (001) cation-rich / (00-1) anion-rich pair
+          // (the wurtzite counterparts of zinc-blende {111} / {-1-1-1}); equal
+          // lengths along a and c so the dot is not stretched by c/a.
+          const [la, , lc] = latticeLengths;
+          sizeUnitCells = [4.0, 4.0, Math.round(4.0 * la / lc * 1000) / 1000];
+          posQ = 'add';
+          const cat = detectedCations.find(c => ['Cd', 'Zn', 'Hg'].includes(c)) || detectedCations[0] || 'Cd';
+          centerIon = cat;
+          coreFacets = [
+            { id: crypto.randomUUID(), hkl: '100', gamma: 1.0, scope: 'family', family: '{100}', termination: 'stoichiometric' },
+            { id: crypto.randomUUID(), hkl: '001', gamma: 1.0, scope: 'family', family: '{001}', termination: 'cation_rich' },
+            { id: crypto.randomUUID(), hkl: '00-1', gamma: 1.0, scope: 'family', family: '{001}', termination: 'anion_rich' }
+          ];
+        } else if (refinedFamily === 'II-VI') {
           sizeUnitCells = [3.0, 3.0, 3.0];
           posQ = 'add';
           const cat = detectedCations.find(c => ['Cd', 'Zn', 'Hg'].includes(c)) || detectedCations[0] || 'Cd';
@@ -2112,7 +2134,7 @@
                         if (!name) return;
                         // load standard bulk templates as custom file upload
                         for (const family in bulkTemplates) {
-                          const t = bulkTemplates[family].find(item => item.name === name);
+                          const t = bulkTemplates[family].find(item => item.path === name);
                           if (t) {
                             logs += `[status] Fetching Janus partner bulk structure ${t.name}...\n`;
                             const res = await fetch(t.path);
@@ -2127,7 +2149,7 @@
                 {#each Object.keys(bulkTemplates) as family}
                   <optgroup label={family}>
                     {#each bulkTemplates[family] as template}
-                      <option value={template.name}>{template.name} ({template.phase})</option>
+                      <option value={template.path}>{template.name} ({template.phase})</option>
                     {/each}
                   </optgroup>
                 {/each}

@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "id": "AlSb-Al-Al1421Sb1232Cl567-clean",
+  "material": "AlSb",
+  "family": "III-V",
+  "phase": "zinc-blende",
+  "surface": "clean",
+  "source": "builder",
+  "formula": "Al1421Sb1232Cl567",
+  "composition": {
+    "Al": 1421,
+    "Sb": 1232,
+    "Cl": 567
+  },
+  "core": {
+    "Al": 1421,
+    "Sb": 1232
+  },
+  "ligands": {
+    "Cl": 567
+  },
+  "n_atoms": 3220,
+  "total_charge": 0,
+  "centre": "Al",
+  "centre_offset_A": 0.0,
+  "size": {
+    "n_core": 2653,
+    "d_nm": 5.769,
+    "d_max_nm": 7.396,
+    "d_hull_nm": 5.022,
+    "unit_cells": 3.0,
+    "unit_cells_all": [
+      3.0
+    ]
+  },
+  "fingerprint": "25979f73e878ba51",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "alsb_zb_100.yaml",
+    "qd_builder_commit": "aec13b4b3fbbe96e250ce71852deb26206d998ca",
+    "qd_builder_dirty": true,
+    "cif": "AlSb_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Al": 3,
+        "Sb": -3,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.2
+        },
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 0.8
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.6
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        3.0,
+        3.0,
+        3.0
+      ],
+      "construction_origin": {
+        "center_on_species": "Al"
+      }
+    }
+  }
+}

@@ -285,6 +285,8 @@ async def analyze_cif(file: UploadFile = File(...)):
             phase = "rock-salt"
         elif "Pm-3m" in sg_symbol:
             phase = "cubic"
+        elif "P6_3mc" in sg_symbol:
+            phase = "wurtzite"
         else:
             phase = sga.get_crystal_system()
             

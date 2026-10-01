@@ -10,6 +10,7 @@ export const bulkTemplates = {
     { name: "CdS", phase: "zinc-blende", a: 5.886, path: "/II-VI/bulk_cifs/CdS_zb.cif" },
     { name: "CdSe", phase: "zinc-blende", a: 6.141, path: "/II-VI/bulk_cifs/CdSe_zb.cif" },
     { name: "CdTe", phase: "zinc-blende", a: 6.564, path: "/II-VI/bulk_cifs/CdTe_zb.cif" },
+    { name: "CdSe", phase: "wurtzite", a: 4.346, c: 7.090, path: "/II-VI/bulk_cifs/CdSe_wz.cif" },
     { name: "ZnS", phase: "zinc-blende", a: 5.387, path: "/II-VI/bulk_cifs/ZnS_zb.cif" },
     { name: "ZnSe", phase: "zinc-blende", a: 5.665, path: "/II-VI/bulk_cifs/ZnSe_zb.cif" },
     { name: "ZnTe", phase: "zinc-blende", a: 6.111, path: "/II-VI/bulk_cifs/ZnTe_zb.cif" },
@@ -18,6 +19,9 @@ export const bulkTemplates = {
     { name: "HgTe", phase: "zinc-blende", a: 6.580, path: "/II-VI/bulk_cifs/HgTe_zb.cif" }
   ],
   "III-V": [
+    { name: "AlP", phase: "zinc-blende", a: 5.470, path: "/III-V/bulk_cifs/AlP_zb.cif" },
+    { name: "AlAs", phase: "zinc-blende", a: 5.680, path: "/III-V/bulk_cifs/AlAs_zb.cif" },
+    { name: "AlSb", phase: "zinc-blende", a: 6.190, path: "/III-V/bulk_cifs/AlSb_zb.cif" },
     { name: "GaAs", phase: "zinc-blende", a: 5.750, path: "/III-V/bulk_cifs/GaAs_zb.cif" },
     { name: "GaP", phase: "zinc-blende", a: 5.452, path: "/III-V/bulk_cifs/GaP_zb.cif" },
     { name: "GaSb", phase: "zinc-blende", a: 6.137, path: "/III-V/bulk_cifs/GaSb_zb.cif" },
@@ -33,7 +37,7 @@ export const bulkTemplates = {
 };
 
 /** Template for a family/material (e.g. "II-VI", "CdSe"), or null. */
-export function templateFor(family, material) {
-  const list = bulkTemplates[family] || [];
-  return list.find((t) => t.name.toLowerCase() === String(material).toLowerCase()) || null;
+export function templateFor(family, material, phase = null) {
+  const list = (bulkTemplates[family] || []).filter((t) => t.name.toLowerCase() === String(material).toLowerCase());
+  return (phase && list.find((t) => t.phase === phase)) || list[0] || null;
 }
