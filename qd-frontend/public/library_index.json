@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "generated": "2026-10-02T05:42:34+00:00",
+ "generated": "2026-10-02T08:54:15+00:00",
  "structures": [
   {
    "schema_version": 1,
@@ -19129,7 +19129,10 @@
        "bonds",
        "cn",
        "detach",
+       "ir",
        "map",
+       "modemap",
+       "raman",
        "relax",
        "stability",
        "thermo_e",
@@ -19146,10 +19149,80 @@
       "n_structures": 6,
       "n_cosmo_failed": 0,
       "n_alpb_failed": 0
+     },
+     "vibspec": {
+      "point_group": "Td",
+      "n_modes": 99,
+      "ir_active_irreps": [
+       "T2"
+      ],
+      "raman_active_irreps": [
+       "A1",
+       "E",
+       "T2"
+      ],
+      "n_totally_symmetric": 6,
+      "alpha_iso_A3": 153.8596507907455,
+      "dipole_D": 2.001373174214474e-05,
+      "top_ir": [
+       [
+        192.2,
+        "T2",
+        553.02
+       ],
+       [
+        221.6,
+        "T2",
+        539.98
+       ],
+       [
+        235.0,
+        "T2",
+        401.37
+       ],
+       [
+        147.6,
+        "T2",
+        132.23
+       ]
+      ],
+      "top_raman": [
+       [
+        170.0,
+        "A1",
+        215.85
+       ],
+       [
+        149.9,
+        "A1",
+        36.07
+       ],
+       [
+        225.4,
+        "A1",
+        25.39
+       ],
+       [
+        173.3,
+        "T2",
+        24.29
+       ]
+      ],
+      "bulk_gamma_optical_cm1": [
+       155.4747715113134,
+       155.47480789721703,
+       155.47489311929678
+      ],
+      "gxtb_gradient_norm_Eh_bohr": 0.104897668199,
+      "step_amu05_A": 0.1,
+      "field_V_A": 0.02,
+      "n_gxtb_runs": 7,
+      "n_modes_from_checkpoint": 99,
+      "seconds_gxtb": 1.3
      }
     },
     "provenance": {
-     "qd_builder_commit": "9f632212af58f5088998fdd03ae0819b181b4760",
+     "qd_builder_commit": "84246a2401647f5bb19fb584d86f02b0ffda1c99",
      "qd_builder_dirty": true,
      "relax": {
       "engine": "MACE-MH-1",
@@ -19190,6 +19263,12 @@
       "engine": "GFN2-xTB",
       "binary": "/Users/ivaninfante/miniforge3/envs/xtb/bin/xtb",
       "xtb": "6.7.1 (edcfbbe)"
+     },
+     "vibspec": {
+      "engine": "g-xTB",
+      "binary": "/Users/ivaninfante/Documents/University/Programs/GXTB/xtb-bleed-macos-arm64/bin/xtb",
+      "xtb": "6.7.1 (30c6303)",
+      "frequencies": "MACE-MH-1 (hessian step)"
      }
     }
    },
@@ -22777,7 +22856,10 @@
        "bonds",
        "cn",
        "detach",
+       "ir",
        "map",
+       "modemap",
+       "raman",
        "relax",
        "stability",
        "thermo_e",
@@ -22794,10 +22876,80 @@
       "n_structures": 16,
       "n_cosmo_failed": 0,
       "n_alpb_failed": 0
+     },
+     "vibspec": {
+      "point_group": "Cs",
+      "n_modes": 441,
+      "ir_active_irreps": [
+       "A'",
+       "A''"
+      ],
+      "raman_active_irreps": [
+       "A'",
+       "A''"
+      ],
+      "n_totally_symmetric": 231,
+      "alpha_iso_A3": 650.6345194551689,
+      "dipole_D": 22.88112343738096,
+      "top_ir": [
+       [
+        180.3,
+        "A'",
+        319.1
+       ],
+       [
+        190.6,
+        "A''",
+        303.3
+       ],
+       [
+        185.0,
+        "A''",
+        265.19
+       ],
+       [
+        185.7,
+        "A'",
+        251.0
+       ]
+      ],
+      "top_raman": [
+       [
+        207.7,
+        "A'",
+        72.83
+       ],
+       [
+        201.8,
+        "A'",
+        60.38
+       ],
+       [
+        206.1,
+        "A'",
+        46.02
+       ],
+       [
+        297.8,
+        "A'",
+        37.06
+       ]
+      ],
+      "bulk_gamma_optical_cm1": [
+       155.4747715113134,
+       155.47480789721703,
+       155.47489311929678
+      ],
+      "gxtb_gradient_norm_Eh_bohr": 0.14362550942,
+      "step_amu05_A": 0.1,
+      "field_V_A": 0.02,
+      "n_gxtb_runs": 7,
+      "n_modes_from_checkpoint": 441,
+      "seconds_gxtb": 33.6
      }
     },
     "provenance": {
-     "qd_builder_commit": "9f632212af58f5088998fdd03ae0819b181b4760",
+     "qd_builder_commit": "84246a2401647f5bb19fb584d86f02b0ffda1c99",
      "qd_builder_dirty": true,
      "relax": {
       "engine": "MACE-MH-1",
@@ -22838,6 +22990,12 @@
       "engine": "GFN2-xTB",
       "binary": "/Users/ivaninfante/miniforge3/envs/xtb/bin/xtb",
       "xtb": "6.7.1 (edcfbbe)"
+     },
+     "vibspec": {
+      "engine": "g-xTB",
+      "binary": "/Users/ivaninfante/Documents/University/Programs/GXTB/xtb-bleed-macos-arm64/bin/xtb",
+      "xtb": "6.7.1 (30c6303)",
+      "frequencies": "MACE-MH-1 (hessian step)"
      }
     }
    },

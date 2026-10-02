@@ -4,7 +4,7 @@
  "fingerprint": "37e1174b9a8958bc",
  "n_atoms": 35,
  "provenance": {
-  "qd_builder_commit": "9f632212af58f5088998fdd03ae0819b181b4760",
+  "qd_builder_commit": "84246a2401647f5bb19fb584d86f02b0ffda1c99",
   "qd_builder_dirty": true,
   "relax": {
    "engine": "MACE-MH-1",
@@ -45,6 +45,12 @@
    "engine": "GFN2-xTB",
    "binary": "/Users/ivaninfante/miniforge3/envs/xtb/bin/xtb",
    "xtb": "6.7.1 (edcfbbe)"
+  },
+  "vibspec": {
+   "engine": "g-xTB",
+   "binary": "/Users/ivaninfante/Documents/University/Programs/GXTB/xtb-bleed-macos-arm64/bin/xtb",
+   "xtb": "6.7.1 (30c6303)",
+   "frequencies": "MACE-MH-1 (hessian step)"
   }
  },
  "summary": {
@@ -172,7 +178,10 @@
     "bonds",
     "cn",
     "detach",
+    "ir",
     "map",
+    "modemap",
+    "raman",
     "relax",
     "stability",
     "thermo_e",
@@ -189,6 +198,76 @@
    "n_structures": 6,
    "n_cosmo_failed": 0,
    "n_alpb_failed": 0
+  },
+  "vibspec": {
+   "point_group": "Td",
+   "n_modes": 99,
+   "ir_active_irreps": [
+    "T2"
+   ],
+   "raman_active_irreps": [
+    "A1",
+    "E",
+    "T2"
+   ],
+   "n_totally_symmetric": 6,
+   "alpha_iso_A3": 153.8596507907455,
+   "dipole_D": 2.001373174214474e-05,
+   "top_ir": [
+    [
+     192.2,
+     "T2",
+     553.02
+    ],
+    [
+     221.6,
+     "T2",
+     539.98
+    ],
+    [
+     235.0,
+     "T2",
+     401.37
+    ],
+    [
+     147.6,
+     "T2",
+     132.23
+    ]
+   ],
+   "top_raman": [
+    [
+     170.0,
+     "A1",
+     215.85
+    ],
+    [
+     149.9,
+     "A1",
+     36.07
+    ],
+    [
+     225.4,
+     "A1",
+     25.39
+    ],
+    [
+     173.3,
+     "T2",
+     24.29
+    ]
+   ],
+   "bulk_gamma_optical_cm1": [
+    155.4747715113134,
+    155.47480789721703,
+    155.47489311929678
+   ],
+   "gxtb_gradient_norm_Eh_bohr": 0.104897668199,
+   "step_amu05_A": 0.1,
+   "field_V_A": 0.02,
+   "n_gxtb_runs": 7,
+   "n_modes_from_checkpoint": 99,
+   "seconds_gxtb": 1.3
   }
  }
 }

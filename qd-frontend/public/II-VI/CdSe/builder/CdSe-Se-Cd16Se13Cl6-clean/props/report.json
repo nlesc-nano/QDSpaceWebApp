@@ -7,7 +7,10 @@
    "bonds",
    "cn",
    "detach",
+   "ir",
    "map",
+   "modemap",
+   "raman",
    "relax",
    "stability",
    "thermo_e",
@@ -71,22 +74,43 @@
    "First CdCl$_{2}$ detachment",
    "\u0394E +1.71 eV, \u0394G +1.19 eV",
    "cheapest unit, 300 K, 1 M (panel j)"
+  ],
+  [
+   "Point group",
+   "Td",
+   "symmetry of the relaxed dot"
+  ],
+  [
+   "Polarisability $\\alpha_\\mathrm{iso}$",
+   "154 \u00c5\u00b3",
+   "g-xTB, finite field"
+  ],
+  [
+   "Strongest IR peak",
+   "192 cm\u207b\u00b9 (T2)",
+   "553 km/mol"
+  ],
+  [
+   "Strongest Raman activity",
+   "170 cm\u207b\u00b9 (A1)",
+   "216 \u00c5\u2074/amu, non-resonant"
   ]
  ],
- "_hash": "99756cc50b27bda2",
+ "_hash": "81da57751a8de4f7",
  "_inputs": {
   "schema": 1,
-  "code": "97d522a1dadc84bd5c9b54d64d568bfaa659d87c544739d7",
+  "code": "aa47c465e916c700082326ff4f8bb0115c9b54d64d568bfaa659d87c544739d7",
   "settings": {},
   "start": "d563ad5500b7a64c",
   "upstream": {
    "relax": "519bb80f7b8729e7",
    "structure": "371687421e70cc65",
    "hessian": "257205182a29df21",
+   "vibspec": "de2ad3e1e6f92b7d",
    "stability": "619704d410050ee1",
    "detachment": "dff1bfb09a186803",
    "solvation": "ca339cbc446acc3a"
   }
  },
- "_seconds": 1.33
+ "_seconds": 1.44
 }
