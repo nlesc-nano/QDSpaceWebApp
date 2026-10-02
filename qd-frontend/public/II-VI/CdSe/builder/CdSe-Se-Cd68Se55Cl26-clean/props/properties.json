@@ -4,7 +4,7 @@
  "fingerprint": "c2ca719afefe816a",
  "n_atoms": 149,
  "provenance": {
-  "qd_builder_commit": "a940a7b844d4cb7f27d96a2c20ab38f450034f68",
+  "qd_builder_commit": "e11114ed355c9de6036c3f985c87960bbf226cbe",
   "qd_builder_dirty": true,
   "relax": {
    "engine": "MACE-MH-1",
@@ -300,6 +300,19 @@
    "n_gxtb_runs": 7,
    "n_modes_from_checkpoint": 441,
    "seconds_gxtb": 32.7
+  },
+  "sites": {
+   "n_classes": 25,
+   "thermo": true,
+   "thermal": "first path step",
+   "solvation": "GB on per-site GFN2-xTB charges",
+   "hessian_method": "analytic",
+   "n_atoms_coloured": 64,
+   "dE_eV_range": [
+    1.522264003753662,
+    2.614640712738037
+   ],
+   "n_new_relaxations": 0
   }
  }
 }
