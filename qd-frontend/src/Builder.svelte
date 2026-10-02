@@ -1374,9 +1374,9 @@
                                   <input type="number" bind:value={job.replacement_charge} step="1" title="Replacement ion charge" class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
                                   <button type="button" class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors" onclick={() => removeOptionJob(opt, job, 'alloy')}>x</button>
                                 </div>
+                                <div class="flex flex-wrap justify-between gap-x-2 text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span class="whitespace-nowrap">Available: {alloyAvailable(opt)}</span><span class="whitespace-nowrap">Replace: {job.target_count} / {alloyAvailable(opt)} ({selectionPercent(job.target_count, alloyAvailable(opt))}%)</span></div>
                                 <div class="grid grid-cols-[1fr_5rem] gap-2 items-center">
-                                  <div class="space-y-1">
-                                    <div class="flex justify-between text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span>Available: {alloyAvailable(opt)}</span><span>Replace: {job.target_count} / {alloyAvailable(opt)} ({selectionPercent(job.target_count, alloyAvailable(opt))}%)</span></div>
+                                  <div class="min-w-0">
                                     <input type="range" min="0" max="1" step="0.01" bind:value={job.ratio} oninput={() => syncJobCountFromRatio(opt, job, 'alloy')} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
                                   </div>
                                   <input type="number" min="0" max={alloyAvailable(opt)} step="1" bind:value={job.target_count} oninput={() => syncJobRatioFromCount(opt, job, 'alloy')} class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
@@ -1425,9 +1425,9 @@
                       <div class="space-y-2">
                         {#each opt.jobs || [] as job (job.id)}
                           <div class="border border-accent-100 rounded-lg p-2 bg-white/80 space-y-2">
+                            <div class="flex flex-wrap justify-between gap-x-2 text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span class="whitespace-nowrap">Available: {zTypeAvailable(opt)}</span><span class="whitespace-nowrap">Remove: {job.target_count} / {zTypeAvailable(opt)} ({selectionPercent(job.target_count, zTypeAvailable(opt))}%)</span></div>
                             <div class="grid grid-cols-[1fr_5rem_28px] gap-2 items-center">
-                              <div class="space-y-1">
-                                <div class="flex justify-between text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span>Available: {zTypeAvailable(opt)}</span><span>Remove: {job.target_count} / {zTypeAvailable(opt)} ({selectionPercent(job.target_count, zTypeAvailable(opt))}%)</span></div>
+                              <div class="min-w-0">
                                 <input type="range" min="0" max="1" step="0.01" bind:value={job.ratio} oninput={() => syncJobCountFromRatio(opt, job, 'z_type')} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
                               </div>
                               <input type="number" min="0" max={zTypeAvailable(opt)} step="1" bind:value={job.target_count} oninput={() => syncJobRatioFromCount(opt, job, 'z_type')} class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
@@ -1487,9 +1487,9 @@
                                     <input type="text" bind:value={job.smiles} placeholder={siteType === 'anion' ? 'e.g. CCCC(=O)O' : 'e.g. CCCN'} class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium w-full">
                                     <button type="button" class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors h-full" onclick={() => removeOptionJob(opt, job, 'x_type')}>x</button>
                                   </div>
+                                  <div class="flex flex-wrap justify-between gap-x-2 text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span class="whitespace-nowrap">Available: {xTypeAvailable(opt)}</span><span class="whitespace-nowrap">Exchange: {job.target_count || 0} / {xTypeAvailable(opt)} ({selectionPercent(job.target_count, xTypeAvailable(opt))}%)</span></div>
                                   <div class="grid grid-cols-[1fr_5rem] gap-2 items-center">
-                                    <div class="space-y-1">
-                                      <div class="flex justify-between text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span>Available: {xTypeAvailable(opt)}</span><span>Exchange: {job.target_count || 0} / {xTypeAvailable(opt)} ({selectionPercent(job.target_count, xTypeAvailable(opt))}%)</span></div>
+                                    <div class="min-w-0">
                                       <input type="range" min="0" max="1" step="0.01" bind:value={job.ratio} oninput={() => syncJobCountFromRatio(opt, job, 'x_type')} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
                                     </div>
                                     <input type="number" min="0" max={xTypeAvailable(opt)} step="1" bind:value={job.target_count} oninput={() => syncJobRatioFromCount(opt, job, 'x_type')} class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
@@ -1565,9 +1565,9 @@
                                     <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.smiles = 'CCCCS'}>Pentanethiol</button>
                                   {/if}
                                 </div>
+                                <div class="flex flex-wrap justify-between gap-x-2 text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span class="whitespace-nowrap">Available: {zTypeAvailable(opt)}</span><span class="whitespace-nowrap">Exchange: {job.target_count || 0} / {zTypeAvailable(opt)} ({selectionPercent(job.target_count, zTypeAvailable(opt))}%)</span></div>
                                 <div class="grid grid-cols-[1fr_5rem] gap-2 items-center">
-                                  <div class="space-y-1">
-                                    <div class="flex justify-between text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span>Available: {zTypeAvailable(opt)}</span><span>Exchange: {job.target_count || 0} / {zTypeAvailable(opt)} ({selectionPercent(job.target_count, zTypeAvailable(opt))}%)</span></div>
+                                  <div class="min-w-0">
                                     <input type="range" min="0" max="1" step="0.01" bind:value={job.ratio} oninput={() => syncJobCountFromRatio(opt, job, 'neutral_exchange')} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
                                   </div>
                                   <input type="number" min="0" max={zTypeAvailable(opt)} step="1" bind:value={job.target_count} oninput={() => syncJobRatioFromCount(opt, job, 'neutral_exchange')} class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
@@ -1629,9 +1629,9 @@
                                     <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.smiles = 'CCCCC(=O)O'}>Pentanoic Acid</button>
                                     <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.smiles = 'CCCCS'}>Pentanethiol</button>
                                   </div>
+                                  <div class="flex flex-wrap justify-between gap-x-2 text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span class="whitespace-nowrap">Available: {opt.available_count}</span><span class="whitespace-nowrap">Passivate: {job.target_count || 0} / {opt.available_count} ({selectionPercent(job.target_count, opt.available_count)}%)</span></div>
                                   <div class="grid grid-cols-[1fr_5rem] gap-2 text-[10px] items-center">
-                                    <div class="space-y-1">
-                                      <div class="flex justify-between text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span>Available: {opt.available_count}</span><span>Passivate: {job.target_count || 0} / {opt.available_count} ({selectionPercent(job.target_count, opt.available_count)}%)</span></div>
+                                    <div class="min-w-0">
                                       <input type="range" min="0" max="1" step="0.01" bind:value={job.ratio} oninput={() => syncJobCountFromRatio(opt, job, 'l_type')} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
                                     </div>
                                     <input type="number" min="0" max={opt.available_count} step="1" bind:value={job.target_count} oninput={() => syncJobRatioFromCount(opt, job, 'l_type')} class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
