@@ -1,0 +1,73 @@
+{
+ "summary": {
+  "model": "Generalized Born on GFN2-xTB charges (HCT radii, Bondi x 1.15)",
+  "dG_solv_dot_eps2.4_eV": -2.034341382231243,
+  "dG_solv_dot_eps80_eV": -3.4438493399200336,
+  "cosmo_dot_eps2.4_eV": null,
+  "n_structures": 16,
+  "n_cosmo_failed": 0,
+  "n_alpb_failed": 0
+ },
+ "gb_inf": {
+  "dot_0": -3.4874423695392744,
+  "dot_1": -3.255473453761794,
+  "dot_2": -3.011403057733547,
+  "dot_3": -3.4106842733728766,
+  "dot_4": -3.5195028726379007,
+  "dot_5": -2.9069931074496864,
+  "dot_6": -2.7992748878670324,
+  "dot_7": -3.0164289696424573,
+  "dot_8": -2.8479539997264363,
+  "dot_9": -2.8572138613218376,
+  "dot_10": -3.0060146824236424,
+  "dot_11": -2.626840025715943,
+  "dot_12": -2.667629451458821,
+  "dot_13": -2.911104893028109,
+  "MA": -0.2628175822146658,
+  "MX": -0.22578900748862324
+ },
+ "radius_scale": 1.15,
+ "smearing": {
+  "dot_0": "none",
+  "dot_1": "none",
+  "dot_2": "none",
+  "dot_3": "none",
+  "dot_4": "none",
+  "dot_5": "none",
+  "dot_6": "none",
+  "dot_7": "none",
+  "dot_8": "none",
+  "dot_9": "none",
+  "dot_10": "none",
+  "dot_11": "none",
+  "dot_12": "none",
+  "dot_13": "none",
+  "MA": "none",
+  "MX": "none"
+ },
+ "cosmo_check": {},
+ "alpb": {
+  "solvents": {},
+  "dG": {}
+ },
+ "provenance": {
+  "engine": "GFN2-xTB",
+  "binary": "/Users/ivaninfante/miniforge3/envs/xtb/bin/xtb",
+  "xtb": "6.7.1 (edcfbbe)"
+ },
+ "_hash": "5957f270e8ef5ec1",
+ "_inputs": {
+  "schema": 1,
+  "code": "68c26b5172eac82e",
+  "settings": {
+   "method": "gfn2",
+   "checks": false
+  },
+  "start": "2e87ec5ab917dd18",
+  "upstream": {
+   "relax": "9a7abb25886b1cba",
+   "detachment": "b7322359bc31bbc9"
+  }
+ },
+ "_seconds": 476.12
+}

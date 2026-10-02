@@ -1,0 +1,92 @@
+{
+ "summary": {
+  "html": "ground_state.html",
+  "png": "ground_state.png",
+  "figures": [
+   "binding",
+   "bonds",
+   "cn",
+   "detach",
+   "map",
+   "relax",
+   "stability",
+   "thermo_e",
+   "thermo_s",
+   "vdos_element",
+   "vdos_role"
+  ]
+ },
+ "key_numbers": [
+  [
+   "Relaxation energy",
+   "-113 meV/atom",
+   "E(relaxed) \u2212 E(start), per atom"
+  ],
+  [
+   "RMSD start \u2192 relaxed",
+   "0.53 \u00c5",
+   "after optimal superposition"
+  ],
+  [
+   "Bond topology",
+   "4 broken / 0 formed",
+   "relaxed vs start bond graph"
+  ],
+  [
+   "Core strain",
+   "+2.2 %",
+   "mean core bond vs bulk d\u2080"
+  ],
+  [
+   "Imaginary modes",
+   "0",
+   "none at a true minimum"
+  ],
+  [
+   "ZPE",
+   "3.178 eV",
+   "zero-point energy, \u00bd \u03a3 \u0127\u03c9_k"
+  ],
+  [
+   "$S_\\mathrm{vib}$ (300 K)",
+   "57.86 meV/K",
+   "harmonic vibrational entropy"
+  ],
+  [
+   "$F_\\mathrm{vib}$ (300 K)",
+   "-5.558 eV",
+   "U_vib \u2212 T S_vib"
+  ],
+  [
+   "$\\Delta G_\\mathrm{dec}$ (300 K)",
+   "+0.202 eV per CdSe",
+   "vs bulk + ligands at 1 M (panel h)"
+  ],
+  [
+   "$\\Delta G_\\mathrm{bind}$ (300 K)",
+   "-2.072 eV per unit",
+   "vs monomers at 1 M (panel i)"
+  ],
+  [
+   "First CdCl$_{2}$ detachment",
+   "\u0394E +1.52 eV, \u0394G +1.03 eV",
+   "cheapest unit, 300 K, 1 M (panel j)"
+  ]
+ ],
+ "_hash": "dd397fbf88f74410",
+ "_inputs": {
+  "schema": 1,
+  "code": "97d522a1dadc84bd5c9b54d64d568bfaa659d87c544739d7",
+  "settings": {},
+  "start": "2e87ec5ab917dd18",
+  "upstream": {
+   "relax": "9a7abb25886b1cba",
+   "structure": "3ed64efc59ea2a48",
+   "hessian": "27cf863107e1d3d5",
+   "stability": "c9e1c5b35d73418e",
+   "detachment": "b7322359bc31bbc9",
+   "solvation": "5957f270e8ef5ec1"
+  }
+ },
+ "_seconds": 5.0
+}
