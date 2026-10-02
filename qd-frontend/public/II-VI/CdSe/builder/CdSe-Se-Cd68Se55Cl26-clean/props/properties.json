@@ -4,7 +4,7 @@
  "fingerprint": "c2ca719afefe816a",
  "n_atoms": 149,
  "provenance": {
-  "qd_builder_commit": "e11114ed355c9de6036c3f985c87960bbf226cbe",
+  "qd_builder_commit": "831850ef99b9622cafb85d7ad1d55ecbc99b4b1a",
   "qd_builder_dirty": true,
   "relax": {
    "engine": "MACE-MH-1",

@@ -96,10 +96,10 @@
    "73 \u00c5$^4$/amu"
   ]
  ],
- "_hash": "0ad8a792d7a000b3",
+ "_hash": "f0780f103cdd05e3",
  "_inputs": {
   "schema": 1,
-  "code": "576216a2b2f0369b38550f21037d80e672875bf441e7a70c5c9b54d64d568bfa5764250e2470d846",
+  "code": "576216a2b2f0369b38550f21037d80e672875bf441e7a70c5c9b54d64d568bfa53dfd15645a885da",
   "settings": {},
   "start": "2e87ec5ab917dd18",
   "upstream": {
@@ -110,8 +110,8 @@
    "stability": "c9e1c5b35d73418e",
    "detachment": "b7322359bc31bbc9",
    "solvation": "5957f270e8ef5ec1",
-   "sites": "185e10af94e4cfa4"
+   "sites": "995ec4fe27024bcd"
   }
  },
- "_seconds": 5.79
+ "_seconds": 7.53
 }
