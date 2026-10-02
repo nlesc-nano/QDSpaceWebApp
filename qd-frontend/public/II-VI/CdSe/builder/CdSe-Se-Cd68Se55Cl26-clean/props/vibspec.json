@@ -58,16 +58,16 @@
    ]
   ],
   "bulk_gamma_optical_cm1": [
-   155.4747715113134,
-   155.47480789721703,
-   155.47489311929678
+   155.4748053809309,
+   155.47488198527589,
+   155.47491229946232
   ],
   "gxtb_gradient_norm_Eh_bohr": 0.14362550942,
   "step_amu05_A": 0.1,
   "field_V_A": 0.02,
   "n_gxtb_runs": 7,
   "n_modes_from_checkpoint": 441,
-  "seconds_gxtb": 33.6
+  "seconds_gxtb": 32.7
  },
  "alpha_A3": [
   [
@@ -8473,10 +8473,10 @@
   "xtb": "6.7.1 (30c6303)",
   "frequencies": "MACE-MH-1 (hessian step)"
  },
- "_hash": "65d0c379f0dd3b9e",
+ "_hash": "3c7bb33fe2359cfc",
  "_inputs": {
   "schema": 1,
-  "code": "f7a3bf6d0853655f",
+  "code": "9dd46bf04608828772875bf441e7a70c",
   "settings": {
    "head": "omat_pbe",
    "model": "macemh1model",
@@ -8496,5 +8496,5 @@
    "hessian": "27cf863107e1d3d5"
   }
  },
- "_seconds": 33.63
+ "_seconds": 32.71
 }

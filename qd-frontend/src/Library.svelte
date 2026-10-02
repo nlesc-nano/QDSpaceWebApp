@@ -269,17 +269,34 @@
   }
 
   // --- Properties: from the record; probe the legacy folder as a fallback ---
+  // Order = tab order and the default tab: computed ground state first, then synthesis, then the DFT pages.
   const PROPERTY_FILES = {
+    ground_state: ["ground_state.html"],
+    synthesis: ["synthesis.html"],
     fuzzy_sf: ["fuzzy_dashboard_sf.html", "plot.html", "plot.html.gz"],
     fuzzy_soc: ["fuzzy_dashboard_soc.html"],
     exciton_sf: ["exciton_analysis_sf.html"],
     exciton_soc: ["exciton_analysis_soc.html"],
-    ground_state: ["ground_state.html"],
-    synthesis: ["synthesis.html"],
   };
-  const PROPERTY_TABS = [["fuzzy_sf", "Fuzzy - PDOS - COOP (Spin Free)"], ["fuzzy_soc", "Fuzzy - PDOS - COOP (SOC)"],
-    ["exciton_sf", "Excited States (Spin Free)"], ["exciton_soc", "Excited States (SOC)"],
-    ["ground_state", "Ground state (MACE-MH-1)"], ["synthesis", "Synthesis thermodynamics"]];
+  const PROPERTY_TABS = [["ground_state", "Ground state (MACE-MH-1)"], ["synthesis", "Synthesis thermodynamics"],
+    ["fuzzy_sf", "Fuzzy - PDOS - COOP (Spin Free)"], ["fuzzy_soc", "Fuzzy - PDOS - COOP (SOC)"],
+    ["exciton_sf", "Excited States (Spin Free)"], ["exciton_soc", "Excited States (SOC)"]];
+
+  // "How it was computed" badges, one per property page.
+  function dftMethod(r) {
+    const st = (r?.stages || []).find((s) => s.stage === "geo_opt" && s.code && s.code !== "MACE");
+    return st ? [st.code, [st.functional, st.basis].filter(Boolean).join("/")].filter(Boolean).join(" · ") : "DFT";
+  }
+  function propertyMethods(tab, r) {
+    const mace = (r?.stages || []).find((s) => s.stage === "geo_opt" && s.code === "MACE")?.functional || "MACE-MH-1";
+    if (tab === "ground_state") return [`${mace}: geometry, Hessian, thermochemistry, stability`,
+      "g-xTB: IR & Raman intensities", "GFN2-xTB charges + Generalized Born: solvation"];
+    if (tab === "synthesis") return [`${mace} free energies`, "GFN2-xTB charges + Generalized Born solvation",
+      "coupled equilibria with mass balance"];
+    const soc = tab.endsWith("_soc") ? "spin–orbit coupling" : "spin free";
+    if (tab.startsWith("fuzzy")) return [`DFT ${dftMethod(r)} geometry`, `fuzzy bands, PDOS, COOP (${soc})`];
+    return [`DFT ${dftMethod(r)} geometry`, `excited states (${soc})`];
+  }
 
   async function loadProperties(r) {
     plotUrls = { fuzzy_sf: null, fuzzy_soc: null, exciton_sf: null, exciton_soc: null, ground_state: null, synthesis: null };
@@ -805,8 +822,14 @@
             <span class="text-xs">Properties are available for DFT-optimized structures once they have been computed.</span>
           </div>
         {:else if plotUrls[activePropertyTab]}
+          <div class="absolute inset-x-0 top-0 flex flex-wrap items-center gap-1.5 text-[11px]">
+            <span class="font-bold text-slate-500 uppercase tracking-wide mr-1">Computed with</span>
+            {#each propertyMethods(activePropertyTab, current) as m}
+              <span class="px-2 py-0.5 rounded border font-bold {badgeClass(activePropertyTab.startsWith('fuzzy') || activePropertyTab.startsWith('exciton') ? 'source' : 'opt')}">{m}</span>
+            {/each}
+          </div>
           <iframe title="Interactive Properties" src={plotUrls[activePropertyTab]}
-                  class="absolute inset-0 w-full h-full rounded-[1rem] border border-slate-200 bg-white"
+                  class="absolute inset-x-0 bottom-0 top-8 w-full rounded-[1rem] border border-slate-200 bg-white"
                   sandbox="allow-scripts allow-same-origin allow-popups allow-modals" referrerpolicy="no-referrer"></iframe>
         {/if}
       </div>
