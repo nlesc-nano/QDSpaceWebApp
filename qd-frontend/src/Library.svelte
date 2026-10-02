@@ -42,7 +42,8 @@
 
   let propertiesStatus = $state("idle");
   let activePropertyTab = $state("fuzzy_sf");
-  let plotUrls = $state({ fuzzy_sf: null, fuzzy_soc: null, exciton_sf: null, exciton_soc: null });
+  let plotUrls = $state({ fuzzy_sf: null, fuzzy_soc: null, exciton_sf: null, exciton_soc: null, ground_state: null, synthesis: null });
+  let groundStatePng = $state(null);
 
   const SOURCE_LABEL = { builder: "Builder", dft: "DFT", "builder+dft": "Builder + DFT" };
   const PHASE_SHORT = { "zinc-blende": "zb", wurtzite: "wz", "rock-salt": "rs" };
@@ -273,11 +274,17 @@
     fuzzy_soc: ["fuzzy_dashboard_soc.html"],
     exciton_sf: ["exciton_analysis_sf.html"],
     exciton_soc: ["exciton_analysis_soc.html"],
+    ground_state: ["ground_state.html"],
+    synthesis: ["synthesis.html"],
   };
+  const PROPERTY_TABS = [["fuzzy_sf", "Fuzzy - PDOS - COOP (Spin Free)"], ["fuzzy_soc", "Fuzzy - PDOS - COOP (SOC)"],
+    ["exciton_sf", "Excited States (Spin Free)"], ["exciton_soc", "Excited States (SOC)"],
+    ["ground_state", "Ground state (MACE-MH-1)"], ["synthesis", "Synthesis thermodynamics"]];
 
   async function loadProperties(r) {
-    plotUrls = { fuzzy_sf: null, fuzzy_soc: null, exciton_sf: null, exciton_soc: null };
+    plotUrls = { fuzzy_sf: null, fuzzy_soc: null, exciton_sf: null, exciton_soc: null, ground_state: null, synthesis: null };
     const props = r.properties || {};
+    groundStatePng = props["ground_state.png"] ? `/${props["ground_state.png"]}` : null;
     for (const [tab, names] of Object.entries(PROPERTY_FILES)) {
       const hit = names.find((n) => props[n]);
       if (hit) plotUrls[tab] = `/${props[hit]}`;
@@ -769,12 +776,16 @@
         <h2 class="font-heading font-bold text-2xl text-slate-900">Interactive Properties</h2>
         {#if propertiesStatus === "ready"}
           <div class="flex flex-wrap gap-2">
-            {#each [["fuzzy_sf", "Fuzzy - PDOS - COOP (Spin Free)"], ["fuzzy_soc", "Fuzzy - PDOS - COOP (SOC)"], ["exciton_sf", "Excited States (Spin Free)"], ["exciton_soc", "Excited States (SOC)"]] as [tab, label]}
+            {#each PROPERTY_TABS as [tab, label]}
               {#if plotUrls[tab]}
                 <button class="px-4 py-2 text-xs md:text-sm font-bold rounded-xl transition-all {activePropertyTab === tab ? 'bg-brand-50 text-brand-700 shadow-sm ring-1 ring-brand-200' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700'}"
                         onclick={() => (activePropertyTab = tab)}>{label}</button>
               {/if}
             {/each}
+            {#if activePropertyTab === "ground_state" && groundStatePng}
+              <a class="px-4 py-2 text-xs md:text-sm font-bold rounded-xl text-accent-700 hover:bg-accent-50" href={groundStatePng}
+                 download>Summary (PNG)</a>
+            {/if}
           </div>
         {/if}
       </div>

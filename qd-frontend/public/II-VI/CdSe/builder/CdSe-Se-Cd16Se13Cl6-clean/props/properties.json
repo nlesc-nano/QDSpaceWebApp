@@ -1,0 +1,273 @@
+{
+ "schema_version": 1,
+ "id": "CdSe-Se-Cd16Se13Cl6-clean",
+ "fingerprint": "37e1174b9a8958bc",
+ "n_atoms": 35,
+ "provenance": {
+  "qd_builder_commit": "84246a2401647f5bb19fb584d86f02b0ffda1c99",
+  "qd_builder_dirty": true,
+  "relax": {
+   "engine": "MACE-MH-1",
+   "head": "omat_pbe",
+   "model": "macemh1model",
+   "model_sha256": "a522eb7f59c7879963d41586528f4980baf33e086c94aa92e3eafdeccad3be47",
+   "mace": "0.3.16",
+   "torch": "2.10.0",
+   "device": "mps",
+   "dtype": "float32"
+  },
+  "hessian": {
+   "engine": "MACE-MH-1",
+   "head": "omat_pbe",
+   "model": "macemh1model",
+   "model_sha256": "a522eb7f59c7879963d41586528f4980baf33e086c94aa92e3eafdeccad3be47",
+   "mace": "0.3.16",
+   "torch": "2.10.0",
+   "device": "mps",
+   "dtype": "float32"
+  },
+  "electronic": {
+   "engine": "GFN2-xTB",
+   "binary": "/Users/ivaninfante/miniforge3/envs/xtb/bin/xtb",
+   "xtb": "6.7.1 (edcfbbe)"
+  },
+  "stability": {
+   "engine": "MACE-MH-1",
+   "head": "omat_pbe",
+   "model": "macemh1model",
+   "model_sha256": "a522eb7f59c7879963d41586528f4980baf33e086c94aa92e3eafdeccad3be47",
+   "mace": "0.3.16",
+   "torch": "2.10.0",
+   "device": "mps",
+   "dtype": "float32"
+  },
+  "solvation": {
+   "engine": "GFN2-xTB",
+   "binary": "/Users/ivaninfante/miniforge3/envs/xtb/bin/xtb",
+   "xtb": "6.7.1 (edcfbbe)"
+  },
+  "vibspec": {
+   "engine": "g-xTB",
+   "binary": "/Users/ivaninfante/Documents/University/Programs/GXTB/xtb-bleed-macos-arm64/bin/xtb",
+   "xtb": "6.7.1 (30c6303)",
+   "frequencies": "MACE-MH-1 (hessian step)"
+  }
+ },
+ "summary": {
+  "relax": {
+   "converged": true,
+   "optimizer": "BFGS",
+   "steps": 20,
+   "fmax_eV_A": 0.007516151759773493,
+   "fmax_start_eV_A": 1.2385560274124146,
+   "energy_start_eV": -82.47293853759766,
+   "energy_eV": -89.30422973632812,
+   "relaxation_energy_eV": -6.831291198730469,
+   "relaxation_energy_meV_atom": -195.17974853515625,
+   "rmsd_A": 0.4869673171659399,
+   "max_displacement_A": 0.7257627921013777
+  },
+  "structure": {
+   "topology_preserved": true,
+   "bonds_broken": 0,
+   "bonds_formed": 0,
+   "ligands_detached": 0,
+   "ligands_migrated": 0,
+   "n_core": 5,
+   "n_surface": 24,
+   "n_ligand": 6,
+   "ligand_mu": {
+    "mu2": 6
+   },
+   "ligand_mu_start": {
+    "mu2": 6
+   },
+   "bulk_bond_A": 2.6589328557077323,
+   "core_strain_pct": 6.424801659215097
+  },
+  "hessian": {
+   "method": "analytic",
+   "n_modes": 99,
+   "n_imaginary": 0,
+   "n_imaginary_small": 0,
+   "lowest_cm1": 25.304640850070687,
+   "lowest_real_cm1": 25.304640850070687,
+   "highest_cm1": 234.97975104307068,
+   "zpe_eV": 0.7324204931396849,
+   "zpe_meV_atom": 20.926299803990997,
+   "tr_residual_max_cm1": 0.9621126706693147,
+   "S_vib_300K_meV_K": 12.765097477094306,
+   "Cv_300K_meV_K": 8.23064937507776,
+   "F_vib_300K_eV": -1.177506100584293
+  },
+  "electronic": {
+   "method": "GFN2-xTB",
+   "energy_eV": -2167.1590374598936,
+   "homo_eV": -11.918,
+   "lumo_eV": -8.6695,
+   "orbital_gap_eV": 3.248482867558,
+   "dipole_debye": 0.0,
+   "xtb_fmax_at_mace_min_eV_A": 1.0856201890699562,
+   "xtb_frms_at_mace_min_eV_A": 0.6046977357890105,
+   "ip_vertical_eV": 6.3305,
+   "ea_vertical_eV": 1.294,
+   "fundamental_gap_eV": 5.0365,
+   "ip_ea_method": "IPEA-xTB delta-SCC (xtb --vipea)"
+  },
+  "stability": {
+   "units": {
+    "M": "Cd",
+    "A": "Se",
+    "X": "Cl",
+    "q": 2,
+    "n_MA": 13,
+    "m_MXq": 3
+   },
+   "decomposition_dE_eV": 2.259734630584717,
+   "decomposition_dE_per_MA_eV": 0.17382574081420898,
+   "decomposition_dE_ZPE_eV": 2.265485468450538,
+   "decomposition_dG_300K_eV": 3.444685924672367,
+   "decomposition_dG_300K_per_MA_eV": 0.26497584035941285,
+   "excess_dE_per_surface_atom_eV": 0.07532448768615722,
+   "binding_dE_per_unit_eV": -2.498970255255699,
+   "binding_dE_ZPE_per_unit_eV": -2.473655178278449,
+   "binding_dG_300K_per_unit_eV": -2.030231288876152,
+   "rotational_symmetry_number": 12,
+   "bulk_energy_per_fu_eV": -5.490299224853516,
+   "bulk_cell_lengths_A": [
+    4.386099172215846,
+    4.386099171230327,
+    4.386099173238489
+   ]
+  },
+  "detachment": {
+   "method": "beam search (width 2) with local updates",
+   "unit": "CdCl2",
+   "n_units": 3,
+   "n_steps": 3,
+   "beam": 2,
+   "local_radius_A": 7.0,
+   "n_relaxations": 18,
+   "n_lazy_checks": 7,
+   "n_relaxations_new": 0,
+   "n_configurations": 18,
+   "ensemble": "every relaxed configuration evaluated by the search",
+   "dE_eV": [
+    1.7105727195739746,
+    0.8220686912536621,
+    0.7032637596130371
+   ],
+   "dG_300K_eV": [
+    1.1861783933964505,
+    0.3175074390861292,
+    0.20511428688230815
+   ],
+   "cumulative_dE_eV": [
+    1.7105727195739746,
+    2.5326414108276367,
+    3.235905170440674
+   ],
+   "stopped": null,
+   "thermo": true
+  },
+  "report": {
+   "html": "ground_state.html",
+   "png": "ground_state.png",
+   "figures": [
+    "binding",
+    "bonds",
+    "cn",
+    "detach",
+    "ir",
+    "map",
+    "modemap",
+    "raman",
+    "relax",
+    "stability",
+    "thermo_e",
+    "thermo_s",
+    "vdos_element",
+    "vdos_role"
+   ]
+  },
+  "solvation": {
+   "model": "Generalized Born on GFN2-xTB charges (HCT radii, Bondi x 1.15)",
+   "dG_solv_dot_eps2.4_eV": -0.7876753259220401,
+   "dG_solv_dot_eps80_eV": -1.333421801739454,
+   "cosmo_dot_eps2.4_eV": null,
+   "n_structures": 6,
+   "n_cosmo_failed": 0,
+   "n_alpb_failed": 0
+  },
+  "vibspec": {
+   "point_group": "Td",
+   "n_modes": 99,
+   "ir_active_irreps": [
+    "T2"
+   ],
+   "raman_active_irreps": [
+    "A1",
+    "E",
+    "T2"
+   ],
+   "n_totally_symmetric": 6,
+   "alpha_iso_A3": 153.8596507907455,
+   "dipole_D": 2.001373174214474e-05,
+   "top_ir": [
+    [
+     192.2,
+     "T2",
+     553.02
+    ],
+    [
+     221.6,
+     "T2",
+     539.98
+    ],
+    [
+     235.0,
+     "T2",
+     401.37
+    ],
+    [
+     147.6,
+     "T2",
+     132.23
+    ]
+   ],
+   "top_raman": [
+    [
+     170.0,
+     "A1",
+     215.85
+    ],
+    [
+     149.9,
+     "A1",
+     36.07
+    ],
+    [
+     225.4,
+     "A1",
+     25.39
+    ],
+    [
+     173.3,
+     "T2",
+     24.29
+    ]
+   ],
+   "bulk_gamma_optical_cm1": [
+    155.4747715113134,
+    155.47480789721703,
+    155.47489311929678
+   ],
+   "gxtb_gradient_norm_Eh_bohr": 0.104897668199,
+   "step_amu05_A": 0.1,
+   "field_V_A": 0.02,
+   "n_gxtb_runs": 7,
+   "n_modes_from_checkpoint": 99,
+   "seconds_gxtb": 1.3
+  }
+ }
+}

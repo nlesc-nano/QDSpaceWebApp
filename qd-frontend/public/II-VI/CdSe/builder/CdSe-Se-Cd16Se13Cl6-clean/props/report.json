@@ -1,0 +1,116 @@
+{
+ "summary": {
+  "html": "ground_state.html",
+  "png": "ground_state.png",
+  "figures": [
+   "binding",
+   "bonds",
+   "cn",
+   "detach",
+   "ir",
+   "map",
+   "modemap",
+   "raman",
+   "relax",
+   "stability",
+   "thermo_e",
+   "thermo_s",
+   "vdos_element",
+   "vdos_role"
+  ]
+ },
+ "key_numbers": [
+  [
+   "Relaxation energy",
+   "-195 meV/atom",
+   "E(relaxed) \u2212 E(start), per atom"
+  ],
+  [
+   "RMSD start \u2192 relaxed",
+   "0.49 \u00c5",
+   "after optimal superposition"
+  ],
+  [
+   "Bond topology",
+   "preserved",
+   "relaxed vs start bond graph"
+  ],
+  [
+   "Core strain",
+   "+6.4 %",
+   "mean core bond vs bulk d\u2080"
+  ],
+  [
+   "Imaginary modes",
+   "0",
+   "none at a true minimum"
+  ],
+  [
+   "ZPE",
+   "0.732 eV",
+   "zero-point energy, \u00bd \u03a3 \u0127\u03c9_k"
+  ],
+  [
+   "$S_\\mathrm{vib}$ (300 K)",
+   "12.77 meV/K",
+   "harmonic vibrational entropy"
+  ],
+  [
+   "$F_\\mathrm{vib}$ (300 K)",
+   "-1.178 eV",
+   "U_vib \u2212 T S_vib"
+  ],
+  [
+   "$\\Delta G_\\mathrm{dec}$ (300 K)",
+   "+0.265 eV per CdSe",
+   "vs bulk + ligands at 1 M (panel h)"
+  ],
+  [
+   "$\\Delta G_\\mathrm{bind}$ (300 K)",
+   "-2.030 eV per unit",
+   "vs monomers at 1 M (panel i)"
+  ],
+  [
+   "First CdCl$_{2}$ detachment",
+   "\u0394E +1.71 eV, \u0394G +1.19 eV",
+   "cheapest unit, 300 K, 1 M (panel j)"
+  ],
+  [
+   "Point group",
+   "Td",
+   "symmetry of the relaxed dot"
+  ],
+  [
+   "Polarisability $\\alpha_\\mathrm{iso}$",
+   "154 \u00c5\u00b3",
+   "g-xTB, finite field"
+  ],
+  [
+   "Strongest IR peak",
+   "192 cm\u207b\u00b9 (T2)",
+   "553 km/mol"
+  ],
+  [
+   "Strongest Raman activity",
+   "170 cm\u207b\u00b9 (A1)",
+   "216 \u00c5\u2074/amu, non-resonant"
+  ]
+ ],
+ "_hash": "81da57751a8de4f7",
+ "_inputs": {
+  "schema": 1,
+  "code": "aa47c465e916c700082326ff4f8bb0115c9b54d64d568bfaa659d87c544739d7",
+  "settings": {},
+  "start": "d563ad5500b7a64c",
+  "upstream": {
+   "relax": "519bb80f7b8729e7",
+   "structure": "371687421e70cc65",
+   "hessian": "257205182a29df21",
+   "vibspec": "de2ad3e1e6f92b7d",
+   "stability": "619704d410050ee1",
+   "detachment": "dff1bfb09a186803",
+   "solvation": "ca339cbc446acc3a"
+  }
+ },
+ "_seconds": 1.44
+}

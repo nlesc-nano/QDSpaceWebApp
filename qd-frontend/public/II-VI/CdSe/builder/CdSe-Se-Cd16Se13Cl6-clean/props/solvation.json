@@ -1,0 +1,53 @@
+{
+ "summary": {
+  "model": "Generalized Born on GFN2-xTB charges (HCT radii, Bondi x 1.15)",
+  "dG_solv_dot_eps2.4_eV": -0.7876753259220401,
+  "dG_solv_dot_eps80_eV": -1.333421801739454,
+  "cosmo_dot_eps2.4_eV": null,
+  "n_structures": 6,
+  "n_cosmo_failed": 0,
+  "n_alpb_failed": 0
+ },
+ "gb_inf": {
+  "dot_0": -1.3503005587234975,
+  "dot_1": -1.274869165754718,
+  "dot_2": -1.1183996936911793,
+  "dot_3": -0.9791259477083768,
+  "MA": -0.2628175822146658,
+  "MX": -0.22578900748862324
+ },
+ "radius_scale": 1.15,
+ "smearing": {
+  "dot_0": "none",
+  "dot_1": "none",
+  "dot_2": "none",
+  "dot_3": "none",
+  "MA": "none",
+  "MX": "none"
+ },
+ "cosmo_check": {},
+ "alpb": {
+  "solvents": {},
+  "dG": {}
+ },
+ "provenance": {
+  "engine": "GFN2-xTB",
+  "binary": "/Users/ivaninfante/miniforge3/envs/xtb/bin/xtb",
+  "xtb": "6.7.1 (edcfbbe)"
+ },
+ "_hash": "ca339cbc446acc3a",
+ "_inputs": {
+  "schema": 1,
+  "code": "68c26b5172eac82e",
+  "settings": {
+   "method": "gfn2",
+   "checks": false
+  },
+  "start": "d563ad5500b7a64c",
+  "upstream": {
+   "relax": "519bb80f7b8729e7",
+   "detachment": "dff1bfb09a186803"
+  }
+ },
+ "_seconds": 3.33
+}

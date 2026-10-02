@@ -159,8 +159,27 @@ def load_builder_records(dirs: List[str], prefix: str):
             for st in rec["stages"]:
                 st["file"] = f"{base}/{st['file']}"
             rec.setdefault("properties", {})
+            _attach_qdprops(rec, rec_path.parent, base)
             recs.append((rec, radial_signature(symbols, pts)))
     return recs
+
+
+def _attach_qdprops(rec: dict, folder: Path, base: str) -> None:
+    """Fold QD_builder `qdprops` results (<id>/props/) into a builder record."""
+    props = folder / "props"
+    summary_path = props / "properties.json"
+    if not summary_path.is_file():
+        return
+    summary = json.loads(summary_path.read_text())
+    head = (summary.get("provenance", {}).get("relax") or {}).get("head", "")
+    if (props / "relaxed.xyz").is_file():
+        rec["stages"].append({"stage": "geo_opt", "file": f"{base}/props/relaxed.xyz",
+                              "functional": f"MACE-MH-1 ({head})" if head else "MACE-MH-1", "code": "MACE"})
+    for name in ("ground_state.html", "ground_state.png", "synthesis.html"):
+        if (props / name).is_file():
+            rec["properties"][name] = f"{base}/props/{name}"
+    rec["computed"] = {"schema_version": summary.get("schema_version"), "summary": summary.get("summary", {}),
+                       "provenance": summary.get("provenance", {})}
 
 
 def _best_match(rec: dict, sig, pool, tol: float):
@@ -234,6 +253,7 @@ def main(argv=None) -> int:
     groups = group_legacy_files([
         f for f in find_xyz_files(str(PUBLIC))
         if not (PUBLIC / f).with_name("record.json").is_file()   # builder series: record-driven
+        and "/props/" not in f"/{f}"                              # qdprops outputs of a record
     ])
     for group, stages in sorted(groups.items()):
         report["legacy_groups"] += 1
