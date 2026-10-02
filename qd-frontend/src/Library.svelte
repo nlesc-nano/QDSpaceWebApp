@@ -829,7 +829,7 @@
             {/each}
           </div>
           <iframe title="Interactive Properties" src={plotUrls[activePropertyTab]}
-                  class="absolute inset-x-0 bottom-0 top-8 w-full rounded-[1rem] border border-slate-200 bg-white"
+                  class="absolute inset-x-0 top-8 w-full h-[calc(100%-2rem)] rounded-[1rem] border border-slate-200 bg-white"
                   sandbox="allow-scripts allow-same-origin allow-popups allow-modals" referrerpolicy="no-referrer"></iframe>
         {/if}
       </div>
