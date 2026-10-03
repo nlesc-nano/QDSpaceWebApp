@@ -372,7 +372,7 @@
     const enc = new TextEncoder();
     const files = [];
     const header = ["id", "formula", "material", "family", "centre", "surface", "facets", "source",
-                    "d_nm", "n_atoms", "total_charge", "unit_cells", "files"];
+                    "d_saxs_nm", "d_volume_nm", "aspect_ratio", "n_atoms", "total_charge", "unit_cells", "files"];
     const rows = [header];
     try {
       for (let k = 0; k < list.length; k++) {
@@ -390,7 +390,7 @@
         }
         files.push({ name: `${r.id}/record.json`, data: enc.encode(JSON.stringify(r, null, 1)) });
         rows.push([r.id, r.formula, r.material, r.family, r.centre, r.surface, recipeTooltip(r).replace(/\n/g, "; "), r.source,
-                   dOf(r).toFixed(3), r.n_atoms, r.total_charge, r.size?.unit_cells ?? "", names.join(" ")]);
+                   dOf(r).toFixed(3), r.size?.d_volume_nm ?? "", r.size?.aspect_ratio ?? "", r.n_atoms, r.total_charge, r.size?.unit_cells ?? "", names.join(" ")]);
       }
       files.push({ name: "index.csv", data: enc.encode(rows.map((row) => row.map(csvCell).join(",")).join("\n") + "\n") });
       zipStatus = "Packing…";
@@ -542,7 +542,7 @@
 
       <div>
         <span class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">
-          Diameter (nm){#if dBounds[1] > 0}<span class="normal-case font-medium text-slate-400"> · {dBounds[0]}–{dBounds[1]}</span>{/if}
+          SAXS diameter (nm){#if dBounds[1] > 0}<span class="normal-case font-medium text-slate-400"> · {dBounds[0]}–{dBounds[1]}</span>{/if}
         </span>
         <div class="grid grid-cols-2 gap-3">
           <input type="number" step="0.1" min="0" placeholder="min" bind:value={filters.dMin}
@@ -588,7 +588,7 @@
     <div class="bg-white rounded-[1.5rem] shadow-sm border border-slate-100 flex flex-col min-h-[300px] max-h-[520px]">
       <div class="p-5 pb-3 font-heading font-bold text-slate-900 flex justify-between">
         <span>Matches ({matches.length})</span>
-        <span class="text-xs text-slate-400 font-sans font-medium">sorted by diameter</span>
+        <span class="text-xs text-slate-400 font-sans font-medium">sorted by SAXS diameter</span>
       </div>
       <div class="px-5 pb-3 flex flex-wrap items-center gap-x-3 gap-y-1.5">
         <button class="bg-accent-600 hover:bg-accent-700 disabled:bg-slate-300 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors"
@@ -666,7 +666,7 @@
         </div>
         <div class="flex-1 bg-slate-50 rounded-[1rem] border border-slate-200 overflow-hidden relative shadow-inner">
           <Viewer xyz={xyzText} {isMD} dataUrl={fileUrl}
-                  sizeMetrics={current ? { R_eff_hull: dOf(current) * 5, diameter_hull: dOf(current) * 10 } : null}
+                  sizeMetrics={current?.size ?? null}
                   {activeViewer} />
           {#if loadingStage}
             <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center text-white z-10">
@@ -685,7 +685,13 @@
               <p class="flex justify-between"><strong class="text-slate-900">Material</strong><span>{current.material} · {current.family} · {current.phase}</span></p>
               <p class="flex justify-between"><strong class="text-slate-900">Centre</strong><span class="px-1.5 rounded border text-xs font-bold {badgeClass(centreRole(current.centre))}">{centreLabel(current.centre)}</span></p>
               <p class="flex justify-between"><strong class="text-slate-900">Surface</strong><span>{current.surface}</span></p>
-              <p class="flex justify-between"><strong class="text-slate-900">Diameter</strong><span>{dOf(current).toFixed(2)} nm <span class="text-slate-400">(max {current.size?.d_max_nm?.toFixed(2)})</span></span></p>
+              <p class="flex justify-between"><strong class="text-slate-900">SAXS diameter</strong><span>{dOf(current).toFixed(2)} nm <span class="text-slate-400">(max {current.size?.d_max_nm?.toFixed(2)})</span></span></p>
+              {#if current.size?.d_volume_nm}
+                <p class="flex justify-between"><strong class="text-slate-900">Volume diameter</strong><span>{current.size.d_volume_nm.toFixed(2)} nm</span></p>
+              {/if}
+              {#if current.size?.aspect_ratio}
+                <p class="flex justify-between"><strong class="text-slate-900">Aspect ratio</strong><span>{current.size.aspect_ratio.toFixed(2)} <span class="text-slate-400">({current.size.axes_nm?.map((a) => a.toFixed(2)).join(" × ")} nm)</span></span></p>
+              {/if}
               {#if current.size?.unit_cells}
                 <p class="flex justify-between"><strong class="text-slate-900">Unit cells</strong><span>{current.size.unit_cells_all?.join(", ") ?? current.size.unit_cells}</span></p>
               {/if}

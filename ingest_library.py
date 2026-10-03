@@ -41,6 +41,7 @@ from builder.library_record import (
     read_xyz_first_frame,
     signature_distance,
 )
+from builder.scripts.refresh_library_sizes import material_bulk_volumes
 from make_metadata import MATERIAL_ELEMENTS, find_xyz_files, parse_metadata
 
 PUBLIC = Path("qd-frontend/public")
@@ -80,6 +81,22 @@ def native_elements(material: str) -> List[str]:
     return out
 
 
+def bulk_volume(material: str, phase: str, table: Dict[tuple, dict]) -> Optional[dict]:
+    """
+    Bulk volume per atom by element (volume diameter) from the builder series
+    CIFs; None when a component has no series.  Core/shell: an element shared
+    by both components (Cd in CdSe_CdS) takes the core value.
+    """
+    out: dict = {}
+    for part in material.replace("@", "_").split("_"):
+        bulk = table.get((part, phase)) or next((v for (m, _), v in table.items() if m == part), None)
+        if bulk is None:
+            return None
+        for e, v in bulk.items():
+            out.setdefault(e, v)
+    return out
+
+
 def group_legacy_files(files: List[str]) -> Dict[str, Dict[str, List[str]]]:
     """structure dir -> {stage: [relpaths]}; files outside stage folders stand alone."""
     groups: Dict[str, Dict[str, List[str]]] = defaultdict(lambda: defaultdict(list))
@@ -110,12 +127,13 @@ def legacy_meta(group: str, stages: Dict[str, List[str]]) -> dict:
     }
 
 
-def legacy_record(group: str, stages: Dict[str, List[str]], meta: dict):
+def legacy_record(group: str, stages: Dict[str, List[str]], meta: dict, bulk_table: Dict[tuple, dict]):
     ref = (stages.get("start") or stages.get("geo_opt") or stages.get("md"))[0]
     symbols, pts = read_xyz_first_frame(str(PUBLIC / ref))
     sig = radial_signature(symbols, pts)
     desc = describe_structure(symbols, pts, native_order=native_elements(meta["material"]),
-                              charges=FORMAL_CHARGES)
+                              charges=FORMAL_CHARGES,
+                              bulk_volume=bulk_volume(meta["material"], meta["phase"], bulk_table))
     dft = meta.get("dft", {})
     stage_list = []
     for stage in ("start", "geo_opt", "md"):
@@ -247,6 +265,7 @@ def main(argv=None) -> int:
         unique_builder.append((rec, sig))
     builder = unique_builder
 
+    bulk_table = material_bulk_volumes()
     legacy: List[tuple] = []   # (record, signature, has_start) after merging identical starts
     report = {"builder_dupes": builder_dupes, "legacy_groups": 0, "merged": [], "same_start": [], "meta_written": 0,
               "collisions": [], "errors": []}
@@ -266,7 +285,7 @@ def main(argv=None) -> int:
                 meta_path.write_text(yaml.safe_dump(meta, sort_keys=False))
                 report["meta_written"] += 1
         try:
-            rec, sig, has_start = legacy_record(group, stages, meta)
+            rec, sig, has_start = legacy_record(group, stages, meta, bulk_table)
         except Exception as exc:
             report["errors"].append(f"{group}: {type(exc).__name__}: {exc}")
             continue

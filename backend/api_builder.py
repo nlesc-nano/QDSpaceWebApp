@@ -32,45 +32,25 @@ from ase.io import read as ase_read, write as ase_write
 
 import numpy as np
 
-# Core inorganic elements for each material (ignores organic ligands like MA/FA)
-MATERIAL_ELEMENTS = {
-    "CSPBCL3": ["Cs", "Pb", "Cl"], "CSPBBR3": ["Cs", "Pb", "Br"], "CSPBI3":  ["Cs", "Pb", "I"],
-    "MAPBI3":  ["Pb", "I"], "FAPBI3":  ["Pb", "I"], 
-    "ZNS":     ["Zn", "S"], "ZNSE":    ["Zn", "Se"], "ZNTE":    ["Zn", "Te"],
-    "CDS":     ["Cd", "S"], "CDSE":    ["Cd", "Se"], "CDTE":    ["Cd", "Te"],
-    "HGS":     ["Hg", "S"], "HGSE":    ["Hg", "Se"], "HGTE":    ["Hg", "Te"],
-    "ALP":     ["Al", "P"], "ALAS":    ["Al", "As"], "ALSB":    ["Al", "Sb"],
-    "GAP":     ["Ga", "P"], "GAAS":    ["Ga", "As"], "GASB":    ["Ga", "Sb"],
-    "INP":     ["In", "P"], "INAS":    ["In", "As"], "INSB":    ["In", "Sb"],
-    "PBS":     ["Pb", "S"], "PBSE":    ["Pb", "Se"]
-}
+def _size_metrics(xyz_text: str, cif_paths) -> Optional[dict]:
+    """SAXS and volume diameters and aspect ratio (builder.library_record.size_descriptors)."""
+    from builder.library_record import bulk_volume_per_atom, size_descriptors
+    bulk: Dict[str, float] = {}
+    for cif in cif_paths:            # core first: it keeps an element shared with a shell
+        for el, v in bulk_volume_per_atom(str(cif)).items():
+            bulk.setdefault(el, v)
+    atoms = ase_read(io.StringIO(xyz_text), format="xyz")
+    return size_descriptors(atoms.get_chemical_symbols(), atoms.get_positions(), set(bulk), bulk)
 
-def get_cluster_size_metrics(coords_ang, atom_symbols=None, material_name=None):
-    """Calculates size using Axis-Aligned Bounding Box (ideal for lattice-cut QDs)."""
-    coords = np.asarray(coords_ang, dtype=float)
 
-    if atom_symbols is not None and material_name is not None:
-        m_name = material_name.upper()
-        if 'MATERIAL_ELEMENTS' in globals() and m_name in MATERIAL_ELEMENTS:
-            core_elements = [el.lower() for el in MATERIAL_ELEMENTS[m_name]]
-            core_coords = [coords[i] for i, sym in enumerate(atom_symbols) if sym.lower() in core_elements]
-            if len(core_coords) > 0:
-                coords = np.array(core_coords)
-
-    if len(coords) < 2:
-        return {'R_eff_hull': 1.0, 'diameter_hull': 2.0}
-
-    # Blazing fast: Calculate peak-to-peak distance directly along X, Y, and Z axes
-    spans = np.ptp(coords, axis=0)
-
-    # Add 2.5 Å for the physical outer electron cloud (van der Waals radii)
-    spans += 2.5
-
-    # The effective diameter is the average of length, width, and height
-    avg_diameter = np.mean(spans)
-    R_eff = avg_diameter / 2.0
-
-    return {'R_eff_hull': float(R_eff), 'diameter_hull': float(avg_diameter)}
+def _safe_size_metrics(xyz_text: Optional[str], cif_paths) -> Optional[dict]:
+    if not xyz_text:
+        return None
+    try:
+        return _size_metrics(xyz_text, [c for c in cif_paths if c])
+    except Exception as e:
+        logging.error(f"Failed to calculate size metrics: {e}")
+        return None
 
 # ---------------------------------------------------------------------
 # Configuration
@@ -2458,7 +2438,10 @@ async def build_nanocrystal_stream(
                     "reconstruction": next(
                         (e for e in ledger if e.get("surface_reconstruction")), None
                     ),
-                    "size_metrics": None,
+                    "size_metrics": _safe_size_metrics(xyz_pass, [core_path] + [
+                        file_map.get(safe_filename(getattr(sh, "material_cif", "")))
+                        for sh in (opts.shells or [])
+                    ]),
                 }
                 yield json.dumps({"event": "result", **payload}) + "\n"
                 return
@@ -2747,16 +2730,9 @@ async def build_nanocrystal_stream(
                 facets_input=[f.dict() if hasattr(f, "dict") else f for f in (opts.facets or [])],
             )
             
-            size_metrics = None
-            if current_xyz:
-                try:
-                    from ase.io import read as ase_read
-                    tmp_atoms = ase_read(io.StringIO(current_xyz), format="xyz")
-                    c_coords = tmp_atoms.get_positions()
-                    c_symbols = tmp_atoms.get_chemical_symbols()
-                    size_metrics = get_cluster_size_metrics(c_coords, c_symbols)
-                except Exception as e:
-                    logging.error(f"Failed to calculate size metrics: {e}")           
+            size_metrics = _safe_size_metrics(current_xyz, [core_path] + [
+                file_map.get(safe_filename(getattr(sh, "material_cif", ""))) for sh in (opts.shells or [])
+            ])
 
             payload = {
                 "status": "success",

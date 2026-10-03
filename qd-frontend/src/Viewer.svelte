@@ -336,24 +336,26 @@
     {/key}
   {/if}
 
-  {#if props.sizeMetrics}
-    <div class="absolute top-4 left-4 bg-white/80 backdrop-blur-md border border-slate-200 p-3 rounded-lg shadow-soft pointer-events-none z-10">
-      <h4 class="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest mb-1.5">
-        Effective Size (Core)
-      </h4>
-      <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
-        
-        <span class="text-slate-600">Radius</span>
-        <span class="font-mono text-brand-600 font-medium text-right">
-          {Number((props.sizeMetrics.R_eff_hull / 10).toFixed(2))} nm
+  {#if props.sizeMetrics?.d_nm}
+    {@const sz = props.sizeMetrics}
+    <div class="absolute top-3 left-3 bg-white/85 backdrop-blur-md border border-slate-200 px-2.5 py-1 rounded-lg shadow-soft z-10 flex items-baseline gap-2.5 text-xs font-mono">
+      <span class="cursor-help"
+            title="SAXS diameter: homogeneous sphere fitted to the Debye scattering of the inorganic atoms (core and inorganic shell such as halides), weighted by atomic number; organic ligands match the solvent and are invisible. Compare with SAXS, TEM (above ~3 nm) and absorption sizing curves.">
+        <span class="text-slate-400">SAXS</span> <span class="text-brand-600 font-semibold">{sz.d_nm.toFixed(2)}</span>
+      </span>
+      {#if sz.d_volume_nm}
+        <span class="cursor-help"
+              title="Volume diameter: sphere holding the core atoms at bulk density. Compare with sizes from elemental analysis; the gap to the SAXS diameter is the inorganic shell.">
+          <span class="text-slate-400">Vol</span> <span class="text-brand-600 font-semibold">{sz.d_volume_nm.toFixed(2)}</span>
         </span>
-        
-        <span class="text-slate-600">Diameter</span>
-        <span class="font-mono text-brand-600 font-medium text-right">
-          {Number((props.sizeMetrics.diameter_hull / 10).toFixed(2))} nm
+      {/if}
+      <span class="text-slate-400">nm</span>
+      {#if sz.aspect_ratio}
+        <span class="cursor-help border-l border-slate-200 pl-2.5"
+              title="Aspect ratio: longest / shortest axis of the homogeneous ellipsoid with the same electron-density gyration tensor{sz.axes_nm ? ` (${sz.axes_nm.map((a) => a.toFixed(2)).join(' × ')} nm)` : ''}. 1 for spheres and cubes; above ~1.3 the SAXS diameter is only an equivalent-sphere size.">
+          <span class="text-slate-400">AR</span> <span class="text-brand-600 font-semibold">{sz.aspect_ratio.toFixed(2)}</span>
         </span>
-
-      </div>
+      {/if}
     </div>
   {/if}
 

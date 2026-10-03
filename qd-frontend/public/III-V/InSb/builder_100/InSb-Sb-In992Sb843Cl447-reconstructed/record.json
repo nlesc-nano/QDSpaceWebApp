@@ -25,7 +25,14 @@
   "centre_offset_A": 0.0,
   "size": {
     "n_core": 1835,
-    "d_nm": 5.503,
+    "d_nm": 5.652,
+    "d_volume_nm": 5.038,
+    "axes_nm": [
+      5.674,
+      5.659,
+      5.653
+    ],
+    "aspect_ratio": 1.004,
     "d_max_nm": 6.957,
     "d_hull_nm": 4.711,
     "unit_cells": 2.75,
