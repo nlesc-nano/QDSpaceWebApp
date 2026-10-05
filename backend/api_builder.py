@@ -1303,23 +1303,32 @@ def _run_repassivation_posttreatment(
                 for entry in alloy_ledger:
                     cfg.charges.setdefault(entry["replacement"], int(entry["replacement_charge"]))
                 ledger.extend({"alloying": True, **entry} for entry in alloy_ledger)
-                syms, pts = charge_balance_iterative(
-                    syms,
-                    pts,
-                    cfg.charges,
-                    anion_lig,
-                    verbose=False,
-                    planes=planes,
-                    surf_tol=cfg.passivation.surf_tol,
-                    cif_path=cif_path,
-                    positive_q_strategy="remove",
-                    write_all=False,
-                    prefix=str(tmp_path / "repass"),
-                    prepass_mode=cfg.passivation.prepass_mode,
-                    prepass_min_cn_terrace=cfg.passivation.prepass_min_cn_terrace,
-                    prepass_min_cn_edge=cfg.passivation.prepass_min_cn_edge,
-                    prepass_min_cn_vertex=cfg.passivation.prepass_min_cn_vertex,
-                )
+                # A higher-valent dopant (In3+ on a Cd2+ site) is compensated
+                # by extra X-type ligand; if the free ligand sites cannot absorb
+                # it all, restart from the alloyed dot and remove surface atoms.
+                alloyed_syms, alloyed_pts = list(syms), np.asarray(pts, float).copy()
+                for strategy in ("add", "remove"):
+                    if strategy == "remove":
+                        if sum(int(cfg.charges.get(s, 0)) for s in syms) <= 0:
+                            break
+                        syms, pts = list(alloyed_syms), alloyed_pts.copy()
+                    syms, pts = charge_balance_iterative(
+                        syms,
+                        pts,
+                        cfg.charges,
+                        anion_lig,
+                        verbose=False,
+                        planes=planes,
+                        surf_tol=cfg.passivation.surf_tol,
+                        cif_path=cif_path,
+                        positive_q_strategy=strategy,
+                        write_all=False,
+                        prefix=str(tmp_path / "repass"),
+                        prepass_mode=cfg.passivation.prepass_mode,
+                        prepass_min_cn_terrace=cfg.passivation.prepass_min_cn_terrace,
+                        prepass_min_cn_edge=cfg.passivation.prepass_min_cn_edge,
+                        prepass_min_cn_vertex=cfg.passivation.prepass_min_cn_vertex,
+                    )
 
         # 3. Z-type displacement (neutral inorganic groups; before X-type exchange)
         z_ledger: List[dict] = []
@@ -1451,6 +1460,7 @@ def _detect_surface_post_options_for_xyz(
             derive_pair_cuts_from_cif,
         )
         from builder.ligand_exchange_posttreat import _bound_hosts
+        from builder.neutral_ligand_posttreat import neutral_ligand_host_sites
     except Exception as exc:
         logging.error(f"Post-treatment option imports failed: {exc}")
         return out
@@ -1535,25 +1545,31 @@ def _detect_surface_post_options_for_xyz(
                 "source": source,
             })
 
-        l_type_by_species: Dict[str, dict] = {}
-        for i, sym in enumerate(syms):
-            if sym not in native or not bool(surface[i]) or is_passivated(i):
-                continue
+        # Count L-type sites with the same routine the neutral-ligand pass
+        # uses: a surface atom that already carries X-type Cl but still has a
+        # free bond is available, which the old "no ligand within 3.5 A" rule
+        # missed (CdSe: 24 reported, 72 placeable).
+        l_type_options = []
+        for sym in sorted(native):
             q = int(cfg.charges.get(sym, 0))
-            deficit = max(0, int(bulk_cn.get(sym, 0)) - int(cn[i]))
-            if q == 0 or deficit <= 0:
+            if q == 0:
                 continue
             site_type = "cation" if q > 0 else "anion"
-            entry = l_type_by_species.setdefault(sym, {
-                "element": sym,
-                "target_symbol": sym,
-                "target": site_type,
-                "site_type": site_type,
-                "available_count": 0,
-            })
-            entry["available_count"] += int(deficit)
+            with contextlib.redirect_stdout(io.StringIO()):
+                sites = neutral_ligand_host_sites(
+                    syms, pts, cfg, struct, planes, native,
+                    target=site_type, target_symbol=sym,
+                )
+            if sites:
+                l_type_options.append({
+                    "element": sym,
+                    "target_symbol": sym,
+                    "target": site_type,
+                    "site_type": site_type,
+                    "available_count": len(sites),
+                })
         out["l_type_options"] = sorted(
-            l_type_by_species.values(),
+            l_type_options,
             key=lambda item: (item["site_type"], item["element"]),
         )
     except Exception as exc:
