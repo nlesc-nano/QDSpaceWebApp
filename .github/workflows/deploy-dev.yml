@@ -1,9 +1,8 @@
-name: Nightly Backend Deploy (main)
+name: Backend Deploy (On-Demand)
 
 on:
-  schedule:
-    # Runs every night at 23:00 UTC
-    - cron: "0 23 * * *"
+  # schedule:
+  #   - cron: "0 23 * * *"   # Disabled: deployments are triggered on-demand
   workflow_dispatch:
 
 jobs:

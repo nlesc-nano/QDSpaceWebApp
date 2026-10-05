@@ -1,8 +1,8 @@
-name: Nightly Frontend Deploy (Vite → S3 + CloudFront)
+name: Frontend Deploy (Vite → S3 + CloudFront)
 
 on:
-  schedule:
-    - cron: "30 1 * * *"
+  # schedule:
+  #   - cron: "30 1 * * *"   # Disabled: deployments are triggered on-demand
   workflow_dispatch:
 
 jobs:
