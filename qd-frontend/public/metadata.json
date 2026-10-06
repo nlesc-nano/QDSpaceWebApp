@@ -2679,6 +2679,62 @@
       "diameter_hull": 23.991898333333335
     }
   },
+  "II-VI/CdSe/builder/CdSe-Se-Cd16Se13Cl6-clean/props/detach_1.xyz": {
+    "system_type": "II-VI",
+    "material": "CdSe",
+    "filename": "detach_1.xyz",
+    "size": null,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.2412693333333324,
+      "diameter_hull": 10.482538666666665
+    }
+  },
+  "II-VI/CdSe/builder/CdSe-Se-Cd16Se13Cl6-clean/props/detach_2.xyz": {
+    "system_type": "II-VI",
+    "material": "CdSe",
+    "filename": "detach_2.xyz",
+    "size": null,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.1675363333333335,
+      "diameter_hull": 10.335072666666667
+    }
+  },
+  "II-VI/CdSe/builder/CdSe-Se-Cd16Se13Cl6-clean/props/detach_3.xyz": {
+    "system_type": "II-VI",
+    "material": "CdSe",
+    "filename": "detach_3.xyz",
+    "size": null,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.1195385,
+      "diameter_hull": 10.239077
+    }
+  },
+  "II-VI/CdSe/builder/CdSe-Se-Cd16Se13Cl6-clean/props/relaxed.xyz": {
+    "system_type": "II-VI",
+    "material": "CdSe",
+    "filename": "relaxed.xyz",
+    "size": null,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 5.229888056666667,
+      "diameter_hull": 10.459776113333334
+    }
+  },
   "II-VI/CdSe/builder/CdSe-Se-Cd16Se13Cl6-clean/start.xyz": {
     "system_type": "II-VI",
     "material": "CdSe",
@@ -3051,6 +3107,202 @@
     "size_metrics": {
       "R_eff_hull": 18.136491666666668,
       "diameter_hull": 36.272983333333336
+    }
+  },
+  "II-VI/CdSe/builder/CdSe-Se-Cd68Se55Cl26-clean/props/detach_1.xyz": {
+    "system_type": "II-VI",
+    "material": "CdSe",
+    "filename": "detach_1.xyz",
+    "size": null,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 8.779858833333334,
+      "diameter_hull": 17.559717666666668
+    }
+  },
+  "II-VI/CdSe/builder/CdSe-Se-Cd68Se55Cl26-clean/props/detach_10.xyz": {
+    "system_type": "II-VI",
+    "material": "CdSe",
+    "filename": "detach_10.xyz",
+    "size": null,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 8.712885,
+      "diameter_hull": 17.42577
+    }
+  },
+  "II-VI/CdSe/builder/CdSe-Se-Cd68Se55Cl26-clean/props/detach_11.xyz": {
+    "system_type": "II-VI",
+    "material": "CdSe",
+    "filename": "detach_11.xyz",
+    "size": null,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 8.708537333333334,
+      "diameter_hull": 17.417074666666668
+    }
+  },
+  "II-VI/CdSe/builder/CdSe-Se-Cd68Se55Cl26-clean/props/detach_12.xyz": {
+    "system_type": "II-VI",
+    "material": "CdSe",
+    "filename": "detach_12.xyz",
+    "size": null,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 8.5893335,
+      "diameter_hull": 17.178667
+    }
+  },
+  "II-VI/CdSe/builder/CdSe-Se-Cd68Se55Cl26-clean/props/detach_13.xyz": {
+    "system_type": "II-VI",
+    "material": "CdSe",
+    "filename": "detach_13.xyz",
+    "size": null,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 8.444455666666665,
+      "diameter_hull": 16.88891133333333
+    }
+  },
+  "II-VI/CdSe/builder/CdSe-Se-Cd68Se55Cl26-clean/props/detach_2.xyz": {
+    "system_type": "II-VI",
+    "material": "CdSe",
+    "filename": "detach_2.xyz",
+    "size": null,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 8.834227166666667,
+      "diameter_hull": 17.668454333333333
+    }
+  },
+  "II-VI/CdSe/builder/CdSe-Se-Cd68Se55Cl26-clean/props/detach_3.xyz": {
+    "system_type": "II-VI",
+    "material": "CdSe",
+    "filename": "detach_3.xyz",
+    "size": null,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 8.859655166666668,
+      "diameter_hull": 17.719310333333336
+    }
+  },
+  "II-VI/CdSe/builder/CdSe-Se-Cd68Se55Cl26-clean/props/detach_4.xyz": {
+    "system_type": "II-VI",
+    "material": "CdSe",
+    "filename": "detach_4.xyz",
+    "size": null,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 8.8868725,
+      "diameter_hull": 17.773745
+    }
+  },
+  "II-VI/CdSe/builder/CdSe-Se-Cd68Se55Cl26-clean/props/detach_5.xyz": {
+    "system_type": "II-VI",
+    "material": "CdSe",
+    "filename": "detach_5.xyz",
+    "size": null,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 8.871091333333334,
+      "diameter_hull": 17.742182666666668
+    }
+  },
+  "II-VI/CdSe/builder/CdSe-Se-Cd68Se55Cl26-clean/props/detach_6.xyz": {
+    "system_type": "II-VI",
+    "material": "CdSe",
+    "filename": "detach_6.xyz",
+    "size": null,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 8.915989166666668,
+      "diameter_hull": 17.831978333333335
+    }
+  },
+  "II-VI/CdSe/builder/CdSe-Se-Cd68Se55Cl26-clean/props/detach_7.xyz": {
+    "system_type": "II-VI",
+    "material": "CdSe",
+    "filename": "detach_7.xyz",
+    "size": null,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 8.872323333333332,
+      "diameter_hull": 17.744646666666664
+    }
+  },
+  "II-VI/CdSe/builder/CdSe-Se-Cd68Se55Cl26-clean/props/detach_8.xyz": {
+    "system_type": "II-VI",
+    "material": "CdSe",
+    "filename": "detach_8.xyz",
+    "size": null,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 8.752479833333332,
+      "diameter_hull": 17.504959666666664
+    }
+  },
+  "II-VI/CdSe/builder/CdSe-Se-Cd68Se55Cl26-clean/props/detach_9.xyz": {
+    "system_type": "II-VI",
+    "material": "CdSe",
+    "filename": "detach_9.xyz",
+    "size": null,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 8.685637333333332,
+      "diameter_hull": 17.371274666666665
+    }
+  },
+  "II-VI/CdSe/builder/CdSe-Se-Cd68Se55Cl26-clean/props/relaxed.xyz": {
+    "system_type": "II-VI",
+    "material": "CdSe",
+    "filename": "relaxed.xyz",
+    "size": null,
+    "functional": "",
+    "basis": "",
+    "run_type": "Start",
+    "code": "CP2K",
+    "size_metrics": {
+      "R_eff_hull": 8.757880955,
+      "diameter_hull": 17.51576191
     }
   },
   "II-VI/CdSe/builder/CdSe-Se-Cd68Se55Cl26-clean/start.xyz": {
