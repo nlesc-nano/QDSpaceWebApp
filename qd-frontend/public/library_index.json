@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "generated": "2026-10-03T16:28:28+00:00",
+ "generated": "2026-10-10T08:00:09+00:00",
  "structures": [
   {
    "schema_version": 1,
@@ -9,7 +9,7 @@
    "family": "ABX3",
    "phase": "cubic perovskite",
    "surface": "clean",
-   "source": "builder",
+   "source": "builder+dft",
    "formula": "Cs112Pb64Br240",
    "composition": {
     "Cs": 112,
@@ -48,6 +48,13 @@
     {
      "stage": "start",
      "file": "ABX3/CsPbBr3/builder/CsPbBr3-Cs-Cs112Pb64Br240-clean/start.xyz"
+    },
+    {
+     "stage": "geo_opt",
+     "file": "ABX3/CsPbBr3/HLE17/24ang/geo_opt/Cs112Pb64Br240_HLE17_24ang_OPT.xyz",
+     "code": "CP2K",
+     "functional": "HLE17",
+     "basis": "DZVP"
     }
    ],
    "origin": {
@@ -90,13 +97,20 @@
      "construction_origin": {
       "center_on_species": "Cs"
      }
-    }
+    },
+    "legacy_paths": [
+     "ABX3/CsPbBr3/HLE17/24ang"
+    ],
+    "dft_twin_deviation_A": 0.314
    },
-   "properties": {},
+   "properties": {
+    "plot.html": "ABX3/CsPbBr3/HLE17/24ang/properties/plot.html",
+    "plot.html.gz": "ABX3/CsPbBr3/HLE17/24ang/properties/plot.html.gz"
+   },
    "flags": {
-    "optimized": false,
+    "optimized": true,
     "md": false,
-    "properties": false
+    "properties": true
    }
   },
   {
@@ -247,6 +261,20 @@
      "stage": "start",
      "file": "ABX3/CsPbBr3/start/Cs20Pb8Br36_HLE17_12ang_Start.xyz",
      "dft_start": true
+    },
+    {
+     "stage": "geo_opt",
+     "file": "ABX3/CsPbBr3/HLE17/12ang/geo_opt/Cs20Pb8Br36_HLE17_12ang_OPT.xyz",
+     "code": "CP2K",
+     "functional": "HLE17",
+     "basis": "DZVP"
+    },
+    {
+     "stage": "geo_opt",
+     "file": "ABX3/CsPbBr3/HLE17/16ang/geo_opt/Cs20Pb8Br36_HLE17_16ang_OPT.xyz",
+     "code": "CP2K",
+     "functional": "HLE17",
+     "basis": "DZVP"
     }
    ],
    "origin": {
@@ -291,15 +319,20 @@
      }
     },
     "legacy_paths": [
-     "ABX3/CsPbBr3"
+     "ABX3/CsPbBr3",
+     "ABX3/CsPbBr3/HLE17/12ang",
+     "ABX3/CsPbBr3/HLE17/16ang"
     ],
-    "dft_twin_deviation_A": 0.0
+    "dft_twin_deviation_A": 0.36
    },
-   "properties": {},
+   "properties": {
+    "plot.html": "ABX3/CsPbBr3/HLE17/16ang/properties/plot.html",
+    "plot.html.gz": "ABX3/CsPbBr3/HLE17/16ang/properties/plot.html.gz"
+   },
    "flags": {
-    "optimized": false,
+    "optimized": true,
     "md": false,
-    "properties": false
+    "properties": true
    }
   },
   {
@@ -406,7 +439,7 @@
    "family": "ABX3",
    "phase": "cubic perovskite",
    "surface": "clean",
-   "source": "builder",
+   "source": "builder+dft",
    "formula": "Cs324Pb216Br756",
    "composition": {
     "Cs": 324,
@@ -445,6 +478,13 @@
     {
      "stage": "start",
      "file": "ABX3/CsPbBr3/builder/CsPbBr3-Cs-Cs324Pb216Br756-clean/start.xyz"
+    },
+    {
+     "stage": "geo_opt",
+     "file": "ABX3/CsPbBr3/HLE17/37ang/geo_opt/Cs324Pb216Br756_HLE17_37ang_OPT.xyz",
+     "code": "CP2K",
+     "functional": "HLE17",
+     "basis": "DZVP"
     }
    ],
    "origin": {
@@ -487,13 +527,20 @@
      "construction_origin": {
       "center_on_species": "Cs"
      }
-    }
+    },
+    "legacy_paths": [
+     "ABX3/CsPbBr3/HLE17/37ang"
+    ],
+    "dft_twin_deviation_A": 0.328
    },
-   "properties": {},
+   "properties": {
+    "plot.html": "ABX3/CsPbBr3/HLE17/37ang/properties/plot.html",
+    "plot.html.gz": "ABX3/CsPbBr3/HLE17/37ang/properties/plot.html.gz"
+   },
    "flags": {
-    "optimized": false,
+    "optimized": true,
     "md": false,
-    "properties": false
+    "properties": true
    }
   },
   {
@@ -503,7 +550,7 @@
    "family": "ABX3",
    "phase": "cubic perovskite",
    "surface": "clean",
-   "source": "builder",
+   "source": "builder+dft",
    "formula": "Cs704Pb512Br1728",
    "composition": {
     "Cs": 704,
@@ -542,6 +589,13 @@
     {
      "stage": "start",
      "file": "ABX3/CsPbBr3/builder/CsPbBr3-Cs-Cs704Pb512Br1728-clean/start.xyz"
+    },
+    {
+     "stage": "geo_opt",
+     "file": "ABX3/CsPbBr3/HLE17/48ang/geo_opt/Cs704Pb512Br1728_HLE17_48ang_OPT.xyz",
+     "code": "CP2K",
+     "functional": "HLE17",
+     "basis": "DZVP"
     }
    ],
    "origin": {
@@ -584,6 +638,495 @@
      "construction_origin": {
       "center_on_species": "Cs"
      }
+    },
+    "legacy_paths": [
+     "ABX3/CsPbBr3/HLE17/48ang"
+    ],
+    "dft_twin_deviation_A": 0.417
+   },
+   "properties": {},
+   "flags": {
+    "optimized": true,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbBr3-Pb-Cs1694Pb1331Br4356-clean",
+   "material": "CsPbBr3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs1694Pb1331Br4356",
+   "composition": {
+    "Cs": 1694,
+    "Pb": 1331,
+    "Br": 4356
+   },
+   "core": {
+    "Cs": 1694,
+    "Pb": 1331,
+    "Br": 4356
+   },
+   "ligands": {},
+   "n_atoms": 7381,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.017,
+   "size": {
+    "n_core": 7381,
+    "d_nm": 8.695,
+    "d_volume_nm": 8.404,
+    "axes_nm": [
+     8.711,
+     8.709,
+     8.707
+    ],
+    "aspect_ratio": 1.001,
+    "d_max_nm": 10.694,
+    "d_hull_nm": 8.116,
+    "unit_cells": 5.5,
+    "unit_cells_all": [
+     5.5
+    ]
+   },
+   "fingerprint": "6904630b4d525fb2",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbBr3/builder_pb/CsPbBr3-Pb-Cs1694Pb1331Br4356-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbbr3_cubic_pb.yaml",
+    "qd_builder_commit": "8b31a40775ded35c7c82006b1b91c878e6254c8e",
+    "qd_builder_dirty": false,
+    "cif": "CsPbBr3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Br": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      5.5,
+      5.5,
+      5.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbBr3-Pb-Cs200Pb125Br450-clean",
+   "material": "CsPbBr3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs200Pb125Br450",
+   "composition": {
+    "Cs": 200,
+    "Pb": 125,
+    "Br": 450
+   },
+   "core": {
+    "Cs": 200,
+    "Pb": 125,
+    "Br": 450
+   },
+   "ligands": {},
+   "n_atoms": 775,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.067,
+   "size": {
+    "n_core": 775,
+    "d_nm": 4.087,
+    "d_volume_nm": 3.965,
+    "axes_nm": [
+     4.084,
+     4.078,
+     4.064
+    ],
+    "aspect_ratio": 1.005,
+    "d_max_nm": 4.582,
+    "d_hull_nm": 3.677,
+    "unit_cells": 2.5,
+    "unit_cells_all": [
+     2.5
+    ]
+   },
+   "fingerprint": "38123b3dcb9c83e5",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbBr3/builder_pb/CsPbBr3-Pb-Cs200Pb125Br450-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbbr3_cubic_pb.yaml",
+    "qd_builder_commit": "8b31a40775ded35c7c82006b1b91c878e6254c8e",
+    "qd_builder_dirty": false,
+    "cif": "CsPbBr3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Br": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.5,
+      2.5,
+      2.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbBr3-Pb-Cs490Pb343Br1176-clean",
+   "material": "CsPbBr3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs490Pb343Br1176",
+   "composition": {
+    "Cs": 490,
+    "Pb": 343,
+    "Br": 1176
+   },
+   "core": {
+    "Cs": 490,
+    "Pb": 343,
+    "Br": 1176
+   },
+   "ligands": {},
+   "n_atoms": 2009,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.025,
+   "size": {
+    "n_core": 2009,
+    "d_nm": 5.615,
+    "d_volume_nm": 5.446,
+    "axes_nm": [
+     5.635,
+     5.624,
+     5.617
+    ],
+    "aspect_ratio": 1.003,
+    "d_max_nm": 6.602,
+    "d_hull_nm": 5.16,
+    "unit_cells": 3.5,
+    "unit_cells_all": [
+     3.5
+    ]
+   },
+   "fingerprint": "54956d4019136ad9",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbBr3/builder_pb/CsPbBr3-Pb-Cs490Pb343Br1176-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbbr3_cubic_pb.yaml",
+    "qd_builder_commit": "8b31a40775ded35c7c82006b1b91c878e6254c8e",
+    "qd_builder_dirty": false,
+    "cif": "CsPbBr3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Br": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.5,
+      3.5,
+      3.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbBr3-Pb-Cs54Pb27Br108-clean",
+   "material": "CsPbBr3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs54Pb27Br108",
+   "composition": {
+    "Cs": 54,
+    "Pb": 27,
+    "Br": 108
+   },
+   "core": {
+    "Cs": 54,
+    "Pb": 27,
+    "Br": 108
+   },
+   "ligands": {},
+   "n_atoms": 189,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.1,
+   "size": {
+    "n_core": 189,
+    "d_nm": 2.507,
+    "d_volume_nm": 2.477,
+    "axes_nm": [
+     2.535,
+     2.496,
+     2.492
+    ],
+    "aspect_ratio": 1.018,
+    "d_max_nm": 2.61,
+    "d_hull_nm": 2.175,
+    "unit_cells": 1.5,
+    "unit_cells_all": [
+     1.5
+    ]
+   },
+   "fingerprint": "b168933251ec0cce",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbBr3/builder_pb/CsPbBr3-Pb-Cs54Pb27Br108-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbbr3_cubic_pb.yaml",
+    "qd_builder_commit": "8b31a40775ded35c7c82006b1b91c878e6254c8e",
+    "qd_builder_dirty": false,
+    "cif": "CsPbBr3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Br": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.5,
+      1.5,
+      1.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbBr3-Pb-Cs972Pb729Br2430-clean",
+   "material": "CsPbBr3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs972Pb729Br2430",
+   "composition": {
+    "Cs": 972,
+    "Pb": 729,
+    "Br": 2430
+   },
+   "core": {
+    "Cs": 972,
+    "Pb": 729,
+    "Br": 2430
+   },
+   "ligands": {},
+   "n_atoms": 4131,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.026,
+   "size": {
+    "n_core": 4131,
+    "d_nm": 7.169,
+    "d_volume_nm": 6.925,
+    "axes_nm": [
+     7.172,
+     7.169,
+     7.165
+    ],
+    "aspect_ratio": 1.001,
+    "d_max_nm": 8.645,
+    "d_hull_nm": 6.638,
+    "unit_cells": 4.5,
+    "unit_cells_all": [
+     4.5
+    ]
+   },
+   "fingerprint": "2e980c6db8d8cbef",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbBr3/builder_pb/CsPbBr3-Pb-Cs972Pb729Br2430-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbbr3_cubic_pb.yaml",
+    "qd_builder_commit": "8b31a40775ded35c7c82006b1b91c878e6254c8e",
+    "qd_builder_dirty": false,
+    "cif": "CsPbBr3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Br": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      4.5,
+      4.5,
+      4.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
     }
    },
    "properties": {},
@@ -600,7 +1143,7 @@
    "family": "ABX3",
    "phase": "cubic perovskite",
    "surface": "clean",
-   "source": "builder",
+   "source": "builder+dft",
    "formula": "Cs112Pb64Cl240",
    "composition": {
     "Cs": 112,
@@ -639,6 +1182,13 @@
     {
      "stage": "start",
      "file": "ABX3/CsPbCl3/builder/CsPbCl3-Cs-Cs112Pb64Cl240-clean/start.xyz"
+    },
+    {
+     "stage": "geo_opt",
+     "file": "ABX3/CsPbCl3/HLE17/24ang/geo_opt/Cs112Pb64Cl240_HLE17_24ang_OPT.xyz",
+     "code": "CP2K",
+     "functional": "HLE17",
+     "basis": "DZVP"
     }
    ],
    "origin": {
@@ -681,13 +1231,20 @@
      "construction_origin": {
       "center_on_species": "Cs"
      }
-    }
+    },
+    "legacy_paths": [
+     "ABX3/CsPbCl3/HLE17/24ang"
+    ],
+    "dft_twin_deviation_A": 0.286
    },
-   "properties": {},
+   "properties": {
+    "plot.html": "ABX3/CsPbCl3/HLE17/24ang/properties/plot.html",
+    "plot.html.gz": "ABX3/CsPbCl3/HLE17/24ang/properties/plot.html.gz"
+   },
    "flags": {
-    "optimized": false,
+    "optimized": true,
     "md": false,
-    "properties": false
+    "properties": true
    }
   },
   {
@@ -794,7 +1351,7 @@
    "family": "ABX3",
    "phase": "cubic perovskite",
    "surface": "clean",
-   "source": "builder",
+   "source": "builder+dft",
    "formula": "Cs20Pb8Cl36",
    "composition": {
     "Cs": 20,
@@ -833,6 +1390,13 @@
     {
      "stage": "start",
      "file": "ABX3/CsPbCl3/builder/CsPbCl3-Cs-Cs20Pb8Cl36-clean/start.xyz"
+    },
+    {
+     "stage": "geo_opt",
+     "file": "ABX3/CsPbCl3/HLE17/12ang/geo_opt/Cs20Pb8Cl36_HLE17_12ang_OPT.xyz",
+     "code": "CP2K",
+     "functional": "HLE17",
+     "basis": "DZVP"
     }
    ],
    "origin": {
@@ -875,13 +1439,20 @@
      "construction_origin": {
       "center_on_species": "Cs"
      }
-    }
+    },
+    "legacy_paths": [
+     "ABX3/CsPbCl3/HLE17/12ang"
+    ],
+    "dft_twin_deviation_A": 0.333
    },
-   "properties": {},
+   "properties": {
+    "plot.html": "ABX3/CsPbCl3/HLE17/12ang/properties/plot.html",
+    "plot.html.gz": "ABX3/CsPbCl3/HLE17/12ang/properties/plot.html.gz"
+   },
    "flags": {
-    "optimized": false,
+    "optimized": true,
     "md": false,
-    "properties": false
+    "properties": true
    }
   },
   {
@@ -1165,6 +1736,491 @@
      ],
      "construction_origin": {
       "center_on_species": "Cs"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbCl3-Pb-Cs1694Pb1331Cl4356-clean",
+   "material": "CsPbCl3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs1694Pb1331Cl4356",
+   "composition": {
+    "Cs": 1694,
+    "Pb": 1331,
+    "Cl": 4356
+   },
+   "core": {
+    "Cs": 1694,
+    "Pb": 1331,
+    "Cl": 4356
+   },
+   "ligands": {},
+   "n_atoms": 7381,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.009,
+   "size": {
+    "n_core": 7381,
+    "d_nm": 8.316,
+    "d_volume_nm": 8.024,
+    "axes_nm": [
+     8.33,
+     8.326,
+     8.316
+    ],
+    "aspect_ratio": 1.002,
+    "d_max_nm": 10.21,
+    "d_hull_nm": 7.749,
+    "unit_cells": 5.5,
+    "unit_cells_all": [
+     5.5
+    ]
+   },
+   "fingerprint": "a046f91cf84e1514",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbCl3/builder_pb/CsPbCl3-Pb-Cs1694Pb1331Cl4356-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbcl3_cubic_pb.yaml",
+    "qd_builder_commit": "8b31a40775ded35c7c82006b1b91c878e6254c8e",
+    "qd_builder_dirty": false,
+    "cif": "CsPbCl3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Cl": -1,
+      "Br": -1
+     },
+     "passivation": {
+      "ligand": "Br",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      5.5,
+      5.5,
+      5.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbCl3-Pb-Cs200Pb125Cl450-clean",
+   "material": "CsPbCl3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs200Pb125Cl450",
+   "composition": {
+    "Cs": 200,
+    "Pb": 125,
+    "Cl": 450
+   },
+   "core": {
+    "Cs": 200,
+    "Pb": 125,
+    "Cl": 450
+   },
+   "ligands": {},
+   "n_atoms": 775,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.054,
+   "size": {
+    "n_core": 775,
+    "d_nm": 3.906,
+    "d_volume_nm": 3.785,
+    "axes_nm": [
+     3.923,
+     3.904,
+     3.876
+    ],
+    "aspect_ratio": 1.012,
+    "d_max_nm": 4.373,
+    "d_hull_nm": 3.511,
+    "unit_cells": 2.5,
+    "unit_cells_all": [
+     2.5
+    ]
+   },
+   "fingerprint": "590089a2ecf0f926",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbCl3/builder_pb/CsPbCl3-Pb-Cs200Pb125Cl450-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbcl3_cubic_pb.yaml",
+    "qd_builder_commit": "8b31a40775ded35c7c82006b1b91c878e6254c8e",
+    "qd_builder_dirty": false,
+    "cif": "CsPbCl3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Cl": -1,
+      "Br": -1
+     },
+     "passivation": {
+      "ligand": "Br",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.5,
+      2.5,
+      2.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbCl3-Pb-Cs490Pb343Cl1176-clean",
+   "material": "CsPbCl3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs490Pb343Cl1176",
+   "composition": {
+    "Cs": 490,
+    "Pb": 343,
+    "Cl": 1176
+   },
+   "core": {
+    "Cs": 490,
+    "Pb": 343,
+    "Cl": 1176
+   },
+   "ligands": {},
+   "n_atoms": 2009,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.026,
+   "size": {
+    "n_core": 2009,
+    "d_nm": 5.376,
+    "d_volume_nm": 5.2,
+    "axes_nm": [
+     5.388,
+     5.378,
+     5.376
+    ],
+    "aspect_ratio": 1.002,
+    "d_max_nm": 6.303,
+    "d_hull_nm": 4.926,
+    "unit_cells": 3.5,
+    "unit_cells_all": [
+     3.5
+    ]
+   },
+   "fingerprint": "0a7a7f9990b578cc",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbCl3/builder_pb/CsPbCl3-Pb-Cs490Pb343Cl1176-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbcl3_cubic_pb.yaml",
+    "qd_builder_commit": "8b31a40775ded35c7c82006b1b91c878e6254c8e",
+    "qd_builder_dirty": false,
+    "cif": "CsPbCl3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Cl": -1,
+      "Br": -1
+     },
+     "passivation": {
+      "ligand": "Br",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.5,
+      3.5,
+      3.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbCl3-Pb-Cs54Pb27Cl108-clean",
+   "material": "CsPbCl3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs54Pb27Cl108",
+   "composition": {
+    "Cs": 54,
+    "Pb": 27,
+    "Cl": 108
+   },
+   "core": {
+    "Cs": 54,
+    "Pb": 27,
+    "Cl": 108
+   },
+   "ligands": {},
+   "n_atoms": 189,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.124,
+   "size": {
+    "n_core": 189,
+    "d_nm": 2.404,
+    "d_volume_nm": 2.365,
+    "axes_nm": [
+     2.438,
+     2.428,
+     2.347
+    ],
+    "aspect_ratio": 1.039,
+    "d_max_nm": 2.497,
+    "d_hull_nm": 2.076,
+    "unit_cells": 1.5,
+    "unit_cells_all": [
+     1.5
+    ]
+   },
+   "fingerprint": "06f338db3ca8de57",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbCl3/builder_pb/CsPbCl3-Pb-Cs54Pb27Cl108-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbcl3_cubic_pb.yaml",
+    "qd_builder_commit": "8b31a40775ded35c7c82006b1b91c878e6254c8e",
+    "qd_builder_dirty": false,
+    "cif": "CsPbCl3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Cl": -1,
+      "Br": -1
+     },
+     "passivation": {
+      "ligand": "Br",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.5,
+      1.5,
+      1.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbCl3-Pb-Cs972Pb729Cl2430-clean",
+   "material": "CsPbCl3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs972Pb729Cl2430",
+   "composition": {
+    "Cs": 972,
+    "Pb": 729,
+    "Cl": 2430
+   },
+   "core": {
+    "Cs": 972,
+    "Pb": 729,
+    "Cl": 2430
+   },
+   "ligands": {},
+   "n_atoms": 4131,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.036,
+   "size": {
+    "n_core": 4131,
+    "d_nm": 6.843,
+    "d_volume_nm": 6.612,
+    "axes_nm": [
+     6.865,
+     6.855,
+     6.841
+    ],
+    "aspect_ratio": 1.003,
+    "d_max_nm": 8.257,
+    "d_hull_nm": 6.338,
+    "unit_cells": 4.5,
+    "unit_cells_all": [
+     4.5
+    ]
+   },
+   "fingerprint": "24fca86bc19c2942",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbCl3/builder_pb/CsPbCl3-Pb-Cs972Pb729Cl2430-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbcl3_cubic_pb.yaml",
+    "qd_builder_commit": "8b31a40775ded35c7c82006b1b91c878e6254c8e",
+    "qd_builder_dirty": false,
+    "cif": "CsPbCl3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "Cl": -1,
+      "Br": -1
+     },
+     "passivation": {
+      "ligand": "Br",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      4.5,
+      4.5,
+      4.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
      }
     }
    },
@@ -1747,6 +2803,516 @@
      ],
      "construction_origin": {
       "center_on_species": "Cs"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbI3-Pb-Cs1694Pb1331I4356-clean",
+   "material": "CsPbI3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs1694Pb1331I4356",
+   "composition": {
+    "Cs": 1694,
+    "Pb": 1331,
+    "I": 4356
+   },
+   "core": {
+    "Cs": 1694,
+    "Pb": 1331,
+    "I": 4356
+   },
+   "ligands": {},
+   "n_atoms": 7381,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.008,
+   "size": {
+    "n_core": 7381,
+    "d_nm": 9.152,
+    "d_volume_nm": 8.865,
+    "axes_nm": [
+     9.184,
+     9.181,
+     9.177
+    ],
+    "aspect_ratio": 1.001,
+    "d_max_nm": 11.279,
+    "d_hull_nm": 8.561,
+    "unit_cells": 5.5,
+    "unit_cells_all": [
+     5.5
+    ]
+   },
+   "fingerprint": "51dc3c98054360b1",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbI3/builder_pb/CsPbI3-Pb-Cs1694Pb1331I4356-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbi3_cubic_pb.yaml",
+    "qd_builder_commit": "8b31a40775ded35c7c82006b1b91c878e6254c8e",
+    "qd_builder_dirty": false,
+    "cif": "CsPbI3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "I": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      5.5,
+      5.5,
+      5.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbI3-Pb-Cs200Pb125I450-clean",
+   "material": "CsPbI3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder+dft",
+   "formula": "Cs200Pb125I450",
+   "composition": {
+    "Cs": 200,
+    "Pb": 125,
+    "I": 450
+   },
+   "core": {
+    "Cs": 200,
+    "Pb": 125,
+    "I": 450
+   },
+   "ligands": {},
+   "n_atoms": 775,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.034,
+   "size": {
+    "n_core": 775,
+    "d_nm": 4.298,
+    "d_volume_nm": 4.182,
+    "axes_nm": [
+     4.304,
+     4.292,
+     4.282
+    ],
+    "aspect_ratio": 1.005,
+    "d_max_nm": 4.826,
+    "d_hull_nm": 3.879,
+    "unit_cells": 2.5,
+    "unit_cells_all": [
+     2.5
+    ]
+   },
+   "fingerprint": "0360808951a5ddd4",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbI3/builder_pb/CsPbI3-Pb-Cs200Pb125I450-clean/start.xyz"
+    },
+    {
+     "stage": "geo_opt",
+     "file": "ABX3/CsPbI3/HLE17/32ang/geo_opt/Cs200Pb125I450_HLE17_32ang_OPT.xyz",
+     "code": "CP2K",
+     "functional": "HLE17",
+     "basis": "DZVP"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbi3_cubic_pb.yaml",
+    "qd_builder_commit": "8b31a40775ded35c7c82006b1b91c878e6254c8e",
+    "qd_builder_dirty": false,
+    "cif": "CsPbI3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "I": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      2.5,
+      2.5,
+      2.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    },
+    "legacy_paths": [
+     "ABX3/CsPbI3/HLE17/32ang"
+    ],
+    "dft_twin_deviation_A": 0.662
+   },
+   "properties": {},
+   "flags": {
+    "optimized": true,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbI3-Pb-Cs490Pb343I1176-clean",
+   "material": "CsPbI3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs490Pb343I1176",
+   "composition": {
+    "Cs": 490,
+    "Pb": 343,
+    "I": 1176
+   },
+   "core": {
+    "Cs": 490,
+    "Pb": 343,
+    "I": 1176
+   },
+   "ligands": {},
+   "n_atoms": 2009,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.028,
+   "size": {
+    "n_core": 2009,
+    "d_nm": 5.94,
+    "d_volume_nm": 5.745,
+    "axes_nm": [
+     5.932,
+     5.927,
+     5.924
+    ],
+    "aspect_ratio": 1.001,
+    "d_max_nm": 6.965,
+    "d_hull_nm": 5.443,
+    "unit_cells": 3.5,
+    "unit_cells_all": [
+     3.5
+    ]
+   },
+   "fingerprint": "494ec1d02cd266b5",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbI3/builder_pb/CsPbI3-Pb-Cs490Pb343I1176-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbi3_cubic_pb.yaml",
+    "qd_builder_commit": "8b31a40775ded35c7c82006b1b91c878e6254c8e",
+    "qd_builder_dirty": false,
+    "cif": "CsPbI3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "I": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      3.5,
+      3.5,
+      3.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    }
+   },
+   "properties": {},
+   "flags": {
+    "optimized": false,
+    "md": false,
+    "properties": false
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbI3-Pb-Cs54Pb27I108-clean",
+   "material": "CsPbI3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder+dft",
+   "formula": "Cs54Pb27I108",
+   "composition": {
+    "Cs": 54,
+    "Pb": 27,
+    "I": 108
+   },
+   "core": {
+    "Cs": 54,
+    "Pb": 27,
+    "I": 108
+   },
+   "ligands": {},
+   "n_atoms": 189,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.105,
+   "size": {
+    "n_core": 189,
+    "d_nm": 2.643,
+    "d_volume_nm": 2.613,
+    "axes_nm": [
+     2.662,
+     2.628,
+     2.624
+    ],
+    "aspect_ratio": 1.014,
+    "d_max_nm": 2.754,
+    "d_hull_nm": 2.294,
+    "unit_cells": 1.5,
+    "unit_cells_all": [
+     1.5
+    ]
+   },
+   "fingerprint": "5f6f22d7ac513f07",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbI3/builder_pb/CsPbI3-Pb-Cs54Pb27I108-clean/start.xyz"
+    },
+    {
+     "stage": "geo_opt",
+     "file": "ABX3/CsPbI3/HLE17/24ang/geo_opt/Cs54Pb27I108_HLE17_24ang_OPT.xyz",
+     "code": "CP2K",
+     "functional": "HLE17",
+     "basis": "DZVP"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbi3_cubic_pb.yaml",
+    "qd_builder_commit": "8b31a40775ded35c7c82006b1b91c878e6254c8e",
+    "qd_builder_dirty": false,
+    "cif": "CsPbI3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "I": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      1.5,
+      1.5,
+      1.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
+     }
+    },
+    "legacy_paths": [
+     "ABX3/CsPbI3/HLE17/24ang"
+    ],
+    "dft_twin_deviation_A": 0.462
+   },
+   "properties": {
+    "plot.html": "ABX3/CsPbI3/HLE17/24ang/properties/plot.html",
+    "plot.html.gz": "ABX3/CsPbI3/HLE17/24ang/properties/plot.html.gz"
+   },
+   "flags": {
+    "optimized": true,
+    "md": false,
+    "properties": true
+   }
+  },
+  {
+   "schema_version": 1,
+   "id": "CsPbI3-Pb-Cs972Pb729I2430-clean",
+   "material": "CsPbI3",
+   "family": "ABX3",
+   "phase": "cubic perovskite",
+   "surface": "clean",
+   "source": "builder",
+   "formula": "Cs972Pb729I2430",
+   "composition": {
+    "Cs": 972,
+    "Pb": 729,
+    "I": 2430
+   },
+   "core": {
+    "Cs": 972,
+    "Pb": 729,
+    "I": 2430
+   },
+   "ligands": {},
+   "n_atoms": 4131,
+   "total_charge": 0,
+   "centre": "Pb",
+   "centre_offset_A": 0.01,
+   "size": {
+    "n_core": 4131,
+    "d_nm": 7.545,
+    "d_volume_nm": 7.306,
+    "axes_nm": [
+     7.558,
+     7.554,
+     7.554
+    ],
+    "aspect_ratio": 1.001,
+    "d_max_nm": 9.117,
+    "d_hull_nm": 7.003,
+    "unit_cells": 4.5,
+    "unit_cells_all": [
+     4.5
+    ]
+   },
+   "fingerprint": "6673e9980fc017ec",
+   "stages": [
+    {
+     "stage": "start",
+     "file": "ABX3/CsPbI3/builder_pb/CsPbI3-Pb-Cs972Pb729I2430-clean/start.xyz"
+    }
+   ],
+   "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbi3_cubic_pb.yaml",
+    "qd_builder_commit": "8b31a40775ded35c7c82006b1b91c878e6254c8e",
+    "qd_builder_dirty": false,
+    "cif": "CsPbI3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+     "charges": {
+      "Cs": 1,
+      "Pb": 2,
+      "I": -1,
+      "Cl": -1
+     },
+     "passivation": {
+      "ligand": "Cl",
+      "surf_tol": 2.0,
+      "prepass_mode": "role-aware",
+      "prepass_min_cn_terrace": 3,
+      "prepass_min_cn_edge": 2,
+      "prepass_min_cn_vertex": 1
+     },
+     "facets": [
+      {
+       "hkl": "100",
+       "scope": "family",
+       "gamma": 1.0
+      }
+     ],
+     "symmetry": {
+      "proper_rotations_only": true
+     },
+     "size_unit_cells": [
+      4.5,
+      4.5,
+      4.5
+     ],
+     "construction_origin": {
+      "center_on_species": "Pb"
      }
     }
    },
@@ -20474,6 +22040,16 @@
      "code": "CP2K",
      "functional": "HLE17",
      "basis": "DZVP"
+    },
+    {
+     "stage": "geo_opt",
+     "file": "II-VI/CdSe/old/Cd176_OPT.xyz",
+     "code": "CP2K"
+    },
+    {
+     "stage": "geo_opt",
+     "file": "II-VI/CdSe/old/Cd176_pure_OPT.xyz",
+     "code": "CP2K"
     }
    ],
    "origin": {
@@ -20530,7 +22106,9 @@
      }
     },
     "legacy_paths": [
-     "II-VI/CdSe/HLE17/28ang"
+     "II-VI/CdSe/HLE17/28ang",
+     "II-VI/CdSe/old/Cd176_OPT.xyz",
+     "II-VI/CdSe/old/Cd176_pure_OPT.xyz"
     ],
     "dft_twin_deviation_A": 0.209
    },
@@ -22314,7 +23892,7 @@
    "family": "II-VI",
    "phase": "zinc-blende",
    "surface": "clean",
-   "source": "builder",
+   "source": "builder+dft",
    "formula": "Cd360Se309Cl102",
    "composition": {
     "Cd": 360,
@@ -22355,6 +23933,11 @@
     {
      "stage": "start",
      "file": "II-VI/CdSe/builder/CdSe-Se-Cd360Se309Cl102-clean/start.xyz"
+    },
+    {
+     "stage": "md",
+     "file": "II-VI/CdSe/old/CdSe_771-pos-1.xyz",
+     "code": "CP2K"
     }
    ],
    "origin": {
@@ -22409,12 +23992,16 @@
      "construction_origin": {
       "center_on_species": "Se"
      }
-    }
+    },
+    "legacy_paths": [
+     "II-VI/CdSe/old/CdSe_771-pos-1.xyz"
+    ],
+    "dft_twin_deviation_A": 0.176
    },
    "properties": {},
    "flags": {
     "optimized": false,
-    "md": false,
+    "md": true,
     "properties": false
    }
   },
@@ -23700,6 +25287,11 @@
      "code": "CP2K",
      "functional": "HLE17",
      "basis": "DZVP"
+    },
+    {
+     "stage": "geo_opt",
+     "file": "II-VI/CdSe/old/Cd68_OPT.xyz",
+     "code": "CP2K"
     }
    ],
    "origin": {
@@ -23756,9 +25348,10 @@
      }
     },
     "legacy_paths": [
-     "II-VI/CdSe/HLE17/20ang"
+     "II-VI/CdSe/HLE17/20ang",
+     "II-VI/CdSe/old/Cd68_OPT.xyz"
     ],
-    "dft_twin_deviation_A": 0.265
+    "dft_twin_deviation_A": 0.261
    },
    "properties": {
     "ground_state.html": "II-VI/CdSe/builder/CdSe-Se-Cd68Se55Cl26-clean/props/ground_state.html",
@@ -146001,7 +147594,7 @@
    "family": "III-V",
    "phase": "zinc-blende",
    "surface": "clean",
-   "source": "builder",
+   "source": "builder+dft",
    "formula": "Ga31As20Cl33",
    "composition": {
     "Ga": 31,
@@ -146041,6 +147634,13 @@
     {
      "stage": "start",
      "file": "III-V/GaAs/builder/GaAs-Ga-Ga31As20Cl33-clean/start.xyz"
+    },
+    {
+     "stage": "geo_opt",
+     "file": "III-V/GaAs/HLE17/18ang/geo_opt/Ga31As20Cl33_HLE17_18ang_OPT.xyz",
+     "code": "CP2K",
+     "functional": "HLE17",
+     "basis": "DZVP"
     }
    ],
    "origin": {
@@ -146089,13 +147689,20 @@
      "construction_origin": {
       "center_on_species": "Ga"
      }
-    }
+    },
+    "legacy_paths": [
+     "III-V/GaAs/HLE17/18ang"
+    ],
+    "dft_twin_deviation_A": 0.523
    },
-   "properties": {},
+   "properties": {
+    "plot.html": "III-V/GaAs/HLE17/18ang/properties/plot.html",
+    "plot.html.gz": "III-V/GaAs/HLE17/18ang/properties/plot.html.gz"
+   },
    "flags": {
-    "optimized": false,
+    "optimized": true,
     "md": false,
-    "properties": false
+    "properties": true
    }
   },
   {
@@ -150503,7 +152110,7 @@
    "family": "III-V",
    "phase": "zinc-blende",
    "surface": "clean",
-   "source": "builder",
+   "source": "builder+dft",
    "formula": "Ga31P20Cl33",
    "composition": {
     "Ga": 31,
@@ -150543,6 +152150,13 @@
     {
      "stage": "start",
      "file": "III-V/GaP/builder/GaP-Ga-Ga31P20Cl33-clean/start.xyz"
+    },
+    {
+     "stage": "geo_opt",
+     "file": "III-V/GaP/HLE17/18ang/geo_opt/Ga31P20Cl33_HLE17_18ang_OPT.xyz",
+     "code": "CP2K",
+     "functional": "HLE17",
+     "basis": "DZVP"
     }
    ],
    "origin": {
@@ -150591,13 +152205,20 @@
      "construction_origin": {
       "center_on_species": "Ga"
      }
-    }
+    },
+    "legacy_paths": [
+     "III-V/GaP/HLE17/18ang"
+    ],
+    "dft_twin_deviation_A": 0.397
    },
-   "properties": {},
+   "properties": {
+    "plot.html": "III-V/GaP/HLE17/18ang/properties/plot.html",
+    "plot.html.gz": "III-V/GaP/HLE17/18ang/properties/plot.html.gz"
+   },
    "flags": {
-    "optimized": false,
+    "optimized": true,
     "md": false,
-    "properties": false
+    "properties": true
    }
   },
   {
@@ -157211,7 +158832,7 @@
    "family": "III-V",
    "phase": "zinc-blende",
    "surface": "clean",
-   "source": "builder",
+   "source": "builder+dft",
    "formula": "Ga31Sb20Cl33",
    "composition": {
     "Ga": 31,
@@ -157251,6 +158872,13 @@
     {
      "stage": "start",
      "file": "III-V/GaSb/builder/GaSb-Ga-Ga31Sb20Cl33-clean/start.xyz"
+    },
+    {
+     "stage": "geo_opt",
+     "file": "III-V/GaSb/HLE17/18ang/geo_opt/Ga31Sb20Cl33_HLE17_18ang_OPT.xyz",
+     "code": "CP2K",
+     "functional": "HLE17",
+     "basis": "DZVP"
     }
    ],
    "origin": {
@@ -157299,11 +158927,15 @@
      "construction_origin": {
       "center_on_species": "Ga"
      }
-    }
+    },
+    "legacy_paths": [
+     "III-V/GaSb/HLE17/18ang"
+    ],
+    "dft_twin_deviation_A": 0.588
    },
    "properties": {},
    "flags": {
-    "optimized": false,
+    "optimized": true,
     "md": false,
     "properties": false
    }
@@ -166125,7 +167757,7 @@
    "family": "III-V",
    "phase": "zinc-blende",
    "surface": "clean",
-   "source": "builder",
+   "source": "builder+dft",
    "formula": "In31As20Cl33",
    "composition": {
     "In": 31,
@@ -166165,6 +167797,13 @@
     {
      "stage": "start",
      "file": "III-V/InAs/builder/InAs-In-In31As20Cl33-clean/start.xyz"
+    },
+    {
+     "stage": "geo_opt",
+     "file": "III-V/InAs/HLE17/18ang/geo_opt/In31As20Cl33_HLE17_18ang_OPT.xyz",
+     "code": "CP2K",
+     "functional": "HLE17",
+     "basis": "DZVP"
     }
    ],
    "origin": {
@@ -166213,13 +167852,20 @@
      "construction_origin": {
       "center_on_species": "In"
      }
-    }
+    },
+    "legacy_paths": [
+     "III-V/InAs/HLE17/18ang"
+    ],
+    "dft_twin_deviation_A": 0.488
    },
-   "properties": {},
+   "properties": {
+    "plot.html": "III-V/InAs/HLE17/18ang/properties/plot.html",
+    "plot.html.gz": "III-V/InAs/HLE17/18ang/properties/plot.html.gz"
+   },
    "flags": {
-    "optimized": false,
+    "optimized": true,
     "md": false,
-    "properties": false
+    "properties": true
    }
   },
   {
@@ -177344,7 +178990,7 @@
    "family": "III-V",
    "phase": "zinc-blende",
    "surface": "clean",
-   "source": "builder",
+   "source": "builder+dft",
    "formula": "In31Sb20Cl33",
    "composition": {
     "In": 31,
@@ -177384,6 +179030,13 @@
     {
      "stage": "start",
      "file": "III-V/InSb/builder/InSb-In-In31Sb20Cl33-clean/start.xyz"
+    },
+    {
+     "stage": "geo_opt",
+     "file": "III-V/InSb/HLE17/18ang/geo_opt/In31Sb20Cl33_HLE17_18ang_OPT.xyz",
+     "code": "CP2K",
+     "functional": "HLE17",
+     "basis": "DZVP"
     }
    ],
    "origin": {
@@ -177432,13 +179085,20 @@
      "construction_origin": {
       "center_on_species": "In"
      }
-    }
+    },
+    "legacy_paths": [
+     "III-V/InSb/HLE17/18ang"
+    ],
+    "dft_twin_deviation_A": 0.631
    },
-   "properties": {},
+   "properties": {
+    "plot.html": "III-V/InSb/HLE17/18ang/properties/plot.html",
+    "plot.html.gz": "III-V/InSb/HLE17/18ang/properties/plot.html.gz"
+   },
    "flags": {
-    "optimized": false,
+    "optimized": true,
     "md": false,
-    "properties": false
+    "properties": true
    }
   },
   {
@@ -190618,444 +192278,6 @@
   },
   {
    "schema_version": 1,
-   "id": "CsPbBr3-Cs-Cs20Pb8Br36-clean-v2",
-   "material": "CsPbBr3",
-   "family": "ABX3",
-   "phase": "cubic perovskite",
-   "surface": "clean",
-   "source": "dft",
-   "formula": "Cs20Pb8Br36",
-   "composition": {
-    "Pb": 8,
-    "Br": 36,
-    "Cs": 20
-   },
-   "core": {
-    "Pb": 8,
-    "Br": 36,
-    "Cs": 20
-   },
-   "ligands": {},
-   "n_atoms": 64,
-   "total_charge": 0,
-   "centre": "Cs",
-   "centre_offset_A": 0.238,
-   "size": {
-    "n_core": 64,
-    "d_nm": 1.618,
-    "d_volume_nm": 1.726,
-    "axes_nm": [
-     1.688,
-     1.587,
-     1.587
-    ],
-    "aspect_ratio": 1.064,
-    "d_max_nm": 1.84,
-    "d_hull_nm": 1.352
-   },
-   "fingerprint": "b35e74d0b0205b05",
-   "stages": [
-    {
-     "stage": "geo_opt",
-     "file": "ABX3/CsPbBr3/HLE17/12ang/geo_opt/Cs20Pb8Br36_HLE17_12ang_OPT.xyz",
-     "code": "CP2K",
-     "functional": "HLE17",
-     "basis": "DZVP"
-    }
-   ],
-   "origin": {
-    "legacy_paths": [
-     "ABX3/CsPbBr3/HLE17/12ang"
-    ],
-    "notes": ""
-   },
-   "properties": {
-    "plot.html": "ABX3/CsPbBr3/HLE17/12ang/properties/plot.html",
-    "plot.html.gz": "ABX3/CsPbBr3/HLE17/12ang/properties/plot.html.gz"
-   },
-   "flags": {
-    "optimized": true,
-    "md": false,
-    "properties": true
-   }
-  },
-  {
-   "schema_version": 1,
-   "id": "CsPbBr3-Cs-Cs20Pb8Br36-clean-v3",
-   "material": "CsPbBr3",
-   "family": "ABX3",
-   "phase": "cubic perovskite",
-   "surface": "clean",
-   "source": "dft",
-   "formula": "Cs20Pb8Br36",
-   "composition": {
-    "Pb": 8,
-    "Br": 36,
-    "Cs": 20
-   },
-   "core": {
-    "Pb": 8,
-    "Br": 36,
-    "Cs": 20
-   },
-   "ligands": {},
-   "n_atoms": 64,
-   "total_charge": 0,
-   "centre": "Cs",
-   "centre_offset_A": 0.238,
-   "size": {
-    "n_core": 64,
-    "d_nm": 1.618,
-    "d_volume_nm": 1.726,
-    "axes_nm": [
-     1.688,
-     1.587,
-     1.587
-    ],
-    "aspect_ratio": 1.064,
-    "d_max_nm": 1.84,
-    "d_hull_nm": 1.352
-   },
-   "fingerprint": "b35e74d0b0205b05",
-   "stages": [
-    {
-     "stage": "geo_opt",
-     "file": "ABX3/CsPbBr3/HLE17/16ang/geo_opt/Cs20Pb8Br36_HLE17_16ang_OPT.xyz",
-     "code": "CP2K",
-     "functional": "HLE17",
-     "basis": "DZVP"
-    }
-   ],
-   "origin": {
-    "legacy_paths": [
-     "ABX3/CsPbBr3/HLE17/16ang"
-    ],
-    "notes": ""
-   },
-   "properties": {
-    "plot.html": "ABX3/CsPbBr3/HLE17/16ang/properties/plot.html",
-    "plot.html.gz": "ABX3/CsPbBr3/HLE17/16ang/properties/plot.html.gz"
-   },
-   "flags": {
-    "optimized": true,
-    "md": false,
-    "properties": true
-   }
-  },
-  {
-   "schema_version": 1,
-   "id": "CsPbBr3-Cs-Cs112Pb64Br240-clean-v2",
-   "material": "CsPbBr3",
-   "family": "ABX3",
-   "phase": "cubic perovskite",
-   "surface": "clean",
-   "source": "dft",
-   "formula": "Cs112Pb64Br240",
-   "composition": {
-    "Pb": 64,
-    "Br": 240,
-    "Cs": 112
-   },
-   "core": {
-    "Pb": 64,
-    "Br": 240,
-    "Cs": 112
-   },
-   "ligands": {},
-   "n_atoms": 416,
-   "total_charge": 0,
-   "centre": "Cs",
-   "centre_offset_A": 0.196,
-   "size": {
-    "n_core": 416,
-    "d_nm": 3.284,
-    "d_volume_nm": 3.222,
-    "axes_nm": [
-     3.303,
-     3.285,
-     3.275
-    ],
-    "aspect_ratio": 1.009,
-    "d_max_nm": 3.528,
-    "d_hull_nm": 2.935
-   },
-   "fingerprint": "6bd4c74af0a4930e",
-   "stages": [
-    {
-     "stage": "geo_opt",
-     "file": "ABX3/CsPbBr3/HLE17/24ang/geo_opt/Cs112Pb64Br240_HLE17_24ang_OPT.xyz",
-     "code": "CP2K",
-     "functional": "HLE17",
-     "basis": "DZVP"
-    }
-   ],
-   "origin": {
-    "legacy_paths": [
-     "ABX3/CsPbBr3/HLE17/24ang"
-    ],
-    "notes": ""
-   },
-   "properties": {
-    "plot.html": "ABX3/CsPbBr3/HLE17/24ang/properties/plot.html",
-    "plot.html.gz": "ABX3/CsPbBr3/HLE17/24ang/properties/plot.html.gz"
-   },
-   "flags": {
-    "optimized": true,
-    "md": false,
-    "properties": true
-   }
-  },
-  {
-   "schema_version": 1,
-   "id": "CsPbBr3-Cs-Cs324Pb216Br756-clean-v2",
-   "material": "CsPbBr3",
-   "family": "ABX3",
-   "phase": "cubic perovskite",
-   "surface": "clean",
-   "source": "dft",
-   "formula": "Cs324Pb216Br756",
-   "composition": {
-    "Pb": 216,
-    "Br": 756,
-    "Cs": 324
-   },
-   "core": {
-    "Pb": 216,
-    "Br": 756,
-    "Cs": 324
-   },
-   "ligands": {},
-   "n_atoms": 1296,
-   "total_charge": 0,
-   "centre": "Cs",
-   "centre_offset_A": 0.469,
-   "size": {
-    "n_core": 1296,
-    "d_nm": 4.88,
-    "d_volume_nm": 4.706,
-    "axes_nm": [
-     4.892,
-     4.885,
-     4.875
-    ],
-    "aspect_ratio": 1.004,
-    "d_max_nm": 5.569,
-    "d_hull_nm": 4.468
-   },
-   "fingerprint": "2e998c91b6d14c6e",
-   "stages": [
-    {
-     "stage": "geo_opt",
-     "file": "ABX3/CsPbBr3/HLE17/37ang/geo_opt/Cs324Pb216Br756_HLE17_37ang_OPT.xyz",
-     "code": "CP2K",
-     "functional": "HLE17",
-     "basis": "DZVP"
-    }
-   ],
-   "origin": {
-    "legacy_paths": [
-     "ABX3/CsPbBr3/HLE17/37ang"
-    ],
-    "notes": ""
-   },
-   "properties": {
-    "plot.html": "ABX3/CsPbBr3/HLE17/37ang/properties/plot.html",
-    "plot.html.gz": "ABX3/CsPbBr3/HLE17/37ang/properties/plot.html.gz"
-   },
-   "flags": {
-    "optimized": true,
-    "md": false,
-    "properties": true
-   }
-  },
-  {
-   "schema_version": 1,
-   "id": "CsPbBr3-Cs-Cs704Pb512Br1728-clean-v2",
-   "material": "CsPbBr3",
-   "family": "ABX3",
-   "phase": "cubic perovskite",
-   "surface": "clean",
-   "source": "dft",
-   "formula": "Cs704Pb512Br1728",
-   "composition": {
-    "Pb": 512,
-    "Br": 1728,
-    "Cs": 704
-   },
-   "core": {
-    "Pb": 512,
-    "Br": 1728,
-    "Cs": 704
-   },
-   "ligands": {},
-   "n_atoms": 2944,
-   "total_charge": 0,
-   "centre": "Cs",
-   "centre_offset_A": 0.435,
-   "size": {
-    "n_core": 2944,
-    "d_nm": 6.499,
-    "d_volume_nm": 6.186,
-    "axes_nm": [
-     6.498,
-     6.48,
-     6.475
-    ],
-    "aspect_ratio": 1.004,
-    "d_max_nm": 7.749,
-    "d_hull_nm": 6.009
-   },
-   "fingerprint": "0546db60f1626417",
-   "stages": [
-    {
-     "stage": "geo_opt",
-     "file": "ABX3/CsPbBr3/HLE17/48ang/geo_opt/Cs704Pb512Br1728_HLE17_48ang_OPT.xyz",
-     "code": "CP2K",
-     "functional": "HLE17",
-     "basis": "DZVP"
-    }
-   ],
-   "origin": {
-    "legacy_paths": [
-     "ABX3/CsPbBr3/HLE17/48ang"
-    ],
-    "notes": ""
-   },
-   "properties": {},
-   "flags": {
-    "optimized": true,
-    "md": false,
-    "properties": false
-   }
-  },
-  {
-   "schema_version": 1,
-   "id": "CsPbCl3-Cs-Cs20Pb8Cl36-clean-v2",
-   "material": "CsPbCl3",
-   "family": "ABX3",
-   "phase": "cubic perovskite",
-   "surface": "clean",
-   "source": "dft",
-   "formula": "Cs20Pb8Cl36",
-   "composition": {
-    "Pb": 8,
-    "Cl": 36,
-    "Cs": 20
-   },
-   "core": {
-    "Pb": 8,
-    "Cl": 36,
-    "Cs": 20
-   },
-   "ligands": {},
-   "n_atoms": 64,
-   "total_charge": 0,
-   "centre": "Cs",
-   "centre_offset_A": 0.224,
-   "size": {
-    "n_core": 64,
-    "d_nm": 1.547,
-    "d_volume_nm": 1.648,
-    "axes_nm": [
-     1.627,
-     1.511,
-     1.511
-    ],
-    "aspect_ratio": 1.077,
-    "d_max_nm": 1.763,
-    "d_hull_nm": 1.289
-   },
-   "fingerprint": "faec986431714cee",
-   "stages": [
-    {
-     "stage": "geo_opt",
-     "file": "ABX3/CsPbCl3/HLE17/12ang/geo_opt/Cs20Pb8Cl36_HLE17_12ang_OPT.xyz",
-     "code": "CP2K",
-     "functional": "HLE17",
-     "basis": "DZVP"
-    }
-   ],
-   "origin": {
-    "legacy_paths": [
-     "ABX3/CsPbCl3/HLE17/12ang"
-    ],
-    "notes": ""
-   },
-   "properties": {
-    "plot.html": "ABX3/CsPbCl3/HLE17/12ang/properties/plot.html",
-    "plot.html.gz": "ABX3/CsPbCl3/HLE17/12ang/properties/plot.html.gz"
-   },
-   "flags": {
-    "optimized": true,
-    "md": false,
-    "properties": true
-   }
-  },
-  {
-   "schema_version": 1,
-   "id": "CsPbCl3-Cs-Cs112Pb64Cl240-clean-v2",
-   "material": "CsPbCl3",
-   "family": "ABX3",
-   "phase": "cubic perovskite",
-   "surface": "clean",
-   "source": "dft",
-   "formula": "Cs112Pb64Cl240",
-   "composition": {
-    "Pb": 64,
-    "Cl": 240,
-    "Cs": 112
-   },
-   "core": {
-    "Pb": 64,
-    "Cl": 240,
-    "Cs": 112
-   },
-   "ligands": {},
-   "n_atoms": 416,
-   "total_charge": 0,
-   "centre": "Cs",
-   "centre_offset_A": 0.194,
-   "size": {
-    "n_core": 416,
-    "d_nm": 3.147,
-    "d_volume_nm": 3.076,
-    "axes_nm": [
-     3.164,
-     3.148,
-     3.127
-    ],
-    "aspect_ratio": 1.012,
-    "d_max_nm": 3.369,
-    "d_hull_nm": 2.8
-   },
-   "fingerprint": "163b52bbaeefa483",
-   "stages": [
-    {
-     "stage": "geo_opt",
-     "file": "ABX3/CsPbCl3/HLE17/24ang/geo_opt/Cs112Pb64Cl240_HLE17_24ang_OPT.xyz",
-     "code": "CP2K",
-     "functional": "HLE17",
-     "basis": "DZVP"
-    }
-   ],
-   "origin": {
-    "legacy_paths": [
-     "ABX3/CsPbCl3/HLE17/24ang"
-    ],
-    "notes": ""
-   },
-   "properties": {
-    "plot.html": "ABX3/CsPbCl3/HLE17/24ang/properties/plot.html",
-    "plot.html.gz": "ABX3/CsPbCl3/HLE17/24ang/properties/plot.html.gz"
-   },
-   "flags": {
-    "optimized": true,
-    "md": false,
-    "properties": true
-   }
-  },
-  {
-   "schema_version": 1,
    "id": "CsPbCl3-Cs-Cs307Pb216Cl739-clean",
    "material": "CsPbCl3",
    "family": "ABX3",
@@ -191228,129 +192450,6 @@
    "origin": {
     "legacy_paths": [
      "ABX3/CsPbCl3/HLE17/52ang"
-    ],
-    "notes": ""
-   },
-   "properties": {},
-   "flags": {
-    "optimized": true,
-    "md": false,
-    "properties": false
-   }
-  },
-  {
-   "schema_version": 1,
-   "id": "CsPbI3-Pb-Cs54Pb27I108-clean",
-   "material": "CsPbI3",
-   "family": "ABX3",
-   "phase": "cubic perovskite",
-   "surface": "clean",
-   "source": "dft",
-   "formula": "Cs54Pb27I108",
-   "composition": {
-    "Cs": 54,
-    "I": 108,
-    "Pb": 27
-   },
-   "core": {
-    "Cs": 54,
-    "I": 108,
-    "Pb": 27
-   },
-   "ligands": {},
-   "n_atoms": 189,
-   "total_charge": 0,
-   "centre": "Pb",
-   "centre_offset_A": 0.072,
-   "size": {
-    "n_core": 189,
-    "d_nm": 2.672,
-    "d_volume_nm": 2.613,
-    "axes_nm": [
-     2.725,
-     2.645,
-     2.633
-    ],
-    "aspect_ratio": 1.035,
-    "d_max_nm": 2.982,
-    "d_hull_nm": 2.339
-   },
-   "fingerprint": "fd08059018fbd8bd",
-   "stages": [
-    {
-     "stage": "geo_opt",
-     "file": "ABX3/CsPbI3/HLE17/24ang/geo_opt/Cs54Pb27I108_HLE17_24ang_OPT.xyz",
-     "code": "CP2K",
-     "functional": "HLE17",
-     "basis": "DZVP"
-    }
-   ],
-   "origin": {
-    "legacy_paths": [
-     "ABX3/CsPbI3/HLE17/24ang"
-    ],
-    "notes": ""
-   },
-   "properties": {
-    "plot.html": "ABX3/CsPbI3/HLE17/24ang/properties/plot.html",
-    "plot.html.gz": "ABX3/CsPbI3/HLE17/24ang/properties/plot.html.gz"
-   },
-   "flags": {
-    "optimized": true,
-    "md": false,
-    "properties": true
-   }
-  },
-  {
-   "schema_version": 1,
-   "id": "CsPbI3-Pb-Cs200Pb125I450-clean",
-   "material": "CsPbI3",
-   "family": "ABX3",
-   "phase": "cubic perovskite",
-   "surface": "clean",
-   "source": "dft",
-   "formula": "Cs200Pb125I450",
-   "composition": {
-    "Cs": 200,
-    "I": 450,
-    "Pb": 125
-   },
-   "core": {
-    "Cs": 200,
-    "I": 450,
-    "Pb": 125
-   },
-   "ligands": {},
-   "n_atoms": 775,
-   "total_charge": 0,
-   "centre": "Pb",
-   "centre_offset_A": 0.202,
-   "size": {
-    "n_core": 775,
-    "d_nm": 4.443,
-    "d_volume_nm": 4.182,
-    "axes_nm": [
-     4.475,
-     4.437,
-     4.417
-    ],
-    "aspect_ratio": 1.013,
-    "d_max_nm": 5.073,
-    "d_hull_nm": 4.083
-   },
-   "fingerprint": "629db2691dd0ade9",
-   "stages": [
-    {
-     "stage": "geo_opt",
-     "file": "ABX3/CsPbI3/HLE17/32ang/geo_opt/Cs200Pb125I450_HLE17_32ang_OPT.xyz",
-     "code": "CP2K",
-     "functional": "HLE17",
-     "basis": "DZVP"
-    }
-   ],
-   "origin": {
-    "legacy_paths": [
-     "ABX3/CsPbI3/HLE17/32ang"
     ],
     "notes": ""
    },
@@ -191635,124 +192734,6 @@
   },
   {
    "schema_version": 1,
-   "id": "CdSe-Se-Cd176Se147Cl58-clean-v2",
-   "material": "CdSe",
-   "family": "II-VI",
-   "phase": "zinc-blende",
-   "surface": "clean",
-   "source": "dft",
-   "formula": "Cd176Se147Cl58",
-   "composition": {
-    "Cd": 176,
-    "Se": 147,
-    "Cl": 58
-   },
-   "core": {
-    "Cd": 176,
-    "Se": 147
-   },
-   "ligands": {
-    "Cl": 58
-   },
-   "n_atoms": 381,
-   "total_charge": 0,
-   "centre": "Se",
-   "centre_offset_A": 0.009,
-   "size": {
-    "n_core": 323,
-    "d_nm": 2.704,
-    "d_volume_nm": 2.614,
-    "axes_nm": [
-     2.707,
-     2.702,
-     2.693
-    ],
-    "aspect_ratio": 1.005,
-    "d_max_nm": 2.695,
-    "d_hull_nm": 2.357
-   },
-   "fingerprint": "6695f84717c2a958",
-   "stages": [
-    {
-     "stage": "geo_opt",
-     "file": "II-VI/CdSe/old/Cd176_OPT.xyz",
-     "code": "CP2K"
-    }
-   ],
-   "origin": {
-    "legacy_paths": [
-     "II-VI/CdSe/old/Cd176_OPT.xyz"
-    ],
-    "notes": ""
-   },
-   "properties": {},
-   "flags": {
-    "optimized": true,
-    "md": false,
-    "properties": false
-   }
-  },
-  {
-   "schema_version": 1,
-   "id": "CdSe-Se-Cd176Se147Cl58-clean-v3",
-   "material": "CdSe",
-   "family": "II-VI",
-   "phase": "zinc-blende",
-   "surface": "clean",
-   "source": "dft",
-   "formula": "Cd176Se147Cl58",
-   "composition": {
-    "Cd": 176,
-    "Se": 147,
-    "Cl": 58
-   },
-   "core": {
-    "Cd": 176,
-    "Se": 147
-   },
-   "ligands": {
-    "Cl": 58
-   },
-   "n_atoms": 381,
-   "total_charge": 0,
-   "centre": "Se",
-   "centre_offset_A": 0.009,
-   "size": {
-    "n_core": 323,
-    "d_nm": 2.704,
-    "d_volume_nm": 2.614,
-    "axes_nm": [
-     2.707,
-     2.702,
-     2.693
-    ],
-    "aspect_ratio": 1.005,
-    "d_max_nm": 2.695,
-    "d_hull_nm": 2.357
-   },
-   "fingerprint": "0a0248c9b752402c",
-   "stages": [
-    {
-     "stage": "geo_opt",
-     "file": "II-VI/CdSe/old/Cd176_pure_OPT.xyz",
-     "code": "CP2K"
-    }
-   ],
-   "origin": {
-    "legacy_paths": [
-     "II-VI/CdSe/old/Cd176_pure_OPT.xyz"
-    ],
-    "notes": ""
-   },
-   "properties": {},
-   "flags": {
-    "optimized": true,
-    "md": false,
-    "properties": false
-   }
-  },
-  {
-   "schema_version": 1,
    "id": "CdSe-Se-Cd324Se281Cl86-clean",
    "material": "CdSe",
    "family": "II-VI",
@@ -191800,65 +192781,6 @@
    "origin": {
     "legacy_paths": [
      "II-VI/CdSe/old/Cd360_vacs_OPT.xyz"
-    ],
-    "notes": ""
-   },
-   "properties": {},
-   "flags": {
-    "optimized": true,
-    "md": false,
-    "properties": false
-   }
-  },
-  {
-   "schema_version": 1,
-   "id": "CdSe-Se-Cd68Se55Cl26-clean-v2",
-   "material": "CdSe",
-   "family": "II-VI",
-   "phase": "zinc-blende",
-   "surface": "clean",
-   "source": "dft",
-   "formula": "Cd68Se55Cl26",
-   "composition": {
-    "Cd": 68,
-    "Se": 55,
-    "Cl": 26
-   },
-   "core": {
-    "Cd": 68,
-    "Se": 55
-   },
-   "ligands": {
-    "Cl": 26
-   },
-   "n_atoms": 149,
-   "total_charge": 0,
-   "centre": "Se",
-   "centre_offset_A": 0.048,
-   "size": {
-    "n_core": 123,
-    "d_nm": 1.939,
-    "d_volume_nm": 1.894,
-    "axes_nm": [
-     1.97,
-     1.923,
-     1.914
-    ],
-    "aspect_ratio": 1.029,
-    "d_max_nm": 1.816,
-    "d_hull_nm": 1.597
-   },
-   "fingerprint": "116ca13d57963356",
-   "stages": [
-    {
-     "stage": "geo_opt",
-     "file": "II-VI/CdSe/old/Cd68_OPT.xyz",
-     "code": "CP2K"
-    }
-   ],
-   "origin": {
-    "legacy_paths": [
-     "II-VI/CdSe/old/Cd68_OPT.xyz"
     ],
     "notes": ""
    },
@@ -191977,65 +192899,6 @@
    "origin": {
     "legacy_paths": [
      "II-VI/CdSe/old/CdSe_649-pos-1.xyz"
-    ],
-    "notes": ""
-   },
-   "properties": {},
-   "flags": {
-    "optimized": false,
-    "md": true,
-    "properties": false
-   }
-  },
-  {
-   "schema_version": 1,
-   "id": "CdSe-Se-Cd360Se309Cl102-clean-v2",
-   "material": "CdSe",
-   "family": "II-VI",
-   "phase": "zinc-blende",
-   "surface": "clean",
-   "source": "dft",
-   "formula": "Cd360Se309Cl102",
-   "composition": {
-    "Cd": 360,
-    "Se": 309,
-    "Cl": 102
-   },
-   "core": {
-    "Cd": 360,
-    "Se": 309
-   },
-   "ligands": {
-    "Cl": 102
-   },
-   "n_atoms": 771,
-   "total_charge": 0,
-   "centre": "Se",
-   "centre_offset_A": 0.022,
-   "size": {
-    "n_core": 669,
-    "d_nm": 3.399,
-    "d_volume_nm": 3.332,
-    "axes_nm": [
-     3.419,
-     3.401,
-     3.4
-    ],
-    "aspect_ratio": 1.005,
-    "d_max_nm": 3.529,
-    "d_hull_nm": 3.058
-   },
-   "fingerprint": "7fafcd7ddac59f13",
-   "stages": [
-    {
-     "stage": "md",
-     "file": "II-VI/CdSe/old/CdSe_771-pos-1.xyz",
-     "code": "CP2K"
-    }
-   ],
-   "origin": {
-    "legacy_paths": [
-     "II-VI/CdSe/old/CdSe_771-pos-1.xyz"
     ],
     "notes": ""
    },
@@ -194198,70 +195061,6 @@
   },
   {
    "schema_version": 1,
-   "id": "GaAs-Ga-Ga31As20Cl33-clean-v2",
-   "material": "GaAs",
-   "family": "III-V",
-   "phase": "zinc-blende",
-   "surface": "clean",
-   "source": "dft",
-   "formula": "Ga31As20Cl33",
-   "composition": {
-    "Ga": 31,
-    "As": 20,
-    "Cl": 33
-   },
-   "core": {
-    "Ga": 31,
-    "As": 20
-   },
-   "ligands": {
-    "Cl": 33
-   },
-   "n_atoms": 84,
-   "total_charge": 0,
-   "centre": "Ga",
-   "centre_offset_A": 0.239,
-   "size": {
-    "n_core": 51,
-    "d_nm": 1.505,
-    "d_volume_nm": 1.323,
-    "axes_nm": [
-     1.539,
-     1.52,
-     1.47
-    ],
-    "aspect_ratio": 1.046,
-    "d_max_nm": 1.534,
-    "d_hull_nm": 0.969
-   },
-   "fingerprint": "3f1dd2fb72fd0104",
-   "stages": [
-    {
-     "stage": "geo_opt",
-     "file": "III-V/GaAs/HLE17/18ang/geo_opt/Ga31As20Cl33_HLE17_18ang_OPT.xyz",
-     "code": "CP2K",
-     "functional": "HLE17",
-     "basis": "DZVP"
-    }
-   ],
-   "origin": {
-    "legacy_paths": [
-     "III-V/GaAs/HLE17/18ang"
-    ],
-    "notes": ""
-   },
-   "properties": {
-    "plot.html": "III-V/GaAs/HLE17/18ang/properties/plot.html",
-    "plot.html.gz": "III-V/GaAs/HLE17/18ang/properties/plot.html.gz"
-   },
-   "flags": {
-    "optimized": true,
-    "md": false,
-    "properties": true
-   }
-  },
-  {
-   "schema_version": 1,
    "id": "GaAs-Ga-Ga107As73Cl102-clean",
    "material": "GaAs",
    "family": "III-V",
@@ -194841,70 +195640,6 @@
     "optimized": true,
     "md": false,
     "properties": false
-   }
-  },
-  {
-   "schema_version": 1,
-   "id": "GaP-Ga-Ga31P20Cl33-clean-v2",
-   "material": "GaP",
-   "family": "III-V",
-   "phase": "zinc-blende",
-   "surface": "clean",
-   "source": "dft",
-   "formula": "Ga31P20Cl33",
-   "composition": {
-    "Ga": 31,
-    "P": 20,
-    "Cl": 33
-   },
-   "core": {
-    "Ga": 31,
-    "P": 20
-   },
-   "ligands": {
-    "Cl": 33
-   },
-   "n_atoms": 84,
-   "total_charge": 0,
-   "centre": "Ga",
-   "centre_offset_A": 0.198,
-   "size": {
-    "n_core": 51,
-    "d_nm": 1.493,
-    "d_volume_nm": 1.254,
-    "axes_nm": [
-     1.524,
-     1.51,
-     1.46
-    ],
-    "aspect_ratio": 1.044,
-    "d_max_nm": 1.467,
-    "d_hull_nm": 0.933
-   },
-   "fingerprint": "b8a29db79c5ce344",
-   "stages": [
-    {
-     "stage": "geo_opt",
-     "file": "III-V/GaP/HLE17/18ang/geo_opt/Ga31P20Cl33_HLE17_18ang_OPT.xyz",
-     "code": "CP2K",
-     "functional": "HLE17",
-     "basis": "DZVP"
-    }
-   ],
-   "origin": {
-    "legacy_paths": [
-     "III-V/GaP/HLE17/18ang"
-    ],
-    "notes": ""
-   },
-   "properties": {
-    "plot.html": "III-V/GaP/HLE17/18ang/properties/plot.html",
-    "plot.html.gz": "III-V/GaP/HLE17/18ang/properties/plot.html.gz"
-   },
-   "flags": {
-    "optimized": true,
-    "md": false,
-    "properties": true
    }
   },
   {
@@ -195497,67 +196232,6 @@
   },
   {
    "schema_version": 1,
-   "id": "GaSb-Ga-Ga31Sb20Cl33-clean-v2",
-   "material": "GaSb",
-   "family": "III-V",
-   "phase": "zinc-blende",
-   "surface": "clean",
-   "source": "dft",
-   "formula": "Ga31Sb20Cl33",
-   "composition": {
-    "Ga": 31,
-    "Sb": 20,
-    "Cl": 33
-   },
-   "core": {
-    "Ga": 31,
-    "Sb": 20
-   },
-   "ligands": {
-    "Cl": 33
-   },
-   "n_atoms": 84,
-   "total_charge": 0,
-   "centre": "Ga",
-   "centre_offset_A": 0.301,
-   "size": {
-    "n_core": 51,
-    "d_nm": 1.583,
-    "d_volume_nm": 1.412,
-    "axes_nm": [
-     1.608,
-     1.601,
-     1.553
-    ],
-    "aspect_ratio": 1.036,
-    "d_max_nm": 1.675,
-    "d_hull_nm": 1.045
-   },
-   "fingerprint": "54f6a8c449ba0fcc",
-   "stages": [
-    {
-     "stage": "geo_opt",
-     "file": "III-V/GaSb/HLE17/18ang/geo_opt/Ga31Sb20Cl33_HLE17_18ang_OPT.xyz",
-     "code": "CP2K",
-     "functional": "HLE17",
-     "basis": "DZVP"
-    }
-   ],
-   "origin": {
-    "legacy_paths": [
-     "III-V/GaSb/HLE17/18ang"
-    ],
-    "notes": ""
-   },
-   "properties": {},
-   "flags": {
-    "optimized": true,
-    "md": false,
-    "properties": false
-   }
-  },
-  {
-   "schema_version": 1,
    "id": "GaSb-Ga-Ga107Sb73Cl102-clean",
    "material": "GaSb",
    "family": "III-V",
@@ -195991,70 +196665,6 @@
     "optimized": true,
     "md": false,
     "properties": false
-   }
-  },
-  {
-   "schema_version": 1,
-   "id": "InAs-In-In31As20Cl33-clean-v2",
-   "material": "InAs",
-   "family": "III-V",
-   "phase": "zinc-blende",
-   "surface": "clean",
-   "source": "dft",
-   "formula": "In31As20Cl33",
-   "composition": {
-    "In": 31,
-    "As": 20,
-    "Cl": 33
-   },
-   "core": {
-    "In": 31,
-    "As": 20
-   },
-   "ligands": {
-    "Cl": 33
-   },
-   "n_atoms": 84,
-   "total_charge": 0,
-   "centre": "In",
-   "centre_offset_A": 0.295,
-   "size": {
-    "n_core": 51,
-    "d_nm": 1.599,
-    "d_volume_nm": 1.405,
-    "axes_nm": [
-     1.639,
-     1.637,
-     1.532
-    ],
-    "aspect_ratio": 1.07,
-    "d_max_nm": 1.652,
-    "d_hull_nm": 1.05
-   },
-   "fingerprint": "9eefaf90532a2a96",
-   "stages": [
-    {
-     "stage": "geo_opt",
-     "file": "III-V/InAs/HLE17/18ang/geo_opt/In31As20Cl33_HLE17_18ang_OPT.xyz",
-     "code": "CP2K",
-     "functional": "HLE17",
-     "basis": "DZVP"
-    }
-   ],
-   "origin": {
-    "legacy_paths": [
-     "III-V/InAs/HLE17/18ang"
-    ],
-    "notes": ""
-   },
-   "properties": {
-    "plot.html": "III-V/InAs/HLE17/18ang/properties/plot.html",
-    "plot.html.gz": "III-V/InAs/HLE17/18ang/properties/plot.html.gz"
-   },
-   "flags": {
-    "optimized": true,
-    "md": false,
-    "properties": true
    }
   },
   {
@@ -197789,70 +198399,6 @@
     "optimized": false,
     "md": true,
     "properties": false
-   }
-  },
-  {
-   "schema_version": 1,
-   "id": "InSb-In-In31Sb20Cl33-clean-v2",
-   "material": "InSb",
-   "family": "III-V",
-   "phase": "zinc-blende",
-   "surface": "clean",
-   "source": "dft",
-   "formula": "In31Sb20Cl33",
-   "composition": {
-    "In": 31,
-    "Sb": 20,
-    "Cl": 33
-   },
-   "core": {
-    "In": 31,
-    "Sb": 20
-   },
-   "ligands": {
-    "Cl": 33
-   },
-   "n_atoms": 84,
-   "total_charge": 0,
-   "centre": "In",
-   "centre_offset_A": 0.303,
-   "size": {
-    "n_core": 51,
-    "d_nm": 1.692,
-    "d_volume_nm": 1.526,
-    "axes_nm": [
-     1.73,
-     1.706,
-     1.646
-    ],
-    "aspect_ratio": 1.051,
-    "d_max_nm": 1.8,
-    "d_hull_nm": 1.13
-   },
-   "fingerprint": "7fdf68ac44dfbbea",
-   "stages": [
-    {
-     "stage": "geo_opt",
-     "file": "III-V/InSb/HLE17/18ang/geo_opt/In31Sb20Cl33_HLE17_18ang_OPT.xyz",
-     "code": "CP2K",
-     "functional": "HLE17",
-     "basis": "DZVP"
-    }
-   ],
-   "origin": {
-    "legacy_paths": [
-     "III-V/InSb/HLE17/18ang"
-    ],
-    "notes": ""
-   },
-   "properties": {
-    "plot.html": "III-V/InSb/HLE17/18ang/properties/plot.html",
-    "plot.html.gz": "III-V/InSb/HLE17/18ang/properties/plot.html.gz"
-   },
-   "flags": {
-    "optimized": true,
-    "md": false,
-    "properties": true
    }
   },
   {

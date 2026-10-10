@@ -3,18 +3,18 @@
 - builder variant-recipe duplicates (merged): 54
 - legacy structure groups: 174
 - same start, other functional (merged): 23
-- merged with builder twins: 20
+- merged with builder twins: 38
 - meta.yaml written: 0
-- id collisions (suffixed): 48
+- id collisions (suffixed): 32
 - errors: 2
 
 | family | material | structures | builder | dft | builder+dft | reconstructed | centres |
 |---|---|---|---|---|---|---|---|
-| ABX3 | CsPbBr3 | 11 | 5 | 5 | 1 | 0 | Cs:11 |
-| ABX3 | CsPbCl3 | 11 | 6 | 5 | 0 | 0 | Cs:10, interstitial:1 |
-| ABX3 | CsPbI3 | 8 | 6 | 2 | 0 | 0 | Cs:6, Pb:2 |
+| ABX3 | CsPbBr3 | 11 | 7 | 0 | 4 | 0 | Cs:6, Pb:5 |
+| ABX3 | CsPbCl3 | 14 | 9 | 3 | 2 | 0 | Cs:8, Pb:5, interstitial:1 |
+| ABX3 | CsPbI3 | 11 | 9 | 0 | 2 | 0 | Cs:6, Pb:5 |
 | II-VI | CdS | 71 | 66 | 2 | 3 | 33 | Cd:35, S:36 |
-| II-VI | CdSe | 195 | 182 | 10 | 3 | 93 | Cd:95, Se:100 |
+| II-VI | CdSe | 191 | 181 | 6 | 4 | 93 | Cd:95, Se:96 |
 | II-VI | CdTe | 74 | 69 | 5 | 0 | 33 | Cd:35, Te:39 |
 | II-VI | HgS | 75 | 70 | 2 | 3 | 35 | Hg:37, S:38 |
 | II-VI | HgSe | 75 | 70 | 2 | 3 | 35 | Hg:37, Se:38 |
@@ -32,12 +32,12 @@
 | III-V | AlAs | 45 | 45 | 0 | 0 | 15 | Al:23, As:22 |
 | III-V | AlP | 45 | 45 | 0 | 0 | 15 | Al:23, P:22 |
 | III-V | AlSb | 45 | 45 | 0 | 0 | 15 | Al:23, Sb:22 |
-| III-V | GaAs | 55 | 45 | 10 | 0 | 15 | As:23, Ga:32 |
-| III-V | GaP | 55 | 45 | 10 | 0 | 15 | Ga:32, P:23 |
-| III-V | GaSb | 53 | 45 | 8 | 0 | 15 | Ga:30, Sb:23 |
-| III-V | InAs | 60 | 45 | 15 | 0 | 15 | As:23, In:37 |
+| III-V | GaAs | 54 | 44 | 9 | 1 | 15 | As:23, Ga:31 |
+| III-V | GaP | 54 | 44 | 9 | 1 | 15 | Ga:31, P:23 |
+| III-V | GaSb | 52 | 44 | 7 | 1 | 15 | Ga:29, Sb:23 |
+| III-V | InAs | 59 | 44 | 14 | 1 | 15 | As:23, In:36 |
 | III-V | InP | 58 | 44 | 13 | 1 | 15 | In:35, P:23 |
-| III-V | InSb | 54 | 45 | 9 | 0 | 15 | In:31, Sb:23 |
+| III-V | InSb | 53 | 44 | 8 | 1 | 15 | In:30, Sb:23 |
 | IV-VI | PbS | 29 | 25 | 4 | 0 | 0 | Pb:16, S:13 |
 | IV-VI | PbSe | 28 | 25 | 3 | 0 | 0 | Pb:15, Se:13 |
 | IV-VI | PbTe | 28 | 25 | 3 | 0 | 0 | Pb:15, Te:13 |
@@ -102,12 +102,25 @@
 ## Merged with builder twins
 
 - ABX3/CsPbBr3 -> CsPbBr3-Cs-Cs20Pb8Br36-clean (Δr̄ = 0.000 Å)
+- ABX3/CsPbBr3/HLE17/12ang -> CsPbBr3-Cs-Cs20Pb8Br36-clean (Δr̄ = 0.360 Å)
+- ABX3/CsPbBr3/HLE17/16ang -> CsPbBr3-Cs-Cs20Pb8Br36-clean (Δr̄ = 0.360 Å)
+- ABX3/CsPbBr3/HLE17/24ang -> CsPbBr3-Cs-Cs112Pb64Br240-clean (Δr̄ = 0.314 Å)
+- ABX3/CsPbBr3/HLE17/37ang -> CsPbBr3-Cs-Cs324Pb216Br756-clean (Δr̄ = 0.328 Å)
+- ABX3/CsPbBr3/HLE17/48ang -> CsPbBr3-Cs-Cs704Pb512Br1728-clean (Δr̄ = 0.417 Å)
+- ABX3/CsPbCl3/HLE17/12ang -> CsPbCl3-Cs-Cs20Pb8Cl36-clean (Δr̄ = 0.333 Å)
+- ABX3/CsPbCl3/HLE17/24ang -> CsPbCl3-Cs-Cs112Pb64Cl240-clean (Δr̄ = 0.286 Å)
+- ABX3/CsPbI3/HLE17/24ang -> CsPbI3-Pb-Cs54Pb27I108-clean (Δr̄ = 0.462 Å)
+- ABX3/CsPbI3/HLE17/32ang -> CsPbI3-Pb-Cs200Pb125I450-clean (Δr̄ = 0.662 Å)
 - II-VI/CdS/HLE17/12ang -> CdS-S-Cd16S13Cl6-clean (Δr̄ = 0.346 Å)
 - II-VI/CdS/HLE17/20ang -> CdS-S-Cd68S55Cl26-clean (Δr̄ = 0.251 Å)
 - II-VI/CdS/HLE17/28ang -> CdS-S-Cd176S147Cl58-clean (Δr̄ = 0.466 Å)
 - II-VI/CdSe/HLE17/12ang -> CdSe-Se-Cd16Se13Cl6-clean (Δr̄ = 0.388 Å)
 - II-VI/CdSe/HLE17/20ang -> CdSe-Se-Cd68Se55Cl26-clean (Δr̄ = 0.265 Å)
 - II-VI/CdSe/HLE17/28ang -> CdSe-Se-Cd176Se147Cl58-clean (Δr̄ = 0.209 Å)
+- II-VI/CdSe/old/Cd176_OPT.xyz -> CdSe-Se-Cd176Se147Cl58-clean (Δr̄ = 0.209 Å)
+- II-VI/CdSe/old/Cd176_pure_OPT.xyz -> CdSe-Se-Cd176Se147Cl58-clean (Δr̄ = 0.209 Å)
+- II-VI/CdSe/old/Cd68_OPT.xyz -> CdSe-Se-Cd68Se55Cl26-clean (Δr̄ = 0.261 Å)
+- II-VI/CdSe/old/CdSe_771-pos-1.xyz -> CdSe-Se-Cd360Se309Cl102-clean (Δr̄ = 0.176 Å)
 - II-VI/HgS/HLE17/12ang, II-VI/HgS/PBE/12ang -> HgS-S-Hg16S13Cl6-clean (Δr̄ = 0.355 Å)
 - II-VI/HgS/HLE17/20ang, II-VI/HgS/PBE/20ang -> HgS-S-Hg68S55Cl26-clean (Δr̄ = 0.230 Å)
 - II-VI/HgS/HLE17/28ang, II-VI/HgS/PBE/28ang -> HgS-S-Hg176S147Cl58-clean (Δr̄ = 0.391 Å)
@@ -120,7 +133,12 @@
 - II-VI/ZnTe/HLE17/12ang -> ZnTe-Te-Zn16Te13Cl6-clean (Δr̄ = 0.383 Å)
 - II-VI/ZnTe/HLE17/20ang -> ZnTe-Te-Zn68Te55Cl26-clean (Δr̄ = 0.256 Å)
 - II-VI/ZnTe/HLE17/28ang -> ZnTe-Te-Zn176Te147Cl58-clean (Δr̄ = 0.215 Å)
+- III-V/GaAs/HLE17/18ang -> GaAs-Ga-Ga31As20Cl33-clean (Δr̄ = 0.523 Å)
+- III-V/GaP/HLE17/18ang -> GaP-Ga-Ga31P20Cl33-clean (Δr̄ = 0.397 Å)
+- III-V/GaSb/HLE17/18ang -> GaSb-Ga-Ga31Sb20Cl33-clean (Δr̄ = 0.588 Å)
+- III-V/InAs/HLE17/18ang -> InAs-In-In31As20Cl33-clean (Δr̄ = 0.488 Å)
 - III-V/InP/old/InP_84.xyz -> InP-In-In31P20Cl33-clean (Δr̄ = 0.492 Å)
+- III-V/InSb/HLE17/18ang -> InSb-In-In31Sb20Cl33-clean (Δr̄ = 0.631 Å)
 
 ## Same start geometry, other functional
 
@@ -150,17 +168,6 @@
 
 ## Id collisions
 
-- CsPbBr3-Cs-Cs20Pb8Br36-clean -> CsPbBr3-Cs-Cs20Pb8Br36-clean-v2 (ABX3/CsPbBr3/HLE17/12ang)
-- CsPbBr3-Cs-Cs20Pb8Br36-clean -> CsPbBr3-Cs-Cs20Pb8Br36-clean-v3 (ABX3/CsPbBr3/HLE17/16ang)
-- CsPbBr3-Cs-Cs112Pb64Br240-clean -> CsPbBr3-Cs-Cs112Pb64Br240-clean-v2 (ABX3/CsPbBr3/HLE17/24ang)
-- CsPbBr3-Cs-Cs324Pb216Br756-clean -> CsPbBr3-Cs-Cs324Pb216Br756-clean-v2 (ABX3/CsPbBr3/HLE17/37ang)
-- CsPbBr3-Cs-Cs704Pb512Br1728-clean -> CsPbBr3-Cs-Cs704Pb512Br1728-clean-v2 (ABX3/CsPbBr3/HLE17/48ang)
-- CsPbCl3-Cs-Cs20Pb8Cl36-clean -> CsPbCl3-Cs-Cs20Pb8Cl36-clean-v2 (ABX3/CsPbCl3/HLE17/12ang)
-- CsPbCl3-Cs-Cs112Pb64Cl240-clean -> CsPbCl3-Cs-Cs112Pb64Cl240-clean-v2 (ABX3/CsPbCl3/HLE17/24ang)
-- CdSe-Se-Cd176Se147Cl58-clean -> CdSe-Se-Cd176Se147Cl58-clean-v2 (II-VI/CdSe/old/Cd176_OPT.xyz)
-- CdSe-Se-Cd176Se147Cl58-clean -> CdSe-Se-Cd176Se147Cl58-clean-v3 (II-VI/CdSe/old/Cd176_pure_OPT.xyz)
-- CdSe-Se-Cd68Se55Cl26-clean -> CdSe-Se-Cd68Se55Cl26-clean-v2 (II-VI/CdSe/old/Cd68_OPT.xyz)
-- CdSe-Se-Cd360Se309Cl102-clean -> CdSe-Se-Cd360Se309Cl102-clean-v2 (II-VI/CdSe/old/CdSe_771-pos-1.xyz)
 - CdSe-Se-Cd310Se281Cl58-clean -> CdSe-Se-Cd310Se281Cl58-clean-v2 (II-VI/CdSe/old/mol.xyz)
 - CdTe-Te-Cd16Te13Cl6-clean -> CdTe-Te-Cd16Te13Cl6-clean-v2 (II-VI/CdTe/HLE17/12ang)
 - CdTe-Te-Cd68Te55Cl26-clean -> CdTe-Te-Cd68Te55Cl26-clean-v2 (II-VI/CdTe/HLE17/20ang)
@@ -171,17 +178,13 @@
 - ZnS-S-Zn68S55Cl26-clean -> ZnS-S-Zn68S55Cl26-clean-v2 (II-VI/ZnS/HLE17/20ang)
 - ZnS-S-Zn176S147Cl58-clean -> ZnS-S-Zn176S147Cl58-clean-v2 (II-VI/ZnS/HLE17/28ang)
 - ZnSe-Se-Zn176Se147Cl58-clean -> ZnSe-Se-Zn176Se147Cl58-clean-v2 (II-VI/ZnSe/HLE17/28ang)
-- GaAs-Ga-Ga31As20Cl33-clean -> GaAs-Ga-Ga31As20Cl33-clean-v2 (III-V/GaAs/HLE17/18ang)
 - GaAs-Ga-Ga107As73Cl102-clean -> GaAs-Ga-Ga107As73Cl102-clean-v2 (III-V/GaAs/HLE17/23ang)
 - GaAs-Ga-Ga249As194Cl165-clean -> GaAs-Ga-Ga249As194Cl165-clean-v2 (III-V/GaAs/HLE17/29ang)
 - GaAs-Ga-Ga477As396Cl243-clean -> GaAs-Ga-Ga477As396Cl243-clean-v2 (III-V/GaAs/HLE17/35ang)
-- GaP-Ga-Ga31P20Cl33-clean -> GaP-Ga-Ga31P20Cl33-clean-v2 (III-V/GaP/HLE17/18ang)
 - GaP-Ga-Ga249P194Cl165-clean -> GaP-Ga-Ga249P194Cl165-clean-v2 (III-V/GaP/HLE17/29ang)
 - GaP-Ga-Ga477P396Cl243-clean -> GaP-Ga-Ga477P396Cl243-clean-v2 (III-V/GaP/HLE17/35ang)
 - GaP-Ga-Ga790P688Cl348Zn21-clean -> GaP-Ga-Ga790P688Cl348Zn21-clean-v2 (III-V/GaP/HLE17/41ang)
-- GaSb-Ga-Ga31Sb20Cl33-clean -> GaSb-Ga-Ga31Sb20Cl33-clean-v2 (III-V/GaSb/HLE17/18ang)
 - GaSb-Ga-Ga249Sb194Cl165-clean -> GaSb-Ga-Ga249Sb194Cl165-clean-v2 (III-V/GaSb/HLE17/30ang)
-- InAs-In-In31As20Cl33-clean -> InAs-In-In31As20Cl33-clean-v2 (III-V/InAs/HLE17/18ang)
 - InAs-In-In107As73Cl102-clean -> InAs-In-In107As73Cl102-clean-v2 (III-V/InAs/HLE17/24ang)
 - InAs-In-In249As194Cl165-clean -> InAs-In-In249As194Cl165-clean-v2 (III-V/InAs/HLE17/30ang)
 - InAs-In-In477As396Cl243-clean -> InAs-In-In477As396Cl243-clean-v2 (III-V/InAs/HLE17/36ang)
@@ -194,7 +197,6 @@
 - InP-In-In107P73Cl102-clean -> InP-In-In107P73Cl102-clean-v2 (III-V/InP/old/InP_282_GeoOpt-pos-1.xyz)
 - InP-In-In1242P1108Cl460Zn29-clean -> InP-In-In1242P1108Cl460Zn29-clean-v2 (III-V/InP/old/InP_2839_GeoOpt-pos-1.xyz)
 - InP-In-In249P194Cl165-clean -> InP-In-In249P194Cl165-clean-v2 (III-V/InP/old/InP_608_GeoOpt-pos-1.xyz)
-- InSb-In-In31Sb20Cl33-clean -> InSb-In-In31Sb20Cl33-clean-v2 (III-V/InSb/HLE17/18ang)
 - InSb-In-In249Sb194Cl165-clean -> InSb-In-In249Sb194Cl165-clean-v2 (III-V/InSb/HLE17/32ang)
 - InSb-In-In477Sb396Cl243-clean -> InSb-In-In477Sb396Cl243-clean-v2 (III-V/InSb/HLE17/39ang)
 - InSb-In-In790Sb688Cl348Zn21-clean -> InSb-In-In790Sb688Cl348Zn21-clean-v2 (III-V/InSb/HLE17/45ang)

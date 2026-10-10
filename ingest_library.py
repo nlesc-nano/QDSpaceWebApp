@@ -50,6 +50,9 @@ STAGE_DIRS = {"start": "start", "geo_opt": "geo_opt", "geo_op": "geo_opt", "md":
 # deviation (Å) only guards against a different cut.  DFT start files are
 # pre-relaxed copies of builder cuts (0.2-0.4 Å on small dots).
 TWIN_TOL = 0.5
+# DFT folders that kept only the relaxed geometry are matched relaxed-vs-cut:
+# relaxation alone moves the profile 0.2-0.7 Å (HLE17 CsPbX3 and III-V dots).
+RELAXED_TWIN_TOL = 1.0
 SAME_START_TOL = 0.02
 FORMAL_CHARGES = {
     "Cd": 2, "Zn": 2, "Pb": 2, "Hg": 2, "In": 3, "Ga": 3, "Al": 3, "Cs": 1, "Rb": 1,
@@ -299,7 +302,7 @@ def main(argv=None) -> int:
 
     records: List[dict] = []
     for rec, sig, has_start in legacy:
-        twin = _best_match(rec, sig, builder, TWIN_TOL) if has_start else None
+        twin = _best_match(rec, sig, builder, TWIN_TOL if has_start else RELAXED_TWIN_TOL)
         if twin is not None:
             target, dist = twin
             for st in rec["stages"]:

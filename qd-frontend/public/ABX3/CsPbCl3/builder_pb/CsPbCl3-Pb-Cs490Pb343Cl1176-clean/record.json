@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "id": "CsPbCl3-Pb-Cs490Pb343Cl1176-clean",
+  "material": "CsPbCl3",
+  "family": "ABX3",
+  "phase": "cubic perovskite",
+  "surface": "clean",
+  "source": "builder",
+  "formula": "Cs490Pb343Cl1176",
+  "composition": {
+    "Cs": 490,
+    "Pb": 343,
+    "Cl": 1176
+  },
+  "core": {
+    "Cs": 490,
+    "Pb": 343,
+    "Cl": 1176
+  },
+  "ligands": {},
+  "n_atoms": 2009,
+  "total_charge": 0,
+  "centre": "Pb",
+  "centre_offset_A": 0.026,
+  "size": {
+    "n_core": 2009,
+    "d_nm": 5.376,
+    "d_volume_nm": 5.2,
+    "axes_nm": [
+      5.388,
+      5.378,
+      5.376
+    ],
+    "aspect_ratio": 1.002,
+    "d_max_nm": 6.303,
+    "d_hull_nm": 4.926,
+    "unit_cells": 3.5,
+    "unit_cells_all": [
+      3.5
+    ]
+  },
+  "fingerprint": "0a7a7f9990b578cc",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cspbcl3_cubic_pb.yaml",
+    "qd_builder_commit": "8b31a40775ded35c7c82006b1b91c878e6254c8e",
+    "qd_builder_dirty": false,
+    "cif": "CsPbCl3_cubic.cif",
+    "positive_q_mode": "remove",
+    "recipe": {
+      "charges": {
+        "Cs": 1,
+        "Pb": 2,
+        "Cl": -1,
+        "Br": -1
+      },
+      "passivation": {
+        "ligand": "Br",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        3.5,
+        3.5,
+        3.5
+      ],
+      "construction_origin": {
+        "center_on_species": "Pb"
+      }
+    }
+  }
+}

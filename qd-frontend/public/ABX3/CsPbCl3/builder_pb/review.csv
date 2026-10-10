@@ -1,0 +1,12 @@
+centre,unit_cells,surface,status,id,formula,d_nm,n_atoms,Q
+Pb,1.0,clean,"rejected: not Cs-terminated (6 facets, e.g. (-1 0 0): Pb)",,Cs8Pb23Cl54,1.864,85,0
+Pb,1.5,clean,kept,CsPbCl3-Pb-Cs54Pb27Cl108-clean,Cs54Pb27Cl108,2.404,189,0
+Pb,2.0,clean,"rejected: not Cs-terminated (6 facets, e.g. (-1 0 0): Pb)",,Cs64Pb118Cl300,3.334,482,0
+Pb,2.5,clean,kept,CsPbCl3-Pb-Cs200Pb125Cl450-clean,Cs200Pb125Cl450,3.906,775,0
+Pb,3.0,clean,"rejected: not Cs-terminated (6 facets, e.g. (-1 0 0): Pb)",,Cs216Pb333Cl882,4.816,1431,0
+Pb,3.5,clean,kept,CsPbCl3-Pb-Cs490Pb343Cl1176-clean,Cs490Pb343Cl1176,5.376,2009,0
+Pb,4.0,clean,"rejected: not Cs-terminated (6 facets, e.g. (-1 0 0): Pb)",,Cs512Pb716Cl1944,6.294,3172,0
+Pb,4.5,clean,kept,CsPbCl3-Pb-Cs972Pb729Cl2430-clean,Cs972Pb729Cl2430,6.843,4131,0
+Pb,5.0,clean,"rejected: not Cs-terminated (6 facets, e.g. (-1 0 0): Pb)",,Cs1000Pb1315Cl3630,7.779,5945,0
+Pb,5.5,clean,kept,CsPbCl3-Pb-Cs1694Pb1331Cl4356-clean,Cs1694Pb1331Cl4356,8.316,7381,0
+Pb,6.0,clean,"rejected: not Cs-terminated (6 facets, e.g. (-1 0 0): Pb)",,Cs1728Pb2178Cl6084,9.211,9990,0
