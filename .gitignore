@@ -22,3 +22,9 @@ tree*
 bundle.*
 _tmp_plots/
 
+
+# DFT results of library records: orbital cubes and QDEX dashboards are served
+# from S3 only (upload_large_files.py); relaxed.xyz, webapp.json and
+# manifest.json stay tracked.
+**/builder*/*/dft/qdex/*.cube
+**/builder*/*/dft/qdex/*.html

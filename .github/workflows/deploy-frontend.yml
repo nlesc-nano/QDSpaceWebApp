@@ -46,12 +46,17 @@ jobs:
             --cache-control "public, max-age=31536000, immutable"
 
       # 2) Sync the rest of the build
+      #    DFT orbital cubes and QDEX dashboards of library records are S3-only
+      #    (git-ignored, uploaded gzipped by upload_large_files.py): excluded
+      #    keys are neither uploaded nor removed by --delete.
       - name: Sync rest of frontend to S3
         run: |
           aws s3 sync qd-frontend/dist/ s3://qdspace-frontend-v1/ \
             --delete \
             --exclude "assets/*" \
             --exclude "*.html.gz" \
+            --exclude "*/dft/qdex/*.cube" \
+            --exclude "*/dft/qdex/*.html" \
             --cache-control "no-cache, no-store, must-revalidate"
 
       # 3) Upload gzipped plot HTMLs with correct headers

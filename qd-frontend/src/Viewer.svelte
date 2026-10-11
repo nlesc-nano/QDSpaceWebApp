@@ -84,9 +84,56 @@
     });
   }
 
-  // Render 3Dmol structure (White background, Orthographic projection, VDW Spheres only)
-  function render3dmol() {
+  // --- Orbitals (DFT records): Gaussian cubes drawn as +/- isosurfaces in 3Dmol ---
+  // props.orbitals = {label: url}, props.orbital = selected label ("" = none),
+  // props.onOrbital(label) lets the parent switch viewer and stage.
+  const ORBITAL_COLORS = { pos: "#2563eb", neg: "#dc2626" };
+  // Cubes are in a.u. (bohr^-3/2); on the QDEX 32^3 grids |psi| > 0.005 on 3-8 % of the points.
+  let isoval = $state(0.005);
+  let isoInput = $state(0.005);
+  let orbitalStatus = $state("");
+  const cubeCache = new Map();
+  let renderToken = 0;
+  let lastWasOrbital = false;
+  let orbitalUrl = $derived(props.orbital && props.orbitals ? props.orbitals[props.orbital] || "" : "");
+
+  async function fetchCube(url) {
+    if (!cubeCache.has(url)) {
+      // S3 serves the cube with Content-Encoding: gzip, so fetch() returns plain text.
+      cubeCache.set(url, fetch(url).then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.text();
+      }));
+    }
+    try {
+      return await cubeCache.get(url);
+    } catch (err) {
+      cubeCache.delete(url);
+      throw err;
+    }
+  }
+
+  // Render 3Dmol structure (White background, Orthographic projection, VDW Spheres only).
+  // With an orbital selected: the cube's own atoms (DFT-relaxed geometry) as
+  // ball-and-stick plus the +/- isosurfaces; the view is kept between orbitals.
+  async function render3dmol() {
     if (!scriptLoaded3dmol || !container3dmol || !props.xyz || props.isMD) return;
+    const token = ++renderToken;
+    const url = orbitalUrl;
+    let cube = null;
+    if (url) {
+      orbitalStatus = "loading";
+      try {
+        cube = await fetchCube(url);
+      } catch (err) {
+        if (token === renderToken) orbitalStatus = `Could not load the ${props.orbital} cube (${err.message})`;
+      }
+      if (token !== renderToken || !container3dmol) return;
+      if (cube) orbitalStatus = "";
+    } else {
+      orbitalStatus = "";
+    }
+    const keepView = cube && lastWasOrbital && viewer3dmol ? viewer3dmol.getView() : null;
     container3dmol.innerHTML = "";
 
     try {
@@ -96,16 +143,28 @@
           orthographic: true
         });
 
-        // Add Model
-        viewer3dmol.addModel(props.xyz, "xyz");
+        if (cube) {
+          viewer3dmol.addModel(cube, "cube");
+          viewer3dmol.setStyle({}, {
+            sphere: { colorscheme: "Jmol", scale: 0.3 },
+            stick: { colorscheme: "Jmol", radius: 0.12 }
+          });
+          viewer3dmol.addVolumetricData(cube, "cube", { isoval: isoval, color: ORBITAL_COLORS.pos, opacity: 0.85 });
+          viewer3dmol.addVolumetricData(cube, "cube", { isoval: -isoval, color: ORBITAL_COLORS.neg, opacity: 0.85 });
+        } else {
+          // Add Model
+          viewer3dmol.addModel(props.xyz, "xyz");
 
-        // Style: Spacefill with large VDW spheres (no sticks)
-        viewer3dmol.setStyle({}, {
-          sphere: { colorscheme: "Jmol" }
-        });
+          // Style: Spacefill with large VDW spheres (no sticks)
+          viewer3dmol.setStyle({}, {
+            sphere: { colorscheme: "Jmol" }
+          });
+        }
 
-        viewer3dmol.zoomTo();
+        if (keepView) viewer3dmol.setView(keepView);
+        else viewer3dmol.zoomTo();
         viewer3dmol.render();
+        lastWasOrbital = Boolean(cube);
       }
     } catch (err) {
       console.error("[3Dmol] Render error:", err);
@@ -224,7 +283,9 @@
 
   // React to changes in loading status, xyz data, and activeViewer choice (with deferred rendering)
   $effect(() => {
-    if (activeViewer === "3dmol" && scriptLoaded3dmol && props.xyz && container3dmol) {
+    // orbitalUrl and isoval are read so that changing either re-renders.
+    const deps = [orbitalUrl, isoval];
+    if (activeViewer === "3dmol" && scriptLoaded3dmol && props.xyz && container3dmol && deps) {
       setTimeout(render3dmol, 50);
     }
   });
@@ -355,6 +416,38 @@
               title="Aspect ratio: longest / shortest axis of the homogeneous ellipsoid with the same electron-density gyration tensor{sz.axes_nm ? ` (${sz.axes_nm.map((a) => a.toFixed(2)).join(' × ')} nm)` : ''}. 1 for spheres and cubes; above ~1.3 the SAXS diameter is only an equivalent-sphere size.">
           <span class="text-slate-400">AR</span> <span class="text-brand-600 font-semibold">{sz.aspect_ratio.toFixed(2)}</span>
         </span>
+      {/if}
+    </div>
+  {/if}
+
+  <!-- Orbital selector (records with DFT orbitals; drawn in 3Dmol) -->
+  {#if props.orbitals && !props.isMD && props.xyz}
+    <div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md border border-slate-200 p-2 rounded-xl shadow-soft z-10 flex flex-col gap-1.5 text-xs">
+      <div class="flex items-center gap-1">
+        <span class="text-[10px] font-extrabold text-slate-500 uppercase tracking-widest mr-1"
+              title="Kohn-Sham orbitals of the DFT (PBE) relaxed structure, from the QDEX cube files">Orbitals</span>
+        {#each ["", ...Object.keys(props.orbitals)] as label}
+          <button class="px-2 py-1 rounded-lg font-bold transition-all {(props.orbital || '') === label ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'}"
+                  onclick={() => props.onOrbital?.(label)}>{label || "off"}</button>
+        {/each}
+      </div>
+      {#if props.orbital}
+        <label class="flex items-center gap-2 text-[11px] text-slate-600">
+          <span class="font-bold">±</span>
+          <input type="range" min="0.001" max="0.03" step="0.001" bind:value={isoInput}
+                 onchange={() => (isoval = Number(isoInput))} class="flex-1 accent-brand-600" />
+          <span class="font-mono w-24 text-right">{Number(isoInput).toFixed(3)} a.u.</span>
+        </label>
+        <div class="flex items-center gap-3 text-[10px] text-slate-500">
+          <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full" style="background: {ORBITAL_COLORS.pos}"></span>+</span>
+          <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full" style="background: {ORBITAL_COLORS.neg}"></span>−</span>
+          <span>on the DFT-relaxed geometry</span>
+        </div>
+        {#if orbitalStatus === "loading"}
+          <span class="text-[11px] text-brand-600 font-bold">Loading {props.orbital}…</span>
+        {:else if orbitalStatus}
+          <span class="text-[11px] text-red-700">{orbitalStatus}</span>
+        {/if}
       {/if}
     </div>
   {/if}

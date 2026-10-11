@@ -10,7 +10,9 @@ Sources
     Without one, it is prefilled from the legacy filename parsing
     (make_metadata.parse_metadata) and, with --write-meta, written out.
   * builder series produced by QD_builder
-    (python -m builder.scripts.generate_library ...), one record.json each.
+    (python -m builder.scripts.generate_library ...), one record.json each,
+    with the MACE results of qdprops (<id>/props/) and the CP2K/QDEX results
+    published by import_dft_results.py (<id>/dft/, read from its manifest).
 
 Everything computable from coordinates (formula, centre species, size,
 fingerprint) comes from builder.library_record, the same code the generator
@@ -181,6 +183,7 @@ def load_builder_records(dirs: List[str], prefix: str):
                 st["file"] = f"{base}/{st['file']}"
             rec.setdefault("properties", {})
             _attach_qdprops(rec, rec_path.parent, base)
+            _attach_dft(rec, rec_path.parent, base)
             recs.append((rec, radial_signature(symbols, pts)))
     return recs
 
@@ -201,6 +204,42 @@ def _attach_qdprops(rec: dict, folder: Path, base: str) -> None:
             rec["properties"][name] = f"{base}/props/{name}"
     rec["computed"] = {"schema_version": summary.get("schema_version"), "summary": summary.get("summary", {}),
                        "provenance": summary.get("provenance", {})}
+
+
+DFT_SUMMARY_KEYS = ("dft_gap_ev", "qp_gap_ev", "lowest_ev", "lowest_f", "first_bright_ev", "first_bright_f")
+
+
+def _attach_dft(rec: dict, folder: Path, base: str) -> None:
+    """
+    Fold a published DFT chain (<id>/dft/, import_dft_results.py) into a
+    builder record.  Driven by dft/manifest.json: the cubes and dashboards it
+    lists are S3-only and absent from a CI checkout.
+    """
+    manifest_path = folder / "dft" / "manifest.json"
+    if not manifest_path.is_file():
+        return
+    manifest = json.loads(manifest_path.read_text())
+    dft = f"{base}/dft"
+    files = {e["path"]: e for e in manifest.get("files", [])}
+    method = {k: manifest[k] for k in ("code", "functional", "basis") if manifest.get(k)}
+    if "relaxed.xyz" in files:
+        rec["stages"].append({"stage": "geo_opt", "file": f"{dft}/relaxed.xyz", **method})
+    for path, e in files.items():
+        if e.get("kind") == "dashboard":
+            rec["properties"][Path(path).name] = f"{dft}/{path}"
+    entry = {"method": {**method, "qdex_commit": manifest.get("qdex_commit")}, "manifest": f"{dft}/manifest.json"}
+    webapp = folder / "dft" / "qdex" / "webapp.json"
+    if "qdex/webapp.json" in files and webapp.is_file():
+        summary = json.loads(webapp.read_text()).get("summary", {})
+        entry["summary"] = {
+            kind: {k: round(v, 4) for k, v in summary[kind].items() if k in DFT_SUMMARY_KEYS and v is not None}
+            for kind in ("spin_free", "soc") if summary.get(kind)
+        }
+        entry["webapp"] = f"{dft}/qdex/webapp.json"
+    orbitals = {e["orbital"]: f"{dft}/{p}" for p, e in files.items() if e.get("kind") == "orbital"}
+    if orbitals:
+        entry["orbitals"] = orbitals
+    rec["dft"] = entry
 
 
 def _best_match(rec: dict, sig, pool, tol: float):
@@ -232,8 +271,12 @@ def _merge_into(target: dict, rec: dict, *, keep_start: bool) -> None:
 
 def flags(rec: dict) -> dict:
     stages = {s["stage"] for s in rec["stages"]}
-    return {"optimized": "geo_opt" in stages, "md": "md" in stages,
-            "properties": bool(rec.get("properties"))}
+    out = {"optimized": "geo_opt" in stages, "md": "md" in stages,
+           "properties": bool(rec.get("properties") or rec.get("dft"))}
+    # Only set on records with published DFT results, so the others stay unchanged.
+    if rec.get("dft"):
+        out["dft"] = True
+    return out
 
 
 def main(argv=None) -> int:
@@ -276,6 +319,7 @@ def main(argv=None) -> int:
         f for f in find_xyz_files(str(PUBLIC))
         if not (PUBLIC / f).with_name("record.json").is_file()   # builder series: record-driven
         and "/props/" not in f"/{f}"                              # qdprops outputs of a record
+        and "/dft/" not in f"/{f}"                                # DFT chain outputs of a record
     ])
     for group, stages in sorted(groups.items()):
         report["legacy_groups"] += 1

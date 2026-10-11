@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import Viewer from "./Viewer.svelte";
+  import Optical from "./Optical.svelte";
   import { templateFor } from "./bulkTemplates.js";
   import { makeZip } from "./zip.js";
 
@@ -28,6 +29,7 @@
     optimized: false,
     md: false,
     properties: false,
+    dft: false,
   });
   let selectedFormulas = $state([]);
   let showAllFormulas = $state(false);
@@ -39,10 +41,11 @@
   let fileUrl = $state("");
   let loadingStage = $state(false);
   let previousBlobUrl = null;
+  let orbital = $state(""); // selected DFT orbital ("" = none), drawn by 3Dmol
 
   let propertiesStatus = $state("idle");
   let activePropertyTab = $state("fuzzy_sf");
-  let plotUrls = $state({ fuzzy_sf: null, fuzzy_soc: null, exciton_sf: null, exciton_soc: null, ground_state: null, synthesis: null });
+  let plotUrls = $state({});
   let groundStatePng = $state(null);
 
   const SOURCE_LABEL = { builder: "Builder", dft: "DFT", "builder+dft": "Builder + DFT" };
@@ -132,6 +135,7 @@
     if (f.optimized && !r.flags?.optimized) return false;
     if (f.md && !r.flags?.md) return false;
     if (f.properties && !r.flags?.properties) return false;
+    if (f.dft && !r.flags?.dft) return false;
     return true;
   }
 
@@ -199,7 +203,7 @@
   function clearFilters() {
     Object.assign(filters, {
       family: "", material: "", phase: "", centre: "", surface: "", facet: "", functional: "", source: "",
-      dMin: null, dMax: null, unrelaxed: false, optimized: false, md: false, properties: false,
+      dMin: null, dMax: null, unrelaxed: false, optimized: false, md: false, properties: false, dft: false,
     });
     selectedFormulas = [];
   }
@@ -224,6 +228,7 @@
   async function selectStage(i) {
     if (!current) return;
     stageIndex = i;
+    orbital = "";
     const st = current.stages[i];
     loadingStage = true;
     if (previousBlobUrl) {
@@ -250,6 +255,20 @@
     }
   }
 
+  // --- Orbitals: shown on the DFT-relaxed stage (the cubes carry its atoms) in 3Dmol ---
+  let orbitalUrls = $derived(
+    current?.dft?.orbitals ? Object.fromEntries(Object.entries(current.dft.orbitals).map(([k, p]) => [k, `/${p}`])) : null,
+  );
+
+  async function showOrbital(label) {
+    if (label && current) {
+      const i = current.stages.findIndex(isDftChain);
+      if (i >= 0 && i !== stageIndex) await selectStage(i);
+      activeViewer = "3dmol";
+    }
+    orbital = label;
+  }
+
   // Downsample a trajectory to ~150 frames for smooth playback.
   function trajectoryBlobUrl(text) {
     const lines = text.split("\n");
@@ -270,21 +289,31 @@
 
   // --- Properties: from the record; probe the legacy folder as a fallback ---
   // Order = tab order and the default tab: computed ground state first, then synthesis, then the DFT pages.
+  // "optical" is native (Optical.svelte, from the record's dft.webapp), not a page.
   const PROPERTY_FILES = {
     ground_state: ["ground_state.html"],
     synthesis: ["synthesis.html"],
+    optical: [],
     fuzzy_sf: ["fuzzy_dashboard_sf.html", "plot.html", "plot.html.gz"],
     fuzzy_soc: ["fuzzy_dashboard_soc.html"],
+    fuzzy_sf_qp: ["fuzzy_dashboard_sf_qp.html"],
+    fuzzy_soc_qp: ["fuzzy_dashboard_soc_qp.html"],
     exciton_sf: ["exciton_analysis_sf.html"],
     exciton_soc: ["exciton_analysis_soc.html"],
   };
   const PROPERTY_TABS = [["ground_state", "Ground state (MACE-MH-1)"], ["synthesis", "Synthesis thermodynamics"],
+    ["optical", "Optical (QDEX)"],
     ["fuzzy_sf", "Fuzzy - PDOS - COOP (Spin Free)"], ["fuzzy_soc", "Fuzzy - PDOS - COOP (SOC)"],
+    ["fuzzy_sf_qp", "Fuzzy - PDOS - COOP (Spin Free, QP)"], ["fuzzy_soc_qp", "Fuzzy - PDOS - COOP (SOC, QP)"],
     ["exciton_sf", "Excited States (Spin Free)"], ["exciton_soc", "Excited States (SOC)"]];
 
-  // "How it was computed" badges, one per property page.
-  function dftMethod(r) {
-    const st = (r?.stages || []).find((s) => s.stage === "geo_opt" && s.code && s.code !== "MACE");
+  // "How it was computed" badges, one per property page.  Pages of the
+  // published DFT chain (<id>/dft/) come from its geometry; legacy pages from
+  // the first other DFT relaxation.
+  const isDftChain = (s) => s.file.endsWith("/dft/relaxed.xyz");
+  function dftMethod(r, url = "") {
+    const chain = url.includes("/dft/");
+    const st = (r?.stages || []).find((s) => s.stage === "geo_opt" && s.code && s.code !== "MACE" && isDftChain(s) === chain);
     return st ? [st.code, [st.functional, st.basis].filter(Boolean).join("/")].filter(Boolean).join(" · ") : "DFT";
   }
   function propertyMethods(tab, r) {
@@ -293,14 +322,19 @@
       "g-xTB: IR & Raman intensities", "GFN2-xTB charges + Generalized Born: solvation"];
     if (tab === "synthesis") return [`${mace} free energies`, "GFN2-xTB charges + Generalized Born solvation",
       "coupled equilibria with mass balance"];
-    const soc = tab.endsWith("_soc") ? "spin–orbit coupling" : "spin free";
-    if (tab.startsWith("fuzzy")) return [`DFT ${dftMethod(r)} geometry`, `fuzzy bands, PDOS, COOP (${soc})`];
-    return [`DFT ${dftMethod(r)} geometry`, `excited states (${soc})`];
+    const dft = dftMethod(r, plotUrls[tab] || "");
+    if (tab === "optical") return [`DFT ${dft} geometry`,
+      `QDEX${r?.dft?.method?.qdex_commit ? " " + r.dft.method.qdex_commit : ""}: quasiparticle gaps, excitons, absorption`];
+    const soc = tab.includes("_soc") ? "spin–orbit coupling" : "spin free";
+    const qp = tab.endsWith("_qp") ? ", quasiparticle energies" : "";
+    if (tab.startsWith("fuzzy")) return [`DFT ${dft} geometry`, `fuzzy bands, PDOS, COOP (${soc}${qp})`];
+    return [`DFT ${dft} geometry`, `excited states (${soc})`];
   }
 
   async function loadProperties(r) {
-    plotUrls = { fuzzy_sf: null, fuzzy_soc: null, exciton_sf: null, exciton_soc: null, ground_state: null, synthesis: null };
+    plotUrls = Object.fromEntries(Object.keys(PROPERTY_FILES).map((t) => [t, null]));
     const props = r.properties || {};
+    if (r.dft?.webapp) plotUrls.optical = `/${r.dft.webapp}`;
     groundStatePng = props["ground_state.png"] ? `/${props["ground_state.png"]}` : null;
     for (const [tab, names] of Object.entries(PROPERTY_FILES)) {
       const hit = names.find((n) => props[n]);
@@ -561,6 +595,7 @@
           <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" bind:checked={filters.optimized} class="accent-accent-600" /> <span class="font-medium text-slate-700">Relaxed</span></label>
           <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" bind:checked={filters.md} class="accent-accent-600" /> <span class="font-medium text-slate-700">MD</span></label>
           <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" bind:checked={filters.properties} class="accent-accent-600" /> <span class="font-medium text-slate-700">Properties</span></label>
+          <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" bind:checked={filters.dft} class="accent-accent-600" /> <span class="font-medium text-slate-700">DFT optics</span></label>
         </div>
       </div>
 
@@ -621,6 +656,7 @@
               {#if r.flags?.optimized}<span class="px-1.5 rounded border text-[10px] font-bold {badgeClass('opt')}">Relaxed{functionalsOf(r).length ? " · " + functionalsOf(r).join("/") : ""}</span>{/if}
               {#if r.flags?.md}<span class="px-1.5 rounded border text-[10px] font-bold {badgeClass('md')}">MD</span>{/if}
               {#if r.flags?.properties}<span class="px-1.5 rounded border text-[10px] font-bold {badgeClass('props')}">Props</span>{/if}
+              {#if r.flags?.dft}<span class="px-1.5 rounded border text-[10px] font-bold {badgeClass('source')}">Optics</span>{/if}
             </div>
             {#if relaxedOnlyNote(r)}
               <div class="text-[10px] text-slate-400 mt-0.5 truncate" title={(r.origin?.legacy_paths || []).join(", ")}>
@@ -656,7 +692,7 @@
               <div class="flex gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
                 {#each [["3dmol", "3Dmol"], ["ngl", "NGL"], ["molstar", "Mol*"], ["matterviz", "MatterViz"]] as [v, label]}
                   <button class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all {activeViewer === v ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-950'}"
-                          onclick={() => (activeViewer = v)}>{label}</button>
+                          onclick={() => { activeViewer = v; if (v !== "3dmol") orbital = ""; }}>{label}</button>
                 {/each}
               </div>
             {/if}
@@ -667,6 +703,7 @@
         <div class="flex-1 bg-slate-50 rounded-[1rem] border border-slate-200 overflow-hidden relative shadow-inner">
           <Viewer xyz={xyzText} {isMD} dataUrl={fileUrl}
                   sizeMetrics={current?.size ?? null}
+                  orbitals={orbitalUrls} {orbital} onOrbital={showOrbital}
                   {activeViewer} />
           {#if loadingStage}
             <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center text-white z-10">
@@ -831,12 +868,18 @@
           <div class="absolute inset-x-0 top-0 flex flex-wrap items-center gap-1.5 text-[11px]">
             <span class="font-bold text-slate-500 uppercase tracking-wide mr-1">Computed with</span>
             {#each propertyMethods(activePropertyTab, current) as m}
-              <span class="px-2 py-0.5 rounded border font-bold {badgeClass(activePropertyTab.startsWith('fuzzy') || activePropertyTab.startsWith('exciton') ? 'source' : 'opt')}">{m}</span>
+              <span class="px-2 py-0.5 rounded border font-bold {badgeClass(activePropertyTab.startsWith('fuzzy') || activePropertyTab.startsWith('exciton') || activePropertyTab === 'optical' ? 'source' : 'opt')}">{m}</span>
             {/each}
           </div>
-          <iframe title="Interactive Properties" src={plotUrls[activePropertyTab]}
-                  class="absolute inset-x-0 top-8 w-full h-[calc(100%-2rem)] rounded-[1rem] border border-slate-200 bg-white"
-                  sandbox="allow-scripts allow-same-origin allow-popups allow-modals" referrerpolicy="no-referrer"></iframe>
+          {#if activePropertyTab === "optical"}
+            <div class="absolute inset-x-0 top-8 bottom-0 overflow-y-auto">
+              <Optical url={plotUrls.optical} />
+            </div>
+          {:else}
+            <iframe title="Interactive Properties" src={plotUrls[activePropertyTab]}
+                    class="absolute inset-x-0 top-8 w-full h-[calc(100%-2rem)] rounded-[1rem] border border-slate-200 bg-white"
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-modals" referrerpolicy="no-referrer"></iframe>
+          {/if}
         {/if}
       </div>
     </div>
