@@ -20,6 +20,7 @@
     phase: "",
     centre: "",
     surface: "",
+    recon: "",      // reconstruction pattern when surface = reconstructed: "", "vacancy", "swap"
     facet: "",
     functional: "",
     source: "",
@@ -125,6 +126,7 @@
     if (f.phase && r.phase !== f.phase) return false;
     if (f.centre && r.centre !== f.centre) return false;
     if (f.surface && r.surface !== f.surface) return false;
+    if (f.surface === "reconstructed" && f.recon && r.reconstruction_pattern !== f.recon) return false;
     if (f.facet && !facetFamiliesOf(r).includes(f.facet)) return false;
     if (f.source === "builder" && !r.source.includes("builder")) return false;
     if (f.source === "dft" && !r.source.includes("dft")) return false;
@@ -202,7 +204,7 @@
 
   function clearFilters() {
     Object.assign(filters, {
-      family: "", material: "", phase: "", centre: "", surface: "", facet: "", functional: "", source: "",
+      family: "", material: "", phase: "", centre: "", surface: "", recon: "", facet: "", functional: "", source: "",
       dMin: null, dMax: null, unrelaxed: false, optimized: false, md: false, properties: false, dft: false,
     });
     selectedFormulas = [];
@@ -423,7 +425,7 @@
           names.push(name);
         }
         files.push({ name: `${r.id}/record.json`, data: enc.encode(JSON.stringify(r, null, 1)) });
-        rows.push([r.id, r.formula, r.material, r.family, r.centre, r.surface, recipeTooltip(r).replace(/\n/g, "; "), r.source,
+        rows.push([r.id, r.formula, r.material, r.family, r.centre, surfaceLabel(r), recipeTooltip(r).replace(/\n/g, "; "), r.source,
                    dOf(r).toFixed(3), r.size?.d_volume_nm ?? "", r.size?.aspect_ratio ?? "", r.n_atoms, r.total_charge, r.size?.unit_cells ?? "", names.join(" ")]);
       }
       files.push({ name: "index.csv", data: enc.encode(rows.map((row) => row.map(csvCell).join(",")).join("\n") + "\n") });
@@ -431,7 +433,7 @@
       const blob = makeZip(files);
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
-      const tag = [filters.material || filters.family || "library", filters.surface, filters.centre && `${filters.centre}-centred`]
+      const tag = [filters.material || filters.family || "library", filters.surface, filters.surface === "reconstructed" && filters.recon, filters.centre && `${filters.centre}-centred`]
         .filter(Boolean).join("_");
       a.download = `qdspace_${tag}_${list.length}_structures.zip`;
       a.click();
@@ -458,6 +460,16 @@
     });
   }
 
+  // Surface badge: clean, or reconstructed with its anion-facet pattern.
+  const RECON_LABEL = { vacancy: "cation vacancies", swap: "anion → Cl swap" };
+  function surfaceLabel(r) {
+    if (r.surface !== "reconstructed" || !r.reconstruction_pattern) return r.surface;
+    return `reconstructed · ${r.reconstruction_pattern}`;
+  }
+  function surfaceBadge(r) {
+    return r.surface === "reconstructed" && r.reconstruction_pattern === "swap" ? "reconstructed-swap" : r.surface;
+  }
+
   function badgeClass(kind) {
     return {
       clean: "bg-slate-100 text-slate-700 border-slate-200",
@@ -466,6 +478,7 @@
       interstitial: "bg-violet-50 text-violet-800 border-violet-200",
       unrelaxed: "bg-sky-50 text-sky-800 border-sky-200",
       reconstructed: "bg-amber-50 text-amber-800 border-amber-200",
+      "reconstructed-swap": "bg-fuchsia-50 text-fuchsia-800 border-fuchsia-200",
       opt: "bg-emerald-50 text-emerald-800 border-emerald-200",
       md: "bg-indigo-50 text-indigo-800 border-indigo-200",
       props: "bg-brand-50 text-brand-800 border-brand-200",
@@ -549,9 +562,18 @@
         <div class="flex gap-1 bg-slate-100 p-1 rounded-xl">
           {#each [["", "All"], ["clean", "Clean"], ["reconstructed", "Reconstructed"]] as [v, label]}
             <button class="flex-1 px-2 py-1.5 rounded-lg text-xs font-bold transition-all {filters.surface === v ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-800'}"
-                    onclick={() => { filters.surface = v; selectedFormulas = []; }}>{label}</button>
+                    onclick={() => { filters.surface = v; filters.recon = ""; selectedFormulas = []; }}>{label}</button>
           {/each}
         </div>
+        {#if filters.surface === "reconstructed"}
+          <div class="flex gap-1 bg-slate-100 p-1 rounded-xl mt-1.5" role="radiogroup" aria-label="Reconstruction pattern">
+            {#each [["", "Any"], ["vacancy", "Cation vacancies"], ["swap", "Anion → Cl swap"]] as [v, label]}
+              <button role="radio" aria-checked={filters.recon === v}
+                      class="flex-1 px-2 py-1.5 rounded-lg text-[11px] font-bold transition-all {filters.recon === v ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-800'}"
+                      onclick={() => { filters.recon = v; selectedFormulas = []; }}>{label}</button>
+            {/each}
+          </div>
+        {/if}
       </div>
 
       <div>
@@ -650,7 +672,7 @@
                 <span class="inline-flex items-center gap-1 px-1.5 rounded border text-[10px] font-mono font-bold bg-white text-slate-600 border-slate-200"
                       title={recipeTooltip(r)}><span class="w-1.5 h-1.5 rounded-full {recipeDot.get(recipeKey(r)) || 'bg-slate-400'}"></span>{recipeLabel(r)}</span>
               {/if}
-              <span class="px-1.5 rounded border text-[10px] font-bold {badgeClass(r.surface)}">{r.surface}</span>
+              <span class="px-1.5 rounded border text-[10px] font-bold {badgeClass(surfaceBadge(r))}" title={RECON_LABEL[r.reconstruction_pattern] || ''}>{surfaceLabel(r)}</span>
               <span class="px-1.5 rounded border text-[10px] font-bold {badgeClass('source')}">{SOURCE_LABEL[r.source] || r.source}</span>
               {#if hasUnrelaxed(r)}<span class="px-1.5 rounded border text-[10px] font-bold {badgeClass('unrelaxed')}">Unrelaxed</span>{/if}
               {#if r.flags?.optimized}<span class="px-1.5 rounded border text-[10px] font-bold {badgeClass('opt')}">Relaxed{functionalsOf(r).length ? " · " + functionalsOf(r).join("/") : ""}</span>{/if}
@@ -721,7 +743,7 @@
             <div class="space-y-1.5 text-sm text-slate-700 bg-slate-50 p-3 rounded-2xl mb-4">
               <p class="flex justify-between"><strong class="text-slate-900">Material</strong><span>{current.material} · {current.family} · {current.phase}</span></p>
               <p class="flex justify-between"><strong class="text-slate-900">Centre</strong><span class="px-1.5 rounded border text-xs font-bold {badgeClass(centreRole(current.centre))}">{centreLabel(current.centre)}</span></p>
-              <p class="flex justify-between"><strong class="text-slate-900">Surface</strong><span>{current.surface}</span></p>
+              <p class="flex justify-between"><strong class="text-slate-900">Surface</strong><span>{current.surface}{RECON_LABEL[current.reconstruction_pattern] ? ` (${RECON_LABEL[current.reconstruction_pattern]})` : ''}</span></p>
               <p class="flex justify-between"><strong class="text-slate-900">SAXS diameter</strong><span>{dOf(current).toFixed(2)} nm <span class="text-slate-400">(max {current.size?.d_max_nm?.toFixed(2)})</span></span></p>
               {#if current.size?.d_volume_nm}
                 <p class="flex justify-between"><strong class="text-slate-900">Volume diameter</strong><span>{current.size.d_volume_nm.toFixed(2)} nm</span></p>

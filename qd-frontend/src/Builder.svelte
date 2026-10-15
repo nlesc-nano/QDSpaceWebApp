@@ -130,6 +130,7 @@
   let cationicLigands = $state([]);
   
   let reconEnabled = $state(false);
+  let reconPattern = $state('vacancy');   // 'vacancy' | 'swap'
   // {111} reconstruction applies to zinc-blende cores with both cation-rich
   // {111} and anion-rich {-1-1-1} facets active (QD_Builder skips otherwise).
   const is111Facet = (f) => {
@@ -1168,6 +1169,7 @@
       skip_core_build: skipCoreBuild,
       xyz_unpassivated: skipCoreBuild ? lastUnpassivatedXyz : null,
       reconstruction_enabled: skipCoreBuild ? (reconEnabled && reconAvailable) : false,
+      reconstruction_pattern: reconPattern,
       neutral_enabled: skipCoreBuild ? neutralEnabled : false,
       neutral_jobs: skipCoreBuild
         ? lTypeOptions
@@ -1662,16 +1664,30 @@
             </label>
             <p class="text-[10px] text-slate-500 mt-2 leading-snug">
               {#if reconAvailable}
-                Sub-surface cation vacancies on anion-rich (-1-1-1) facets (2-coordinated anions → Cl), then Cl stripping and cation removal on cation-rich (111) facets to keep the dot neutral. Runs before ligand exchange.
+                {#if reconPattern === 'swap'}
+                  Outer anions of the anion-rich (-1-1-1) facets → Cl (as many as the cation-rich facets can compensate), then Cl stripped and re-added on the cation-rich (111) facets; no vacancies, no cation removal. Runs before ligand exchange.
+                {:else}
+                  Sub-surface cation vacancies on anion-rich (-1-1-1) facets (2-coordinated anions → Cl), then Cl stripping and cation removal on cation-rich (111) facets to keep the dot neutral. Runs before ligand exchange.
+                {/if}
               {:else}
                 Available for zinc-blende II-VI / III-V cores with both cation-rich (111) and anion-rich (-1-1-1) facets enabled.
               {/if}
             </p>
+            {#if reconAvailable}
+              <div class="mt-2 flex gap-1 bg-slate-100 p-1 rounded-xl" role="radiogroup" aria-label="Anion-rich facet pattern">
+                {#each [['vacancy', 'Cation vacancies'], ['swap', 'Anion → Cl swap']] as [v, label]}
+                  <button type="button" role="radio" aria-checked={reconPattern === v}
+                          class="flex-1 px-2 py-1.5 rounded-lg text-[10px] font-bold transition-all {reconPattern === v ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-800'}"
+                          onclick={() => (reconPattern = v)}>{label}</button>
+                {/each}
+              </div>
+            {/if}
 
             {#if finalResult?.reconstruction}
               {@const rc = finalResult.reconstruction}
               <div class="mt-3 p-3 bg-white border border-accent-100 rounded-xl text-[10px] text-slate-600 space-y-0.5">
                 {#if rc.status === 'applied'}
+                  {#if rc.anion_pattern}<div><span class="font-bold text-slate-700">Pattern:</span> {rc.anion_pattern === 'swap' ? `anion → ${rc.ligand} swap` : 'cation vacancies'}</div>{/if}
                   <div><span class="font-bold text-slate-700">Anion-rich facets:</span> {rc.anion_facets.reduce((a, f) => a + f.vacancies, 0)} {rc.cation} vacancies, {rc.anion_facets.reduce((a, f) => a + f.anions_to_ligand, 0)} {rc.anion} → {rc.ligand}{rc.anion_facets.some((f) => f.chain_breaks) ? `, ${rc.anion_facets.reduce((a, f) => a + (f.chain_breaks || 0), 0)} ${rc.anion} → ${rc.ligand} chain breaks` : ''}</div>
                   <div><span class="font-bold text-slate-700">Cation-rich facets:</span> {rc.ligands_stripped} {rc.ligand} stripped, {rc.cations_removed} {rc.cation} removed{rc.ligands_added ? `, ${rc.ligands_added} ${rc.ligand} added` : ''}</div>
                   <div><span class="font-bold text-slate-700">Net charge:</span> {rc.total_charge_after >= 0 ? '+' : ''}{rc.total_charge_after}</div>

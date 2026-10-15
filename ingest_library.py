@@ -173,6 +173,10 @@ def load_builder_records(dirs: List[str], prefix: str):
     for d in dirs:
         for rec_path in sorted(Path(d).glob("*/record.json")):
             rec = json.loads(rec_path.read_text())
+            if rec.get("surface") == "reconstructed" and not rec.get("reconstruction_pattern"):
+                # Series built before the swap option are all vacancy-type.
+                ledger = (rec.get("origin") or {}).get("reconstruction_ledger") or {}
+                rec["reconstruction_pattern"] = ledger.get("anion_pattern", "vacancy")
             symbols, pts = read_xyz_first_frame(str(rec_path.parent / "start.xyz"))
             folder = rec_path.parent.resolve()
             if public in folder.parents:

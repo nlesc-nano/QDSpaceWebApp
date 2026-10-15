@@ -150,6 +150,9 @@ class BuildOptions(BaseModel):
 
     # New Surface Reconstruction and Neutral passivation fields
     reconstruction_enabled: Optional[bool] = False
+    # Anion-terminated facets: "vacancy" (sub-surface cation vacancies) or
+    # "swap" (outer anions -> Cl, compensated by Cl on the cation facets).
+    reconstruction_pattern: Optional[str] = "vacancy"
     # Ignored since the {111} reconstruction rewrite; kept so older clients validate.
     reconstruction_target_reduction: Optional[float] = 0.5
     reconstruction_min_separation: Optional[str] = "auto"
@@ -1007,6 +1010,8 @@ def _build_post_treatment_from_opts(opts: BuildOptions) -> dict:
             "ligand": "Cl",
             "seed": 1337,
         }
+        if (opts.reconstruction_pattern or "vacancy").strip().lower() == "swap":
+            post_treatment["surface_reconstruction"]["anion_pattern"] = "swap"
     if opts.z_type_enabled and opts.z_type_jobs:
         z_passes = []
         for job in opts.z_type_jobs:
