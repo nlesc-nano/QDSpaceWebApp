@@ -1,0 +1,129 @@
+centre,unit_cells,surface,status,id,formula,d_nm,n_atoms,Q
+Cd,0.75,clean,rejected: core 0 < 20 atoms; no atom at the construction origin,,,0.0,0,0
+Cd,0.75,reconstructed,skipped: found 0 anion- and 0 cation-terminated {111} facets; need both,,,,,
+Cd,1.0,clean,rejected: core 6 < 20 atoms,,Cd5Se1Cl8,1.035,14,0
+Cd,1.0,reconstructed,skipped: found 0 anion- and 2 cation-terminated {111} facets; need both,,,,,
+Cd,1.25,clean,parent only (not written),CdSe-Cd-Cd16Se8Cl16-clean,Cd16Se8Cl16,1.248,40,0
+Cd,1.25,reconstructed,kept,CdSe-Cd-Cd16Se7Cl18-reconstructed,Cd16Se7Cl18,1.263,41,0
+Cd,1.5,clean,parent only (not written),CdSe-Cd-Cd21Se14Cl14-clean,Cd21Se14Cl14,1.39,49,0
+Cd,1.5,reconstructed,kept,CdSe-Cd-Cd21Se13Cl16-reconstructed,Cd21Se13Cl16,1.39,50,0
+Cd,1.75,clean,parent only (not written),CdSe-Cd-Cd44Se37Cl14-clean,Cd44Se37Cl14,1.739,95,0
+Cd,1.75,reconstructed,kept,CdSe-Cd-Cd44Se30Cl28-reconstructed,Cd44Se30Cl28,1.756,102,0
+Cd,2.0,clean,parent only (not written),CdSe-Cd-Cd54Se43Cl22-clean,Cd54Se43Cl22,1.893,119,0
+Cd,2.0,reconstructed,kept,CdSe-Cd-Cd54Se40Cl28-reconstructed,Cd54Se40Cl28,1.902,122,0
+Cd,2.25,clean,parent only (not written),CdSe-Cd-Cd93Se86Cl14-clean,Cd93Se86Cl14,2.214,193,0
+Cd,2.25,reconstructed,kept,CdSe-Cd-Cd93Se75Cl36-reconstructed,Cd93Se75Cl36,2.228,204,0
+Cd,2.5,clean,parent only (not written),CdSe-Cd-Cd111Se99Cl24-clean,Cd111Se99Cl24,2.364,234,0
+Cd,2.5,reconstructed,kept,CdSe-Cd-Cd111Se87Cl48-reconstructed,Cd111Se87Cl48,2.38,246,0
+Cd,2.75,clean,parent only (not written),CdSe-Cd-Cd183Se169Cl28-clean,Cd183Se169Cl28,2.827,380,0
+Cd,2.75,reconstructed,kept,CdSe-Cd-Cd183Se150Cl66-reconstructed,Cd183Se150Cl66,2.841,399,0
+Cd,3.0,clean,parent only (not written),CdSe-Cd-Cd247Se234Cl26-clean,Cd247Se234Cl26,3.053,507,0
+Cd,3.0,reconstructed,kept,CdSe-Cd-Cd247Se209Cl76-reconstructed,Cd247Se209Cl76,3.077,532,0
+Cd,3.25,clean,parent only (not written),CdSe-Cd-Cd261Se244Cl34-clean,Cd261Se244Cl34,3.15,539,0
+Cd,3.25,reconstructed,kept,CdSe-Cd-Cd261Se219Cl84-reconstructed,Cd261Se219Cl84,3.161,564,0
+Cd,3.5,clean,parent only (not written),CdSe-Cd-Cd422Se401Cl42-clean,Cd422Se401Cl42,3.703,865,0
+Cd,3.5,reconstructed,kept,CdSe-Cd-Cd422Se368Cl108-reconstructed,Cd422Se368Cl108,3.713,898,0
+Cd,3.75,clean,parent only (not written),CdSe-Cd-Cd533Se518Cl30-clean,Cd533Se518Cl30,3.979,1081,0
+Cd,3.75,reconstructed,kept,CdSe-Cd-Cd533Se471Cl124-reconstructed,Cd533Se471Cl124,3.992,1128,0
+Cd,4.0,clean,parent only (not written),CdSe-Cd-Cd545Se532Cl26-clean,Cd545Se532Cl26,4.026,1103,0
+Cd,4.0,reconstructed,kept,CdSe-Cd-Cd545Se484Cl122-reconstructed,Cd545Se484Cl122,4.038,1151,0
+Cd,4.25,clean,parent only (not written),CdSe-Cd-Cd605Se583Cl44-clean,Cd605Se583Cl44,4.181,1232,0
+Cd,4.25,reconstructed,kept,CdSe-Cd-Cd605Se535Cl140-reconstructed,Cd605Se535Cl140,4.192,1280,0
+Cd,4.5,clean,parent only (not written),CdSe-Cd-Cd815Se791Cl48-clean,Cd815Se791Cl48,4.63,1654,0
+Cd,4.5,reconstructed,kept,CdSe-Cd-Cd815Se730Cl170-reconstructed,Cd815Se730Cl170,4.64,1715,0
+Cd,4.75,clean,parent only (not written),CdSe-Cd-Cd995Se978Cl34-clean,Cd995Se978Cl34,4.909,2007,0
+Cd,4.75,reconstructed,kept,CdSe-Cd-Cd995Se905Cl180-reconstructed,Cd995Se905Cl180,4.918,2080,0
+Cd,5.0,clean,parent only (not written),CdSe-Cd-Cd1088Se1060Cl56-clean,Cd1088Se1060Cl56,5.077,2204,0
+Cd,5.0,reconstructed,kept,CdSe-Cd-Cd1088Se983Cl210-reconstructed,Cd1088Se983Cl210,5.086,2281,0
+Cd,5.25,clean,parent only (not written),CdSe-Cd-Cd1390Se1359Cl62-clean,Cd1390Se1359Cl62,5.496,2811,0
+Cd,5.25,reconstructed,kept,CdSe-Cd-Cd1390Se1272Cl236-reconstructed,Cd1390Se1272Cl236,5.504,2898,0
+Cd,5.5,clean,parent only (not written),CdSe-Cd-Cd1645Se1626Cl38-clean,Cd1645Se1626Cl38,5.838,3309,0
+Cd,5.5,reconstructed,kept,CdSe-Cd-Cd1645Se1518Cl254-reconstructed,Cd1645Se1518Cl254,5.829,3417,0
+Cd,5.75,clean,parent only (not written),CdSe-Cd-Cd1757Se1737Cl40-clean,Cd1757Se1737Cl40,5.958,3534,0
+Cd,5.75,reconstructed,kept,CdSe-Cd-Cd1757Se1629Cl256-reconstructed,Cd1757Se1629Cl256,5.966,3642,0
+Cd,6.0,clean,parent only (not written),CdSe-Cd-Cd1897Se1863Cl68-clean,Cd1897Se1863Cl68,6.132,3828,0
+Cd,6.0,reconstructed,kept,CdSe-Cd-Cd1897Se1757Cl280-reconstructed,Cd1897Se1757Cl280,6.139,3934,0
+Cd,6.25,clean,parent only (not written),CdSe-Cd-Cd2191Se2157Cl68-clean,Cd2191Se2157Cl68,6.416,4416,0
+Cd,6.25,reconstructed,kept,CdSe-Cd-Cd2191Se2030Cl322-reconstructed,Cd2191Se2030Cl322,6.422,4543,0
+Cd,6.5,clean,parent only (not written),CdSe-Cd-Cd2527Se2504Cl46-clean,Cd2527Se2504Cl46,6.713,5077,0
+Cd,6.5,reconstructed,kept,CdSe-Cd-Cd2527Se2359Cl336-reconstructed,Cd2527Se2359Cl336,6.719,5222,0
+Cd,6.75,clean,parent only (not written),CdSe-Cd-Cd2867Se2829Cl76-clean,Cd2867Se2829Cl76,7.034,5772,0
+Cd,6.75,reconstructed,kept,CdSe-Cd-Cd2867Se2682Cl370-reconstructed,Cd2867Se2682Cl370,7.041,5919,0
+Cd,7.0,clean,parent only (not written),CdSe-Cd-Cd3246Se3205Cl82-clean,Cd3246Se3205Cl82,7.31,6533,0
+Cd,7.0,reconstructed,kept,CdSe-Cd-Cd3246Se3040Cl412-reconstructed,Cd3246Se3040Cl412,7.316,6698,0
+Cd,7.25,clean,parent only (not written),CdSe-Cd-Cd3681Se3656Cl50-clean,Cd3681Se3656Cl50,7.584,7387,0
+Cd,7.25,reconstructed,kept,CdSe-Cd-Cd3681Se3464Cl434-reconstructed,Cd3681Se3464Cl434,7.601,7579,0
+Cd,7.5,clean,parent only (not written),CdSe-Cd-Cd3897Se3855Cl84-clean,Cd3897Se3855Cl84,7.786,7836,0
+Cd,7.5,reconstructed,kept,CdSe-Cd-Cd3897Se3663Cl468-reconstructed,Cd3897Se3663Cl468,7.79,8028,0
+Cd,7.75,clean,parent only (not written),CdSe-Cd-Cd4113Se4069Cl88-clean,Cd4113Se4069Cl88,7.95,8270,0
+Cd,7.75,reconstructed,kept,CdSe-Cd-Cd4113Se3879Cl468-reconstructed,Cd4113Se3879Cl468,7.955,8460,0
+Cd,8.0,clean,parent only (not written),CdSe-Cd-Cd4599Se4555Cl88-clean,Cd4599Se4555Cl88,8.218,9242,0
+Cd,8.0,reconstructed,kept,CdSe-Cd-Cd4599Se4338Cl522-reconstructed,Cd4599Se4338Cl522,8.223,9459,0
+Cd,8.25,clean,parent only (not written),CdSe-Cd-Cd5388Se5356Cl64-clean,Cd5388Se5356Cl64,8.637,10808,0
+Cd,8.25,reconstructed,kept,CdSe-Cd-Cd5388Se5115Cl546-reconstructed,Cd5388Se5115Cl546,8.641,11049,0
+Cd,8.5,clean,parent only (not written),CdSe-Cd-Cd5683Se5635Cl96-clean,Cd5683Se5635Cl96,8.824,11414,0
+Cd,8.5,reconstructed,kept,CdSe-Cd-Cd5683Se5392Cl582-reconstructed,Cd5683Se5392Cl582,8.828,11657,0
+Se,0.75,clean,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
+Se,0.75,reconstructed,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
+Se,1.0,clean,rejected: core 4 < 20 atoms,,Cd3Se1Cl4,0.764,8,0
+Se,1.0,reconstructed,rejected: core 3 < 20 atoms; centre detected as Cl,,Cd3Cl6,0.801,9,0
+Se,1.25,clean,rejected: core 15 < 20 atoms,,Cd11Se4Cl14,1.128,29,0
+Se,1.25,reconstructed,rejected: core 13 < 20 atoms,,Cd11Se2Cl18,1.172,31,0
+Se,1.5,clean,parent only (not written),CdSe-Se-Cd20Se15Cl10-clean,Cd20Se15Cl10,1.335,45,0
+Se,1.5,reconstructed,kept,CdSe-Se-Cd20Se11Cl18-reconstructed,Cd20Se11Cl18,1.365,49,0
+Se,1.75,clean,parent only (not written),CdSe-Se-Cd48Se41Cl14-clean,Cd48Se41Cl14,1.838,103,0
+Se,1.75,reconstructed,kept,CdSe-Se-Cd48Se34Cl28-reconstructed,Cd48Se34Cl28,1.845,110,0
+Se,2.0,clean,parent only (not written),CdSe-Se-Cd56Se48Cl16-clean,Cd56Se48Cl16,1.935,120,0
+Se,2.0,reconstructed,kept,CdSe-Se-Cd56Se42Cl28-reconstructed,Cd56Se42Cl28,1.954,126,0
+Se,2.25,clean,parent only (not written),CdSe-Se-Cd86Se75Cl22-clean,Cd86Se75Cl22,2.144,183,0
+Se,2.25,reconstructed,kept,CdSe-Se-Cd86Se65Cl42-reconstructed,Cd86Se65Cl42,2.164,193,0
+Se,2.5,clean,parent only (not written),CdSe-Se-Cd117Se105Cl24-clean,Cd117Se105Cl24,2.437,246,0
+Se,2.5,reconstructed,kept,CdSe-Se-Cd117Se93Cl48-reconstructed,Cd117Se93Cl48,2.449,258,0
+Se,2.75,clean,parent only (not written),CdSe-Se-Cd181Se165Cl32-clean,Cd181Se165Cl32,2.803,378,0
+Se,2.75,reconstructed,kept,CdSe-Se-Cd181Se150Cl62-reconstructed,Cd181Se150Cl62,2.814,393,0
+Se,3.0,clean,parent only (not written),CdSe-Se-Cd246Se234Cl24-clean,Cd246Se234Cl24,3.051,504,0
+Se,3.0,reconstructed,kept,CdSe-Se-Cd246Se208Cl76-reconstructed,Cd246Se208Cl76,3.074,530,0
+Se,3.25,clean,parent only (not written),CdSe-Se-Cd256Se240Cl32-clean,Cd256Se240Cl32,3.119,528,0
+Se,3.25,reconstructed,kept,CdSe-Se-Cd256Se213Cl86-reconstructed,Cd256Se213Cl86,3.132,555,0
+Se,3.5,clean,parent only (not written),CdSe-Se-Cd424Se405Cl38-clean,Cd424Se405Cl38,3.718,867,0
+Se,3.5,reconstructed,kept,CdSe-Se-Cd424Se368Cl112-reconstructed,Cd424Se368Cl112,3.731,904,0
+Se,3.75,clean,parent only (not written),CdSe-Se-Cd534Se518Cl32-clean,Cd534Se518Cl32,3.98,1084,0
+Se,3.75,reconstructed,kept,CdSe-Se-Cd534Se472Cl124-reconstructed,Cd534Se472Cl124,3.993,1130,0
+Se,4.0,clean,duplicate of CdSe-Se-Cd534Se518Cl32-clean,CdSe-Se-Cd534Se518Cl32-clean,Cd534Se518Cl32,3.98,1084,0
+Se,4.0,reconstructed,duplicate of CdSe-Se-Cd534Se472Cl124-reconstructed,CdSe-Se-Cd534Se472Cl124-reconstructed,Cd534Se472Cl124,3.993,1130,0
+Se,4.25,clean,parent only (not written),CdSe-Se-Cd615Se593Cl44-clean,Cd615Se593Cl44,4.211,1252,0
+Se,4.25,reconstructed,kept,CdSe-Se-Cd615Se545Cl140-reconstructed,Cd615Se545Cl140,4.221,1300,0
+Se,4.5,clean,parent only (not written),CdSe-Se-Cd813Se787Cl52-clean,Cd813Se787Cl52,4.62,1652,0
+Se,4.5,reconstructed,kept,CdSe-Se-Cd813Se730Cl166-reconstructed,Cd813Se730Cl166,4.628,1709,0
+Se,4.75,clean,parent only (not written),CdSe-Se-Cd982Se964Cl36-clean,Cd982Se964Cl36,4.874,1982,0
+Se,4.75,reconstructed,kept,CdSe-Se-Cd982Se889Cl186-reconstructed,Cd982Se889Cl186,4.883,2057,0
+Se,5.0,clean,parent only (not written),CdSe-Se-Cd1086Se1058Cl56-clean,Cd1086Se1058Cl56,5.071,2200,0
+Se,5.0,reconstructed,kept,CdSe-Se-Cd1086Se985Cl202-reconstructed,Cd1086Se985Cl202,5.079,2273,0
+Se,5.25,clean,parent only (not written),CdSe-Se-Cd1392Se1363Cl58-clean,Cd1392Se1363Cl58,5.504,2813,0
+Se,5.25,reconstructed,kept,CdSe-Se-Cd1392Se1272Cl240-reconstructed,Cd1392Se1272Cl240,5.513,2904,0
+Se,5.5,clean,parent only (not written),CdSe-Se-Cd1630Se1608Cl44-clean,Cd1630Se1608Cl44,5.796,3282,0
+Se,5.5,reconstructed,kept,CdSe-Se-Cd1630Se1502Cl256-reconstructed,Cd1630Se1502Cl256,5.806,3388,0
+Se,5.75,clean,parent only (not written),CdSe-Se-Cd1771Se1753Cl36-clean,Cd1771Se1753Cl36,5.989,3560,0
+Se,5.75,reconstructed,kept,CdSe-Se-Cd1771Se1645Cl252-reconstructed,Cd1771Se1645Cl252,5.998,3668,0
+Se,6.0,clean,parent only (not written),CdSe-Se-Cd1900Se1867Cl66-clean,Cd1900Se1867Cl66,6.14,3833,0
+Se,6.0,reconstructed,kept,CdSe-Se-Cd1900Se1758Cl284-reconstructed,Cd1900Se1758Cl284,6.148,3942,0
+Se,6.25,clean,parent only (not written),CdSe-Se-Cd2189Se2153Cl72-clean,Cd2189Se2153Cl72,6.411,4414,0
+Se,6.25,reconstructed,kept,CdSe-Se-Cd2189Se2030Cl318-reconstructed,Cd2189Se2030Cl318,6.416,4537,0
+Se,6.5,clean,parent only (not written),CdSe-Se-Cd2510Se2486Cl48-clean,Cd2510Se2486Cl48,6.687,5044,0
+Se,6.5,reconstructed,kept,CdSe-Se-Cd2510Se2339Cl342-reconstructed,Cd2510Se2339Cl342,6.691,5191,0
+Se,6.75,clean,parent only (not written),CdSe-Se-Cd2864Se2825Cl78-clean,Cd2864Se2825Cl78,7.029,5767,0
+Se,6.75,reconstructed,kept,CdSe-Se-Cd2864Se2680Cl368-reconstructed,Cd2864Se2680Cl368,7.035,5912,0
+Se,7.0,clean,parent only (not written),CdSe-Se-Cd3248Se3209Cl78-clean,Cd3248Se3209Cl78,7.315,6535,0
+Se,7.0,reconstructed,kept,CdSe-Se-Cd3248Se3040Cl416-reconstructed,Cd3248Se3040Cl416,7.321,6704,0
+Se,7.25,clean,parent only (not written),CdSe-Se-Cd3662Se3634Cl56-clean,Cd3662Se3634Cl56,7.58,7352,0
+Se,7.25,reconstructed,kept,CdSe-Se-Cd3662Se3444Cl436-reconstructed,Cd3662Se3444Cl436,7.586,7542,0
+Se,7.5,clean,parent only (not written),CdSe-Se-Cd3915Se3873Cl84-clean,Cd3915Se3873Cl84,7.801,7872,0
+Se,7.5,reconstructed,kept,CdSe-Se-Cd3915Se3681Cl468-reconstructed,Cd3915Se3681Cl468,7.812,8064,0
+Se,7.75,clean,parent only (not written),CdSe-Se-Cd4116Se4073Cl86-clean,Cd4116Se4073Cl86,7.955,8275,0
+Se,7.75,reconstructed,kept,CdSe-Se-Cd4116Se3881Cl470-reconstructed,Cd4116Se3881Cl470,7.961,8467,0
+Se,8.0,clean,parent only (not written),CdSe-Se-Cd4599Se4553Cl92-clean,Cd4599Se4553Cl92,8.217,9244,0
+Se,8.0,reconstructed,kept,CdSe-Se-Cd4599Se4336Cl526-reconstructed,Cd4599Se4336Cl526,8.221,9461,0
+Se,8.25,clean,parent only (not written),CdSe-Se-Cd5410Se5380Cl60-clean,Cd5410Se5380Cl60,8.656,10850,0
+Se,8.25,reconstructed,kept,CdSe-Se-Cd5410Se5139Cl542-reconstructed,Cd5410Se5139Cl542,8.662,11091,0
+Se,8.5,clean,parent only (not written),CdSe-Se-Cd5680Se5631Cl98-clean,Cd5680Se5631Cl98,8.822,11409,0
+Se,8.5,reconstructed,kept,CdSe-Se-Cd5680Se5390Cl580-reconstructed,Cd5680Se5390Cl580,8.825,11650,0

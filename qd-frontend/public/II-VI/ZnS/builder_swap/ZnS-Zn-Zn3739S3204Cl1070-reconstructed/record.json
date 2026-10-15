@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "id": "ZnS-Zn-Zn3739S3204Cl1070-reconstructed",
+  "material": "ZnS",
+  "family": "II-VI",
+  "phase": "zinc-blende",
+  "surface": "reconstructed",
+  "source": "builder",
+  "formula": "Zn3739S3204Cl1070",
+  "composition": {
+    "Zn": 3739,
+    "S": 3204,
+    "Cl": 1070
+  },
+  "core": {
+    "Zn": 3739,
+    "S": 3204
+  },
+  "ligands": {
+    "Cl": 1070
+  },
+  "n_atoms": 8013,
+  "total_charge": 0,
+  "centre": "Zn",
+  "centre_offset_A": 0.0,
+  "size": {
+    "n_core": 6943,
+    "d_nm": 6.694,
+    "d_volume_nm": 6.376,
+    "axes_nm": [
+      6.701,
+      6.697,
+      6.695
+    ],
+    "aspect_ratio": 1.001,
+    "d_max_nm": 7.024,
+    "d_hull_nm": 6.206,
+    "unit_cells": 5.75,
+    "unit_cells_all": [
+      5.75
+    ]
+  },
+  "fingerprint": "bf53f9c2bb34a224",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "zns_zb_swap.yaml",
+    "qd_builder_commit": "bdcb07b00148a05392d600675679293b7c102c0c",
+    "qd_builder_dirty": false,
+    "cif": "ZnS_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Zn": 2,
+        "S": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        5.75,
+        5.75,
+        5.75
+      ],
+      "construction_origin": {
+        "center_on_species": "Zn"
+      },
+      "post_treatment": {
+        "surface_reconstruction": {
+          "enabled": true,
+          "ligand": "Cl",
+          "anion_pattern": "swap"
+        }
+      }
+    },
+    "reconstruction_ledger": {
+      "status": "applied",
+      "ligand": "Cl",
+      "anion_pattern": "swap",
+      "cation_removal": "none",
+      "cation": "Zn",
+      "anion": "S",
+      "anion_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 25,
+          "chain_breaks": 62
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 25,
+          "chain_breaks": 62
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 23,
+          "chain_breaks": 64
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 22,
+          "chain_breaks": 65
+        }
+      ],
+      "cation_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            1
+          ],
+          "ligands_stripped": 9,
+          "cations_removed": 0,
+          "ligands_added": 98
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            -1
+          ],
+          "ligands_stripped": 9,
+          "cations_removed": 0,
+          "ligands_added": 96
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            -1
+          ],
+          "ligands_stripped": 10,
+          "cations_removed": 0,
+          "ligands_added": 96
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            1
+          ],
+          "ligands_stripped": 10,
+          "cations_removed": 0,
+          "ligands_added": 96
+        }
+      ],
+      "anion_side_charge_delta": 348,
+      "ligands_stripped": 38,
+      "cations_removed": 0,
+      "ligands_added": 386,
+      "ligands_added_by_mu": {
+        "mu3": 19,
+        "mu2": 0,
+        "mu1": 367
+      },
+      "symmetric": false,
+      "total_charge_before": 0,
+      "total_charge_after": 0,
+      "swap": {
+        "extra_per_facet": 25,
+        "extra_max": 25,
+        "outer_anions": 348
+      }
+    }
+  },
+  "parent": "ZnS-Zn-Zn3739S3552Cl374-clean",
+  "reconstruction_pattern": "swap"
+}

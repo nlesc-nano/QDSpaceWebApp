@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "id": "ZnTe-Te-Zn1216Te955Cl522-reconstructed",
+  "material": "ZnTe",
+  "family": "II-VI",
+  "phase": "zinc-blende",
+  "surface": "reconstructed",
+  "source": "builder",
+  "formula": "Zn1216Te955Cl522",
+  "composition": {
+    "Zn": 1216,
+    "Te": 955,
+    "Cl": 522
+  },
+  "core": {
+    "Zn": 1216,
+    "Te": 955
+  },
+  "ligands": {
+    "Cl": 522
+  },
+  "n_atoms": 2693,
+  "total_charge": 0,
+  "centre": "Te",
+  "centre_offset_A": 0.0,
+  "size": {
+    "n_core": 2171,
+    "d_nm": 5.097,
+    "d_volume_nm": 4.909,
+    "axes_nm": [
+      5.1,
+      5.096,
+      5.095
+    ],
+    "aspect_ratio": 1.001,
+    "d_max_nm": 5.354,
+    "d_hull_nm": 4.719,
+    "unit_cells": 4.0,
+    "unit_cells_all": [
+      4.0
+    ]
+  },
+  "fingerprint": "55ed55e91a609ffd",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "znte_zb_swap.yaml",
+    "qd_builder_commit": "bdcb07b00148a05392d600675679293b7c102c0c",
+    "qd_builder_dirty": false,
+    "cif": "ZnTe_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Zn": 2,
+        "Te": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        4.0,
+        4.0,
+        4.0
+      ],
+      "construction_origin": {
+        "center_on_species": "Te"
+      },
+      "post_treatment": {
+        "surface_reconstruction": {
+          "enabled": true,
+          "ligand": "Cl",
+          "anion_pattern": "swap"
+        }
+      }
+    },
+    "reconstruction_ledger": {
+      "status": "applied",
+      "ligand": "Cl",
+      "anion_pattern": "swap",
+      "cation_removal": "none",
+      "cation": "Zn",
+      "anion": "Te",
+      "anion_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 13,
+          "chain_breaks": 33
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 14,
+          "chain_breaks": 32
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 13,
+          "chain_breaks": 33
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 13,
+          "chain_breaks": 33
+        }
+      ],
+      "cation_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            -1
+          ],
+          "ligands_stripped": 1,
+          "cations_removed": 0,
+          "ligands_added": 48
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            1
+          ],
+          "ligands_stripped": 1,
+          "cations_removed": 0,
+          "ligands_added": 48
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            1
+          ],
+          "ligands_stripped": 1,
+          "cations_removed": 0,
+          "ligands_added": 46
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            -1
+          ],
+          "ligands_stripped": 1,
+          "cations_removed": 0,
+          "ligands_added": 46
+        }
+      ],
+      "anion_side_charge_delta": 184,
+      "ligands_stripped": 4,
+      "cations_removed": 0,
+      "ligands_added": 188,
+      "ligands_added_by_mu": {
+        "mu3": 2,
+        "mu2": 0,
+        "mu1": 186
+      },
+      "symmetric": false,
+      "total_charge_before": 0,
+      "total_charge_after": 0,
+      "swap": {
+        "extra_per_facet": 14,
+        "extra_max": 14,
+        "outer_anions": 184
+      }
+    }
+  },
+  "parent": "ZnTe-Te-Zn1216Te1139Cl154-clean",
+  "reconstruction_pattern": "swap"
+}

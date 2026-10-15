@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "id": "CdSe-Se-Cd3915Se3681Cl468-reconstructed",
+  "material": "CdSe",
+  "family": "II-VI",
+  "phase": "wurtzite",
+  "surface": "reconstructed",
+  "source": "builder",
+  "formula": "Cd3915Se3681Cl468",
+  "composition": {
+    "Cd": 3915,
+    "Se": 3681,
+    "Cl": 468
+  },
+  "core": {
+    "Cd": 3915,
+    "Se": 3681
+  },
+  "ligands": {
+    "Cl": 468
+  },
+  "n_atoms": 8064,
+  "total_charge": 0,
+  "centre": "Se",
+  "centre_offset_A": 0.458,
+  "size": {
+    "n_core": 7596,
+    "d_nm": 7.812,
+    "d_volume_nm": 7.493,
+    "axes_nm": [
+      8.241,
+      7.6,
+      7.518
+    ],
+    "aspect_ratio": 1.096,
+    "d_max_nm": 9.483,
+    "d_hull_nm": 7.278,
+    "unit_cells": 7.5,
+    "unit_cells_all": [
+      7.5
+    ]
+  },
+  "fingerprint": "7755831e474cbfd0",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "cdse_wz_swap.yaml",
+    "qd_builder_commit": "bdcb07b00148a05392d600675679293b7c102c0c",
+    "qd_builder_dirty": false,
+    "cif": "CdSe_wz.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Cd": 2,
+        "Se": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "001",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "00-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        7.5,
+        7.5,
+        4.597514
+      ],
+      "construction_origin": {
+        "center_on_species": "Se"
+      },
+      "post_treatment": {
+        "surface_reconstruction": {
+          "enabled": true,
+          "ligand": "Cl",
+          "anion_pattern": "swap"
+        }
+      }
+    },
+    "reconstruction_ledger": {
+      "status": "applied",
+      "ligand": "Cl",
+      "anion_pattern": "swap",
+      "cation_removal": "none",
+      "cation": "Cd",
+      "anion": "Se",
+      "anion_facets": [
+        {
+          "hkl": [
+            0,
+            0,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 44,
+          "chain_breaks": 148
+        }
+      ],
+      "cation_facets": [
+        {
+          "hkl": [
+            0,
+            0,
+            1
+          ],
+          "ligands_stripped": 0,
+          "cations_removed": 0,
+          "ligands_added": 192
+        }
+      ],
+      "anion_side_charge_delta": 192,
+      "ligands_stripped": 0,
+      "cations_removed": 0,
+      "ligands_added": 192,
+      "ligands_added_by_mu": {
+        "mu3": 7,
+        "mu2": 0,
+        "mu1": 185
+      },
+      "symmetric": false,
+      "total_charge_before": 0,
+      "total_charge_after": 0,
+      "swap": {
+        "extra_per_facet": 44,
+        "extra_max": 44,
+        "outer_anions": 192
+      }
+    }
+  },
+  "parent": "CdSe-Se-Cd3915Se3873Cl84-clean",
+  "reconstruction_pattern": "swap"
+}

@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "id": "HgTe-Te-Hg176Te107Cl138-reconstructed",
+  "material": "HgTe",
+  "family": "II-VI",
+  "phase": "zinc-blende",
+  "surface": "reconstructed",
+  "source": "builder",
+  "formula": "Hg176Te107Cl138",
+  "composition": {
+    "Hg": 176,
+    "Te": 107,
+    "Cl": 138
+  },
+  "core": {
+    "Hg": 176,
+    "Te": 107
+  },
+  "ligands": {
+    "Cl": 138
+  },
+  "n_atoms": 421,
+  "total_charge": 0,
+  "centre": "Te",
+  "centre_offset_A": 0.0,
+  "size": {
+    "n_core": 283,
+    "d_nm": 2.891,
+    "d_volume_nm": 2.68,
+    "axes_nm": [
+      2.903,
+      2.89,
+      2.89
+    ],
+    "aspect_ratio": 1.005,
+    "d_max_nm": 2.849,
+    "d_hull_nm": 2.468,
+    "unit_cells": 2.25,
+    "unit_cells_all": [
+      2.25
+    ]
+  },
+  "fingerprint": "5253d868addd5858",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "hgte_zb_swap.yaml",
+    "qd_builder_commit": "bdcb07b00148a05392d600675679293b7c102c0c",
+    "qd_builder_dirty": false,
+    "cif": "HgTe_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Hg": 2,
+        "Te": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "110",
+          "scope": "family",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        2.25,
+        2.25,
+        2.25
+      ],
+      "construction_origin": {
+        "center_on_species": "Te"
+      },
+      "post_treatment": {
+        "surface_reconstruction": {
+          "enabled": true,
+          "ligand": "Cl",
+          "anion_pattern": "swap"
+        }
+      }
+    },
+    "reconstruction_ledger": {
+      "status": "applied",
+      "ligand": "Cl",
+      "anion_pattern": "swap",
+      "cation_removal": "none",
+      "cation": "Hg",
+      "anion": "Te",
+      "anion_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 4,
+          "chain_breaks": 6
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 4,
+          "chain_breaks": 6
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 4,
+          "chain_breaks": 6
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 4,
+          "chain_breaks": 6
+        }
+      ],
+      "cation_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            1
+          ],
+          "ligands_stripped": 1,
+          "cations_removed": 0,
+          "ligands_added": 12
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            -1
+          ],
+          "ligands_stripped": 1,
+          "cations_removed": 0,
+          "ligands_added": 12
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            -1
+          ],
+          "ligands_stripped": 1,
+          "cations_removed": 0,
+          "ligands_added": 10
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            1
+          ],
+          "ligands_stripped": 1,
+          "cations_removed": 0,
+          "ligands_added": 10
+        }
+      ],
+      "anion_side_charge_delta": 40,
+      "ligands_stripped": 4,
+      "cations_removed": 0,
+      "ligands_added": 44,
+      "ligands_added_by_mu": {
+        "mu3": 2,
+        "mu2": 0,
+        "mu1": 42
+      },
+      "symmetric": false,
+      "total_charge_before": 0,
+      "total_charge_after": 0,
+      "swap": {
+        "extra_per_facet": 4,
+        "extra_max": 4,
+        "outer_anions": 40
+      }
+    }
+  },
+  "parent": "HgTe-Te-Hg176Te147Cl58-clean",
+  "reconstruction_pattern": "swap"
+}

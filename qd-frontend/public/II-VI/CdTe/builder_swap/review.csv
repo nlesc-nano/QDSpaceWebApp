@@ -1,0 +1,93 @@
+centre,unit_cells,surface,status,id,formula,d_nm,n_atoms,Q
+Cd,0.5,clean,rejected: core 0 < 20 atoms; no atom at the construction origin,,,0.0,0,0
+Cd,0.5,reconstructed,skipped: found 0 anion- and 0 cation-terminated {111} facets; need both,,,,,
+Cd,0.75,clean,rejected: core 17 < 20 atoms,,Cd13Te4Cl18,1.215,35,0
+Cd,0.75,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Cd,1.0,clean,rejected: core 17 < 20 atoms,,Cd13Te4Cl18,1.215,35,0
+Cd,1.0,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Cd,1.25,clean,parent only (not written),CdTe-Cd-Cd31Te22Cl18-clean,Cd31Te22Cl18,1.634,71,0
+Cd,1.25,reconstructed,rejected: charge +1; keeps 9/22 anions of its clean parent,,Cd31Te9Cl43,1.761,83,1
+Cd,1.5,clean,parent only (not written),CdTe-Cd-Cd55Te32Cl46-clean,Cd55Te32Cl46,1.947,133,0
+Cd,1.5,reconstructed,kept,CdTe-Cd-Cd55Te28Cl54-reconstructed,Cd55Te28Cl54,1.959,137,0
+Cd,1.75,clean,parent only (not written),CdTe-Cd-Cd107Te86Cl42-clean,Cd107Te86Cl42,2.443,235,0
+Cd,1.75,reconstructed,kept,CdTe-Cd-Cd107Te60Cl94-reconstructed,Cd107Te60Cl94,2.509,261,0
+Cd,2.0,clean,parent only (not written),CdTe-Cd-Cd147Te104Cl86-clean,Cd147Te104Cl86,2.715,337,0
+Cd,2.0,reconstructed,kept,CdTe-Cd-Cd147Te92Cl110-reconstructed,Cd147Te92Cl110,2.718,349,0
+Cd,2.25,clean,parent only (not written),CdTe-Cd-Cd201Te176Cl50-clean,Cd201Te176Cl50,2.985,427,0
+Cd,2.25,reconstructed,kept,CdTe-Cd-Cd201Te128Cl146-reconstructed,Cd201Te128Cl146,3.004,475,0
+Cd,2.5,clean,parent only (not written),CdTe-Cd-Cd309Te240Cl138-clean,Cd309Te240Cl138,3.467,687,0
+Cd,2.5,reconstructed,kept,CdTe-Cd-Cd309Te216Cl186-reconstructed,Cd309Te216Cl186,3.467,711,0
+Cd,2.75,clean,parent only (not written),CdTe-Cd-Cd405Te360Cl90-clean,Cd405Te360Cl90,3.774,855,0
+Cd,2.75,reconstructed,kept,CdTe-Cd-Cd405Te288Cl234-reconstructed,Cd405Te288Cl234,3.775,927,0
+Cd,3.0,clean,parent only (not written),CdTe-Cd-Cd477Te414Cl126-clean,Cd477Te414Cl126,4.029,1017,0
+Cd,3.0,reconstructed,kept,CdTe-Cd-Cd477Te343Cl268-reconstructed,Cd477Te343Cl268,4.055,1088,0
+Cd,3.25,clean,parent only (not written),CdTe-Cd-Cd711Te640Cl142-clean,Cd711Te640Cl142,4.579,1493,0
+Cd,3.25,reconstructed,kept,CdTe-Cd-Cd711Te540Cl342-reconstructed,Cd711Te540Cl342,4.57,1593,0
+Cd,3.5,clean,parent only (not written),CdTe-Cd-Cd811Te718Cl186-clean,Cd811Te718Cl186,4.801,1715,0
+Cd,3.5,reconstructed,kept,CdTe-Cd-Cd811Te620Cl382-reconstructed,Cd811Te620Cl382,4.815,1813,0
+Cd,3.75,clean,parent only (not written),CdTe-Cd-Cd1139Te1036Cl206-clean,Cd1139Te1036Cl206,5.346,2381,0
+Cd,3.75,reconstructed,kept,CdTe-Cd-Cd1139Te904Cl470-reconstructed,Cd1139Te904Cl470,5.343,2513,0
+Cd,4.0,clean,duplicate of CdTe-Cd-Cd1139Te1036Cl206-clean,CdTe-Cd-Cd1139Te1036Cl206-clean,Cd1139Te1036Cl206,5.346,2381,0
+Cd,4.0,reconstructed,duplicate of CdTe-Cd-Cd1139Te904Cl470-reconstructed,CdTe-Cd-Cd1139Te904Cl470-reconstructed,Cd1139Te904Cl470,5.343,2513,0
+Cd,4.25,clean,parent only (not written),CdTe-Cd-Cd1709Te1568Cl282-clean,Cd1709Te1568Cl282,6.158,3559,0
+Cd,4.25,reconstructed,kept,CdTe-Cd-Cd1709Te1400Cl618-reconstructed,Cd1709Te1400Cl618,6.14,3727,0
+Cd,4.5,clean,duplicate of CdTe-Cd-Cd1709Te1568Cl282-clean,CdTe-Cd-Cd1709Te1568Cl282-clean,Cd1709Te1568Cl282,6.158,3559,0
+Cd,4.5,reconstructed,duplicate of CdTe-Cd-Cd1709Te1400Cl618-reconstructed,CdTe-Cd-Cd1709Te1400Cl618-reconstructed,Cd1709Te1400Cl618,6.14,3727,0
+Cd,4.75,clean,parent only (not written),CdTe-Cd-Cd2165Te2030Cl270-clean,Cd2165Te2030Cl270,6.661,4465,0
+Cd,4.75,reconstructed,kept,CdTe-Cd-Cd2165Te1790Cl750-reconstructed,Cd2165Te1790Cl750,6.662,4705,0
+Cd,5.0,clean,parent only (not written),CdTe-Cd-Cd2441Te2256Cl370-clean,Cd2441Te2256Cl370,6.926,5067,0
+Cd,5.0,reconstructed,kept,CdTe-Cd-Cd2441Te2048Cl786-reconstructed,Cd2441Te2048Cl786,6.906,5275,0
+Cd,5.25,clean,parent only (not written),CdTe-Cd-Cd3027Te2850Cl354-clean,Cd3027Te2850Cl354,7.433,6231,0
+Cd,5.25,reconstructed,kept,CdTe-Cd-Cd3027Te2561Cl932-reconstructed,Cd3027Te2561Cl932,7.425,6520,0
+Cd,5.5,clean,parent only (not written),CdTe-Cd-Cd3355Te3120Cl470-clean,Cd3355Te3120Cl470,7.731,6945,0
+Cd,5.5,reconstructed,kept,CdTe-Cd-Cd3355Te2868Cl974-reconstructed,Cd3355Te2868Cl974,7.704,7197,0
+Cd,5.75,clean,parent only (not written),CdTe-Cd-Cd3739Te3552Cl374-clean,Cd3739Te3552Cl374,8.002,7665,0
+Cd,5.75,reconstructed,kept,CdTe-Cd-Cd3739Te3204Cl1070-reconstructed,Cd3739Te3204Cl1070,7.977,8013,0
+Cd,6.0,clean,parent only (not written),CdTe-Cd-Cd4471Te4180Cl582-clean,Cd4471Te4180Cl582,8.49,9233,0
+Cd,6.0,reconstructed,kept,CdTe-Cd-Cd4471Te3880Cl1182-reconstructed,Cd4471Te3880Cl1182,8.467,9533,0
+Te,0.5,clean,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
+Te,0.5,reconstructed,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
+Te,0.75,clean,rejected: core 5 < 20 atoms,,Cd4Te1Cl6,0.846,11,0
+Te,0.75,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Te,1.0,clean,parent only (not written),CdTe-Te-Cd16Te13Cl6-clean,Cd16Te13Cl6,1.254,35,0
+Te,1.0,reconstructed,rejected: core 17 < 20 atoms; keeps 1/13 anions of its clean parent,,Cd16Te1Cl30,1.424,47,0
+Te,1.25,clean,parent only (not written),CdTe-Te-Cd28Te13Cl30-clean,Cd28Te13Cl30,1.561,71,0
+Te,1.25,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Te,1.5,clean,parent only (not written),CdTe-Te-Cd68Te55Cl26-clean,Cd68Te55Cl26,2.073,149,0
+Te,1.5,reconstructed,kept,CdTe-Te-Cd68Te31Cl74-reconstructed,Cd68Te31Cl74,2.143,173,0
+Te,1.75,clean,parent only (not written),CdTe-Te-Cd92Te59Cl66-clean,Cd92Te59Cl66,2.334,217,0
+Te,1.75,reconstructed,kept,CdTe-Te-Cd92Te55Cl74-reconstructed,Cd92Te55Cl74,2.331,221,0
+Te,2.0,clean,parent only (not written),CdTe-Te-Cd176Te147Cl58-clean,Cd176Te147Cl58,2.858,381,0
+Te,2.0,reconstructed,kept,CdTe-Te-Cd176Te107Cl138-reconstructed,Cd176Te107Cl138,2.888,421,0
+Te,2.25,clean,duplicate of CdTe-Te-Cd176Te147Cl58-clean,CdTe-Te-Cd176Te147Cl58-clean,Cd176Te147Cl58,2.858,381,0
+Te,2.25,reconstructed,duplicate of CdTe-Te-Cd176Te107Cl138-reconstructed,CdTe-Te-Cd176Te107Cl138-reconstructed,Cd176Te107Cl138,2.888,421,0
+Te,2.5,clean,parent only (not written),CdTe-Te-Cd360Te309Cl102-clean,Cd360Te309Cl102,3.636,771,0
+Te,2.5,reconstructed,kept,CdTe-Te-Cd360Te249Cl222-reconstructed,Cd360Te249Cl222,3.651,831,0
+Te,2.75,clean,duplicate of CdTe-Te-Cd360Te309Cl102-clean,CdTe-Te-Cd360Te309Cl102-clean,Cd360Te309Cl102,3.636,771,0
+Te,2.75,reconstructed,duplicate of CdTe-Te-Cd360Te249Cl222-reconstructed,CdTe-Te-Cd360Te249Cl222-reconstructed,Cd360Te249Cl222,3.651,831,0
+Te,3.0,clean,parent only (not written),CdTe-Te-Cd540Te477Cl126-clean,Cd540Te477Cl126,4.197,1143,0
+Te,3.0,reconstructed,kept,CdTe-Te-Cd540Te405Cl270-reconstructed,Cd540Te405Cl270,4.178,1215,0
+Te,3.25,clean,parent only (not written),CdTe-Te-Cd640Te561Cl158-clean,Cd640Te561Cl158,4.424,1359,0
+Te,3.25,reconstructed,kept,CdTe-Te-Cd640Te477Cl326-reconstructed,Cd640Te477Cl326,4.429,1443,0
+Te,3.5,clean,parent only (not written),CdTe-Te-Cd904Te811Cl186-clean,Cd904Te811Cl186,4.962,1901,0
+Te,3.5,reconstructed,kept,CdTe-Te-Cd904Te711Cl386-reconstructed,Cd904Te711Cl386,4.949,2001,0
+Te,3.75,clean,parent only (not written),CdTe-Te-Cd1036Te923Cl226-clean,Cd1036Te923Cl226,5.204,2185,0
+Te,3.75,reconstructed,kept,CdTe-Te-Cd1036Te811Cl450-reconstructed,Cd1036Te811Cl450,5.202,2297,0
+Te,4.0,clean,parent only (not written),CdTe-Te-Cd1216Te1139Cl154-clean,Cd1216Te1139Cl154,5.472,2509,0
+Te,4.0,reconstructed,kept,CdTe-Te-Cd1216Te955Cl522-reconstructed,Cd1216Te955Cl522,5.466,2693,0
+Te,4.25,clean,parent only (not written),CdTe-Te-Cd1568Te1415Cl306-clean,Cd1568Te1415Cl306,5.995,3289,0
+Te,4.25,reconstructed,kept,CdTe-Te-Cd1568Te1271Cl594-reconstructed,Cd1568Te1271Cl594,5.989,3433,0
+Te,4.5,clean,parent only (not written),CdTe-Te-Cd1820Te1709Cl222-clean,Cd1820Te1709Cl222,6.288,3751,0
+Te,4.5,reconstructed,kept,CdTe-Te-Cd1820Te1481Cl678-reconstructed,Cd1820Te1481Cl678,6.266,3979,0
+Te,4.75,clean,parent only (not written),CdTe-Te-Cd2048Te1877Cl342-clean,Cd2048Te1877Cl342,6.545,4267,0
+Te,4.75,reconstructed,kept,CdTe-Te-Cd2048Te1709Cl678-reconstructed,Cd2048Te1709Cl678,6.517,4435,0
+Te,5.0,clean,parent only (not written),CdTe-Te-Cd2592Te2441Cl302-clean,Cd2592Te2441Cl302,7.062,5335,0
+Te,5.0,reconstructed,kept,CdTe-Te-Cd2592Te2165Cl854-reconstructed,Cd2592Te2165Cl854,7.051,5611,0
+Te,5.25,clean,parent only (not written),CdTe-Te-Cd2868Te2649Cl438-clean,Cd2868Te2649Cl438,7.298,5955,0
+Te,5.25,reconstructed,kept,CdTe-Te-Cd2868Te2441Cl854-reconstructed,Cd2868Te2441Cl854,7.272,6163,0
+Te,5.5,clean,parent only (not written),CdTe-Te-Cd3552Te3355Cl394-clean,Cd3552Te3355Cl394,7.864,7301,0
+Te,5.5,reconstructed,kept,CdTe-Te-Cd3552Te3027Cl1050-reconstructed,Cd3552Te3027Cl1050,7.848,7629,0
+Te,5.75,clean,duplicate of CdTe-Te-Cd3552Te3355Cl394-clean,CdTe-Te-Cd3552Te3355Cl394-clean,Cd3552Te3355Cl394,7.864,7301,0
+Te,5.75,reconstructed,duplicate of CdTe-Te-Cd3552Te3027Cl1050-reconstructed,CdTe-Te-Cd3552Te3027Cl1050-reconstructed,Cd3552Te3027Cl1050,7.848,7629,0
+Te,6.0,clean,parent only (not written),CdTe-Te-Cd4720Te4471Cl498-clean,Cd4720Te4471Cl498,8.627,9689,0
+Te,6.0,reconstructed,kept,CdTe-Te-Cd4720Te4087Cl1266-reconstructed,Cd4720Te4087Cl1266,8.609,10073,0

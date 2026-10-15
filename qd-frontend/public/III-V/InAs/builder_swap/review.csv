@@ -1,0 +1,45 @@
+centre,unit_cells,surface,status,id,formula,d_nm,n_atoms,Q
+In,0.5,clean,rejected: core 0 < 20 atoms; no atom at the construction origin,,,0.0,0,0
+In,0.5,reconstructed,skipped: found 0 anion- and 0 cation-terminated {111} facets; need both,,,,,
+In,0.75,clean,parent only (not written),InAs-In-In31As20Cl33-clean,In31As20Cl33,1.685,84,0
+In,0.75,reconstructed,kept,InAs-In-In31As16Cl45-reconstructed,In31As16Cl45,1.684,92,0
+In,1.0,clean,parent only (not written),InAs-In-In35As26Cl27-clean,In35As26Cl27,1.757,88,0
+In,1.0,reconstructed,rejected: charge +33; keeps 8/26 anions of its clean parent,,In35As8Cl48,1.825,91,33
+In,1.25,clean,parent only (not written),InAs-In-In149As116Cl99-clean,In149As116Cl99,2.829,364,0
+In,1.25,reconstructed,kept,InAs-In-In149As104Cl135-reconstructed,In149As104Cl135,2.821,388,0
+In,1.5,clean,parent only (not written),InAs-In-In161As139Cl66-clean,In161As139Cl66,2.909,366,0
+In,1.5,reconstructed,rejected: charge +115,,In161As76Cl140,2.942,377,115
+In,1.75,clean,parent only (not written),InAs-In-In165As139Cl78-clean,In165As139Cl78,3.002,382,0
+In,1.75,reconstructed,rejected: charge +111,,In165As82Cl138,3.037,385,111
+In,2.0,clean,parent only (not written),InAs-In-In415As348Cl201-clean,In415As348Cl201,3.978,964,0
+In,2.0,reconstructed,kept,InAs-In-In415As324Cl273-reconstructed,In415As324Cl273,3.974,1012,0
+In,2.25,clean,parent only (not written),InAs-In-In439As398Cl123-clean,In439As398Cl123,4.079,960,0
+In,2.25,reconstructed,rejected: charge +231,,In439As271Cl273,4.1,983,231
+In,2.5,clean,parent only (not written),InAs-In-In889As776Cl339-clean,In889As776Cl339,5.099,2004,0
+In,2.5,reconstructed,kept,InAs-In-In889As736Cl459-reconstructed,In889As736Cl459,5.094,2084,0
+In,2.75,clean,parent only (not written),InAs-In-In929As863Cl198-clean,In929As863Cl198,5.189,1990,0
+In,2.75,reconstructed,rejected: charge +391,,In929As648Cl452,5.195,2029,391
+In,3.0,clean,parent only (not written),InAs-In-In1631As1460Cl513-clean,In1631As1460Cl513,6.287,3604,0
+In,3.0,reconstructed,kept,InAs-In-In1631As1400Cl693-reconstructed,In1631As1400Cl693,6.277,3724,0
+As,0.5,clean,rejected: core 5 < 20 atoms,,In4As1Cl9,0.857,14,0
+As,0.5,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+As,0.75,clean,parent only (not written),InAs-As-In40As31Cl27-clean,In40As31Cl27,1.747,98,0
+As,0.75,reconstructed,kept,InAs-As-In40As23Cl51-reconstructed,In40As23Cl51,1.768,114,0
+As,1.0,clean,parent only (not written),InAs-As-In52As35Cl51-clean,In52As35Cl51,2.04,138,0
+As,1.0,reconstructed,kept,InAs-As-In52As31Cl63-reconstructed,In52As31Cl63,2.028,146,0
+As,1.25,clean,parent only (not written),InAs-As-In116As99Cl51-clean,In116As99Cl51,2.58,266,0
+As,1.25,reconstructed,rejected: charge +85,,In116As51Cl110,2.643,277,85
+As,1.5,clean,parent only (not written),InAs-As-In204As161Cl129-clean,In204As161Cl129,3.147,494,0
+As,1.5,reconstructed,kept,InAs-As-In204As149Cl165-reconstructed,In204As149Cl165,3.161,518,0
+As,1.75,clean,parent only (not written),InAs-As-In324As298Cl78-clean,In324As298Cl78,3.511,700,0
+As,1.75,reconstructed,rejected: charge +161,,In324As198Cl217,3.565,739,161
+As,2.0,clean,parent only (not written),InAs-As-In348As314Cl102-clean,In348As314Cl102,3.731,764,0
+As,2.0,reconstructed,rejected: charge +199,,In348As203Cl236,3.76,787,199
+As,2.25,clean,parent only (not written),InAs-As-In360As320Cl120-clean,In360As320Cl120,3.861,800,0
+As,2.25,reconstructed,rejected: charge +207,,In360As211Cl240,3.89,811,207
+As,2.5,clean,parent only (not written),InAs-As-In1000As889Cl333-clean,In1000As889Cl333,5.203,2222,0
+As,2.5,reconstructed,kept,InAs-As-In1000As829Cl513-reconstructed,In1000As829Cl513,5.195,2342,0
+As,2.75,clean,parent only (not written),InAs-As-In1060As929Cl393-clean,In1060As929Cl393,5.444,2382,0
+As,2.75,reconstructed,kept,InAs-As-In1060As889Cl513-reconstructed,In1060As889Cl513,5.433,2462,0
+As,3.0,clean,parent only (not written),InAs-As-In1460As1374Cl258-clean,In1460As1374Cl258,6.054,3092,0
+As,3.0,reconstructed,rejected: charge +517,,In1460As1086Cl605,6.061,3151,517

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "id": "InP-In-In1631P1400Cl693-reconstructed",
+  "material": "InP",
+  "family": "III-V",
+  "phase": "zinc-blende",
+  "surface": "reconstructed",
+  "source": "builder",
+  "formula": "In1631P1400Cl693",
+  "composition": {
+    "In": 1631,
+    "P": 1400,
+    "Cl": 693
+  },
+  "core": {
+    "In": 1631,
+    "P": 1400
+  },
+  "ligands": {
+    "Cl": 693
+  },
+  "n_atoms": 3724,
+  "total_charge": 0,
+  "centre": "In",
+  "centre_offset_A": 0.0,
+  "size": {
+    "n_core": 3031,
+    "d_nm": 6.134,
+    "d_volume_nm": 5.3,
+    "axes_nm": [
+      6.125,
+      6.123,
+      6.118
+    ],
+    "aspect_ratio": 1.001,
+    "d_max_nm": 7.231,
+    "d_hull_nm": 4.971,
+    "unit_cells": 3.0,
+    "unit_cells_all": [
+      3.0
+    ]
+  },
+  "fingerprint": "7503dffe41ab584a",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "inp_zb_swap.yaml",
+    "qd_builder_commit": "bdcb07b00148a05392d600675679293b7c102c0c",
+    "qd_builder_dirty": false,
+    "cif": "InP_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "In": 3,
+        "P": -3,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 0.8
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.6
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        3.0,
+        3.0,
+        3.0
+      ],
+      "construction_origin": {
+        "center_on_species": "In"
+      },
+      "post_treatment": {
+        "surface_reconstruction": {
+          "enabled": true,
+          "ligand": "Cl",
+          "anion_pattern": "swap"
+        }
+      }
+    },
+    "reconstruction_ledger": {
+      "status": "applied",
+      "ligand": "Cl",
+      "anion_pattern": "swap",
+      "cation_removal": "none",
+      "cation": "In",
+      "anion": "P",
+      "anion_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 6,
+          "chain_breaks": 9
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 6,
+          "chain_breaks": 9
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 6,
+          "chain_breaks": 9
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 6,
+          "chain_breaks": 9
+        }
+      ],
+      "cation_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            1
+          ],
+          "ligands_stripped": 111,
+          "cations_removed": 0,
+          "ligands_added": 141
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            -1
+          ],
+          "ligands_stripped": 111,
+          "cations_removed": 0,
+          "ligands_added": 142
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            -1
+          ],
+          "ligands_stripped": 113,
+          "cations_removed": 0,
+          "ligands_added": 142
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            1
+          ],
+          "ligands_stripped": 112,
+          "cations_removed": 0,
+          "ligands_added": 142
+        }
+      ],
+      "anion_side_charge_delta": 120,
+      "ligands_stripped": 447,
+      "cations_removed": 0,
+      "ligands_added": 567,
+      "ligands_added_by_mu": {
+        "mu3": 0,
+        "mu2": 0,
+        "mu1": 567
+      },
+      "symmetric": true,
+      "total_charge_before": 0,
+      "total_charge_after": 0,
+      "swap": {
+        "extra_per_facet": 6,
+        "extra_max": 6,
+        "outer_anions": 60
+      }
+    }
+  },
+  "parent": "InP-In-In1631P1460Cl513-clean",
+  "reconstruction_pattern": "swap"
+}

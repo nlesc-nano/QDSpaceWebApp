@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "id": "HgSe-Hg-Hg3043Se2736Cl614-reconstructed",
+  "material": "HgSe",
+  "family": "II-VI",
+  "phase": "zinc-blende",
+  "surface": "reconstructed",
+  "source": "builder",
+  "formula": "Hg3043Se2736Cl614",
+  "composition": {
+    "Hg": 3043,
+    "Se": 2736,
+    "Cl": 614
+  },
+  "core": {
+    "Hg": 3043,
+    "Se": 2736
+  },
+  "ligands": {
+    "Cl": 614
+  },
+  "n_atoms": 6393,
+  "total_charge": 0,
+  "centre": "Hg",
+  "centre_offset_A": 0.0,
+  "size": {
+    "n_core": 5779,
+    "d_nm": 7.03,
+    "d_volume_nm": 6.894,
+    "axes_nm": [
+      7.032,
+      7.032,
+      7.03
+    ],
+    "aspect_ratio": 1.0,
+    "d_max_nm": 7.169,
+    "d_hull_nm": 6.696,
+    "unit_cells": 5.5,
+    "unit_cells_all": [
+      5.5
+    ]
+  },
+  "fingerprint": "0e5f70d6d66e45bd",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "hgse_zb_swap.yaml",
+    "qd_builder_commit": "bdcb07b00148a05392d600675679293b7c102c0c",
+    "qd_builder_dirty": false,
+    "cif": "HgSe_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Hg": 2,
+        "Se": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "110",
+          "scope": "family",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        5.5,
+        5.5,
+        5.5
+      ],
+      "construction_origin": {
+        "center_on_species": "Hg"
+      },
+      "post_treatment": {
+        "surface_reconstruction": {
+          "enabled": true,
+          "ligand": "Cl",
+          "anion_pattern": "swap"
+        }
+      }
+    },
+    "reconstruction_ledger": {
+      "status": "applied",
+      "ligand": "Cl",
+      "anion_pattern": "swap",
+      "cation_removal": "none",
+      "cation": "Hg",
+      "anion": "Se",
+      "anion_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 10,
+          "chain_breaks": 26
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 12,
+          "chain_breaks": 24
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 12,
+          "chain_breaks": 24
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 12,
+          "chain_breaks": 24
+        }
+      ],
+      "cation_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            -1
+          ],
+          "ligands_stripped": 9,
+          "cations_removed": 0,
+          "ligands_added": 46
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            1
+          ],
+          "ligands_stripped": 9,
+          "cations_removed": 0,
+          "ligands_added": 46
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            1
+          ],
+          "ligands_stripped": 10,
+          "cations_removed": 0,
+          "ligands_added": 46
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            -1
+          ],
+          "ligands_stripped": 10,
+          "cations_removed": 0,
+          "ligands_added": 44
+        }
+      ],
+      "anion_side_charge_delta": 144,
+      "ligands_stripped": 38,
+      "cations_removed": 0,
+      "ligands_added": 182,
+      "ligands_added_by_mu": {
+        "mu3": 1,
+        "mu2": 0,
+        "mu1": 181
+      },
+      "symmetric": false,
+      "total_charge_before": 0,
+      "total_charge_after": 0,
+      "swap": {
+        "extra_per_facet": 12,
+        "extra_max": 12,
+        "outer_anions": 144
+      }
+    }
+  },
+  "parent": "HgSe-Hg-Hg3043Se2880Cl326-clean",
+  "reconstruction_pattern": "swap"
+}

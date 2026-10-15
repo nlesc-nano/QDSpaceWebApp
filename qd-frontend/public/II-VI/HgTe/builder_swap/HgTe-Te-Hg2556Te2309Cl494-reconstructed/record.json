@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "id": "HgTe-Te-Hg2556Te2309Cl494-reconstructed",
+  "material": "HgTe",
+  "family": "II-VI",
+  "phase": "zinc-blende",
+  "surface": "reconstructed",
+  "source": "builder",
+  "formula": "Hg2556Te2309Cl494",
+  "composition": {
+    "Hg": 2556,
+    "Te": 2309,
+    "Cl": 494
+  },
+  "core": {
+    "Hg": 2556,
+    "Te": 2309
+  },
+  "ligands": {
+    "Cl": 494
+  },
+  "n_atoms": 5359,
+  "total_charge": 0,
+  "centre": "Te",
+  "centre_offset_A": 0.0,
+  "size": {
+    "n_core": 4865,
+    "d_nm": 7.013,
+    "d_volume_nm": 6.917,
+    "axes_nm": [
+      7.021,
+      7.016,
+      7.016
+    ],
+    "aspect_ratio": 1.001,
+    "d_max_nm": 7.29,
+    "d_hull_nm": 6.699,
+    "unit_cells": 5.25,
+    "unit_cells_all": [
+      5.25
+    ]
+  },
+  "fingerprint": "004ebea1a8f7b5c8",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "hgte_zb_swap.yaml",
+    "qd_builder_commit": "bdcb07b00148a05392d600675679293b7c102c0c",
+    "qd_builder_dirty": false,
+    "cif": "HgTe_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Hg": 2,
+        "Te": -2,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "100",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.0
+        },
+        {
+          "hkl": "110",
+          "scope": "family",
+          "gamma": 1.0
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        5.25,
+        5.25,
+        5.25
+      ],
+      "construction_origin": {
+        "center_on_species": "Te"
+      },
+      "post_treatment": {
+        "surface_reconstruction": {
+          "enabled": true,
+          "ligand": "Cl",
+          "anion_pattern": "swap"
+        }
+      }
+    },
+    "reconstruction_ledger": {
+      "status": "applied",
+      "ligand": "Cl",
+      "anion_pattern": "swap",
+      "cation_removal": "none",
+      "cation": "Hg",
+      "anion": "Te",
+      "anion_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 8,
+          "chain_breaks": 17
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 8,
+          "chain_breaks": 17
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 7,
+          "chain_breaks": 18
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 7,
+          "chain_breaks": 18
+        }
+      ],
+      "cation_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            1
+          ],
+          "ligands_stripped": 11,
+          "cations_removed": 0,
+          "ligands_added": 36
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            -1
+          ],
+          "ligands_stripped": 11,
+          "cations_removed": 0,
+          "ligands_added": 36
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            -1
+          ],
+          "ligands_stripped": 11,
+          "cations_removed": 0,
+          "ligands_added": 36
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            1
+          ],
+          "ligands_stripped": 11,
+          "cations_removed": 0,
+          "ligands_added": 36
+        }
+      ],
+      "anion_side_charge_delta": 100,
+      "ligands_stripped": 44,
+      "cations_removed": 0,
+      "ligands_added": 144,
+      "ligands_added_by_mu": {
+        "mu3": 20,
+        "mu2": 0,
+        "mu1": 124
+      },
+      "symmetric": false,
+      "total_charge_before": 0,
+      "total_charge_after": 0,
+      "swap": {
+        "extra_per_facet": 8,
+        "extra_max": 8,
+        "outer_anions": 100
+      }
+    }
+  },
+  "parent": "HgTe-Te-Hg2556Te2409Cl294-clean",
+  "reconstruction_pattern": "swap"
+}

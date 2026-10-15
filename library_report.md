@@ -1,6 +1,6 @@
 # Library index report
 
-- builder variant-recipe duplicates (merged): 54
+- builder variant-recipe duplicates (merged): 98
 - legacy structure groups: 174
 - same start, other functional (merged): 23
 - merged with builder twins: 38
@@ -13,15 +13,15 @@
 | ABX3 | CsPbBr3 | 11 | 7 | 0 | 4 | 0 | Cs:6, Pb:5 |
 | ABX3 | CsPbCl3 | 14 | 9 | 3 | 2 | 0 | Cs:8, Pb:5, interstitial:1 |
 | ABX3 | CsPbI3 | 11 | 9 | 0 | 2 | 0 | Cs:6, Pb:5 |
-| II-VI | CdS | 71 | 66 | 2 | 3 | 33 | Cd:35, S:36 |
-| II-VI | CdSe | 191 | 181 | 6 | 4 | 93 | Cd:95, Se:96 |
-| II-VI | CdTe | 74 | 69 | 5 | 0 | 33 | Cd:35, Te:39 |
-| II-VI | HgS | 75 | 70 | 2 | 3 | 35 | Hg:37, S:38 |
-| II-VI | HgSe | 75 | 70 | 2 | 3 | 35 | Hg:37, Se:38 |
-| II-VI | HgTe | 78 | 73 | 5 | 0 | 35 | Hg:37, Te:41 |
-| II-VI | ZnS | 73 | 68 | 4 | 1 | 33 | S:38, Zn:35 |
-| II-VI | ZnSe | 72 | 67 | 3 | 2 | 33 | Se:37, Zn:35 |
-| II-VI | ZnTe | 71 | 66 | 2 | 3 | 33 | Te:36, Zn:35 |
+| II-VI | CdS | 102 | 97 | 2 | 3 | 64 | Cd:51, S:51 |
+| II-VI | CdSe | 278 | 268 | 6 | 4 | 180 | Cd:139, Se:139 |
+| II-VI | CdTe | 105 | 100 | 5 | 0 | 64 | Cd:51, Te:54 |
+| II-VI | HgS | 109 | 104 | 2 | 3 | 69 | Hg:54, S:55 |
+| II-VI | HgSe | 109 | 104 | 2 | 3 | 69 | Hg:54, Se:55 |
+| II-VI | HgTe | 112 | 107 | 5 | 0 | 69 | Hg:54, Te:58 |
+| II-VI | ZnS | 104 | 99 | 4 | 1 | 64 | S:53, Zn:51 |
+| II-VI | ZnSe | 103 | 98 | 3 | 2 | 64 | Se:52, Zn:51 |
+| II-VI | ZnTe | 103 | 98 | 2 | 3 | 65 | Te:51, Zn:52 |
 | II-VI@II-VI | CdS_ZnS | 1 | 0 | 1 | 0 | 0 | S:1 |
 | II-VI@II-VI | CdS_ZnSe | 1 | 0 | 1 | 0 | 0 | S:1 |
 | II-VI@II-VI | CdSe_CdS | 1 | 0 | 1 | 0 | 0 | Se:1 |
@@ -29,75 +29,119 @@
 | II-VI@II-VI | CdSe_ZnSe | 1 | 0 | 1 | 0 | 0 | Se:1 |
 | II-VI@II-VI | ZnSe_CdS | 1 | 0 | 1 | 0 | 0 | Se:1 |
 | II-VI@II-VI | ZnSe_ZnS | 1 | 0 | 1 | 0 | 0 | Se:1 |
-| III-V | AlAs | 45 | 45 | 0 | 0 | 15 | Al:23, As:22 |
-| III-V | AlP | 45 | 45 | 0 | 0 | 15 | Al:23, P:22 |
-| III-V | AlSb | 45 | 45 | 0 | 0 | 15 | Al:23, Sb:22 |
-| III-V | GaAs | 54 | 44 | 9 | 1 | 15 | As:23, Ga:31 |
-| III-V | GaP | 54 | 44 | 9 | 1 | 15 | Ga:31, P:23 |
-| III-V | GaSb | 52 | 44 | 7 | 1 | 15 | Ga:29, Sb:23 |
-| III-V | InAs | 59 | 44 | 14 | 1 | 15 | As:23, In:36 |
-| III-V | InP | 58 | 44 | 13 | 1 | 15 | In:35, P:23 |
-| III-V | InSb | 53 | 44 | 8 | 1 | 15 | In:30, Sb:23 |
+| III-V | AlAs | 52 | 52 | 0 | 0 | 22 | Al:27, As:25 |
+| III-V | AlP | 52 | 52 | 0 | 0 | 22 | Al:27, P:25 |
+| III-V | AlSb | 52 | 52 | 0 | 0 | 22 | Al:27, Sb:25 |
+| III-V | GaAs | 61 | 51 | 9 | 1 | 22 | As:26, Ga:35 |
+| III-V | GaP | 61 | 51 | 9 | 1 | 22 | Ga:35, P:26 |
+| III-V | GaSb | 59 | 51 | 7 | 1 | 22 | Ga:33, Sb:26 |
+| III-V | InAs | 66 | 51 | 14 | 1 | 22 | As:26, In:40 |
+| III-V | InP | 65 | 51 | 13 | 1 | 22 | In:39, P:26 |
+| III-V | InSb | 60 | 51 | 8 | 1 | 22 | In:34, Sb:26 |
 | IV-VI | PbS | 29 | 25 | 4 | 0 | 0 | Pb:16, S:13 |
 | IV-VI | PbSe | 28 | 25 | 3 | 0 | 0 | Pb:15, Se:13 |
 | IV-VI | PbTe | 28 | 25 | 3 | 0 | 0 | Pb:15, Te:13 |
 
 ## Builder variant-recipe duplicates
 
+- cds_zb_swap.yaml: CdS-Cd-Cd55S28Cl54-reconstructed -> CdS-Cd-Cd55S28Cl54-reconstructed
+- cds_zb_swap.yaml: CdS-S-Cd92S55Cl74-reconstructed -> CdS-S-Cd92S55Cl74-reconstructed
+- cdse_zb_swap.yaml: CdSe-Cd-Cd55Se28Cl54-reconstructed -> CdSe-Cd-Cd55Se28Cl54-reconstructed
+- cdse_zb_swap.yaml: CdSe-Se-Cd92Se55Cl74-reconstructed -> CdSe-Se-Cd92Se55Cl74-reconstructed
+- cdse_wz_swap.yaml: CdSe-Cd-Cd16Se7Cl18-reconstructed -> CdSe-Cd-Cd16Se7Cl18-reconstructed
+- cdse_wz_swap.yaml: CdSe-Cd-Cd21Se13Cl16-reconstructed -> CdSe-Cd-Cd21Se13Cl16-reconstructed
+- cdte_zb_swap.yaml: CdTe-Cd-Cd55Te28Cl54-reconstructed -> CdTe-Cd-Cd55Te28Cl54-reconstructed
+- cdte_zb_swap.yaml: CdTe-Te-Cd92Te55Cl74-reconstructed -> CdTe-Te-Cd92Te55Cl74-reconstructed
+- hgs_zb_swap.yaml: HgS-Hg-Hg55S28Cl54-reconstructed -> HgS-Hg-Hg55S28Cl54-reconstructed
+- hgse_zb_swap.yaml: HgSe-Hg-Hg55Se28Cl54-reconstructed -> HgSe-Hg-Hg55Se28Cl54-reconstructed
+- hgte_zb_swap.yaml: HgTe-Hg-Hg55Te28Cl54-reconstructed -> HgTe-Hg-Hg55Te28Cl54-reconstructed
+- zns_zb_swap.yaml: ZnS-S-Zn92S55Cl74-reconstructed -> ZnS-S-Zn92S55Cl74-reconstructed
+- zns_zb_swap.yaml: ZnS-Zn-Zn55S28Cl54-reconstructed -> ZnS-Zn-Zn55S28Cl54-reconstructed
+- znse_zb_swap.yaml: ZnSe-Se-Zn92Se55Cl74-reconstructed -> ZnSe-Se-Zn92Se55Cl74-reconstructed
+- znse_zb_swap.yaml: ZnSe-Zn-Zn55Se28Cl54-reconstructed -> ZnSe-Zn-Zn55Se28Cl54-reconstructed
+- znte_zb_swap.yaml: ZnTe-Te-Zn92Te55Cl74-reconstructed -> ZnTe-Te-Zn92Te55Cl74-reconstructed
+- znte_zb_swap.yaml: ZnTe-Zn-Zn55Te28Cl54-reconstructed -> ZnTe-Zn-Zn55Te28Cl54-reconstructed
 - alas_zb_100.yaml: AlAs-Al-Al161As139Cl66-clean -> AlAs-Al-Al161As139Cl66-clean
 - alas_zb_100.yaml: AlAs-Al-Al165As139Cl78-clean -> AlAs-Al-Al165As139Cl78-clean
 - alas_zb_100.yaml: AlAs-Al-Al35As26Cl27-clean -> AlAs-Al-Al35As26Cl27-clean
 - alas_zb_100.yaml: AlAs-Al-Al439As398Cl123-clean -> AlAs-Al-Al439As398Cl123-clean
 - alas_zb_100.yaml: AlAs-As-Al348As314Cl102-clean -> AlAs-As-Al348As314Cl102-clean
 - alas_zb_100.yaml: AlAs-As-Al360As320Cl120-clean -> AlAs-As-Al360As320Cl120-clean
+- alas_zb_swap.yaml: AlAs-Al-Al31As16Cl45-reconstructed -> AlAs-Al-Al31As16Cl45-reconstructed
+- alas_zb_swap.yaml: AlAs-As-Al40As23Cl51-reconstructed -> AlAs-As-Al40As23Cl51-reconstructed
+- alas_zb_swap.yaml: AlAs-As-Al52As31Cl63-reconstructed -> AlAs-As-Al52As31Cl63-reconstructed
 - alp_zb_100.yaml: AlP-Al-Al161P139Cl66-clean -> AlP-Al-Al161P139Cl66-clean
 - alp_zb_100.yaml: AlP-Al-Al165P139Cl78-clean -> AlP-Al-Al165P139Cl78-clean
 - alp_zb_100.yaml: AlP-Al-Al35P26Cl27-clean -> AlP-Al-Al35P26Cl27-clean
 - alp_zb_100.yaml: AlP-Al-Al439P398Cl123-clean -> AlP-Al-Al439P398Cl123-clean
 - alp_zb_100.yaml: AlP-P-Al348P314Cl102-clean -> AlP-P-Al348P314Cl102-clean
 - alp_zb_100.yaml: AlP-P-Al360P320Cl120-clean -> AlP-P-Al360P320Cl120-clean
+- alp_zb_swap.yaml: AlP-Al-Al31P16Cl45-reconstructed -> AlP-Al-Al31P16Cl45-reconstructed
+- alp_zb_swap.yaml: AlP-P-Al40P23Cl51-reconstructed -> AlP-P-Al40P23Cl51-reconstructed
+- alp_zb_swap.yaml: AlP-P-Al52P31Cl63-reconstructed -> AlP-P-Al52P31Cl63-reconstructed
 - alsb_zb_100.yaml: AlSb-Al-Al161Sb139Cl66-clean -> AlSb-Al-Al161Sb139Cl66-clean
 - alsb_zb_100.yaml: AlSb-Al-Al165Sb139Cl78-clean -> AlSb-Al-Al165Sb139Cl78-clean
 - alsb_zb_100.yaml: AlSb-Al-Al35Sb26Cl27-clean -> AlSb-Al-Al35Sb26Cl27-clean
 - alsb_zb_100.yaml: AlSb-Al-Al439Sb398Cl123-clean -> AlSb-Al-Al439Sb398Cl123-clean
 - alsb_zb_100.yaml: AlSb-Sb-Al348Sb314Cl102-clean -> AlSb-Sb-Al348Sb314Cl102-clean
 - alsb_zb_100.yaml: AlSb-Sb-Al360Sb320Cl120-clean -> AlSb-Sb-Al360Sb320Cl120-clean
+- alsb_zb_swap.yaml: AlSb-Al-Al31Sb16Cl45-reconstructed -> AlSb-Al-Al31Sb16Cl45-reconstructed
+- alsb_zb_swap.yaml: AlSb-Sb-Al40Sb23Cl51-reconstructed -> AlSb-Sb-Al40Sb23Cl51-reconstructed
+- alsb_zb_swap.yaml: AlSb-Sb-Al52Sb31Cl63-reconstructed -> AlSb-Sb-Al52Sb31Cl63-reconstructed
 - gaas_zb_100.yaml: GaAs-As-Ga348As314Cl102-clean -> GaAs-As-Ga348As314Cl102-clean
 - gaas_zb_100.yaml: GaAs-As-Ga360As320Cl120-clean -> GaAs-As-Ga360As320Cl120-clean
 - gaas_zb_100.yaml: GaAs-Ga-Ga161As139Cl66-clean -> GaAs-Ga-Ga161As139Cl66-clean
 - gaas_zb_100.yaml: GaAs-Ga-Ga165As139Cl78-clean -> GaAs-Ga-Ga165As139Cl78-clean
 - gaas_zb_100.yaml: GaAs-Ga-Ga35As26Cl27-clean -> GaAs-Ga-Ga35As26Cl27-clean
 - gaas_zb_100.yaml: GaAs-Ga-Ga439As398Cl123-clean -> GaAs-Ga-Ga439As398Cl123-clean
+- gaas_zb_swap.yaml: GaAs-As-Ga40As23Cl51-reconstructed -> GaAs-As-Ga40As23Cl51-reconstructed
+- gaas_zb_swap.yaml: GaAs-As-Ga52As31Cl63-reconstructed -> GaAs-As-Ga52As31Cl63-reconstructed
+- gaas_zb_swap.yaml: GaAs-Ga-Ga31As16Cl45-reconstructed -> GaAs-Ga-Ga31As16Cl45-reconstructed
 - gap_zb_100.yaml: GaP-Ga-Ga161P139Cl66-clean -> GaP-Ga-Ga161P139Cl66-clean
 - gap_zb_100.yaml: GaP-Ga-Ga165P139Cl78-clean -> GaP-Ga-Ga165P139Cl78-clean
 - gap_zb_100.yaml: GaP-Ga-Ga35P26Cl27-clean -> GaP-Ga-Ga35P26Cl27-clean
 - gap_zb_100.yaml: GaP-Ga-Ga439P398Cl123-clean -> GaP-Ga-Ga439P398Cl123-clean
 - gap_zb_100.yaml: GaP-P-Ga348P314Cl102-clean -> GaP-P-Ga348P314Cl102-clean
 - gap_zb_100.yaml: GaP-P-Ga360P320Cl120-clean -> GaP-P-Ga360P320Cl120-clean
+- gap_zb_swap.yaml: GaP-Ga-Ga31P16Cl45-reconstructed -> GaP-Ga-Ga31P16Cl45-reconstructed
+- gap_zb_swap.yaml: GaP-P-Ga40P23Cl51-reconstructed -> GaP-P-Ga40P23Cl51-reconstructed
+- gap_zb_swap.yaml: GaP-P-Ga52P31Cl63-reconstructed -> GaP-P-Ga52P31Cl63-reconstructed
 - gasb_zb_100.yaml: GaSb-Ga-Ga161Sb139Cl66-clean -> GaSb-Ga-Ga161Sb139Cl66-clean
 - gasb_zb_100.yaml: GaSb-Ga-Ga165Sb139Cl78-clean -> GaSb-Ga-Ga165Sb139Cl78-clean
 - gasb_zb_100.yaml: GaSb-Ga-Ga35Sb26Cl27-clean -> GaSb-Ga-Ga35Sb26Cl27-clean
 - gasb_zb_100.yaml: GaSb-Ga-Ga439Sb398Cl123-clean -> GaSb-Ga-Ga439Sb398Cl123-clean
 - gasb_zb_100.yaml: GaSb-Sb-Ga348Sb314Cl102-clean -> GaSb-Sb-Ga348Sb314Cl102-clean
 - gasb_zb_100.yaml: GaSb-Sb-Ga360Sb320Cl120-clean -> GaSb-Sb-Ga360Sb320Cl120-clean
+- gasb_zb_swap.yaml: GaSb-Ga-Ga31Sb16Cl45-reconstructed -> GaSb-Ga-Ga31Sb16Cl45-reconstructed
+- gasb_zb_swap.yaml: GaSb-Sb-Ga40Sb23Cl51-reconstructed -> GaSb-Sb-Ga40Sb23Cl51-reconstructed
+- gasb_zb_swap.yaml: GaSb-Sb-Ga52Sb31Cl63-reconstructed -> GaSb-Sb-Ga52Sb31Cl63-reconstructed
 - inas_zb_100.yaml: InAs-As-In348As314Cl102-clean -> InAs-As-In348As314Cl102-clean
 - inas_zb_100.yaml: InAs-As-In360As320Cl120-clean -> InAs-As-In360As320Cl120-clean
 - inas_zb_100.yaml: InAs-In-In161As139Cl66-clean -> InAs-In-In161As139Cl66-clean
 - inas_zb_100.yaml: InAs-In-In165As139Cl78-clean -> InAs-In-In165As139Cl78-clean
 - inas_zb_100.yaml: InAs-In-In35As26Cl27-clean -> InAs-In-In35As26Cl27-clean
 - inas_zb_100.yaml: InAs-In-In439As398Cl123-clean -> InAs-In-In439As398Cl123-clean
+- inas_zb_swap.yaml: InAs-As-In40As23Cl51-reconstructed -> InAs-As-In40As23Cl51-reconstructed
+- inas_zb_swap.yaml: InAs-As-In52As31Cl63-reconstructed -> InAs-As-In52As31Cl63-reconstructed
+- inas_zb_swap.yaml: InAs-In-In31As16Cl45-reconstructed -> InAs-In-In31As16Cl45-reconstructed
 - inp_zb_100.yaml: InP-In-In161P139Cl66-clean -> InP-In-In161P139Cl66-clean
 - inp_zb_100.yaml: InP-In-In165P139Cl78-clean -> InP-In-In165P139Cl78-clean
 - inp_zb_100.yaml: InP-In-In35P26Cl27-clean -> InP-In-In35P26Cl27-clean
 - inp_zb_100.yaml: InP-In-In439P398Cl123-clean -> InP-In-In439P398Cl123-clean
 - inp_zb_100.yaml: InP-P-In348P314Cl102-clean -> InP-P-In348P314Cl102-clean
 - inp_zb_100.yaml: InP-P-In360P320Cl120-clean -> InP-P-In360P320Cl120-clean
+- inp_zb_swap.yaml: InP-In-In31P16Cl45-reconstructed -> InP-In-In31P16Cl45-reconstructed
+- inp_zb_swap.yaml: InP-P-In40P23Cl51-reconstructed -> InP-P-In40P23Cl51-reconstructed
+- inp_zb_swap.yaml: InP-P-In52P31Cl63-reconstructed -> InP-P-In52P31Cl63-reconstructed
 - insb_zb_100.yaml: InSb-In-In161Sb139Cl66-clean -> InSb-In-In161Sb139Cl66-clean
 - insb_zb_100.yaml: InSb-In-In165Sb139Cl78-clean -> InSb-In-In165Sb139Cl78-clean
 - insb_zb_100.yaml: InSb-In-In35Sb26Cl27-clean -> InSb-In-In35Sb26Cl27-clean
 - insb_zb_100.yaml: InSb-In-In439Sb398Cl123-clean -> InSb-In-In439Sb398Cl123-clean
 - insb_zb_100.yaml: InSb-Sb-In348Sb314Cl102-clean -> InSb-Sb-In348Sb314Cl102-clean
 - insb_zb_100.yaml: InSb-Sb-In360Sb320Cl120-clean -> InSb-Sb-In360Sb320Cl120-clean
+- insb_zb_swap.yaml: InSb-In-In31Sb16Cl45-reconstructed -> InSb-In-In31Sb16Cl45-reconstructed
+- insb_zb_swap.yaml: InSb-Sb-In40Sb23Cl51-reconstructed -> InSb-Sb-In40Sb23Cl51-reconstructed
+- insb_zb_swap.yaml: InSb-Sb-In52Sb31Cl63-reconstructed -> InSb-Sb-In52Sb31Cl63-reconstructed
 
 ## Merged with builder twins
 

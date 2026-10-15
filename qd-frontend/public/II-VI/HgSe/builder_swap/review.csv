@@ -1,0 +1,93 @@
+centre,unit_cells,surface,status,id,formula,d_nm,n_atoms,Q
+Hg,0.5,clean,rejected: core 0 < 20 atoms; no atom at the construction origin,,,0.0,0,0
+Hg,0.5,reconstructed,skipped: found 0 anion- and 0 cation-terminated {111} facets; need both,,,,,
+Hg,0.75,clean,rejected: core 17 < 20 atoms,,Hg13Se4Cl18,1.15,35,0
+Hg,0.75,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Hg,1.0,clean,rejected: core 17 < 20 atoms,,Hg13Se4Cl18,1.15,35,0
+Hg,1.0,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Hg,1.25,clean,parent only (not written),HgSe-Hg-Hg31Se22Cl18-clean,Hg31Se22Cl18,1.567,71,0
+Hg,1.25,reconstructed,rejected: charge +1; keeps 9/22 anions of its clean parent,,Hg31Se9Cl43,1.654,83,1
+Hg,1.5,clean,parent only (not written),HgSe-Hg-Hg55Se32Cl46-clean,Hg55Se32Cl46,1.864,133,0
+Hg,1.5,reconstructed,kept,HgSe-Hg-Hg55Se28Cl54-reconstructed,Hg55Se28Cl54,1.87,137,0
+Hg,1.75,clean,parent only (not written),HgSe-Hg-Hg83Se68Cl30-clean,Hg83Se68Cl30,2.125,181,0
+Hg,1.75,reconstructed,kept,HgSe-Hg-Hg83Se52Cl62-reconstructed,Hg83Se52Cl62,2.156,197,0
+Hg,2.0,clean,parent only (not written),HgSe-Hg-Hg135Se104Cl62-clean,Hg135Se104Cl62,2.492,301,0
+Hg,2.0,reconstructed,kept,HgSe-Hg-Hg135Se92Cl86-reconstructed,Hg135Se92Cl86,2.502,313,0
+Hg,2.25,clean,parent only (not written),HgSe-Hg-Hg201Se176Cl50-clean,Hg201Se176Cl50,2.837,427,0
+Hg,2.25,reconstructed,kept,HgSe-Hg-Hg201Se128Cl146-reconstructed,Hg201Se128Cl146,2.867,475,0
+Hg,2.5,clean,parent only (not written),HgSe-Hg-Hg297Se240Cl114-clean,Hg297Se240Cl114,3.249,651,0
+Hg,2.5,reconstructed,kept,HgSe-Hg-Hg297Se216Cl162-reconstructed,Hg297Se216Cl162,3.26,675,0
+Hg,2.75,clean,parent only (not written),HgSe-Hg-Hg369Se336Cl66-clean,Hg369Se336Cl66,3.462,771,0
+Hg,2.75,reconstructed,kept,HgSe-Hg-Hg369Se288Cl162-reconstructed,Hg369Se288Cl162,3.479,819,0
+Hg,3.0,clean,parent only (not written),HgSe-Hg-Hg453Se402Cl102-clean,Hg453Se402Cl102,3.732,957,0
+Hg,3.0,reconstructed,kept,HgSe-Hg-Hg453Se357Cl192-reconstructed,Hg453Se357Cl192,3.756,1002,0
+Hg,3.25,clean,parent only (not written),HgSe-Hg-Hg675Se616Cl118-clean,Hg675Se616Cl118,4.252,1409,0
+Hg,3.25,reconstructed,kept,HgSe-Hg-Hg675Se540Cl270-reconstructed,Hg675Se540Cl270,4.27,1485,0
+Hg,3.5,clean,parent only (not written),HgSe-Hg-Hg715Se658Cl114-clean,Hg715Se658Cl114,4.351,1487,0
+Hg,3.5,reconstructed,kept,HgSe-Hg-Hg715Se610Cl210-reconstructed,Hg715Se610Cl210,4.355,1535,0
+Hg,3.75,clean,parent only (not written),HgSe-Hg-Hg1007Se940Cl134-clean,Hg1007Se940Cl134,4.852,2081,0
+Hg,3.75,reconstructed,kept,HgSe-Hg-Hg1007Se868Cl278-reconstructed,Hg1007Se868Cl278,4.861,2153,0
+Hg,4.0,clean,parent only (not written),HgSe-Hg-Hg1103Se1012Cl182-clean,Hg1103Se1012Cl182,5.006,2297,0
+Hg,4.0,reconstructed,kept,HgSe-Hg-Hg1103Se904Cl398-reconstructed,Hg1103Se904Cl398,5.02,2405,0
+Hg,4.25,clean,parent only (not written),HgSe-Hg-Hg1577Se1472Cl210-clean,Hg1577Se1472Cl210,5.628,3259,0
+Hg,4.25,reconstructed,kept,HgSe-Hg-Hg1577Se1364Cl426-reconstructed,Hg1577Se1364Cl426,5.638,3367,0
+Hg,4.5,clean,duplicate of HgSe-Hg-Hg1577Se1472Cl210-clean,HgSe-Hg-Hg1577Se1472Cl210-clean,Hg1577Se1472Cl210,5.628,3259,0
+Hg,4.5,reconstructed,duplicate of HgSe-Hg-Hg1577Se1364Cl426-reconstructed,HgSe-Hg-Hg1577Se1364Cl426-reconstructed,Hg1577Se1364Cl426,5.638,3367,0
+Hg,4.75,clean,parent only (not written),HgSe-Hg-Hg1997Se1898Cl198-clean,Hg1997Se1898Cl198,6.131,4093,0
+Hg,4.75,reconstructed,kept,HgSe-Hg-Hg1997Se1766Cl462-reconstructed,Hg1997Se1766Cl462,6.148,4225,0
+Hg,5.0,clean,parent only (not written),HgSe-Hg-Hg2309Se2160Cl298-clean,Hg2309Se2160Cl298,6.419,4767,0
+Hg,5.0,reconstructed,kept,HgSe-Hg-Hg2309Se2012Cl594-reconstructed,Hg2309Se2012Cl594,6.426,4915,0
+Hg,5.25,clean,parent only (not written),HgSe-Hg-Hg2643Se2538Cl210-clean,Hg2643Se2538Cl210,6.709,5391,0
+Hg,5.25,reconstructed,kept,HgSe-Hg-Hg2643Se2402Cl482-reconstructed,Hg2643Se2402Cl482,6.719,5527,0
+Hg,5.5,clean,parent only (not written),HgSe-Hg-Hg3043Se2880Cl326-clean,Hg3043Se2880Cl326,7.024,6249,0
+Hg,5.5,reconstructed,kept,HgSe-Hg-Hg3043Se2736Cl614-reconstructed,Hg3043Se2736Cl614,7.03,6393,0
+Hg,5.75,clean,parent only (not written),HgSe-Hg-Hg3535Se3384Cl302-clean,Hg3535Se3384Cl302,7.376,7221,0
+Hg,5.75,reconstructed,kept,HgSe-Hg-Hg3535Se3144Cl782-reconstructed,Hg3535Se3144Cl782,7.385,7461,0
+Hg,6.0,clean,parent only (not written),HgSe-Hg-Hg3871Se3700Cl342-clean,Hg3871Se3700Cl342,7.6,7913,0
+Hg,6.0,reconstructed,kept,HgSe-Hg-Hg3871Se3576Cl590-reconstructed,Hg3871Se3576Cl590,7.605,8037,0
+Se,0.5,clean,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
+Se,0.5,reconstructed,rejected: ValueError: zero-size array to reduction operation maximum which has no identity,,,,,
+Se,0.75,clean,rejected: core 5 < 20 atoms,,Hg4Se1Cl6,0.788,11,0
+Se,0.75,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Se,1.0,clean,parent only (not written),HgSe-Se-Hg16Se13Cl6-clean,Hg16Se13Cl6,1.198,35,0
+Se,1.0,reconstructed,rejected: core 17 < 20 atoms; keeps 1/13 anions of its clean parent,,Hg16Se1Cl30,1.313,47,0
+Se,1.25,clean,parent only (not written),HgSe-Se-Hg28Se13Cl30-clean,Hg28Se13Cl30,1.491,71,0
+Se,1.25,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+Se,1.5,clean,parent only (not written),HgSe-Se-Hg68Se55Cl26-clean,Hg68Se55Cl26,1.974,149,0
+Se,1.5,reconstructed,kept,HgSe-Se-Hg68Se31Cl74-reconstructed,Hg68Se31Cl74,2.035,173,0
+Se,1.75,clean,duplicate of HgSe-Se-Hg68Se55Cl26-clean,HgSe-Se-Hg68Se55Cl26-clean,Hg68Se55Cl26,1.974,149,0
+Se,1.75,reconstructed,duplicate of HgSe-Se-Hg68Se31Cl74-reconstructed,HgSe-Se-Hg68Se31Cl74-reconstructed,Hg68Se31Cl74,2.035,173,0
+Se,2.0,clean,parent only (not written),HgSe-Se-Hg152Se135Cl34-clean,Hg152Se135Cl34,2.58,321,0
+Se,2.0,reconstructed,kept,HgSe-Se-Hg152Se115Cl74-reconstructed,Hg152Se115Cl74,2.61,341,0
+Se,2.25,clean,parent only (not written),HgSe-Se-Hg176Se147Cl58-clean,Hg176Se147Cl58,2.721,381,0
+Se,2.25,reconstructed,kept,HgSe-Se-Hg176Se107Cl138-reconstructed,Hg176Se107Cl138,2.76,421,0
+Se,2.5,clean,parent only (not written),HgSe-Se-Hg336Se297Cl78-clean,Hg336Se297Cl78,3.357,711,0
+Se,2.5,reconstructed,kept,HgSe-Se-Hg336Se253Cl166-reconstructed,Hg336Se253Cl166,3.389,755,0
+Se,2.75,clean,duplicate of HgSe-Se-Hg336Se297Cl78-clean,HgSe-Se-Hg336Se297Cl78-clean,Hg336Se297Cl78,3.357,711,0
+Se,2.75,reconstructed,duplicate of HgSe-Se-Hg336Se253Cl166-reconstructed,HgSe-Se-Hg336Se253Cl166-reconstructed,Hg336Se253Cl166,3.389,755,0
+Se,3.0,clean,parent only (not written),HgSe-Se-Hg504Se453Cl102-clean,Hg504Se453Cl102,3.872,1059,0
+Se,3.0,reconstructed,kept,HgSe-Se-Hg504Se405Cl198-reconstructed,Hg504Se405Cl198,3.879,1107,0
+Se,3.25,clean,parent only (not written),HgSe-Se-Hg616Se549Cl134-clean,Hg616Se549Cl134,4.139,1299,0
+Se,3.25,reconstructed,kept,HgSe-Se-Hg616Se481Cl270-reconstructed,Hg616Se481Cl270,4.16,1367,0
+Se,3.5,clean,parent only (not written),HgSe-Se-Hg760Se703Cl114-clean,Hg760Se703Cl114,4.43,1577,0
+Se,3.5,reconstructed,kept,HgSe-Se-Hg760Se675Cl170-reconstructed,Hg760Se675Cl170,4.432,1605,0
+Se,3.75,clean,parent only (not written),HgSe-Se-Hg940Se863Cl154-clean,Hg940Se863Cl154,4.751,1957,0
+Se,3.75,reconstructed,kept,HgSe-Se-Hg940Se803Cl274-reconstructed,Hg940Se803Cl274,4.763,2017,0
+Se,4.0,clean,parent only (not written),HgSe-Se-Hg1168Se1103Cl130-clean,Hg1168Se1103Cl130,5.111,2401,0
+Se,4.0,reconstructed,kept,HgSe-Se-Hg1168Se963Cl410-reconstructed,Hg1168Se963Cl410,5.131,2541,0
+Se,4.25,clean,parent only (not written),HgSe-Se-Hg1472Se1355Cl234-clean,Hg1472Se1355Cl234,5.511,3061,0
+Se,4.25,reconstructed,kept,HgSe-Se-Hg1472Se1260Cl424-reconstructed,Hg1472Se1260Cl424,5.522,3156,0
+Se,4.5,clean,parent only (not written),HgSe-Se-Hg1652Se1577Cl150-clean,Hg1652Se1577Cl150,5.717,3379,0
+Se,4.5,reconstructed,kept,HgSe-Se-Hg1652Se1451Cl402-reconstructed,Hg1652Se1451Cl402,5.732,3505,0
+Se,4.75,clean,parent only (not written),HgSe-Se-Hg1916Se1781Cl270-clean,Hg1916Se1781Cl270,6.037,3967,0
+Se,4.75,reconstructed,kept,HgSe-Se-Hg1916Se1673Cl486-reconstructed,Hg1916Se1673Cl486,6.04,4075,0
+Se,5.0,clean,parent only (not written),HgSe-Se-Hg2424Se2309Cl230-clean,Hg2424Se2309Cl230,6.521,4963,0
+Se,5.0,reconstructed,kept,HgSe-Se-Hg2424Se2133Cl582-reconstructed,Hg2424Se2133Cl582,6.533,5139,0
+Se,5.25,clean,parent only (not written),HgSe-Se-Hg2556Se2409Cl294-clean,Hg2556Se2409Cl294,6.633,5259,0
+Se,5.25,reconstructed,kept,HgSe-Se-Hg2556Se2309Cl494-reconstructed,Hg2556Se2309Cl494,6.634,5359,0
+Se,5.5,clean,parent only (not written),HgSe-Se-Hg3168Se3043Cl250-clean,Hg3168Se3043Cl250,7.118,6461,0
+Se,5.5,reconstructed,kept,HgSe-Se-Hg3168Se2885Cl566-reconstructed,Hg3168Se2885Cl566,7.128,6619,0
+Se,5.75,clean,parent only (not written),HgSe-Se-Hg3384Se3223Cl322-clean,Hg3384Se3223Cl322,7.267,6929,0
+Se,5.75,reconstructed,kept,HgSe-Se-Hg3384Se2995Cl778-reconstructed,Hg3384Se2995Cl778,7.275,7157,0
+Se,6.0,clean,parent only (not written),HgSe-Se-Hg4000Se3871Cl258-clean,Hg4000Se3871Cl258,7.717,8129,0
+Se,6.0,reconstructed,kept,HgSe-Se-Hg4000Se3739Cl522-reconstructed,Hg4000Se3739Cl522,7.725,8261,0

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "id": "AlAs-As-Al1000As829Cl513-reconstructed",
+  "material": "AlAs",
+  "family": "III-V",
+  "phase": "zinc-blende",
+  "surface": "reconstructed",
+  "source": "builder",
+  "formula": "Al1000As829Cl513",
+  "composition": {
+    "Al": 1000,
+    "As": 829,
+    "Cl": 513
+  },
+  "core": {
+    "Al": 1000,
+    "As": 829
+  },
+  "ligands": {
+    "Cl": 513
+  },
+  "n_atoms": 2342,
+  "total_charge": 0,
+  "centre": "As",
+  "centre_offset_A": 0.0,
+  "size": {
+    "n_core": 1829,
+    "d_nm": 4.905,
+    "d_volume_nm": 4.309,
+    "axes_nm": [
+      4.916,
+      4.911,
+      4.907
+    ],
+    "aspect_ratio": 1.002,
+    "d_max_nm": 5.587,
+    "d_hull_nm": 4.007,
+    "unit_cells": 2.5,
+    "unit_cells_all": [
+      2.5
+    ]
+  },
+  "fingerprint": "452f26a924786cda",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "alas_zb_swap.yaml",
+    "qd_builder_commit": "aebeae4a3ab56e0383ac6382c8dcdfac08e91b29",
+    "qd_builder_dirty": false,
+    "cif": "AlAs_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "Al": 3,
+        "As": -3,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 0.8
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.6
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "construction_origin": {
+        "center_on_species": "As"
+      },
+      "post_treatment": {
+        "surface_reconstruction": {
+          "enabled": true,
+          "ligand": "Cl",
+          "anion_pattern": "swap"
+        }
+      }
+    },
+    "reconstruction_ledger": {
+      "status": "applied",
+      "ligand": "Cl",
+      "anion_pattern": "swap",
+      "cation_removal": "none",
+      "cation": "Al",
+      "anion": "As",
+      "anion_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 6,
+          "chain_breaks": 9
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 6,
+          "chain_breaks": 9
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 6,
+          "chain_breaks": 9
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 6,
+          "chain_breaks": 9
+        }
+      ],
+      "cation_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            1
+          ],
+          "ligands_stripped": 71,
+          "cations_removed": 0,
+          "ligands_added": 101
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            -1
+          ],
+          "ligands_stripped": 71,
+          "cations_removed": 0,
+          "ligands_added": 101
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            -1
+          ],
+          "ligands_stripped": 71,
+          "cations_removed": 0,
+          "ligands_added": 102
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            1
+          ],
+          "ligands_stripped": 72,
+          "cations_removed": 0,
+          "ligands_added": 101
+        }
+      ],
+      "anion_side_charge_delta": 120,
+      "ligands_stripped": 285,
+      "cations_removed": 0,
+      "ligands_added": 405,
+      "ligands_added_by_mu": {
+        "mu3": 0,
+        "mu2": 0,
+        "mu1": 405
+      },
+      "symmetric": true,
+      "total_charge_before": 0,
+      "total_charge_after": 0,
+      "swap": {
+        "extra_per_facet": 6,
+        "extra_max": 6,
+        "outer_anions": 60
+      }
+    }
+  },
+  "parent": "AlAs-As-Al1000As889Cl333-clean",
+  "reconstruction_pattern": "swap"
+}

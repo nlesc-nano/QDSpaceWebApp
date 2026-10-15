@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "id": "InSb-In-In889Sb736Cl459-reconstructed",
+  "material": "InSb",
+  "family": "III-V",
+  "phase": "zinc-blende",
+  "surface": "reconstructed",
+  "source": "builder",
+  "formula": "In889Sb736Cl459",
+  "composition": {
+    "In": 889,
+    "Sb": 736,
+    "Cl": 459
+  },
+  "core": {
+    "In": 889,
+    "Sb": 736
+  },
+  "ligands": {
+    "Cl": 459
+  },
+  "n_atoms": 2084,
+  "total_charge": 0,
+  "centre": "In",
+  "centre_offset_A": 0.0,
+  "size": {
+    "n_core": 1625,
+    "d_nm": 5.459,
+    "d_volume_nm": 4.838,
+    "axes_nm": [
+      5.48,
+      5.479,
+      5.475
+    ],
+    "aspect_ratio": 1.001,
+    "d_max_nm": 6.499,
+    "d_hull_nm": 4.468,
+    "unit_cells": 2.5,
+    "unit_cells_all": [
+      2.5
+    ]
+  },
+  "fingerprint": "45670cb73b008159",
+  "stages": [
+    {
+      "stage": "start",
+      "file": "start.xyz"
+    }
+  ],
+  "origin": {
+    "generator": "builder.scripts.generate_library",
+    "config": "insb_zb_swap.yaml",
+    "qd_builder_commit": "bdcb07b00148a05392d600675679293b7c102c0c",
+    "qd_builder_dirty": false,
+    "cif": "InSb_zb.cif",
+    "positive_q_mode": "add",
+    "recipe": {
+      "charges": {
+        "In": 3,
+        "Sb": -3,
+        "Cl": -1
+      },
+      "passivation": {
+        "ligand": "Cl",
+        "surf_tol": 2.0,
+        "prepass_mode": "role-aware",
+        "prepass_min_cn_terrace": 3,
+        "prepass_min_cn_edge": 2,
+        "prepass_min_cn_vertex": 1
+      },
+      "facets": [
+        {
+          "hkl": "111",
+          "scope": "family",
+          "termination": "cation_rich",
+          "gamma": 0.8
+        },
+        {
+          "hkl": "-1-1-1",
+          "scope": "family",
+          "termination": "anion_rich",
+          "gamma": 1.6
+        }
+      ],
+      "symmetry": {
+        "proper_rotations_only": true
+      },
+      "size_unit_cells": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "construction_origin": {
+        "center_on_species": "In"
+      },
+      "post_treatment": {
+        "surface_reconstruction": {
+          "enabled": true,
+          "ligand": "Cl",
+          "anion_pattern": "swap"
+        }
+      }
+    },
+    "reconstruction_ledger": {
+      "status": "applied",
+      "ligand": "Cl",
+      "anion_pattern": "swap",
+      "cation_removal": "none",
+      "cation": "In",
+      "anion": "Sb",
+      "anion_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 4,
+          "chain_breaks": 6
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 4,
+          "chain_breaks": 6
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 4,
+          "chain_breaks": 6
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            -1
+          ],
+          "vacancies": 0,
+          "anions_to_ligand": 4,
+          "chain_breaks": 6
+        }
+      ],
+      "cation_facets": [
+        {
+          "hkl": [
+            1,
+            1,
+            1
+          ],
+          "ligands_stripped": 70,
+          "cations_removed": 0,
+          "ligands_added": 91
+        },
+        {
+          "hkl": [
+            1,
+            -1,
+            -1
+          ],
+          "ligands_stripped": 71,
+          "cations_removed": 0,
+          "ligands_added": 90
+        },
+        {
+          "hkl": [
+            -1,
+            1,
+            -1
+          ],
+          "ligands_stripped": 72,
+          "cations_removed": 0,
+          "ligands_added": 92
+        },
+        {
+          "hkl": [
+            -1,
+            -1,
+            1
+          ],
+          "ligands_stripped": 72,
+          "cations_removed": 0,
+          "ligands_added": 92
+        }
+      ],
+      "anion_side_charge_delta": 80,
+      "ligands_stripped": 285,
+      "cations_removed": 0,
+      "ligands_added": 365,
+      "ligands_added_by_mu": {
+        "mu3": 0,
+        "mu2": 0,
+        "mu1": 365
+      },
+      "symmetric": true,
+      "total_charge_before": 0,
+      "total_charge_after": 0,
+      "swap": {
+        "extra_per_facet": 4,
+        "extra_max": 4,
+        "outer_anions": 40
+      }
+    }
+  },
+  "parent": "InSb-In-In889Sb776Cl339-clean",
+  "reconstruction_pattern": "swap"
+}

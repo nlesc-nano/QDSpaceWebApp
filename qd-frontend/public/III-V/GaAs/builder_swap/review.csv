@@ -1,0 +1,45 @@
+centre,unit_cells,surface,status,id,formula,d_nm,n_atoms,Q
+Ga,0.5,clean,rejected: core 0 < 20 atoms; no atom at the construction origin,,,0.0,0,0
+Ga,0.5,reconstructed,skipped: found 0 anion- and 0 cation-terminated {111} facets; need both,,,,,
+Ga,0.75,clean,parent only (not written),GaAs-Ga-Ga31As20Cl33-clean,Ga31As20Cl33,1.619,84,0
+Ga,0.75,reconstructed,kept,GaAs-Ga-Ga31As16Cl45-reconstructed,Ga31As16Cl45,1.617,92,0
+Ga,1.0,clean,parent only (not written),GaAs-Ga-Ga35As26Cl27-clean,Ga35As26Cl27,1.659,88,0
+Ga,1.0,reconstructed,rejected: charge +33; keeps 8/26 anions of its clean parent,,Ga35As8Cl48,1.735,91,33
+Ga,1.25,clean,parent only (not written),GaAs-Ga-Ga149As116Cl99-clean,Ga149As116Cl99,2.693,364,0
+Ga,1.25,reconstructed,kept,GaAs-Ga-Ga149As104Cl135-reconstructed,Ga149As104Cl135,2.684,388,0
+Ga,1.5,clean,parent only (not written),GaAs-Ga-Ga161As139Cl66-clean,Ga161As139Cl66,2.746,366,0
+Ga,1.5,reconstructed,rejected: charge +117,,Ga161As75Cl141,2.79,377,117
+Ga,1.75,clean,parent only (not written),GaAs-Ga-Ga165As139Cl78-clean,Ga165As139Cl78,2.834,382,0
+Ga,1.75,reconstructed,rejected: charge +119,,Ga165As78Cl142,2.868,385,119
+Ga,2.0,clean,parent only (not written),GaAs-Ga-Ga415As348Cl201-clean,Ga415As348Cl201,3.758,964,0
+Ga,2.0,reconstructed,kept,GaAs-Ga-Ga415As324Cl273-reconstructed,Ga415As324Cl273,3.75,1012,0
+Ga,2.25,clean,parent only (not written),GaAs-Ga-Ga439As398Cl123-clean,Ga439As398Cl123,3.841,960,0
+Ga,2.25,reconstructed,rejected: charge +241,,Ga439As266Cl278,3.867,983,241
+Ga,2.5,clean,parent only (not written),GaAs-Ga-Ga889As776Cl339-clean,Ga889As776Cl339,4.838,2004,0
+Ga,2.5,reconstructed,kept,GaAs-Ga-Ga889As736Cl459-reconstructed,Ga889As736Cl459,4.828,2084,0
+Ga,2.75,clean,parent only (not written),GaAs-Ga-Ga929As863Cl198-clean,Ga929As863Cl198,4.904,1990,0
+Ga,2.75,reconstructed,rejected: charge +395,,Ga929As646Cl454,4.912,2029,395
+Ga,3.0,clean,parent only (not written),GaAs-Ga-Ga1631As1460Cl513-clean,Ga1631As1460Cl513,5.922,3604,0
+Ga,3.0,reconstructed,kept,GaAs-Ga-Ga1631As1400Cl693-reconstructed,Ga1631As1400Cl693,5.915,3724,0
+As,0.5,clean,rejected: core 5 < 20 atoms,,Ga4As1Cl9,0.84,14,0
+As,0.5,reconstructed,skipped: found 0 anion- and 8 cation-terminated {111} facets; need both,,,,,
+As,0.75,clean,parent only (not written),GaAs-As-Ga40As31Cl27-clean,Ga40As31Cl27,1.669,98,0
+As,0.75,reconstructed,kept,GaAs-As-Ga40As23Cl51-reconstructed,Ga40As23Cl51,1.696,114,0
+As,1.0,clean,parent only (not written),GaAs-As-Ga52As35Cl51-clean,Ga52As35Cl51,1.951,138,0
+As,1.0,reconstructed,kept,GaAs-As-Ga52As31Cl63-reconstructed,Ga52As31Cl63,1.938,146,0
+As,1.25,clean,parent only (not written),GaAs-As-Ga116As99Cl51-clean,Ga116As99Cl51,2.442,266,0
+As,1.25,reconstructed,rejected: charge +101; keeps 43/99 anions of its clean parent,,Ga116As43Cl118,2.492,277,101
+As,1.5,clean,parent only (not written),GaAs-As-Ga204As161Cl129-clean,Ga204As161Cl129,3.002,494,0
+As,1.5,reconstructed,kept,GaAs-As-Ga204As149Cl165-reconstructed,Ga204As149Cl165,2.994,518,0
+As,1.75,clean,parent only (not written),GaAs-As-Ga324As298Cl78-clean,Ga324As298Cl78,3.315,700,0
+As,1.75,reconstructed,rejected: charge +159,,Ga324As199Cl216,3.377,739,159
+As,2.0,clean,parent only (not written),GaAs-As-Ga348As314Cl102-clean,Ga348As314Cl102,3.507,764,0
+As,2.0,reconstructed,rejected: charge +189,,Ga348As208Cl231,3.541,787,189
+As,2.25,clean,parent only (not written),GaAs-As-Ga360As320Cl120-clean,Ga360As320Cl120,3.632,800,0
+As,2.25,reconstructed,rejected: charge +201,,Ga360As214Cl237,3.661,811,201
+As,2.5,clean,parent only (not written),GaAs-As-Ga1000As889Cl333-clean,Ga1000As889Cl333,4.931,2222,0
+As,2.5,reconstructed,kept,GaAs-As-Ga1000As829Cl513-reconstructed,Ga1000As829Cl513,4.931,2342,0
+As,2.75,clean,parent only (not written),GaAs-As-Ga1060As929Cl393-clean,Ga1060As929Cl393,5.126,2382,0
+As,2.75,reconstructed,kept,GaAs-As-Ga1060As889Cl513-reconstructed,Ga1060As889Cl513,5.105,2462,0
+As,3.0,clean,parent only (not written),GaAs-As-Ga1460As1374Cl258-clean,Ga1460As1374Cl258,5.67,3092,0
+As,3.0,reconstructed,rejected: charge +523,,Ga1460As1083Cl608,5.683,3151,523
