@@ -108,6 +108,14 @@ class ZTypeJob(BaseModel):
     distribution: str = "random"           # "random" | "uniform" | "segmented"
 
 
+class ZTypeLigandJob(BaseModel):
+    complex: str                           # MXn formula ("CdCl2") or ionic SMILES
+    target_symbol: Optional[str] = None    # native anion the metal binds to
+    target_count: int = 0
+    ratio: float = 1.0
+    distribution: str = "uniform"          # "random" | "uniform" | "segmented"
+
+
 class NeutralExchangeJob(BaseModel):
     cation: str
     anion: str
@@ -158,6 +166,8 @@ class BuildOptions(BaseModel):
     reconstruction_min_separation: Optional[str] = "auto"
     neutral_enabled: Optional[bool] = False
     neutral_jobs: Optional[List[NeutralJob]] = None
+    z_type_ligand_enabled: Optional[bool] = False
+    z_type_ligand_jobs: Optional[List[ZTypeLigandJob]] = None
     z_type_enabled: Optional[bool] = False
     z_type_jobs: Optional[List[ZTypeJob]] = None
     neutral_exchange_enabled: Optional[bool] = False
@@ -1109,6 +1119,25 @@ def _build_post_treatment_from_opts(opts: BuildOptions) -> dict:
             "sterics_mode": "vdw",
             "seed": 1337,
         }
+    if opts.z_type_ligand_enabled and opts.z_type_ligand_jobs:
+        zl_passes = []
+        for job in opts.z_type_ligand_jobs:
+            target_count = int(job.target_count or 0)
+            if job.complex.strip() and (target_count > 0 or float(job.ratio) > 0):
+                zl_passes.append({
+                    "complex": job.complex.strip(),
+                    "target_symbol": (job.target_symbol or "").strip() or None,
+                    "target_count": target_count,
+                    "ratio": job.ratio,
+                    "distribution": job.distribution or "uniform",
+                })
+        if zl_passes:
+            post_treatment["z_type_ligands"] = {
+                "enabled": True,
+                "passes": zl_passes,
+                "ff": "uff",
+                "seed": 1337,
+            }
     if opts.neutral_enabled and opts.neutral_jobs:
         neutral_passes = []
         for job in opts.neutral_jobs:
@@ -1150,7 +1179,8 @@ def _run_repassivation_posttreatment(
     Order matches nc-builder main.py:
       1. surface_reconstruction (Cl placeholders on polar facets)
       2. ligand_exchange (charged X-type)
-      3. neutral_ligands (L-type)
+      3. z_type_ligands (MXn complexes on free surface anions)
+      4. neutral_ligands (L-type)
     """
     from functools import partial
 
@@ -1211,6 +1241,7 @@ def _run_repassivation_posttreatment(
     z_type_spec = getattr(pt, "z_type_displacement", None)
     lig_ex = getattr(pt, "ligand_exchange", None)
     neutral_spec = getattr(pt, "neutral_ligands", None)
+    z_ligand_spec = getattr(pt, "z_type_ligands", None)
 
     def _detect_planes():
         facets, planes = _native_facets_and_planes(
@@ -1357,7 +1388,13 @@ def _run_repassivation_posttreatment(
                         syms, pts, cfg, struct, planes, cif_path, x_ledger, verbose=False
                     )
 
-        # 5. Neutral ligand passivation (L-type; after exchange, same as nc-builder)
+        # 5. Z-type ligands (MXn complexes on free surface anions; before L-type)
+        if z_ligand_spec is not None and z_ligand_spec.enabled:
+            from builder.z_type_ligand_posttreat import run_z_type_ligand_posttreatment
+            syms, pts, zl_ledger = run_z_type_ligand_posttreatment(syms, pts, cfg, struct, planes)
+            ledger.extend({"z_type_ligand": True, **entry} for entry in zl_ledger)
+
+        # 6. Neutral ligand passivation (L-type; after exchange, same as nc-builder)
         if neutral_spec is not None and neutral_spec.enabled:
             syms, pts = run_neutral_ligand_posttreatment(syms, pts, cfg, struct, planes)
 
@@ -1429,7 +1466,7 @@ def _detect_surface_post_options_for_xyz(
     *,
     facets_input: Optional[List] = None,
 ) -> dict:
-    out = {"alloying_options": [], "x_type_options": [], "l_type_options": []}
+    out = {"alloying_options": [], "x_type_options": [], "l_type_options": [], "z_type_ligand_options": []}
     if not xyz_text:
         return out
     try:
@@ -1557,9 +1594,42 @@ def _detect_surface_post_options_for_xyz(
             l_type_options,
             key=lambda item: (item["site_type"], item["element"]),
         )
+        out["z_type_ligand_options"] = _z_type_ligand_options(syms, pts, cfg, struct, planes, native)
     except Exception as exc:
         logging.error(f"Post-treatment option detection failed: {exc}", exc_info=True)
     return out
+
+
+def _z_type_ligand_options(syms, pts, cfg, struct, planes, native) -> List[dict]:
+    """Free core anions that can take a Z-type complex, per anion species."""
+    try:
+        from builder.z_type_ligand_posttreat import z_type_ligand_host_sites
+    except ImportError:
+        return []
+    cations = sorted(s for s in native if int(cfg.charges.get(s, 0)) > 0)
+    ligand = cfg.passivation.ligand or "Cl"
+    q_lig = abs(int(cfg.charges.get(ligand, -1))) or 1
+    default_complex = ""
+    if cations:
+        q_m = int(cfg.charges[cations[0]])
+        n = q_m // q_lig if q_m % q_lig == 0 else 0
+        if n:
+            default_complex = f"{cations[0]}{ligand}{n if n > 1 else ''}"
+    options = []
+    for sym in sorted(native):
+        if int(cfg.charges.get(sym, 0)) >= 0:
+            continue
+        with contextlib.redirect_stdout(io.StringIO()):
+            sites = z_type_ligand_host_sites(syms, pts, cfg, struct, planes, native, target_symbol=sym)
+        if sites:
+            options.append({
+                "element": sym,
+                "target_symbol": sym,
+                "site_type": "anion",
+                "available_count": len(sites),
+                "default_complex": default_complex,
+            })
+    return options
 
 
 def format_facets_for_yaml(facets) -> List[dict]:
@@ -2392,7 +2462,15 @@ async def build_nanocrystal_stream(
 
                 anionic_detail, cationic_detail = {}, {}
                 z_type_detail = {}
+                z_ligand_detail = {}
                 for entry in ledger:
+                    if entry.get("z_type_ligand"):
+                        formula = entry.get("formula")
+                        if formula and int(entry.get("placed", 0)) > 0:
+                            z_ligand_detail[formula] = z_ligand_detail.get(formula, 0) + int(entry["placed"])
+                        # Molecular anions count by their molecular charge, not by element.
+                        total_charge += int(entry.get("charge", 0)) - int(entry.get("ignored_element_charge", 0))
+                        continue
                     if entry.get("z_type"):
                         formula = entry.get("formula")
                         if formula:
@@ -2410,7 +2488,9 @@ async def build_nanocrystal_stream(
                     "cationic": cationic_detail,
                     "neutral": {},
                     "z_type": z_type_detail,
-                    "total": sum(anionic_detail.values()) + sum(cationic_detail.values()),
+                    "z_type_ligands": z_ligand_detail,
+                    "total": sum(anionic_detail.values()) + sum(cationic_detail.values())
+                    + sum(z_ligand_detail.values()),
                 }
                 z_type_options = _detect_z_type_options_for_xyz(
                     opts.xyz_unpassivated,

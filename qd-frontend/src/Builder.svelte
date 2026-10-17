@@ -165,6 +165,7 @@
   let neutralExchangeEnabled = $derived(neutralExchangeOptions.some(opt => opt.enabled));
   let neutralExchangeOptions = $state([]);
   let lTypeOptions = $state([]);
+  let zLigandOptions = $state([]);
   let detectedAnions = $state([]);
   let detectedCations = $state([]);
   let detectedSpecies = $state([]);
@@ -310,11 +311,15 @@
     return `${opt.target_symbol || opt.element || opt.target}|${opt.site_type || opt.target || ''}`;
   }
 
+  function zLigandKey(opt) {
+    return `z|${opt.target_symbol || opt.element}`;
+  }
+
   function optionAvailable(opt, kind = '') {
     if (!opt) return 0;
     if (kind === 'alloy') return alloyAvailable(opt);
     if (kind === 'x_type') return xTypeAvailable(opt);
-    if (kind === 'l_type') return opt.available_count || 0;
+    if (kind === 'l_type' || kind === 'z_ligand') return opt.available_count || 0;
     return zTypeAvailable(opt);
   }
 
@@ -349,6 +354,13 @@
         ...base,
         replacement: opt?.replacement || defaultReplacement,
         replacement_charge: opt?.replacement_charge ?? (OXIDATION_STATES[defaultReplacement] || 0),
+      };
+    }
+    if (kind === 'z_ligand') {
+      return {
+        ...base,
+        distribution: opt?.distribution || 'uniform',
+        complex: opt?.default_complex || '',
       };
     }
     if (kind === 'neutral_exchange') {
@@ -516,6 +528,21 @@
       };
       next.jobs = normalizeJobs(prev, 'l_type', next);
       clampOptionJobs(next, 'l_type');
+      return next;
+    });
+  }
+
+  function decorateZLigandOptions(options) {
+    const previous = new Map(zLigandOptions.map((opt) => [zLigandKey(opt), opt]));
+    return (options || []).map((opt) => {
+      const prev = previous.get(zLigandKey(opt)) || {};
+      const next = {
+        ...opt,
+        enabled: prev.enabled || false,
+        distribution: prev.distribution || 'uniform',
+      };
+      next.jobs = normalizeJobs(prev, 'z_ligand', next);
+      clampOptionJobs(next, 'z_ligand');
       return next;
     });
   }
@@ -1013,6 +1040,7 @@
     xTypeEnabled = false;
     xTypeOptions = [];
     lTypeOptions = [];
+    zLigandOptions = [];
     latticeLengths = [5.0, 5.0, 5.0];
     passivateExpanded = false;
     showCationic = false;
@@ -1183,6 +1211,16 @@
               distribution: job.distribution || opt.distribution || neutralDist,
             })))
         : [],
+      z_type_ligand_enabled: skipCoreBuild ? neutralEnabled : false,
+      z_type_ligand_jobs: skipCoreBuild && neutralEnabled
+        ? zLigandOptions.filter(opt => opt.enabled).flatMap(opt => (opt.jobs || []).filter(job => job.complex?.trim() && job.target_count > 0).map(job => ({
+            complex: job.complex.trim(),
+            target_symbol: opt.target_symbol || opt.element,
+            target_count: job.target_count,
+            ratio: job.ratio,
+            distribution: job.distribution || opt.distribution || 'uniform',
+          })))
+        : [],
       z_type_enabled: skipCoreBuild ? zTypeEnabled : false,
       z_type_jobs: skipCoreBuild && zTypeEnabled
         ? zTypeOptions.filter(opt => opt.enabled).flatMap(opt => (opt.jobs || []).filter(job => job.target_count > 0).map(job => ({
@@ -1279,6 +1317,7 @@
         alloyingOptions = decorateAlloyingOptions(finalResult.alloying_options || []);
         xTypeOptions = decorateXTypeOptions(finalResult.x_type_options || []);
         lTypeOptions = decorateLTypeOptions(finalResult.l_type_options || []);
+        zLigandOptions = decorateZLigandOptions(finalResult.z_type_ligand_options || []);
         if (!skipCoreBuild) {
             lastUnpassivatedXyz = finalResult.xyz_dummy || finalResult.xyz_unpassivated || finalResult.xyz_passivated || xyzData;
             sidebarView = 'postTreatment';
@@ -1594,11 +1633,17 @@
           </div>
           <div class="border border-accent-200 bg-accent-50/20 p-4 rounded-2xl space-y-3">
             <label class="flex items-center gap-2 font-extrabold text-accent-700 text-[10px] uppercase tracking-widest cursor-pointer select-none">
-              <input type="checkbox" bind:checked={neutralEnabled} disabled={lTypeOptions.length === 0} class="accent-accent-600 rounded">
-              L-type Ligand Passivation
+              <input type="checkbox" bind:checked={neutralEnabled} disabled={lTypeOptions.length === 0 && zLigandOptions.length === 0} class="accent-accent-600 rounded">
+              L- and Z-type Ligand Passivation
+              <span class="text-[10px] bg-slate-100 hover:bg-slate-200 text-slate-400 hover:text-slate-600 w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold font-mono cursor-help select-none shrink-0"
+                    role="tooltip"
+                    onmouseenter={() => tooltipText = "L-type: neutral donors (amines, phosphines) on open coordination sites. Z-type: neutral MXn complexes (CdCl2, Cd(OAc)2) whose metal takes the empty cation site above a free surface anion and whose anions take the free anion sites around it. Z-type complexes are placed first, so L-type donors can also bind to them."}
+                    onmouseleave={() => tooltipText = ""}>
+                i
+              </span>
             </label>
-            {#if lTypeOptions.length === 0}
-              <p class="text-[10px] text-slate-500 leading-snug">No L-type passivation sites detected on the current structure.</p>
+            {#if lTypeOptions.length === 0 && zLigandOptions.length === 0}
+              <p class="text-[10px] text-slate-500 leading-snug">No L-type or Z-type passivation sites detected on the current structure.</p>
             {:else if neutralEnabled}
               <div class="space-y-3 bg-white/60 p-3 rounded-xl border border-accent-100">
                 {#each ['cation', 'anion'] as siteType}
@@ -1654,6 +1699,58 @@
                     </div>
                   {/if}
                 {/each}
+                {#if zLigandOptions.length > 0}
+                  <div class="space-y-2">
+                    <span class="block text-[9px] font-bold text-accent-600 uppercase tracking-wider">Z-type Complexes on Anion Sites</span>
+                    {#each zLigandOptions as opt (zLigandKey(opt))}
+                      <div class="border border-accent-100 rounded-xl p-3 bg-white/70 space-y-2">
+                        <label class="space-y-2 text-xs font-bold text-slate-700 min-w-0 block">
+                          <span class="flex items-center gap-2 whitespace-nowrap">
+                            <input type="checkbox" bind:checked={opt.enabled} onchange={() => ensureJobs(opt, 'z_ligand')} class="accent-accent-600 rounded shrink-0">
+                            <span>Bind MXn to free {opt.element}</span>
+                          </span>
+                          <span class="flex flex-wrap gap-1.5 text-[10px] text-slate-500">
+                            <span class="rounded-full bg-slate-100 px-2 py-0.5 whitespace-nowrap">available {opt.available_count}</span>
+                          </span>
+                        </label>
+                        {#if opt.enabled}
+                          <div class="space-y-2">
+                            {#each opt.jobs || [] as job (job.id)}
+                              <div class="border border-accent-100 rounded-lg p-2 bg-white/80 space-y-2">
+                                <div class="grid grid-cols-[1fr_28px] gap-2">
+                                  <input type="text" bind:value={job.complex} placeholder="e.g. CdCl2 or [Cd+2].CC(=O)[O-].CC(=O)[O-]" class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+                                  <button type="button" class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors" onclick={() => removeOptionJob(opt, job, 'z_ligand')}>x</button>
+                                </div>
+                                <div class="flex flex-wrap gap-1 items-center text-[9px]">
+                                  <span class="text-slate-400 font-bold uppercase mr-1">Templates:</span>
+                                  {#if opt.default_complex}
+                                    <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.complex = opt.default_complex}>{opt.default_complex}</button>
+                                  {/if}
+                                  <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.complex = 'ZnCl2'}>ZnCl2</button>
+                                  <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.complex = '[Cd+2].CC(=O)[O-].CC(=O)[O-]'}>Cd(OAc)2</button>
+                                </div>
+                                <div class="flex flex-wrap justify-between gap-x-2 text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span class="whitespace-nowrap">Available: {opt.available_count}</span><span class="whitespace-nowrap">Bind: {job.target_count || 0} / {opt.available_count} ({selectionPercent(job.target_count, opt.available_count)}%)</span></div>
+                                <div class="grid grid-cols-[1fr_5rem] gap-2 text-[10px] items-center">
+                                  <div class="min-w-0">
+                                    <input type="range" min="0" max="1" step="0.01" bind:value={job.ratio} oninput={() => syncJobCountFromRatio(opt, job, 'z_ligand')} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
+                                  </div>
+                                  <input type="number" min="0" max={opt.available_count} step="1" bind:value={job.target_count} oninput={() => syncJobRatioFromCount(opt, job, 'z_ligand')} class="border-none ring-1 ring-accent-200 rounded-lg px-1 py-1.5 text-xs text-center bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
+                                </div>
+                                <div class="flex flex-wrap gap-1.5 text-[10px] bg-white p-2 rounded-lg border border-accent-100">
+                                  <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.distribution} value="uniform" class="accent-accent-600 shrink-0"> Uniform</label>
+                                  <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.distribution} value="segmented" class="accent-accent-600 shrink-0"> Segmented</label>
+                                  <label class="inline-flex items-center gap-1.5 cursor-pointer font-medium text-slate-700 whitespace-nowrap px-1"><input type="radio" bind:group={job.distribution} value="random" class="accent-accent-600 shrink-0"> Random</label>
+                                </div>
+                              </div>
+                            {/each}
+                            <button type="button" class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-[10px] py-1.5 rounded-lg text-accent-700 font-bold transition-colors" onclick={() => addOptionJob(opt, 'z_ligand')}>+ Add Z-type complex</button>
+                            <div class="text-[9px] font-bold text-slate-500 uppercase tracking-wider text-right">Total: {optionJobTotal(opt)} / {opt.available_count}</div>
+                          </div>
+                        {/if}
+                      </div>
+                    {/each}
+                  </div>
+                {/if}
               </div>
             {/if}
           </div>
@@ -2397,6 +2494,9 @@
                 {/each}
                 {#each Object.entries(finalResult.ligand_detail.neutral || {}) as [smiles, count]}
                   {#if count > 0}<div class="flex justify-between text-xs font-mono bg-slate-50 border border-slate-100 p-2 rounded-lg mb-1.5"><span class="truncate pr-2 text-slate-600">{smiles} (neutral)</span><span class="font-bold text-slate-900">{count}</span></div>{/if}
+                {/each}
+                {#each Object.entries(finalResult.ligand_detail.z_type_ligands || {}) as [formula, count]}
+                  {#if count > 0}<div class="flex justify-between text-xs font-mono bg-slate-50 border border-slate-100 p-2 rounded-lg mb-1.5"><span class="truncate pr-2 text-slate-600">{formula} (Z-type)</span><span class="font-bold text-slate-900">{count}</span></div>{/if}
                 {/each}
               {:else if finalResult.grouped_counts.shell?.total > 0}
                  <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Shell ({finalResult.grouped_counts.shell.total})</p>
