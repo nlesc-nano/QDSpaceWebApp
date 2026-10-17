@@ -4,7 +4,7 @@
   //            {type: "band", lo: [[x, y]], hi: [[x, y]], color, opacity}
   //            {type: "bars", bars: [{x, y0, y1, w, color, opacity}]}      (w in x units)
   //            {type: "ticks", ticks: [{x, y, w, color}]}                     (short horizontal marks)
-  //            {type: "points", pts: [[x, y]], color, r, hollow}
+  //            {type: "points", pts: [[x, y, r?]], color, r, hollow, opacity}
   //            {type: "hline", y, color, dash, label} / {type: "vline", x, color, dash, label}
   //            {type: "cells", cells: [{x0, x1, y0, y1, color}]}
   //            {type: "image", href, x0, x1, y0, y1}                              (a raster, e.g. a map)]
@@ -99,9 +99,9 @@
           <path d={path(ly.pts)} fill="none" stroke={ly.color} stroke-width={ly.width ?? 2} stroke-dasharray={ly.dash || ""} opacity={ly.opacity ?? 1}
                 stroke-linejoin="round" stroke-linecap="round" />
         {:else if ly.type === "points"}
-          {#each ly.pts as [x, y]}
+          {#each ly.pts as [x, y, r]}
             {#if isFinite(y)}
-              <circle cx={sx(x)} cy={sy(y)} r={ly.r ?? 3.5} fill={ly.hollow ? "white" : ly.color} stroke={ly.color} stroke-width="1.5" />
+              <circle cx={sx(x)} cy={sy(y)} r={r ?? ly.r ?? 3.5} fill={ly.hollow ? "white" : ly.color} fill-opacity={ly.opacity ?? 1} stroke={ly.color} stroke-width="1.5" />
             {/if}
           {/each}
         {/if}
@@ -141,6 +141,7 @@
         <span class="flex items-center gap-1.5">
           <svg width="18" height="10">
             {#if g.kind === "box"}<rect x="4" y="0" width="10" height="10" rx="2" fill={g.color} opacity={g.opacity ?? 1} />
+            {:else if g.kind === "dot"}<circle cx="9" cy="5" r={g.r ?? 3.5} fill={g.color} fill-opacity="0.75" stroke={g.color} stroke-width="1" />
             {:else if g.kind === "circle"}<circle cx="9" cy="5" r="3.5" fill="white" stroke={g.color} stroke-width="1.5" />
             {:else if g.kind === "tick"}<line x1="3" x2="15" y1="5" y2="5" stroke={g.color} stroke-width="3" stroke-linecap="round" />
             {:else}<line x1="0" x2="18" y1="5" y2="5" stroke={g.color} stroke-width="2" stroke-dasharray={g.dash || ""} />{/if}

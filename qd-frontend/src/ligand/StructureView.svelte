@@ -4,6 +4,7 @@
   // Data: props/{relax,structure,hessian,vibspec,spectra,report}.json and the relaxed geometries.
   import Plot from "./Plot.svelte";
   import { parseXyz, bonds, cnCounts, displacements, sameAtoms, histogram } from "./geom.js";
+  import { rebroaden } from "./broaden.js";
 
   let { files, geoms } = $props();         // findFiles(rec), geometries(rec)
 
@@ -140,16 +141,23 @@
   let vdosBy = $state("element");
   const ECOL = ["#7c3aed", "#db2777", "#16a34a", "#ea580c", "#0891b2"];
   const RCOL = { core: "#2a78d6", surface: "#eb6834", ligand: "#1baf7a" };
+  // the VDOS is stored with Gaussian width vdos_sigma (hessian settings); wider follows exactly by re-broadening
+  let vdosSigma0 = $derived(data.hessian?._inputs?.settings?.vdos_sigma ?? 5);
+  let vdosSigma = $state(null);            // null: the stored width
+  let vdosS = $derived(Math.max(vdosSigma ?? vdosSigma0, vdosSigma0));
   let vdos = $derived.by(() => {
     const v = data.spectra?.vdos;
     if (!v) return { layers: [], legend: [] };
     const proj = v.projected?.[vdosBy] || {};
     const keys = Object.keys(proj);
     const col = (k, i) => (vdosBy === "role" ? RCOL[k] || ECOL[i] : ECOL[i % ECOL.length]);
-    return { layers: [{ type: "line", color: "#94a3b8", dash: "4 3", pts: v.cm1.map((x, i) => [x, v.total[i]]) },
-                      ...keys.map((k, i) => ({ type: "line", color: col(k, i), pts: v.cm1.map((x, j) => [x, proj[k][j]]) }))],
+    const dx = v.cm1[1] - v.cm1[0];
+    const curve = (y) => rebroaden(v.cm1[0], dx, y, vdosSigma0, vdosS).filter(([x]) => x >= 0);
+    const total = curve(v.total);
+    return { layers: [{ type: "line", color: "#94a3b8", dash: "4 3", pts: total },
+                      ...keys.map((k, i) => ({ type: "line", color: col(k, i), pts: curve(proj[k]) }))],
              legend: [{ color: "#94a3b8", dash: "4 3", label: "total" }, ...keys.map((k, i) => ({ color: col(k, i), label: k }))],
-             ymax: Math.max(...v.total) * 1.05, xmax: v.cm1.at(-1) };
+             ymax: Math.max(...total.map((p) => p[1])) * 1.05, xmax: total.at(-1)[0] };
   });
   let fwhm = $state(8);
   const lorentz = (modes, key, fw, xmax) => {
@@ -298,12 +306,17 @@
     {@render cards(vibCards, "bg-slate-50 border-slate-100")}
     {#if vdos.layers.length}
       <div>
-        <div class="flex items-center gap-3 mb-1">
+        <div class="flex flex-wrap items-center gap-3 mb-1">
           <h4 class="text-xs font-bold text-slate-500 uppercase tracking-widest">Vibrational density of states</h4>
           <div class="flex gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
             <button class={seg(vdosBy === "element")} onclick={() => (vdosBy = "element")}>by element</button>
             <button class={seg(vdosBy === "role")} onclick={() => (vdosBy = "role")}>by site</button>
           </div>
+          <label class="flex items-center gap-2 text-xs">
+            <span class="font-bold text-slate-500">Broadening σ</span>
+            <input type="range" min={vdosSigma0} max="30" step="0.5" value={vdosS} oninput={(e) => (vdosSigma = +e.currentTarget.value)} class="w-36 accent-brand-600" />
+            <span class="font-mono text-slate-900">{vdosS.toFixed(1)} cm⁻¹</span>
+          </label>
         </div>
         <Plot layers={vdos.layers} xDomain={[0, vdos.xmax]} yDomain={[0, vdos.ymax]} xLabel={"frequency (cm^{-1})"} yLabel="VDOS" height={280}
               ariaLabel="vibrational density of states" legend={vdos.legend} />

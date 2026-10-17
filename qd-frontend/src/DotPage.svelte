@@ -6,6 +6,7 @@
   import SynthesisView from "./ligand/SynthesisView.svelte";
   import TrimmedPage from "./ligand/TrimmedPage.svelte";
   import StructureView from "./ligand/StructureView.svelte";
+  import ExcitedView from "./ligand/ExcitedView.svelte";
   import { findFiles, dftPages, geometries } from "./ligand/recordFiles.js";
   import { buildModel, solventModel, unitCosts, decompositionPerCore, UNITS } from "./ligand/model.js";
 
@@ -251,6 +252,18 @@
         <SynthesisView detUrl={files.det} stabUrl={files.stab} cubesUrl={files.cubes} />
       {:else if active === "electronic" || active === "excited"}
         {@const list = active === "excited" ? pages.excited : pages.electronic}
+        {@const native = active === "excited" && group?.chain && rec.dft?.webapp}
+        {#if native && list.length > 1}
+          <div class="flex flex-wrap items-center gap-3 mb-3 text-xs">
+            <span class="font-bold text-slate-400">Functional</span>
+            <div class="flex gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
+              {#each list as g, i}<button class={seg((list[fn] ? fn : 0) === i)} onclick={() => (fn = i)}>{g.code} {g.functional}{g.chain ? "" : " (earlier run)"}</button>{/each}
+            </div>
+          </div>
+        {/if}
+        {#if native}
+          <ExcitedView url={`/${rec.dft.webapp}`} dashboards={group} functional={group.functional} />
+        {:else}
         <div class="flex flex-wrap items-center gap-3 mb-3 text-xs">
           <div class="flex gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
             {#each [["sf", "spin free"], ["soc", "spin–orbit"]] as [s, l]}
@@ -280,6 +293,7 @@
                     class="w-full h-[85vh] rounded-[1rem] border border-slate-200 bg-white"
                     sandbox="allow-scripts allow-same-origin allow-popups allow-modals" referrerpolicy="no-referrer"></iframe>
           {/key}
+        {/if}
         {/if}
       {/if}
     </div>
