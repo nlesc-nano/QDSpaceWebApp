@@ -1634,38 +1634,43 @@
           <div class="border border-accent-200 bg-accent-50/20 p-4 rounded-2xl space-y-3">
             <label class="flex items-center gap-2 font-extrabold text-accent-700 text-[10px] uppercase tracking-widest cursor-pointer select-none">
               <input type="checkbox" bind:checked={neutralEnabled} disabled={lTypeOptions.length === 0 && zLigandOptions.length === 0} class="accent-accent-600 rounded">
-              L- and Z-type Ligand Passivation
+              Neutral Ligands (L- and Z-type)
               <span class="text-[10px] bg-slate-100 hover:bg-slate-200 text-slate-400 hover:text-slate-600 w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold font-mono cursor-help select-none shrink-0"
                     role="tooltip"
-                    onmouseenter={() => tooltipText = "L-type: neutral donors (amines, phosphines) on open coordination sites. Z-type: neutral MXn complexes (CdCl2, Cd(OAc)2) whose metal takes the empty cation site above a free surface anion and whose anions take the free anion sites around it. Z-type complexes are placed first, so L-type donors can also bind to them."}
+                    onmouseenter={() => tooltipText = "L-type: neutral donors (amines, phosphines) on open coordination sites of surface atoms. Z-type: neutral metal complexes (CdCl2, Cd(OAc)2) whose metal binds to an open surface anion, with its anions on the lattice sites around it. Uniform alternates the Z-type sites first, then fills in. Z-type complexes are placed first, so L-type donors can also bind to their metals."}
                     onmouseleave={() => tooltipText = ""}>
                 i
               </span>
             </label>
             {#if lTypeOptions.length === 0 && zLigandOptions.length === 0}
-              <p class="text-[10px] text-slate-500 leading-snug">No L-type or Z-type passivation sites detected on the current structure.</p>
+              <p class="text-[10px] text-slate-500 leading-snug">No open sites for L-type or Z-type ligands on the current structure.</p>
             {:else if neutralEnabled}
               <div class="space-y-3 bg-white/60 p-3 rounded-xl border border-accent-100">
-                {#each ['cation', 'anion'] as siteType}
-                  {@const optsForType = lTypeOptions.filter((opt) => opt.site_type === siteType)}
-                  {#if optsForType.length > 0}
+                {#if lTypeOptions.length > 0}
                     <div class="space-y-2">
-                      <span class="block text-[9px] font-bold text-accent-600 uppercase tracking-wider">{siteType === 'cation' ? 'Cation Sites' : 'Anion Sites'}</span>
-                      {#each optsForType as opt (lTypeKey(opt))}
+                      <div>
+                        <span class="block text-[9px] font-bold text-accent-600 uppercase tracking-wider">L-type · Donors</span>
+                        <span class="block text-[10px] text-slate-500 leading-snug">Neutral molecules (amines, phosphines) that donate to an open site.</span>
+                      </div>
+                      {#each [...lTypeOptions.filter((o) => o.site_type === 'cation'), ...lTypeOptions.filter((o) => o.site_type !== 'cation')] as opt (lTypeKey(opt))}
                         <div class="border border-accent-100 rounded-xl p-3 bg-white/70 space-y-2">
                           <label class="space-y-2 text-xs font-bold text-slate-700 min-w-0 block">
                             <span class="flex items-center gap-2 whitespace-nowrap">
                               <input type="checkbox" bind:checked={opt.enabled} onchange={() => ensureJobs(opt, 'l_type')} class="accent-accent-600 rounded shrink-0">
-                              <span>Passivate {opt.element || opt.target_symbol || opt.target}</span>
+                              <span>L-type on {opt.element || opt.target_symbol || opt.target}</span>
                             </span>
                             <span class="flex flex-wrap gap-1.5 text-[10px] text-slate-500">
-                              <span class="rounded-full bg-slate-100 px-2 py-0.5 whitespace-nowrap">available {opt.available_count}</span>
+                              <span class="rounded-full bg-slate-100 px-2 py-0.5 whitespace-nowrap">{opt.available_count} open sites</span>
                             </span>
                           </label>
+                          {#if opt.site_type === 'anion' && zLigandOptions.some((z) => z.enabled && (z.target_symbol || z.element) === (opt.target_symbol || opt.element))}
+                            <p class="text-[10px] text-slate-500 leading-snug">Shares {opt.element || opt.target_symbol} sites with Z-type; Z-type is placed first.</p>
+                          {/if}
                           {#if opt.enabled}
                             <div class="space-y-2">
                               {#each opt.jobs || [] as job (job.id)}
                                 <div class="border border-accent-100 rounded-lg p-2 bg-white/80 space-y-2">
+                                  <span class="block text-[9px] font-bold text-slate-400 uppercase tracking-wider">Molecule (SMILES)</span>
                                   <div class="grid grid-cols-[1fr_28px] gap-2">
                                     <input type="text" bind:value={job.smiles} placeholder="e.g. CCCN" class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
                                     <button type="button" class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors" onclick={() => removeOptionJob(opt, job, 'l_type')}>x</button>
@@ -1676,7 +1681,7 @@
                                     <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.smiles = 'CCCCC(=O)O'}>Pentanoic Acid</button>
                                     <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.smiles = 'CCCCS'}>Pentanethiol</button>
                                   </div>
-                                  <div class="flex flex-wrap justify-between gap-x-2 text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span class="whitespace-nowrap">Available: {opt.available_count}</span><span class="whitespace-nowrap">Passivate: {job.target_count || 0} / {opt.available_count} ({selectionPercent(job.target_count, opt.available_count)}%)</span></div>
+                                  <div class="flex flex-wrap justify-between gap-x-2 text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span class="whitespace-nowrap">Open sites: {opt.available_count}</span><span class="whitespace-nowrap">Use: {job.target_count || 0} / {opt.available_count} ({selectionPercent(job.target_count, opt.available_count)}%)</span></div>
                                   <div class="grid grid-cols-[1fr_5rem] gap-2 text-[10px] items-center">
                                     <div class="min-w-0">
                                       <input type="range" min="0" max="1" step="0.01" bind:value={job.ratio} oninput={() => syncJobCountFromRatio(opt, job, 'l_type')} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
@@ -1690,33 +1695,36 @@
                                   </div>
                                 </div>
                               {/each}
-                              <button type="button" class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-[10px] py-1.5 rounded-lg text-accent-700 font-bold transition-colors" onclick={() => addOptionJob(opt, 'l_type')}>+ Add L-type passivant</button>
+                              <button type="button" class="w-full bg-white hover:bg-accent-50 border border-accent-200 text-[10px] py-1.5 rounded-lg text-accent-700 font-bold transition-colors" onclick={() => addOptionJob(opt, 'l_type')}>+ Add L-type ligand</button>
                               <div class="text-[9px] font-bold text-slate-500 uppercase tracking-wider text-right">Total: {optionJobTotal(opt)} / {opt.available_count}</div>
                             </div>
                           {/if}
                         </div>
                       {/each}
                     </div>
-                  {/if}
-                {/each}
+                {/if}
                 {#if zLigandOptions.length > 0}
                   <div class="space-y-2">
-                    <span class="block text-[9px] font-bold text-accent-600 uppercase tracking-wider">Z-type Complexes on Anion Sites</span>
+                    <div>
+                      <span class="block text-[9px] font-bold text-accent-600 uppercase tracking-wider">Z-type · Metal complexes</span>
+                      <span class="block text-[10px] text-slate-500 leading-snug">Neutral metal salts (CdCl2, Cd(OAc)2) whose metal binds to an open anion site.</span>
+                    </div>
                     {#each zLigandOptions as opt (zLigandKey(opt))}
                       <div class="border border-accent-100 rounded-xl p-3 bg-white/70 space-y-2">
                         <label class="space-y-2 text-xs font-bold text-slate-700 min-w-0 block">
                           <span class="flex items-center gap-2 whitespace-nowrap">
                             <input type="checkbox" bind:checked={opt.enabled} onchange={() => ensureJobs(opt, 'z_ligand')} class="accent-accent-600 rounded shrink-0">
-                            <span>Bind MXn to free {opt.element}</span>
+                            <span>Z-type on {opt.element}</span>
                           </span>
                           <span class="flex flex-wrap gap-1.5 text-[10px] text-slate-500">
-                            <span class="rounded-full bg-slate-100 px-2 py-0.5 whitespace-nowrap">available {opt.available_count}</span>
+                            <span class="rounded-full bg-slate-100 px-2 py-0.5 whitespace-nowrap">{opt.available_count} open sites</span>
                           </span>
                         </label>
                         {#if opt.enabled}
                           <div class="space-y-2">
                             {#each opt.jobs || [] as job (job.id)}
                               <div class="border border-accent-100 rounded-lg p-2 bg-white/80 space-y-2">
+                                <span class="block text-[9px] font-bold text-slate-400 uppercase tracking-wider">Complex (formula or ionic SMILES)</span>
                                 <div class="grid grid-cols-[1fr_28px] gap-2">
                                   <input type="text" bind:value={job.complex} placeholder="e.g. CdCl2 or [Cd+2].CC(=O)[O-].CC(=O)[O-]" class="border-none ring-1 ring-accent-200 rounded-lg px-2 py-1.5 text-xs bg-white focus:ring-2 focus:ring-accent-400 outline-none font-medium min-w-0">
                                   <button type="button" class="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg flex items-center justify-center text-xs font-bold transition-colors" onclick={() => removeOptionJob(opt, job, 'z_ligand')}>x</button>
@@ -1729,7 +1737,7 @@
                                   <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.complex = 'ZnCl2'}>ZnCl2</button>
                                   <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded cursor-pointer transition-colors" onclick={() => job.complex = '[Cd+2].CC(=O)[O-].CC(=O)[O-]'}>Cd(OAc)2</button>
                                 </div>
-                                <div class="flex flex-wrap justify-between gap-x-2 text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span class="whitespace-nowrap">Available: {opt.available_count}</span><span class="whitespace-nowrap">Bind: {job.target_count || 0} / {opt.available_count} ({selectionPercent(job.target_count, opt.available_count)}%)</span></div>
+                                <div class="flex flex-wrap justify-between gap-x-2 text-[9px] font-bold text-slate-500 uppercase tracking-wider"><span class="whitespace-nowrap">Open sites: {opt.available_count}</span><span class="whitespace-nowrap">Use: {job.target_count || 0} / {opt.available_count} ({selectionPercent(job.target_count, opt.available_count)}%)</span></div>
                                 <div class="grid grid-cols-[1fr_5rem] gap-2 text-[10px] items-center">
                                   <div class="min-w-0">
                                     <input type="range" min="0" max="1" step="0.01" bind:value={job.ratio} oninput={() => syncJobCountFromRatio(opt, job, 'z_ligand')} class="w-full accent-accent-600 h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
