@@ -203,7 +203,7 @@ def _attach_qdprops(rec: dict, folder: Path, base: str) -> None:
     if (props / "relaxed.xyz").is_file():
         rec["stages"].append({"stage": "geo_opt", "file": f"{base}/props/relaxed.xyz",
                               "functional": f"MACE-MH-1 ({head})" if head else "MACE-MH-1", "code": "MACE"})
-    for name in ("ground_state.html", "ground_state.png", "synthesis.html"):
+    for name in ("ground_state.html", "ground_state.png", "synthesis.html", "detachment.json", "stability.json"):
         if (props / name).is_file():
             rec["properties"][name] = f"{base}/props/{name}"
     rec["computed"] = {"schema_version": summary.get("schema_version"), "summary": summary.get("summary", {}),

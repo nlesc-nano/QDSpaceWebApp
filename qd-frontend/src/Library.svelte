@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import Viewer from "./Viewer.svelte";
   import Optical from "./Optical.svelte";
+  import LigandShell from "./ligand/LigandShell.svelte";
   import { templateFor } from "./bulkTemplates.js";
   import { makeZip } from "./zip.js";
 
@@ -47,6 +48,7 @@
   let propertiesStatus = $state("idle");
   let activePropertyTab = $state("fuzzy_sf");
   let plotUrls = $state({});
+  let ligandStabUrl = $state(null);   // props/stability.json next to the ladder (formation free energies)
   let groundStatePng = $state(null);
 
   const SOURCE_LABEL = { builder: "Builder", dft: "DFT", "builder+dft": "Builder + DFT" };
@@ -295,6 +297,7 @@
   const PROPERTY_FILES = {
     ground_state: ["ground_state.html"],
     synthesis: ["synthesis.html"],
+    ligand_shell: [],
     optical: [],
     fuzzy_sf: ["fuzzy_dashboard_sf.html", "plot.html", "plot.html.gz"],
     fuzzy_soc: ["fuzzy_dashboard_soc.html"],
@@ -304,6 +307,7 @@
     exciton_soc: ["exciton_analysis_soc.html"],
   };
   const PROPERTY_TABS = [["ground_state", "Ground state (MACE-MH-1)"], ["synthesis", "Synthesis thermodynamics"],
+    ["ligand_shell", "Ligand shell (Z-type)"],
     ["optical", "Optical (QDEX)"],
     ["fuzzy_sf", "Fuzzy - PDOS - COOP (Spin Free)"], ["fuzzy_soc", "Fuzzy - PDOS - COOP (SOC)"],
     ["fuzzy_sf_qp", "Fuzzy - PDOS - COOP (Spin Free, QP)"], ["fuzzy_soc_qp", "Fuzzy - PDOS - COOP (SOC, QP)"],
@@ -324,6 +328,7 @@
       "g-xTB: IR & Raman intensities", "GFN2-xTB charges + Generalized Born: solvation"];
     if (tab === "synthesis") return [`${mace} free energies`, "GFN2-xTB charges + Generalized Born solvation",
       "coupled equilibria with mass balance"];
+    if (tab === "ligand_shell") return [`${mace}: ladders, oleylamine complexes`, "vacuum, 1 M"];
     const dft = dftMethod(r, plotUrls[tab] || "");
     if (tab === "optical") return [`DFT ${dft} geometry`,
       `QDEX${r?.dft?.method?.qdex_commit ? " " + r.dft.method.qdex_commit : ""}: quasiparticle gaps, excitons, absorption`];
@@ -333,10 +338,28 @@
     return [`DFT ${dft} geometry`, `excited states (${soc})`];
   }
 
+  // Z-type ladder: props/detachment.json (+ stability.json) from the record, or next to its start
+  // geometry. The dev server answers a missing file with index.html, so the type is checked.
+  async function findLadder(r, props) {
+    ligandStabUrl = null;
+    const start = (r.stages || []).find((s) => s.stage === "start")?.file;
+    const dir = start ? start.slice(0, start.lastIndexOf("/")) + "/props" : null;
+    const isJson = (u) => fetch(u, { method: "HEAD", cache: "no-store" })
+      .then((res) => res.ok && (res.headers.get("content-type") || "").includes("json")).catch(() => false);
+    let det = props["detachment.json"] ? `/${props["detachment.json"]}` : null;
+    if (!det && dir && (await isJson(`/${dir}/detachment.json`))) det = `/${dir}/detachment.json`;
+    if (r.id !== current?.id) return;
+    plotUrls.ligand_shell = det;
+    if (!det) return;
+    const stab = props["stability.json"] ? `/${props["stability.json"]}` : det.replace(/detachment\.json$/, "stability.json");
+    if (await isJson(stab)) ligandStabUrl = stab;
+  }
+
   async function loadProperties(r) {
     plotUrls = Object.fromEntries(Object.keys(PROPERTY_FILES).map((t) => [t, null]));
     const props = r.properties || {};
     if (r.dft?.webapp) plotUrls.optical = `/${r.dft.webapp}`;
+    await findLadder(r, props);
     groundStatePng = props["ground_state.png"] ? `/${props["ground_state.png"]}` : null;
     for (const [tab, names] of Object.entries(PROPERTY_FILES)) {
       const hit = names.find((n) => props[n]);
@@ -896,6 +919,10 @@
           {#if activePropertyTab === "optical"}
             <div class="absolute inset-x-0 top-8 bottom-0 overflow-y-auto">
               <Optical url={plotUrls.optical} />
+            </div>
+          {:else if activePropertyTab === "ligand_shell"}
+            <div class="absolute inset-x-0 top-8 bottom-0 overflow-y-auto pr-1">
+              <LigandShell detUrl={plotUrls.ligand_shell} stabUrl={ligandStabUrl} />
             </div>
           {:else}
             <iframe title="Interactive Properties" src={plotUrls[activePropertyTab]}
