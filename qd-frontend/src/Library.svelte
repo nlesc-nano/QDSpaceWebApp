@@ -3,6 +3,7 @@
   import Viewer from "./Viewer.svelte";
   import Optical from "./Optical.svelte";
   import LigandShell from "./ligand/LigandShell.svelte";
+  import TrimmedPage from "./ligand/TrimmedPage.svelte";
   import { templateFor } from "./bulkTemplates.js";
   import { makeZip } from "./zip.js";
 
@@ -48,7 +49,9 @@
   let propertiesStatus = $state("idle");
   let activePropertyTab = $state("fuzzy_sf");
   let plotUrls = $state({});
-  let ligandStabUrl = $state(null);   // props/stability.json next to the ladder (formation free energies)
+  // Thermodynamics and Synthesis tabs (native): the Z-type ladder and stability data, the report's
+  // stability page (solution-phase section) and the multi-dot growth page
+  let shell = $state({ det: null, stab: null, report: null, growth: null });
   let groundStatePng = $state(null);
 
   const SOURCE_LABEL = { builder: "Builder", dft: "DFT", "builder+dft": "Builder + DFT" };
@@ -292,12 +295,13 @@
   }
 
   // --- Properties: from the record; probe the legacy folder as a fallback ---
-  // Order = tab order and the default tab: computed ground state first, then synthesis, then the DFT pages.
-  // "optical" is native (Optical.svelte, from the record's dft.webapp), not a page.
+  // Order = tab order and the default tab: computed ground state first, then thermodynamics and
+  // synthesis, then the DFT pages. "thermodynamics", "synthesis" and "optical" are native (LigandShell,
+  // Optical), not pages.
   const PROPERTY_FILES = {
     ground_state: ["ground_state.html"],
-    synthesis: ["synthesis.html"],
-    ligand_shell: [],
+    thermodynamics: [],
+    synthesis: [],
     optical: [],
     fuzzy_sf: ["fuzzy_dashboard_sf.html", "plot.html", "plot.html.gz"],
     fuzzy_soc: ["fuzzy_dashboard_soc.html"],
@@ -306,8 +310,8 @@
     exciton_sf: ["exciton_analysis_sf.html"],
     exciton_soc: ["exciton_analysis_soc.html"],
   };
-  const PROPERTY_TABS = [["ground_state", "Ground state (MACE-MH-1)"], ["synthesis", "Synthesis thermodynamics"],
-    ["ligand_shell", "Ligand shell (Z-type)"],
+  const PROPERTY_TABS = [["ground_state", "Structure, vibrations & thermochemistry"], ["thermodynamics", "Thermodynamics"],
+    ["synthesis", "Synthesis & post-synthesis"],
     ["optical", "Optical (QDEX)"],
     ["fuzzy_sf", "Fuzzy - PDOS - COOP (Spin Free)"], ["fuzzy_soc", "Fuzzy - PDOS - COOP (SOC)"],
     ["fuzzy_sf_qp", "Fuzzy - PDOS - COOP (Spin Free, QP)"], ["fuzzy_soc_qp", "Fuzzy - PDOS - COOP (SOC, QP)"],
@@ -324,11 +328,9 @@
   }
   function propertyMethods(tab, r) {
     const mace = (r?.stages || []).find((s) => s.stage === "geo_opt" && s.code === "MACE")?.functional || "MACE-MH-1";
-    if (tab === "ground_state") return [`${mace}: geometry, Hessian, thermochemistry, stability`,
-      "g-xTB: IR & Raman intensities", "GFN2-xTB charges + Generalized Born: solvation"];
-    if (tab === "synthesis") return [`${mace} free energies`, "GFN2-xTB charges + Generalized Born solvation",
-      "coupled equilibria with mass balance"];
-    if (tab === "ligand_shell") return [`${mace}: ladders, oleylamine complexes`, "vacuum, 1 M"];
+    if (tab === "ground_state") return [`${mace}: geometry, Hessian, thermochemistry`, "g-xTB: IR & Raman intensities"];
+    if (tab === "thermodynamics") return [mace, "vacuum · solution: GFN2-xTB + GB"];
+    if (tab === "synthesis") return [mace, "equilibria with mass balance"];
     const dft = dftMethod(r, plotUrls[tab] || "");
     if (tab === "optical") return [`DFT ${dft} geometry`,
       `QDEX${r?.dft?.method?.qdex_commit ? " " + r.dft.method.qdex_commit : ""}: quasiparticle gaps, excitons, absorption`];
@@ -338,28 +340,35 @@
     return [`DFT ${dft} geometry`, `excited states (${soc})`];
   }
 
-  // Z-type ladder: props/detachment.json (+ stability.json) from the record, or next to its start
-  // geometry. The dev server answers a missing file with index.html, so the type is checked.
-  async function findLadder(r, props) {
-    ligandStabUrl = null;
+  // Thermodynamics data of a builder record: props/detachment.json and stability.json (from the record,
+  // or next to its start geometry), stability.html (the report's stability page; older reports kept
+  // it inside ground_state.html) and synthesis.html. The dev server answers a missing file with
+  // index.html, so the type (JSON) or the page body (report pages have a .wrap) is checked.
+  async function findShell(r, props) {
+    shell = { det: null, stab: null, report: null, growth: null };
     const start = (r.stages || []).find((s) => s.stage === "start")?.file;
-    const dir = start ? start.slice(0, start.lastIndexOf("/")) + "/props" : null;
-    const isJson = (u) => fetch(u, { method: "HEAD", cache: "no-store" })
-      .then((res) => res.ok && (res.headers.get("content-type") || "").includes("json")).catch(() => false);
-    let det = props["detachment.json"] ? `/${props["detachment.json"]}` : null;
-    if (!det && dir && (await isJson(`/${dir}/detachment.json`))) det = `/${dir}/detachment.json`;
+    const dir = start ? `/${start.slice(0, start.lastIndexOf("/"))}/props` : null;
+    const url = (n) => (props[n] ? `/${props[n]}` : dir ? `${dir}/${n}` : null);
+    const isJson = (u) => (u ? fetch(u, { method: "HEAD", cache: "no-store" })
+      .then((res) => res.ok && (res.headers.get("content-type") || "").includes("json")).catch(() => false) : false);
+    const isPage = (u) => (u ? fetch(u, { cache: "no-store" })
+      .then((res) => (res.ok ? res.text() : "")).then((t) => t.includes('class="wrap"')).catch(() => false) : false);
+    const [det, stab, report, legacy, growth] = await Promise.all([
+      isJson(url("detachment.json")), isJson(url("stability.json")), isPage(url("stability.html")),
+      props["ground_state.html"] ? true : isPage(url("ground_state.html")), props["synthesis.html"] ? true : isPage(url("synthesis.html"))]);
     if (r.id !== current?.id) return;
-    plotUrls.ligand_shell = det;
-    if (!det) return;
-    const stab = props["stability.json"] ? `/${props["stability.json"]}` : det.replace(/detachment\.json$/, "stability.json");
-    if (await isJson(stab)) ligandStabUrl = stab;
+    shell = { det: det ? url("detachment.json") : null, stab: stab ? url("stability.json") : null,
+              report: report ? url("stability.html") : legacy ? url("ground_state.html") : null,
+              growth: growth ? url("synthesis.html") : null };
+    plotUrls.thermodynamics = shell.det || shell.report ? "native" : null;
+    plotUrls.synthesis = shell.det || shell.growth ? "native" : null;
   }
 
   async function loadProperties(r) {
     plotUrls = Object.fromEntries(Object.keys(PROPERTY_FILES).map((t) => [t, null]));
     const props = r.properties || {};
     if (r.dft?.webapp) plotUrls.optical = `/${r.dft.webapp}`;
-    await findLadder(r, props);
+    await findShell(r, props);
     groundStatePng = props["ground_state.png"] ? `/${props["ground_state.png"]}` : null;
     for (const [tab, names] of Object.entries(PROPERTY_FILES)) {
       const hit = names.find((n) => props[n]);
@@ -920,10 +929,17 @@
             <div class="absolute inset-x-0 top-8 bottom-0 overflow-y-auto">
               <Optical url={plotUrls.optical} />
             </div>
-          {:else if activePropertyTab === "ligand_shell"}
+          {:else if activePropertyTab === "thermodynamics" || activePropertyTab === "synthesis"}
             <div class="absolute inset-x-0 top-8 bottom-0 overflow-y-auto pr-1">
-              <LigandShell detUrl={plotUrls.ligand_shell} stabUrl={ligandStabUrl} />
+              {#key activePropertyTab}
+                <LigandShell view={activePropertyTab === "thermodynamics" ? "thermo" : "synthesis"} detUrl={shell.det}
+                             stabUrl={shell.stab} reportUrl={shell.report} growthUrl={shell.growth} />
+              {/key}
             </div>
+          {:else if activePropertyTab === "ground_state"}
+            <!-- older reports also hold the stability sections: those are in the Thermodynamics tab -->
+            <TrimmedPage src={plotUrls.ground_state} keep={(t) => !t.startsWith("Stability")} title="Structure, vibrations & thermochemistry"
+                         cls="absolute inset-x-0 top-8 h-[calc(100%-2rem)]" />
           {:else}
             <iframe title="Interactive Properties" src={plotUrls[activePropertyTab]}
                     class="absolute inset-x-0 top-8 w-full h-[calc(100%-2rem)] rounded-[1rem] border border-slate-200 bg-white"

@@ -9,9 +9,12 @@
   //            {type: "cells", cells: [{x0, x1, y0, y1, color}]}]
   //   hover(x) -> {title, rows: [{color, dash, text}], x?} or null
   let { layers = [], xDomain, yDomain, xLabel = "", yLabel = "", xTicks = null, yTicks = null,
-        height = 260, hover = null, legend = [], ariaLabel = "chart" } = $props();
+        height = 260, width = 720, hover = null, legend = [], ariaLabel = "chart" } = $props();
 
-  const W = 720, M = { l: 58, r: 14, t: 14, b: 40 };
+  // viewBox width = the rendered width (text stays at its pixel size); `width` until it is measured
+  let cw = $state(0);
+  let W = $derived(cw > 0 ? Math.max(420, cw) : width);
+  const M = { l: 58, r: 14, t: 14, b: 40 };
   const clipId = "clip-" + Math.random().toString(36).slice(2);
   let H = $derived(height);
   let PW = $derived(W - M.l - M.r), PH = $derived(H - M.t - M.b);
@@ -43,17 +46,17 @@
   let infoX = $derived(info ? (info.x ?? hx) : null);
 </script>
 
-<div class="relative">
+<div class="relative" bind:clientWidth={cw}>
   <svg viewBox="0 0 {W} {H}" class="w-full h-auto select-none" role="img" aria-label={ariaLabel}
        onpointermove={onMove} onpointerleave={() => (hx = null)}>
     <defs><clipPath id={clipId}><rect x={M.l} y={M.t} width={PW} height={PH} /></clipPath></defs>
     {#each yt as t}
       <line x1={M.l} x2={W - M.r} y1={sy(t.v)} y2={sy(t.v)} stroke="#eef2f6" stroke-width="1" />
-      <text x={M.l - 6} y={sy(t.v) + 3} text-anchor="end" font-size="10" fill="#94a3b8">{t.label}</text>
+      <text x={M.l - 6} y={sy(t.v) + 3} text-anchor="end" font-size="11" fill="#94a3b8">{t.label}</text>
     {/each}
     {#each xt as t}
       <line x1={sx(t.v)} x2={sx(t.v)} y1={M.t + PH} y2={M.t + PH + 4} stroke="#94a3b8" />
-      <text x={sx(t.v)} y={M.t + PH + 15} text-anchor="middle" font-size="10" fill="#64748b">{t.label}</text>
+      <text x={sx(t.v)} y={M.t + PH + 15} text-anchor="middle" font-size="11" fill="#64748b">{t.label}</text>
     {/each}
     <g clip-path="url(#{clipId})">
       {#each layers as ly}
@@ -89,15 +92,15 @@
     {#each layers as ly}
       {#if ly.type === "hline" && ly.y >= yDomain[0] && ly.y <= yDomain[1]}
         <line x1={M.l} x2={W - M.r} y1={sy(ly.y)} y2={sy(ly.y)} stroke={ly.color || "#334155"} stroke-width="1.2" stroke-dasharray={ly.dash ?? "5 4"} />
-        {#if ly.label}<text x={W - M.r - 4} y={sy(ly.y) - 5} text-anchor="end" font-size="10" fill={ly.color || "#334155"}>{ly.label}</text>{/if}
+        {#if ly.label}<text x={W - M.r - 4} y={sy(ly.y) - 5} text-anchor="end" font-size="11" fill={ly.color || "#334155"}>{ly.label}</text>{/if}
       {:else if ly.type === "vline" && ly.x >= xDomain[0] && ly.x <= xDomain[1]}
         <line x1={sx(ly.x)} x2={sx(ly.x)} y1={M.t} y2={M.t + PH} stroke={ly.color || "#94a3b8"} stroke-width="1" stroke-dasharray={ly.dash ?? "2 3"} />
-        {#if ly.label}<text x={sx(ly.x) + 4} y={M.t + 10} font-size="10" fill={ly.color || "#64748b"}>{ly.label}</text>{/if}
+        {#if ly.label}<text x={sx(ly.x) + 4} y={M.t + 10} font-size="11" fill={ly.color || "#64748b"}>{ly.label}</text>{/if}
       {/if}
     {/each}
     <line x1={M.l} x2={W - M.r} y1={M.t + PH} y2={M.t + PH} stroke="#94a3b8" />
-    <text x={M.l + PW / 2} y={H - 4} text-anchor="middle" font-size="11" fill="#475569">{xLabel}</text>
-    <text transform="translate(13 {M.t + PH / 2}) rotate(-90)" text-anchor="middle" font-size="11" fill="#475569">{yLabel}</text>
+    <text x={M.l + PW / 2} y={H - 4} text-anchor="middle" font-size="12" fill="#475569">{xLabel}</text>
+    <text transform="translate(13 {M.t + PH / 2}) rotate(-90)" text-anchor="middle" font-size="12" fill="#475569">{yLabel}</text>
     {#if info && infoX !== null}
       <line x1={sx(infoX)} x2={sx(infoX)} y1={M.t} y2={M.t + PH} stroke="#cbd5e1" stroke-width="1" />
     {/if}

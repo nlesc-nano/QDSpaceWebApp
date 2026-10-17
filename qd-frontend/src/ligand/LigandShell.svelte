@@ -1,19 +1,23 @@
 <script>
-  // Ligand shell of a dot [MX]_m[ML_n]_k0: the Z-type ladder (props/detachment.json), its formation
-  // from MX and ML_n (props/stability.json) and what the shell does after synthesis, with ML_n
-  // complexed by oleylamine. Vacuum (gas-phase) free energies of MACE-MH-1; formulas in model.js.
+  // Native thermodynamics of a dot [MX]_m[ML_n]_k0 from props/detachment.json (Z-type ladder) and
+  // props/stability.json, in two views:
+  //   view = "thermo":    stability in vacuum and the ladder (+ the report's solution-phase section)
+  //   view = "synthesis": formation from MX and ML_n, post-synthesis shell (+ the multi-dot growth page)
+  // ML_n is complexed by oleylamine. Vacuum (gas-phase) free energies of MACE-MH-1; formulas in model.js.
   import Plot from "./Plot.svelte";
+  import TrimmedPage from "./TrimmedPage.svelte";
   import { OAM_COMPLEXES } from "./oamComplexes.js";
   import { KB, LN10, UNITS, buildModel, populations, dmuOf, amineLnZ, amineSpeciation, solveClosed,
            hasFormation, log10Sstar } from "./model.js";
 
-  let { detUrl, stabUrl = null } = $props();
+  // reportUrl: the report page with the solution-phase section (thermo); growthUrl: synthesis.html (synthesis)
+  let { detUrl = null, stabUrl = null, view = "thermo", reportUrl = null, growthUrl = null } = $props();
 
   let model = $state(null);
   let status = $state("idle");
   $effect(() => {
     const d = detUrl, s = stabUrl;
-    if (!d) return;
+    if (!d) { model = null; status = "none"; return; }
     status = "loading";
     model = null;
     Promise.all([fetch(d).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
@@ -224,19 +228,22 @@
     return { x: model.T[i], title: `T = ${model.T[i]} K`,
              rows: confs().map((c) => ({ color: CONF[c].color, text: `⟨k⟩ = ${fk(populations(model, i, dmuOf(fFree(i), model.T[i]), c).kmean)}` })) };
   };
-  let formLayers = $derived.by(() => {
-    if (!model?.bindPerUnit) return [];
-    const f = uf(), inF = (t, v) => (t >= F_DOM[0] ? v : NaN);
-    const L = [{ type: "line", color: "#475569", pts: model.T.map((t, i) => [t, inF(t, model.bindPerUnit[i] * f)]) }];
-    if (model.decomposition) L.push({ type: "line", color: "#94a3b8", dash: "6 4", pts: model.T.map((t, i) => [t, inF(t, model.decomposition[i] / model.m * f)]) });
-    L.push({ type: "hline", y: 0, color: "#94a3b8", dash: "" });
-    return L;
-  });
-  let formDom = $derived.by(() => {
-    const ys = formLayers.filter((l) => l.pts).flatMap((l) => l.pts.map((p) => p[1])).filter(isFinite).concat([0]);
+  // stability in vacuum (props/stability.json): per MX against bulk MX + ML_n, per unit against the monomers
+  const oneLine = (vals, color) => (vals ? [{ type: "line", color, pts: model.T.map((t, i) => [t, vals[i] * uf()]) },
+                                           { type: "hline", y: 0, color: "#94a3b8", dash: "" }] : []);
+  let decLayers = $derived(model?.decomposition ? oneLine(model.decomposition.map((v) => v / model.m), "#475569") : []);
+  let bindLayers = $derived(model?.bindPerUnit ? oneLine(model.bindPerUnit, "#475569") : []);
+  const domOf = (layers) => {
+    const ys = layers.filter((l) => l.pts).flatMap((l) => l.pts.map((p) => p[1])).filter(isFinite).concat([0]);
     const a = Math.min(...ys), b = Math.max(...ys), p = 0.08 * (b - a || 1);
     return [a - p, b + p];
-  });
+  };
+  const valueHover = (layers, label) => (x) => {
+    const l = layers.find((q) => q.type === "line");
+    if (!l) return null;
+    const p = l.pts.reduce((b, q) => (Math.abs(q[0] - x) < Math.abs(b[0] - x) ? q : b), l.pts[0]);
+    return { x: p[0], title: `T = ${p[0]} K`, rows: [{ color: l.color, text: `${label} ${fe(p[1] / uf())} ${ul()}` }] };
+  };
 
   // =====================================================================================
   // 3. Post-synthesis (closed system)
@@ -340,10 +347,15 @@
 {/snippet}
 
 {#snippet section(title, sub)}
-  <div class="flex items-baseline gap-3 flex-wrap border-b border-slate-100 pb-2">
-    <h3 class="text-sm font-bold text-slate-900">{@html title}</h3>
-    <span class="text-[11px] text-slate-500">{@html sub}</span>
+  <div class="flex items-baseline gap-3 flex-wrap border-b border-slate-200 pb-2 mt-2">
+    <h3 class="text-base font-bold text-slate-900">{@html title}</h3>
+    <span class="text-xs text-slate-500">{@html sub}</span>
   </div>
+{/snippet}
+
+{#snippet panel(title, caption)}
+  <h4 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">{@html title}</h4>
+  {#if caption}<p class="text-[11px] text-slate-500 mb-1 max-w-4xl leading-relaxed">{@html caption}</p>{/if}
 {/snippet}
 
 {#if status === "loading"}
@@ -352,49 +364,73 @@
   </div>
 {:else if status === "error"}
   <div class="flex items-center justify-center h-full text-slate-500 text-sm">Could not load {detUrl}.</div>
-{:else if model}
+{:else}
   <div class="flex flex-col gap-6 pb-6">
-    <!-- Header and shared settings -->
-    <div class="flex flex-col gap-2">
-      <div class="text-sm text-slate-700">
-        <span class="font-bold text-slate-900">{@html dotHtml}</span>
-        · Z-type unit {@html unitHtml} ·
-        ladder from k = {model.states[0].k} to {model.states.at(-1).k}
-        ({model.nDown} removals{model.hasUp ? `, ${model.nUp} additions` : ", no addition site"})
-      </div>
-      <div class="flex flex-wrap gap-2">
-        {@render badge("MACE-MH-1 omat_pbe")}
-        {@render badge("vacuum (gas phase), 1 M standard state", "amber")}
-        {@render badge("solution-phase ladder pending")}
-        {#if !model.hasConf}{@render badge("no configurational entropy in this ladder", "amber")}{/if}
-      </div>
-      <div class="flex flex-wrap items-center gap-4 text-xs mt-1">
-        <div class="flex gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
-          {#each Object.entries(UNITS) as [k, u]}<button class={seg(unit === k)} onclick={() => (unit = k)}>{u[1]}</button>{/each}
+    {#if model}
+      <!-- Header and shared settings -->
+      <div class="flex flex-col gap-2">
+        <div class="text-sm text-slate-700">
+          <span class="font-bold text-slate-900">{@html dotHtml}</span>
+          · Z-type unit {@html unitHtml} ·
+          ladder from k = {model.states[0].k} to {model.states.at(-1).k}
+          ({model.nDown} removals{model.hasUp ? `, ${model.nUp} additions` : ", no addition site"})
         </div>
-        {#if model.hasConf}
-          <span class="font-bold text-slate-400">S<sub>conf</sub></span>
+        <div class="flex flex-wrap gap-2">
+          {@render badge("vacuum (gas phase), 1 M standard state", "amber")}
+          {@render badge("solution-phase ladder pending")}
+          {#if !model.hasConf}{@render badge("no configurational entropy in this ladder", "amber")}{/if}
+        </div>
+        <div class="flex flex-wrap items-center gap-4 text-xs mt-1">
           <div class="flex gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
-            {#each [["both", "both bounds"], ["ideal", "ideal count"], ["none", "zero"]] as [k, l]}<button class={seg(confMode === k)} onclick={() => (confMode = k)}>{l}</button>{/each}
+            {#each Object.entries(UNITS) as [k, u]}<button class={seg(unit === k)} onclick={() => (unit = k)}>{u[1]}</button>{/each}
+          </div>
+          {#if model.hasConf}
+            <span class="font-bold text-slate-400">S<sub>conf</sub></span>
+            <div class="flex gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
+              {#each [["both", "both bounds"], ["ideal", "ideal count"], ["none", "zero"]] as [k, l]}<button class={seg(confMode === k)} onclick={() => (confMode = k)}>{l}</button>{/each}
+            </div>
+          {/if}
+          {#if view === "synthesis" && complexes}
+            {@render slider("OAm solution correction", delta, -0.4, 0.2, 0.01, (v) => (delta = v), `${fe(delta)} ${ul()} per OAm`)}
+          {/if}
+        </div>
+        <p class="text-[11px] text-slate-500 leading-relaxed max-w-4xl">
+          k counts the {@html unitHtml} units on the dot; the builder made k = {model.k0}.
+          {#if model.capDown || model.capUp}The search stops after 12 steps each way, so the end states mean "at least 12 removed / added".{/if}
+          {#if view === "synthesis"}
+            {#if complexes}Oleylamine binds free {@html unitHtml} as {@html complexes.map((c) => html(c.label)).join(", ")}
+              (MACE-MH-1 omat_pbe, vacuum). The correction adds a constant per bound OAm, for what vacuum misses in solution
+              (it overestimates the entropy lost by the amine; negative values strengthen binding).
+            {:else}No oleylamine complexes computed for {@html unitHtml}: the amine is left out.{/if}
+          {/if}
+        </p>
+      </div>
+    {/if}
+
+    {#if view === "thermo" && model}
+      <!-- Stability in vacuum -->
+      {#if model.decomposition || model.bindPerUnit}
+        {@render section("Stability in vacuum", `MACE-MH-1, ideal gases at 1 M, bulk ${html(model.core || "MX")} with phonons`)}
+        {#if model.decomposition}
+          <div>
+            {@render panel(`Decomposition free energy, per ${html(model.core || "MX")}`,
+              `ΔG<sub>dec</sub> = [G(dot) − ${model.m} G(${html(model.core)}, bulk) − ${model.k0} G°(${unitHtml})] / ${model.m}: positive, the dot is less stable than bulk ${html(model.core)} plus free ${unitHtml} (its excess surface free energy).`)}
+            <Plot layers={decLayers} xDomain={[50, 800]} yDomain={domOf(decLayers)} xTicks={tempTicks} xLabel="T (K)" yLabel={`ΔG_dec per ${sub(model.core)} (${ul()})`}
+                  width={1000} height={300} hover={valueHover(decLayers, "ΔG<sub>dec</sub>")} ariaLabel="decomposition free energy" />
           </div>
         {/if}
-        {#if complexes}
-          {@render slider("OAm solution correction", delta, -0.4, 0.2, 0.01, (v) => (delta = v), `${fe(delta)} ${ul()} per OAm`)}
+        {#if model.bindPerUnit}
+          <div>
+            {@render panel("Binding free energy, per unit",
+              `ΔG<sub>bind</sub> = [G(dot) − ${model.m} G°(${html(model.core)}) − ${model.k0} G°(${unitHtml})] / ${model.m + model.k0}, against the free molecules at 1 M: negative, the dot holds together.`)}
+            <Plot layers={bindLayers} xDomain={[50, 800]} yDomain={domOf(bindLayers)} xTicks={tempTicks} xLabel="T (K)" yLabel={`ΔG_bind per unit (${ul()})`}
+                  width={1000} height={300} hover={valueHover(bindLayers, "ΔG<sub>bind</sub>")} ariaLabel="binding free energy" />
+          </div>
         {/if}
-      </div>
-      <p class="text-[11px] text-slate-500 leading-relaxed max-w-4xl">
-        k counts the {@html unitHtml} units on the dot; the builder made k = {model.k0}.
-        {#if model.capDown || model.capUp}The search stops after 12 steps each way, so the end states mean "at least 12 removed / added".{/if}
-        {#if complexes}Oleylamine binds free {@html unitHtml} as {@html complexes.map((c) => html(c.label)).join(", ")}
-          (MACE-MH-1 omat_pbe, vacuum). The correction adds a constant per bound OAm, for what vacuum misses in solution
-          (it overestimates the entropy lost by the amine; negative values strengthen binding).
-        {:else}No oleylamine complexes computed for {@html unitHtml}: the amine is left out.{/if}
-      </p>
-    </div>
+      {/if}
 
-    <!-- 1. Ladder -->
-    <div class="flex flex-col gap-3">
-      {@render section("1 · Ladder", `cost of every ${unitHtml} unit, and the shell against a reservoir of free ${unitHtml}`)}
+      <!-- Ladder -->
+      {@render section(`${unitHtml} ladder`, `cost of every unit, and the shell against a reservoir of free ${unitHtml}`)}
       <div class="flex flex-wrap gap-x-6 gap-y-2">
         {@render slider("T", lT, 50, 800, 25, (v) => (lT = v), `${lT} K`)}
         {@render slider(`free ${unitHtml}`, lLogC, -14, 1, 0.25, (v) => (lLogC = v), cTxt(10 ** lLogC))}
@@ -403,52 +439,62 @@
         <span>Δμ = k<sub>B</sub>T ln(c / 1 M) = <b class="font-mono">{fe(lDmu)} {ul()}</b></span>
         {#each lPop as P}<span class="flex items-center gap-1.5"><span class="w-3 h-1 inline-block" style="background:{CONF[P.c].color}"></span>⟨k⟩ = <b class="font-mono">{fk(P.kmean)}</b>{atLeast(Math.round(P.kmean)) ? " (at the search limit)" : ""}</span>{/each}
       </div>
-      <div class="grid grid-cols-1 xl:grid-cols-2 gap-5">
-        <div>
-          <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">A · Cost of each unit (desorption, positive = bound)</h4>
-          <Plot layers={costLayers} xDomain={kDom} yDomain={costDom} xTicks={kTicks} xLabel={kLabel} yLabel={`ΔG to remove the unit (${ul()})`}
-                hover={costHover} ariaLabel="cost of each unit"
-                legend={[{ kind: "box", color: CONF.false.color, label: `ΔG(${model.T[lI]} K)` },
-                         ...(model.hasConf && confMode !== "none" ? [{ kind: "tick", color: CONF.true.color, label: "ΔG − TΔS<sub>conf</sub> (ideal)" }] : []),
-                         { kind: "circle", color: "#64748b", label: "ΔE" },
-                         { kind: "line", color: "#0f172a", dash: "5 4", label: "units below this line leave" }]} />
-          <p class="text-[11px] text-slate-500 mt-1">Bar between k − 1 and k: the free energy to take one {@html unitHtml} off a dot with k units. Left of "as built": the units the dot already has; right: units added (their binding read as desorption).</p>
-        </div>
-        <div>
-          <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">B · Free-energy profile at this T and concentration</h4>
-          <Plot layers={profLayers} xDomain={kDom} yDomain={profDom} xTicks={kTicks} xLabel={kLabel} yLabel={`Ω_k − Ω_k0 (${ul()})`} height={190}
-                ariaLabel="free energy profile" hover={popHover} />
-          <Plot layers={popLayers} xDomain={kDom} yDomain={[0, 1.05]} xTicks={kTicks} xLabel={kLabel} yLabel="population P_k" height={150}
-                hover={popHover} ariaLabel="populations" legend={lPop.map((P) => ({ color: CONF[P.c].color, label: CONF[P.c].label }))} />
-        </div>
-        <div>
-          <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">C · Mean shell ⟨k⟩ against T and free {@html unitHtml} ({@html mapConf ? "ideal S<sub>conf</sub>" : "S<sub>conf</sub> = 0"})</h4>
-          <Plot layers={[{ type: "cells", cells: mapCells }, { type: "vline", x: model.T[lI], color: "#0f172a", dash: "3 3" }, { type: "hline", y: lLogC, color: "#0f172a", dash: "3 3" }]}
-                xDomain={[37.5, 812.5]} yDomain={[-14.125, 1.125]} xTicks={tempTicks}
-                yTicks={[-14, -12, -10, -8, -6, -4, -2, 0].map((v) => ({ v, label: v === 0 ? "1 M" : pow10(v) }))}
-                xLabel="T (K)" yLabel={`free ${sub(model.unit)} (M)`} height={280} hover={mapHover} ariaLabel="mean shell map" />
-          <div class="flex flex-wrap items-center gap-3 text-[11px] text-slate-500 mt-1 px-1">
-            {#each [model.states[0].k, Math.round((model.states[0].k + model.k0) / 2), model.k0, ...(model.hasUp ? [Math.round((model.k0 + model.states.at(-1).k) / 2), model.states.at(-1).k] : [])] as k}
-              <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-sm inline-block border border-slate-200" style="background:{kColor(k - model.k0, model.k0 - model.states[0].k, model.states.at(-1).k - model.k0)}"></span>k = {k}{atLeast(k) ? " or beyond" : ""}</span>
-            {/each}
-            <span>red: units lost · blue: units gained</span>
-          </div>
-        </div>
-        {#if model.siteClasses.length}
-          <div>
-            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">D · Site map: first removal, per symmetry-distinct unit</h4>
-            <Plot layers={siteLayers} xDomain={[0.3, model.siteClasses.length + 0.7]} yDomain={(() => { const v = siteSorted.map((c) => c.dE * uf()).concat([0]); const a = Math.min(...v), b = Math.max(...v); return [a - 0.08 * (b - a), b + 0.08 * (b - a)]; })()}
-                  xTicks={siteSorted.length > 30 ? null : siteSorted.map((_, i) => ({ v: i + 1, label: String(i + 1) }))}
-                  xLabel="symmetry-distinct unit, cheapest first" yLabel={`ΔE to remove (${ul()})`} height={220} hover={siteHover} ariaLabel="site map"
-                  legend={[{ kind: "box", color: "#475569", label: `molecular unit (M with ${model.n} own ${model.L})` }, { kind: "box", color: "#94a3b8", label: `non-molecular (completed with a neighbouring ${model.L})` }]} />
-          </div>
-        {/if}
+      <div>
+        {@render panel("Cost of each unit (desorption, positive = bound)",
+          `Bar between k − 1 and k: the free energy to take one ${unitHtml} off a dot with k units. Left of "as built": the units the dot has; right: units added (their binding read as desorption). Units whose bar lies below the dashed line leave at this concentration.`)}
+        <Plot layers={costLayers} xDomain={kDom} yDomain={costDom} xTicks={kTicks} xLabel={kLabel} yLabel={`ΔG to remove the unit (${ul()})`}
+              width={1000} height={360} hover={costHover} ariaLabel="cost of each unit"
+              legend={[{ kind: "box", color: CONF.false.color, label: `ΔG(${model.T[lI]} K)` },
+                       ...(model.hasConf && confMode !== "none" ? [{ kind: "tick", color: CONF.true.color, label: "ΔG − TΔS<sub>conf</sub> (ideal)" }] : []),
+                       { kind: "circle", color: "#64748b", label: "ΔE" },
+                       { kind: "line", color: "#0f172a", dash: "5 4", label: "k<sub>B</sub>T ln(1 M / c): units below this line leave" }]} />
       </div>
-    </div>
+      <div>
+        {@render panel("Free-energy profile at this T and concentration",
+          `Ω<sub>k</sub> − Ω<sub>k0</sub> = A<sub>k</sub> − (k − k<sub>0</sub>) Δμ − T (S<sub>k</sub> − S<sub>k0</sub>): the lowest state is the most populated.`)}
+        <Plot layers={profLayers} xDomain={kDom} yDomain={profDom} xTicks={kTicks} xLabel={kLabel} yLabel={`Ω_k − Ω_k0 (${ul()})`}
+              width={1000} height={300} hover={popHover} ariaLabel="free energy profile"
+              legend={lPop.map((P) => ({ color: CONF[P.c].color, label: CONF[P.c].label }))} />
+      </div>
+      <div>
+        {@render panel("Populations of the shell states", "")}
+        <Plot layers={popLayers} xDomain={kDom} yDomain={[0, 1.05]} xTicks={kTicks} xLabel={kLabel} yLabel="population P_k"
+              width={1000} height={240} hover={popHover} ariaLabel="populations"
+              legend={lPop.map((P) => ({ color: CONF[P.c].color, label: CONF[P.c].label }))} />
+      </div>
+      <div>
+        {@render panel(`Mean shell ⟨k⟩ against T and free ${unitHtml} (${mapConf ? "ideal S<sub>conf</sub>" : "S<sub>conf</sub> = 0"})`,
+          "Dashed cross: the T and concentration set above. Hover for ⟨k⟩ at several concentrations.")}
+        <Plot layers={[{ type: "cells", cells: mapCells }, { type: "vline", x: model.T[lI], color: "#0f172a", dash: "3 3" }, { type: "hline", y: lLogC, color: "#0f172a", dash: "3 3" }]}
+              xDomain={[37.5, 812.5]} yDomain={[-14.125, 1.125]} xTicks={tempTicks}
+              yTicks={[-14, -12, -10, -8, -6, -4, -2, 0].map((v) => ({ v, label: v === 0 ? "1 M" : pow10(v) }))}
+              xLabel="T (K)" yLabel={`free ${sub(model.unit)} (M)`} width={1000} height={420} hover={mapHover} ariaLabel="mean shell map" />
+        <div class="flex flex-wrap items-center gap-3 text-[11px] text-slate-500 mt-1 px-1">
+          {#each [model.states[0].k, Math.round((model.states[0].k + model.k0) / 2), model.k0, ...(model.hasUp ? [Math.round((model.k0 + model.states.at(-1).k) / 2), model.states.at(-1).k] : [])] as k}
+            <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-sm inline-block border border-slate-200" style="background:{kColor(k - model.k0, model.k0 - model.states[0].k, model.states.at(-1).k - model.k0)}"></span>k = {k}{atLeast(k) ? " or beyond" : ""}</span>
+          {/each}
+          <span>red: units lost · blue: units gained</span>
+        </div>
+      </div>
+      {#if model.siteClasses.length}
+        <div>
+          {@render panel("Site map: first removal, per symmetry-distinct unit", "")}
+          <Plot layers={siteLayers} xDomain={[0.3, model.siteClasses.length + 0.7]} yDomain={(() => { const v = siteSorted.map((c) => c.dE * uf()).concat([0]); const a = Math.min(...v), b = Math.max(...v); return [a - 0.08 * (b - a), b + 0.08 * (b - a)]; })()}
+                xTicks={siteSorted.length > 40 ? null : siteSorted.map((_, i) => ({ v: i + 1, label: String(i + 1) }))}
+                xLabel="symmetry-distinct unit, cheapest first" yLabel={`ΔE to remove (${ul()})`} width={1000} height={300} hover={siteHover} ariaLabel="site map"
+                legend={[{ kind: "box", color: "#475569", label: `molecular unit (M with ${model.n} own ${model.L})` }, { kind: "box", color: "#94a3b8", label: `non-molecular (completed with a neighbouring ${model.L})` }]} />
+        </div>
+      {/if}
+    {/if}
 
-    <!-- 2. Formation -->
-    <div class="flex flex-col gap-3">
-      {@render section("2 · Formation", `the dot as built, from MX monomers and ${unitHtml}, in oleylamine`)}
+    {#if view === "thermo" && reportUrl}
+      {@render section("In solution", "the report's solution-phase model: Generalized Born solvation, removal ladder only, no configurational entropy; it moves here natively once the model includes both")}
+      <TrimmedPage src={reportUrl} keep={(t) => t.startsWith("Stability & ligands in solution")} header={false} autosize title="Stability in solution" />
+    {/if}
+
+    {#if view === "synthesis" && model}
+      <!-- Formation -->
+      {@render section("Formation", `the dot as built, from MX monomers and ${unitHtml}, in oleylamine`)}
       <p class="text-[11px] text-slate-500 leading-relaxed max-w-4xl">
         {@html unitHtml} + X precursor → {@html html(model.core || "MX")} (conversion ξ, irreversible: sets the monomer supply);
         m {@html html(model.core || "MX")} + k {@html unitHtml} ⇌ {@html dotHtml}; {@html unitHtml} + p OAm ⇌ {@html unitHtml}(OAm)<sub>p</sub>.
@@ -472,36 +518,25 @@
             {#if speciesF}<span class="text-slate-500">({@html speciesF.species.filter((s) => s.frac > 0.005).map((s) => `${s.label === "free" ? "free" : html(s.label)} ${(100 * s.frac).toFixed(0)}%`).join(", ")})</span>{/if}
             {#each fRows as r}<span class="flex items-center gap-1.5"><span class="w-3 h-1 inline-block" style="background:{CONF[r.c].color}"></span>log<sub>10</sub> S* = <b class="font-mono">{r.S.toFixed(2)}</b>, ⟨k⟩ = <b class="font-mono">{fk(r.k)}</b></span>{/each}
           </div>
-          <div class="grid grid-cols-1 xl:grid-cols-3 gap-5">
-            <div>
-              <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Critical supersaturation of the dot as built</h4>
-              <Plot layers={sStarLayers} xDomain={F_DOM} yDomain={sStarDom} xTicks={fTicks} xLabel="T (K)" yLabel="log₁₀ S*" height={240}
-                    hover={sStarHover} ariaLabel="critical supersaturation"
-                    legend={[...confs().map((c) => ({ color: CONF[c].color, label: CONF[c].label })), ...(fOAm > 0 && complexes ? [{ color: "#64748b", dash: "6 4", label: "without OAm" }] : [])]} />
-            </div>
-            <div>
-              <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Shell at these conditions (open system)</h4>
-              <Plot layers={fShellLayers} xDomain={F_DOM} yDomain={kDomOf(fShellLayers)} xTicks={fTicks} xLabel="T (K)" yLabel="⟨k⟩" height={240}
-                    hover={fShellHover} ariaLabel="shell during formation"
-                    legend={[...confs().map((c) => ({ color: CONF[c].color, label: CONF[c].label })), ...(fOAm > 0 && complexes ? [{ color: "#64748b", dash: "6 4", label: "without OAm" }] : [])]} />
-            </div>
-            <div>
-              <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Formation free energies (pipeline, vacuum)</h4>
-              <Plot layers={formLayers} xDomain={F_DOM} yDomain={formDom} xTicks={fTicks} xLabel="T (K)" yLabel={`ΔG (${ul()})`} height={240}
-                    ariaLabel="formation free energies"
-                    legend={[{ color: "#475569", label: `per unit, from molecular ${html(model.core || "MX")} and ${unitHtml} (1 M)` },
-                             ...(model.decomposition ? [{ color: "#94a3b8", dash: "6 4", label: `per ${html(model.core || "MX")}, against bulk ${html(model.core || "MX")} + ${unitHtml} (1 M)` }] : [])]} />
-            </div>
+          <div>
+            {@render panel("Critical supersaturation of the dot as built", "Above S*, monomers assemble into this dot; below, it dissolves. Dashed: without oleylamine.")}
+            <Plot layers={sStarLayers} xDomain={F_DOM} yDomain={sStarDom} xTicks={fTicks} xLabel="T (K)" yLabel="log₁₀ S*" width={1000} height={320}
+                  hover={sStarHover} ariaLabel="critical supersaturation"
+                  legend={[...confs().map((c) => ({ color: CONF[c].color, label: CONF[c].label })), ...(fOAm > 0 && complexes ? [{ color: "#64748b", dash: "6 4", label: "without OAm" }] : [])]} />
+          </div>
+          <div>
+            {@render panel("Shell at these conditions (open system)", `⟨k⟩ with the free ${unitHtml} left after conversion and complexation: does the dot keep the shell it was built with?`)}
+            <Plot layers={fShellLayers} xDomain={F_DOM} yDomain={kDomOf(fShellLayers)} xTicks={fTicks} xLabel="T (K)" yLabel="⟨k⟩" width={1000} height={320}
+                  hover={fShellHover} ariaLabel="shell during formation"
+                  legend={[...confs().map((c) => ({ color: CONF[c].color, label: CONF[c].label })), ...(fOAm > 0 && complexes ? [{ color: "#64748b", dash: "6 4", label: "without OAm" }] : [])]} />
           </div>
         {/if}
       {:else}
         <div class="text-xs text-slate-500">No props/stability.json for this dot: the formation free energies are missing.</div>
       {/if}
-    </div>
 
-    <!-- 3. Post-synthesis -->
-    <div class="flex flex-col gap-3">
-      {@render section("3 · Post-synthesis", `dots as built, washed, diluted, stored or annealed; every free ${unitHtml} comes from the dots (or is added)`)}
+      <!-- Post-synthesis -->
+      {@render section("Post-synthesis", `dots as built, washed, diluted, stored or annealed; every free ${unitHtml} comes from the dots (or is added)`)}
       <div class="flex flex-wrap gap-x-6 gap-y-2">
         {@render slider("T", pT, 50, 800, 25, (v) => (pT = v), `${pT} K`)}
         {@render slider("dots", pLogDot, -9, -3, 0.25, (v) => (pLogDot = v), cTxt(10 ** pLogDot))}
@@ -525,42 +560,48 @@
           The first unit alone is a quick test; the curves below solve the whole ladder, where cheaper later units can leave together.
         </div>
       {/if}
-      <div class="grid grid-cols-1 xl:grid-cols-2 gap-5">
+      <div>
+        {@render panel("Dilution", `⟨k⟩ against the dot concentration: the units that leave stay in solution, free or bound to oleylamine.`)}
+        <Plot layers={dilLayers} xDomain={[-9, -3]} yDomain={kDomOf(dilLayers)}
+              xTicks={[-9, -8, -7, -6, -5, -4, -3].map((v) => ({ v, label: v === -6 ? "1 µM" : v === -3 ? "1 mM" : v === -9 ? "1 nM" : pow10(v) }))}
+              xLabel="dot concentration (M)" yLabel="⟨k⟩" width={1000} height={320} ariaLabel="dilution"
+              hover={lineHover(dilLayers, (x) => `dots ${cTxt(10 ** x)}`)}
+              legend={[...confs().map((c) => ({ color: CONF[c].color, label: CONF[c].label })), ...(dilAlt ? [{ color: "#64748b", dash: pOAm > 0 ? "6 4" : "2 3", label: dilAlt }] : [])]} />
+      </div>
+      {#if complexes}
         <div>
-          <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Dilution</h4>
-          <Plot layers={dilLayers} xDomain={[-9, -3]} yDomain={kDomOf(dilLayers)}
-                xTicks={[-9, -8, -7, -6, -5, -4, -3].map((v) => ({ v, label: v === -6 ? "1 µM" : v === -3 ? "1 mM" : v === -9 ? "1 nM" : pow10(v) }))}
-                xLabel="dot concentration (M)" yLabel="⟨k⟩" height={230} ariaLabel="dilution"
-                hover={lineHover(dilLayers, (x) => `dots ${cTxt(10 ** x)}`)}
-                legend={[...confs().map((c) => ({ color: CONF[c].color, label: CONF[c].label })), ...(dilAlt ? [{ color: "#64748b", dash: pOAm > 0 ? "6 4" : "2 3", label: dilAlt }] : [])]} />
-        </div>
-        {#if complexes}
-          <div>
-            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Oleylamine</h4>
-            <Plot layers={oamLayers} xDomain={[0, C_NEAT]} yDomain={kDomOf(oamLayers)} xLabel="oleylamine (M), 3.04 M = neat" yLabel="⟨k⟩" height={230}
-                  ariaLabel="oleylamine" hover={lineHover(oamLayers, (x) => `OAm ${x.toFixed(2)} M`)}
-                  legend={confs().map((c) => ({ color: CONF[c].color, label: CONF[c].label }))} />
-          </div>
-        {/if}
-        <div>
-          <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Washing cycles</h4>
-          <Plot layers={washLayers} xDomain={[-0.4, 8.4]} yDomain={kDomOf(washLayers)} xTicks={[0, 1, 2, 3, 4, 5, 6, 7, 8].map((v) => ({ v, label: v ? String(v) : "start" }))}
-                xLabel={`wash (removes ${(100 * pWash).toFixed(1)}% of the dissolved ${sub(model.unit)})`} yLabel="⟨k⟩" height={230} ariaLabel="washing"
-                hover={lineHover(washLayers, (x) => (Math.round(x) ? `after wash ${Math.round(x)}` : "start"))}
-                legend={confs().map((c) => ({ color: CONF[c].color, label: CONF[c].label }))} />
-          <p class="text-[11px] text-slate-500 mt-1">Each wash keeps the dots at the same concentration, in the same medium (OAm as set above).</p>
-        </div>
-        <div>
-          <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Annealing (closed system)</h4>
-          <Plot layers={annealLayers} xDomain={[50, 800]} yDomain={kDomOf(annealLayers)} xTicks={tempTicks} xLabel="T (K)" yLabel="⟨k⟩" height={230}
-                ariaLabel="annealing" hover={lineHover(annealLayers, (x) => `T = ${Math.round(x)} K`)}
+          {@render panel("Oleylamine", `⟨k⟩ against the amine concentration at this T and dot concentration: ligand stripping by complexation.`)}
+          <Plot layers={oamLayers} xDomain={[0, C_NEAT]} yDomain={kDomOf(oamLayers)} xLabel="oleylamine (M), 3.04 M = neat" yLabel="⟨k⟩" width={1000} height={320}
+                ariaLabel="oleylamine" hover={lineHover(oamLayers, (x) => `OAm ${x.toFixed(2)} M`)}
                 legend={confs().map((c) => ({ color: CONF[c].color, label: CONF[c].label }))} />
         </div>
+      {/if}
+      <div>
+        {@render panel("Washing cycles", `Each wash removes ${(100 * pWash).toFixed(1)}% of the dissolved ${unitHtml} (free and complexed); the dots, at the same concentration and in the same medium, re-equilibrate.`)}
+        <Plot layers={washLayers} xDomain={[-0.4, 8.4]} yDomain={kDomOf(washLayers)} xTicks={[0, 1, 2, 3, 4, 5, 6, 7, 8].map((v) => ({ v, label: v ? String(v) : "start" }))}
+              xLabel="wash" yLabel="⟨k⟩" width={1000} height={320} ariaLabel="washing"
+              hover={lineHover(washLayers, (x) => (Math.round(x) ? `after wash ${Math.round(x)}` : "start"))}
+              legend={confs().map((c) => ({ color: CONF[c].color, label: CONF[c].label }))} />
+      </div>
+      <div>
+        {@render panel("Annealing (closed system)", "⟨k⟩ against T with nothing added: desorption is self-limiting, the released units raise the free concentration.")}
+        <Plot layers={annealLayers} xDomain={[50, 800]} yDomain={kDomOf(annealLayers)} xTicks={tempTicks} xLabel="T (K)" yLabel="⟨k⟩" width={1000} height={320}
+              ariaLabel="annealing" hover={lineHover(annealLayers, (x) => `T = ${Math.round(x)} K`)}
+              legend={confs().map((c) => ({ color: CONF[c].color, label: CONF[c].label }))} />
       </div>
       <p class="text-[11px] text-slate-500 leading-relaxed max-w-4xl">
         Mass balance: (k<sub>0</sub> − ⟨k⟩) c<sub>dot</sub> + C<sub>added</sub> = c<sub>free</sub> (1 + Σ<sub>p</sub> K<sub>p</sub> c<sub>OAm</sub><sup>p</sup>).
         Equilibrium only: a washed dot may stay out of equilibrium for a long time; these are driving forces.
       </p>
-    </div>
+    {/if}
+
+    {#if view === "synthesis" && growthUrl}
+      {@render section("Growth and size selection", "several dots of this material and their stripped states in equilibrium with the MX and ML<sub>n</sub> monomers (solution-phase model of the report)")}
+      <TrimmedPage src={growthUrl} autosize title="Synthesis thermodynamics" />
+    {/if}
+
+    {#if !model && !(view === "synthesis" && growthUrl) && !(view === "thermo" && reportUrl)}
+      <div class="text-sm text-slate-500">No ladder data for this dot.</div>
+    {/if}
   </div>
 {/if}
