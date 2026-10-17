@@ -7,6 +7,9 @@ library record folder.
     <chain_dir>/qdex/webapp.json             QDEX summary, band-edge excitons, spectra
     <chain_dir>/qdex/spatial_MO_*.cube       HOMO-1, HOMO, LUMO, LUMO+1
     <chain_dir>/qdex/*.html                  QDEX dashboards
+    <chain_dir>/qdex_trap/                   optional: QDEX with the trap filter on (transitions with surface
+                                             trap states excluded); its exciton pages and summary are
+                                             published as qdex/*_traps_filtered.{html,json}
 
 are copied to <record_dir>/dft/ (same layout; "+" in names becomes "_plus") and <record_dir>/dft/manifest.json
 lists every file with its size and whether it is S3-only.  The cubes and the
@@ -76,6 +79,12 @@ def main(argv=None) -> int:
     for name in DASHBOARDS:
         if (qdex / name).is_file():
             files.append((qdex / name, f"qdex/{name}", True, "dashboard", None))
+    trap = chain / "qdex_trap"               # same orbitals, BSE without trap-state transitions
+    if (trap / "webapp.json").is_file():
+        files.append((trap / "webapp.json", "qdex/webapp_traps_filtered.json", False, "summary", None))
+        for name in ("exciton_analysis_sf.html", "exciton_analysis_soc.html"):
+            if (trap / name).is_file():
+                files.append((trap / name, f"qdex/{name[:-5]}_traps_filtered.html", True, "dashboard", None))
 
     out = record / "dft"
     entries = []

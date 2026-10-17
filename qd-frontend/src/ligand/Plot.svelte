@@ -6,7 +6,8 @@
   //            {type: "ticks", ticks: [{x, y, w, color}]}                     (short horizontal marks)
   //            {type: "points", pts: [[x, y]], color, r, hollow}
   //            {type: "hline", y, color, dash, label} / {type: "vline", x, color, dash, label}
-  //            {type: "cells", cells: [{x0, x1, y0, y1, color}]}]
+  //            {type: "cells", cells: [{x0, x1, y0, y1, color}]}
+  //            {type: "image", href, x0, x1, y0, y1}                              (a raster, e.g. a map)]
   //   hover(x) -> {title, rows: [{color, dash, text}], x?} or null
   let { layers = [], xDomain, yDomain, xLabel = "", yLabel = "", xTicks = null, yTicks = null,
         height = 260, width = 720, hover = null, legend = [], ariaLabel = "chart" } = $props();
@@ -33,6 +34,19 @@
     return out.map((v) => ({ v, label: String(+v.toFixed(6)) }));
   }
   let xt = $derived(xTicks || nice(xDomain[0], xDomain[1], 8));
+  // labels with sub- and superscripts: "ΔG_{dec} per CdSe", "k_BT", "10^{-6}"
+  function rich(str) {
+    const out = [];
+    const re = /([_^])(\{[^}]*\}|[^\s{])/g;
+    let last = 0, m;
+    while ((m = re.exec(String(str ?? "")))) {
+      if (m.index > last) out.push({ t: str.slice(last, m.index), k: "" });
+      out.push({ t: m[2].replace(/^\{|\}$/g, ""), k: m[1] === "_" ? "sub" : "sup" });
+      last = re.lastIndex;
+    }
+    if (last < String(str ?? "").length) out.push({ t: String(str).slice(last), k: "" });
+    return out;
+  }
   let yt = $derived(yTicks || nice(yDomain[0], yDomain[1], 5));
 
   let hx = $state(null);
@@ -45,6 +59,8 @@
   let info = $derived(hover && hx !== null ? hover(hx) : null);
   let infoX = $derived(info ? (info.x ?? hx) : null);
 </script>
+
+{#snippet rt(str)}{#each rich(str) as seg, i}{#if seg.k === "sub"}<tspan dy="3" font-size="0.78em">{seg.t}</tspan><tspan dy="-3"></tspan>{:else if seg.k === "sup"}<tspan dy="-4" font-size="0.78em">{seg.t}</tspan><tspan dy="4"></tspan>{:else}<tspan>{seg.t}</tspan>{/if}{/each}{/snippet}
 
 <div class="relative" bind:clientWidth={cw}>
   <svg viewBox="0 0 {W} {H}" class="w-full h-auto select-none" role="img" aria-label={ariaLabel}
@@ -60,7 +76,9 @@
     {/each}
     <g clip-path="url(#{clipId})">
       {#each layers as ly}
-        {#if ly.type === "cells"}
+        {#if ly.type === "image"}
+          <image href={ly.href} x={sx(ly.x0)} y={sy(ly.y1)} width={sx(ly.x1) - sx(ly.x0)} height={sy(ly.y0) - sy(ly.y1)} preserveAspectRatio="none" />
+        {:else if ly.type === "cells"}
           {#each ly.cells as c}
             <rect x={sx(c.x0)} y={sy(c.y1)} width={Math.max(0.5, sx(c.x1) - sx(c.x0) + 0.4)} height={Math.max(0.5, sy(c.y0) - sy(c.y1) + 0.4)} fill={c.color} />
           {/each}
@@ -78,7 +96,7 @@
             <line x1={sx(k.x - k.w / 2)} x2={sx(k.x + k.w / 2)} y1={sy(k.y)} y2={sy(k.y)} stroke={k.color} stroke-width="3" stroke-linecap="round" />
           {/each}
         {:else if ly.type === "line"}
-          <path d={path(ly.pts)} fill="none" stroke={ly.color} stroke-width={ly.width ?? 2} stroke-dasharray={ly.dash || ""}
+          <path d={path(ly.pts)} fill="none" stroke={ly.color} stroke-width={ly.width ?? 2} stroke-dasharray={ly.dash || ""} opacity={ly.opacity ?? 1}
                 stroke-linejoin="round" stroke-linecap="round" />
         {:else if ly.type === "points"}
           {#each ly.pts as [x, y]}
@@ -92,15 +110,15 @@
     {#each layers as ly}
       {#if ly.type === "hline" && ly.y >= yDomain[0] && ly.y <= yDomain[1]}
         <line x1={M.l} x2={W - M.r} y1={sy(ly.y)} y2={sy(ly.y)} stroke={ly.color || "#334155"} stroke-width="1.2" stroke-dasharray={ly.dash ?? "5 4"} />
-        {#if ly.label}<text x={W - M.r - 4} y={sy(ly.y) - 5} text-anchor="end" font-size="11" fill={ly.color || "#334155"}>{ly.label}</text>{/if}
+        {#if ly.label}<text x={ly.labelAt === "start" ? M.l + 4 : W - M.r - 4} y={sy(ly.y) - 5} text-anchor={ly.labelAt === "start" ? "start" : "end"} font-size="11" fill={ly.color || "#334155"}>{@render rt(ly.label)}</text>{/if}
       {:else if ly.type === "vline" && ly.x >= xDomain[0] && ly.x <= xDomain[1]}
         <line x1={sx(ly.x)} x2={sx(ly.x)} y1={M.t} y2={M.t + PH} stroke={ly.color || "#94a3b8"} stroke-width="1" stroke-dasharray={ly.dash ?? "2 3"} />
-        {#if ly.label}<text x={sx(ly.x) + 4} y={M.t + 10} font-size="11" fill={ly.color || "#64748b"}>{ly.label}</text>{/if}
+        {#if ly.label}<text x={sx(ly.x) + 4} y={M.t + 10} font-size="11" fill={ly.color || "#64748b"}>{@render rt(ly.label)}</text>{/if}
       {/if}
     {/each}
     <line x1={M.l} x2={W - M.r} y1={M.t + PH} y2={M.t + PH} stroke="#94a3b8" />
-    <text x={M.l + PW / 2} y={H - 4} text-anchor="middle" font-size="12" fill="#475569">{xLabel}</text>
-    <text transform="translate(13 {M.t + PH / 2}) rotate(-90)" text-anchor="middle" font-size="12" fill="#475569">{yLabel}</text>
+    <text x={M.l + PW / 2} y={H - 4} text-anchor="middle" font-size="12" fill="#475569">{@render rt(xLabel)}</text>
+    <text transform="translate(13 {M.t + PH / 2}) rotate(-90)" text-anchor="middle" font-size="12" fill="#475569">{@render rt(yLabel)}</text>
     {#if info && infoX !== null}
       <line x1={sx(infoX)} x2={sx(infoX)} y1={M.t} y2={M.t + PH} stroke="#cbd5e1" stroke-width="1" />
     {/if}

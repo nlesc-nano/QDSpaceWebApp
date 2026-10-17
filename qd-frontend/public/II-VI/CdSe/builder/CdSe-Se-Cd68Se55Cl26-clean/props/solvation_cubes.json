@@ -1,0 +1,60 @@
+{
+ "model": "COSMO on the DFT electrostatic potential, cavity on the density isosurface 5.00e-04 e/bohr^3 (qd_workflows.reaction.solvation)",
+ "rho0_e_bohr3": 0.0005004514334406108,
+ "beta0_alpha_gamma_mN_m": [
+  2.16,
+  -14.79
+ ],
+ "nonel_min_eps": 1.8,
+ "species": {
+  "dot_0": {
+   "E_inf_eV": -3.9218713711313753,
+   "S_A2": 1707.011213565964,
+   "V_A3": 5012.822140811363,
+   "n_points": 11352,
+   "spacing_A": 0.55,
+   "n_atoms": 149,
+   "screening_charge": 0.03373705028794102,
+   "k": 0
+  },
+  "dot_12": {
+   "E_inf_eV": -3.6205228778749117,
+   "S_A2": 1439.8260694725477,
+   "V_A3": 3905.502321065738,
+   "n_points": 5034,
+   "spacing_A": 0.55,
+   "n_atoms": 113,
+   "screening_charge": 0.09047855468882893,
+   "k": 12
+  },
+  "MA": {
+   "E_inf_eV": -3.513261888957757,
+   "S_A2": 119.07591409228665,
+   "V_A3": 113.10992537504819,
+   "n_points": 460,
+   "spacing_A": 0.55,
+   "n_atoms": 2,
+   "screening_charge": -0.008866736071254856
+  },
+  "MX": {
+   "E_inf_eV": -0.16419024662103024,
+   "S_A2": 137.4049624159023,
+   "V_A3": 126.09845823140901,
+   "n_points": 450,
+   "spacing_A": 0.55,
+   "n_atoms": 3,
+   "screening_charge": -0.00198066111204269
+  },
+  "dot_add12": {
+   "E_inf_eV": -4.017789385495555,
+   "S_A2": 2230.191157368934,
+   "V_A3": 6166.815498463258,
+   "n_points": 14526,
+   "spacing_A": 0.55,
+   "n_atoms": 185,
+   "screening_charge": 0.013715536623350844,
+   "k_added": 12,
+   "source": "props/adsorb_12.xyz, esp run cp2k/esp_add/dot_add12 (same settings as dot_12)"
+  }
+ }
+}

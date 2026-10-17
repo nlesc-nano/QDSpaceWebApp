@@ -1,0 +1,92 @@
+{
+ "schema_version": 1,
+ "code": "CP2K",
+ "functional": "PBE",
+ "basis": "DZVP-MOLOPT",
+ "qdex_commit": "84425d5",
+ "imported": "2026-10-17T14:54:33+00:00",
+ "files": [
+  {
+   "path": "relaxed.xyz",
+   "size": 8224,
+   "s3_only": false,
+   "kind": "geometry"
+  },
+  {
+   "path": "qdex/webapp.json",
+   "size": 62034,
+   "s3_only": false,
+   "kind": "summary"
+  },
+  {
+   "path": "qdex/spatial_MO_HOMO-1.cube",
+   "size": 473758,
+   "s3_only": true,
+   "kind": "orbital",
+   "orbital": "HOMO-1"
+  },
+  {
+   "path": "qdex/spatial_MO_HOMO.cube",
+   "size": 473758,
+   "s3_only": true,
+   "kind": "orbital",
+   "orbital": "HOMO"
+  },
+  {
+   "path": "qdex/spatial_MO_LUMO.cube",
+   "size": 473758,
+   "s3_only": true,
+   "kind": "orbital",
+   "orbital": "LUMO"
+  },
+  {
+   "path": "qdex/spatial_MO_LUMO_plus1.cube",
+   "size": 473758,
+   "s3_only": true,
+   "kind": "orbital",
+   "orbital": "LUMO+1"
+  },
+  {
+   "path": "qdex/exciton_analysis_sf.html",
+   "size": 87432,
+   "s3_only": true,
+   "kind": "dashboard"
+  },
+  {
+   "path": "qdex/exciton_analysis_soc.html",
+   "size": 87545,
+   "s3_only": true,
+   "kind": "dashboard"
+  },
+  {
+   "path": "qdex/fuzzy_dashboard_sf.html",
+   "size": 13816613,
+   "s3_only": true,
+   "kind": "dashboard"
+  },
+  {
+   "path": "qdex/fuzzy_dashboard_soc.html",
+   "size": 1838029,
+   "s3_only": true,
+   "kind": "dashboard"
+  },
+  {
+   "path": "qdex/webapp_traps_filtered.json",
+   "size": 62257,
+   "s3_only": false,
+   "kind": "summary"
+  },
+  {
+   "path": "qdex/exciton_analysis_sf_traps_filtered.html",
+   "size": 87475,
+   "s3_only": true,
+   "kind": "dashboard"
+  },
+  {
+   "path": "qdex/exciton_analysis_soc_traps_filtered.html",
+   "size": 87535,
+   "s3_only": true,
+   "kind": "dashboard"
+  }
+ ]
+}

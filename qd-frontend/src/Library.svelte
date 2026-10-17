@@ -1,14 +1,11 @@
 <script>
   import { onMount } from "svelte";
   import Viewer from "./Viewer.svelte";
-  import Optical from "./Optical.svelte";
-  import LigandShell from "./ligand/LigandShell.svelte";
-  import TrimmedPage from "./ligand/TrimmedPage.svelte";
   import { templateFor } from "./bulkTemplates.js";
   import { makeZip } from "./zip.js";
 
   // Opens a structure in the Builder's post-treatment view (set by App).
-  let { onOpenInBuilder = null } = $props();
+  let { onOpenInBuilder = null, onOpenDot = null } = $props();
 
   // --- Index (library_index.json: one record per structure) ---
   let structures = $state([]);
@@ -44,14 +41,12 @@
   let fileUrl = $state("");
   let loadingStage = $state(false);
   let previousBlobUrl = null;
-  let orbital = $state(""); // selected DFT orbital ("" = none), drawn by 3Dmol
 
   let propertiesStatus = $state("idle");
   let activePropertyTab = $state("fuzzy_sf");
   let plotUrls = $state({});
-  // Thermodynamics and Synthesis tabs (native): the Z-type ladder and stability data, the report's
-  // stability page (solution-phase section) and the multi-dot growth page
-  let shell = $state({ det: null, stab: null, report: null, growth: null });
+  // Thermodynamics and Synthesis tabs (native): the Z-type ladder, stability and DFT solvation data
+  let shell = $state({ det: null, stab: null, cubes: null });
   // How IR/Raman and solvation were computed (props/field.json, props/solvation.json), for the badges
   let methods = $state({ vib: null, solv: null });
   let groundStatePng = $state(null);
@@ -218,11 +213,12 @@
   }
 
   // --- Selection & loading ---
+  // The library shows the starting structure; relaxed geometries and orbitals are on the QD page.
   function defaultStageIndex(r) {
-    const opt = r.stages.findIndex((s) => s.stage === "geo_opt");
-    if (opt >= 0) return opt;
-    const start = r.stages.findIndex((s) => s.stage === "start");
-    return start >= 0 ? start : 0;
+    const start = r.stages.findIndex((s) => s.stage === "start" && !s.dft_start);
+    if (start >= 0) return start;
+    const any = r.stages.findIndex((s) => s.stage === "start");
+    return any >= 0 ? any : 0;
   }
 
   async function selectStructure(r) {
@@ -237,7 +233,6 @@
   async function selectStage(i) {
     if (!current) return;
     stageIndex = i;
-    orbital = "";
     const st = current.stages[i];
     loadingStage = true;
     if (previousBlobUrl) {
@@ -264,20 +259,6 @@
     }
   }
 
-  // --- Orbitals: shown on the DFT-relaxed stage (the cubes carry its atoms) in 3Dmol ---
-  let orbitalUrls = $derived(
-    current?.dft?.orbitals ? Object.fromEntries(Object.entries(current.dft.orbitals).map(([k, p]) => [k, `/${p}`])) : null,
-  );
-
-  async function showOrbital(label) {
-    if (label && current) {
-      const i = current.stages.findIndex(isDftChain);
-      if (i >= 0 && i !== stageIndex) await selectStage(i);
-      activeViewer = "3dmol";
-    }
-    orbital = label;
-  }
-
   // Downsample a trajectory to ~150 frames for smooth playback.
   function trajectoryBlobUrl(text) {
     const lines = text.split("\n");
@@ -298,7 +279,7 @@
 
   // --- Properties: from the record; probe the legacy folder as a fallback ---
   // Order = tab order and the default tab: computed ground state first, then thermodynamics and
-  // synthesis, then the DFT pages. "thermodynamics", "synthesis" and "optical" are native (LigandShell,
+  // synthesis, then the DFT pages. "thermodynamics", "synthesis" and "optical" are native (ThermoView, SynthesisView,
   // Optical), not pages.
   const PROPERTY_FILES = {
     ground_state: ["ground_state.html"],
@@ -344,36 +325,30 @@
     return [`DFT ${dft} geometry`, `excited states (${soc})`];
   }
 
-  // Thermodynamics data of a builder record: props/detachment.json and stability.json (from the record,
-  // or next to its start geometry), stability.html (the report's stability page; older reports kept
-  // it inside ground_state.html) and synthesis.html. The dev server answers a missing file with
-  // index.html, so the type (JSON) or the page body (report pages have a .wrap) is checked.
+  // Thermodynamics data of a builder record: props/detachment.json, stability.json and the DFT solvation
+  // cubes (solvation_cubes.json), from the record or next to its start geometry; field.json and
+  // solvation.json tell how IR/Raman and the solvation were computed. The dev server answers a missing
+  // file with index.html, so the content type is checked.
   async function findShell(r, props) {
-    shell = { det: null, stab: null, report: null, growth: null };
+    shell = { det: null, stab: null, cubes: null };
     methods = { vib: null, solv: null };
     const start = (r.stages || []).find((s) => s.stage === "start")?.file;
     const dir = start ? `/${start.slice(0, start.lastIndexOf("/"))}/props` : null;
     const url = (n) => (props[n] ? `/${props[n]}` : dir ? `${dir}/${n}` : null);
     const isJson = (u) => (u ? fetch(u, { method: "HEAD", cache: "no-store" })
       .then((res) => res.ok && (res.headers.get("content-type") || "").includes("json")).catch(() => false) : false);
-    const isPage = (u) => (u ? fetch(u, { cache: "no-store" })
-      .then((res) => (res.ok ? res.text() : "")).then((t) => t.includes('class="wrap"')).catch(() => false) : false);
-    const [det, stab, report, legacy, growth] = await Promise.all([
-      isJson(url("detachment.json")), isJson(url("stability.json")), isPage(url("stability.html")),
-      props["ground_state.html"] ? true : isPage(url("ground_state.html")), props["synthesis.html"] ? true : isPage(url("synthesis.html"))]);
-    if (r.id !== current?.id) return;
-    shell = { det: det ? url("detachment.json") : null, stab: stab ? url("stability.json") : null,
-              report: report ? url("stability.html") : legacy ? url("ground_state.html") : null,
-              growth: growth ? url("synthesis.html") : null };
-    plotUrls.thermodynamics = shell.det || shell.report ? "native" : null;
     const json = (u) => (u ? fetch(u, { cache: "no-store" }).then((res) =>
       res.ok && (res.headers.get("content-type") || "").includes("json") ? res.json() : null).catch(() => null) : null);
-    const [field, solv] = await Promise.all([json(url("field.json")), json(url("solvation.json"))]);
+    const [det, stab, cubes, field, solv] = await Promise.all([isJson(url("detachment.json")), isJson(url("stability.json")),
+      isJson(url("solvation_cubes.json")), json(url("field.json")), json(url("solvation.json"))]);
     if (r.id !== current?.id) return;
+    shell = { det: det ? url("detachment.json") : null, stab: stab ? url("stability.json") : null,
+              cubes: cubes ? url("solvation_cubes.json") : null };
     const model = solv?.summary?.model || "";
     methods = { vib: field?.summary?.source?.startsWith("CP2K") ? "dft" : field || solv ? "xtb" : null,
                 solv: model.startsWith("COSMO") ? "cosmo" : model ? "gb" : null };
-    plotUrls.synthesis = shell.det || shell.growth ? "native" : null;
+    plotUrls.thermodynamics = shell.det ? "native" : null;
+    plotUrls.synthesis = shell.det ? "native" : null;
   }
 
   async function loadProperties(r) {
@@ -744,13 +719,8 @@
         <div class="flex flex-wrap justify-between items-center gap-3 mb-3 px-2">
           <div class="flex items-center gap-3 min-w-0">
             <h2 class="font-heading font-bold text-xl text-slate-900 truncate">{#if current}{#each formulaParts(current.formula) as p}{#if p.sub}<sub>{p.t}</sub>{:else}{p.t}{/if}{/each}{:else}3D Structure Viewer{/if}</h2>
-            {#if current}
-              <div class="flex gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200 overflow-x-auto">
-                {#each current.stages as st, i}
-                  <button class="px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all {stageIndex === i ? 'bg-accent-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-950'}"
-                          onclick={() => selectStage(i)}>{stageLabel(st)}</button>
-                {/each}
-              </div>
+            {#if current && currentStage}
+              <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200 whitespace-nowrap">{stageLabel(currentStage)}</span>
             {/if}
           </div>
           <div class="flex items-center gap-3">
@@ -758,7 +728,7 @@
               <div class="flex gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
                 {#each [["3dmol", "3Dmol"], ["ngl", "NGL"], ["molstar", "Mol*"], ["matterviz", "MatterViz"]] as [v, label]}
                   <button class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all {activeViewer === v ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-950'}"
-                          onclick={() => { activeViewer = v; if (v !== "3dmol") orbital = ""; }}>{label}</button>
+                          onclick={() => (activeViewer = v)}>{label}</button>
                 {/each}
               </div>
             {/if}
@@ -769,7 +739,6 @@
         <div class="flex-1 bg-slate-50 rounded-[1rem] border border-slate-200 overflow-hidden relative shadow-inner">
           <Viewer xyz={xyzText} {isMD} dataUrl={fileUrl}
                   sizeMetrics={current?.size ?? null}
-                  orbitals={orbitalUrls} {orbital} onOrbital={showOrbital}
                   {activeViewer} />
           {#if loadingStage}
             <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center text-white z-10">
@@ -896,69 +865,29 @@
       </div>
     </div>
 
-    <!-- Properties -->
-    <div class="w-full bg-white rounded-[1.5rem] shadow-sm border border-slate-100 p-6 min-h-[800px] flex-shrink-0 flex flex-col mt-2">
-      <div class="flex flex-col xl:flex-row justify-between xl:items-end gap-4 border-b border-slate-100 pb-4 mb-4 z-10">
-        <h2 class="font-heading font-bold text-2xl text-slate-900">Interactive Properties</h2>
-        {#if propertiesStatus === "ready"}
-          <div class="flex flex-wrap gap-2">
-            {#each PROPERTY_TABS as [tab, label]}
-              {#if plotUrls[tab]}
-                <button class="px-4 py-2 text-xs md:text-sm font-bold rounded-xl transition-all {activePropertyTab === tab ? 'bg-brand-50 text-brand-700 shadow-sm ring-1 ring-brand-200' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700'}"
-                        onclick={() => (activePropertyTab = tab)}>{label}</button>
-              {/if}
-            {/each}
-            {#if activePropertyTab === "ground_state" && groundStatePng}
-              <a class="px-4 py-2 text-xs md:text-sm font-bold rounded-xl text-accent-700 hover:bg-accent-50" href={groundStatePng}
-                 download>Summary (PNG)</a>
-            {/if}
-          </div>
-        {/if}
-      </div>
-      <div class="flex-1 w-full relative min-h-[750px]">
-        {#if propertiesStatus === "idle"}
-          <div class="absolute inset-0 flex items-center justify-center bg-slate-50 text-slate-500 rounded-2xl italic text-sm font-medium border border-slate-200 border-dashed">
-            Select a structure to view its calculated properties.
-          </div>
-        {:else if propertiesStatus === "loading"}
-          <div class="absolute inset-0 flex flex-col items-center justify-center bg-slate-50 text-brand-600 rounded-2xl text-sm font-bold border border-brand-100">
-            <div class="w-8 h-8 border-4 border-brand-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-            Checking properties files...
-          </div>
-        {:else if propertiesStatus === "none"}
-          <div class="absolute inset-0 flex flex-col items-center justify-center bg-slate-50 text-slate-500 rounded-2xl text-sm border border-slate-200 border-dashed text-center px-6">
-            <span class="font-bold mb-1">No properties yet</span>
-            <span class="text-xs">Properties are available for DFT-optimized structures once they have been computed.</span>
-          </div>
-        {:else if plotUrls[activePropertyTab]}
-          <div class="absolute inset-x-0 top-0 flex flex-wrap items-center gap-1.5 text-[11px]">
-            <span class="font-bold text-slate-500 uppercase tracking-wide mr-1">Computed with</span>
-            {#each propertyMethods(activePropertyTab, current) as m}
-              <span class="px-2 py-0.5 rounded border font-bold {badgeClass(activePropertyTab.startsWith('fuzzy') || activePropertyTab.startsWith('exciton') || activePropertyTab === 'optical' ? 'source' : 'opt')}">{m}</span>
-            {/each}
-          </div>
-          {#if activePropertyTab === "optical"}
-            <div class="absolute inset-x-0 top-8 bottom-0 overflow-y-auto">
-              <Optical url={plotUrls.optical} />
+    <!-- Properties: the dot's own page holds them; here only what is there and the way in -->
+    {#if current}
+      <div class="w-full bg-white rounded-[1.5rem] shadow-sm border border-slate-100 p-5 flex flex-wrap items-center justify-between gap-4 mt-2">
+        <div class="flex flex-col gap-2 min-w-0">
+          <h2 class="font-heading font-bold text-lg text-slate-900">Properties</h2>
+          {#if propertiesStatus === "loading"}
+            <span class="text-xs text-slate-500">Checking the computed data…</span>
+          {:else if propertiesStatus === "ready"}
+            <div class="flex flex-wrap gap-1.5">
+              {#each [["ground_state", "Structure and vibrations"], ["thermodynamics", "Thermodynamics"], ["synthesis", "Synthesis and post-synthesis"],
+                      ["fuzzy_sf", "Electronic structure"], ["exciton_sf", "Excited states"]] as [t, label]}
+                {#if plotUrls[t]}<span class="px-2.5 py-1 rounded-full border text-[11px] font-bold bg-brand-50 text-brand-800 border-brand-200">{label}</span>{/if}
+              {/each}
             </div>
-          {:else if activePropertyTab === "thermodynamics" || activePropertyTab === "synthesis"}
-            <div class="absolute inset-x-0 top-8 bottom-0 overflow-y-auto pr-1">
-              {#key activePropertyTab}
-                <LigandShell view={activePropertyTab === "thermodynamics" ? "thermo" : "synthesis"} detUrl={shell.det}
-                             stabUrl={shell.stab} reportUrl={shell.report} growthUrl={shell.growth} />
-              {/key}
-            </div>
-          {:else if activePropertyTab === "ground_state"}
-            <!-- older reports also hold the stability sections: those are in the Thermodynamics tab -->
-            <TrimmedPage src={plotUrls.ground_state} keep={(t) => !t.startsWith("Stability")} title="Structure, vibrations & thermochemistry"
-                         cls="absolute inset-x-0 top-8 h-[calc(100%-2rem)]" />
           {:else}
-            <iframe title="Interactive Properties" src={plotUrls[activePropertyTab]}
-                    class="absolute inset-x-0 top-8 w-full h-[calc(100%-2rem)] rounded-[1rem] border border-slate-200 bg-white"
-                    sandbox="allow-scripts allow-same-origin allow-popups allow-modals" referrerpolicy="no-referrer"></iframe>
+            <span class="text-xs text-slate-500">No computed properties for this structure yet.</span>
           {/if}
+        </div>
+        {#if propertiesStatus === "ready" && onOpenDot}
+          <button class="px-5 py-2.5 rounded-xl bg-brand-600 text-white text-sm font-bold shadow-sm hover:bg-brand-700"
+                  onclick={() => onOpenDot(current.id)}>Open the QD page →</button>
         {/if}
       </div>
-    </div>
+    {/if}
   </main>
 </div>
