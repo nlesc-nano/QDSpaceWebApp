@@ -1,6 +1,7 @@
 {
  "summary": {
   "html": "ground_state.html",
+  "stability_html": "stability.html",
   "png": "ground_state.png",
   "figures": [
    "binding",
@@ -52,12 +53,12 @@
   ],
   [
    "$S_\\mathrm{vib}$ (300 K)",
-   "57.86 meV/K",
+   "57.87 meV/K",
    "vibrational entropy (quasi-RRHO)"
   ],
   [
    "$F_\\mathrm{vib}$ (300 K)",
-   "-5.558 eV",
+   "-5.559 eV",
    "$F_\\mathrm{vib} = U_\\mathrm{vib} - TS_\\mathrm{vib}$"
   ],
   [
@@ -72,7 +73,7 @@
   ],
   [
    "First CdCl$_{2}$ detachment",
-   "\u0394E +1.52 eV, \u0394G +1.03 eV",
+   "\u0394E +1.53 eV, \u0394G +1.01 eV",
    "$\\Delta E_1$, cheapest unit; $\\Delta G$ at 300 K, 1 M"
   ],
   [
@@ -82,36 +83,36 @@
   ],
   [
    "Polarisability $\\alpha_\\mathrm{iso}$",
-   "651 \u00c5\u00b3",
-   "g-xTB, finite field"
+   "637 \u00c5\u00b3",
+   "CP2K PBE, finite field"
   ],
   [
    "Strongest IR peak",
-   "180 cm$^{-1}$ (A')",
-   "319 km/mol"
+   "191 cm$^{-1}$ (A'')",
+   "125 km/mol"
   ],
   [
    "Strongest Raman activity",
-   "208 cm$^{-1}$ (A')",
-   "73 \u00c5$^4$/amu"
+   "298 cm$^{-1}$ (A')",
+   "61 \u00c5$^4$/amu"
   ]
  ],
- "_hash": "f0780f103cdd05e3",
+ "_hash": "55d3d4eccc3e8d03",
  "_inputs": {
   "schema": 1,
-  "code": "576216a2b2f0369b38550f21037d80e672875bf441e7a70c5c9b54d64d568bfa53dfd15645a885da",
+  "code": "a5e02a2aa31edfa2143bd546ef481de12548f262969adfb8b4d2ae41b5d11bfbb0c0d7c621d197de",
   "settings": {},
   "start": "2e87ec5ab917dd18",
   "upstream": {
-   "relax": "9a7abb25886b1cba",
-   "structure": "3ed64efc59ea2a48",
-   "hessian": "27cf863107e1d3d5",
-   "vibspec": "3c7bb33fe2359cfc",
-   "stability": "c9e1c5b35d73418e",
-   "detachment": "b7322359bc31bbc9",
-   "solvation": "5957f270e8ef5ec1",
-   "sites": "995ec4fe27024bcd"
+   "relax": "74ad69490b424d72",
+   "structure": "e030c7226c569bae",
+   "hessian": "47431ab5a0fdc7a4",
+   "vibspec": "8952dcff4cf82adf",
+   "stability": "7aa51d7328aefe84",
+   "detachment": "97995b03e3b425bd",
+   "solvation": "fc16fe035b50ead0",
+   "sites": "92aff3dfad750e40"
   }
  },
- "_seconds": 7.53
+ "_seconds": 23.9
 }

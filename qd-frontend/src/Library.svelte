@@ -52,6 +52,8 @@
   // Thermodynamics and Synthesis tabs (native): the Z-type ladder and stability data, the report's
   // stability page (solution-phase section) and the multi-dot growth page
   let shell = $state({ det: null, stab: null, report: null, growth: null });
+  // How IR/Raman and solvation were computed (props/field.json, props/solvation.json), for the badges
+  let methods = $state({ vib: null, solv: null });
   let groundStatePng = $state(null);
 
   const SOURCE_LABEL = { builder: "Builder", dft: "DFT", "builder+dft": "Builder + DFT" };
@@ -328,8 +330,10 @@
   }
   function propertyMethods(tab, r) {
     const mace = (r?.stages || []).find((s) => s.stage === "geo_opt" && s.code === "MACE")?.functional || "MACE-MH-1";
-    if (tab === "ground_state") return [`${mace}: geometry, Hessian, thermochemistry`, "g-xTB: IR & Raman intensities"];
-    if (tab === "thermodynamics") return [mace, "vacuum · solution: GFN2-xTB + GB"];
+    if (tab === "ground_state") return [`${mace}: geometry, Hessian, thermochemistry`,
+      `${methods.vib === "dft" ? "DFT (CP2K PBE) finite field" : "g-xTB"}: IR & Raman intensities`];
+    if (tab === "thermodynamics") return [mace, methods.solv === "cosmo" ? "solution: COSMO on the CP2K PBE potential"
+      : methods.solv === "gb" ? "solution: GFN2-xTB charges + GB" : "vacuum"];
     if (tab === "synthesis") return [mace, "equilibria with mass balance"];
     const dft = dftMethod(r, plotUrls[tab] || "");
     if (tab === "optical") return [`DFT ${dft} geometry`,
@@ -346,6 +350,7 @@
   // index.html, so the type (JSON) or the page body (report pages have a .wrap) is checked.
   async function findShell(r, props) {
     shell = { det: null, stab: null, report: null, growth: null };
+    methods = { vib: null, solv: null };
     const start = (r.stages || []).find((s) => s.stage === "start")?.file;
     const dir = start ? `/${start.slice(0, start.lastIndexOf("/"))}/props` : null;
     const url = (n) => (props[n] ? `/${props[n]}` : dir ? `${dir}/${n}` : null);
@@ -361,6 +366,13 @@
               report: report ? url("stability.html") : legacy ? url("ground_state.html") : null,
               growth: growth ? url("synthesis.html") : null };
     plotUrls.thermodynamics = shell.det || shell.report ? "native" : null;
+    const json = (u) => (u ? fetch(u, { cache: "no-store" }).then((res) =>
+      res.ok && (res.headers.get("content-type") || "").includes("json") ? res.json() : null).catch(() => null) : null);
+    const [field, solv] = await Promise.all([json(url("field.json")), json(url("solvation.json"))]);
+    if (r.id !== current?.id) return;
+    const model = solv?.summary?.model || "";
+    methods = { vib: field?.summary?.source?.startsWith("CP2K") ? "dft" : field || solv ? "xtb" : null,
+                solv: model.startsWith("COSMO") ? "cosmo" : model ? "gb" : null };
     plotUrls.synthesis = shell.det || shell.growth ? "native" : null;
   }
 

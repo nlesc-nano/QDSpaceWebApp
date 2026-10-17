@@ -1,73 +1,102 @@
 {
  "summary": {
-  "model": "Generalized Born on GFN2-xTB charges (HCT radii, Bondi x 1.15)",
-  "dG_solv_dot_eps2.4_eV": -2.034341382231243,
-  "dG_solv_dot_eps80_eV": -3.4438493399200336,
-  "cosmo_dot_eps2.4_eV": null,
-  "n_structures": 16,
-  "n_cosmo_failed": 0,
-  "n_alpb_failed": 0
+  "model": "COSMO on the CP2K PBE electrostatic potential at the density isosurface (5.0e-04 e/bohr^3) + cavity/dispersion (alpha+gamma)(eps) S (Hille 2019, beta = 0); stripped states linear in k between the intact and the fully stripped dot",
+  "charges": "dft",
+  "dG_solv_dot_eps2.4_eV": -3.662058479064875,
+  "dG_solv_dot_eps80_eV": -4.440171922689769,
+  "dG_el_dot_eps2.4_eV": -2.2877582998266353,
+  "S_dot_A2": 1707.011213565964,
+  "computed": [
+   "MA",
+   "MX",
+   "dot_0",
+   "dot_12"
+  ],
+  "n_structures": 15
  },
  "gb_inf": {
-  "dot_0": -3.4874423695392744,
-  "dot_1": -3.255473453761794,
-  "dot_2": -3.011403057733547,
-  "dot_3": -3.4106842733728766,
-  "dot_4": -3.5195028726379007,
-  "dot_5": -2.9069931074496864,
-  "dot_6": -2.7992748878670324,
-  "dot_7": -3.0164289696424573,
-  "dot_8": -2.8479539997264363,
-  "dot_9": -2.8572138613218376,
-  "dot_10": -3.0060146824236424,
-  "dot_11": -2.626840025715943,
-  "dot_12": -2.667629451458821,
-  "dot_13": -2.911104893028109,
-  "MA": -0.2628175822146658,
-  "MX": -0.22578900748862324
+  "dot_0": -3.9218713711313753,
+  "dot_1": -3.8967589966933365,
+  "dot_2": -3.871646622255298,
+  "dot_3": -3.8465342478172593,
+  "dot_4": -3.8214218733792213,
+  "dot_5": -3.7963094989411816,
+  "dot_6": -3.7711971245031437,
+  "dot_7": -3.746084750065105,
+  "dot_8": -3.720972375627066,
+  "dot_9": -3.6958600011890277,
+  "dot_10": -3.670747626750989,
+  "dot_11": -3.6456352523129505,
+  "dot_12": -3.6205228778749117,
+  "MA": -3.513261888957757,
+  "MX": -0.16419024662103024
  },
- "radius_scale": 1.15,
- "smearing": {
-  "dot_0": "none",
-  "dot_1": "none",
-  "dot_2": "none",
-  "dot_3": "none",
-  "dot_4": "none",
-  "dot_5": "none",
-  "dot_6": "none",
-  "dot_7": "none",
-  "dot_8": "none",
-  "dot_9": "none",
-  "dot_10": "none",
-  "dot_11": "none",
-  "dot_12": "none",
-  "dot_13": "none",
-  "MA": "none",
-  "MX": "none"
+ "cav_S": {
+  "dot_0": 1707.011213565964,
+  "dot_1": 1684.7457848915126,
+  "dot_2": 1662.4803562170614,
+  "dot_3": 1640.21492754261,
+  "dot_4": 1617.9494988681588,
+  "dot_5": 1595.6840701937072,
+  "dot_6": 1573.4186415192557,
+  "dot_7": 1551.1532128448043,
+  "dot_8": 1528.8877841703534,
+  "dot_9": 1506.6223554959017,
+  "dot_10": 1484.3569268214503,
+  "dot_11": 1462.0914981469991,
+  "dot_12": 1439.8260694725477,
+  "MA": 119.07591409228665,
+  "MX": 137.4049624159023
  },
- "cosmo_check": {},
+ "source": {
+  "dot_0": "DFT",
+  "dot_1": "linear in k between 0 and 12",
+  "dot_2": "linear in k between 0 and 12",
+  "dot_3": "linear in k between 0 and 12",
+  "dot_4": "linear in k between 0 and 12",
+  "dot_5": "linear in k between 0 and 12",
+  "dot_6": "linear in k between 0 and 12",
+  "dot_7": "linear in k between 0 and 12",
+  "dot_8": "linear in k between 0 and 12",
+  "dot_9": "linear in k between 0 and 12",
+  "dot_10": "linear in k between 0 and 12",
+  "dot_11": "linear in k between 0 and 12",
+  "dot_12": "DFT",
+  "MA": "DFT",
+  "MX": "DFT"
+ },
+ "beta0_alpha_gamma_mN_m": [
+  2.16,
+  -14.79
+ ],
  "alpb": {
   "solvents": {},
   "dG": {}
  },
  "provenance": {
-  "engine": "GFN2-xTB",
-  "binary": "/Users/ivaninfante/miniforge3/envs/xtb/bin/xtb",
-  "xtb": "6.7.1 (edcfbbe)"
+  "engine": "CP2K",
+  "file": "/scratch/usr/becivinf/qdw_tests/cd68_full/rec/CdSe-Se-Cd68Se55Cl26-clean/cp2k/solvation.json",
+  "functional": "PBE",
+  "dir": "/scratch/usr/becivinf/qdw_tests/cd68_full/rec/CdSe-Se-Cd68Se55Cl26-clean/cp2k/field",
+  "field_au": 0.002
  },
- "_hash": "5957f270e8ef5ec1",
+ "_hash": "fc16fe035b50ead0",
  "_inputs": {
   "schema": 1,
-  "code": "68c26b5172eac82e",
+  "code": "204a4716f3f5a367",
   "settings": {
-   "method": "gfn2",
+   "charges": "dft",
+   "method": "auto",
+   "gxtb_max_atoms": 500,
    "checks": false
   },
   "start": "2e87ec5ab917dd18",
   "upstream": {
-   "relax": "9a7abb25886b1cba",
-   "detachment": "b7322359bc31bbc9"
-  }
+   "relax": "74ad69490b424d72",
+   "detachment": "97995b03e3b425bd",
+   "field": "220bd2bd14738512"
+  },
+  "external": "f3d435185a20c0e2"
  },
- "_seconds": 476.12
+ "_seconds": 0.05
 }

@@ -16,8 +16,8 @@
    "mu2": 24,
    "mu3": 2
   },
-  "bulk_bond_A": 2.6589328557077323,
-  "core_strain_pct": 2.242215884899798
+  "bulk_bond_A": 2.658932855707732,
+  "core_strain_pct": 2.242195072667962
  },
  "bulk_cn": {
   "Cd": 4,
@@ -25,9 +25,9 @@
  },
  "cutoffs_A": {
   "Cd-Cl": 3.075,
-  "Cd-Se": 3.1907194268492787
+  "Cd-Se": 3.1907194268492782
  },
- "cif": "/Users/ivaninfante/Documents/University/escience/QD_builder/examples/cifs/CdSe_zb.cif",
+ "cif": "/scratch/usr/becivinf/qdw_tests/B/from_hyperion/escience/qdw-test/QD_Builder/examples/cifs/CdSe_zb.cif",
  "detached": [],
  "migrated": [
   147,
@@ -532,10 +532,10 @@
     },
     "shell": {
      "n": 50,
-     "mean": 2.5395438521170535,
-     "std": 0.06577295168009871,
-     "min": 2.378591474551145,
-     "max": 2.621257252634717,
+     "mean": 2.5395426031283903,
+     "std": 0.06577986902161365,
+     "min": 2.3785365306211843,
+     "max": 2.6212631801531874,
      "hist": {
       "left": [
        2.36,
@@ -597,10 +597,10 @@
    "Cd-Se": {
     "core": {
      "n": 76,
-     "mean": 2.718551870567231,
-     "std": 0.07042763734360764,
-     "min": 2.6507061830154637,
-     "max": 2.850058431079269,
+     "mean": 2.71855131718396,
+     "std": 0.07042731588606574,
+     "min": 2.650713712713691,
+     "max": 2.8500600682159365,
      "hist": {
       "left": [
        2.36,
@@ -660,10 +660,10 @@
     },
     "shell": {
      "n": 120,
-     "mean": 2.6319037424331055,
-     "std": 0.06826506773340915,
-     "min": 2.5365192660972617,
-     "max": 2.8012644202582933,
+     "mean": 2.6319039300992997,
+     "std": 0.06826477304038216,
+     "min": 2.536516328614194,
+     "max": 2.8012690550313772,
      "hist": {
       "left": [
        2.36,
@@ -724,15 +724,15 @@
    }
   }
  },
- "_hash": "3ed64efc59ea2a48",
+ "_hash": "e030c7226c569bae",
  "_inputs": {
   "schema": 1,
-  "code": "ffff9d4226a18aea",
+  "code": "0d5f87144da5303e",
   "settings": {},
   "start": "2e87ec5ab917dd18",
   "upstream": {
-   "relax": "9a7abb25886b1cba"
+   "relax": "74ad69490b424d72"
   }
  },
- "_seconds": 0.09
+ "_seconds": 0.29
 }
